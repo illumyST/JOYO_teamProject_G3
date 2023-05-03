@@ -1,6 +1,4 @@
 <?php
-
+    echo "我是葉俞良，我要把你們全部刪掉！";
 ?>
-<h3>how are you</h3>
-<h3>how are you</h3>
-<h3>how e you</h3>
+
