@@ -48,3 +48,12 @@
         background: $orange;
     }
 }
+
+// flex排版
+@mixin flex-container($direction: row, $wrap: wrap, $justify-content: center, $align-items: center) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
