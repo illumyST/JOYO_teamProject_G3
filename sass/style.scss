@@ -1,0 +1,29 @@
+@import './base/var';
+@import './base/font';
+@import './base/color';
+// @import './plugin/';
+
+
+/*---------------------end-----------------------------*/
+
+@import './mixin/mixins';
+
+@import './component/body';
+@import './component/btn';
+@import './component/card';
+@import './component/form';
+@import './component/title';
+@import './component/grid';
+
+
+@import './layout/header';
+@import './layout/footer';
+@import './layout/login';
+@import './layout/nav';
+
+@import './page/main';
+@import './page/about';
+
+
+
+
