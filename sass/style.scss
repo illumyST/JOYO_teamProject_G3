@@ -26,6 +26,12 @@
 @import './page/main';
 @import './page/about';
 @import './page/index';
+@import './page/member';
 
+.wrapper{
+    @include wrapper();
+    height: 100px;
+}
 
+@include btnn(100px);
 

@@ -63,3 +63,28 @@
     width: 1200px;
     margin: 0 auto;
 }
+
+@mixin btnn($w){
+    .btn{
+        padding: 8px 16px;
+        text-align: center;
+        max-width: $w;
+        cursor: pointer;
+        transition: all .3s;
+        border-radius: 2 * 5 +px;
+        background-color: #AFBF30;
+        // border: 1px solid $bc;
+        @content;
+        &:hover{
+            // background-color: darken($bgc,10);
+            background-color: salmon;
+        };
+        &__submit{
+            background :#F29441;
+        }
+        &__addCart{      
+
+        }
+}
+}
+
