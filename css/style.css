@@ -1,3 +1,22 @@
-/*---------------------end-----------------------------*/
+/* Error: Missing argument $r.
+ *     ,
+ * 2   | @mixin grid($c , $r){
+ *     |        ============= declaration
+ * ... |
+ * 11  | @include grid(12);
+ *     | ^^^^^^^^^^^^^^^^^ invocation
+ *     '
+ *   sass/component/_grid.scss 11:1  grid()
+ *   sass/component/_grid.scss 11:1  @import
+ *   sass/style.scss 18:9            root stylesheet */
 
-/*# sourceMappingURL=style.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Missing argument $r.\a     \2577 \a 2   \2502  @mixin grid($c , $r){\a     \2502         \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  declaration\a... \2502 \a 11  \2502  @include grid(12);\a     \2502  ^^^^^^^^^^^^^^^^^ invocation\a     \2575 \a   sass/component/_grid.scss 11:1  grid()\a   sass/component/_grid.scss 11:1  @import\a   sass/style.scss 18:9            root stylesheet";
+}
