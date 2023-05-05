@@ -149,5 +149,37 @@
         }
     }
 
+@mixin btnn($w){
+    .btn{
+        padding: 8px 16px;
+        text-align: center;
+        max-width: $w;
+        cursor: pointer;
+        transition: all .3s;
+        border-radius: 10px;
+        background-color: #AFBF30;
+        // border: 1px solid $bc;
+        @content;
+        &:hover{
+            // background-color: darken($bgc,10);
+            background-color: salmon;
+        };
+        &__submit{
+            background :#F29441;
+        }
+        &__addCart{      
+
+        }
+}
 }
 
+@mixin Label(){
+        background-color: $b-pink;
+        font-size: $p;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        display: inline-block;   
+}
+
+}

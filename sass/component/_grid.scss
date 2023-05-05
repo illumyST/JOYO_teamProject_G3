@@ -1,4 +1,4 @@
-// grid
+// // grid
 // @mixin grid($c , $r){
 //     @for $i from 1 through $c {
 //         .col-#{$r}-#{$i} {
@@ -8,12 +8,12 @@
 // }
 
 // // 桌機
-// @include grid(12,t);
+// @include grid(12, 24);
 
 
 // // 平板
-// @include t(){
-//   @include grid(12,m);
+// @include t(12,2){
+//   @include grid(12, 24);
 // }
 
 

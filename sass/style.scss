@@ -25,5 +25,17 @@
 @import './page/about';
 @import './page/index';
 @import './page/product';
-@import './page/_productInfo'
+@import './page/_productInfo';
+@import './page/page';
+
+.wrapper{
+    @include wrapper();
+    height: 100px;
+}
+
+@include btnn(100px);
+
+.Label{
+    @include Label();
+}
 

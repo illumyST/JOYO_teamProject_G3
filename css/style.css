@@ -472,6 +472,31 @@ h3 {
 
 .product-page ul li a.active {
   color: #F25790;
+  height: 100px;
+}
+
+.btn {
+  padding: 8px 16px;
+  text-align: center;
+  max-width: 100px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 10px;
+  background-color: #AFBF30;
+}
+.btn:hover {
+  background-color: salmon;
+}
+.btn__submit {
+  background: #F29441;
+}
+.Label {
+  background-color: #F3DAD8;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */
