@@ -472,6 +472,16 @@ h3 {
 
 .product-page ul li a.active {
   color: #F25790;
+}
+
+.infor-top {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
   height: 100px;
 }
 
