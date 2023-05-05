@@ -183,5 +183,13 @@
 .btn__submit {
   background: #F29441;
 }
+.Label {
+  background-color: #F3DAD8;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
 
 /*# sourceMappingURL=style.css.map */

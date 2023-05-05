@@ -71,7 +71,7 @@
         max-width: $w;
         cursor: pointer;
         transition: all .3s;
-        border-radius: 2 * 5 +px;
+        border-radius: 10px;
         background-color: #AFBF30;
         // border: 1px solid $bc;
         @content;
@@ -88,4 +88,12 @@
 }
 }
 
+@mixin Label(){
+        background-color: $b-pink;
+        font-size: $p;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        display: inline-block;   
+}
 
