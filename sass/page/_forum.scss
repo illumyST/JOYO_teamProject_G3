@@ -1,0 +1,232 @@
+.forum_wrapper{
+    @include flex-container(row, wrap, center, flex-start);
+    @include wrapper();
+    font-family: Noto Sans, Noto Sans TC, sans-serif;
+    // border: 1px solid red;
+}
+
+
+// ===== 左側選單 ===== //
+.forum_sidemenu{
+//    border: 1px solid purple; 
+   display: inline-block;
+}
+
+.forum_sidemenu li{
+    // border: 1px solid blue;
+    @include sidemenu();
+    @include flex-container(row, wrap, start);
+
+}
+
+.forum_sidemenu li:last-child{
+    margin-top: 50px;
+    justify-content: center;
+    padding: 0;  
+}
+
+.forum_sidemenu li i{
+   margin-right: 10px;
+}
+
+
+
+
+// ===== 右側內容 ===== //
+.forum_right{
+    width: 40%;
+    flex-grow: 1;
+    margin-left: 50px;
+}
+
+.forum_advertise{
+    // border: 1px solid yellow;
+    @include flex-container();
+    background-image: url(/assets/img/Group545.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+
+.forum_advertise_img{
+    flex-grow: 1;
+    width: 20%;
+}
+
+
+.forum_advertise img{
+    // border: 1px solid palevioletred;
+    display: block;
+    width: 27%;
+    margin: 50px auto;
+}
+
+.forum_advertise_text{
+    margin-left: 30px;
+    flex-grow: 1;
+    width: 30%;
+    line-height: 1.5;
+    color: white;
+    font-weight: 600;
+}
+
+.forum_advertise_text h2{
+    font-size: $h2;
+    margin: 10px 0 10px 0;
+}
+
+.forum_advertise_text p{
+    // border: 1px solid green;
+    font-size: $p;
+    word-break: break-all;
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 82%;
+}
+
+.forum_advertise_text > p + p{
+    text-align: end;
+}
+
+// =====  文章title ===== //
+.forum_article_title{
+    // border: 1px solid red;
+    @include flex-container();
+    margin: 50px 0;
+    width: 100%;
+}
+
+.forum_article_title h2{
+    // border: 1px solid black;
+    font-size: $h2;
+    flex-grow: 1;
+    text-align: start;
+}
+
+.forum_article_title select{
+    background-color: $orange;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: $p;
+}
+
+
+
+// ===== 中間文章區域 ===== //
+.forum_article_item1{
+    // border: 1px solid plum;
+    @include flex-container(row, nowrap, start, center);
+    background-color: $bg;
+    margin-bottom: 20px;
+}
+
+// ===== 文章左側評分&發文人&發文日期 ==== //
+.forum_article_item1_left{
+    // border: 1px solid green;
+    width: 25%;
+}
+
+.forum_article_item1_left li{
+    // border: 1px solid black;
+    width: 50%;
+    margin: 10px auto;
+}
+
+.forum_article_item1_left .forum_category {
+    // border: 1px solid black;
+    background-color: white;
+    line-height: 5;
+    text-align: center;
+    font-size: $h2;
+}
+
+.forum_article_item1_left .forum_category h2{
+    margin-top: 30px;
+}
+
+.forum_article_item1_left .forum_name_data{
+    font-size: $p;
+    line-height: 1.5;
+}
+
+
+.forum_article_item1_right{
+    width: 60%;
+    flex-grow: 1;
+}
+
+// ===== 文章標籤 ===== //
+.forum_article_item1_right_label{
+    // border: 1px solid blue;
+    @include flex-container(row, wrap, space-around);
+    width: 60%;
+    margin: 20px 0;
+}
+
+.forum_article_item1_right_label li{
+    // border: 1px solid orchid;
+    @include Label();
+}
+
+
+
+// ===== 文章標題和內文 ===== //
+.forum_article_item1_right_middle{
+    // border: 1px solid olive;
+    margin: 10px 0;
+    padding: 8px;
+    width: 95%;
+}
+
+.forum_article_item1_right_middle h2{
+    // border: 1px solid yellow;
+    font-size: $h2;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+
+.forum_article_item1_right_middle p{
+    // border: 1px solid red;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+}
+
+
+// ===== 文章下方 ===== //
+.forum_article_item1_right_bottom{
+    // border: 1px solid blueviolet;
+    @include flex-container(row, wrap, flex-start);
+    width: 90%;
+    margin: 10px 0;
+}
+
+.forum_article_item1_right_bottom li{
+    @include flex-container();
+    margin-left: 10px;
+}
+
+.forum_article_item1_right_bottom li + li{
+    margin-left: 20px;
+}
+
+.forum_article_item1_right_bottom li i{
+    margin-right: 5px;
+}
+
+// ===== 換頁區域 ===== //
+.forum_pagination_bar{
+    // border: 1px solid gray;
+    @include flex-container();
+    margin-top: 100px;
+    width: 100%;
+}
+
+.forum_pagination_bar a{
+    margin: 10px;
+}
+

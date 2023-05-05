@@ -64,6 +64,91 @@
     margin: 0 auto;
 }
 
+
+//item card
+@mixin itemCard($cw,$ch,$imgh){
+        width: $cw;
+        height: $ch;
+        border: 5px solid $green;
+        margin-left: 20px;
+        margin-bottom: 52px;
+        position: relative; 
+        img{
+            height: $imgh;
+            margin: 16px auto;
+            text-align: center;
+        }
+}
+@mixin itemCardTag{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    p{
+        display: block;
+        height: 24px;
+        background-color: $d-pink;
+        color: #fff;
+        margin-bottom: 10px;
+        text-align: center;
+        border-radius: 2px; 
+    }
+}
+@mixin itemCardPlayer{
+        width: 64px;
+}
+@mixin itemCardAge{
+    width: 40px;
+}
+@mixin itemCardInfor{
+        box-sizing: border-box;
+        width: $cw;
+        height: $ch;
+        margin-top: 30px;
+        padding: 5px;
+        background-color: $green;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        h2,h3{
+           color: #fff;
+            line-height: 2.5;
+            letter-spacing: 5px 
+        }
+}
+//下拉式選單
+@mixin drowDown($w,$h,$liW,$liH){
+    width: $w;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    button{
+        width: 100%;
+        height: $h;
+        background-color: $orange ;
+        border-radius: 5px;
+        border: 0;
+        font-size: 20px; 
+        color: #fff;
+        position: relative;
+        cursor: pointer ;
+    }
+    ul{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        li{
+            width: $liW;
+            height: $liH;
+            text-align: center;
+            background-color: $orange ;
+            color: #fff;
+            display: none;
+        }
+    }
+}
 @mixin btnn($w){
     .btn{
         padding: 8px 16px;
@@ -71,7 +156,7 @@
         max-width: $w;
         cursor: pointer;
         transition: all .3s;
-        border-radius: 2 * 5 +px;
+        border-radius: 10px;
         background-color: #AFBF30;
         // border: 1px solid $bc;
         @content;
@@ -83,9 +168,18 @@
             background :#F29441;
         }
         &__addCart{      
-
+            background :#F29441;
         }
 }
 }
 
+@mixin Label(){
+        background-color: $b-pink;
+        font-size: $p;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        letter-spacing: 3px;   
+}
 

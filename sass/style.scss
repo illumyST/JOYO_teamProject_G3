@@ -16,14 +16,18 @@
 @import './component/form';
 @import './component/title';
 @import './component/grid';
-
-
 @import './layout/header';
 @import './layout/footer';
 @import './layout/login';
 @import './layout/nav';
 
+@import './page/main';
+@import './page/about';
+@import './page/index';
+@import './page/product';
+@import './page/_productInfo';
 @import './page/page';
+@import './page/forum';
 
 .wrapper{
     @include wrapper();
@@ -31,4 +35,8 @@
 }
 
 @include btnn(100px);
+
+.Label{
+    @include Label();
+}
 
