@@ -1,0 +1,102 @@
+.forum_wrapper{
+    @include flex-container();
+    @include wrapper();
+    font-family: Noto Sans, Noto Sans TC, sans-serif;
+    border: 1px solid red;
+}
+
+
+// ===== 左側選單 ===== //
+.forum_sidemenu{
+//    border: 1px solid purple; 
+   display: inline-block;
+}
+
+.forum_sidemenu li{
+    // border: 1px solid blue;
+    @include sidemenu();
+    @include flex-container(row, wrap, start);
+
+}
+
+.forum_sidemenu li:last-child{
+    margin-top: 50px;
+    justify-content: center;
+    padding: 0;  
+}
+
+.forum_sidemenu li i{
+   margin-right: 10px;
+}
+
+
+
+
+// ===== 右側內容 ===== //
+.forum_right{
+    width: 40%;
+    flex-grow: 1;
+    margin-left: 50px;
+}
+
+.forum_advertise{
+    border: 1px solid yellow;
+    @include flex-container();
+    background-image: url(/assets/img/Group545.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+
+.forum_advertise_img{
+    flex-grow: 1;
+    width: 20%;
+}
+
+
+.forum_advertise img{
+    // border: 1px solid palevioletred;
+    display: block;
+    width: 27%;
+    margin: 50px auto;
+}
+
+.forum_advertise_text{
+    margin-left: 30px;
+    flex-grow: 1;
+    width: 30%;
+    line-height: 1.5;
+    color: white;
+    font-weight: 600;
+}
+
+.forum_advertise_text h2{
+    font-size: $h2;
+    margin: 10px 0 10px 0;
+}
+
+.forum_advertise_text p{
+    border: 1px solid green;
+    font-size: $p;
+    word-break: break-all;
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 82%;
+}
+
+.forum_advertise_text > p + p{
+    text-align: end;
+}
+
+
+.forum_article_title{
+    border: 1px solid red;
+    @include flex-container();
+    margin: 50px 0;
+    width: 100%;
+}
+
+.forum_article_item1_left h2{
+    font-size: $h2;
+}
