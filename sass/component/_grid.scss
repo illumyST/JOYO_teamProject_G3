@@ -1,20 +1,20 @@
 // grid
-@mixin grid($c , $r){
-    @for $i from 1 through $c {
-        .col-#{$r}-#{$i} {
-          width: ($i /$c ) * 100%
-        }
-      }
-}
+// @mixin grid($c , $r){
+//     @for $i from 1 through $c {
+//         .col-#{$r}-#{$i} {
+//           width: ($i /$c ) * 100%
+//         }
+//       }
+// }
 
-// 桌機
-@include grid(12);
+// // 桌機
+// @include grid(12,t);
 
 
-// 平板
-@include t(){
-  @include grid(12);
-}
+// // 平板
+// @include t(){
+//   @include grid(12,m);
+// }
 
 
 
