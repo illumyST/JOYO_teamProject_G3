@@ -23,10 +23,7 @@
 @import './layout/login';
 @import './layout/nav';
 
-@import './page/main';
-@import './page/about';
-@import './page/index';
-@import './page/member';
+@import './page/page';
 
 .wrapper{
     @include wrapper();
