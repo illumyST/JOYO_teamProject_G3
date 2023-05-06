@@ -1271,6 +1271,162 @@ button {
   margin: 10px;
 }
 
+.mCP-left {
+  background-color: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  height: 595px;
+}
+.mCP-left ul {
+  font-size: 16px;
+  width: 200px;
+}
+.mCP-left ul li {
+  padding: 25px;
+}
+.mCP-left ul li a {
+  color: #513F2E;
+}
+.mCP-left ul li:hover {
+  border-left: 6px solid #F29441;
+}
+
+.mCP-right {
+  background-color: #F2F2F2;
+  width: 828px;
+  height: 702px;
+}
+.mCP-right i.bi {
+  float: right;
+  padding: 20px;
+  font-size: 24px;
+}
+.mCP-right form {
+  display: flex;
+  flex-direction: column;
+}
+.mCP-right form h1 {
+  font-size: 32px;
+  padding: 60px 20px 40px;
+}
+.mCP-right form label {
+  padding: 20px 0 10px 20px;
+  font-size: 24px;
+}
+.mCP-right form input {
+  height: 45px;
+  margin: 0 20px;
+}
+.mCP-right form input:last-child {
+  margin-top: 30px;
+  height: 69px;
+  background-color: #F29441;
+  font-size: 24px;
+  color: white;
+}
+
+.mCP-left {
+  background-color: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  height: 595px;
+}
+.mCP-left ul {
+  font-size: 16px;
+  width: 200px;
+}
+.mCP-left ul li {
+  padding: 25px;
+}
+.mCP-left ul li a {
+  color: #513F2E;
+}
+.mCP-left ul li:hover {
+  border-left: 6px solid #F29441;
+}
+
+.mCP-right {
+  background-color: #F2F2F2;
+  width: 828px;
+  height: 702px;
+}
+.mCP-right i.bi {
+  float: right;
+  padding: 20px;
+  font-size: 24px;
+}
+.mCP-right form {
+  display: flex;
+  flex-direction: column;
+}
+.mCP-right form h1 {
+  font-size: 32px;
+  padding: 60px 20px 40px;
+}
+.mCP-right form label {
+  padding: 20px 0 10px 20px;
+  font-size: 24px;
+}
+.mCP-right form input {
+  height: 45px;
+  margin: 0 20px;
+}
+.mCP-right form input:last-child {
+  margin-top: 30px;
+  height: 69px;
+  background-color: #F29441;
+  font-size: 24px;
+  color: white;
+}
+
+.wrapper_m {
+  padding-top: 100px;
+  width: 828px;
+  margin: 0 auto;
+}
+.wrapper_m .mCP {
+  background-color: #F2F2F2;
+  width: 828px;
+  height: 702px;
+  position: relative;
+}
+.wrapper_m .mCP i.bi {
+  right: 20px;
+  top: 10px;
+  position: absolute;
+  padding: 20px;
+  font-size: 24px;
+}
+.wrapper_m .mCP form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.wrapper_m .mCP form h1 {
+  font-size: 32px;
+  padding: 60px 20px 40px;
+  margin: 0 auto;
+}
+.wrapper_m .mCP form label {
+  padding: 20px 0 10px 20px;
+  font-size: 24px;
+}
+.wrapper_m .mCP form input {
+  height: 45px;
+  margin: 0 20px;
+}
+.wrapper_m .mCP form input:last-child {
+  margin-top: 30px;
+  height: 69px;
+  background-color: #F29441;
+  font-size: 24px;
+  color: white;
+}
+
+.lightbox {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .wrapper {
   width: 1200px;
   margin: 0 auto;
