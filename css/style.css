@@ -736,7 +736,9 @@ h2 {
 
 .infor-detail-star-comment {
   height: 350px;
-  overflow: auto;}
+  overflow: auto;
+}
+
 .forum_wrapper {
   display: flex;
   flex-direction: row;
