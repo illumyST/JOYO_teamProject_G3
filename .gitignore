@@ -1,6 +1,7 @@
 node_modules
 css/style.css
 style.css
+style.css.map
 css/style.css.map
 dist
 .vscode
