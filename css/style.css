@@ -443,6 +443,7 @@ h3 {
 .prouct-item.active {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .prouct-item-card {
@@ -724,11 +725,25 @@ h2 {
   margin: 0 auto;
 }
 
+.product-main aside ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 20px;
+}
+.product-main aside ul li {
+  margin-bottom: 20px;
+  background-color: #AFBF30;
+  text-align: center;
+  line-height: 5;
+  border-radius: 5px;
+}
+
 .fa-star {
   color: #ffe100;
 }
 
-.infor-detail-star-rank, ul {
+.infor-detail-star-rank, .infor-detail-star-rank ul {
   display: flex;
   justify-content: space-evenly;
   letter-spacing: 2px;
