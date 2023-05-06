@@ -201,4 +201,27 @@
         display: inline-block;
         letter-spacing: 3px;   
 }
-
+//留言或商品評論
+@mixin starComment(){
+    article{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgb(201, 201, 201);
+    }
+}
+@mixin starCommentTop(){
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        img{
+            display: block;
+            width: 30px;
+            height: 30px;
+        }
+        ul{
+            display: flex;
+        }
+}
+@mixin starCommentMain(){
+    align-self: flex-end;
+}
