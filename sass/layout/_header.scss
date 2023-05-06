@@ -1,0 +1,58 @@
+header{
+    background-color: $orange;
+    height: 70px;
+    color: #fff;
+
+    font-family: 'Noto Sans TC';
+    font-size: 20px;
+    letter-spacing: 0.1em;
+}
+.header_nav{
+    @include wrapper();
+    display: flex;
+    justify-content: space-between;
+    line-height: 70px;
+}
+.header_nav_logo{
+    display: block;
+}
+.header_nav_right{
+    display: flex;
+}
+.header_nav_right li{
+    margin-left: 20px;
+}
+.header_nav_right_inputBox{
+    position: relative;
+}
+.header_nav_right_inputBox::before{
+    content: '\f002';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: $orange;
+    position: absolute;
+    left: 10px;
+}
+.header_nav_right_inputBox-input{
+    display: block;
+    box-sizing: border-box;
+    border: 0;
+    height: 34px;
+    border-radius: 10px;
+    width: 240px;
+    margin-top: 16px;
+    font-size: 18px;
+    padding-left: 38px;
+    color: $brown;
+}
+.header_nav_right_inputBox-input:focus{
+    outline: none;
+}
+
+.header_nav_right li a{
+    color: #fff;
+}
+.header_nav_right .fa-regular{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
