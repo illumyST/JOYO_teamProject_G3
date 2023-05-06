@@ -1,4 +1,23 @@
-.ms_nav {
-    background-color: ;
-    color: ;
+.ms_header {
+  background-color: $orange;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 100px;
 }
+
+.ms_nav {
+  width: 1400px;
+  margin: 0 auto;
+  .ms_logo {
+    width: 188px;
+  }
+}
+
+.ms_wrapper {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+

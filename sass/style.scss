@@ -20,6 +20,7 @@
 @import './layout/footer';
 @import './layout/login';
 @import './layout/nav';
+@import './layout/ms_nav';
 
 @import './page/main';
 @import './page/about';
@@ -31,6 +32,7 @@
 @import './page/msForumManagement';
 @import './page/msForumManagement';
 @import './page/msEditAdmins';
+@import './page/_msLogin.scss'; 
 .wrapper{
     width: 1200px;
     margin: 0 auto;

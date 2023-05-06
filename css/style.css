@@ -250,6 +250,7 @@ footer {
 
 .footer_nav_left {
   border: 3px solid red;
+  margin-right: 100px;
 }
 
 .footer_nav_left_logo {
@@ -264,6 +265,56 @@ footer {
 
 .footer_nav_left_icons a {
   color: #fff;
+}
+
+.footer_nav_right {
+  flex-grow: 1;
+  border: 5px solid #eeffa9;
+}
+
+.footer_nav_right > li {
+  flex-grow: 1;
+}
+
+.footer_nav_right > li > a {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer_nav_right > li > ol > li {
+  margin-bottom: 20px;
+}
+
+.footer_nav_right > li:first-child > ol {
+  width: 240px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer_nav_right > li:first-child > ol > li {
+  margin-right: 30px;
+}
+
+.ms_header {
+  background-color: #F29441;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 100px;
+}
+
+.ms_nav {
+  width: 1400px;
+  margin: 0 auto;
+}
+.ms_nav .ms_logo {
+  width: 188px;
+}
+
+.ms_wrapper {
+  width: 1400px;
+  margin: 0 auto;
 }
 
 .product-wrapper {
@@ -1425,6 +1476,84 @@ button {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.ms_form {
+  position: relative;
+  font-family: "Noto Sans TC", sans-serif;
+  max-width: 550px;
+  background-color: #f2f2f2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.ms_form .ms_login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ms_form .ms_login_form .ms_login_form_logo {
+  width: 170px;
+  margin-bottom: 30px;
+}
+
+.ms_form {
+  padding: 60px 70px;
+  height: 450px;
+}
+.ms_form .ms_login_input_field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.ms_form .ms_login_input_field input {
+  font-family: "Noto Sans TC", sans-serif;
+  padding: 0 10px;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  height: 35px;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+.ms_form .ms_login_input_field .ms_login_label {
+  letter-spacing: 0.2em;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ms_test_acct {
+  position: absolute;
+  right: 70px;
+  bottom: 140px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.ms_login_btn {
+  margin-top: 10px;
+  width: 100%;
+}
+.ms_login_btn input {
+  font-size: 18px;
+  outline: none;
+  border: none;
+  background: #F29441;
+  line-height: 40px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+}
+.ms_login_btn input:hover {
+  background: #AFBF30;
 }
 
 .wrapper {
