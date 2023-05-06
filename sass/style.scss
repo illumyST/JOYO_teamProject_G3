@@ -30,8 +30,8 @@
 @import './page/forum';
 
 .wrapper{
-    @include wrapper();
-    height: 100px;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 @include btnn(100px);
