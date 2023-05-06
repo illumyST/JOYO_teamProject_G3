@@ -250,6 +250,7 @@ footer {
 
 .footer_nav_left {
   border: 3px solid red;
+  margin-right: 100px;
 }
 
 .footer_nav_left_logo {
@@ -264,6 +265,34 @@ footer {
 
 .footer_nav_left_icons a {
   color: #fff;
+}
+
+.footer_nav_right {
+  flex-grow: 1;
+  border: 5px solid #eeffa9;
+}
+
+.footer_nav_right > li {
+  flex-grow: 1;
+}
+
+.footer_nav_right > li > a {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer_nav_right > li > ol > li {
+  margin-bottom: 20px;
+}
+
+.footer_nav_right > li:first-child > ol {
+  width: 240px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer_nav_right > li:first-child > ol > li {
+  margin-right: 30px;
 }
 
 .wrapper {
