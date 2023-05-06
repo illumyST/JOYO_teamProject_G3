@@ -229,14 +229,40 @@
     justify-content: space-around;
     align-items: center;
 }
+.product-main aside ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 20px;
+    li{
+        margin-bottom: 20px;
+        background-color: $green;
+        text-align: center;
+        line-height: 4;
+        border-radius: 5px;
+        a{
+            font-size: 20px;
+            color: #fff;
+            height: 75px;
+        }
+    }
+}
+.product-main aside ul li.active{
+        background-color: $orange;
+}
+.product-main aside ul li:hover{
+    background-color: $d-pink;
+}
 .prouct-item-card.prouct-item-card-infro button{
     background-color: #fff;
     border-radius: 100%;
 }
-.prouct-item-card-infro h2,h3{
+.prouct-item-card-infro{
+    h2,h3{
     color: #fff;
     line-height: 2.5;
-    letter-spacing: 5px
+    letter-spacing: 5px}
+
 }
 .prouct-item-card.prouct-item-card-infro.prouct-item-card-icon{
     width: 55px;

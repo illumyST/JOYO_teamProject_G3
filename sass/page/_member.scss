@@ -1,0 +1,80 @@
+.wrapper{
+    display: flex;
+    justify-content: space-between; 
+    padding-top: 100px; 
+    padding-bottom: 150px;
+}
+
+.member-left{
+    h2{
+        font-size: 32px;
+        margin-bottom: 31px;
+        color: $brown;
+    };
+    ul{
+        
+        a{
+            @include sidemenu();
+            i{
+                margin-right: 13px;
+            }
+        };
+        
+    };
+}
+
+.member-right{
+    h2{
+        font-size: 32px;
+        margin-bottom: 31px;
+        color: $brown;
+    }
+}
+
+.member-right-card{
+    width: 960px;
+    background: $bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    padding-top: 59px;
+    h3{
+        font-size: $h2;
+        margin-bottom: 8px;
+    }
+    .member-right-name{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 691px;
+        margin-bottom: 28px;
+        .member-name-text{
+            @include input-text(50px, 533px)
+        }
+    }
+    .member-text{
+        @include input-text(50px, 691px);
+        margin-bottom: 34px;
+    }
+    .address{
+        margin-bottom: 80px;
+        .address-top{
+            width: 691px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            select{
+                @include input-text(50px, 330px);
+                height: 50px;
+            }
+        }
+    }
+    a{
+        @include btn($orange, 59px, 691px, $green);
+        font-size: $h2;
+        margin-bottom: 95px;
+    }
+}
+

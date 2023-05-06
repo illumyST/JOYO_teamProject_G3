@@ -1,5 +1,4 @@
 // 按鈕樣式
-
 @mixin btn($bg , $lh, $w, $hover){
     background: $bg;
     line-height: $lh;
@@ -156,6 +155,7 @@
         max-width: $w;
         cursor: pointer;
         transition: all .3s;
+        // border-radius: 2 * 5 +px;
         border-radius: 10px;
         background-color: #AFBF30;
         // border: 1px solid $bc;
@@ -173,6 +173,25 @@
 }
 }
 
+// 字形
+@mixin h1_pri(){
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: $h1_pri;
+    letter-spacing: 2px;
+}
+
+@mixin h1_sub(){
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: $h1_sub;
+    letter-spacing: 2px;
+}
+
+@mixin h2(){
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: $h2;
+    letter-spacing: 1px;
+}
+
 @mixin Label(){
         background-color: $b-pink;
         font-size: $p;
@@ -182,4 +201,27 @@
         display: inline-block;
         letter-spacing: 3px;   
 }
-
+//留言或商品評論
+@mixin starComment(){
+    article{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgb(201, 201, 201);
+    }
+}
+@mixin starCommentTop(){
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        img{
+            display: block;
+            width: 30px;
+            height: 30px;
+        }
+        ul{
+            display: flex;
+        }
+}
+@mixin starCommentMain(){
+    align-self: flex-end;
+}
