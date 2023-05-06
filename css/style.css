@@ -443,7 +443,7 @@ header {
 .prouct-item.active {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .prouct-item-card {
@@ -728,6 +728,20 @@ button {
 
 .custom-icon {
   margin: 0 auto;
+}
+
+.product-main aside ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 20px;
+}
+.product-main aside ul li {
+  margin-bottom: 20px;
+  background-color: #AFBF30;
+  text-align: center;
+  line-height: 5;
+  border-radius: 5px;
 }
 
 .fa-star {

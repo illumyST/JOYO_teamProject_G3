@@ -151,6 +151,20 @@ font-weight: 600;
 .custom-icon{
     margin: 0 auto;
 }
+.product-main aside ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 20px;
+    li{
+        margin-bottom: 20px;
+        background-color: $green;
+        text-align: center;
+        line-height: 5;
+        border-radius: 5px;
+    }
+}
+
 .fa-star{
     color: #ffe100;
 }
