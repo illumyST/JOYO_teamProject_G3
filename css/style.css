@@ -230,7 +230,7 @@ header {
   font-weight: 900;
 }
 
-.wrapper {
+.product-wrapper {
   width: 1200px;
   margin: 0 auto;
   line-height: 1.5;
@@ -238,17 +238,18 @@ header {
   flex-direction: column;
   box-sizing: border-box;
 }
-
-h1 {
+.product-wrapper h1 {
   font-size: 32px;
 }
-
-h2 {
+.product-wrapper h2 {
   font-size: 24px;
 }
-
-h3 {
+.product-wrapper h3 {
   font-size: 20px;
+}
+
+.btn.active {
+  background-color: #F29441;
 }
 
 .product-top {
@@ -390,7 +391,7 @@ h3 {
   height: 1866px;
 }
 
-.sidemenu {
+.product-sidemenu {
   display: block;
   text-decoration: none;
   border-radius: 5px;
@@ -405,32 +406,31 @@ h3 {
   transition: 0.3s;
   letter-spacing: 2px;
 }
-.sidemenu:hover {
+.product-sidemenu:hover {
   background: #F29441;
 }
 
-.btn {
-  background: #AFBF30;
-  line-height: 59px;
-  width: 200px;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-  transition: 0.3s;
-  cursor: pointer;
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 20px;
-  border: 0;
-}
-.btn:hover {
-  background: #F25790;
+.product-main-category {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
 }
 
-.btn.active {
-  background-color: #F29441;
+.product-main-category li {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-main-category li a {
+  display: block;
+  height: 75px;
+  background-color: #AFBF30;
+  font-size: 20px;
+  line-height: 4;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
 }
 
 .prouct-item {
@@ -443,6 +443,7 @@ h3 {
 .prouct-item.active {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .prouct-item-card {
@@ -499,13 +500,18 @@ h3 {
   align-items: center;
 }
 
+.prouct-item-card.prouct-item-card-infro button {
+  background-color: #fff;
+  border-radius: 100%;
+}
+
 .prouct-item-card-infro h2, h3 {
   color: #fff;
   line-height: 2.5;
   letter-spacing: 5px;
 }
 
-.prouct-item-card-icon {
+.prouct-item-card.prouct-item-card-infro.prouct-item-card-icon {
   width: 55px;
   height: 55px;
   border-radius: 100%;
@@ -542,7 +548,7 @@ h3 {
   color: #F25790;
 }
 
-.wrapper {
+.product-wrapper {
   color: #513F2E;
 }
 
@@ -657,7 +663,7 @@ button {
   height: 90px;
 }
 
-h2 {
+.product-top h2, .product-main h2, .product-page h2 {
   color: #513F2E;
 }
 
@@ -728,7 +734,7 @@ h2 {
   color: #ffe100;
 }
 
-.infor-detail-star-rank, ul {
+.infor-detail-star-rank, .infor-detail-star-rank ul {
   display: flex;
   justify-content: space-evenly;
   letter-spacing: 2px;
@@ -736,7 +742,9 @@ h2 {
 
 .infor-detail-star-comment {
   height: 350px;
-  overflow: auto;}
+  overflow: auto;
+}
+
 .forum_wrapper {
   display: flex;
   flex-direction: row;

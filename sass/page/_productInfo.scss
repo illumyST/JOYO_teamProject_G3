@@ -1,4 +1,4 @@
-.wrapper{
+.product-wrapper{
     color: $brown;
 }
 button{
@@ -92,7 +92,7 @@ font-weight: 600;
     margin-top: 30px;
     height: 90px;
 }
-h2{
+.product-top h2,.product-main h2,.product-page h2{
     color: $brown;
 }
 .infor-detail-nav button{
@@ -154,7 +154,7 @@ h2{
 .fa-star{
     color: #ffe100;
 }
-.infor-detail-star-rank,ul{
+.infor-detail-star-rank,.infor-detail-star-rank ul{
     display: flex;
     justify-content: space-evenly;
     letter-spacing:2px;
