@@ -862,6 +862,162 @@ button {
   display: flex;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
+
+.member-left h2 {
+  font-size: 32px;
+  margin-bottom: 31px;
+  color: #513F2E;
+}
+.member-left ul a {
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  line-height: 59px;
+  width: 200px;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 35px;
+  font-size: 20px;
+  background: #AFBF30;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  letter-spacing: 2px;
+}
+.member-left ul a:hover {
+  background: #F29441;
+}
+.member-left ul a i {
+  margin-right: 13px;
+}
+
+.member-right h2 {
+  font-size: 32px;
+  margin-bottom: 31px;
+  color: #513F2E;
+}
+
+.member-right-card {
+  width: 960px;
+  background: #F2F2F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  padding-top: 59px;
+}
+.member-right-card h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.member-right-card .member-right-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 691px;
+  margin-bottom: 28px;
+}
+.member-right-card .member-right-name .member-name-text {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 533px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+}
+.member-right-card .member-text {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 691px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 34px;
+}
+.member-right-card .address {
+  margin-bottom: 80px;
+}
+.member-right-card .address .address-top {
+  width: 691px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.member-right-card .address .address-top select {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 330px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  height: 50px;
+}
+.member-right-card a {
+  background: #F29441;
+  line-height: 59px;
+  width: 691px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 95px;
+}
+.member-right-card a:hover {
+  background: #AFBF30;
+}
+
+.membercard-right {
+  width: 964px;
+}
+.membercard-right-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.membercard-right-title h2 {
+  font-size: 32px;
+}
+.membercard-right-title a {
+  background: #F29441;
+  line-height: 59px;
+  width: 238px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+}
+.membercard-right-title a:hover {
+  background: #AFBF30;
+}
+.membercard-right-title a i {
+  margin-left: 24px;
+}
+
 .forum_wrapper {
   display: flex;
   flex-direction: row;
@@ -1124,7 +1280,6 @@ button {
 .wrapper {
   width: 1200px;
   margin: 0 auto;
-  height: 100px;
 }
 
 .btn {
