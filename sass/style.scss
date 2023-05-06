@@ -26,9 +26,8 @@
 @import './page/page';
 
 .wrapper{
-    @include wrapper();
-    height: 100px;
+    width: 1200px;
+    margin: 0 auto;
+    outline: 1px solid #000;
 }
-
-@include btnn(100px);
 
