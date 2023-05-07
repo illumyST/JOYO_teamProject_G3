@@ -24,7 +24,10 @@
     justify-content: center;
     padding: 0;
     background-color: $brown;
-    box-shadow: $shadow;  
+    box-shadow: $shadow;
+    &:hover{
+        background: $orange;
+    }  
 }
 
 .forum_sidemenu li i{
@@ -93,6 +96,13 @@
     text-align: end;
 }
 
+
+// ===== 手機版廣告區文章 ===== //
+.forum_advertise_text .forum_media_advertise_text{
+    text-align: start;
+    display: none;
+}
+
 // =====  文章title ===== //
 .forum_article_title{
     // border: 1px solid red;
@@ -111,6 +121,7 @@
 .forum_article_title select{
     background-color: $orange;
     border: none;
+    outline: none;
     border-radius: 5px;
     color: white;
     padding: 5px 10px;
@@ -200,6 +211,7 @@
 
 .forum_article_item1_right_middle p{
     // border: 1px solid red;
+    font-size: $p;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -241,3 +253,213 @@
     margin: 10px;
 }
 
+
+// ===== 手機版的選單 ===== //
+.forum_media{
+    // border: 1px solid red;
+    margin: 30px 0;
+    display: none;
+}
+
+.forum_media_button{
+    // border: 1px solid blue;
+    @include btn($brown, 2, 100%, $orange);
+    text-align: center;
+    font-size: $h3;
+}
+
+.forum_media_select, 
+.forum_media_sort{
+    // border: 1px solid yellow;
+    margin: 30px 0;
+    select{
+        display: block;
+        width: 100%;
+        padding: 10px 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        color: white;
+        font-size: $p;
+        border: none;
+        outline: none;
+    }
+
+}
+
+.forum_media_menu_select{
+    background-color: $green;
+}
+
+.forum_media_menu_sort{
+    background-color: $orange;
+}
+
+
+
+
+
+
+
+// ===== 手機版 ===== //
+@media screen and (max-width: 414px){
+.forum_wrapper{
+    width: auto;
+    flex-direction: column;
+    margin: 0;
+}
+
+// 桌機板左側選單
+.forum_sidemenu{
+    display: none;
+}
+
+
+.forum_right{
+    width: 100vw;
+    flex-grow: 0;
+    margin-left: 0;
+}
+
+.forum_advertise{
+    width: 100vw;
+    align-items: flex-start;
+}
+
+.forum_advertise_img{
+    width: 20vw;
+}
+
+.forum_advertise img{
+    margin: 20px auto;
+    width: 24%;
+}
+
+
+.forum_advertise_text{
+    margin-left: -35px;
+}
+
+.forum_advertise_text h2{
+    font-size: $p;
+    margin: 10px 0 5px 15px;
+}
+
+.forum_advertise_text p{
+    font-size: .5rem;
+    margin-top: 0;
+    width: 50vw;
+}
+
+.forum_advertise_text .forum_advertise_text_p{
+    display: none;
+}
+
+.forum_advertise_text .forum_media_advertise_text{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.forum_advertise_text > p + p{
+    margin-bottom: 5px;
+}
+
+.forum_article_title{
+    display: none;
+}
+
+// ===== 手機版選單 ===== //
+.forum_media{
+    display: block;
+    width: 90vw;
+    margin: 30px auto;
+}
+
+// .forum_media_menu_select, 
+// .forum_media_menu_sort{
+//     option{
+//         width: 90vw;
+//     }
+// }
+
+
+
+
+.forum_article_item{
+    width: 100vw;
+}
+
+.forum_article_item1{
+    width: 90vw;
+    margin: 0 auto 30px;
+    flex-direction: column;
+}
+
+.forum_article_item1_left{
+    width: 90vw;
+}
+
+
+.forum_article_item1_left li{
+    width: 85vw;
+    margin-left: 15px;
+}
+
+.forum_article_item1_left .forum_category{
+    display: none;
+}
+
+.forum_article_item1_left .forum_name_data{
+    font-size: .8rem;
+
+    p{
+        display: inline-block;
+    }
+
+    p + p{
+        margin-left: 10px;
+    }
+}
+
+
+.forum_article_item1_right{
+    width: 90vw;
+}
+
+.forum_article_item1_right_label{
+    width: 88vw;
+    margin: 10px auto;
+}
+
+.forum_article_item1_right_label li{
+    font-size: .5rem;
+}
+
+
+
+.forum_article_item1_right_middle{
+    margin: 0 15px;
+    padding: 0;
+}
+.forum_article_item1_right_middle h2{
+    font-size: 1.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.forum_article_item1_right_middle p{
+    font-size: .8rem;
+}
+
+.forum_article_item1_right_bottom{
+    width: 85vw;
+    margin: 20px 8px;
+}
+
+
+.forum_pagination_bar{
+    width: 90vw;
+    margin: 100px auto 0;
+}
+
+}
