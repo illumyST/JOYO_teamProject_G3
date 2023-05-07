@@ -28,10 +28,12 @@ footer{
     display: flex;
     justify-content: space-between;
     font-size: 40px;
+    
 }
 .footer_nav_left_icons a{
     color: #fff;
     margin: 2px 8px;
+    transition: .2s;
 }
 
 .footer_nav_right{
@@ -48,6 +50,7 @@ footer{
 .footer_nav_right > li > a{
     margin-bottom: 20px;
     color: #fff;
+    transition: .2s;
 }
 
 .footer_nav_right > li:first-child > ol{
@@ -66,7 +69,11 @@ footer{
     font-size: 16px;
     color: #fff;
     line-height: 36px;
+    transition: .2s;
 }
 .footer_nav_right > li > ol > li a,.footer_nav_right > li > span > i{
     margin-right: 12px;
+}
+.footer_nav_left a:hover,.footer_nav_right a:hover{
+    color: $brown;
 }
