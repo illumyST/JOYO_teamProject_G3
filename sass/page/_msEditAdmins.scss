@@ -1,0 +1,51 @@
+.wrapper_m{
+    padding-top: 100px;
+    width: 828px;
+    margin: 0 auto;
+    .mCP{
+        background-color: $bg;
+        width: 828px;
+        height: 702px;
+        position: relative;
+        i.bi{
+            // float: right;
+            right: 20px;
+            top: 10px;
+            position: absolute;
+            padding: 20px;
+            font-size: $h2;
+            }
+        form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        // outline: 1px solid red;
+        h1{
+    
+            font-size: $h1_sub;
+            padding: 60px 20px 40px;
+            margin: 0 auto;
+        }
+        label{
+            padding: 20px 0 10px 20px;
+            font-size: $h2;
+        }
+        input{
+            height: 45px;
+            margin:  0 20px;
+        }input:last-child{
+            margin-top:  30px;
+            height: 69px;
+            background-color: $orange;
+            font-size: $h2;
+            color: white;
+        }
+        
+    }
+    }
+}
+.lightbox{
+    width: 100vw;
+    height: 100vh;
+    background-color: $lightbox;
+}

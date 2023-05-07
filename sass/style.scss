@@ -20,14 +20,17 @@
 @import './layout/footer';
 @import './layout/login';
 @import './layout/nav';
+@import './layout/ms_nav';
 
 @import './page/main';
 @import './page/about';
 @import './page/index';
-@import './page/product';
-@import './page/_productInfo';
 @import './page/page';
 @import './page/forum';
+@import './page/msForumManagement';
+@import './page/msEditAdmins';
+@import './page/_msLogin.scss'; 
+@import './page/page';
 .wrapper{
     width: 1200px;
     margin: 0 auto;
