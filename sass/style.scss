@@ -29,11 +29,10 @@
 @import './page/forumPost';
 @import './page/msForumManagement';
 @import './page/msEditAdmins';
-@import './page/_msLogin.scss'; 
+@import './page/msLogin'; 
 @import './page/page';
 @import './page/memberCardAdd';
 @import './page/memberCardEdit';
-<<<<<<< HEAD
 @import './page/_register';
 @import './page/_mailCheck';
 @import './page/_forgetPassword';
@@ -43,10 +42,7 @@
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
 
-
-=======
 @import './page/memberPassword';
->>>>>>> jackyeh
 
 .wrapper{
     width: 1200px;
@@ -58,5 +54,4 @@
 .Label{
     @include Label();
 }
-
 // sass sass\style.scss css/style.css -w
