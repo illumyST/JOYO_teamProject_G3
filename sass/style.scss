@@ -32,6 +32,7 @@
 @import './page/page';
 @import './page/memberCardAdd';
 @import './page/memberCardEdit';
+<<<<<<< HEAD
 @import './page/register';
 @import './page/mailCheck';
 @import './page/forgetPassword';
@@ -40,6 +41,18 @@
 @import './page/registerRedirect';
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
+=======
+@import './page/_register';
+@import './page/_mailCheck';
+@import './page/_forgetPassword';
+@import './page/_singin';
+@import './page/_forgetPasswordRedirect';
+@import './page/registerRedirect';
+@import './page/cartRedirect';
+@import './page/mailCheckRedirect';
+
+
+>>>>>>> jackyeh
 @import './page/memberPassword';
 
 @import './page/mailCheckRedirect';
