@@ -9,7 +9,6 @@
 /*---------------------end-----------------------------*/
 
 @import './mixin/mixins';
-
 @import './component/body';
 @import './component/btn';
 @import './component/card';
@@ -33,6 +32,19 @@
 @import './page/page';
 @import './page/memberCardAdd';
 @import './page/memberCardEdit';
+@import './page/msLogin.scss'; 
+@import './page/page';
+@import './page/memberCardAdd';
+@import './page/memberCardEdit';
+@import './page/register';
+@import './page/mailCheck';
+@import './page/forgetPassword';
+@import './page/singin';
+@import './page/forgetPasswordRedirect';
+@import './page/registerRedirect';
+@import './page/cartRedirect';
+@import './page/mailCheckRedirect';
+
 @import './page/_register';
 @import './page/_mailCheck';
 @import './page/_forgetPassword';
@@ -44,6 +56,8 @@
 
 @import './page/memberPassword';
 
+@import './page/mailCheckRedirect';
+@import './page/membercard';
 .wrapper{
     width: 1200px;
     margin: 0 auto;
