@@ -28,6 +28,16 @@
 @import './page/_productInfo';
 @import './page/page';
 @import './page/forum';
+@import './page/_register';
+@import './page/_mailCheck';
+@import './page/_forgetPassword';
+@import './page/_singin';
+@import './page/_forgetPasswordRedirect';
+@import './page/registerRedirect';
+@import './page/cartRedirect';
+@import './page/mailCheckRedirect';
+
+
 
 .wrapper{
     @include wrapper();
@@ -40,3 +50,4 @@
     @include Label();
 }
 
+// sass sass\style.scss css/style.css -w
