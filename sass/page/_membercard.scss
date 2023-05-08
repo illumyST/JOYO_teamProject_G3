@@ -3,14 +3,14 @@
     &-title{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 40px;
-        // align-items: center;
+        margin-bottom: 15px;
         h2{
             font-size: $h1_sub;
         }
         a{
-            @include btn($orange, 59px, 238px, $green);
+            @include btn($orange, 50px, 210px, $green);
             font-size: $h2;
+            letter-spacing: 1px;
             i{
                 margin-left: 24px;
             }
