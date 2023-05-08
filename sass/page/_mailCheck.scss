@@ -1,0 +1,27 @@
+
+.mailCheck_box{
+  border: 5px solid palegreen;
+  width: 671px;
+  height: 690px;
+  box-shadow: $shadow;
+    .mailCheck_h1{
+      font-size: $h1_pri;
+      color: $orange;
+    }
+    .mailCheck_p{
+      font-size: $p;
+      color: $orange;
+    }
+    .mailCheck_text{
+      border: 5px solid palegreen;
+      color: $orange;
+      width: 50px;
+      height: 50px;
+    }
+}
+
+
+
+
+
+

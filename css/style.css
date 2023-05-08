@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import '../css/reset.css';
 /*---------------------end-----------------------------*/
 .col-1 {
@@ -1686,6 +1687,7 @@ button {
   margin: 10px;
 }
 
+<<<<<<< HEAD
 .forum_media {
   margin: 30px 0;
   display: none;
@@ -3374,6 +3376,320 @@ button {
 }
 .memberCardEdit .cardimfo a:hover {
   background: #AFBF30;
+=======
+.register_box {
+  width: 894px;
+  height: 892px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.register_box .register_member {
+  display: inline-block;
+  width: 387px;
+  height: 86px;
+  text-align: center;
+  border: 1px solid palegreen;
+}
+.register_box .register_main {
+  margin: 0 auto;
+  justify-content: center;
+  /* 垂直置中 */
+  align-items: center;
+  width: 794px;
+  display: block;
+}
+.register_box .register_main .li {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+.register_box .register_main input {
+  display: flex;
+  justify-content: center;
+}
+.register_box .register_text {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16PX;
+  width: 590px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+.register_box .register_btn {
+  background: #AFBF30;
+  line-height: 59px;
+  width: 590px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+.register_box .register_btn:hover {
+  background: #513F2E;
+}
+
+.mailCheck_box {
+  border: 5px solid palegreen;
+  width: 671px;
+  height: 690px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.mailCheck_box .mailCheck_h1 {
+  font-size: 38px;
+  color: #F29441;
+}
+.mailCheck_box .mailCheck_p {
+  font-size: 16px;
+  color: #F29441;
+}
+.mailCheck_box .mailCheck_text {
+  border: 5px solid palegreen;
+  color: #F29441;
+  width: 50px;
+  height: 50px;
+}
+
+.forgetPassword_box {
+  width: 894px;
+  height: 892px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.forgetPassword_box .forgetPassword_h1 {
+  text-align: center;
+  margin: 0 auto;
+}
+.forgetPassword_box .forgetPassword_p {
+  text-align: center;
+}
+.forgetPassword_box .forgetPassword_btn {
+  background: #AFBF30;
+  line-height: 59px;
+  width: 590px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+.forgetPassword_box .forgetPassword_text {
+  color: #000;
+  border: 10px solid peru;
+  display: block;
+  margin: 0 auto;
+}
+.forgetPassword_box .forgetPassword_btn:hover {
+  background: #513F2E;
+}
+
+.singin_box {
+  width: 894px;
+  height: 892px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.singin_box .singin_little_box {
+  border: 2px solid palegreen;
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.singin_box .singin_member {
+  display: flex;
+  width: 387px;
+  height: 86px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.singin_box .singin_main {
+  margin: 0 auto;
+  justify-content: center;
+  /* 垂直置中 */
+  align-items: center;
+  width: fit-content;
+  display: block;
+}
+.singin_box .singin_main li {
+  margin: 0 auto;
+  display: block;
+}
+.singin_box .singin_main input {
+  display: flex;
+  justify-content: center;
+}
+.singin_box .singin_text {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16PX;
+  width: 590px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+.singin_box .singin_btn {
+  background: #AFBF30;
+  line-height: 59px;
+  width: 590px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+.singin_box .singin_btn:hover {
+  background: #513F2E;
+}
+
+.forgetPasswordRedirect_box {
+  width: 671px;
+  height: 573px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.forgetPasswordRedirect_box .forgetPasswordRedirect_h1 {
+  font-size: 38px;
+  color: #F29441;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.forgetPasswordRedirect_box .forgetPasswordRedirect_tick_completed .fa-solid {
+  display: block;
+  font-size: 150px;
+  color: #F29441;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.forgetPasswordRedirect_box .forgetPasswordRedirect_p_text {
+  font-size: 16px;
+  color: #F29441;
+  text-align: center;
+}
+
+.registerRedirect_box {
+  width: 671px;
+  height: 573px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.registerRedirect_box .registerRedirect_h1 {
+  font-size: 38px;
+  color: #F29441;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.registerRedirect_box .registerRedirect_completed .fa-solid {
+  display: block;
+  font-size: 150px;
+  color: #F29441;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.registerRedirect_box .registerRedirect_p_text {
+  font-size: 16px;
+  color: #F29441;
+  text-align: center;
+}
+
+.cartRedirect_box {
+  width: 894px;
+  height: 892px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.cartRedirect_box .cartRedirect_h1 {
+  font-size: 38px;
+  color: #F29441;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.cartRedirect_box .cartRedirect_completed .fa-solid {
+  display: block;
+  font-size: 150px;
+  color: #F29441;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.cartRedirect_box .cartRedirect_p_text {
+  font-size: 16px;
+  color: #F29441;
+  text-align: center;
+}
+
+.mailCheckRedirect_box {
+  width: 671px;
+  height: 573px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  border: 5px solid gold;
+}
+.mailCheckRedirect_box .mailCheckRedirect_h1 {
+  font-size: 38px;
+  color: #F29441;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mailCheckRedirect_box .mailCheckRedirect_completed .fa-solid {
+  display: block;
+  font-size: 150px;
+  color: #F29441;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.mailCheckRedirect_box .mailCheckRedirect_p_text {
+  font-size: 16px;
+  color: #F29441;
+  text-align: center;
+>>>>>>> will
 }
 
 .wrapper {

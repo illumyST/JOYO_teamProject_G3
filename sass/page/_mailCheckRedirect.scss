@@ -1,0 +1,43 @@
+
+.mailCheckRedirect_box{
+  width: 671px;
+  height: 573px;
+  margin: 0 auto;
+  background: #F2F2F2;
+  box-shadow: $shadow;
+  border: 5px solid gold;
+    .mailCheckRedirect_h1{
+      font-size: $h1_pri;
+      color: $orange;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+      .mailCheckRedirect_completed{
+        .fa-solid{
+        display: block;
+        font-size: 150px;
+        color: $orange;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        }
+      }
+        .mailCheckRedirect_p_text{
+          font-size: $p;
+          color: $orange;
+          text-align: center;
+        }  
+}
+
+
+
+
+
+
+
+
+
+
+
