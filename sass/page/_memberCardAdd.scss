@@ -1,0 +1,33 @@
+.memberCardAdd{
+    margin: 0 auto;
+    width: 590px;
+    background: $bg;
+    padding-top: 42px;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    h1{
+        font-size: $h2;
+        letter-spacing: 1px;
+        text-align: center;
+        border-bottom: 1px solid black;
+        padding-bottom: 14px;
+    }
+    .cardimfo{
+        padding: 33px;
+        h2{
+            font-size: $h3;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        input{
+            @include input-text(50px, 525px);
+            margin-bottom: 34px;
+        }
+        a{
+            @include btn($orange, 59px, 525px, $green);
+            font-size: $h2;
+            letter-spacing: 1px;
+            margin-top: 70px;
+        }
+    }
+}

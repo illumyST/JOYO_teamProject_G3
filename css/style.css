@@ -267,6 +267,56 @@ footer {
   color: #fff;
 }
 
+.footer_nav_right {
+  flex-grow: 1;
+  border: 5px solid #eeffa9;
+}
+
+.footer_nav_right > li {
+  flex-grow: 1;
+}
+
+.footer_nav_right > li > a {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer_nav_right > li > ol > li {
+  margin-bottom: 20px;
+}
+
+.footer_nav_right > li:first-child > ol {
+  width: 240px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer_nav_right > li:first-child > ol > li {
+  margin-right: 30px;
+}
+
+.ms_header {
+  background-color: #F29441;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 100px;
+}
+
+.ms_nav {
+  width: 1400px;
+  margin: 0 auto;
+}
+.ms_nav .ms_logo {
+  width: 188px;
+}
+
+.ms_wrapper {
+  width: 1400px;
+  margin: 0 auto;
+}
+
 .wrapper {
   display: flex;
   justify-content: space-between;
@@ -421,56 +471,6 @@ footer {
 }
 .membercard-right-title a i {
   margin-left: 24px;
-}
-
-.footer_nav_right {
-  flex-grow: 1;
-  border: 5px solid #eeffa9;
-}
-
-.footer_nav_right > li {
-  flex-grow: 1;
-}
-
-.footer_nav_right > li > a {
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.footer_nav_right > li > ol > li {
-  margin-bottom: 20px;
-}
-
-.footer_nav_right > li:first-child > ol {
-  width: 240px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.footer_nav_right > li:first-child > ol > li {
-  margin-right: 30px;
-}
-
-.ms_header {
-  background-color: #F29441;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  margin-bottom: 100px;
-}
-
-.ms_nav {
-  width: 1400px;
-  margin: 0 auto;
-}
-.ms_nav .ms_logo {
-  width: 188px;
-}
-
-.ms_wrapper {
-  width: 1400px;
-  margin: 0 auto;
 }
 
 .product-wrapper {
@@ -1472,59 +1472,6 @@ button {
 
 .forum_pagination_bar a {
   margin: 10px;
-}
-
-.mCP-left {
-  background-color: #F2F2F2;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-  height: 595px;
-}
-.mCP-left ul {
-  font-size: 16px;
-  width: 200px;
-}
-.mCP-left ul li {
-  padding: 25px;
-}
-.mCP-left ul li a {
-  color: #513F2E;
-}
-.mCP-left ul li:hover {
-  border-left: 6px solid #F29441;
-}
-
-.mCP-right {
-  background-color: #F2F2F2;
-  width: 828px;
-  height: 702px;
-}
-.mCP-right i.bi {
-  float: right;
-  padding: 20px;
-  font-size: 24px;
-}
-.mCP-right form {
-  display: flex;
-  flex-direction: column;
-}
-.mCP-right form h1 {
-  font-size: 32px;
-  padding: 60px 20px 40px;
-}
-.mCP-right form label {
-  padding: 20px 0 10px 20px;
-  font-size: 24px;
-}
-.mCP-right form input {
-  height: 45px;
-  margin: 0 20px;
-}
-.mCP-right form input:last-child {
-  margin-top: 30px;
-  height: 69px;
-  background-color: #F29441;
-  font-size: 24px;
-  color: white;
 }
 
 .mCP-left {
@@ -2604,6 +2551,116 @@ button {
 
 .cartConfirm_con_title_item_sum {
   margin-right: 0;
+}
+
+.memberCardAdd {
+  margin: 0 auto;
+  width: 590px;
+  background: #F2F2F2;
+  padding-top: 42px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.memberCardAdd h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 14px;
+}
+.memberCardAdd .cardimfo {
+  padding: 33px;
+}
+.memberCardAdd .cardimfo h2 {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.memberCardAdd .cardimfo input {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 525px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 34px;
+}
+.memberCardAdd .cardimfo a {
+  background: #F29441;
+  line-height: 59px;
+  width: 525px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 70px;
+}
+.memberCardAdd .cardimfo a:hover {
+  background: #AFBF30;
+}
+
+.memberCardEdit {
+  margin: 0 auto;
+  width: 590px;
+  background: #F2F2F2;
+  padding-top: 42px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.memberCardEdit h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 14px;
+}
+.memberCardEdit .cardimfo {
+  padding: 33px;
+}
+.memberCardEdit .cardimfo h2 {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.memberCardEdit .cardimfo input {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 525px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 34px;
+}
+.memberCardEdit .cardimfo a {
+  background: #F29441;
+  line-height: 59px;
+  width: 525px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 70px;
+}
+.memberCardEdit .cardimfo a:hover {
+  background: #AFBF30;
 }
 
 .wrapper {
