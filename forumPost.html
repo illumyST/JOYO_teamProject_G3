@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>交流專區發文區</title>
+</head>
+<body>
+    <section class="forumPost_wrapper">
+
+            <form action="get" class="forumPost_form" id="forumPost_form">
+                <div class="forumPost_form_title">
+                    <select class="forumPost_form_category" id="forumPost_form_category">
+                        <option value="">文章類型</option>
+                        <option value="">教學區</option>
+                        <option value="">發問區</option>
+                        <option value="">揪團區</option>
+                    </select>
+
+                    <input type="text" class="forumPost_form_title_text" id="forumPost_form_title_text"  placeholder="請輸入桌遊名稱">
+
+                    <select class="forumPost_form_score" id="forumPost_form_score">
+                        <option value="">桌遊評分</option>
+                        <option value="">教學區</option>
+                        <option value="">發問區</option>
+                        <option value="">揪團區</option>
+                    </select>
+                </div>
+
+                <div class="forumPost_form_middle">
+                    <label for="" class="forumPost_form_middle_title">標題</label>
+                    <input type="text" class="forumPost_form_middle_input" id="forumPost_form_middle_input" placeholder="下個吸睛的標題吧...">
+
+                    <label for="" class="forumPost_form_middle_text">內文</label>
+                   <textarea class="forumPost_form_middle_textarea" id="forumPost_form_middle_textarea"></textarea>
+
+                   <label for="" class="forumPost_form_middle_bottom">為你的文章客製標籤</label>
+                   <input type="text" class="forumPost_form_middle_bottom_text" id="forumPost_form_middle_bottom_text" placeholder="為你的文章客製標籤">
+                </div>
+
+                <div class="forumPost_form_button">
+                    <input type="submit" class="forumPost_form_button_btn" id="forumPost_form_button_btn" value="發文">
+                </div>
+
+            </form>
+
+    </section>
+</body>
+</html>
