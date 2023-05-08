@@ -74,6 +74,7 @@
     a{
         @include btn($orange, 59px, 691px, $green);
         font-size: $h2;
+        letter-spacing: 1px;
         margin-bottom: 95px;
     }
 }

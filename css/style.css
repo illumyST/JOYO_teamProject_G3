@@ -492,6 +492,7 @@ footer {
   cursor: pointer;
   color: #fff;
   font-size: 24px;
+  letter-spacing: 1px;
   margin-bottom: 95px;
 }
 .member-right-card a:hover {
@@ -504,15 +505,15 @@ footer {
 .membercard-right-title {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 .membercard-right-title h2 {
   font-size: 32px;
 }
 .membercard-right-title a {
   background: #F29441;
-  line-height: 59px;
-  width: 238px;
+  line-height: 50px;
+  width: 210px;
   display: block;
   text-decoration: none;
   text-align: center;
@@ -522,6 +523,7 @@ footer {
   cursor: pointer;
   color: #fff;
   font-size: 24px;
+  letter-spacing: 1px;
 }
 .membercard-right-title a:hover {
   background: #AFBF30;
@@ -2341,6 +2343,7 @@ input[type=submit] {
   cursor: pointer;
   color: #fff;
   font-size: 24px;
+  letter-spacing: 1px;
   margin-bottom: 95px;
 }
 .member-right-card a:hover {
@@ -2353,15 +2356,15 @@ input[type=submit] {
 .membercard-right-title {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 .membercard-right-title h2 {
   font-size: 32px;
 }
 .membercard-right-title a {
   background: #F29441;
-  line-height: 59px;
-  width: 238px;
+  line-height: 50px;
+  width: 210px;
   display: block;
   text-decoration: none;
   text-align: center;
@@ -2371,6 +2374,7 @@ input[type=submit] {
   cursor: pointer;
   color: #fff;
   font-size: 24px;
+  letter-spacing: 1px;
 }
 .membercard-right-title a:hover {
   background: #AFBF30;
@@ -3373,6 +3377,91 @@ button {
   margin-top: 70px;
 }
 .memberCardEdit .cardimfo a:hover {
+  background: #AFBF30;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
+
+.memberPassword-left h2 {
+  font-size: 32px;
+  margin-bottom: 31px;
+  color: #513F2E;
+}
+.memberPassword-left ul a {
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  line-height: 59px;
+  width: 200px;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 35px;
+  font-size: 20px;
+  background: #AFBF30;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  letter-spacing: 2px;
+}
+.memberPassword-left ul a:hover {
+  background: #F29441;
+}
+.memberPassword-left ul a i {
+  margin-right: 13px;
+}
+
+.memberPassword-right h2 {
+  font-size: 32px;
+  margin-bottom: 31px;
+  color: #513F2E;
+}
+.memberPassword-right .memberPassword-right-card {
+  width: 960px;
+  background: #F2F2F2;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  padding: 76px 82px;
+  box-sizing: border-box;
+}
+.memberPassword-right .memberPassword-right-card h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.memberPassword-right .memberPassword-right-card input {
+  padding-left: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 793px;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+.memberPassword-right .memberPassword-right-card a {
+  background: #F29441;
+  line-height: 59px;
+  width: 793px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+.memberPassword-right .memberPassword-right-card a:hover {
   background: #AFBF30;
 }
 
