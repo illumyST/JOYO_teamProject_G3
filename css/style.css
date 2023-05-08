@@ -472,6 +472,30 @@ footer {
 .membercard-right-title a i {
   margin-left: 24px;
 }
+.membercard-right main li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 964px;
+  line-height: 87px;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+}
+.membercard-right main li .fa-brands {
+  font-size: 40px;
+}
+.membercard-right main li h3 {
+  letter-spacing: 1px;
+}
+.membercard-right main li .delete {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  font-size: 28px;
+}
 
 .product-wrapper {
   width: 1200px;
@@ -1809,6 +1833,30 @@ button {
 }
 .membercard-right-title a i {
   margin-left: 24px;
+}
+.membercard-right main li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 964px;
+  line-height: 87px;
+  background: #F2F2F2;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+}
+.membercard-right main li .fa-brands {
+  font-size: 40px;
+}
+.membercard-right main li h3 {
+  letter-spacing: 1px;
+}
+.membercard-right main li .delete {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  font-size: 28px;
 }
 
 .product-wrapper {
