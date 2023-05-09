@@ -1,0 +1,31 @@
+.ms_send_report_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  font-family: "Noto Sans TC", sans-serif;
+  #email_list {
+    width: 150px;
+    margin-top: 10px;
+    outline: none;
+    background: #f2f2f2;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    @include input-text(1.6, 150px); 
+  }
+  input[type = submit] {
+    width: 150px;
+    outline: none;
+    background-color: $orange;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-top: 40px;
+    @include btn($orange , 30px, 150px, $green); 
+  }
+}

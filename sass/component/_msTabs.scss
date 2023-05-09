@@ -1,0 +1,18 @@
+.ms_tabs {
+    border-bottom: 2px solid $brown;
+    button {
+        border: none;
+        font-size: $p;
+        width: 150px;
+        height: 45px;
+        border-radius: 5px 5px 0 0;
+        letter-spacing: 0.1em;
+        margin-right: 15px;
+        background-color: $bg;
+        color: $brown;
+    }
+    .-active {
+        background-color: $orange;
+        color: #fff;
+    }
+}
