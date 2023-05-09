@@ -1,0 +1,9 @@
+.ms_pagination {
+    display: flex;
+    margin: 20px auto;
+    align-items: center;
+    a {
+        margin: 10px;
+        font-size: $p;
+    }
+}

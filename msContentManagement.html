@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>版位管理</title>
+  </head>
+
+  <body>
+    <!-- Nav bar -->
+    <header class="ms_header">
+      <nav class="ms_nav">
+        <img class="ms_logo" src="./assets/img/logo.svg" alt="" />
+      </nav>
+    </header>
+
+    <div class="ms_wrapper">
+      <!-- Left side Menu -->
+      <ul class="ms_left_side_menu">
+        <li><a href="#">數據管理</a></li>
+        <li><a href="#">版務管理</a></li>
+        <li><a href="#">商品頁面</a></li>
+        <li><a href="#">客服中心/會員管理</a></li>
+        <li><a href="#">訂單資料管理</a></li>
+        <li><a href="#">系統管理</a></li>
+      </ul>
+      <!-- Right side content -->
+      <div class="ms_right_side_content">
+        <!-- Tabs -->
+        <div class="ms_tabs">
+          <button class="ms_transactions -active">版位素材編輯</button>
+          <button class="ms_sendReport">討論區管理</button>
+        </div>
+
+        <!-- Data Range Picker & Filter -->
+        <!-- <div class="ms_data_management_fiter">
+          <input type="date" class="ms_date_picker" />
+        </div> -->
+
+        <div class="ms_content_management_dashboard">
+          <!-- Selection -->
+            <form action="#" class="ms_cms_form">
+
+              <div class="ms_selection_div">
+                <select name="" id="">
+                  <option value="">首頁</option>
+                  <option value="">交流專區</option>
+                  <option value="">商品頁</option>
+                </select>
+
+                <select name="" id="">
+                  <option value="">版位Ａ</option>
+                  <option value="">版位B</option>
+                  <option value="">版位C</option>
+                </select>
+              </div>
+              <!-- Img upload -->
+              <div class="ms_img_upload">
+                <div class="flex-col">
+                  <label for="">上傳圖片</label>
+                  <input type="file">
+                </div>
+
+                <div class="flex-col">
+                  <label for="">圖片網址</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <!-- Img alt -->
+              <div class="ms_img_alt">
+                <div class="flex-col">
+                  <label for="">圖片說明</label>
+                  <input type="text">
+                </div>
+
+                <div class="flex-col">
+                  <label for="">選擇日期</label>
+                  <input type="date" class="ms_date">
+                </div>
+              </div>
+
+              <div>
+                <input type="submit" value="送出">
+              </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
