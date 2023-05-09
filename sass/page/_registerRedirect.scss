@@ -6,28 +6,30 @@
   background: #F2F2F2;
   box-shadow: $shadow;
   border: 5px solid gold;
-    .registerRedirect_h1{
-      font-size: $h1_pri;
-      color: $orange;
+    .registerRedirect_logo{
+      display: block;
       margin: 0 auto;
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      border: 5px solid palegreen;
+      width: 170px;
+      height: 41px;
+      margin-top: 105px;
+      margin-bottom: 40px;
     }
       .registerRedirect_completed{
         .fa-solid{
         display: block;
-        font-size: 150px;
+        font-size: 100px;
         color: $orange;
         text-align: center;
         margin: 0 auto;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
         }
       }
         .registerRedirect_p_text{
         font-size: $p;
         color: $orange;
         text-align: center;
+        margin-bottom: 0px;
         }
 }
 
