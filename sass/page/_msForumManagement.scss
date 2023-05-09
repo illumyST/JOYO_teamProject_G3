@@ -1,53 +1,221 @@
-.mCP-left{
-    background-color: $bg;
-    box-shadow: $shadow ;
-    height: 595px;
-    ul{
-        font-size: $p;
-        width: 200px;
-        li{
-            padding: 25px;
+.ms_form_table{
+    width: 100%;
+    margin-left: 40px;
+    margin-top: -45px;
+    .ms_tab{
+        top: -130px;
+        left: 0;
+        width: 100%;
+        div{
+            display: flex;
             a{
-            color: $brown;
+                width: 154px;
+                height: 45px;
+                font-size: $p;
+                text-align: center;
+                line-height: 45px;
+                color: black;
+                background-color: $bg;
+                border-radius: 10px 10px 0 0;
+                margin-right: 10px;
+            }
+            a.ms_open{
+                background-color: $orange;
+                color: white;
             }
         }
-        li:hover{
-            border-left: 6px solid $orange;
+       
+        hr{
+            margin-top: -2px;
         }
+    }
+    .ms_sub_btn{
+        margin-top: 40px;
+        h2{
+            font-size: $h2;
+        }
+        div{
+            text-align: center;
+            margin-top: 10px;
+            display: flex;
+            a{
+                color: white;
+                box-shadow: $shadow;
+                border-radius: 5px;
+                height: 30px;
+                margin-right: 10px;
+                @include btn($orange, 30px, 150px, $green);
+            }
+        }
+ }
+
+ .ms_sub_sel{
+   position: relative;
+   padding: 10px;
+   h2{
+    margin-bottom: 20px;
+    font-size: $h2;
+   }
+     div{
+        display: flex;
+        text-align: center;
+        width: 310px;
+        left: 0;
+        input{
+            height: 30px;
+            margin-right: 5px;
+        }
+        select{
+            color: white;
+            background-color: $orange;
+            height: 34px;
+            margin-right: 5px;
+            border-radius: 2px;
+        }
+        button{
+            height: 34px;
+            color: white;
+            background-color: $orange;
+            border-radius: 2px;
+        }
+
+    }
+    select.ms_page{
+        position: absolute;
+        right: 0;
     }
 }
 
-.mCP-right{
-    background-color: $bg;
-    width: 828px;
-    height: 702px;
-    i.bi{
-        float: right;
-        padding: 20px;
-        font-size: $h2;
+    table{
+        width: 100%;
+        text-align: center;
+        thead{
+            font-size: $h3;
+            height: 60px;
+            line-height: 60px;
+            padding-bottom:30px;
         }
-    form{
-    display: flex;
-    flex-direction: column;
-    h1{
+        tr.ms_table_body{
+            
+            background-color: $orange;
+            font-size: $p;
+            height: 40px;
+            vertical-align: middle;
+            line-height: 40px;
+            td.msn_icon{
+                display: flex;
+                justify-content: center;
+                a{
+                    margin: 0 3px;
+                }
+            }
+        }
+        tr.ms_table_body:nth-child(even){background-color: $b-pink;}
+    
+    }
+}
 
-        font-size: $h1_sub;
-        padding: 60px 20px 40px;
+
+.ms_order{
+    // outline: 1px solid red;
+    li{  
+        
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+       h3{
+        cursor:pointer; 
+        padding: 10px;
+        text-align: center;
+        width: 140px;
+        flex-grow: 1;
+        font-size: $h3;
+       }
+       div{
+        
+        // outline: 1px solid red;
+        background-color: $bg;
+        display: flex;
+        width: 100%;
+        table.ms_order_table{
+            
+            tr{
+                outline: 1px solid white;
+            }
+            td{
+                vertical-align: middle;
+                img{
+                    width: 100px;
+                    margin-top: 20px;
+                    padding-bottom: 10px;
+                }     
+            }
+            width: 70%;
+            
+        }
+       }
+       .ms_order_right{
+        // margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        // outline: 1px solid red;
+        width: 30%;
+        align-items: flex-end;
+        position: relative;
+        div{
+            flex-direction: column;
+            // outline: 1px solid red;
+            width: 63%;
+            margin: 30px 0;
+        }
+        div::before{
+            content: "";
+            // border: 1px solid red;
+            border-radius: 50%;
+            background-color: $brown;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            right: 50px;
+            top: 20px;
+        }
+
+        span.dash{
+            // outline: 6px solid red;
+            background-color: $brown;
+            width: 5px;
+            height: 330px;  //  2:110px    3:230px          4:330px
+            position: absolute;
+            left: 64px;
+            top: 65px;
+        }
     }
-    label{
-        padding: 20px 0 10px 20px;
-        font-size: $h2;
     }
-    input{
-        height: 45px;
-        margin:  0 20px;
-    }input:last-child{
-        margin-top:  30px;
-        height: 69px;
+    li.ms_order_title:nth-child(even){
+        outline: 1px solid black;
         background-color: $orange;
-        font-size: $h2;
-        color: white;
+        h3{
+            color: white;
+        }
+        
+    }
+    li.ms_order_title:nth-child(odd){
+        // outline: 1px solid black;
+        background-color: $b-pink;
+        h3{
+        color: black;
+        }
     }
     
 }
+
+.ms_order_min{
+    // transition: .5s;
+    height: 0;
+   
+    
+}
+
+.ms_open{
+    height:100%;
 }
