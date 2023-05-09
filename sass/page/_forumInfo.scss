@@ -1,0 +1,108 @@
+.forumInfo_wrapper{
+    @include flex-container(row, wrap, space-around, flex-start);
+    @include wrapper();
+    font-family: Noto Sans, Noto Sans TC, sans-serif;
+    border: 1px solid red;
+}
+
+// ===== 左側選單 ===== //
+.forumInfo_sidemenu{
+       border: 1px solid purple; 
+       display: inline-block;
+    }
+    
+    .forumInfo_sidemenu li{
+        // border: 1px solid blue;
+        @include sidemenu();
+        @include flex-container(row, wrap, start);
+    
+    }
+    
+    .forumInfo_sidemenu li:last-child{
+        margin-top: 50px;
+        justify-content: center;
+        padding: 0;
+        background-color: $brown;
+        box-shadow: $shadow;
+        &:hover{
+            background: $orange;
+        }  
+    }
+    
+    .forumInfo_sidemenu li i{
+       margin-right: 10px;
+    }
+
+
+    .forumInfo_right{
+        border: 1px solid blue;
+        width: 75%;
+        // height: 75%;
+        background-color: $bg;
+        box-shadow: $shadow;
+    }
+
+    // ===== 文章上方 ===== //
+    .forumInfo_right_top{
+        border: 1px solid yellow;
+        @include flex-container(row, wrap, start);
+        margin-top: 50px;
+
+        p{
+            margin-right: 15px;
+        }
+    }
+
+    .forumInfo_right_top_img{
+        // border: 1px solid green;
+        img{
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+
+    .forumInfo_right_title{
+        border: 1px solid black;
+        @include flex-container(row, wrap, start);
+        margin: 20px 0 0 40px;
+    }
+
+    .forumInfo_right_title_left{
+        border: 1px solid palevioletred;
+        // display: block;
+        line-height: 5;
+        width: 12%;
+        text-align: center;
+        font-size: $p;
+    }
+
+    .forumInfo_category{
+        background-color: white;
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .forumInfo_right_title_right{
+        border: 1px solid palevioletred;
+        width: 80%;
+        font-size: $h1_sub;
+        margin-left: 30px;
+    }
+
+
+    .forumInfo_right_title_bottom{
+        border: 1px solid goldenrod;
+        @include flex-container(row, wrap, start);    
+    }
+
+    .forumInfo_right_title_bottom_label{
+        margin: 20px 0 0 40px;
+        li{
+            @include Label();
+        }
+    }
+
+
+
+
