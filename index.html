@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>member</title>
-    <link rel="stylesheet" href="css/style.css"> 
-    <script src="https://kit.fontawesome.com/56b7867370.js" crossorigin="anonymous"></script>
+    <title>header</title>
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!------------------ fontawesome ------------------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
-<body class="page-member">
+
+<body>
+    <!------------------ header ------------------>
     <header>
         <nav class="header_nav">
-            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg"
+                    alt=""></a>
             <ul class="header_nav_right">
                 <li class="header_nav_right_inputBox">
                     <input class="header_nav_right_inputBox-input" type="text">
@@ -42,67 +51,39 @@
             </ul>
         </nav>
     </header>
-    <div class="wrapper">
-        <!-- 左邊部分 -->
-        <div class="member-left">
-            <h2>會員中心</h2>
-            <ul>
-                <li><a href="#"><i class="fa-solid fa-circle-user"></i>個人檔案</a></li>
-                <li><a href="#"><i class="fa-solid fa-credit-card"></i>信用卡</a></li>
-                <li><a href="#"><i class="fa-solid fa-lock"></i>更改密碼</a></li>
-                <li><a href="#"><i class="fa-solid fa-rectangle-list"></i>訂單專區</a></li>
-            </ul>
-        </div>
-        <!-- 右邊部分 -->
-        <div class="member-right">
-            <h2>個人檔案</h2>
-            <div class="member-right-card">
-                <!-- 右邊最上面 頭貼+名字 -->
-                <div class="member-right-name">
-                    <img src="assets/img/cat.png" alt="">
-                    <div class="name">
-                        <h3>用戶名稱</h3>
-                        <input type="text" class="member-name-text" placeholder="註冊時輸入的資料自動帶入">
-                    </div>
-                </div>
-                <!-- email -->
-                <div class="email">
-                    <h3>電子郵件</h3>
-                    <input type="text" class="member-text" placeholder="註冊時輸入的資料自動帶入">
-                </div>
-                <!-- 生日 -->
-                <div class="birth">
-                    <h3>生日</h3>
-                    <input type="text" class="member-text" placeholder="輸入您的生日">
-                </div>
-                <!-- 電話號碼 -->
-                <div class="phone">
-                    <h3>手機號碼</h3>
-                    <input type="text" class="member-text" placeholder="輸入您的手機號碼">
-                </div>
-                <!-- 地址 -->
-                <div class="address">
-                    <h3>地址</h3>
-                    <div class="address-top">
-                        <select name="" id="">
-                            <option value="">城市/縣</option>
-                            <option value="">台北市</option>
-                            <option value="">新北市</option>
-                            <option value="">桃園市</option>
-                            <option value="">台中市</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">區域</option>
-                        </select>
-                    </div>
-                    <div class="address-bottom">
-                        <input type="text" class="member-text" placeholder="輸入您的詳細地址">
-                    </div>
-                </div>
-                <a href="#" class="">儲存</a>
+
+    <!------------------ index ------------------>
+    <main class="wrapper">
+
+        <!-- topNav -->
+        <ul class="index_topNav">
+            <li><a href="#">派對遊戲</a></li>
+            <li><a href="#">輕度策略</a></li>
+            <li><a href="#">戰爭遊戲</a></li>
+            <li><a href="#">棋奕遊戲</a></li>
+            <li><a href="#">主題遊戲</a></li>
+            <li><a href="#">家庭遊戲</a></li>
+            <li><a href="#">團隊合作</a></li>
+        </ul>
+
+        <!-- banner -->
+        <div class="index_banner">
+            <div class="index_banner_leftSlidder">
+                <img src="./assets/img/index_banner1.jpg" alt="">
+            </div>
+            <div class="index_banner_right">
+                <img src="./assets/img/index_banner2.jpg" alt="">
+                <img src="./assets/img/index_banner3.jpg" alt="">
             </div>
         </div>
-    </div>  
+
+        <!-- hotProduct -->
+        <div class="index_hotProduct">
+            
+        </div>
+    </main>
+
+    <!------------------ footer ------------------>
     <footer>
         <nav class="footer_nav">
             <div class="footer_nav_left">
@@ -144,9 +125,7 @@
                 </li>
             </ul>
         </nav>
-    </footer>    
+    </footer>
 </body>
-</html>
 
-<!-- <a href="#" class="btn btn__submit">按鈕</a>
-<a href="#" class="btn btn__submit">按鈕</a>  -->
+</html>

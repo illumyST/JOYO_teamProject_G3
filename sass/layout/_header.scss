@@ -67,6 +67,7 @@ header{
 }
 
 .header_nav_right > li > ol{
+    overflow: hidden;
     height: 0;
     position: absolute;
     left: 50%;

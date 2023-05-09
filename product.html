@@ -9,7 +9,39 @@
     <script src="https://kit.fontawesome.com/1dbe31dbeb.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header></header>
+    <header>
+        <nav class="header_nav">
+            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <ul class="header_nav_right">
+                <li class="header_nav_right_inputBox">
+                    <input class="header_nav_right_inputBox-input" type="text">
+                </li>
+                <li><a href="#">桌遊商城</a>
+                    <ol>
+                        <li><a href="#">派對遊戲</a></li>
+                        <li><a href="#">輕度策略</a></li>
+                        <li><a href="#">戰爭遊戲</a></li>
+                        <li><a href="#">棋奕遊戲</a></li>
+                        <li><a href="#">主題遊戲</a></li>
+                        <li><a href="#">家庭遊戲</a></li>
+                        <li><a href="#">團隊合作</a></li>
+                    </ol>
+                </li>
+                <li><a href="#">討論區</a>
+                    <ol>
+                        <li><a href="#">心得分享</a></li>
+                        <li><a href="#">揪團區</a></li>
+                        <li><a href="#">發問區</a></li>
+                        <li><a href="#">教學區</a></li>
+                    </ol>
+                </li>
+                <li><a href="#">聯絡我們</a></li>
+                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
+                <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
+                <li></li>
+            </ul>
+        </nav>
+    </header>
     <div class="product-wrapper">
         <div class="product-top ">
             <div class="col-3 breadcrumb">
@@ -24,7 +56,25 @@
             <div class="col-9 ">
                 
                 <div class="product-filter">
-                    <div>
+                    <div class="col-12 ">
+                        <div class="product-filter-cater">
+                            <button class="product-filter-btn" type="button" id="" >
+                            <span>全部商品</span>
+                            <span><img src="./pic/product/Vector.png" alt=""></span>
+                            </button>
+                            <ul class="product-filter-player" >
+                                <li><a class="dropdown-item" href="#">全部商品</a></li>
+                                <li><a class="dropdown-item" href="#">派對遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">輕度策略</a></li>
+                                <li><a class="dropdown-item" href="#">戰爭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">棋奕遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">主題遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">家庭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">團隊合作</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-filter-div">
+                            <div>
                        <button class="product-filter-btn" type="button" id="" >
                         <span>遊玩人數</span><span><img src="./pic/product/Vector.png" alt=""></span>
                       </button>
@@ -34,8 +84,8 @@
                         <li><a class="dropdown-item" href="#">三人遊戲</a></li>
                         <li><a class="dropdown-item" href="#">多人遊戲</a></li>
                       </ul> 
-                    </div>
-                    <div>
+                            </div>
+                            <div>
                        <button class="product-filter-btn" type="button" id="" ><span>適玩年齡</span><span><img src="./pic/product/Vector.png" alt=""></span>
                       </button>
                       <ul class="product-filter-age" >
@@ -44,8 +94,8 @@
                         <li><a class="dropdown-item" href="#">+9</a></li>
                         <li><a class="dropdown-item" href="#">+12</a></li>
                       </ul> 
-                    </div>
-                    <div>
+                            </div>
+                            <div>
                         <button class="product-filter-btn" type="button" id="" >
                          <span>排序方式</span><span><img src="./pic/product/Vector.png" alt=""></span>
                       </button>
@@ -53,8 +103,9 @@
                         <li><a class="dropdown-item" href="#">由高到低</a></li>
                         <li><a class="dropdown-item" href="#">由低到高</a></li>
                       </ul> 
+                            </div>
+                         </div>
                     </div>
-                     
                 </div>
             </div>  
         </div>
@@ -86,7 +137,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="pic/product/1559254164722-51AHDwGznvL.png" alt="" class="prouct-item-card-img">
+                        <img src="assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infro">
                         <div>
@@ -111,7 +162,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="pic/product/1559254202422-51mP2aJfyxL.png" alt="" > 
+                       <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img"> 
                     </div>
                     
                     <div class="prouct-item-card-infro">
@@ -137,7 +188,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -161,7 +212,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -185,7 +236,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -209,7 +260,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254192344-51tjV3rKyRL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -233,7 +284,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -257,7 +308,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -281,7 +332,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254920151-51ulRXlJ7LL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -305,7 +356,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254188772-515tbFJ5C8L.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -329,7 +380,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -353,7 +404,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
+                    <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
                     </div><div class="prouct-item-card-infro">
                         <div>
                             <h2 class="prouct-item-card-infro-name">璀璨寶石</h2>
@@ -379,7 +430,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="pic/product/1559254164722-51AHDwGznvL.png" alt="" class="prouct-item-card-img">
+                        <img src="assets/img/product_pathwork.jpg" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infro">
                         <div>
@@ -672,7 +723,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="pic/product/1559254164722-51AHDwGznvL.png" alt="" class="prouct-item-card-img">
+                        <img src="assets/img/product_waterdeep.jpg" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infro">
                         <div>
@@ -965,7 +1016,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="pic/product/1559254164722-51AHDwGznvL.png" alt="" class="prouct-item-card-img">
+                        <img src="assets/img/product_windspan.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infro">
                         <div>
@@ -1258,7 +1309,7 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="pic/product/1559254164722-51AHDwGznvL.png" alt="" class="prouct-item-card-img">
+                        <img src="assets/img/product_dixit.jpg" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infro">
                         <div>
@@ -1553,7 +1604,48 @@
         </div>
         
     </div>
-    <footer></footer>
+    <footer>
+        <nav class="footer_nav">
+            <div class="footer_nav_left">
+                <a href="#"><img class="footer_nav_left_logo" src="../../assets/img/logo.svg" alt=""></a>
+                <ul class="footer_nav_left_icons">
+                    <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
+                </ul>
+            </div>
+
+            <ul class="footer_nav_right">
+                <li>
+                    <a href="#">桌遊商城</a>
+                    <ol>
+                        <li><a href="#">派對遊戲</a></li>
+                        <li><a href="#">輕度策略</a></li>
+                        <li><a href="#">戰爭遊戲</a></li>
+                        <li><a href="#">棋奕遊戲</a></li>
+                        <li><a href="#">主題遊戲</a></li>
+                        <li><a href="#">家庭遊戲</a></li>
+                        <li><a href="#">團隊合作</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#">討論區</a>
+                    <ol>
+                        <li><a href="#">心得分享</a></li>
+                        <li><a href="#">揪團區</a></li>
+                        <li><a href="#">發問區</a></li>
+                        <li><a href="#">教學區</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#">聯絡我們</a>
+                    <span><i class="fa-solid fa-envelope"></i>joyo2023@gmail.com
+                    </span><br>
+                    <span><i class="fa-solid fa-phone"></i>09123456789</span>
+                </li>
+            </ul>
+        </nav>
+    </footer>  
     
 </body>
 </html>

@@ -3,11 +3,10 @@
     margin-top: 40px;
     ul{
         display: flex;
-        justify-content: space-between;
     }
     li{
         display: flex;
-        justify-content: space-evenly;
+        
     }
 
 }
@@ -80,4 +79,7 @@
 }
 .cartFill_deliv_submit:hover{
     background-color: $green;
+}
+.form-select{
+    color: $brown;
 }

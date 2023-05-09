@@ -31,6 +31,10 @@
 
 @import './page/msForumManagement';
 @import './page/msEditAdmins';
+@import './page/msLogin'; 
+@import './page/page';
+@import './page/memberCardAdd';
+@import './page/memberCardEdit';
 @import './page/msLogin.scss'; 
 @import './page/page';
 @import './page/memberCardAdd';
@@ -43,6 +47,16 @@
 @import './page/registerRedirect';
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
+
+@import './page/_register';
+@import './page/_mailCheck';
+@import './page/_forgetPassword';
+@import './page/_singin';
+@import './page/_forgetPasswordRedirect';
+@import './page/registerRedirect';
+@import './page/cartRedirect';
+@import './page/mailCheckRedirect';
+
 @import './page/memberPassword';
 
 @import './page/mailCheckRedirect';
@@ -57,5 +71,4 @@
 .Label{
     @include Label();
 }
-
 // sass sass\style.scss css/style.css -w

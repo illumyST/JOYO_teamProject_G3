@@ -1,0 +1,39 @@
+*{
+    font-family: 'Noto Sans TC';
+}
+
+/*------------------- TopNav -------------------*/
+.index_topNav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    li a{
+        font-size: 20px;
+        font-family: 'Noto Sans TC';
+        letter-spacing: 0.1em;
+        color: $brown;
+        transition: .2s;
+
+        &:hover{
+            opacity: .7;
+        }
+    }
+}
+
+/*------------------- Banner -------------------*/
+.index_banner{
+    margin-bottom: 160px;
+    img{
+        display: block;
+    }
+    display: flex;
+    &_leftSlidder{
+        margin-right: 20px;
+    }
+    &_right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
