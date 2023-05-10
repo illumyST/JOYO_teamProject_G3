@@ -24,6 +24,9 @@ header{
     margin-left: 40px;
     position: relative;
 }
+.header_nav_right > li span{
+    display: none;
+}
 .header_nav_right_inputBox{
     position: relative;
 }
@@ -95,3 +98,107 @@ header{
     background-color:  $bg;
     color: $brown;
 }
+.header_nav_rwdBtn{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    display: none;
+}
+.header_nav_rwdBtn i{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    line-height: 50px;
+}
+
+// ---------------------- RWD ---------------------- //
+
+@include m(){
+    header{
+        height: 50px;
+    }
+    .header_nav{
+        width: 370px;
+    }
+    .header_nav_right_inputBox{
+        display: none;
+    }
+    .header_nav_logo{
+        height: 30px;
+        padding-top:8px;
+    }
+    .header_nav{
+        position: relative;
+    }
+    .header_nav_right{
+        position: absolute;
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+    }
+    .header_nav_rwdBtn{
+        display: block;
+        text-align: right;
+        font-size: 25px;
+    }
+    .header_nav_right{
+        width: 414px;
+        background-color: $green;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%,0);
+        text-align: center;
+        
+    }
+    .header_nav_right > li{
+        margin: 0;
+        position: relative;
+    }
+    .header_nav_right > li:not(:last-child)::after{
+        content: '';
+        width: 80%;
+        height: .5px;
+        position: absolute;
+        background-color: #fff;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .header_nav_right > li:nth-child(2):before,.header_nav_right > li:nth-child(3):before{
+        content: '\f078';
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        font-size: 14px;
+        position: absolute;
+        right: 135px;
+        top: 24px;
+        transition: .2s;
+    }
+    .header_nav_right > li:nth-child(3):before{
+        right: 144px;
+    }
+    .header_nav_right > li span{
+        display: inline-block;
+    }
+    .header_nav_right > li > a{
+        color: #fff;
+        font-size: 16px;
+        line-height: 60px;
+    }
+
+    // --------- sub-menu --------- //
+    .header_nav_right > li > ol{
+        position: static;
+        transform: none;
+        width: 100%;
+        background-color:#e3eca3;
+        
+    }
+    .header_nav_right > li > ol a{
+        color: $brown;
+    }
+}
+
+// .header_nav_right .fa-regular{
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+// }

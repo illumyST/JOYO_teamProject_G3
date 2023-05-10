@@ -304,3 +304,21 @@
     
     }
 }
+
+@include m(){
+    .index_banner{
+        display: none;
+    }
+    .index_hotProduct{
+        display: none;
+    }
+    .index_newProduct{
+        display: none;
+    }
+    .index_newProductList{
+        display: none;
+    }
+    .index_hotForumPost{
+        display: none;
+    }
+}
