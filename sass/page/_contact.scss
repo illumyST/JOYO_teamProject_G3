@@ -1,0 +1,355 @@
+.contact_wrapper{
+    // border: 1px solid red;
+    @include wrapper();
+    color: $brown;
+
+}
+
+.contact_top{
+    // border: 1px solid blue;
+    width: 100%;
+    @include flex-container();
+    justify-content: center;
+    align-content: flex-start;
+    border-radius: 0 0 80% 80%;
+    background-color: $orange;
+}
+
+.contact_top_titel{
+    text-align: center;
+    font-size: $h1_pri;
+    color: white;
+    width: 100%;
+    margin: 20px 0;
+    letter-spacing: 1px;
+}
+
+.contact_top_left{
+    // border: 1px solid green;
+    color: white;
+    width: 30%;
+    text-align: center;
+    margin-right: 20px;
+
+    h1{
+        font-size: 80px;
+        font-weight: 900;
+        line-height: 1.5;
+    }
+
+    p{
+        font-size: $h3;
+    }
+}
+
+.contact_top_right{
+    // border: 1px solid yellow;
+    width: 40%;
+    line-height: 2;
+    font-size: $h3;
+    letter-spacing: 2px;
+    
+
+    span{
+        background-color: wheat;
+        padding: 8px;
+    }
+
+    i{
+        margin-right: 10px;
+    }
+
+    a{
+        color: $brown;
+    }
+}
+
+.contact_top_right_text{
+    margin-bottom: 15px;
+}
+
+
+
+
+// ===== 常見問題 ===== //
+.contact_middle{
+    // border: 1px solid purple;
+    width:  100%;
+    margin-top: 100px;
+}
+
+
+.contact_middle_title{
+    font-size: $h1_pri;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+}
+
+.contact_middle_qa{
+    width: 60%;
+    margin: 0 auto;
+
+    h3{
+        // border: 1px solid blue;
+        font-size: $h3;
+        padding: 10px 20px;
+        background-color: $green;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h3::after{
+        content: '\002B';
+        font-size: 24px;
+        font-weight: bold;
+        color:  $brown;
+    }
+
+    p{
+        line-height: 2;
+        letter-spacing: 1px;
+        background-color: $bg;
+        padding: 20px;
+    }
+}
+
+
+.contact_middle_qa_item{
+    margin-bottom: 20px;
+}
+
+
+.contact_middle_a1,
+.contact_middle_a2,
+.contact_middle_a3,
+.contact_middle_a4,
+.contact_middle_a5{
+    // display: none;
+}
+
+
+
+// ===== 線上即時客服 ===== //
+
+.contact_bottom{
+    // border: 1px solid green;
+    @include flex-container();
+    margin: 50px 0;
+    position: relative;
+}
+
+.contact_bottom_title{
+    width: 100%;
+    text-align: center;
+
+    h1{
+        font-size: $h1_pri;
+        letter-spacing: 1px;
+        margin: 30px 0;
+    }
+}
+
+.contact_bottom_info{
+    @include flex-container(row, wrap, flex-start);
+    width: 90%;
+    margin: 40px 0;
+    
+
+    p{
+        background-color: #f9c393aa;
+        font-size: $p;
+        width: 100%;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        color: white;
+        margin-top: 150px;
+        text-align: center;
+    }
+
+
+}
+
+.contact_bottom_info1{
+    // border: 1px solid black;
+    width: 25%;
+    // flex-grow: 1;
+    background-image: url("../../assets/img/contact1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right: 20px;
+}
+
+.contact_bottom_info2{
+    // border: 1px solid rgb(252, 185, 185);
+    // flex-grow: 1;
+    width: 25%;
+    background-image: url("../../assets/img/contact2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right: 20px;
+}
+
+.contact_bottom_info3{
+    // border: 1px solid rgb(173, 187, 250);
+    // flex-grow: 1;
+    width: 25%;
+    background-image: url("../../assets/img/contact3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right: 20px;
+}
+
+
+
+
+
+// ===== 彈窗的虛線 ===== //
+.contact_bottom_line{
+    width: 20%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 188px;
+
+    img{
+        width: 100%;
+    }
+}
+
+
+
+
+.contact_bottom_customer_service{
+    border: 10px solid white;
+    position: absolute;
+    bottom: 30px;
+    right: 170px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: $orange;
+    text-align: center;
+
+    i{
+       font-size: $h1_pri;
+       margin: 15px 0;
+       color: white;
+    }
+}
+
+
+
+
+// ===== 聊天室 ===== //
+.contact_bottom_chat{
+    // border: 1px solid blueviolet;
+    background-color: $orange;
+    width: 50%;
+    position: absolute;
+    right: 170px;
+    bottom: 120px;
+    display: none;
+
+}
+
+.contact_bottom_chat_title{
+    @include flex-container();
+    justify-content: flex-start;
+
+    margin-top: 20px;
+    
+    img{
+        width: 10%;
+        margin-left: 20px;
+    }
+
+    h2{
+        font-size: $h2;
+        color: white;
+        margin-left: 20px;
+    }
+}
+
+.contact_bottom_chat_msg{
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px 0;
+    background-color: white;
+}
+
+.contact_bottom_chat_dialog_box_q{
+    width: 50%;
+    background-color: $orange;
+    margin: 10px 0 10px 210px;
+    padding: 20px;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        border-top: 20px solid transparent;
+        border-right: 0px solid transparent;
+        border-left: 30px solid $orange;
+        border-bottom: 0px solid transparent;
+        bottom: 30px;
+        right: -25px;
+    }
+}
+
+
+.contact_bottom_chat_dialog_box_a{
+    width: 50%;
+    background-color: $bg;
+    margin: 40px 30px;
+    padding: 20px;
+    line-height: 1.5;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        border-top: 20px solid transparent;
+        border-right: 30px solid $bg;
+        border-left: 0px solid transparent;
+        border-bottom: 0px solid transparent;
+        bottom: 30px;
+        left: -25px;
+    }
+    
+}
+
+.contact_bottom_chat_msg_line{
+    width: 100%;
+    display: inline-block;
+    border-bottom: 4px solid $bg;
+}
+
+.contact_bottom_chat_msg_qbox{
+    @include flex-container();
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contact_bottom_chat_msg_qbox_text{
+    width: 85%;
+    resize: none;
+    background-color: $bg;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: $p;
+    overflow: hidden
+}
+
+.contact_bottom_chat_msg_qbox_icon{
+    // border: 1px solid red;
+    width: 10%;
+    font-size: $h1_sub;
+    text-align: center;
+    color: $orange;
+}
