@@ -243,3 +243,10 @@
     top: 50%;
     transform: translate(-50%,-50%);
 }
+
+// RWD
+@mixin m(){
+    @media screen and (max-width: 414px){
+        @content;
+    }
+}
