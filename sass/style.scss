@@ -28,7 +28,7 @@
 @import './page/forum';
 @import './page/forumPost';
 @import './page/forumInfo';
-
+@import './page/msLiveChat'; 
 @import './page/msForumManagement';
 @import './page/msEditAdmins';
 @import './page/msLogin'; 
@@ -47,7 +47,14 @@
 @import './page/registerRedirect';
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
-
+@import './page/msSendEmail'; 
+@import './page/msDataManagementOrder'; 
+@import './page/msContentManagement'; 
+@import './component/ms_nav'; 
+@import './component/msTabs'; 
+@import './layout/msLeftSideMenu'; 
+@import './layout/msRightSideContent'; 
+@import './component/msPagination';
 @import './page/_register';
 @import './page/_mailCheck';
 @import './page/_forgetPassword';
