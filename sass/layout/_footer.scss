@@ -77,3 +77,34 @@ footer{
 .footer_nav_left a:hover,.footer_nav_right a:hover{
     color: $brown;
 }
+
+@include m(){
+    .footer_nav{
+        width: 370px;
+        flex-direction: column;
+    }
+    .footer_nav_left{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .footer_nav_left_logo{
+        width: 160px;
+    }
+    .footer_nav_left_icons{
+        font-size: 28px;
+    }
+    .footer_nav_left_icons a{
+        margin: 0 5px;
+    }
+    .footer_nav_right li{
+        display: none;
+    }
+    
+    .footer_nav_right li:last-child{
+        display: block;
+        text-align: center;
+    }
+    .footer_nav_right li:last-child a{
+        display: none;
+    }
+}

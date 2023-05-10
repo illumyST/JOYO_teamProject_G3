@@ -45,9 +45,6 @@
 }
 
 @media screen and (max-width:414px){
-    header{
-        display: none;
-    }
     .member-left h2{
         display: none;
     }
@@ -106,9 +103,6 @@
         font-size: 22px;
     }
     .cardnum{
-        display: none;
-    }
-    footer{
         display: none;
     }
 }

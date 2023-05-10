@@ -180,6 +180,12 @@
         &__pCardAddCart{
             border-radius: 50%;
         }
+        @include m(){
+            max-width: 140px;
+            display: block;
+            padding: 0;
+
+        }
 }
 }
 
