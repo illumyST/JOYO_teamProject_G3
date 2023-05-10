@@ -189,8 +189,9 @@
     position: absolute;
     right: 0;
     top: 0;
+    
 }
-.prouct-item.active{
+.page1{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -243,6 +244,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    div{
+        width: 200px;
+    }
 }
 .product-main aside ul{
     display: flex;
@@ -275,7 +279,7 @@
 .prouct-item-card-infor{
     h2,h3{
     color: #fff;
-    line-height: 2.5;
+    line-height: 1.5;
     letter-spacing: 5px}
 
 }
@@ -424,7 +428,8 @@
         }
     }
     .prouct-item{
-        width: 100%;
+        width: 96%;
+        margin: 0 auto;
     }
     .prouct-item-card-infor{
         button{
