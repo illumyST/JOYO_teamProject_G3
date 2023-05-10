@@ -85,9 +85,12 @@
         color: $brown;
     }
     .membercard-right-title a{
-        width: 160px;
+        width: 140px;
         line-height: 40px;
         font-size: 18px;
+    }
+    .membercard-right-title a i{
+        margin-left: 15px;
     }
     .membercard-right main li{
         width: 370px;
