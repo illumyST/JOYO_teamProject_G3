@@ -1,8 +1,10 @@
-.wrapper{
+.member_wrapper{
     display: flex;
     justify-content: space-between; 
     padding-top: 100px; 
     padding-bottom: 150px;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .member-left{
@@ -80,6 +82,11 @@
 }
 
 @media screen  and (max-width: 414px){
+    .member_wrapper{
+        width: 414px;
+        flex-direction: column;
+        align-items: center;
+    }
     .member-right-card{
         width: 370px;
     }
