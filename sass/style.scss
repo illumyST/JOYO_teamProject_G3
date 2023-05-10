@@ -37,8 +37,6 @@
 @import './page/memberCardEdit';
 @import './page/msLogin.scss'; 
 @import './page/page';
-@import './page/memberCardAdd';
-@import './page/memberCardEdit';
 @import './page/register';
 @import './page/mailCheck';
 @import './page/forgetPassword';
@@ -55,18 +53,12 @@
 @import './layout/msLeftSideMenu'; 
 @import './layout/msRightSideContent'; 
 @import './component/msPagination';
-@import './page/_register';
-@import './page/_mailCheck';
-@import './page/_forgetPassword';
-@import './page/_singin';
 @import './page/_forgetPasswordRedirect';
-
+@import './page/memberOrder';
 @import './page/register';
 @import './page/mailCheck';
 @import './page/forgetPassword';
 @import './page/singin';
-@import './page/forgetPasswordRedirect';
-@import './page/registerRedirect';
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
 
@@ -76,6 +68,10 @@
 @import './page/mailCheckRedirect';
 @import './page/membercard';
 
+.wrapper{
+    width: 1200px;
+    margin: 0 auto;
+}
 @include btnn(200px);
 
 .Label{
