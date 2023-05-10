@@ -98,6 +98,7 @@
         color: $brown;
         border-radius: 5px;
         ul{
+            width: 100%;
             display: flex;
             text-align: center;
             font-size: 20px;
@@ -112,7 +113,8 @@
                 margin-top: 0;
                 justify-content: center;
                 align-items: center;
-                
+                margin-left: 5px;
+                margin-right: 2px;
                 button{
                     background-color: #f2f2f200;
                     border: 0;
@@ -211,6 +213,8 @@
         width: auto;
 
     }
+    
+    
     .cartConfirm_deliv > div:first-child, .cartConfirm_deliv > div:nth-child(2) {
         width: 100%;
     }
@@ -228,10 +232,10 @@
             }
         }
     }
-    .cartConfirm_prog_f::after{
-        right: -59px;
-        bottom: 28px;
+    .carFill_prog_f ::after{
         width: 57px;
+        right: -109px;
+        bottom: 28px;
     }
     .cartConfirm_prog_s ::after{
         width: 57px;
