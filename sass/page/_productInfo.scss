@@ -48,11 +48,11 @@ font-weight: 600;
 .infor-item-img-bg img{
     width: 90%;
 }
-.infor-item-infro h1{
+.infor-item-infor h1{
     margin-bottom: 20px;
     font-weight: 700;
 }
-.infor-item-infro p{
+.infor-item-infor p{
     margin-bottom: 10px;
     font-size: 20px;
 }
@@ -87,7 +87,7 @@ font-weight: 600;
 .intro{
     margin-bottom: 20px;
 }
-.infor-item-infro h2{
+.infor-item-infor h2{
     margin-bottom: 45px;
     margin-top: 45px;
     font-weight: 800;
@@ -173,21 +173,27 @@ font-weight: 600;
     justify-content: space-between;
     .prouct-item-card{
         margin-left: 0;
-        width: 116px;
-        height: 200px;
+        width: 285px;
+        height: 400px;
+        .prouct-item-card-tag{
+            display: none;
+        }
         .prouct-item-card-img{
-           height: 103px;
+           height: 230px;
         }
     }
-    .prouct-item-card-infro{
+    .prouct-item-card-infor{
+        height: 125px;
+        width: 100%;
+        padding: 0;
         h2,h3{
-            font-size: 12px;
+            font-size: 24px;
         }
         button{
             width: 46px;
             height: 46px;
             .custom-icon{
-                font-size: 12px;
+                font-size: 20px;
             }
             
         }
@@ -195,15 +201,15 @@ font-weight: 600;
     }
 }
 
-.prouct-item-card-infro{
-    width: 266px;
+.prouct-item-card-infor{
+    width: 300px;
 }
-.prouct-item-card-infro div h2{
+.prouct-item-card-infor div h2{
     color: #fff;
     margin-top: 10px;
     border: 0;
 }
-.prouct-item-card-infro button{
+.prouct-item-card-infor button{
     border-radius: 100%;
     border: 0;
     background-color: #fff;
@@ -214,6 +220,12 @@ font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
+    a{
+        display: block;
+        width: 56px;
+        height: 56px;
+        line-height: 5;
+    }
 }
 .custom-icon{
     margin: 0 auto;
@@ -306,11 +318,7 @@ font-weight: 600;
     .prouct-item-card{
     width: 175px;
     }
-    .prouct-item-card-infro{
-        
-        
-    }
-    .infor-item-infro{
+    .infor-item-infor{
         width: 85%;
         margin-top: 10px;
         h1{
@@ -329,7 +337,7 @@ font-weight: 600;
     .infor-detail{
         width: 90%;
         margin: 0 auto;
-    }
+    }or-bottom-item
     .infor-detail-nav{
         a{
             font-size: 14px;
@@ -347,7 +355,17 @@ font-weight: 600;
     .infor-bottom{
        .infor-bottom-item{
         width: auto;
-
+        .prouct-item-card{
+            .prouct-item-card-infor{
+                .btn{
+                    width: 30px;
+                    height: 30px;
+                } .custom-icon{
+            font-size: 12px;
+        }
+            }
+        }
+       
        }
         width: 90%;
         margin: 0 auto;
@@ -356,13 +374,20 @@ font-weight: 600;
             font-size: 16px;
         }
         .prouct-item-card{
-            margin-right: 17px;
+            margin-right: 7px;
             width: 115px;
+            height: 165px;
             .prouct-item-card-img{
                 height: 90px;
-                width: 103px;
+                width: 110px;
                 img{
                     width: auto;
+                }
+            }
+            .prouct-item-card-infor{
+                height: 46px;
+                h2,h3{
+                    font-size: 12px;
                 }
             }
         }
