@@ -31,3 +31,43 @@
         }
     }
 }
+
+@media screen and (max-width: 414px) {
+    header{
+        display: none;
+    }
+    .wrapper{
+        width: 414px;
+    }
+    .memberCardEdit{
+        width: 370px;
+    }
+    .memberCardEdit h1{
+        font-size: 20px;
+    }
+    .memberCardEdit .cardimfo{
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-bottom: 50px;
+        box-sizing: border-box;
+    }
+    .memberCardEdit .cardimfo h2{
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+    .memberCardEdit .cardimfo input{
+        width: 334px;
+        line-height: 35px;
+        padding-left: 15px;
+    }
+    .memberCardEdit .cardimfo a{
+        width: 156px;
+        line-height: 40px;
+        font-size: 16px;
+        margin: 0 auto;
+        margin-top: 70px;
+    }
+    footer{
+        display: none;
+    }
+}

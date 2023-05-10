@@ -43,3 +43,72 @@
         }
     }
 }
+
+@media screen and (max-width:414px){
+    header{
+        display: none;
+    }
+    .wrapper{
+        align-items: center;
+    }
+    .member-left h2{
+        display: none;
+    }
+    .member-left ul{
+        display: flex;
+        justify-content: space-between;
+        width: 367px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+    .member-left ul a{
+        width: 88px;
+        line-height: 35px;
+        text-align: center;
+        font-size: 14px;
+        padding-left: 0;
+        letter-spacing: 1px;
+    }
+    .member-left ul a i{
+        display: none;
+    }
+    .membercard-right{
+        width: 370px;
+    }
+    .membercard-right-title{
+        align-items: center;
+        margin-bottom: 25px;
+    }
+    .membercard-right-title h2{
+        font-size: 20px;
+        font-weight: bold;
+        color: $brown;
+    }
+    .membercard-right-title a{
+        width: 160px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    .membercard-right main li{
+        width: 370px;
+    }
+    .membercard-right main li .fa-brands{
+        font-size: 25px;
+    }
+    .membercard-right main li h3{
+        font-size: 16px;
+        color: $brown;
+    }
+    .membercard-right main li .delete{
+        width: 70px;
+    }
+    .membercard-right main li .delete a{
+        font-size: 22px;
+    }
+    .cardnum{
+        display: none;
+    }
+    footer{
+        display: none;
+    }
+}
