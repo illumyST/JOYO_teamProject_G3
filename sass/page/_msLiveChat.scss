@@ -1,0 +1,14 @@
+.ms_msg_list {
+    display: flex;
+    flex-direction: column;
+    .ms_user_msg {
+        display: block;
+        color: #ccc;
+        width: 450px;
+        height: 100px;
+        border: 1px solid red;
+        img {
+            width: 45px;
+        }
+    }
+}

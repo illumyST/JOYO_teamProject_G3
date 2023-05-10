@@ -1,51 +1,66 @@
-.wrapper_m{
-    padding-top: 100px;
-    width: 828px;
-    margin: 0 auto;
-    .mCP{
-        background-color: $bg;
-        width: 828px;
-        height: 702px;
-        position: relative;
-        i.bi{
-            // float: right;
-            right: 20px;
-            top: 10px;
-            position: absolute;
-            padding: 20px;
-            font-size: $h2;
-            }
-        form{
-        display: flex;
-        flex-direction: column;
+
+.ms_form_bg{
+    // outline: 1px solid red;
+    background-color: $bg;
+    position: relative;
+    width: 100%;
+    margin-left: 40px;
+    box-shadow:$shadow ;
+    padding: 0 90px;
+    // text-align: center;
+    i.bi-x-lg{
+        font-size: $h2;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    h1{
+        margin-top: 70px;
+        font-size: $h1_sub;
+        margin-bottom: 20px;
+    }
+    label{
+        font-size: $h3;
+        display: block;
+        padding-bottom: 10px;
+    }
+    input.ms_input{
+        height: 30px;
         width: 100%;
-        // outline: 1px solid red;
-        h1{
-    
-            font-size: $h1_sub;
-            padding: 60px 20px 40px;
-            margin: 0 auto;
-        }
-        label{
-            padding: 20px 0 10px 20px;
-            font-size: $h2;
-        }
-        input{
-            height: 45px;
-            margin:  0 20px;
-        }input:last-child{
-            margin-top:  30px;
-            height: 69px;
-            background-color: $orange;
-            font-size: $h2;
-            color: white;
-        }
-        
+        margin-bottom: 20px;
+
     }
+    div.ms_login_btn{
+        margin-top: 20px;
     }
+
 }
-.lightbox{
-    width: 100vw;
-    height: 100vh;
-    background-color: $lightbox;
+
+.ms_form{
+    i.bi-x-lg{
+        font-size: $h2;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    h1{
+        // margin-top: 70px;
+        font-size: $h1_sub;
+        margin-bottom: 20px;
+    }
+    label{
+        font-size: $h3;
+        display: block;
+        padding-bottom: 10px;
+    }
+    input.ms_input{
+        height: 30px;
+        width: 98%;
+        margin-bottom: 20px;
+
+    }
+    div.ms_login_btn{
+        // margin-top: 20px;
+    }
+
 }

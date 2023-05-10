@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- 如果都引入同一隻css ，遇到class命名一樣怎辦 -->
+    <script src="https://kit.fontawesome.com/56b7867370.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="light-box">
+
+        <header class="ms_header">
+            <nav class="ms_nav">
+              <img class="ms_logo" src="./assets/img/logo.svg" alt="" />
+              <div>
+                <a href="#" class="ms_logout"
+                  >登出 <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+              </div>
+            </nav>
+        </header>
+    
+        <section class="ms_form_long">
+            <i class="bi bi-x-lg"></i>
+            <form action="" method="POST">
+                <h1>新增商品</h1>
+                <label for="">商品名稱 : </label>
+                <input type="password" class="ms_input">
+                <label for="">價格 : </label>
+                <input type="password" class="ms_input">
+                <div class="select">
+
+                    <div>
+                    <label for="">遊戲分類 : </label>
+                    <select name="" id="">
+                        <option value="" style="background-color: red; color: white;">123</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="">遊玩人數 : </label>
+                    <select name="" id="">
+                        <option value="">123</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="">適玩年齡 : </label>
+                    <select name="" id="">
+                        <option value="">123</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="">遊玩時長 : </label>
+                    <select name="" id="">
+                        <option value="">123</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="file">
+            
+                <label for="file-main">商品主圖 : 點選上傳圖片
+                <input type="file" id="file-main" class="op0">
+                </label>
+                
+                <label for="file-one">商品圖片一 : <br>點選上傳圖片
+                <input type="file" id="file-one"class="op0">
+                </label>
+               
+                <label for="file-two">商品圖片二 : <br>點選上傳圖片
+                <input type="file" id="file-two"class="op0">
+                </label>
+               
+                <label for="file-three">商品圖片三 : <br>點選上傳圖片
+                <input type="file" id="file-three"class="op0">
+                </label>
+                
+                <label for="file-four">商品圖片四 : <br>點選上傳圖片
+
+                <input type="file" id="file-four"class="op0">
+                </label>
+            
+                </div>
+
+                <label for="">商品描述 : </label>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+
+                <div class="ms_login_btn">
+                    <input type="submit" value="確認編輯">
+                </div>
+            </form> 
+        </section> 
+
+    </div>      
+</body>
+</html>
+
+<!-- <a href="#" class="btn btn__submit">按鈕</a>
+<a href="#" class="btn btn__submit">按鈕</a>  -->
