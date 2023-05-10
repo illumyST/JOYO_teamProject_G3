@@ -2,7 +2,6 @@
   background-color: $orange;
   height: 70px;
   display: flex;
-  align-items: center;
   justify-content: left;
   margin-bottom: 100px;
 }
@@ -10,8 +9,21 @@
 .ms_nav {
   width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
   .ms_logo {
     width: 188px;
+  }
+  a {
+    color: white;
+    font-size: $h2;
+    font-weight: 600;
+    font-family: 'Noto Sans TC';
+    i {
+      font-size: 20px;
+      margin-left: 5px;
+    }
   }
 }
 
