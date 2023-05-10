@@ -224,7 +224,7 @@ font-weight: 600;
         display: block;
         width: 56px;
         height: 56px;
-        line-height: 5;
+        line-height: 3;
     }
 }
 .custom-icon{
@@ -352,6 +352,10 @@ font-weight: 600;
             font-size: 14px;
          }
     }
+    .prouct-item-card-infor button a {
+       text-align: center;
+        line-height: 2.5;
+    }
     .infor-bottom{
        .infor-bottom-item{
         width: auto;
@@ -359,10 +363,11 @@ font-weight: 600;
             .prouct-item-card-infor{
                 .btn{
                     width: 30px;
-                    height: 30px;
+                    height: 31px;
                 } .custom-icon{
-            font-size: 12px;
-        }
+                    font-size: 12px;
+                    margin-left: 2px;
+                }
             }
         }
        
@@ -374,8 +379,8 @@ font-weight: 600;
             font-size: 16px;
         }
         .prouct-item-card{
-            margin-right: 7px;
-            width: 115px;
+            margin-right: 5px;
+            width: 111px;
             height: 165px;
             .prouct-item-card-img{
                 height: 90px;
