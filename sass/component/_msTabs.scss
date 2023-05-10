@@ -10,9 +10,15 @@
         margin-right: 15px;
         background-color: $bg;
         color: $brown;
+        font-family: 'Noto Sans TC', sans-serif;
     }
     .-active {
         background-color: $orange;
         color: #fff;
+    }
+    button:hover {
+        background-color: $orange;
+        color: white;
+        transition: .2s;
     }
 }
