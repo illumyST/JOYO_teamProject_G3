@@ -2,12 +2,13 @@
     @include flex-container(row, wrap, space-around, flex-start);
     @include wrapper();
     font-family: Noto Sans, Noto Sans TC, sans-serif;
-    border: 1px solid red;
+    // border: 1px solid red;
+    color: $brown;
 }
 
 // ===== 左側選單 ===== //
 .forumInfo_sidemenu{
-       border: 1px solid purple; 
+    //    border: 1px solid purple; 
        display: inline-block;
     }
     
@@ -35,7 +36,7 @@
 
 
     .forumInfo_right{
-        border: 1px solid blue;
+        // border: 1px solid blue;
         width: 75%;
         // height: 75%;
         background-color: $bg;
@@ -44,7 +45,7 @@
 
     // ===== 文章上方 ===== //
     .forumInfo_right_top{
-        border: 1px solid yellow;
+        // border: 1px solid yellow;
         @include flex-container(row, wrap, start);
         margin-top: 50px;
 
@@ -63,14 +64,13 @@
     }
 
     .forumInfo_right_title{
-        border: 1px solid black;
+        // border: 1px solid black;
         @include flex-container(row, wrap, start);
         margin: 20px 0 0 40px;
     }
 
     .forumInfo_right_title_left{
-        border: 1px solid palevioletred;
-        // display: block;
+        // border: 1px solid palevioletred;
         line-height: 5;
         width: 12%;
         text-align: center;
@@ -81,10 +81,11 @@
         background-color: white;
         width: 80%;
         margin: 20px auto;
+        color: $d-pink;
     }
 
     .forumInfo_right_title_right{
-        border: 1px solid palevioletred;
+        // border: 1px solid palevioletred;
         width: 80%;
         font-size: $h1_sub;
         margin-left: 30px;
@@ -92,16 +93,130 @@
 
 
     .forumInfo_right_title_bottom{
-        border: 1px solid goldenrod;
+        // border: 1px solid goldenrod;
         @include flex-container(row, wrap, start);    
     }
 
     .forumInfo_right_title_bottom_label{
-        margin: 20px 0 0 40px;
+        margin: 20px 0 0 50px;
         li{
             @include Label();
+            margin-right: 10px;
         }
     }
+
+    .forumInfo_middle{
+        // border: 1px solid purple;
+        line-height: 2.5;
+        letter-spacing: 1.5 px;
+        font-size: $p;
+        p{
+            margin: 40px 40px 0;
+        }
+    }
+
+    .forumInfo_comments{
+        // border: 1px solid saddlebrown;
+        h3{
+            font-size: $h3;
+            letter-spacing: 2px;
+            margin: 50px 40px 0;
+        }
+    }
+
+    .forumInfo_comments_line{
+        border-bottom: 2px solid $brown;
+        display: inline-block;
+        width: 90%;
+        margin: 10px 40px 0;
+    }
+
+    .forumInfo_comments_text{
+        @include flex-container(row, wrap, start);
+
+        p{
+            font-size: $p;
+            margin-top: 20px;
+        }
+
+        p + p{
+            margin-left: 20px;
+        }
+    }
+
+    .forumInfo_comments_text_title{
+        // border: 1px solid seagreen;
+        width: 5%;
+        margin: 20px 0 0 40px;
+        img{
+            width: 90%;
+        }
+    }
+
+    .forumInfo_comments_main{
+        // border: 1px solid red;
+        margin: 0 50px 0 90px;
+
+        p{
+            margin: 0;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+    }
+
+    .forumInfo_comments_text_line{
+        border-bottom: 2px solid $brown;
+        display: inline-block;
+        width: 90%;
+        margin: 10px 40px 0;
+        opacity: .2;
+    }
+
+    .forumInfo_right_msg{
+        // border: 1px solid blue;
+        @include flex-container(row, wrap, start);
+        margin: 20px 0 0;
+    }
+
+    .forumInfo_right_msg_text{
+        width: 90%;
+        background-color: #ebb98e;
+        border: none;
+        outline: none;
+        font-size: $p;
+        padding-left: 10px;
+        padding-top: 10px;
+        line-height: 1.5;
+        resize: none;
+        overflow: hidden;
+
+        &::placeholder{
+            color: white;
+            line-height: 40px;
+        }
+    }
+
+    .forumInfo_right_msg_icon{
+        // border: 1px solid red;
+        width: 8.668%;
+        line-height: 3.75;
+        background-color: #ebb98e;
+
+        .fa-paper-plane{
+            margin-right: 15px;
+            font-size: $h3;
+            color: white;
+        }
+
+        .fa-heart{
+            font-size: $h3;
+            color: white;
+        }
+    }
+
+    
+
+
 
 
 
