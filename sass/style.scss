@@ -75,16 +75,6 @@
 
 @import './page/mailCheckRedirect';
 @import './page/membercard';
-.wrapper{
-    width: 1200px;
-    margin: 0 auto;
-}
-
-@media screen and (max-width: 414px){
-    .wrapper{
-        width: 414px;
-    }
-}
 
 @include btnn(200px);
 
