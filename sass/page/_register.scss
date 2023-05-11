@@ -1,74 +1,87 @@
-
-
-.register_box {
-  width: 894px;
-  height: 892px;
+.register_box{
+  width: 794px;
   margin: 0 auto;
-  background: #F2F2F2;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border-radius: 5px;
   box-shadow: $shadow;
-  border: 5px solid gold;
-    .register_member {
-      display: inline-block;
-      width: 387px;
-      height: 86px;
+  background: $bg;
+  .register_link{
+    display: flex;
+    border-radius: 5px;
+    a{
+      width: 50%;
+      display: block;
+      text-decoration: none;
+      line-height: 86px;
+      background: $bg;
       text-align: center;
-      border: 1px solid palegreen;
+      font-size: 24px;
+      letter-spacing: 1px;
+      border-radius: 5px;
+      transition: .3s;
+      &:hover{
+        background: $green;
+        color: #fff;
       }
-        .register_main {
-          margin: 0 auto;
-          justify-content: center;
-          /* 垂直置中 */
-          align-items: center;
-          // border: 3px solid palegreen;
-          width: 794px;
-          display: block;
-        }
-          .register_main .li {
-            margin: 0 auto;
-            text-align: center;
-            display: block;
-          }
-            .register_main input {
-              // border: 5px solid peru;
-              display: flex;
-              justify-content: center;
-            }
-              .register_text {
-                padding-left: 20px;
-                line-height: 50px;
-                border-radius: 5px;
-                border: 1px solid rgba(0, 0, 0, 0.2);
-                font-size: 16PX;
-                width: 590px;
-                box-sizing: border-box;
-                outline: none;
-                letter-spacing: 1px;
-                margin-bottom: 30px;
-              }
-                .register_btn {
-                  background: #AFBF30;
-                  line-height: 59px;
-                  width: 590px;
-                  display: block;
-                  text-decoration: none;
-                  text-align: center;
-                  border-radius: 5px;
-                  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-                  transition: 0.3s;
-                  cursor: pointer;
-                  color: #fff;
-                  display: block;
-                  margin: 0 auto;
-                }
-                  .register_btn:hover {
-                    background: #513F2E;
-                  }
+      &:focus{
+        background: $green;
+        color: #fff;
+      }
+    }
+  }
+  .register_container{
+    display: flex;
+    flex-direction: column;
+    padding: 70px 100px 90px 100px;
+    box-sizing: border-box;
+    label{
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+    input{
+      @include input_text(50px, 590px);
+      margin-bottom: 50px;
+    }
+    a{
+      @include btn($green, 59px, 590px, $orange);
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+  }
 }
 
-
-
-
-
+@media screen and (max-width:414px) {
+  .register_box{
+    width: 370px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .register_box .register_link a{
+    line-height: 63px;
+    font-size: 16px;
+  }
+  .register_box .register_container{
+    padding: 40px 17px 50px 17px;
+  }
+  .register_box .register_container label{
+    font-size: 16px;
+  }
+  .register_box .register_container input{
+    width: 335px;
+    line-height: 35px;
+    margin-bottom: 38px;
+    padding-left: 15px;
+  }
+  .register_box .register_container a{
+    width: 335px;
+    line-height: 40px;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}
 
 
 

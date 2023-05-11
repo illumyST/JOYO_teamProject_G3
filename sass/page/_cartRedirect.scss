@@ -1,40 +1,71 @@
-
+.cartRedirect_wrapper{
+  width: 1200px;
+  margin: 0 auto;
+}
 .cartRedirect_box{
-  width: 894px;
-  height: 892px;
+  width: 671px;
+  height: 573px;
   margin: 0 auto;
   background: #F2F2F2;
   box-shadow: $shadow;
-  border: 5px solid gold;
-  .cartRedirect_h1{
-    font-size: $h1_pri;
-    color: $orange;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  box-sizing: border-box;
+  .cartRedirect_logo{
+    padding-top: 45px;
+    height: 80px;
   }
+    .cartRedirect_logo_img{
+      display: block;
+      margin: 40px auto;
+      // border: 3px solid palegreen;
+      width: 170px;
+      height: 41px;
+      
+      margin-bottom: 40px;
+    }
       .cartRedirect_completed{
         .fa-solid{
         display: block;
-        font-size: 150px;
+        font-size: 100px;
         color: $orange;
         text-align: center;
         margin: 0 auto;
-        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-bottom: 100px;
         }
       }
         .cartRedirect_p_text{
-        font-size: $p;
+        font-size: $h1_sub;
         color: $orange;
         text-align: center;
+        margin-bottom: 25px;
         }
 }
 
+@media screen and (max-width:414px){
+  body{
+    display: block;
+    width: 100%;
+}
+.cartRedirect_box {
+  margin-top: 50px;
+  width: 95%;
+  height: auto;
+
+}
+
+.cartRedirect_logo{
+  margin-bottom: 50px;
+}
+
+.cartRedirect_box .cartRedirect_p_text {
+font-size: 19px;
+padding-bottom: 20px;
+}
 
 
-
-
+}
 
 
 

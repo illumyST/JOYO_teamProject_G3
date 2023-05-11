@@ -2,6 +2,7 @@
     @include flex-container(row, wrap, center, flex-start);
     @include wrapper();
     font-family: Noto Sans, Noto Sans TC, sans-serif;
+    margin: 75px auto;
     // border: 1px solid red;
 }
 
@@ -44,64 +45,13 @@
     margin-left: 50px;
 }
 
-.forum_advertise{
-    // border: 1px solid yellow;
-    @include flex-container();
-    background-image: url(/assets/img/Group545.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-}
+
+// ===== 廣告區域 ===== //
+// .forum_advertise{
+    
+// }
 
 
-.forum_advertise_img{
-    flex-grow: 1;
-    width: 20%;
-}
-
-
-.forum_advertise img{
-    // border: 1px solid palevioletred;
-    display: block;
-    width: 27%;
-    margin: 50px auto;
-}
-
-.forum_advertise_text{
-    margin-left: 30px;
-    flex-grow: 1;
-    width: 30%;
-    line-height: 1.5;
-    color: white;
-    font-weight: 900;
-    letter-spacing: 3px;
-    // -webkit-text-stroke: 1px $orange;
-}
-
-.forum_advertise_text h2{
-    font-size: $h2;
-    margin: 10px 0 10px 0;
-}
-
-.forum_advertise_text p{
-    // border: 1px solid green;
-    font-size: $p;
-    word-break: break-all;
-    margin-top: 5%;
-    margin-left: 15%;
-    width: 82%;
-}
-
-.forum_advertise_text > p + p{
-    text-align: end;
-}
-
-
-// ===== 手機版廣告區文章 ===== //
-.forum_advertise_text .forum_media_advertise_text{
-    text-align: start;
-    display: none;
-}
 
 // =====  文章title ===== //
 .forum_article_title{
@@ -155,14 +105,14 @@
 .forum_article_item1_left .forum_category {
     // border: 1px solid black;
     background-color: white;
-    line-height: 5;
     text-align: center;
-    font-size: $h2;
 }
 
 .forum_article_item1_left .forum_category h2{
     margin-top: 30px;
     color: $d-pink;
+    line-height: 3.5;
+    font-size: $h2;
 }
 
 .forum_article_item1_left .forum_name_data{
@@ -322,46 +272,12 @@
 
 .forum_advertise{
     width: 100vw;
-    align-items: flex-start;
+
+    img{
+        width: 100vw;
+    }
 }
 
-.forum_advertise_img{
-    width: 20vw;
-}
-
-.forum_advertise img{
-    margin: 20px auto;
-    width: 24%;
-}
-
-
-.forum_advertise_text{
-    margin-left: -35px;
-}
-
-.forum_advertise_text h2{
-    font-size: $p;
-    margin: 10px 0 5px 15px;
-}
-
-.forum_advertise_text p{
-    font-size: .5rem;
-    margin-top: 0;
-    width: 50vw;
-}
-
-.forum_advertise_text .forum_advertise_text_p{
-    display: none;
-}
-
-.forum_advertise_text .forum_media_advertise_text{
-    display: block;
-    margin-bottom: 5px;
-}
-
-.forum_advertise_text > p + p{
-    margin-bottom: 5px;
-}
 
 .forum_article_title{
     display: none;
@@ -380,8 +296,6 @@
 //         width: 90vw;
 //     }
 // }
-
-
 
 
 .forum_article_item{

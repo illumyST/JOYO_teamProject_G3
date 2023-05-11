@@ -1,36 +1,81 @@
-
+.mailCheckRedirect_wrapper{
+  width: 1200px;
+  margin: 0 auto;
+}
 .mailCheckRedirect_box{
   width: 671px;
   height: 573px;
   margin: 0 auto;
   background: #F2F2F2;
   box-shadow: $shadow;
-  border: 5px solid gold;
-    .mailCheckRedirect_h1{
-      font-size: $h1_pri;
-      color: $orange;
-      margin: 0 auto;
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  box-sizing: border-box;
+  .mailCheckRedirect_logo{
+    padding-top: 45px;
+    height: 80px;
+  }
+    .mailCheckRedirect_logo_img{
+      display: block;
+      margin: 40px auto;
+      // border: 3px solid palegreen;
+      width: 170px;
+      height: 41px;
+      
+      margin-bottom: 40px;
     }
       .mailCheckRedirect_completed{
         .fa-solid{
         display: block;
-        font-size: 150px;
+        font-size: 100px;
         color: $orange;
         text-align: center;
         margin: 0 auto;
-        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-bottom: 100px;
         }
       }
         .mailCheckRedirect_p_text{
-          font-size: $p;
-          color: $orange;
-          text-align: center;
-        }  
+        font-size: $h1_sub;
+        color: $orange;
+        text-align: center;
+        margin-bottom: 25px;
+        }
 }
 
+@media screen and (max-width:414px){
+.wrapper{
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.mailCheckRedirect_box{
+  margin-top: 50px;
+  width: 370px;
+  // height: 401px;
+  border: 5px solid palegreen;
+}
+
+
+
+.mailCheckRedirect_box .mailCheckRedirect_p_text {
+  font-size: 18px;
+  margin-bottom: 70px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

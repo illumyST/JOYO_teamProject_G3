@@ -1,12 +1,14 @@
 
 
 .singin_box {
-  width: 894px;
-  height: 892px;
+  width: 794px;
+  height: 656px;
   margin: 0 auto;
   background: #F2F2F2;
   box-shadow: $shadow;
-  border: 5px solid gold;
+  // border: 5px solid gold;
+  margin-top: 70px;
+  margin-bottom: 200px;
     .singin_little_box{
       border: 2px solid palegreen;
       margin: 0 auto;
@@ -14,14 +16,20 @@
       text-align: center;
       justify-content: center;
     }
+    .singin_member_singin, .singin_member{
+      width: 50%;
+      display: flex;
+      height: 86px;
+      text-align: center;
+      // border: 6px solid rgb(69, 14, 151);
+      justify-content: center;
+      align-items: center;  
+    }
       .singin_member {
-        display: flex;
-        width: 387px;
-        height: 86px;
-        text-align: center;
-        // border: 6px solid rgb(69, 14, 151);
-        justify-content: center;
-        align-items: center;
+      background-color: $green;
+      }
+      .singin_member a{
+        color: black;
       }
         .singin_main {
           margin: 0 auto;
@@ -31,9 +39,11 @@
           // border: 3px solid palegreen;
           width: fit-content;
           display: block;
+          
             li{
                 margin: 0 auto;
                 display: block;
+                margin-top: 70px;
               }
             input{
               // border: 5px solid peru;
@@ -54,7 +64,7 @@
             margin-bottom: 30px;
           }
             .singin_btn {
-              background: #AFBF30;
+              background: $green;
               line-height: 59px;
               width: 590px;
               display: block;
@@ -71,6 +81,46 @@
               .singin_btn:hover {
                 background: #513F2E;
               }
+              .singin_forgetPassword_a_link{
+                float: right;
+                // border: 5px solid  teal;
+                margin-top: 60px;
+                margin-right: 150px;
+                
+              }
+}
+
+@media screen and (max-width:414px){
+  body{
+    width: auto;
+    display: block;
+  }
+  .singin_box{
+    width: 370px;
+    height: 470px;
+  }
+  .singin_box .singin_main input {
+    display: flex;
+    
+    width: 100%;
+  }
+  .singin_box .singin_btn {
+    width: 335px;
+    height: 40px;
+  }
+  .singin_box .singin_forgetPassword_a_link {
+    margin-right: 17px;
+  }
+
+
+
+
+
+
+
+
+
+
 }
 
 
