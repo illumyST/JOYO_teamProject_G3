@@ -53,11 +53,19 @@
         width: 691px;
         margin-bottom: 28px;
         .member-name-text{
-            @include input-text(50px, 495px)
+            @include input-text(50px, 500px);
+            font-size: 22px;
+            &::placeholder{
+                font-size: 16px;
+            }
         }
     }
     .member-text{
         @include input-text(50px, 691px);
+        font-size: 22px;
+        &::placeholder{
+            font-size: 16px;
+        }
         margin-bottom: 34px;
     }
     .address{
@@ -86,8 +94,8 @@
         width: 414px;
         flex-direction: column;
         align-items: center;
-        padding-top: 0;
-        padding-bottom: 90px;
+        padding-top: 0px;
+        padding-bottom: 70px;
     }
     .member-right-card{
         width: 370px;
@@ -102,13 +110,13 @@
         width: 335px;
     }
     .member-right-name>img{
-        width: 90px;
+        width: 80px;
     }
     .member-right-card h3{
         font-size: 16px;
     }
     .member-right-card .member-right-name .member-name-text{
-        width: 230px;
+        width: 234px;
         line-height: 35px;
         font-size: 16px;
         padding-left: 15px;

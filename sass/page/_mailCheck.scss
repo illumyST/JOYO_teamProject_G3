@@ -3,15 +3,13 @@
   margin: 0 auto;
 }
 .mailCheck_box{
-  // border: 5px solid palegreen;
   width: 671px;
   height: 690px;
   box-shadow: $shadow;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 100px;
-  background: #F2F2F2;
-  
+  background: $bg;
   .mailCheck_logo{
     padding-top: 45px;
     height: 80px;
