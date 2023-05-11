@@ -30,18 +30,18 @@
 
 
 .product-top{
-    width: 83%;
+    width: 80%;
     display: flex;
     margin-top: 90px;
     justify-content: space-between;
     align-self: self-end;
 }
-.col-3.breadcrumb{
-    padding-left: 20px;
-}
 .product-main{
     width: 100%;
     display: flex;
+    aside{
+        width: 200px;
+    }
 }
 
 .breadcrumb ol{
@@ -74,10 +74,10 @@
         box-sizing: border-box;
         display: flex;
         text-align: center;
-        margin-right: 12px;
+        margin-right: 7px;
         justify-content: flex-end;
         div{
-            margin-right: 20px;
+            margin-left: 20px;
             
         }  
     }
@@ -85,19 +85,24 @@
         display: block;
         position: absolute;
         z-index: 1;
+        opacity: 0;
+        transition: .5s
     }
     li{
-        width: 146.5px;
+        width: 131.3px;
         height: 40px;
         text-align: center;
         background-color: $orange ;
         color: #fff;
-        display: none;
+        
         a{
             height: 40px;
             color: #fff;  
             line-height: 2.5;
         }  
+    }
+    .active{
+        opacity: 1;
     }
 }
 .product-filter-btn{
@@ -118,6 +123,11 @@
       width: 8%;  
     }
 }
+.product-filter-btn:hover{
+   color: $brown;
+    background-color: $green ;
+    
+}
 .product-filter-player{
     display: block;
 }
@@ -126,15 +136,15 @@
     color: #fff;    
 }
 .product-filter-player{
-    right: 360px;
-    top: 147px;
+    right: 343px;
+    top: 218px;
 }
 .product-filter-age{
-    right: 202px;
-    top: 147px;
+    right: 191px;
+    top: 218px;
 }
 .product-filter-order{
-    top: 147px;
+    top: 218px;
 }
 .product-filter-player.active{
     display: block;
@@ -174,22 +184,24 @@
 }
 
 .prouct-item{
+    width: 960px;
     display: none;
     position: absolute;
     right: 0;
     top: 0;
+    
 }
-.prouct-item.active{
+.page1{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     
 }
 .prouct-item-card{
     width: 300px;
     height: 405px;
     border: 5px solid $green;
-    margin-left: 20px;
+    margin-right: 10px;
     margin-bottom: 52px;
     position: relative;
 }
@@ -222,7 +234,7 @@
     margin: 16px auto;
     text-align: center;
 }
-.prouct-item-card-infro{
+.prouct-item-card-infor{
     box-sizing: border-box;
     width: 300px;
     height: 126px;
@@ -232,6 +244,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    div{
+        width: 200px;
+    }
 }
 .product-main aside ul{
     display: flex;
@@ -257,23 +272,24 @@
 .product-main aside ul li:hover{
     background-color: $d-pink;
 }
-.prouct-item-card.prouct-item-card-infro button{
+.prouct-item-card.prouct-item-card-infor button{
     background-color: #fff;
     border-radius: 100%;
 }
-.prouct-item-card-infro{
+.prouct-item-card-infor{
     h2,h3{
     color: #fff;
-    line-height: 2.5;
+    line-height: 1.5;
     letter-spacing: 5px}
 
 }
-.prouct-item-card.prouct-item-card-infro.prouct-item-card-icon{
+.prouct-item-card.prouct-item-card-infor.prouct-item-card-icon{
     width: 55px;
     height: 55px;
     border-radius: 100%;
     background-color: #fff;
 }
+
 .custom-icon{
     font-size:25px;
     color: $green;
@@ -326,7 +342,7 @@
             flex-direction: row;
             justify-content: space-between;
             div{
-                margin-right: 0;
+                margin-left: 0;
                 width: 31%;
                 button{
                     width: 100%;
@@ -392,7 +408,7 @@
     .prouct-item-card{
         width: 175px;
         height: 294px;
-        .prouct-item-card-infro{
+        .prouct-item-card-infor{
             width:100%;
             margin-top: 17px;
             height: 85px;
@@ -412,9 +428,10 @@
         }
     }
     .prouct-item{
-        width: 100%;
+        width: 96%;
+        margin: 0 auto;
     }
-    .prouct-item-card-infro{
+    .prouct-item-card-infor{
         button{
         width: 42px;
         height: 42px;
@@ -423,4 +440,5 @@
         }}
         
     }
+    
 }

@@ -1,22 +1,3 @@
-.mCP-left{
-    background-color: $bg;
-    box-shadow: $shadow ;
-    height: 595px;
-    ul{
-        font-size: $p;
-        width: 200px;
-        li{
-            padding: 25px;
-            a{
-            color: $brown;
-            }
-        }
-        li:hover{
-            border-left: 6px solid $orange;
-        }
-    }
-}
-
 
 .ms_form_bg{
     // outline: 1px solid red;

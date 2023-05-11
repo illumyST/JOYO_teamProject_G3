@@ -73,8 +73,9 @@
         margin-bottom: 52px;
         position: relative; 
         img{
+            display: block;
             height: $imgh;
-            margin: 16px auto;
+            padding: 16px auto;
             text-align: center;
         }
 }
@@ -150,25 +151,40 @@
 }
 @mixin btnn($w){
     .btn{
-        padding: 8px 16px;
-        text-align: center;
+        margin: 0 auto;
         max-width: $w;
+        padding: 10px 16px;
+        line-height: 40px;
+        box-sizing: border-box;
+        text-align: center;
         cursor: pointer;
         transition: all .3s;
-        // border-radius: 2 * 5 +px;
         border-radius: 10px;
-        background-color: #AFBF30;
-        // border: 1px solid $bc;
+        background-color: $green;
+        color: #fff;
+        font-size: 20px;
+        letter-spacing: .15em;
+        box-shadow: $shadow;
+        border: none;
         @content;
         &:hover{
             // background-color: darken($bgc,10);
-            background-color: salmon;
+            background-color: $orange;
         };
         &__submit{
             background :#F29441;
         }
         &__addCart{      
             background :#F29441;
+        }
+        &__pCardAddCart{
+            border-radius: 50%;
+        }
+        @include m(){
+            max-width: 140px;
+            display: block;
+            padding: 0;
+
         }
 }
 }
@@ -224,4 +240,19 @@
 }
 @mixin starCommentMain(){
     align-self: flex-end;
+}
+
+// 置中
+@mixin center(){
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+// RWD
+@mixin m(){
+    @media screen and (max-width: 414px){
+        @content;
+    }
 }

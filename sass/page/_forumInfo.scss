@@ -2,12 +2,13 @@
     @include flex-container(row, wrap, space-around, flex-start);
     @include wrapper();
     font-family: Noto Sans, Noto Sans TC, sans-serif;
-    border: 1px solid red;
+    // border: 1px solid red;
+    color: $brown;
 }
 
 // ===== 左側選單 ===== //
 .forumInfo_sidemenu{
-       border: 1px solid purple; 
+    //    border: 1px solid purple; 
        display: inline-block;
     }
     
@@ -33,18 +34,22 @@
        margin-right: 10px;
     }
 
+    // ===== 手機板選單 ===== //
+    .forumInfo_media{
+        display: none;
+    }
+
 
     .forumInfo_right{
-        border: 1px solid blue;
+        // border: 1px solid blue;
         width: 75%;
-        // height: 75%;
         background-color: $bg;
         box-shadow: $shadow;
     }
 
     // ===== 文章上方 ===== //
     .forumInfo_right_top{
-        border: 1px solid yellow;
+        // border: 1px solid yellow;
         @include flex-container(row, wrap, start);
         margin-top: 50px;
 
@@ -63,14 +68,13 @@
     }
 
     .forumInfo_right_title{
-        border: 1px solid black;
+        // border: 1px solid black;
         @include flex-container(row, wrap, start);
         margin: 20px 0 0 40px;
     }
 
     .forumInfo_right_title_left{
-        border: 1px solid palevioletred;
-        // display: block;
+        // border: 1px solid palevioletred;
         line-height: 5;
         width: 12%;
         text-align: center;
@@ -81,10 +85,11 @@
         background-color: white;
         width: 80%;
         margin: 20px auto;
+        color: $d-pink;
     }
 
     .forumInfo_right_title_right{
-        border: 1px solid palevioletred;
+        // border: 1px solid palevioletred;
         width: 80%;
         font-size: $h1_sub;
         margin-left: 30px;
@@ -92,17 +97,262 @@
 
 
     .forumInfo_right_title_bottom{
-        border: 1px solid goldenrod;
+        // border: 1px solid goldenrod;
         @include flex-container(row, wrap, start);    
     }
 
     .forumInfo_right_title_bottom_label{
-        margin: 20px 0 0 40px;
+        margin: 20px 0 0 10px;
         li{
             @include Label();
+            margin-right: 10px;
         }
     }
 
+    .forumInfo_middle{
+        // border: 1px solid purple;
+        line-height: 2.5;
+        letter-spacing: 1.5px;
+        font-size: $p;
+        p{
+            margin: 40px 40px 0;
+        }
+    }
+
+    .forumInfo_comments{
+        // border: 1px solid saddlebrown;
+        h3{
+            font-size: $h3;
+            letter-spacing: 2px;
+            margin: 50px 40px 0;
+        }
+    }
+
+    .forumInfo_comments_line{
+        border-bottom: 2px solid $brown;
+        display: inline-block;
+        width: 90%;
+        margin: 10px 40px 0;
+    }
+
+    .forumInfo_comments_text{
+        @include flex-container(row, wrap, start);
+
+        p{
+            font-size: $p;
+            margin-top: 20px;
+        }
+
+        p + p{
+            margin-left: 20px;
+        }
+    }
+
+    .forumInfo_comments_text_title{
+        // border: 1px solid seagreen;
+        width: 5%;
+        margin: 20px 0 0 40px;
+        img{
+            width: 90%;
+        }
+    }
+
+    .forumInfo_comments_main{
+        // border: 1px solid red;
+        margin: 0 50px 0 90px;
+
+        p{
+            margin: 0;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+    }
+
+    .forumInfo_comments_text_line{
+        border-bottom: 2px solid $brown;
+        display: inline-block;
+        width: 90%;
+        margin: 10px 40px 0;
+        opacity: .2;
+    }
+
+    .forumInfo_right_msg{
+        // border: 1px solid blue;
+        @include flex-container(row, wrap, start);
+        margin: 20px 0 0;
+    }
+
+    .forumInfo_right_msg_text{
+        width: 90%;
+        background-color: #ebb98e;
+        border: none;
+        outline: none;
+        font-size: $p;
+        padding-left: 10px;
+        padding-top: 10px;
+        line-height: 1.5;
+        resize: none;
+        overflow: hidden;
+
+        &::placeholder{
+            color: white;
+            line-height: 40px;
+        }
+    }
+
+    .forumInfo_right_msg_icon{
+        // border: 1px solid red;
+        width: 8.668%;
+        line-height: 3.75;
+        background-color: #ebb98e;
+
+        .fa-paper-plane{
+            margin-right: 15px;
+            font-size: $h3;
+            color: white;
+        }
+
+        .fa-heart{
+            font-size: $h3;
+            color: white;
+        }
+    }
+
+    
 
 
 
+
+
+
+// ===== 手機版 414px ===== //
+@media screen and (max-width: 414px){
+    .forumInfo_wrapper{
+        width: auto;
+        margin: 0;
+        flex-direction: column;
+    }
+
+    .forumInfo_sidemenu{
+        display: none;
+    }
+
+
+    // ====== 手機版選單 ===== //
+    .forumInfo_media{
+        width: 100vw;
+        display: block
+    }
+    
+
+    .forumInfo_media_button{
+        @include btn($brown, 2.5, 90vw, $orange);
+        font-size: $h3;
+        margin: 20px auto;
+    }
+
+    .forumInfo_media_select{
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    .forumInfo_media_menu_select{
+        display: block;
+        width: 90vw;
+        margin: 30px auto;
+        padding: 10px 10px;
+        border-radius: 5px;
+        color: white;
+        font-size: $p;
+        border: none;
+        outline: none;
+        background-color: $green;
+    }
+
+    .forumInfo_right_top{
+        margin-top: 30px;
+    }
+
+    .forumInfo_right_top_img{
+        width: 20%;
+    }
+
+    .forumInfo_right{
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    .forumInfo_right_title{
+        margin: 20px 0;
+    }
+
+    .forumInfo_right_title_left{
+        display: none;
+    }
+
+    .forumInfo_right_title_right{
+        width: 85vw;
+        margin: 10px 10px;
+        line-height: 1.5;
+        font-size: 1.3rem;
+    }
+
+
+    .forumInfo_right_title_bottom{
+        order: -1;
+    }
+
+
+    .forumInfo_right_title_bottom_label{
+        margin: 10px 10px;
+
+        li{
+            font-size: .8rem;
+        }
+    }
+
+    .forumInfo_middle{
+        width: 90vw;
+
+        p{
+            margin: 40px 15px;
+            text-align: justify;
+        }
+    }
+
+    .forumInfo_comments{
+        width: 90vw;
+
+        h3{
+            font-size: 1rem;
+            margin: 50px 15px 0;
+        }
+    }
+
+    .forumInfo_comments_line{
+        width: 80vw;
+        margin: 10px 15px;
+    }
+
+    .forumInfo_comments_text_title{
+        width: 10%;
+        margin: 20px 0 0 20px;
+    }
+
+    .forumInfo_comments_main{
+        margin: 10px 15px 0 55px;
+    }
+
+    .forumInfo_comments_text_line{
+        width: 90vw;
+        margin: 10px 20px 0;
+    }
+
+    .forumInfo_right_msg_text{
+        width: 70.1vw;
+    }
+
+    .forumInfo_right_msg_icon{
+        width: 17vw;
+    }
+}

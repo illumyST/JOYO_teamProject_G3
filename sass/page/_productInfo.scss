@@ -48,11 +48,11 @@ font-weight: 600;
 .infor-item-img-bg img{
     width: 90%;
 }
-.infor-item-infro h1{
+.infor-item-infor h1{
     margin-bottom: 20px;
     font-weight: 700;
 }
-.infor-item-infro p{
+.infor-item-infor p{
     margin-bottom: 10px;
     font-size: 20px;
 }
@@ -87,7 +87,7 @@ font-weight: 600;
 .intro{
     margin-bottom: 20px;
 }
-.infor-item-infro h2{
+.infor-item-infor h2{
     margin-bottom: 45px;
     margin-top: 45px;
     font-weight: 800;
@@ -171,20 +171,45 @@ font-weight: 600;
     margin-left: 0;
     margin-top: 20px;
     justify-content: space-between;
+    .prouct-item-card{
+        margin-left: 0;
+        width: 285px;
+        height: 400px;
+        .prouct-item-card-tag{
+            display: none;
+        }
+        .prouct-item-card-img{
+           height: 230px;
+        }
+    }
+    .prouct-item-card-infor{
+        height: 125px;
+        width: 100%;
+        padding: 0;
+        h2,h3{
+            font-size: 24px;
+        }
+        button{
+            width: 46px;
+            height: 46px;
+            .custom-icon{
+                font-size: 20px;
+            }
+            
+        }
+        
+    }
 }
-.prouct-item-card{
-    margin-left: 0;
-    width: 266px;
+
+.prouct-item-card-infor{
+    width: 300px;
 }
-.prouct-item-card-infro{
-    width: 266px;
-}
-.prouct-item-card-infro div h2{
+.prouct-item-card-infor div h2{
     color: #fff;
     margin-top: 10px;
     border: 0;
 }
-.prouct-item-card-infro button{
+.prouct-item-card-infor button{
     border-radius: 100%;
     border: 0;
     background-color: #fff;
@@ -195,6 +220,12 @@ font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
+    a{
+        display: block;
+        width: 56px;
+        height: 56px;
+        line-height: 3;
+    }
 }
 .custom-icon{
     margin: 0 auto;
@@ -241,15 +272,129 @@ font-weight: 600;
     }
 }
 @media screen and (max-width: 414px){
+    .infor-item{
+        margin-top: 0;
+        flex-direction: column;
+        align-items: center;
+        
+        .infor-item-img{
+            width: 85%;
+            flex-direction: column-reverse;
+        }
+        
+        .infor-item-img-bg{
+            width: 100%;
+            img{
+                width: 80%;
+            }
+        }
+        .infor-item-img-sm{
+            width: 100%;
+            margin-top: 10px;
+            ul{
+                flex-direction: row;
+                li{
+                    width: 25%;
+                    height: 0;
+                    img{
+                        margin-top: 0;
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+    .infor-item-buy{
+        button{
+            width: 47%;
+            
+        }
+        .btn{
+            height: 49px;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+    }
     .prouct-item-card{
     width: 175px;
     }
-    .prouct-item-card-infro{
-        button{
-        width: 42px;
-        height: 42px;
-        font-size: 17px;
+    .infor-item-infor{
+        width: 85%;
+        margin-top: 10px;
+        h1{
+            text-align: left;
+            font-size: 20px;
+        }
+        p{
+            font-size: 16px;
+        }
+        h2{
+            margin-bottom: 23px;
+            margin-top: 39px;
         }
         
+    }
+    .infor-detail{
+        width: 90%;
+        margin: 0 auto;
+    }or-bottom-item
+    .infor-detail-nav{
+        a{
+            font-size: 14px;
+        }
+    }
+    .infor-detail-contain{
+         section{
+            text-align: justify;
+            text-justify:distribute-all-lines;
+            margin-top: 10px;
+            line-height: 2;
+            font-size: 14px;
+         }
+    }
+    .prouct-item-card-infor button a {
+       text-align: center;
+        line-height: 2.5;
+    }
+    .infor-bottom{
+       .infor-bottom-item{
+        width: auto;
+        .prouct-item-card{
+            .prouct-item-card-infor{
+                .btn{
+                    width: 30px;
+                    height: 31px;
+                } .custom-icon{
+                    font-size: 12px;
+                    margin-left: 2px;
+                }
+            }
+        }
+       
+       }
+        width: 90%;
+        margin: 0 auto;
+        h2{
+            margin-top: 50px;
+            font-size: 16px;
+        }
+        .prouct-item-card{
+            margin-right: 5px;
+            width: 111px;
+            height: 165px;
+            .prouct-item-card-img{
+                height: 90px;
+                width: 110px;
+                img{
+                    width: auto;
+                }
+            }
+            .prouct-item-card-infor{
+                height: 46px;
+                h2,h3{
+                    font-size: 12px;
+                }
+            }
+        }
     }
 }

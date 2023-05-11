@@ -1,8 +1,10 @@
-.wrapper{
+.member_wrapper{
     display: flex;
     justify-content: space-between; 
     padding-top: 100px; 
     padding-bottom: 150px;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .member-left{
@@ -79,3 +81,57 @@
     }
 }
 
+@media screen  and (max-width: 414px){
+    .member_wrapper{
+        width: 414px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .member-right-card{
+        width: 370px;
+    }
+    .member-right h2{
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }
+    .member-right-card .member-right-name{
+        width: 335px;
+    }
+    .member-right-name>img{
+        width: 80px;
+    }
+    .member-right-card h3{
+        font-size: 16px;
+    }
+    .member-right-card .member-right-name .member-name-text{
+        width: 234px;
+        line-height: 35px;
+        font-size: 16px;
+        padding-left: 15px;
+    }
+    .member-right-card .member-text{
+        width: 335px;
+        line-height: 35px;
+        font-size: 16px;
+        padding-left: 15px;
+    }
+    .member-right-card .address{
+        width: 335px;
+        margin-bottom: 40px;
+    }
+    .member-right-card .address .address-top{
+        width: 335px;
+    }
+    .member-right-card .address .address-top select{
+        width: 160px;
+        height: 35px;
+        padding-left: 10px;
+    }
+    .member-right-card a{
+        width: 335px;
+        line-height: 40px;
+        font-size: 18px;
+    }
+}

@@ -34,6 +34,12 @@
         h2{
             border-bottom:1px solid $brown ;
             margin-bottom: 10px;
+            div{
+                display: inline;
+                input{
+                    width: 3.333333%;
+                }
+            }
         }
     }
     h2{
@@ -82,4 +88,69 @@
 }
 .form-select{
     color: $brown;
+}
+@media screen and (max-width: 414px){
+    .cartConfirm_con_title_item{
+        .cartConfirm_con_title_item_num,.cartConfirm_con_title_item_del{
+            display: none;
+        }
+        .cartConfirm_con_title_item_name{
+            margin-top: 30px;
+        }
+    }
+    .cartFill_del_info{
+        display: none;
+    }
+    .cartFill_deliv{
+        flex-direction: column;
+        margin: 0 auto;
+        width: 90%;
+        height: 480px;
+        div{
+            width: 100%;
+            h2{
+                border-top: 1px solid #513F2E;
+                border-bottom: 0;
+                font-size: 18px;
+                font-weight: 700;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                input{
+                    width: 15px;
+                    font-size: 16px;
+                }
+            }
+            h3{
+               display: none; 
+               
+            }
+            ul{
+                li{
+                   input{
+                        font-size: 16px;
+                        margin-bottom: 30px;
+            } 
+                }
+            }
+        }
+        input{
+            margin-bottom: 40px;
+        }
+        
+    }
+    .cartFill_deliv>div:nth-child(2) > h2{
+        display: none;
+    }
+    .cartFill_deliv_add{
+        margin-top: 5px;
+        select{
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .form-select{
+            width: 48%;
+        }
+       
+    }
 }

@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+    margin-top: 80px;
 
     li a{
         font-size: 20px;
@@ -36,4 +37,487 @@
         flex-direction: column;
         justify-content: space-between;
     }
+}
+
+/*------------------ hotProduct -----------------*/
+.index_hotProduct, .index_newProductList{
+    margin-bottom: 140px;
+    h1{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .h1_sub{
+        font-size: 32px;
+        margin-bottom: 80px;
+        font-weight: 400;
+    }
+    h3{
+        font-size: 24px;
+        letter-spacing: .1em;
+        color: #fff;
+        p{
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        span{
+            margin:0 20px;
+        }
+    }
+
+    .index_hotProduct_list,.index_newProductList_list{
+        display: flex;
+    }
+
+    // ------------- card li ------------- //
+    .index_hotProduct_list li, .index_newProductList_list li{
+        width: 280px;
+        border: 5px solid $green;
+        box-sizing: border-box;
+        margin-left: 20px;
+        position: relative;
+        a{
+            display: block;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        img{
+            display: block;
+            margin: 20px auto;
+            // padding-top: 20px;
+            height: 200px;
+            
+        }
+
+        .index_hotProduct_list_pInfo{
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            background-color: $green;
+            box-sizing: border-box;
+            padding: 20px 16px;
+
+            .index_hotProduct_list_pInfo_btn{
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                box-shadow: $shadow;
+                vertical-align: baseline;
+                text-align: center;
+                background-color: #fff;
+                border: none;
+            }
+        }
+    }
+    counter-reset:num;
+    .index_hotProduct_list li::before{
+        counter-increment:num; 
+        content:counter(num);
+        position: absolute;
+        left: 15px;
+        top: -25px;
+        background-color: $d-pink;
+        color: #fff;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+        line-height: 36px;
+        text-align: center;
+    }
+
+    // ------------- first-card li ------------- //
+    .index_hotProduct_list li:first-child{
+        flex-grow: 1;
+        margin: initial;
+        h3{
+           padding-top: 15px;
+            font-size: 30px;
+        }
+        img{
+            margin: initial;
+            margin-right: 40px;
+            height: 200px;
+        };
+        .index_hotProduct_list_topPInfo{
+            display: flex;
+            padding: 20px 50px;
+        }
+        .index_hotProduct_list_topPInfo_word{
+            flex-grow: 1;
+            p{
+                line-height: 40px;
+                font-size: 20px;
+                color: $d-pink;
+                margin-bottom: 40px;
+            }
+            span{
+                padding: 8px 14px;
+                background-color: $d-pink;
+                letter-spacing: .3em;
+                color:#fff;
+            }
+        }
+        .index_hotProduct_list_pInfo{            
+            padding: 20px;
+        };
+    }
+    
+}
+
+
+/*------------------ newProduct -----------------*/
+
+.index_newProduct{
+    width: 900px;
+    margin: 0 auto;
+    display:flex;
+    margin-bottom: 160px;
+    .index_newProduct_left{
+        // border: 1px solid saddlebrown;
+        padding-top: 130px;
+        flex-grow: 1;
+        text-align: center;
+        h1{
+            text-align: center;
+            position: relative;
+            margin-bottom: 60px;
+            color: $orange;
+            &::before{
+                content: 'NEW';
+                
+                @include center();
+                top: -40%;
+    
+                font-weight: 600;
+                color: #ededed;
+                z-index: -1;
+                font-size: 80px;
+                letter-spacing: .2em;
+                padding-left: 10px;
+            }
+        }
+
+        span{
+            
+            background-color: $green;
+            color: #fff;
+            font-size: 24px;
+            letter-spacing: .2em;
+            padding: 10px 20px;
+        }
+
+    }
+    .index_newProduct_right{
+        border: 3px solid $orange;
+        position: relative;
+        background-color: #fff;
+        padding: 20px;
+        margin-right: 40px;
+        box-sizing: border-box;
+        img{
+            // border: 1px solid red;
+            display: block;
+            width: 280px;
+        }
+        &::before{
+            content: '';
+            width: 340px;
+            height: 340px;
+            background-color: $orange;
+            position: absolute;
+            right: -30px;
+            bottom: -30px;
+            z-index: -1;
+        }
+    }
+}
+
+.index_newProductList{
+    .index_newProductList_list{
+        margin-bottom: 80px;
+        justify-content: space-between;
+        li{
+            margin: initial;
+        }
+    }
+    
+}
+
+/*------------------ hotForumPost -----------------*/
+.index_hotForumPost{
+    color: $brown;
+    letter-spacing: .1em;
+    margin-bottom: 80px;
+    .index_hotForumPost_top{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    .index_hotForumPost_left{
+        h1{
+            margin-bottom: 60px;
+        }
+        width: 770px;
+        margin-right: 40px;
+        .index_hotForumPost_left_post{
+            margin-bottom: 40px;
+            padding-left: 38px;
+            position: relative;
+            color: $brown;
+            h3{
+                font-size: 22px;
+                margin-bottom: 16px;
+            }
+            p{
+                overflow:hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            &:before{
+                content: "";
+                width:14px;
+                height: 100%;
+                background-color: $d-pink;
+                position: absolute;
+                left: 0;
+            }
+            transition: .2s;
+            &:hover{
+                opacity: .7;
+            }
+        }
+    }
+    .index_hotForumPost_right{
+        align-self: flex-end;
+        margin-bottom: 24px;
+        h2{
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        text-align: right;
+        .index_hotForumPost_right_tag{
+            display: inline-block;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 5px;
+            background-color: $b-pink;
+            margin-bottom: 16px;
+        }
+    
+    }
+}
+
+@include m(){
+    header{
+        margin-bottom: 40px;
+    }
+    .index_topNav{
+        flex-wrap: wrap;
+        margin:0;
+        justify-content: center;
+    }
+    .index_topNav li{
+        padding: 10px;
+        background-color: $green;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .index_topNav li a{
+        font-size: 14px;
+        color: #fff;
+    }
+    .index_topNav li:not(:nth-child(4)):not(:last-child){
+        margin-right: 10px;
+    }
+
+    .index_banner{
+        flex-direction: column;
+        margin-bottom: 40px;
+        .index_banner_leftSlidder{
+            margin: 0;
+            img{
+                width: 100%;
+            }
+        }
+        .index_banner_right{
+            display: none;
+        }
+    }
+
+    .index_hotProduct, 
+    .index_newProductList{
+        margin-bottom: 40px;
+        h1{
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .h1_sub{
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        h3{
+            font-size: 16px;
+            letter-spacing: .1em;
+            color: #fff;
+            p{
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            span{
+                display: block;
+                margin:0;
+                margin-top: 10px;
+            }
+        }
+
+        // ------------- card li ------------- //
+        .index_hotProduct_list li, .index_newProductList_list li{
+            width: 110px;
+            border: 2px solid $green;
+            margin: 0;
+
+            .index_hotProduct_list_topPInfo{
+                padding: 4px 8px;
+                flex-direction: column;
+            }
+            img{
+                height: 120px;
+            }
+            .index_hotProduct_list_pInfo{
+                padding: 8px 10px;
+                flex-direction: column;
+                .index_hotProduct_list_pInfo_btn{
+                    position: absolute;
+                    right: 5px;
+                    bottom: 70px;
+                    width: 35px;
+                    height: 35px;
+                    i{
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .index_hotProduct_list li::before{
+            font-size: 18px;
+            width: 30px;
+            height: 30px;
+            line-height: 26px;
+            left: 8px;
+            top: -20px;
+        }
+        // ------------- first-card li ------------- //
+        .index_hotProduct_list li:first-child{
+            flex-grow: initial;
+            h3{
+                padding-top: 0px;
+                font-size: 16px;
+             }
+            img{
+                 margin: initial;
+                 margin: 20px auto;
+                 height:100px;
+            }
+            .index_hotProduct_list_topPInfo{
+                display: flex;
+                padding: 0;
+            }
+            .index_hotProduct_list_topPInfo_word{
+                display: none;
+            };
+            .index_hotProduct_list_pInfo{
+                justify-content: flex-end;
+                padding: 8px 10px;
+            }
+        }
+        .index_hotProduct_list li:not(:last-child){
+            margin-right: 20px;
+        }
+    }
+
+    
+    .index_newProduct{
+        width: auto;
+        margin-bottom: 80px;
+        display: block;
+        .index_newProduct_left{
+            margin-bottom: 30px;
+            padding-top: 40px;
+            h1{
+                font-size: 24px;
+                margin-bottom: 20px;
+                &::before{
+                    font-size: 60px;
+                    top:-20%;
+                }
+            }
+            span{
+                font-size: 16px;
+                padding: 4px 8px;
+            }
+            
+        }
+        .index_newProduct_right{
+            width: 90%;
+            margin-right: 20px;
+            img{
+                width:100%
+            }
+        }
+    }
+
+
+    .index_newProductList{
+        margin-bottom: 40px;
+        .index_newProductList_list{
+            margin-bottom: 30px;
+        }
+        .index_newProductList_list li:last-child{
+            display: none;
+        }
+        
+    }
+    .index_hotForumPost{
+        margin-bottom: 40px;
+        .index_hotForumPost_top{
+            display: block;
+            margin-bottom: 20px;
+        }
+        .index_hotForumPost_left{
+            h1{
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            width: auto;
+            margin: 0;
+            margin-bottom: 30px;
+            .index_hotForumPost_left_post{
+                margin-bottom: 20px;
+                padding-left: 20px;
+                
+                h3{
+                    font-size: 18px;
+                    margin-bottom: 12px;
+                    overflow:hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                p{
+                    font-size: 14px;
+                    overflow:hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                &:before{
+                    width: 8px;
+                }
+            }
+        }
+    }
+    .index_hotForumPost_right{
+            display: none;
+    }
+
 }
