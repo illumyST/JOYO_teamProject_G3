@@ -53,7 +53,7 @@
         width: 691px;
         margin-bottom: 28px;
         .member-name-text{
-            @include input-text(50px, 533px)
+            @include input-text(50px, 495px)
         }
     }
     .member-text{
@@ -86,6 +86,8 @@
         width: 414px;
         flex-direction: column;
         align-items: center;
+        padding-top: 0;
+        padding-bottom: 90px;
     }
     .member-right-card{
         width: 370px;
@@ -100,13 +102,13 @@
         width: 335px;
     }
     .member-right-name>img{
-        width: 80px;
+        width: 90px;
     }
     .member-right-card h3{
         font-size: 16px;
     }
     .member-right-card .member-right-name .member-name-text{
-        width: 234px;
+        width: 230px;
         line-height: 35px;
         font-size: 16px;
         padding-left: 15px;
