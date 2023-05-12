@@ -6,6 +6,14 @@ header{
     font-family: 'Noto Sans TC';
     font-size: 20px;
     letter-spacing: 0.1em;
+    margin-bottom: 80px;
+    position:sticky;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    box-shadow: 0px 3px 8px #78787850;
 }
 .header_nav{
     @include wrapper();
@@ -29,19 +37,19 @@ header{
 }
 .header_nav_right_inputBox{
     position: relative;
+    flex-grow: 1;
+    text-align: right;
+    
 }
-.header_nav_right_inputBox::before{
-    content: '\f002';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+.header_nav_right_inputBox i{
     color: $orange;
     position: absolute;
-    left: 10px;
+    right: 210px;
     top: 50%;
     transform: translate(0,-50%);
 }
 .header_nav_right_inputBox-input{
-    display: block;
+    // display: block;
     box-sizing: border-box;
     border: 0;
     height: 34px;
@@ -79,6 +87,7 @@ header{
     width: 120px;
     text-align: center;
     transition: .3s;
+    z-index: 100;
 }
 
 .header_nav_right > li > ol a{
@@ -119,8 +128,12 @@ header{
     .header_nav{
         width: 370px;
     }
-    .header_nav_right_inputBox{
+    .header_nav_right_inputBox input{
         display: none;
+    }
+    .header_nav_right_inputBox i{
+        right: 0;
+        color: #fff;
     }
     .header_nav_logo{
         height: 30px;
