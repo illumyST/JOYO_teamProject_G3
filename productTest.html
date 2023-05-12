@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物中心</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/1dbe31dbeb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="header_nav">
+            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <ul class="header_nav_right">
+                <li class="header_nav_right_inputBox">
+                    <input class="header_nav_right_inputBox-input" type="text">
+                </li>
+                <li><a href="#">桌遊商城</a>
+                    <ol>
+                        <li><a href="#">派對遊戲</a></li>
+                        <li><a href="#">輕度策略</a></li>
+                        <li><a href="#">戰爭遊戲</a></li>
+                        <li><a href="#">棋奕遊戲</a></li>
+                        <li><a href="#">主題遊戲</a></li>
+                        <li><a href="#">家庭遊戲</a></li>
+                        <li><a href="#">團隊合作</a></li>
+                    </ol>
+                </li>
+                <li><a href="#">討論區</a>
+                    <ol>
+                        <li><a href="#">心得分享</a></li>
+                        <li><a href="#">揪團區</a></li>
+                        <li><a href="#">發問區</a></li>
+                        <li><a href="#">教學區</a></li>
+                    </ol>
+                </li>
+                <li><a href="#">聯絡我們</a></li>
+                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
+                <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
+                <li></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
+        <div class="product-top ">
+            <div class="col-3 breadcrumb">
+                <h2>全部商品</h2>
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
+                      <li class="breadcrumb-item active" ><a href="#">所有商品</a></li>
+                    </ol>
+                  </nav>
+            </div>
+            <div class="col-9 ">
+                <div class="product-filter col-12">
+                    <div>
+                        <div class="product-filter-cater">
+                            <button class="product-filter-btn" type="button" id="" >
+                            <span>全部商品</span>
+                            <span><img src="./pic/product/Vector.png" alt=""></span>
+                            </button>
+                            <ul class="product-filter-player" >
+                                <li><a class="dropdown-item" href="#">全部商品</a></li>
+                                <li><a class="dropdown-item" href="#">派對遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">輕度策略</a></li>
+                                <li><a class="dropdown-item" href="#">戰爭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">棋奕遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">主題遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">家庭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">團隊合作</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-filter-div">
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_player_show">
+                                    <span>遊玩人數</span><span><img src="./pic/product/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-player" :class="{active:product_filter_player_active}">
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">單人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">雙人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">三人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">多人遊戲</a></li>
+                                </ul> 
+                            </div>
+                        <div>
+                            <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img src="./pic/product/Vector.png" alt=""></span>
+                            </button>
+                            <ul class="product-filter-age" :class="{active:product_filter_age_active}">
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a></li>
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+6</a></li>
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+9</a></li>
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+12</a></li>
+                            </ul> 
+                        </div>
+                        <div>
+                            <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_order_show">
+                                <span>排序方式</span><span><img src="./pic/product/Vector.png" alt=""></span>
+                            </button>
+                            <ul class="product-filter-order" :class="{active:product_filter_order_active}">
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_order">由高到低</a></li>
+                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_order">由低到高</a></li>
+                            </ul> 
+                        </div>
+                         </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="product-main">
+            <aside class="col-2 ">
+                <h1>遊戲分類</h1>
+                <ul >
+                    <li class="active"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">派對遊戲</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">輕度策略</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">主題遊戲</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">家庭遊戲</a></li>
+                    <li><a href=""  v-on:click="product_filter_get_cate">團隊合作</a></li>
+                </ul>
+            </aside>
+            <div class="prouct-item" :class="'page'+(index+1)"v-for="(list,index) in total_page" :key="index">
+                <div v-for="(card, index) in list" :key="index" class="prouct-item-card">
+                    <div class="prouct-item-card-tag">
+                        <p class="prouct-item-card-tag-player">
+                            <span class="prouct-item-card-tag-player-min">{{card["11"]}}</span>
+                            <span>-</span>
+                            <span class="prouct-item-card-tag-player-min">{{card["12"]}}</span>
+                            <span>人
+                            </span>
+                        </p>
+                        <p class="prouct-item-card-tag-age">{{card["13"]}}+</p>
+                    </div>
+                    <div class="prouct-item-card-img">
+                        <img v-bind:src="card[7]" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
+                        <div>
+                            <h2 class="prouct-item-card-infor-name">{{card["1"]}}</h2>
+                            <h3><span>$</span><span class="prouct-item-card-infor-price">{{card["3"]}}</span></h3>
+                        </div>
+                        <button class="btn prouct-item-card-icon">
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+                            
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 product-page">
+            <button v-on:click="last_Page"><</button>
+            <ul v-for="page in pagin" :key="index">
+                <li ><a href="" v-on:click="update_Page">{{page}}</a></li>
+            </ul>
+            <button v-on:click="next_Page">></button>
+        </div>
+        
+    </div>
+    <footer>
+        <nav class="footer_nav">
+            <div class="footer_nav_left">
+                <a href="#"><img class="footer_nav_left_logo" src="../../assets/img/logo.svg" alt=""></a>
+                <ul class="footer_nav_left_icons">
+                    <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
+                </ul>
+            </div>
+
+            <ul class="footer_nav_right">
+                <li>
+                    <a href="#">桌遊商城</a>
+                    <ol>
+                        <li><a href="#">派對遊戲</a></li>
+                        <li><a href="#">輕度策略</a></li>
+                        <li><a href="#">戰爭遊戲</a></li>
+                        <li><a href="#">棋奕遊戲</a></li>
+                        <li><a href="#">主題遊戲</a></li>
+                        <li><a href="#">家庭遊戲</a></li>
+                        <li><a href="#">團隊合作</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#">討論區</a>
+                    <ol>
+                        <li><a href="#">心得分享</a></li>
+                        <li><a href="#">揪團區</a></li>
+                        <li><a href="#">發問區</a></li>
+                        <li><a href="#">教學區</a></li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#">聯絡我們</a>
+                    <span><i class="fa-solid fa-envelope"></i>joyo2023@gmail.com
+                    </span><br>
+                    <span><i class="fa-solid fa-phone"></i>09123456789</span>
+                </li>
+            </ul>
+        </nav>
+    </footer>  
+    <script src="./vendors/vue/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let app=Vue.createApp({
+            data(){
+                return{
+                    product_filter_player_active:false,
+                    product_filter_age_active:false,
+                    product_filter_order_active:false,
+                    product_filter_player_cate:false,
+                    filter_cate_value:"",
+                    filter_player_value:"",
+                    filter_age_value:"",
+                    filter_order_value:"",
+                    filter:["全部商品","","",""],
+                    cards:[],
+                    total_page:[],
+                    current_page:1,
+                    pagin:[1,2,3,4,5,6,7,8,9],
+                }
+                
+            },
+            methods:{
+                //篩選列表出現
+                product_filter_player_show(e){
+                    this.product_filter_player_active=!this.product_filter_player_active;
+                    e.stopPropagation();
+                },
+                product_filter_age_show(e){
+                    this.product_filter_age_active=!this.product_filter_age_active;
+                    e.stopPropagation();
+                },
+                product_filter_order_show(e){
+                    this.product_filter_order_active=!this.product_filter_order_active;
+                    e.stopPropagation();
+                },
+                //篩選列表隱藏
+                product_filter_close(e){
+                    
+                    if(this.product_filter_player_active){
+                        this.product_filter_player_active=!this.product_filter_player_active;
+                    }
+                    if(this.product_filter_age_active){
+                        this.product_filter_age_active=!this.product_filter_age_active;
+                    }
+                    if(this.product_filter_order_active){
+                        this.product_filter_order_active=!this.product_filter_order_active;
+                    }
+                },
+                
+                //取得篩選條件後畫面重新絢爛
+                product_filter_get_cate(e){
+                    e.preventDefault();
+                    this.filter_cate_value=e.target.innerHTML;
+                    
+                    this.filter[0]=e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_player(e){
+                    e.preventDefault();
+                    this.filter_player_value=e.target.innerHTML;
+                    this.filter[1]=e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_age(e){
+                    e.preventDefault();
+                    this.filter_age_value=e.target.innerHTML;
+                    this.filter[2]=e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_order(e){
+                    e.preventDefault();
+                    this.filter_order_value=e.target.innerHTML;
+                    this.filter[3]=e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                //利用php取得商品資訊
+                getData(e){
+                    const self = this;
+                    const xhr = new XMLHttpRequest();
+                    
+                    const page=12;
+                    xhr.open('GET', "./test.php");
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            self.cards = JSON.parse(xhr.responseText);
+                            console.log(self.cards);
+                            //將資料庫資料轉成每頁12比的陣列
+                            for(i=0;i<self.cards.length;){
+                                self.total_page.push(self.cards.slice(i,i+12));
+                                 i=i+page;
+                            }
+                        }
+                     
+                    };
+                   
+                },
+                //計算分頁數
+                update_Page(e){
+                    e.preventDefault();
+                },
+                next_Page(e){
+                    console.log(this.total_page.length);
+                    if(parseInt(this.current_page) < parseInt(this.total_page.length)){
+                        this.pagin.forEach((e,i)=>this.pagin[i]=parseInt(e)+5);
+                        console.log(this.pagin);
+                    }
+                }
+            },
+            mounted(){
+                window.addEventListener("click",()=>{
+                    this.product_filter_close();
+                    
+                 });
+                this.getData();    
+            }
+        })
+        app.mount("#product-wrapper");
+    </script>
+</body>
+</html>
