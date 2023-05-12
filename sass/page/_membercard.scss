@@ -28,6 +28,7 @@
             background: $bg;
             box-shadow: $shadow;
             font-size: $h3;
+            color: $brown;
             .fa-brands{
                 font-size: 40px;
             }
@@ -37,8 +38,21 @@
             .delete{
                 display: flex;
                 justify-content: space-between;
-                width: 100px;
+                width: 160px;
                 font-size: 28px;
+                a{
+                    width: 70px;
+                    text-align: center;
+                }
+                i{
+                    color: $brown;
+                    margin-left: 0;
+                    font-weight: 100;
+                    transition: .1s;
+                    &:hover{
+                        color: $orange;
+                    }
+                }
             }
         }
     }
@@ -97,10 +111,11 @@
         color: $brown;
     }
     .membercard-right main li .delete{
-        width: 70px;
+        width: 90px;
     }
     .membercard-right main li .delete a{
         font-size: 22px;
+        width: 45px;
     }
     .cardnum{
         display: none;

@@ -5,12 +5,24 @@
     padding-top: 42px;
     border-radius: 5px;
     box-shadow: $shadow;
+    position: relative;
     h1{
         font-size: $h2;
         letter-spacing: 1px;
         text-align: center;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $brown;
         padding-bottom: 14px;
+    }
+    .close{
+        position: absolute;
+        top: 45px;
+        right: 25px;
+        width: 50px;
+        text-align: center;
+        i{
+            font-size: 35px;
+            color: $brown;
+        }
     }
     .cardimfo{
         padding: 33px;
@@ -22,6 +34,7 @@
         input{
             @include input-text(50px, 525px);
             font-size: 22px;
+            color: $brown;
             &::placeholder{
             font-size: 16px;
         }
@@ -39,14 +52,22 @@
 @media screen and (max-width: 414px) {
     .memberCardAdd{
         width: 370px;
+        padding-top: 20px;
     }
     .memberCardAdd h1{
         font-size: 20px;
     }
+    .memberCardAdd .close{
+        top: 26px;
+        right: 7px;
+    }
+    .memberCardAdd .close i{
+        font-size: 30px;
+    }
     .memberCardAdd .cardimfo{
         padding-left: 18px;
         padding-right: 18px;
-        padding-bottom: 50px;
+        padding-bottom: 20px;
         box-sizing: border-box;
     }
     .memberCardAdd .cardimfo h2{
@@ -64,7 +85,7 @@
         line-height: 40px;
         font-size: 16px;
         margin: 0 auto;
-        margin-top: 70px;
+        margin-top: 35px;
     }
 
 }
