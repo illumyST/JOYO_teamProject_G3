@@ -3,14 +3,13 @@
   margin: 0 auto;
 }
 .mailCheck_box{
-  // border: 5px solid palegreen;
   width: 671px;
   height: 690px;
   box-shadow: $shadow;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 100px;
-  // background-color: grey;
+  background: $bg;
   .mailCheck_logo{
     padding-top: 45px;
     height: 80px;
@@ -46,12 +45,20 @@
       margin-right: 25px;
       margin-left: 10px;
     }
+    .mailCheck_text input{
+      width: 50px;
+      height: 50px;
+      border: 5px solid red;
+      margin-right: 35px;
+      // margin: 0 auto;
+    }
+    
     .mailCheck_Check_btn{
       width: 590px;
-      height: 60px;
+      line-height: 60px;
       background-color: $orange;
       margin: 0 auto;
-      display: flex;
+      display: block;
       a{
         color: whitesmoke;
         text-align: center;
@@ -77,7 +84,6 @@
   margin: 0 auto;
 }
 .mailCheck_box .mailCheck_text {
-
   width: 30%;
   height: 30%;
   margin: 0 auto;

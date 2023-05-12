@@ -46,6 +46,7 @@
                 margin-top: 70px;
               }
             input{
+              @include input-text(1.6, 200px);  //第1個行高，第2寬度
               // border: 5px solid peru;
             display: flex;
             justify-content: center;

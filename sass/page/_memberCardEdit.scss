@@ -21,6 +21,10 @@
         }
         input{
             @include input-text(50px, 525px);
+            font-size: 22px;
+            &::placeholder{
+            font-size: 16px;
+        }
             margin-bottom: 34px;
         }
         a{
@@ -54,6 +58,7 @@
         width: 334px;
         line-height: 35px;
         padding-left: 15px;
+        font-size: 16px;
     }
     .memberCardEdit .cardimfo a{
         width: 156px;
