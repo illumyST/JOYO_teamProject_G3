@@ -3,4 +3,9 @@
     right: 80px;
     bottom: 80px;
     opacity: .7;
+    @include m(){
+        width: 40px;
+        right: 30px;
+        bottom: 60px;
+    }
 }
