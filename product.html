@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/1dbe31dbeb.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <nav class="header_nav">
-            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg"
+                    alt=""></a>
             <ul class="header_nav_right">
                 <li class="header_nav_right_inputBox">
                     <input class="header_nav_right_inputBox-input" type="text">
@@ -49,20 +51,21 @@
                 <h2>全部商品</h2>
                 <nav class="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
-                      <li class="breadcrumb-item active" ><a href="#">所有商品</a></li>
+                        <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
+                        <li class="breadcrumb-item active"><a href="#">所有商品</a></li>
                     </ol>
-                  </nav>
+                </nav>
             </div>
             <div class="col-9 ">
                 <div class="product-filter col-12">
                     <div>
                         <div class="product-filter-cater">
-                            <button class="product-filter-btn" type="button" id="" >
-                            <span>全部商品</span>
-                            <span><img src="./pic/product/Vector.png" alt=""></span>
+                            <button class="product-filter-btn" type="button" id=""
+                                v-on:click="product_filter_cater_show">
+                                <span>全部商品</span>
+                                <span><img src="./assets/img/Vector.png" alt=""></span>
                             </button>
-                            <ul class="product-filter-player" >
+                            <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li><a class="dropdown-item" href="#">全部商品</a></li>
                                 <li><a class="dropdown-item" href="#">派對遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">輕度策略</a></li>
@@ -75,57 +78,99 @@
                         </div>
                         <div class="product-filter-div">
                             <div>
-                                <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_player_show">
-                                    <span>遊玩人數</span><span><img src="./pic/product/Vector.png" alt=""></span>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_player_show">
+                                    <span>遊玩人數</span><span><img src="./assets/img/Vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">單人遊戲</a></li>
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">雙人遊戲</a></li>
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">三人遊戲</a></li>
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_player">多人遊戲</a></li>
-                                </ul> 
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">1人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">2人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">3人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">4人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">5人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">6人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">7人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">多人遊戲</a></li>
+                                </ul>
                             </div>
-                        <div>
-                            <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img src="./pic/product/Vector.png" alt=""></span>
-                            </button>
-                            <ul class="product-filter-age" :class="{active:product_filter_age_active}">
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a></li>
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+6</a></li>
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+9</a></li>
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+12</a></li>
-                            </ul> 
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
+                                            src="./assets/img/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-age" :class="{active:product_filter_age_active}">
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+5</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+6</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+7</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+8</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+9</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+10</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+11</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+12</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_order_show">
+                                    <span>排序方式</span><span><img src="./assets/img/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-order" :class="{active:product_filter_order_active}">
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">上架日期：由高到低</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">上架日期：由低到高</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">建議售價：由高到低</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">建議售價：由低到高</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <button class="product-filter-btn" type="button" id="product_filter_btn" v-on:click="product_filter_order_show">
-                                <span>排序方式</span><span><img src="./pic/product/Vector.png" alt=""></span>
-                            </button>
-                            <ul class="product-filter-order" :class="{active:product_filter_order_active}">
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_order">由高到低</a></li>
-                                <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_order">由低到高</a></li>
-                            </ul> 
-                        </div>
-                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
         <div class="product-main">
             <aside class="col-2 ">
                 <h1>遊戲分類</h1>
-                <ul >
+                <ul>
                     <li class="active"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">派對遊戲</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">輕度策略</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">主題遊戲</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">家庭遊戲</a></li>
-                    <li><a href=""  v-on:click="product_filter_get_cate">團隊合作</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">派對遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li>
                 </ul>
-                
+
             </aside>
             <div class="prouct-item active page1">
-                <div v-for="(card, index) in cards" :key="index" class="prouct-item-card">
+                <div class="prouct-item-card">
                     <div class="prouct-item-card-tag">
                         <p class="prouct-item-card-tag-player">
                             <span class="prouct-item-card-tag-player-min">3</span>
@@ -137,20 +182,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
+                        <img src="./assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">花磚物語</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
-                            </a>
-                            
+
+                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -165,72 +210,18 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img"> 
+                        <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img">
                     </div>
-                    
+
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
-                            <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
-                        </div>
-                        <button class="btn prouct-item-card-icon">
-                            <a href="">
-                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
-                            </a>
-                            
-                        </button>
-                        
-                    </div>
-                </div>
-                <div class="prouct-item-card">
-                    <div class="prouct-item-card-tag">
-                        <p class="prouct-item-card-tag-player">
-                            <span class="prouct-item-card-tag-player-min">3</span>
-                            <span>-</span>
-                            <span class="prouct-item-card-tag-player-min">10</span>
-                            <span>人
-                            </span>
-                        </p>
-                        <p class="prouct-item-card-tag-age">14+</p>
-                    </div>
-                    <div class="prouct-item-card-img">
-                    <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
-                        <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
-                            <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
-                        </div>
-                        <button class="btn prouct-item-card-icon">
-                            <a href="">
-                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
-                            </a>
-                            
-                        </button>
-                        
-                    </div>
-                </div>
-                <div class="prouct-item-card">
-                    <div class="prouct-item-card-tag">
-                        <p class="prouct-item-card-tag-player">
-                            <span class="prouct-item-card-tag-player-min">3</span>
-                            <span>-</span>
-                            <span class="prouct-item-card-tag-player-min">10</span>
-                            <span>人
-                            </span>
-                        </p>
-                        <p class="prouct-item-card-tag-age">14+</p>
-                    </div>
-                    <div class="prouct-item-card-img">
-                    <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
-                        <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">西國建築師</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -245,16 +236,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">機密代號</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -269,16 +261,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -293,16 +286,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">和諧羅馬</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -317,16 +311,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -341,16 +336,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -365,16 +361,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -389,16 +386,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">七大奇蹟對決</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -413,16 +411,67 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">銀河競逐</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
+                    </div>
+                </div>
+                <div class="prouct-item-card">
+                    <div class="prouct-item-card-tag">
+                        <p class="prouct-item-card-tag-player">
+                            <span class="prouct-item-card-tag-player-min">3</span>
+                            <span>-</span>
+                            <span class="prouct-item-card-tag-player-min">10</span>
+                            <span>人
+                            </span>
+                        </p>
+                        <p class="prouct-item-card-tag-age">14+</p>
+                    </div>
+                    <div class="prouct-item-card-img">
+                        <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
+                        <div>
+                            <h2 class="prouct-item-card-infor-name">禁制之島</h2>
+                            <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
+                        </div>
+                        <button class="btn prouct-item-card-icon">
+                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <div class="prouct-item-card">
+                    <div class="prouct-item-card-tag">
+                        <p class="prouct-item-card-tag-player">
+                            <span class="prouct-item-card-tag-player-min">3</span>
+                            <span>-</span>
+                            <span class="prouct-item-card-tag-player-min">10</span>
+                            <span>人
+                            </span>
+                        </p>
+                        <p class="prouct-item-card-tag-age">14+</p>
+                    </div>
+                    <div class="prouct-item-card-img">
+                        <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
+                        <div>
+                            <h2 class="prouct-item-card-infor-name">殖民火星</h2>
+                            <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
+                        </div>
+                        <button class="btn prouct-item-card-icon">
+                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -439,17 +488,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="assets/img/product_pathwork.jpg" alt="" class="prouct-item-card-img">
+                        <img src="./assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">花磚物語</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -464,18 +516,21 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="pic/product/1559254202422-51mP2aJfyxL.png" alt="" > 
+                        <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img">
                     </div>
-                    
+
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">西國建築師</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -490,16 +545,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">機密代號</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -514,16 +573,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -538,16 +598,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">和諧羅馬</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -562,16 +623,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254192344-51tjV3rKyRL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -586,16 +648,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -610,16 +673,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -634,16 +698,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254920151-51ulRXlJ7LL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">七大奇蹟對決</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -658,16 +723,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254188772-515tbFJ5C8L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">銀河競逐</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -682,16 +748,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制之島</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -706,16 +773,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">殖民火星</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -732,17 +800,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="assets/img/product_waterdeep.jpg" alt="" class="prouct-item-card-img">
+                        <img src="./assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">花磚物語</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -757,18 +828,21 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="pic/product/1559254202422-51mP2aJfyxL.png" alt="" > 
+                        <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img">
                     </div>
-                    
+
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">西國建築師</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -783,16 +857,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">機密代號</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -807,16 +885,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -831,16 +910,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">和諧羅馬</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -855,16 +935,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254192344-51tjV3rKyRL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -879,16 +960,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -903,16 +985,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -927,16 +1010,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254920151-51ulRXlJ7LL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">七大奇蹟對決</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -951,16 +1035,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254188772-515tbFJ5C8L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">銀河競逐</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -975,16 +1060,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制之島</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -999,16 +1085,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">殖民火星</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -1025,17 +1112,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="assets/img/product_windspan.png" alt="" class="prouct-item-card-img">
+                        <img src="./assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">花磚物語</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1050,18 +1140,21 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="pic/product/1559254202422-51mP2aJfyxL.png" alt="" > 
+                        <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img">
                     </div>
-                    
+
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">西國建築師</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1076,16 +1169,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">機密代號</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1100,16 +1197,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1124,16 +1222,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">和諧羅馬</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1148,16 +1247,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254192344-51tjV3rKyRL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1172,16 +1272,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1196,16 +1297,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1220,16 +1322,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254920151-51ulRXlJ7LL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">七大奇蹟對決</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1244,16 +1347,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254188772-515tbFJ5C8L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">銀河競逐</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1268,16 +1372,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制之島</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1292,16 +1397,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">殖民火星</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -1318,17 +1424,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                        <img src="assets/img/product_dixit.jpg" alt="" class="prouct-item-card-img">
+                        <img src="./assets/img/product_AzUL.png" alt="" class="prouct-item-card-img">
                     </div>
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">花磚物語</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1343,18 +1452,21 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                       <img src="pic/product/1559254202422-51mP2aJfyxL.png" alt="" > 
+                        <img src="assets/img/product_arcti.png" alt="" class="prouct-item-card-img">
                     </div>
-                    
+
                     <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">西國建築師</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1369,16 +1481,20 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_code.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">機密代號</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
-                            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            <a href="">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1393,16 +1509,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1417,16 +1534,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_concordia.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">和諧羅馬</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1441,16 +1559,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254192344-51tjV3rKyRL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_desert.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制沙漠</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1465,16 +1584,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1489,16 +1609,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254183526-61f2BdYqPR4L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_dixit.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">妙語說書人</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1513,16 +1634,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254920151-51ulRXlJ7LL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_duel.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">七大奇蹟對決</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1537,16 +1659,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254188772-515tbFJ5C8L.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_galaxy.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">銀河競逐</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1561,16 +1684,17 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200327-61EFZADvURL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_island.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">禁制之島</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
                 <div class="prouct-item-card">
@@ -1585,33 +1709,34 @@
                         <p class="prouct-item-card-tag-age">14+</p>
                     </div>
                     <div class="prouct-item-card-img">
-                    <img src="pic/product/1559254200326-51nQKg6k7DL.png" alt="" class="prouct-item-card-img">
-                    </div><div class="prouct-item-card-infor">
+                        <img src="assets/img/product_mars.png" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
                         <div>
-                            <h2 class="prouct-item-card-infor-name">璀璨寶石</h2>
+                            <h2 class="prouct-item-card-infor-name">殖民火星</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">699</span></h3>
                         </div>
                         <button class="btn prouct-item-card-icon">
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4 product-page">
-            <button ><</button>
+        <div class="product-page">
+            <button><i class="fa-sharp fa-solid fa-angle-left"></i></button>
             <ul>
-                <li ><a href="" class="active">1</a></li>
+                <li><a href="" class="active">1</a></li>
                 <li><a href="">2</a></li>
                 <li><a href="">3</a></li>
                 <li><a href="">4</a></li>
                 <li><a href="">5</a></li>
                 <li><a href="">6</a></li>
             </ul>
-            <button>></button>
+            <button><i class="fa-sharp fa-solid fa-angle-right"></i></button>
         </div>
-        
+
     </div>
     <footer>
         <nav class="footer_nav">
@@ -1654,108 +1779,115 @@
                 </li>
             </ul>
         </nav>
-    </footer>  
+    </footer>
     <script src="./vendors/vue/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        let app=Vue.createApp({
-            data(){
-                return{
-                    product_filter_player_active:false,
-                    product_filter_age_active:false,
-                    product_filter_order_active:false,
-                    product_filter_player_cate:false,
-                    filter_cate_value:"",
-                    filter_player_value:"",
-                    filter_age_value:"",
-                    filter_order_value:"",
-                    filter:["全部商品","","",""],
-                    cards:[]
-                }
-                
-            },
-            methods:{
-                //篩選列表出現
-                product_filter_player_show(e){
-                    this.product_filter_player_active=!this.product_filter_player_active;
-                    e.stopPropagation();
-                },
-                product_filter_age_show(e){
-                    this.product_filter_age_active=!this.product_filter_age_active;
-                    e.stopPropagation();
-                },
-                product_filter_order_show(e){
-                    this.product_filter_order_active=!this.product_filter_order_active;
-                    e.stopPropagation();
-                },
-                //篩選列表隱藏
-                product_filter_close(e){
-                    
-                    if(this.product_filter_player_active){
-                        this.product_filter_player_active=!this.product_filter_player_active;
-                    }
-                    if(this.product_filter_age_active){
-                        this.product_filter_age_active=!this.product_filter_age_active;
-                    }
-                    if(this.product_filter_order_active){
-                        this.product_filter_order_active=!this.product_filter_order_active;
-                    }
-                },
-                
-                //取得篩選條件後畫面重新絢爛
-                product_filter_get_cate(e){
-                    e.preventDefault();
-                    this.filter_cate_value=e.target.innerHTML;
-                    
-                    this.filter[0]=e.target.innerHTML;
-                    console.log(this.filter);
-                },
-                product_filter_get_player(e){
-                    e.preventDefault();
-                    this.filter_player_value=e.target.innerHTML;
-                    this.filter[1]=e.target.innerHTML;
-                    console.log(this.filter);
-                },
-                product_filter_get_age(e){
-                    e.preventDefault();
-                    this.filter_age_value=e.target.innerHTML;
-                    this.filter[2]=e.target.innerHTML;
-                    console.log(this.filter);
-                },
-                product_filter_get_order(e){
-                    e.preventDefault();
-                    this.filter_order_value=e.target.innerHTML;
-                    this.filter[3]=e.target.innerHTML;
-                    console.log(this.filter);
-                },
-                getData(e){
-                    const self = this;
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', "./test.php");
-                    xhr.send();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            this.cards = JSON.parse(xhr.responseText);
-                            console.log(this.cards);
-                        }
-                    };
-                },
-                createPage(e){
-                    
+        let app = Vue.createApp({
+            data() {
+                return {
+                    product_filter_cater_active: false,
+                    product_filter_player_active: false,
+                    product_filter_age_active: false,
+                    product_filter_order_active: false,
+                    product_filter_player_cate: false,
+                    filter_cate_value: "",
+                    filter_player_value: "",
+                    filter_age_value: "",
+                    filter_order_value: "",
+                    filter: ["全部商品", "", "", ""],
+                    cards: []
                 }
 
             },
-            mounted(){
-                window.addEventListener("click",()=>{
+            methods: {
+                //篩選列表出現
+                product_filter_cater_show(e) {
+                    e.stopPropagation();
+                    this.product_filter_cater_active = !this.product_filter_cater_active;
+                },
+                product_filter_player_show(e) {
+                    this.product_filter_player_active = !this.product_filter_player_active;
+                    e.stopPropagation();
+                    console.log(123);
+                },
+                product_filter_age_show(e) {
+                    this.product_filter_age_active = !this.product_filter_age_active;
+                    e.stopPropagation();
+                },
+                product_filter_order_show(e) {
+                    this.product_filter_order_active = !this.product_filter_order_active;
+                    e.stopPropagation();
+                },
+                //篩選列表隱藏
+                product_filter_close(e) {
+
+                    if (this.product_filter_player_active) {
+                        this.product_filter_player_active = !this.product_filter_player_active;
+                    }
+                    if (this.product_filter_age_active) {
+                        this.product_filter_age_active = !this.product_filter_age_active;
+                    }
+                    if (this.product_filter_order_active) {
+                        this.product_filter_order_active = !this.product_filter_order_active;
+                    }
+                },
+
+                //取得篩選條件後畫面重新絢爛
+                product_filter_get_cate(e) {
+                    e.preventDefault();
+                    this.filter_cate_value = e.target.innerHTML;
+
+                    this.filter[0] = e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_player(e) {
+                    e.preventDefault();
+                    this.filter_player_value = e.target.innerHTML;
+                    this.filter[1] = e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_age(e) {
+                    e.preventDefault();
+                    this.filter_age_value = e.target.innerHTML;
+                    this.filter[2] = e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                product_filter_get_order(e) {
+                    e.preventDefault();
+                    this.filter_order_value = e.target.innerHTML;
+                    this.filter[3] = e.target.innerHTML;
+                    console.log(this.filter);
+                },
+                // getData(e) {
+                //     const self = this;
+                //     const xhr = new XMLHttpRequest();
+                //     xhr.open('GET', "./test.php");
+                //     xhr.send();
+                //     xhr.onreadystatechange = function () {
+                //         if (xhr.readyState === 4 && xhr.status === 200) {
+                //             this.cards = JSON.parse(xhr.responseText);
+                //             console.log(this.cards);
+                //         }
+                //     };
+                // },
+                createPage(e) {
+
+                }
+
+            },
+            mounted() {
+                window.addEventListener("click", () => {
                     this.product_filter_close();
-                    
-                 });
-                this.getData();
+
+                });
+                // this.getData();
                 this.createPage();
-                 
+
             }
         })
         app.mount("#product-wrapper");
     </script>
 </body>
+
 </html>

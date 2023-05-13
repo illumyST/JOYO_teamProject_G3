@@ -1,114 +1,231 @@
-.cartFill_del_info{
+.cartFill_wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    color: $brown;
+
+    input:focus {
+        outline: none;
+    }
+
+    input {
+        padding: 0;
+
+    }
+
+    h2 {
+        letter-spacing: 0.05em;
+    }
+}
+
+.cartFill_del_info {
     font-size: 24px;
     margin-top: 40px;
-    ul{
+
+    ul {
         display: flex;
     }
-    li{
+
+    li {
         display: flex;
-        
+
     }
 
 }
-.carFill_prog_f ::after{
+
+.cartFill_wrapper .cartConfirm_top li {
+    line-height: 2.4;
+}
+
+.cartFill_wrapper .cartConfirm_con_title {
+    box-sizing: border-box;
+    padding-left: 30px;
+    margin-bottom: 35px;
+}
+
+.cartFill_wrapper .cartConfirm_con_title_item li {
+    margin-top: 0px;
+    margin-bottom: 15px;
+
+    .cartConfirm_con_title_item_name {
+        margin-right: 10px;
+    }
+}
+
+.cartFill_wrapper.cartConfirm_con_title_item_img {
+
+    padding-left: 14px;
+}
+
+.carFill_prog_f ::after {
     content: "";
-    width: 127px;
-    border: 1.7px solid $green;
+    width: 133px;
+    border: 2px solid $green;
     height: 0px;
     display: block;
     position: absolute;
-    right: -129px;
+    right: -134px;
     bottom: 31px;
 }
-.cartFill_deliv{
+
+.cartFill_deliv {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
     line-height: 2;
-    margin-bottom: 50px;
-    div{
-        margin-right: 40px;
-        label{
-            font-size: 14px;  
+    margin-bottom: 194px;
+
+    div {
+        width: 580px;
+
+        label {
+            font-size: 14px;
         }
-        h2{
-            border-bottom:1px solid $brown ;
+
+        h2 {
+            border-bottom: 1px solid $brown ;
             margin-bottom: 10px;
-            div{
+
+            div {
                 display: inline;
-                input{
+
+                input {
                     width: 3.333333%;
                 }
             }
         }
     }
-    h2{
+
+    h2 {
         font-size: 24px;
     }
-    h3{
+
+    h3 {
         font-size: 20px;
     }
-    ul{
-        input{
-           height: 30px;
-    font-size: 20px;  
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        input {
+            height: 50px;
+            font-size: 20px;
+            width: 275px;
+        }
+
+        li {
+            width: 48%;
+        }
+    }
+
+    .cartFill_deliv_credit {
+        h2 {
+            select {
+                margin-left: 166px;
+                width: 275px;
+                font-size: 20px;
+                margin-bottom: 8px;
+
+            }
+        }
+
+        input:nth-last-child(1) {
+            margin-top: 0;
+            height: 50px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                width: 48%;
+                margin-bottom: 19px;
+            }
+        }
+
+        ul li:nth-child(1) {
+            width: 100%;
+
+            input {
+                width: 580px;
+            }
+
         }
     }
 }
-.cartFill_deliv_add{
+
+.cartFill_deliv_add {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 50px;
-    
-    input{
+    text-align: left;
+
+    input {
         margin-bottom: 20px;
-        height: 30px;
-    }
-    select{
+        height: 50px;
         font-size: 20px;
-        text-align: center;
-        margin-bottom: 40px;
-        height: 38px;
-        
+    }
+
+    select {
+        font-size: 20px;
+        text-align: left;
+        margin-bottom: 19px;
+        margin-top: 19px;
+        height: 50px;
+        width: 278px;
+
     }
 }
-.cartFill_deliv_submit{
-        margin-top: 10px;
-        width: 100%;
-        height: 40px;
-        background-color: $orange;
-        border: 0;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 22px;
+
+.cartFill_deliv_submit {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: $orange;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 22px;
 }
-.cartFill_deliv_submit:hover{
+
+.cartFill_deliv_submit:hover {
     background-color: $green;
 }
-.form-select{
+
+.form-select {
     color: $brown;
 }
-@media screen and (max-width: 414px){
-    .cartConfirm_con_title_item{
-        .cartConfirm_con_title_item_num,.cartConfirm_con_title_item_del{
+
+@media screen and (max-width: 414px) {
+    .cartConfirm_con_title_item {
+
+        .cartConfirm_con_title_item_num,
+        .cartConfirm_con_title_item_del {
             display: none;
         }
-        .cartConfirm_con_title_item_name{
+
+        .cartConfirm_con_title_item_name {
             margin-top: 30px;
         }
     }
-    .cartFill_del_info{
+
+    .cartFill_del_info {
         display: none;
     }
-    .cartFill_deliv{
+
+    .cartFill_deliv {
         flex-direction: column;
         margin: 0 auto;
         width: 90%;
         height: 480px;
-        div{
+
+        div {
             width: 100%;
-            h2{
+
+            h2 {
                 border-top: 1px solid #513F2E;
                 border-bottom: 0;
                 font-size: 18px;
@@ -116,41 +233,49 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                input{
+
+                input {
                     width: 15px;
                     font-size: 16px;
                 }
             }
-            h3{
-               display: none; 
-               
+
+            h3 {
+                display: none;
+
             }
-            ul{
-                li{
-                   input{
+
+            ul {
+                li {
+                    input {
                         font-size: 16px;
                         margin-bottom: 30px;
-            } 
+                    }
                 }
             }
         }
-        input{
+
+        input {
             margin-bottom: 40px;
         }
-        
+
     }
-    .cartFill_deliv>div:nth-child(2) > h2{
+
+    .cartFill_deliv>div:nth-child(2)>h2 {
         display: none;
     }
-    .cartFill_deliv_add{
+
+    .cartFill_deliv_add {
         margin-top: 5px;
-        select{
+
+        select {
             font-size: 16px;
             margin-bottom: 30px;
         }
-        .form-select{
+
+        .form-select {
             width: 48%;
         }
-       
+
     }
 }
