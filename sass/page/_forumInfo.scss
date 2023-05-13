@@ -3,8 +3,6 @@
     @include wrapper();
     font-family: Noto Sans, Noto Sans TC, sans-serif;
     // border: 1px solid red;
-    color: $brown;
-    margin: 75px auto;
 }
 
 // ===== 左側選單 ===== //
@@ -16,7 +14,11 @@
     .forumInfo_sidemenu li{
         // border: 1px solid blue;
         @include sidemenu();
+        &:hover{
+            background-color: #c2c990;
+        }
         @include flex-container(row, wrap, start);
+        cursor: pointer;
     
     }
     
@@ -29,6 +31,10 @@
         &:hover{
             background: $orange;
         }  
+    }
+
+    .forumInfo_sidemenu_li.active{
+        background-color: $orange;
     }
     
     .forumInfo_sidemenu li i{
@@ -49,133 +55,178 @@
     }
 
     // ===== 文章上方 ===== //
-    .forumInfo_right_top{
+    .forumInfo_right_main{
+        padding: 50px 60px 0 ;
+        height: 800px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            background-color: #F3DAD8;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #f6b1ca; 
+          }
+    }
+    
+    .forumInfo_right_main_top{
         // border: 1px solid yellow;
         @include flex-container(row, wrap, start);
-        margin-top: 50px;
+        margin-bottom: 40px;
 
-        p{
-            margin-right: 15px;
-        }
-    }
-
-    .forumInfo_right_top_img{
-        // border: 1px solid green;
         img{
             display: block;
-            width: 50%;
-            margin: 0 auto;
+            width: 9.2%;
+        }
+
+        > p{
+            margin-left: 20px;
+        }
+
+        p + p{
+            margin-left: 40px;
         }
     }
 
-    .forumInfo_right_title{
+    
+
+
+    .forumInfo_right_main_title{
         // border: 1px solid black;
-        @include flex-container(row, wrap, start);
-        margin: 20px 0 0 40px;
+        @include flex-container(row, wrap, start, );
     }
 
-    .forumInfo_right_title_left{
+    .forumInfo_right_main_title_left{
         // border: 1px solid palevioletred;
-        line-height: 5;
         width: 12%;
         text-align: center;
-        font-size: $p;
     }
 
     .forumInfo_category{
         background-color: white;
-        width: 80%;
+        width: 90%;
         margin: 20px auto;
-        color: $d-pink;
+
+        p{
+            line-height: 5.65;
+            color: $d-pink;
+            font-size: $p;
+        }
     }
 
-    .forumInfo_right_title_right{
+    .forumInfo_right_main_title_right{
         // border: 1px solid palevioletred;
         width: 80%;
-        font-size: $h1_sub;
-        margin-left: 30px;
+        margin-left: 35px;
+
+        li{
+            width: 100%;
+            h1{
+                font-size: $h1_sub;
+                line-height: 1.5em;
+                letter-spacing: .1em;
+                text-align: justify;
+                font-weight: 600;
+            }
+        }
     }
 
 
-    .forumInfo_right_title_bottom{
+    .forumInfo_right_main_title_bottom{
         // border: 1px solid goldenrod;
-        @include flex-container(row, wrap, start);    
+        width: 100%;
+        @include flex-container(row, wrap, start);
+        margin-top: 20px;    
     }
 
-    .forumInfo_right_title_bottom_label{
-        margin: 20px 0 0 10px;
+    .forumInfo_right_main_title_bottom_label{
+        @include flex-container(row, wrap, space-around);
+        width: 50%;
         li{
             @include Label();
-            margin-right: 10px;
         }
     }
 
     .forumInfo_middle{
         // border: 1px solid purple;
-        line-height: 2.5;
-        letter-spacing: 1.5px;
-        font-size: $p;
+        margin-top: 40px;
         p{
-            margin: 40px 40px 0;
+            line-height: 2.5;
+            letter-spacing: 1.5px;
+            font-size: $p;
         }
     }
 
     .forumInfo_comments{
         // border: 1px solid saddlebrown;
+        margin-top: 40px;
         h3{
             font-size: $h3;
             letter-spacing: 2px;
-            margin: 50px 40px 0;
         }
     }
 
     .forumInfo_comments_line{
         border-bottom: 2px solid $brown;
         display: inline-block;
-        width: 90%;
-        margin: 10px 40px 0;
+        width: 100%;
+        margin: 6px 0 0;
     }
 
     .forumInfo_comments_text{
+        margin-top: 20px;
+    }
+    .forumInfo_comments_text_title,
+    .forumInfo_comments_text2_title{
         @include flex-container(row, wrap, start);
 
-        p{
+        img{
+            width: 4%;
+        }
+
+        > p{
             font-size: $p;
-            margin-top: 20px;
+            margin-left: 10px;
+
         }
 
         p + p{
             margin-left: 20px;
+            font-size: $p;
         }
     }
 
-    .forumInfo_comments_text_title{
-        // border: 1px solid seagreen;
-        width: 5%;
-        margin: 20px 0 0 40px;
-        img{
-            width: 90%;
-        }
-    }
 
-    .forumInfo_comments_main{
+
+    
+
+    .forumInfo_comments_text_main,
+    .forumInfo_comments_text2_main{
         // border: 1px solid red;
-        margin: 0 50px 0 90px;
+        margin-left: 50px;
 
         p{
-            margin: 0;
             line-height: 2;
             letter-spacing: 1px;
+
         }
     }
 
     .forumInfo_comments_text_line{
         border-bottom: 2px solid $brown;
         display: inline-block;
-        width: 90%;
-        margin: 10px 40px 0;
+        width: 100%;
         opacity: .2;
     }
+
+    .forumInfo_comments_text2{
+        margin-top: 10px;
+    }
+
 
     .forumInfo_right_msg{
         // border: 1px solid blue;
@@ -184,38 +235,42 @@
     }
 
     .forumInfo_right_msg_text{
-        width: 90%;
-        background-color: #ebb98e;
+        width: 85%;
+        background-color: #F3DAD8;
         border: none;
         outline: none;
         font-size: $p;
-        padding-left: 10px;
-        padding-top: 10px;
         line-height: 1.5;
+        padding-left: 10px;
+        padding-top: 20px;
         resize: none;
         overflow: hidden;
 
         &::placeholder{
             color: white;
-            line-height: 40px;
+            line-height: 20px;
         }
     }
 
     .forumInfo_right_msg_icon{
         // border: 1px solid red;
-        width: 8.667%;
-        line-height: 3.75;
-        background-color: #ebb98e;
+        width: 13.668%;
+        line-height: 4.4;
+        background-color: #F3DAD8;
+        text-align: center;
 
         .fa-paper-plane{
             margin-right: 15px;
-            font-size: $h3;
+            font-size: $h2;
             color: white;
+            font-weight: 100;
+            margin: 10px;
         }
 
         .fa-heart{
-            font-size: $h3;
+            font-size: $h2;
             color: white;
+            margin: 10px;
         }
     }
 
@@ -227,10 +282,9 @@
 
 
 // ===== 手機版 414px ===== //
-@media screen and (max-width: 414px){
+@include m(){
     .forumInfo_wrapper{
-        width: auto;
-        margin: 0;
+        width: 370px;
         flex-direction: column;
     }
 
@@ -241,71 +295,109 @@
 
     // ====== 手機版選單 ===== //
     .forumInfo_media{
-        width: 100vw;
+        width: 100%;
         display: block
     }
     
 
     .forumInfo_media_button{
-        @include btn($brown, 2.5, 90vw, $orange);
-        font-size: $h3;
-        margin: 20px auto;
+        @include btn($brown, 2.2, 100%, $orange);
+        font-size: 1.1rem;
+        margin-bottom: 20px;
     }
 
+    
     .forumInfo_media_select{
-        width: 90vw;
-        margin: 0 auto;
-    }
+        @include drowDown(100%, 40px, 100%, 50%);
+        margin-bottom: 40px;
+        
 
-    .forumInfo_media_menu_select{
-        display: block;
-        width: 90vw;
-        margin: 30px auto;
-        padding: 10px 10px;
-        border-radius: 5px;
-        color: white;
-        font-size: $p;
-        border: none;
-        outline: none;
-        background-color: $green;
-    }
+        button{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $green;
+            font-size: 1.1rem;
 
-    .forumInfo_right_top{
-        margin-top: 30px;
-    }
+            span{
+                letter-spacing: .1em;
+                margin: 0 10px;
+            }
 
-    .forumInfo_right_top_img{
-        width: 20%;
+            .fa-angle-down{
+                font-weight: 600;
+            }
+        }
+
+
+        ul{
+            width: 89.3%;
+            top: 218px;
+
+            li{
+                // display: block;
+                width: 100%;
+
+                a{
+                    width: 100%;
+                    line-height: 2.5;
+                    background-color: $green;
+                    color: white;
+                    letter-spacing: .1em;
+                }
+            }
+        }
+    }
+    // ===== 手機版選單end ===== //
+
+
+    .forumInfo_right_main_top{
+        margin-top: 20px;
+        margin-left: 25px;
+        margin-bottom: 0;
     }
 
     .forumInfo_right{
-        width: 90vw;
-        margin: 0 auto;
+        width: 100%;
     }
 
-    .forumInfo_right_title{
+
+    .forumInfo_right_main{
+        width: 100%;
+        padding: 0;
+    }
+
+    .forumInfo_right_main_title{
         margin: 20px 0;
     }
 
-    .forumInfo_right_title_left{
+    .forumInfo_right_main_title_left{
         display: none;
     }
 
-    .forumInfo_right_title_right{
-        width: 85vw;
-        margin: 10px 10px;
-        line-height: 1.5;
-        font-size: 1.3rem;
+    .forumInfo_right_main_title_right{
+        width: 100%;
+        margin: 25px 25px 0;
+        li{
+            h1{
+                line-height: 1.5;
+                font-size: 1.3rem;
+            }
+        }
     }
 
 
-    .forumInfo_right_title_bottom{
+    .forumInfo_right_main_title_bottom{
+        width: 100%;
         order: -1;
+        justify-content: space-between;
+        margin-top: 0;
     }
 
 
-    .forumInfo_right_title_bottom_label{
-        margin: 10px 10px;
+    .forumInfo_right_main_title_bottom_label{
+        width: 100%;
+        margin: 0 20px;
 
         li{
             font-size: .8rem;
@@ -313,47 +405,78 @@
     }
 
     .forumInfo_middle{
-        width: 90vw;
+        width: 100%;
 
         p{
-            margin: 40px 15px;
+            margin: 25px;
             text-align: justify;
         }
     }
 
     .forumInfo_comments{
-        width: 90vw;
+        width: 100%;
 
         h3{
             font-size: 1rem;
-            margin: 50px 15px 0;
+            margin: 0 25px;
         }
     }
 
     .forumInfo_comments_line{
-        width: 80vw;
-        margin: 10px 15px;
+        width: 85%;
+        margin: 10px 25px 0;
+    }
+
+    .forumInfo_comments_text{
+        width: 100%;
     }
 
     .forumInfo_comments_text_title{
-        width: 10%;
-        margin: 20px 0 0 20px;
+        width: 100%;
+        margin: 20px 25px 0;
+
+        img{
+            width: 8.4%;
+        }
     }
 
-    .forumInfo_comments_main{
-        margin: 10px 15px 0 55px;
+    .forumInfo_comments_text_main,
+    .forumInfo_comments_text2_main{
+        margin-left: 65px;
+        margin-right: 25px;
     }
 
     .forumInfo_comments_text_line{
-        width: 90vw;
-        margin: 10px 20px 0;
+        width: 85%;
+        margin: 10px 25px 0;
+    }
+
+    .forumInfo_comments_text2_title{
+        width: 100%;
+        margin: 0 25px;
+
+        img{
+            width: 8.4%;
+        }
     }
 
     .forumInfo_right_msg_text{
-        width: 70.1vw;
+        width: 75%;
     }
 
     .forumInfo_right_msg_icon{
-        width: 17vw;
+        width: 21.76%;
+        line-height: 4.4;
+
+        .fa-paper-plane{
+            font-size: 1.2rem;
+            margin: 5px;
+        }
+
+        .fa-heart{
+            font-size: 1.2rem;
+            margin: 5px;
+        }
+        
     }
 }

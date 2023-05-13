@@ -15,7 +15,11 @@
 .forum_sidemenu li{
     // border: 1px solid blue;
     @include sidemenu();
+    &:hover{
+        background-color: #c2c990;
+    }
     @include flex-container(row, wrap, start);
+    cursor: pointer;
 
 }
 
@@ -73,6 +77,7 @@
     font-size: $h2;
     flex-grow: 1;
     text-align: start;
+    font-weight: 600;
 }
 
 // .forum_article_title select{
@@ -160,6 +165,7 @@
     line-height: 4.8;
     font-size: $h2;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .forum_article_item1_left .forum_name_data{
@@ -179,7 +185,7 @@
 .forum_article_item1_right_label{
     // border: 1px solid blue;
     @include flex-container(row, wrap, space-around);
-    width: 60%;
+    width: 50%;
     margin-bottom: 20px;
 }
 
@@ -204,6 +210,7 @@
     margin-bottom: 10px;
     letter-spacing: 3px;
     line-height: 1.5;
+    font-weight: 600;
 }
 
 .forum_article_item1_right_middle p{
@@ -235,6 +242,7 @@
 
 .forum_article_item1_right_bottom li i{
     margin-right: 5px;
+    font-weight: 500;
 }
 
 // ===== 換頁區域 ===== //
@@ -259,9 +267,15 @@
 
 .forum_media_button{
     // border: 1px solid blue;
-    @include btn($brown, 2, 100%, $orange);
+    @include btn($brown, 2.2, 100%, $orange);
     text-align: center;
     font-size: $h3;
+}
+
+
+// ===== 手機版廣告區域 ===== //
+.forum_media_advertise{
+    display: none;
 }
 
 // .forum_media_select, 
@@ -301,25 +315,40 @@
     flex-direction: column;
 }
 
-// 桌機板左側選單
+
+// ===== 桌機版廣告區域 ===== //
+.forum_advertise{
+    display: none;
+}
+
+
+// ===== 手機版廣告區域 ===== //
+.forum_media_advertise{
+    display: block;
+    width: 100vw;
+    margin-bottom: 40px;
+
+    img{
+        width: 100vw;
+        height: 13.5vh;
+    }
+}
+
+
+
+// ===== 桌機板左側選單 ===== //
 .forum_sidemenu{
     display: none;
 }
 
 
+
+
+// ===== 手機板下方內容 ===== //
 .forum_right{
     width: 100%;
     flex-grow: 0;
     margin-left: 0;
-}
-
-.forum_advertise{
-    width: 100%;
-    margin-bottom: 40px;
-
-    img{
-        width: 100%;
-    }
 }
 
 
