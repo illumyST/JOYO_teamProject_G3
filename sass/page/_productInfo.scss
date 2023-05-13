@@ -351,38 +351,51 @@ button {
 }
 
 @media screen and (max-width: 414px) {
+    .infor-top {
+        margin-top: 0;
+    }
+
     .infor-item {
         margin-top: 0;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 0;
 
         .infor-item-img {
-            width: 85%;
+            width: 100%;
             flex-direction: column-reverse;
+            margin-bottom: 39px;
         }
 
         .infor-item-img-bg {
             width: 100%;
+            height: 285px;
 
             img {
-                width: 80%;
+                width: 66%;
             }
         }
 
         .infor-item-img-sm {
-            width: 100%;
+            width: 370px;
             margin-top: 10px;
+            margin-right: 0;
 
             ul {
                 flex-direction: row;
+                margin: 0 auto;
 
                 li {
-                    width: 25%;
-                    height: 0;
+                    width: 90px;
+                    height: 90px;
+                    box-sizing: border-box;
+                    margin-left: 0;
+                    line-height: 8;
 
                     img {
+                        width: 80%;
                         margin-top: 0;
-                        width: 90%;
+                        margin-left: 0;
                     }
                 }
             }
@@ -406,13 +419,23 @@ button {
         width: 175px;
     }
 
-    .infor-item-infor {
-        width: 85%;
+    .sel-amount {
         margin-top: 10px;
+        margin-bottom: 18px;
+    }
+
+    .infor-item-infor {
+        width: 100%;
+        margin-top: 10px;
+
+        label {
+            font-size: $p;
+        }
 
         h1 {
             text-align: left;
             font-size: 20px;
+            margin-bottom: 20px;
         }
 
         p {
@@ -420,15 +443,35 @@ button {
         }
 
         h2 {
-            margin-bottom: 23px;
-            margin-top: 39px;
+            margin-bottom: 20px;
+            margin-top: 30px;
         }
 
     }
 
+    .infor-detail-nav ul li:nth-child(1) ::after {
+        top: 55px;
+        width: 375px;
+    }
+
     .infor-detail {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
+
+        .infor-detail-contain {
+            margin-top: 20px;
+        }
+
+        .infor-detail-nav {
+            margin-top: 30px;
+            height: 52px;
+
+            a {
+                font-size: 14px;
+                left: 3px;
+                height: 44px;
+            }
+        }
     }
 
     or-bottom-item .infor-detail-nav {
@@ -441,6 +484,7 @@ button {
         section {
             text-align: justify;
             text-justify: distribute-all-lines;
+            letter-spacing: 0.1em;
             margin-top: 10px;
             line-height: 2;
             font-size: 14px;
@@ -453,27 +497,31 @@ button {
     }
 
     .infor-bottom {
+        width: 100%;
+        margin: 0 auto;
+
         .infor-bottom-item {
-            width: auto;
+            width: 100%;
+            margin-bottom: 21px;
 
             .prouct-item-card {
                 .prouct-item-card-infor {
                     .btn {
-                        width: 30px;
-                        height: 31px;
+                        text-align: center;
+                        width: 25px;
+                        height: 25px;
                     }
 
                     .custom-icon {
                         font-size: 12px;
-                        margin-left: 2px;
+
                     }
                 }
             }
 
         }
 
-        width: 90%;
-        margin: 0 auto;
+
 
         h2 {
             margin-top: 50px;
@@ -497,8 +545,10 @@ button {
             .prouct-item-card-infor {
                 height: 46px;
 
+
                 h2,
                 h3 {
+                    margin-top: 4px;
                     font-size: 12px;
                 }
             }
