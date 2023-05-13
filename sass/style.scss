@@ -28,15 +28,15 @@
 @import './page/forum';
 @import './page/forumPost';
 @import './page/forumInfo';
-@import './page/msLiveChat'; 
+@import './page/msLiveChat';
 @import './page/contact';
 
 @import './page/msForumManagement';
 @import './page/msEditAdmins';
-@import './page/msLogin'; 
+@import './page/msLogin';
 @import './page/memberCardAdd';
 @import './page/memberCardEdit';
-@import './page/msLogin.scss'; 
+@import './page/msLogin.scss';
 @import './page/register';
 @import './page/mailCheck';
 @import './page/forgetPassword';
@@ -55,32 +55,33 @@
 @import './page/cartRedirect';
 @import './page/mailCheckRedirect';
 
-@import './page/msSendEmail'; 
-@import './page/msDataManagementOrder'; 
-@import './page/msContentManagement'; 
-@import './component/msTabs'; 
-@import './layout/msLeftSideMenu'; 
-@import './layout/msRightSideContent'; 
+@import './page/msSendEmail';
+@import './page/msDataManagementOrder';
+@import './page/msContentManagement';
+@import './component/msTabs';
+@import './layout/msLeftSideMenu';
+@import './layout/msRightSideContent';
 @import './component/msPagination';
 @import './page/memberOrder';
 @import './page/memberPassword';
 @import './page/msLongfrom';
 @import './page/membercard';
 
-.wrapper{
+.wrapper {
     width: 1200px;
     margin: 0 auto;
 }
 
-@include m(){
-    .wrapper{
+@include m() {
+    .wrapper {
         width: 370px;
     }
 }
 
 @include btnn(200px);
 
-.Label{
+.Label {
     @include Label();
 }
+
 // sass sass\style.scss css/style.css -w

@@ -419,6 +419,16 @@
         display: none;
     }
 
+    .product-filter li {
+        height: 45px;
+
+        a {
+            text-align: center;
+            font-size: 12px;
+            line-height: 3.2;
+        }
+    }
+
     .product-filter {
         flex-direction: column;
         justify-content: center;
