@@ -17,10 +17,11 @@
     <header>
         <nav class="header_nav">
             <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <div class="header_nav_right_inputBox">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="header_nav_right_inputBox-input" type="text">
+            </div>
             <ul class="header_nav_right">
-                <li class="header_nav_right_inputBox">
-                    <input class="header_nav_right_inputBox-input" type="text">
-                </li>
                 <li><a href="#">桌遊商城</a>
                     <ol>
                         <li><a href="#">派對遊戲</a></li>
@@ -59,23 +60,23 @@
     <section class="forum_wrapper">
             <!-- 側邊選單 -->
             <ul class="forum_sidemenu">
-                <li>
+                <li class="forum_sidemenu_li active">
                     <i class="fa-solid fa-file-lines"></i>
                     <h3>所有文章</h3>
                 </li>
-                <li>
+                <li class="forum_sidemenu_li">
                     <i class="fa-brands fa-stack-exchange"></i>
                     <h3>心得分享</h3>
                 </li>
-                <li>
+                <li class="forum_sidemenu_li">
                     <i class="fa-solid fa-users"></i>
                     <h3>揪團區</h3>
                 </li>
-                <li>
+                <li class="forum_sidemenu_li">
                     <i class="fa-solid fa-file-circle-question"></i>
                     <h3>發問區</h3>
                 </li>
-                <li>
+                <li class="forum_sidemenu_li">
                     <i class="fa-solid fa-chalkboard-user"></i>
                     <h3>教學區</h3>
                 </li>
@@ -94,13 +95,25 @@
                 <!-- 文章區域 -->
                 <div class="forum_article_title">
                     <h2>所有文章</h2>
-                    <select class="forum_sort" id="forum_sort">
+                    <!-- <select class="forum_sort" id="forum_sort">
                         <option value="">排序方式</option>
                         <option value="">排序方式</option>
                         <option value="">排序方式</option>
                         <option value="">排序方式</option>
                         <option value="">排序方式</option>
-                    </select>
+                    </select> -->
+
+                    <div class="forum_sort">
+                        <button class="forum_sort_btn" type="button" id="forum_sort_btn" >
+                            <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <ul class="forum_sort_order" >
+                            <li><a class="forum_dropdown_item" href="#">文章日期：由最新到最舊</a></li>
+                            <li><a class="forum_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                            <li><a class="forum_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                            <li><a class="forum_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                        </ul> 
+                    </div>
                 </div>
 
 
@@ -111,7 +124,7 @@
                         <h3>我要發文</h3>
                     </div>    
 
-                        <div class="forum_media_select">
+                        <!-- <div class="forum_media_select">
                             <select class="forum_media_menu_select" id="forum_media_menu_select">
                                 <option value="">所有文章</option>
                                 <option value="">心得分享</option>
@@ -119,9 +132,24 @@
                                 <option value="">發問區</option>
                                 <option value="">教學區</option>
                             </select>
-                        </div>    
+                        </div>     -->
 
-                        <div class="forum_media_sort">
+                        <div class="forum_media_select">
+                            <button class="forum_media_menu_btn" type="button" id="forum_media_menu_btn" >
+                                <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
+                            </button>
+                            <ul class="forum_media_select_order" >
+                                <li><a class="forum_media_select_dropdown_item" href="#">心得分享</a></li>
+                                <li><a class="forum_media_select_dropdown_item" href="#">揪團區</a></li>
+                                <li><a class="forum_media_select_dropdown_item" href="#">發問區</a></li>
+                                <li><a class="forum_media_select_dropdown_item" href="#">教學區</a></li>
+                            </ul> 
+                        </div>
+
+
+
+
+                        <!-- <div class="forum_media_sort">
                             <select class="forum_media_menu_sort" id="forum_media_menu_sort">
                                 <option value="">排序方式</option>
                                 <option value="">排序方式</option>
@@ -129,6 +157,18 @@
                                 <option value="">排序方式</option>
                                 <option value="">排序方式</option>
                             </select>
+                        </div> -->
+
+                        <div class="forum_media_sort">
+                            <button class="forum_media_sort_btn" type="button" id="forum_media_sort_btn" >
+                                <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
+                            </button>
+                            <ul class="forum_media_sort_order" >
+                                <li><a class="forum_media_sort_dropdown_item" href="#">文章日期：由最新到最舊</a></li>
+                                <li><a class="forum_media_sort_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                                <li><a class="forum_media_sort_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                                <li><a class="forum_media_sort_dropdown_item" href="#">文章日期：由最舊到最新</a></li>
+                            </ul> 
                         </div>
                 </div>
 
@@ -178,7 +218,7 @@
                             <!-- 第一文章列表右側下方 -->
                             <ul class="forum_article_item1_right_bottom">
                                 <li>
-                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-solid fa-heart"></i>
                                     <p>1122</p>
                                 </li>
                                 <li>
@@ -191,9 +231,9 @@
 
                     </div>
 
-                     <!-- 第一文章列表 -->
+                     <!-- 第二文章列表 -->
                      <div class="forum_article_item1">
-                        <!-- 第一文章列表左側 -->
+                        <!-- 第二文章列表左側 -->
                         <ul class="forum_article_item1_left">
                             <li class="forum_category">
                                 <h2>發問</h2>
@@ -204,9 +244,9 @@
                             </li>
                         </ul>
 
-                        <!-- 第一文章列表右側 -->
+                        <!-- 第二文章列表右側 -->
                         <div class="forum_article_item1_right">
-                            <!-- 第一文章列表右側上方標籤 -->
+                            <!-- 第二文章列表右側上方標籤 -->
                             <ul class="forum_article_item1_right_label">
                                 <li>
                                     <P>心得分享</P>
@@ -222,7 +262,7 @@
                                 </li>
                             </ul>
 
-                            <!-- 第一文章列表右側中間標題和內文-->
+                            <!-- 第二文章列表右側中間標題和內文-->
                             <ul class="forum_article_item1_right_middle">
                                 <li>
                                     <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
@@ -232,10 +272,10 @@
                                 </li>
                             </ul>
 
-                            <!-- 第一文章列表右側下方 -->
+                            <!-- 第二文章列表右側下方 -->
                             <ul class="forum_article_item1_right_bottom">
                                 <li>
-                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-solid fa-heart"></i>
                                     <p>1122</p>
                                 </li>
                                 <li>
@@ -248,6 +288,119 @@
 
                     </div>
 
+                    <!-- 第三文章列表 -->
+                    <div class="forum_article_item1">
+                        <!-- 第三文章列表左側 -->
+                        <ul class="forum_article_item1_left">
+                            <li class="forum_category">
+                                <h2>教學</h2>
+                            </li>
+                            <li class="forum_name_data">
+                                <p>王小明</p>
+                                <p>2023/05/01</p>
+                            </li>
+                        </ul>
+
+                        <!-- 第三文章列表右側 -->
+                        <div class="forum_article_item1_right">
+                            <!-- 第三文章列表右側上方標籤 -->
+                            <ul class="forum_article_item1_right_label">
+                                <li>
+                                    <P>心得分享</P>
+                                </li>
+                                <li>
+                                    <p>家庭遊戲</p> 
+                                </li>
+                                <li>
+                                    <p>2-5人</p>
+                                </li>
+                                <li>
+                                    <p>超好玩</p>
+                                </li>
+                            </ul>
+
+                            <!-- 第三文章列表右側中間標題和內文-->
+                            <ul class="forum_article_item1_right_middle">
+                                <li>
+                                    <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
+                                </li>
+                                <li>
+                                    <p>如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。</p>
+                                </li>
+                            </ul>
+
+                            <!-- 第三文章列表右側下方 -->
+                            <ul class="forum_article_item1_right_bottom">
+                                <li>
+                                    <i class="fa-solid fa-heart"></i>
+                                    <p>1122</p>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-comment"></i>
+                                    <p>44</p>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <!-- 第四文章列表 -->
+                    <div class="forum_article_item1">
+                        <!-- 第四文章列表左側 -->
+                        <ul class="forum_article_item1_left">
+                            <li class="forum_category">
+                                <h2>台北</h2>
+                            </li>
+                            <li class="forum_name_data">
+                                <p>王小明</p>
+                                <p>2023/05/01</p>
+                            </li>
+                        </ul>
+
+                        <!-- 第四文章列表右側 -->
+                        <div class="forum_article_item1_right">
+                            <!-- 第四文章列表右側上方標籤 -->
+                            <ul class="forum_article_item1_right_label">
+                                <li>
+                                    <P>心得分享</P>
+                                </li>
+                                <li>
+                                    <p>家庭遊戲</p> 
+                                </li>
+                                <li>
+                                    <p>2-5人</p>
+                                </li>
+                                <li>
+                                    <p>超好玩</p>
+                                </li>
+                            </ul>
+
+                            <!-- 第四文章列表右側中間標題和內文-->
+                            <ul class="forum_article_item1_right_middle">
+                                <li>
+                                    <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
+                                </li>
+                                <li>
+                                    <p>如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。</p>
+                                </li>
+                            </ul>
+
+                            <!-- 第四文章列表右側下方 -->
+                            <ul class="forum_article_item1_right_bottom">
+                                <li>
+                                    <i class="fa-solid fa-heart"></i>
+                                    <p>1122</p>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-comment"></i>
+                                    <p>44</p>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
 

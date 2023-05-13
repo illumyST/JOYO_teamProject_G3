@@ -9,11 +9,13 @@
 .contact_top{
     // border: 1px solid blue;
     width: 100%;
+    height: 600px;
     @include flex-container();
     justify-content: center;
     align-content: flex-start;
-    border-radius: 0 0 80% 80%;
+    // border-radius: 0 0 80% 80%;
     background-color: $orange;
+    clip-path: ellipse(800px 300px at 50% 20%);
 }
 
 .contact_top_titel{
@@ -67,6 +69,7 @@
 
 .contact_top_right_text{
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 
@@ -76,7 +79,7 @@
 .contact_middle{
     // border: 1px solid purple;
     width:  100%;
-    margin-top: 100px;
+    // margin-top: 100px;
 }
 
 
