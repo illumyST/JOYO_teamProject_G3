@@ -18,14 +18,14 @@ const routes = [
         children: [
             // 前台子頁＿預設＿[首頁] -------------------
             {
-                path: '',
+                path: '', //空的代表同父層的 path
                 name: 'index',
                 component: () => import('@/pages/index.vue'),
             },
 
             // 前台子頁＿[商城] -------------------
             {
-                path: 'product',
+                path: 'product', 
                 name: 'product',
                 component: () => import('@/pages/product.vue'),
             },
@@ -38,17 +38,21 @@ const routes = [
 
             // 前台子頁＿[會員中心] -------------------
             {
-                path: 'member',
+                path: 'member', 
+                // 網址可能是 「localhost:5173/member」或
+                //「127.0.0.1:5173/member」
                 name: 'member',
                 component: () => import('@/pages/member.vue'),
                 children: [
                     {
-                        path: '',
+                        path: '', //空的意思是 member 預設進入這頁
                         name: 'memberInfo',
                         component: () => import('@/pages/member/memberInfo.vue'),
                     },
                     {
                         path: 'card',
+                        // 網址可能是 「localhost:5173/member/card」或
+                        //「127.0.0.1:5173/member/card」
                         name: 'memberCard',
                         component: () => import('@/pages/member/memberCard.vue'),
                     },
