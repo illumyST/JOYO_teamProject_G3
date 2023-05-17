@@ -6,6 +6,7 @@ export {}
 declare global {
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
+  const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -75,6 +76,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
