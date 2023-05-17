@@ -1,6 +1,5 @@
 <template>
     <main class="wrapper">
-
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
@@ -13,7 +12,6 @@
 </template>
 
 <script setup>
-
 
 // 把 components > Index 中的各個 index 頁面元件引入
 //import TopNavIDX from '@/components/Index/TopNavIDX.vue';
