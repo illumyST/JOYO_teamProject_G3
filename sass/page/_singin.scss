@@ -1,131 +1,97 @@
-
-
-.singin_box {
+.singin_box{
   width: 794px;
-  height: 656px;
   margin: 0 auto;
-  background: #F2F2F2;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border-radius: 5px;
   box-shadow: $shadow;
-  // border: 5px solid gold;
-  margin-top: 70px;
-  margin-bottom: 200px;
-    .singin_little_box{
-      border: 2px solid palegreen;
-      margin: 0 auto;
-      display: flex;
-      text-align: center;
-      justify-content: center;
-    }
-    .singin_member_singin, .singin_member{
+  background: $bg;
+  position: relative;
+  .singin_little_box{
+    display: flex;
+    border-radius: 5px;
+    a{
       width: 50%;
-      display: flex;
-      height: 86px;
+      display: block;
+      text-decoration: none;
+      line-height: 86px;
+      background: $bg;
       text-align: center;
-      // border: 6px solid rgb(69, 14, 151);
-      justify-content: center;
-      align-items: center;  
+      font-size: 24px;
+      letter-spacing: 1px;
+      border-radius: 5px;
+      transition: .3s;
+      &:hover{
+        background: $green;
+        color: #fff;
+      }
+      &:focus{
+        background: $green;
+        color: #fff;
+      }
     }
-      .singin_member {
-      background-color: $green;
-      }
-      .singin_member a{
-        color: black;
-      }
-        .singin_main {
-          margin: 0 auto;
-          justify-content: center;
-          /* 垂直置中 */
-          align-items: center;
-          // border: 3px solid palegreen;
-          width: fit-content;
-          display: block;
-          
-            li{
-                margin: 0 auto;
-                display: block;
-                margin-top: 70px;
-              }
-            input{
-              @include input-text(1.6, 200px);  //第1個行高，第2寬度
-              // border: 5px solid peru;
-            display: flex;
-            justify-content: center;
-            }
-        }
-          .singin_text {
-            padding-left: 20px;
-            line-height: 50px;
-            border-radius: 5px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            font-size: 16PX;
-            width: 590px;
-            box-sizing: border-box;
-            outline: none;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-          }
-            .singin_btn {
-              background: $green;
-              line-height: 59px;
-              width: 590px;
-              display: block;
-              text-decoration: none;
-              text-align: center;
-              border-radius: 5px;
-              box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-              transition: 0.3s;
-              cursor: pointer;
-              color: #fff;
-              display: block;
-              margin: 0 auto;
-            }
-              .singin_btn:hover {
-                background: #513F2E;
-              }
-              .singin_forgetPassword_a_link{
-                float: right;
-                // border: 5px solid  teal;
-                margin-top: 60px;
-                margin-right: 150px;
-                
-              }
+  }
+  .singin_main{
+    display: flex;
+    flex-direction: column;
+    padding: 70px 100px 90px 100px;
+    box-sizing: border-box;
+    label{
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+    input{
+      @include input_text(50px, 590px);
+      margin-bottom: 50px;
+    }
+    a{
+      @include btn($green, 59px, 590px, $orange);
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+  }
+  .singin_btn a {
+    
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+    // border: 10px solid yellow;
+    
+
+  }
 }
 
-@media screen and (max-width:414px){
-  body{
-    width: auto;
-    display: block;
-  }
+@media screen and (max-width:414px) {
   .singin_box{
     width: 370px;
-    height: 470px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
-  .singin_box .singin_main input {
-    display: flex;
-    
-    width: 100%;
+  .singin_box .singin_link a{
+    line-height: 63px;
+    font-size: 16px;
   }
-  .singin_box .singin_btn {
+  .singin_box .singin_main{
+    padding: 40px 17px 50px 17px;
+  }
+  .singin_box .singin_main label{
+    font-size: 16px;
+  }
+  .singin_box .singin_main input{
     width: 335px;
-    height: 40px;
+    line-height: 35px;
+    margin-bottom: 38px;
+    padding-left: 15px;
   }
-  .singin_box .singin_forgetPassword_a_link {
-    margin-right: 17px;
+  .singin_box .singin_main a{
+    width: 335px;
+    line-height: 40px;
+    font-size: 18px;
+    margin-top: 10px;
   }
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
 
 
 

@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    font-family: 'Noto Sans TC';
 
     h1 {
         font-size: 32px;
@@ -417,6 +418,16 @@
         width: 0;
         padding-left: 0;
         display: none;
+    }
+
+    .product-filter li {
+        height: 45px;
+
+        a {
+            text-align: center;
+            font-size: 12px;
+            line-height: 3.2;
+        }
     }
 
     .product-filter {

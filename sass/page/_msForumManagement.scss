@@ -44,11 +44,13 @@
             height: 34px;
             margin-right: 5px;
             border-radius: 2px;
+            border: none
         }
         button{
             @include btn($orange,34px,154px,$green) ;
             height: 34px;
             border-radius: 2px;
+            border: none !important;
         }
 
     }
@@ -101,7 +103,7 @@
         text-align: center;
         width: 140px;
         flex-grow: 1;
-        font-size: $h3;
+        font-size: $p;
        }
        div{
         
