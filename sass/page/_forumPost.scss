@@ -3,7 +3,6 @@
     @include wrapper();
     font-family: Noto Sans, Noto Sans TC, sans-serif;
     color: $orange;
-    margin: 75px auto;
 }
 
 .forumPost_form{
@@ -11,16 +10,18 @@
     width: 80%;
     margin: 0 auto;
     background-color: $bg;
-    padding: 100px 0;
+    padding: 70px 0;
+    margin-bottom: 120px;
 }
 
 .forumPost_form_title{
     // border: 1px solid blue;
-    margin: 0 100px;
+    margin: 0 80px;
 }
 
 .forumPost_form_category, 
-.forumPost_form_score{
+.forumPost_form_score,
+.forumPost_form_area{
     border: 1px solid purple;
     background-color: $orange;
     border: none;
@@ -29,13 +30,20 @@
     color: white;
     padding: 5px 10px;
     font-size: $p;
+    cursor: pointer;
+    width: 170px;
+    height: 50px;
+    letter-spacing: .1em;
+}
+
+.forumPost_form_area{
+    display: none
 }
 
 .forumPost_form_title_text{
-    @include input-text(1.8, 300px);
-    margin: 0 10px;
+    @include input-text(2.9, 300px);
+    margin: 0 20px;
     border: 1px solid $orange;
-    color: $orange;
     &::placeholder{
         color: $orange;
     }
@@ -44,23 +52,23 @@
 .forumPost_form_middle{
     // border: 1px solid red;
     @include flex-container(column, wrap, start, start);
-    margin: 50px 100px;
+    margin: 50px 80px;
     font-size: $h2;
 }
 
 .forumPost_form_middle_title{
-    margin: 10px 0;
+    margin-bottom: 20px;
 }
 
 .forumPost_form_middle_input{
-    @include input-text(1.8, 100%);
+    @include input-text(2.9, 100%);
     &::placeholder{
-        color: $orange;
+        color: #999;
     }
 }
 
 .forumPost_form_middle_text{
-    margin: 30px 0 10px;
+    margin: 40px 0 20px;
 }
 
 .forumPost_form_middle_textarea{
@@ -71,13 +79,14 @@
 }
 
 .forumPost_form_middle_bottom{
-    margin: 30px 0 10px;
+    margin: 40px 0 20px;
 }
 
 .forumPost_form_middle_bottom_text{
-    @include input-text(1.8, 100%);
+    @include input-text(2.9, 100%);
+    margin-bottom: 50px;
     &::placeholder{
-        color: $orange;
+        color: #999;
     }
 }
 
@@ -85,10 +94,6 @@
 
 
 .forumPost_form_button{
-    width: 80%;
-    margin: 10px auto;
-}
-.forumPost_form_button_btn{
     @include btn($orange, 2, 100%, $green);
     border: none;
 }
@@ -100,15 +105,18 @@ input[type=submit]{
 
 
 
-// ===== 手機版 ===== //
-@media screen and (max-width: 414px){
+
+
+// ===== 手機版 414px ===== //
+@include m(){
     .forumPost_wrapper{
-        width: auto;
+        width: 370px;
     }
 
     .forumPost_form{
-        width: 100vw;
+        width: 100%;
         margin: 0;
+        padding: 0;
         background-color: white;
     }
 
@@ -116,33 +124,36 @@ input[type=submit]{
 
 
     .forumPost_form_title{
-        width: 90vw;
+        width: 100%;
         margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
     .forumPost_form_title_text{
-        width: 90vw;
+        width: 100%;
         margin: 20px 0 0;
+        &::placeholder{
+            color: #999;
+        }
 
     }
 
     .forumPost_form_category{
         order: -2;
-        width: 40vw;
+        width: 47.3%;
     }
 
     .forumPost_form_score{
         order: -1;
-        width: 40vw;
+        width: 47.3%;
     }
 
 
 
 
     .forumPost_form_middle{
-        width: 90vw;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -153,18 +164,18 @@ input[type=submit]{
     }
 
     .forumPost_form_middle_input,
-    .forumPost_form_middle_textarea,
-    .forumPost_form_middle_bottom_text{
+    .forumPost_form_middle_textarea{
         margin-top: 20px;
         border: 1px solid $orange;
     }
 
-    .forumPost_form_button{
-        width: 90vw;
-        margin-top: 50px;
+    .forumPost_form_middle_bottom_text{
+        margin: 20px 0;
+        border: 1px solid $orange;
     }
 
-    .forumPost_form_button_btn{
-        width: 90vw;
+    .forumPost_form_button{
+        width: 100%;
+        margin-bottom: 25px;
     }
 }
