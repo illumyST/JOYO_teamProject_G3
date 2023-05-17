@@ -2,11 +2,11 @@
     <li>
         <a :href="product_data.product_info_url">
             <img :src="product_data.product_img_url" alt="">
-            <div class="index_hotProduct_list_pInfo">
+            <div class="product_list_pInfo">
                 <h3>{{ product_data.name }}
                     <p>{{ product_data.price }}</p>
                 </h3>
-                <button class="index_hotProduct_list_pInfo_btn">
+                <button class="product_list_pInfo_btn">
                     <i class="fa-solid fa-cart-shopping custom-icon"></i>
                 </button>
             </div>
@@ -80,7 +80,7 @@ li {
 
     }
 
-    .index_hotProduct_list_pInfo {
+    .product_list_pInfo {
         flex-grow: 1;
         display: flex;
         justify-content: space-between;
@@ -88,7 +88,7 @@ li {
         box-sizing: border-box;
         padding: 20px 16px;
 
-        .index_hotProduct_list_pInfo_btn {
+        .product_list_pInfo_btn {
             width: 56px;
             height: 56px;
             border-radius: 50%;
