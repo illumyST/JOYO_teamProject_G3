@@ -49,21 +49,48 @@
                         </li>
                     </ol>
                 </li>
-                <li><a href="#">討論區</a>
+                <li>
+                    <RouterLink to="/forum">討論區</RouterLink>
                     <ol>
-                        <li><a href="#">心得分享</a></li>
-                        <li><a href="#">揪團區</a></li>
-                        <li><a href="#">發問區</a></li>
-                        <li><a href="#">教學區</a></li>
+                        <li>
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }">
+                                心得分享
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 2 } }">
+                                揪團區
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 3 } }">
+                                發問區
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 4 } }">
+                                教學區
+                            </RouterLink>
+                        </li>
                     </ol>
                 </li>
-                <li><a href="#">聯絡我們</a></li>
-                <li><a href="#"><i class="fa-regular fa-cart-shopping"></i>
+                <li>
+                    <RouterLink to="/contact">
+                        聯絡我們
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/cart">
+                    <i class="fa-regular fa-cart-shopping"></i>
                         <span>購物車</span>
-                    </a></li>
-                <li><a href="#"><i class="fa-regular fa-user"></i>
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/member">
+                    <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
-                    </a></li>
+                    </RouterLink>
+                </li>
             </ul>
             <div class="header_nav_rwdBtn">
                 <i class="far fa-bars fa-regular rwdBar"></i>

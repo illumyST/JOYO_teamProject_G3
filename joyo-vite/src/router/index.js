@@ -102,6 +102,11 @@ const routes = [
                 component: () => import('@/pages/forum.vue'),
                 children: [
                     {
+                        path: ':categoryId',
+                        name: 'forumCategory',
+                        component: () => import('@/pages/forum/forumHome.vue'),
+                    },
+                    {
                         path: '',
                         name: 'forumHome',
                         component: () => import('@/pages/forum/forumHome.vue'),
