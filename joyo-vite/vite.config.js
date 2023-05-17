@@ -24,6 +24,7 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       dts: "src/auto-components.js",
       deep: true, //搜尋子目錄
+      dirs: ['./src'],
     }),
   ],
   resolve: {
