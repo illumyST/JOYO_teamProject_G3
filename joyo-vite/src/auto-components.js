@@ -10,6 +10,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
+    BannerListFRM: typeof import('./components/forum/BannerListFRM.vue')['default']
+    BannerTopFRM: typeof import('./components/forum/BannerTopFRM.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Footer: typeof import('./components/-Global/footer.vue')['default']
     Header: typeof import('./components/-Global/header.vue')['default']
@@ -20,9 +22,11 @@ declare module '@vue/runtime-core' {
     MsTabs: typeof import('./components/-UI_Element/MsTabs.vue')['default']
     NewProductIDX: typeof import('./components/Index/NewProductIDX.vue')['default']
     NewProductListIDX: typeof import('./components/Index/NewProductListIDX.vue')['default']
+    PaginationBarFRM: typeof import('./components/forum/PaginationBarFRM.vue')['default']
     ProductCard: typeof import('./components/-UI_Element/ProductCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
   }
