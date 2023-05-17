@@ -1,6 +1,6 @@
 <template>
     <li>
-        <a :href="product_data.product_info_url">
+        <RouterLink :to="product_data.product_info_url">
             <img :src="product_data.product_img_url" alt="">
             <div class="product_list_pInfo">
                 <h3>{{ product_data.name }}
@@ -10,7 +10,7 @@
                     <i class="fa-solid fa-cart-shopping custom-icon"></i>
                 </button>
             </div>
-        </a>
+        </RouterLink>
     </li>
 </template>
 
@@ -18,7 +18,7 @@
 import { ref } from "vue"
 
 const product_data = ref({
-    product_info_url: '/product/12345',
+    product_info_url: '/productInfo/12345',
     name: '璀璨寶石',
     product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
     price:'$116'
