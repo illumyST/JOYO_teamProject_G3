@@ -7,7 +7,6 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-        <router-link :to="{ name: 'product'}">商品一</router-link>
     </main>
 </template>
 

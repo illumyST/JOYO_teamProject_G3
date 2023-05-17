@@ -1,12 +1,40 @@
 <template>
     <ul class="index_topNav">
-        <li><a href="#">派對遊戲</a></li>
-        <li><a href="#">輕度策略</a></li>
-        <li><a href="#">戰爭遊戲</a></li>
-        <li><a href="#">棋奕遊戲</a></li>
-        <li><a href="#">主題遊戲</a></li>
-        <li><a href="#">家庭遊戲</a></li>
-        <li><a href="#">團隊合作</a></li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }">
+                派對遊戲
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 2 } }">
+                輕度策略
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 3 } }">
+                戰爭遊戲
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 4 } }">
+                棋奕遊戲
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 5 } }">
+                主題遊戲
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 6 } }">
+                家庭遊戲
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 7 } }">
+                團隊合作
+            </RouterLink>
+        </li>
     </ul>
 </template>
 
@@ -15,7 +43,6 @@
 </script>
 
 <style lang="scss" scoped>
-
 .index_topNav {
     display: flex;
     justify-content: space-between;
@@ -33,13 +60,13 @@
         }
     }
 
-    
+
     //------------------ RWD ------------------//
 
     @include m() {
-            flex-wrap: wrap;
-            margin: 0;
-            justify-content: center;
+        flex-wrap: wrap;
+        margin: 0;
+        justify-content: center;
 
         li {
             padding: 10px;
