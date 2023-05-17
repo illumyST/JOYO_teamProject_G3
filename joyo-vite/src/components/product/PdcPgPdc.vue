@@ -1,30 +1,25 @@
 <template>
-    <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPdc></PdcTopPdc>
-        <div class="product-main">
-            <PdcMnAsdPdc></PdcMnAsdPdc>
-            <PdcMnItPdc></PdcMnItPdc>
+    <div class="product-page">
+            <button><i class="fa-sharp fa-solid fa-angle-left"></i></button>
+            <ul>
+                <li><a href="" class="active">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+                <li><a href="">6</a></li>
+            </ul>
+            <button><i class="fa-sharp fa-solid fa-angle-right"></i></button>
         </div>
-        <PdcPgPdc></PdcPgPdc>
-    </div>
-    <router-link :to="{ name: 'productInfo', params: { id: 1 } }">商品一</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 2 } }">商品二</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 3 } }">商品三</router-link>
-
 </template>
 
 <script setup>
-//這裡是手動匯入
-import PdcMnAsdPdc from '@/components/product/PdcMnAsdPdc.vue';
-import PdcMnItPdc from '@/components/product/PdcMnItPdc.vue';
-import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
-//這裡是手動匯入
+
 </script>
 
-
-
 <style lang="scss" scoped>
- .product-wrapper {
+// 沒有加這行會吃不到 globsl.scss
+.product-wrapper {
     width: 1200px;
     margin: 0 auto;
     line-height: 1.5;
@@ -647,5 +642,5 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
 
     }
 
-}  
+} 
 </style>

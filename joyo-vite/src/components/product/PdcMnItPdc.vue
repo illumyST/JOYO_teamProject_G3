@@ -1,30 +1,81 @@
 <template>
-    <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPdc></PdcTopPdc>
-        <div class="product-main">
-            <PdcMnAsdPdc></PdcMnAsdPdc>
-            <PdcMnItPdc></PdcMnItPdc>
-        </div>
-        <PdcPgPdc></PdcPgPdc>
-    </div>
-    <router-link :to="{ name: 'productInfo', params: { id: 1 } }">商品一</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 2 } }">商品二</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 3 } }">商品三</router-link>
 
+<div class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
+  <div v-for="(card, index) in list" :key="index" class="prouct-item-card">
+  <div class="prouct-item-card-tag">
+    <p class="prouct-item-card-tag-player">
+      <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
+      <span>-</span>
+      <span class="prouct-item-card-tag-player-min">{{card.MAX_PLAYER}}</span>
+      <span>人
+      </span>
+    </p>
+  <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
+    </div>
+                    <div class="prouct-item-card-img">
+                        <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
+                        <div>
+                            <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
+                            <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
+                        </div>
+                        <button class="btn prouct-item-card-icon">
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+                            
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
 </template>
 
 <script setup>
-//這裡是手動匯入
-import PdcMnAsdPdc from '@/components/product/PdcMnAsdPdc.vue';
-import PdcMnItPdc from '@/components/product/PdcMnItPdc.vue';
-import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
-//這裡是手動匯入
+
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+</script>
+<script>
+export default {
+  components: {},
+  data(){
+    return{
+      tg:null,
+      page:12,
+      total_page:[],
+      }
+    },
+    methods:{
+       fetchData() {
+        return axios.get('/API/boardGame.json')
+          .then(res => {
+            this.tg = res.data;
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    },
+      getPage(e){
+       for(let i=0;i<this.tg.length;){
+        this.total_page.push(this.tg.slice(i,i+12));
+        i=i+this.page; 
+        }
+        console.log(this.total_page[0][0]);
+      }
+    },
+    mounted(){
+      this.fetchData().then(() => {
+      this.getPage();
+    });
+    }
+}
 </script>
 
-
-
 <style lang="scss" scoped>
- .product-wrapper {
+// 沒有加這行會吃不到 globsl.scss
+.product-wrapper {
     width: 1200px;
     margin: 0 auto;
     line-height: 1.5;
@@ -45,6 +96,13 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
         font-size: 20px;
     }
 }
+
+.btn.active {
+    background-color: $orange;
+}
+
+
+
 .product-top {
     width: 80%;
     display: flex;
@@ -647,5 +705,6 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
 
     }
 
-}  
+}
+
 </style>

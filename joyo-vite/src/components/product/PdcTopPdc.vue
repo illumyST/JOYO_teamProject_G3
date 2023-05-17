@@ -1,30 +1,119 @@
+
 <template>
-    <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPdc></PdcTopPdc>
-        <div class="product-main">
-            <PdcMnAsdPdc></PdcMnAsdPdc>
-            <PdcMnItPdc></PdcMnItPdc>
-        </div>
-        <PdcPgPdc></PdcPgPdc>
-    </div>
-    <router-link :to="{ name: 'productInfo', params: { id: 1 } }">商品一</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 2 } }">商品二</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 3 } }">商品三</router-link>
-
+    <div class="col-3 breadcrumb">
+                <h2>全部商品</h2>
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
+                        <li class="breadcrumb-item active"><a href="#">所有商品</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-9 ">
+                <div class="product-filter col-12">
+                    <div>
+                        <div class="product-filter-cater">
+                            <button class="product-filter-btn" type="button" id=""
+                                v-on:click="product_filter_cater_show">
+                                <span>全部商品</span>
+                                <span><img src="./assets/img/Vector.png" alt=""></span>
+                            </button>
+                            <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
+                                <li><a class="dropdown-item" href="#">全部商品</a></li>
+                                <li><a class="dropdown-item" href="#">派對遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">輕度策略</a></li>
+                                <li><a class="dropdown-item" href="#">戰爭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">棋奕遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">主題遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">家庭遊戲</a></li>
+                                <li><a class="dropdown-item" href="#">團隊合作</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-filter-div">
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_player_show">
+                                    <span>遊玩人數</span><span><img src="./assets/img/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-player" :class="{active:product_filter_player_active}">
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">1人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">2人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">3人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">4人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">5人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">6人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">7人遊戲</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_player">多人遊戲</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
+                                            src="./assets/img/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-age" :class="{active:product_filter_age_active}">
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+5</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+6</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+7</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+8</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+9</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+10</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+11</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+12</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="product-filter-btn" type="button" id="product_filter_btn"
+                                    v-on:click="product_filter_order_show">
+                                    <span>排序方式</span><span><img src="./assets/img/Vector.png" alt=""></span>
+                                </button>
+                                <ul class="product-filter-order" :class="{active:product_filter_order_active}">
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">上架日期：由高到低</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">上架日期：由低到高</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">建議售價：由高到低</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"
+                                            v-on:click="product_filter_get_order">建議售價：由低到高</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </template>
-
 <script setup>
-//這裡是手動匯入
-import PdcMnAsdPdc from '@/components/product/PdcMnAsdPdc.vue';
-import PdcMnItPdc from '@/components/product/PdcMnItPdc.vue';
-import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
-//這裡是手動匯入
+
 </script>
 
-
-
 <style lang="scss" scoped>
- .product-wrapper {
+// 沒有加這行會吃不到 globsl.scss
+.product-wrapper {
     width: 1200px;
     margin: 0 auto;
     line-height: 1.5;
@@ -45,6 +134,13 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
         font-size: 20px;
     }
 }
+
+.btn.active {
+    background-color: $orange;
+}
+
+
+
 .product-top {
     width: 80%;
     display: flex;
@@ -647,5 +743,6 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
 
     }
 
-}  
+}
+
 </style>

@@ -1,49 +1,28 @@
 <template>
-    <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPdc></PdcTopPdc>
-        <div class="product-main">
-            <PdcMnAsdPdc></PdcMnAsdPdc>
-            <PdcMnItPdc></PdcMnItPdc>
-        </div>
-        <PdcPgPdc></PdcPgPdc>
-    </div>
-    <router-link :to="{ name: 'productInfo', params: { id: 1 } }">商品一</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 2 } }">商品二</router-link>
-    <router-link :to="{ name: 'productInfo', params: { id: 3 } }">商品三</router-link>
+    <aside class="col-2 ">
+                <h1>遊戲分類</h1>
+                <ul>
+                    <li class="active"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">派對遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
+                    <li><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li>
+                </ul>
 
+            </aside>
 </template>
-
 <script setup>
-//這裡是手動匯入
-import PdcMnAsdPdc from '@/components/product/PdcMnAsdPdc.vue';
-import PdcMnItPdc from '@/components/product/PdcMnItPdc.vue';
-import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
-//這裡是手動匯入
+
 </script>
 
-
-
 <style lang="scss" scoped>
- .product-wrapper {
-    width: 1200px;
-    margin: 0 auto;
-    line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    font-family: 'Noto Sans TC';
+// 沒有加這行會吃不到 globsl.scss
 
-    h1 {
-        font-size: 32px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
-
-    h3 {
-        font-size: 20px;
-    }
+.btn.active {
+    background-color: $orange;
 }
 .product-top {
     width: 80%;
@@ -199,6 +178,24 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
 
 .product-filter-age.active {
     display: block;
+}
+.product-sidemenu {
+    display: block;
+    text-decoration: none;
+    border-radius: 5px;
+    line-height: 59px;
+    width: 200px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-left:35px;
+    font-size: $h3;
+    background: $green;
+    margin-bottom: 10px;
+    transition: .3s;
+    letter-spacing: 2px;
+    &:hover{
+        background: $orange;
+    }
 }
 
 .product-filter-order.active {
@@ -647,5 +644,6 @@ import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
 
     }
 
-}  
+}
+
 </style>
