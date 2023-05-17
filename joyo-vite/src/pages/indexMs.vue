@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import Default from '@/layouts/MsDefault.vue'
+import Default from '@/layouts/MsDefault.vue';
 </script>
 
 <style lang="scss" scoped>

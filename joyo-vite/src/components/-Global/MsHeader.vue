@@ -1,15 +1,46 @@
 <template>
-    <div>
-    </div>
-</template>
-
-<script setup>
-
-</script>
-
-<style lang="scss" scoped>
-div{
-    height: 70px;
+    <header class="ms_header">
+      <nav class="ms_nav">
+        <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
+      </nav>
+    </header>
+  </template>
+  
+  <script setup></script>
+  
+  <style lang="scss" scoped>
+  .ms_header {
     background-color: $orange;
-}
-</style>
+    height: 70px;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 100px;
+  }
+  
+  .ms_nav {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .ms_logo {
+      width: 188px;
+    }
+    a {
+      color: white;
+      font-size: $h2;
+      font-weight: 600;
+      font-family: "Noto Sans TC";
+      i {
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    }
+  }
+  
+  .ms_wrapper {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  </style>
+  

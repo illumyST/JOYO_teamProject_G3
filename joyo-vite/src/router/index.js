@@ -25,9 +25,16 @@ const routes = [
 
             // 前台子頁＿[商城] -------------------
             {
-                path: 'product', 
+                path: 'product',
                 name: 'product',
                 component: () => import('@/pages/product.vue'),
+                children: [
+                    {
+                        path: ':categoryId',
+                        name: 'productCategory',
+                        component: () => import('@/pages/product.vue'),
+                    }
+                ]
             },
 
             {
@@ -38,7 +45,7 @@ const routes = [
 
             // 前台子頁＿[會員中心] -------------------
             {
-                path: 'member', 
+                path: 'member',
                 // 網址可能是 「localhost:5173/member」或
                 //「127.0.0.1:5173/member」
                 name: 'member',
@@ -95,6 +102,11 @@ const routes = [
                 component: () => import('@/pages/forum.vue'),
                 children: [
                     {
+                        path: ':categoryId',
+                        name: 'forumCategory',
+                        component: () => import('@/pages/forum/forumHome.vue'),
+                    },
+                    {
                         path: '',
                         name: 'forumHome',
                         component: () => import('@/pages/forum/forumHome.vue'),
@@ -110,13 +122,6 @@ const routes = [
                         component: () => import('@/pages/forum/forumPost.vue'),
                     },
                 ]
-            },
-
-            // 前台子頁＿[contact] -------------------
-            {
-                path: 'contact',
-                name: 'contact',
-                component: () => import('@/pages/contact.vue'),
             },
 
             // 前台子頁＿[contact] -------------------
