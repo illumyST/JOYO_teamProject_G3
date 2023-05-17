@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddCartBtn: typeof import('./components/-UI_Element/AddCartBtn.vue')['default']
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Footer: typeof import('./components/-Global/footer.vue')['default']
