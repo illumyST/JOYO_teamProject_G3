@@ -64,3 +64,14 @@ i {
     width: 370px;
   }
 }
+
+// 後台共通設定
+.ms_wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.ms_right_side_content {
+  width: 963px;
+}
