@@ -6,7 +6,16 @@ export {}
 declare global {
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
+<<<<<<< HEAD
   const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
+=======
+  const IfrBtPDCNF: typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']
+  const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
+  const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
+  const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
+  const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
+  const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
   const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
@@ -40,6 +49,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const productInfo: typeof import('./src/pages/product/productInfo.vue')['default']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -77,7 +87,16 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+<<<<<<< HEAD
     readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
+=======
+    readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
+    readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
+    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
+    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
+    readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
+    readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -111,6 +130,7 @@ declare module 'vue' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly productInfo: UnwrapRef<typeof import('./src/pages/product/productInfo.vue')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
