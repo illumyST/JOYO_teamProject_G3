@@ -50,7 +50,6 @@ declare module '@vue/runtime-core' {
     MsLeftSideMenu: typeof import('./components/-UI_Element/MsLeftSideMenu.vue')['default']
     MsLiveChat: typeof import('./pages/ms-customer-service/MsLiveChat.vue')['default']
     MsLogin: typeof import('./pages/ms-login/MsLogin.vue')['default']
-    MsLoginForm: typeof import('./components/MsLogin/MsLoginForm.vue')['default']
     MsLoginFormMLF: typeof import('./components/MsLogin/MsLoginFormMLF.vue')['default']
     MsOrderManagement: typeof import('./pages/ms-order-management/MsOrderManagement.vue')['default']
     MsProductManagement: typeof import('./pages/ms-product-management/MsProductManagement.vue')['default']
@@ -60,27 +59,21 @@ declare module '@vue/runtime-core' {
     My: typeof import('./My.vue')['default']
     NewProductIDX: typeof import('./components/Index/NewProductIDX.vue')['default']
     NewProductListIDX: typeof import('./components/Index/NewProductListIDX.vue')['default']
-<<<<<<< HEAD
-    PaginationBarFRM: typeof import('./components/forum/PaginationBarFRM.vue')['default']
-=======
     NotFound: typeof import('./pages/notFound.vue')['default']
     Pages: typeof import('./pages/index.vue')['default']
+    PaginationBarFRM: typeof import('./components/forum/PaginationBarFRM.vue')['default']
     PdcMnAsdPdc: typeof import('./components/product/PdcMnAsdPdc.vue')['default']
     PdcMnItPdc: typeof import('./components/product/PdcMnItPdc.vue')['default']
     PdcPgPdc: typeof import('./components/product/PdcPgPdc.vue')['default']
     PdcTopPdc: typeof import('./components/product/PdcTopPdc.vue')['default']
     Product: typeof import('./pages/product.vue')['default']
->>>>>>> 2723b1a042a799e0ba1cb3ed3073cbcafad9595b
     ProductCard: typeof import('./components/-UI_Element/ProductCard.vue')['default']
     ProductInfo: typeof import('./pages/product/productInfo.vue')['default']
     Register: typeof import('./pages/register.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-<<<<<<< HEAD
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
-=======
     SignIn: typeof import('./pages/signIn.vue')['default']
->>>>>>> 2723b1a042a799e0ba1cb3ed3073cbcafad9595b
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
   }

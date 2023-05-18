@@ -1,16 +1,105 @@
 <template>
+  <div class="forum_article">
+    <!-- 文章區域 -->
+    <div class="forum_article_title">
+      <h2>所有文章</h2>
+      <!-- <select class="forum_sort" id="forum_sort">
+                        <option value="">排序方式</option>
+                        <option value="">排序方式</option>
+                        <option value="">排序方式</option>
+                        <option value="">排序方式</option>
+                        <option value="">排序方式</option>
+                    </select> -->
+
+      <div class="forum_sort">
+        <button class="forum_sort_btn" type="button" id="forum_sort_btn">
+          <span>排序方式</span
+          ><span><i class="fa-solid fa-angle-down"></i></span>
+        </button>
+        <ul class="forum_sort_order">
+          <li v-for="item in SortLi" :key="item">
+            <a class="forum_dropdown_item" href="#"> {{ item }} </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div class="forum_media_sort">
+                            <select class="forum_media_menu_sort" id="forum_media_menu_sort">
+                                <option value="">排序方式</option>
+                                <option value="">排序方式</option>
+                                <option value="">排序方式</option>
+                                <option value="">排序方式</option>
+                                <option value="">排序方式</option>
+                            </select>
+                        </div> -->
+  </div>
+
+  <!-- 手機版的選單 -->
+  <div class="forum_media">
+    <div class="forum_media_button">
+      <h3>我要發文</h3>
+    </div>
+
+    <!-- <div class="forum_media_select">
+            <select class="forum_media_menu_select" id="forum_media_menu_select">
+                <option value="">所有文章</option>
+                <option value="">心得分享</option>
+                <option value="">揪團區</option>
+                <option value="">發問區</option>
+                <option value="">教學區</option>
+            </select>
+        </div>     -->
+
+    <div class="forum_media_select">
+      <button
+        class="forum_media_menu_btn"
+        type="button"
+        id="forum_media_menu_btn"
+      >
+        <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
+      </button>
+      <ul class="forum_media_select_order">
+        <li v-for="item in MediaSeclet" :key="item">
+          <a class="forum_media_select_dropdown_item" href="#">{{ item }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="forum_media_sort">
+      <button
+        class="forum_media_sort_btn"
+        type="button"
+        id="forum_media_sort_btn"
+      >
+        <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
+      </button>
+      <ul class="forum_media_sort_order">
+        <li v-for="item in SortLi" :key="item">
+          <a class="forum_media_sort_dropdown_item" href="#"
+            >{{ item }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <!-- 文章列表 -->
   <div class="forum_article_item">
     <!-- 第一文章列表 -->
-    <div class="forum_article_item1">
+    <div
+      class="forum_article_item1"
+      v-for="(item, index) in Items"
+      :key="index"
+    >
       <!-- 第一文章列表左側 -->
       <ul class="forum_article_item1_left">
         <li class="forum_category">
-          <h2>10</h2>
+          <h2>{{ item.ItemCategory }}</h2>
         </li>
         <li class="forum_name_data">
-          <p>王小明</p>
-          <p>2023/05/01</p>
+          <p>{{ item.ItemName }}</p>
+          <p>{{ item.ItemDate }}</p>
         </li>
       </ul>
 
@@ -19,29 +108,26 @@
         <!-- 第一文章列表右側上方標籤 -->
         <ul class="forum_article_item1_right_label">
           <li>
-            <P>心得分享</P>
+            <P>{{ item.CategoryLabel }}</P>
           </li>
           <li>
-            <p>家庭遊戲</p>
+            <p>{{ item.SortLabel }}</p>
           </li>
           <li>
-            <p>2-5人</p>
+            <p>{{ item.NumLabel }}</p>
           </li>
           <li>
-            <p>超好玩</p>
+            <p>{{ item.CustomLabel }}</p>
           </li>
         </ul>
 
         <!-- 第一文章列表右側中間標題和內文-->
         <ul class="forum_article_item1_right_middle">
           <li>
-            <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
+            <h2>{{ item.ItemTitle }}</h2>
           </li>
           <li>
-            <p>
-              如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A
-              Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。
-            </p>
+            <p>{{ item.ItemText }}</p>
           </li>
         </ul>
 
@@ -49,185 +135,11 @@
         <ul class="forum_article_item1_right_bottom">
           <li>
             <i class="fa-solid fa-heart"></i>
-            <p>1122</p>
+            <p>{{ item.ItemLoveNum }}</p>
           </li>
           <li>
             <i class="fa-solid fa-comment"></i>
-            <p>44</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 第二文章列表 -->
-    <div class="forum_article_item1">
-      <!-- 第二文章列表左側 -->
-      <ul class="forum_article_item1_left">
-        <li class="forum_category">
-          <h2>發問</h2>
-        </li>
-        <li class="forum_name_data">
-          <p>王小明</p>
-          <p>2023/05/01</p>
-        </li>
-      </ul>
-
-      <!-- 第二文章列表右側 -->
-      <div class="forum_article_item1_right">
-        <!-- 第二文章列表右側上方標籤 -->
-        <ul class="forum_article_item1_right_label">
-          <li>
-            <P>心得分享</P>
-          </li>
-          <li>
-            <p>家庭遊戲</p>
-          </li>
-          <li>
-            <p>2-5人</p>
-          </li>
-          <li>
-            <p>超好玩</p>
-          </li>
-        </ul>
-
-        <!-- 第二文章列表右側中間標題和內文-->
-        <ul class="forum_article_item1_right_middle">
-          <li>
-            <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
-          </li>
-          <li>
-            <p>
-              如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A
-              Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。
-            </p>
-          </li>
-        </ul>
-
-        <!-- 第二文章列表右側下方 -->
-        <ul class="forum_article_item1_right_bottom">
-          <li>
-            <i class="fa-solid fa-heart"></i>
-            <p>1122</p>
-          </li>
-          <li>
-            <i class="fa-solid fa-comment"></i>
-            <p>44</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 第三文章列表 -->
-    <div class="forum_article_item1">
-      <!-- 第三文章列表左側 -->
-      <ul class="forum_article_item1_left">
-        <li class="forum_category">
-          <h2>教學</h2>
-        </li>
-        <li class="forum_name_data">
-          <p>王小明</p>
-          <p>2023/05/01</p>
-        </li>
-      </ul>
-
-      <!-- 第三文章列表右側 -->
-      <div class="forum_article_item1_right">
-        <!-- 第三文章列表右側上方標籤 -->
-        <ul class="forum_article_item1_right_label">
-          <li>
-            <P>心得分享</P>
-          </li>
-          <li>
-            <p>家庭遊戲</p>
-          </li>
-          <li>
-            <p>2-5人</p>
-          </li>
-          <li>
-            <p>超好玩</p>
-          </li>
-        </ul>
-
-        <!-- 第三文章列表右側中間標題和內文-->
-        <ul class="forum_article_item1_right_middle">
-          <li>
-            <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
-          </li>
-          <li>
-            <p>
-              如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A
-              Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。
-            </p>
-          </li>
-        </ul>
-
-        <!-- 第三文章列表右側下方 -->
-        <ul class="forum_article_item1_right_bottom">
-          <li>
-            <i class="fa-solid fa-heart"></i>
-            <p>1122</p>
-          </li>
-          <li>
-            <i class="fa-solid fa-comment"></i>
-            <p>44</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 第四文章列表 -->
-    <div class="forum_article_item1">
-      <!-- 第四文章列表左側 -->
-      <ul class="forum_article_item1_left">
-        <li class="forum_category">
-          <h2>台北</h2>
-        </li>
-        <li class="forum_name_data">
-          <p>王小明</p>
-          <p>2023/05/01</p>
-        </li>
-      </ul>
-
-      <!-- 第四文章列表右側 -->
-      <div class="forum_article_item1_right">
-        <!-- 第四文章列表右側上方標籤 -->
-        <ul class="forum_article_item1_right_label">
-          <li>
-            <P>揪團</P>
-          </li>
-          <li>
-            <p>團隊合作</p>
-          </li>
-          <li>
-            <p>2-5人</p>
-          </li>
-          <li>
-            <p>超好玩</p>
-          </li>
-        </ul>
-
-        <!-- 第四文章列表右側中間標題和內文-->
-        <ul class="forum_article_item1_right_middle">
-          <li>
-            <h2>新的桌遊推薦從前從前… Once Upon A Time－中文版</h2>
-          </li>
-          <li>
-            <p>
-              如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A
-              Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。
-            </p>
-          </li>
-        </ul>
-
-        <!-- 第四文章列表右側下方 -->
-        <ul class="forum_article_item1_right_bottom">
-          <li>
-            <i class="fa-solid fa-heart"></i>
-            <p>1122</p>
-          </li>
-          <li>
-            <i class="fa-solid fa-comment"></i>
-            <p>44</p>
+            <p>{{ item.ItemReadNum }}</p>
           </li>
         </ul>
       </div>
@@ -236,11 +148,137 @@
 </template>
 
 <script setup>
+import { computed, reactive, ref } from "vue";
+
+// ===== 文章列表 ===== //
+const Items = ref([
+  {
+    ItemCategory: "10",
+    ItemName: "王小明",
+    ItemDate: "2023/05/01",
+    CategoryLabel: "心得分享",
+    SortLabel: "家庭遊戲",
+    NumLabel: "2-5人",
+    CustomLabel: "超好玩",
+    ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
+    ItemText:"如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
+    ItemLoveNum: "1122",
+    ItemReadNum: "44",
+  },
+  {
+    ItemCategory: "教學",
+    ItemName: "王小明",
+    ItemDate: "2023/05/01",
+    CategoryLabel: "心得分享",
+    SortLabel: "家庭遊戲",
+    NumLabel: "2-5人",
+    CustomLabel: "超好玩",
+    ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
+    ItemText:
+      "如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
+    ItemLoveNum: "1122",
+    ItemReadNum: "44",
+  },
+]);
+
+const SortLi = reactive({
+  SortItem1: "文章日期：由最新到最舊",
+  SortItem2: "文章日期：由最舊到最新",
+  SortItem3: "觀看次數：由最多到最少",
+  SortItem4: "觀看次數：由最少到最多",
+});
+
+const MediaSeclet = reactive({
+  MediaSeclet1: "心得分享",
+  MediaSeclet2: "揪團區",
+  MediaSeclet3: "發問區",
+  MediaSeclet4: "教學區",
+});
+// const SortClick = computed(() => {});
 </script>
 
 
 
 <style lang="scss" scoped>
+// ===== 手機版的選單 ===== //
+.forum_media {
+  // border: 1px solid red;
+  display: none;
+}
+
+.forum_media_button {
+  // border: 1px solid blue;
+  @include btn($brown, 2.2, 100%, $orange);
+  text-align: center;
+  font-size: $h3;
+}
+
+// =====  文章title ===== //
+.forum_article_title {
+  // border: 1px solid red;
+  @include flex-container();
+  margin: 100px 0 40px;
+  width: 100%;
+}
+
+.forum_article_title h2 {
+  // border: 1px solid black;
+  font-size: $h2;
+  flex-grow: 1;
+  text-align: start;
+  font-weight: 600;
+}
+
+// .forum_article_title select{
+//     background-color: $orange;
+//     border: none;
+//     outline: none;
+//     border-radius: 5px;
+//     color: white;
+//     padding: 5px 10px;
+//     font-size: $p;
+// }
+
+.forum_article_title {
+  .forum_sort {
+    @include drowDown(210px, 50px, 100%, 50%);
+    button {
+      span {
+        letter-spacing: 0.1em;
+      }
+
+      .fa-angle-down {
+        margin-left: 15px;
+        font-weight: 600;
+      }
+    }
+    ul {
+      // border: 1px solid black;
+      width: 16%;
+      top: 316px;
+      right: 55px;
+      display: none;
+      li {
+        // border: 1px solid blue;
+        display: block;
+        a {
+          // border: 1px solid red;
+          display: block;
+          width: 100%;
+          font-size: $p;
+          line-height: 3;
+          letter-spacing: 0.1em;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.forum_sort_order.active {
+  display: block;
+}
+
 // ===== 中間文章區域 ===== //
 .forum_article_item1 {
   // border: 1px solid plum;
@@ -363,6 +401,110 @@
 
 //------------------ RWD ------------------//
 @include m() {
+  // ===== 手機版選單 ===== //
+  .forum_media {
+    display: block;
+    width: 100%;
+
+    .forum_media_button {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .forum_media_select {
+      @include drowDown(100%, 40px, 100%, 50%);
+      margin-bottom: 10px;
+
+      button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $green;
+        font-size: 1.1rem;
+
+        span {
+          letter-spacing: 0.1em;
+          margin: 0 10px;
+        }
+
+        .fa-angle-down {
+          font-weight: 600;
+        }
+      }
+
+      ul {
+        width: 89.3%;
+        top: 392px;
+        display: none;
+
+        li {
+          width: 100%;
+          display: block;
+
+          a {
+            width: 100%;
+            line-height: 2.5;
+            background-color: $green;
+            color: white;
+            letter-spacing: 0.1em;
+          }
+        }
+      }
+    }
+
+    .forum_media_select_order.active {
+      display: block;
+    }
+
+    .forum_media_sort {
+      margin-bottom: 40px;
+      @include drowDown(100%, 40px, 100%, 50%);
+
+      button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+
+        span {
+          letter-spacing: 0.1em;
+          margin: 0 10px;
+        }
+
+        .fa-angle-down {
+          font-weight: 600;
+        }
+      }
+
+      ul {
+        width: 89.3%;
+        top: 443px;
+        display: none;
+
+        li {
+          display: block;
+          width: 100%;
+
+          a {
+            width: 100%;
+            line-height: 2.5;
+            color: white;
+            letter-spacing: 0.1em;
+          }
+        }
+      }
+    }
+
+    .forum_media_sort_order.active {
+      display: block;
+    }
+  }
+
+  // ===== 文章區域 ===== //
+  .forum_article_title {
+    display: none;
+  }
+
   .forum_article_item {
     width: 100%;
     &:last-child {
