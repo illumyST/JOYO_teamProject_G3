@@ -1,7 +1,6 @@
 // 有用到的 mixins 再丟進來，不要全丟！
 // 只有自己用到的話就不要丟進來，寫在自己的 <style lang="scss" scoped> 裡面
 
-<<<<<<< HEAD
 // 側邊選單
 @mixin sidemenu(){
     display: block;
@@ -80,7 +79,7 @@
             display: none;
         }
     }
-=======
+}
 @mixin center(){
     position: absolute;
     left: 50%;
@@ -125,6 +124,5 @@
             padding: 0;
 
         }
-}
->>>>>>> 338836f6a63db5595a572fa69983629037e49d2e
+    }
 }
