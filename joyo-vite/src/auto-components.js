@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     MemberInfo: typeof import('./pages/member/memberInfo.vue')['default']
     MemberOrder: typeof import('./pages/member/memberOrder.vue')['default']
     MemberPassword: typeof import('./pages/member/memberPassword.vue')['default']
+    MemberSideMenu: typeof import('./components/-UI_Element/MemberSideMenu.vue')['default']
     MsAddAdmin: typeof import('./pages/ms-system-admin/MsAddAdmin.vue')['default']
     MsAddProduct: typeof import('./pages/ms-product-management/MsAddProduct.vue')['default']
     MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
