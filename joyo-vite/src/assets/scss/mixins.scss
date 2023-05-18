@@ -1,2 +1,128 @@
 // 有用到的 mixins 再丟進來，不要全丟！
 // 只有自己用到的話就不要丟進來，寫在自己的 <style lang="scss" scoped> 裡面
+
+// 側邊選單
+@mixin sidemenu(){
+    display: block;
+    text-decoration: none;
+    border-radius: 5px;
+    line-height: 59px;
+    width: 200px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-left:35px;
+    font-size: $h3;
+    background: $green;
+    margin-bottom: 10px;
+    transition: .3s;
+    letter-spacing: 2px;
+    &:hover{
+        background: $orange;
+    }
+}
+
+// flex排版
+@mixin flex-container($direction: row, $wrap: wrap, $justify-content: center, $align-items: center) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
+  }
+
+  // 按鈕樣式
+@mixin btn($bg , $lh, $w, $hover){
+    background: $bg;
+    line-height: $lh;
+    width: $w;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    transition: .3s;
+    cursor: pointer ;
+    color: #fff;
+    &:hover{
+        background: $hover;
+    }
+};
+
+
+//下拉式選單
+@mixin drowDown($w,$h,$liW,$liH){
+    width: $w;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    button{
+        width: 100%;
+        height: $h;
+        background-color: $orange ;
+        border-radius: 5px;
+        border: 0;
+        font-size: 20px; 
+        color: #fff;
+        position: relative;
+        cursor: pointer ;
+    }
+    ul{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        li{
+            width: $liW;
+            height: $liH;
+            text-align: center;
+            background-color: $orange ;
+            color: #fff;
+            display: none;
+        }
+    }
+}
+@mixin center(){
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin btn($w){
+    .btn{
+        margin: 0 auto;
+        max-width: $w;
+        padding: 10px 16px;
+        line-height: 40px;
+        box-sizing: border-box;
+        text-align: center;
+        cursor: pointer;
+        transition: all .3s;
+        border-radius: 10px;
+        background-color: $green;
+        color: #fff;
+        font-size: 20px;
+        letter-spacing: .15em;
+        box-shadow: $shadow;
+        border: none;
+        @content;
+        &:hover{
+            // background-color: darken($bgc,10);
+            background-color: $orange;
+        };
+        &__submit{
+            background :#F29441;
+        }
+        &__addCart{      
+            background :#F29441;
+        }
+        &__pCardAddCart{
+            border-radius: 50%;
+        }
+        @include m(){
+            max-width: 140px;
+            display: block;
+            padding: 0;
+
+        }
+    }
+}

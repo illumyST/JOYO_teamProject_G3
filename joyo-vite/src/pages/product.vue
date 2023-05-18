@@ -18,7 +18,6 @@
 
 <script setup>
 //這裡是手動匯入
-
 //這裡是手動匯入
 import { useRoute } from 'vue-router'
 
@@ -77,9 +76,13 @@ onMounted(() => {
         width: 200px;
     }
 }
+
+
+
 .prouct-item-card-infor .btn {
     
 }
+
 .breadcrumb ol {
     display: flex;
     font-size: 16px;
@@ -364,6 +367,10 @@ onMounted(() => {
 }
 
 .prouct-item-card.prouct-item-card-infor button {
+
+    background-color: #fff;
+    border-radius: 100%;
+
     border-radius: 100%;
     border: 0;
     background-color: #fff;

@@ -2,14 +2,42 @@
 
 <div class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
   <div v-for="(card, index) in list" :key="index" class="prouct-item-card">
+<<<<<<< HEAD
+  <div class="prouct-item-card-tag">
+    <p class="prouct-item-card-tag-player">
+=======
   <router-link :to="'productInfo/' +'ID:'+card.ID" v-on:click="saveLocal">
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
       <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
       <span>-</span>
       <span class="prouct-item-card-tag-player-min">{{card.MAX_PLAYER}}</span>
       <span>人
       </span>
+<<<<<<< HEAD
+    </p>
+  <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
+    </div>
+                    <div class="prouct-item-card-img">
+                        <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
+                    </div>
+                    <div class="prouct-item-card-infor">
+                        <div>
+                            <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
+                            <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
+                        </div>
+                        <button class="btn prouct-item-card-icon">
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping custom-icon"></i>
+                            </a>
+                            
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+=======
       </p>
       <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
     </div>
@@ -31,6 +59,7 @@
   </div>
 </div>
 
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
 </template>
 
 <script setup>
@@ -73,11 +102,15 @@ export default {
     }
 }
 </script>
+<<<<<<< HEAD
+
+=======
 <style>
 .prouct-item-card-icon{
 
 }
 </style>
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {
@@ -624,6 +657,9 @@ export default {
             display: none;
         }
     }
+<<<<<<< HEAD
+
+=======
     .prouct-item-card-infor .btn {
     border-radius: 100%;
     border: 0;
@@ -636,6 +672,7 @@ export default {
     align-items: center;
     justify-content: center;
 }
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     .prouct-item-card {
         width: 175px;
         height: 294px;
@@ -713,7 +750,10 @@ export default {
         button {
             width: 42px;
             height: 42px;
+<<<<<<< HEAD
+=======
             border-radius: 100%;
+>>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
 
             .custom-icon {
                 font-size: 20px;
