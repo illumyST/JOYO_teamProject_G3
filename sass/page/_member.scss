@@ -15,8 +15,8 @@
     };
     ul{
         
-        a{ @include sidemenu()
-           ;
+        a{ 
+            @include sidemenu();
             i{
                 margin-right: 13px;
             }
@@ -81,11 +81,12 @@
             }
         }
     }
-    a{
+    .submit{
         @include btn($orange, 59px, 691px, $green);
         font-size: $h2;
         letter-spacing: 1px;
         margin-bottom: 95px;
+        border: none;
     }
 }
 
