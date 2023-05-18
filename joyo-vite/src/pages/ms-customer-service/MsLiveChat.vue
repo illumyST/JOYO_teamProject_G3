@@ -6,11 +6,17 @@
         <template #button1>用戶訊息</template>
         <template #button2>會員資訊</template>
     </MsTabs>
+    <MsChatAreaMLC>
+
+    </MsChatAreaMLC>
     </div>
+
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+    // import MsChatAreaMLC from '../../components/MsLiveChat/MsChatAreaMLC.vue'; 
+</script>
 
 <style lang="scss" scoped>
 //
