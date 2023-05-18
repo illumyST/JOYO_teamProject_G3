@@ -7,20 +7,10 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-        <router-link :to="{ name: 'product'}">商品一</router-link>
     </main>
 </template>
 
 <script setup>
-
-// 把 components > Index 中的各個 index 頁面元件引入
-//import TopNavIDX from '@/components/Index/TopNavIDX.vue';
-//import BannerIDX from '@/components/Index/BannerIDX.vue';
-//import HotProductIDX from '@/components/Index/HotProductIDX.vue';
-//import NewProductIDX from '@/components/Index/NewProductIDX.vue';
-//import NewProductListIDX from '@/components/Index/NewProductListIDX.vue';
-//import HotForumPostIDX from '@/components/Index/HotForumPostIDX.vue';
-
 
 </script>
 

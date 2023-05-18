@@ -1,11 +1,11 @@
 <template>
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPdc></PdcTopPdc>
+        <PdcTopPDC></PdcTopPDC>
         <div class="product-main">
-            <PdcMnAsdPdc></PdcMnAsdPdc>
-            <PdcMnItPdc></PdcMnItPdc>
+            <PdcMnAsdPDC></PdcMnAsdPDC>
+            <PdcMnItPDC></PdcMnItPDC>
         </div>
-        <PdcPgPdc></PdcPgPdc>
+        <PdcPgPDC></PdcPgPDC>
     </div>
     <div :class="$route.params.categoryId">
         {{ $route.params.categoryId }}
@@ -18,9 +18,7 @@
 
 <script setup>
 //這裡是手動匯入
-import PdcMnAsdPdc from '@/components/product/PdcMnAsdPdc.vue';
-import PdcMnItPdc from '@/components/product/PdcMnItPdc.vue';
-import PdcPgPdc from '@/components/product/PdcPgPdc.vue';
+
 //這裡是手動匯入
 import { useRoute } from 'vue-router'
 
@@ -79,7 +77,9 @@ onMounted(() => {
         width: 200px;
     }
 }
-
+.prouct-item-card-infor .btn {
+    
+}
 .breadcrumb ol {
     display: flex;
     font-size: 16px;
@@ -364,8 +364,16 @@ onMounted(() => {
 }
 
 .prouct-item-card.prouct-item-card-infor button {
-    background-color: #fff;
     border-radius: 100%;
+    border: 0;
+    background-color: #fff;
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .prouct-item-card-infor {

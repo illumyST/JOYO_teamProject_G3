@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddCartBtn: typeof import('./components/-UI_Element/AddCartBtn.vue')['default']
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Cart: typeof import('./pages/cart.vue')['default']
@@ -24,6 +25,10 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./components/-Global/header.vue')['default']
     HotForumPostIDX: typeof import('./components/Index/HotForumPostIDX.vue')['default']
     HotProductIDX: typeof import('./components/Index/HotProductIDX.vue')['default']
+    IfrBtPDCNF: typeof import('./components/productInfo/IfrBtPDCNF.vue')['default']
+    IfrDtPDCNF: typeof import('./components/productInfo/IfrDtPDCNF.vue')['default']
+    IfrItPDCNF: typeof import('./components/productInfo/IfrItPDCNF.vue')['default']
+    IfrTopPDCNF: typeof import('./components/productInfo/IfrTopPDCNF.vue')['default']
     IndexLanding: typeof import('./pages/indexLanding.vue')['default']
     IndexMs: typeof import('./pages/indexMs.vue')['default']
     IndexUser: typeof import('./pages/indexUser.vue')['default']
