@@ -2,10 +2,18 @@
     <div class="member-left">
         <h2>會員中心</h2>
         <ul>
-            <li><a href="#"><i class="fa-solid fa-circle-user"></i>個人檔案</a></li>
-            <li><a href="#"><i class="fa-solid fa-credit-card"></i>信用卡</a></li>
-            <li><a href="#"><i class="fa-solid fa-lock"></i>更改密碼</a></li>
-            <li><a href="#"><i class="fa-solid fa-rectangle-list"></i>訂單專區</a></li>
+            <li>
+                <router-link to="/member"><i class="fa-solid fa-circle-user"></i>個人檔案</router-link>
+            </li>
+            <li>
+                <router-link to="/member/card"><i class="fa-solid fa-credit-card"></i>信用卡</router-link>
+            </li>
+            <li>
+                <router-link to="/member/password"><i class="fa-solid fa-lock"></i>更改密碼</router-link>
+            </li>
+            <li>
+                <router-link to="/member/Order"><i class="fa-solid fa-rectangle-list"></i>訂單專區</router-link>
+            </li>
         </ul>
     </div>
 </template>

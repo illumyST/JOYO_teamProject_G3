@@ -30,25 +30,6 @@
     align-items: $align-items;
   }
 
-  // 按鈕樣式
-@mixin btn($bg , $lh, $w, $hover){
-    background: $bg;
-    line-height: $lh;
-    width: $w;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: $shadow;
-    transition: .3s;
-    cursor: pointer ;
-    color: #fff;
-    &:hover{
-        background: $hover;
-    }
-};
-
-
 //下拉式選單
 @mixin drowDown($w,$h,$liW,$liH){
     width: $w;
