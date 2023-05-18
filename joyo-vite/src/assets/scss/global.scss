@@ -65,6 +65,7 @@ i {
   }
 }
 
+
 // 後台共通設定
 .ms_wrapper {
   width: 1200px;
@@ -75,6 +76,8 @@ i {
 .ms_right_side_content {
   width: 963px;
 }
+
 @include btn(200px){
 
 }
+
