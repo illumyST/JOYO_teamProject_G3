@@ -27,13 +27,10 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./components/-Global/header.vue')['default']
     HotForumPostIDX: typeof import('./components/Index/HotForumPostIDX.vue')['default']
     HotProductIDX: typeof import('./components/Index/HotProductIDX.vue')['default']
-<<<<<<< HEAD
-=======
     IfrBtPDCNF: typeof import('./components/productInfo/IfrBtPDCNF.vue')['default']
     IfrDtPDCNF: typeof import('./components/productInfo/IfrDtPDCNF.vue')['default']
     IfrItPDCNF: typeof import('./components/productInfo/IfrItPDCNF.vue')['default']
     IfrTopPDCNF: typeof import('./components/productInfo/IfrTopPDCNF.vue')['default']
->>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     IndexLanding: typeof import('./pages/indexLanding.vue')['default']
     IndexMs: typeof import('./pages/indexMs.vue')['default']
     IndexUser: typeof import('./pages/indexUser.vue')['default']
@@ -43,6 +40,7 @@ declare module '@vue/runtime-core' {
     MemberInfo: typeof import('./pages/member/memberInfo.vue')['default']
     MemberOrder: typeof import('./pages/member/memberOrder.vue')['default']
     MemberPassword: typeof import('./pages/member/memberPassword.vue')['default']
+    MemberSideMenu: typeof import('./components/-UI_Element/MemberSideMenu.vue')['default']
     MsAddAdmin: typeof import('./pages/ms-system-admin/MsAddAdmin.vue')['default']
     MsAddProduct: typeof import('./pages/ms-product-management/MsAddProduct.vue')['default']
     MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
@@ -58,10 +56,8 @@ declare module '@vue/runtime-core' {
     MsLeftSideMenu: typeof import('./components/-UI_Element/MsLeftSideMenu.vue')['default']
     MsLiveChat: typeof import('./pages/ms-customer-service/MsLiveChat.vue')['default']
     MsLogin: typeof import('./pages/ms-login/MsLogin.vue')['default']
-<<<<<<< HEAD
-=======
+
     MsLoginForm: typeof import('./components/MsLogin/MsLoginForm.vue')['default']
->>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     MsLoginFormMLF: typeof import('./components/MsLogin/MsLoginFormMLF.vue')['default']
     MsOrderManagement: typeof import('./pages/ms-order-management/MsOrderManagement.vue')['default']
     MsProductManagement: typeof import('./pages/ms-product-management/MsProductManagement.vue')['default']
@@ -73,10 +69,7 @@ declare module '@vue/runtime-core' {
     NewProductListIDX: typeof import('./components/Index/NewProductListIDX.vue')['default']
     NotFound: typeof import('./pages/notFound.vue')['default']
     Pages: typeof import('./pages/index.vue')['default']
-<<<<<<< HEAD
     PaginationBarFRM: typeof import('./components/forum/PaginationBarFRM.vue')['default']
-=======
->>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     PdcMnAsdPdc: typeof import('./components/product/PdcMnAsdPdc.vue')['default']
     PdcMnItPdc: typeof import('./components/product/PdcMnItPdc.vue')['default']
     PdcPgPdc: typeof import('./components/product/PdcPgPdc.vue')['default']
@@ -87,10 +80,7 @@ declare module '@vue/runtime-core' {
     Register: typeof import('./pages/register.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-<<<<<<< HEAD
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
-=======
->>>>>>> ab0e02f98163fbb1926e01e0c0666a823977370e
     SignIn: typeof import('./pages/signIn.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
