@@ -1,6 +1,6 @@
 <template>
   <div class="ms_wrapper">
-    <MsLoginFormMLF></MsLoginFormMLF>
+    <MsLoginFormMLI></MsLoginFormMLI>
   </div>
   
 </template>
