@@ -8,11 +8,11 @@
                 </ul>
             </div>
             <div class="infor-detail-contain">
-                <section v-show="show" class="infor-detail-ds">
+                <div v-show="show" class="infor-detail-ds">
                  {{filetData.DESCRIPTION}}
-                </section>
-                <section v-show="show" class="infor-detail-no"></section>
-                <section v-show="show" class="infor-detail-star">
+                </div>
+                <div v-show="show" class="infor-detail-no"></div>
+                <div v-show="show" class="infor-detail-star">
                     <div class="col-3 infor-detail-star-rank">
                         <p>總星等</p>
                         <ul>
@@ -92,7 +92,7 @@
                             </div>
                         </article>
                     </div>
-                </section>
+                </div>
             </div>
         </article>
 </template>
