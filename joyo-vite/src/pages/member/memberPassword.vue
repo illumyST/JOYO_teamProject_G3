@@ -11,7 +11,6 @@
                     <input type="text">
                     <label for="">確認新密碼</label>
                     <input type="text">
-                    <!-- <a href="#">修改密碼</a>  -->
                     <input type="submit" class="changepass" value="修改密碼">                      
                 </form>
             </div>
@@ -44,7 +43,6 @@
     }
 }
 
-
 @mixin input-text($lh, $w) {
     padding-left: 20px;
     line-height: $lh;
@@ -56,8 +54,6 @@
     outline: none;
     letter-spacing: 1px;
 }
-
-
 
 
 .memberPassword-right{
@@ -75,23 +71,25 @@
         box-sizing: border-box;
         label{
             font-size: $h2;
-            margin-bottom: 8px;
             letter-spacing: 1px;
             color: $brown;
         }
         input{
-            @include input-text(50px, 793px);
+            @include input-text(46px, 793px);
+            margin-top: 8px;
             margin-bottom: 30px;
             font-size: 22px;
             color: $brown;
         }
         .changepass{
-            @include btn($orange, 59px, 793px, $green);
+            @include btn($orange, 57px, 793px, $green);
             font-size: $h2;
             letter-spacing: 1px;
             margin-top: 100px;
             margin-bottom: 20px;
             border: none;
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }
@@ -142,11 +140,12 @@
     line-height: 35px;
     padding-left: 15px;
     font-size: 16px;
+    margin-top: 5px;
 }
 .memberPassword-right .memberPassword-right-card .changepass{
     font-size: 16px;
     width: 335px;
-    line-height: 40px;
+    line-height: 38px;
     margin-top: 50px;
 }
 }

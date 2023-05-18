@@ -39,6 +39,8 @@ declare module '@vue/runtime-core' {
     MailCheck: typeof import('./pages/mailCheck.vue')['default']
     Member: typeof import('./pages/member.vue')['default']
     MemberCard: typeof import('./pages/member/memberCard.vue')['default']
+    MemberCardAddMbc: typeof import('./components/MemberCard/MemberCardAddMbc.vue')['default']
+    MemberCardEditMbc: typeof import('./components/MemberCard/MemberCardEditMbc.vue')['default']
     MemberCreditCardMbc: typeof import('./components/MemberCard/MemberCreditCardMbc.vue')['default']
     MemberInfo: typeof import('./pages/member/memberInfo.vue')['default']
     MemberOrder: typeof import('./pages/member/memberOrder.vue')['default']

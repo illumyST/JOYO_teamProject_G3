@@ -89,12 +89,12 @@
     .membercard-right main li{
         width: 370px;
     }
-    .membercard-right main li .fa-brands{
+    .membercard-right main li .fa-credit-card{
         font-size: 25px;
     }
     .membercard-right main li h3{
         font-size: 16px;
-        color: $brown;
+        width: 110px;
     }
     .membercard-right main li .delete{
         width: 90px;

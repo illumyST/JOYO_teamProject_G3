@@ -54,12 +54,14 @@
             <h1>新增信用卡/金融卡</h1>
             <a href="#" class="close"><i class="fa-solid fa-xmark"></i></a>
             <div class="cardimfo">
-                <h2>卡片資訊</h2>
-                <input type="text" placeholder="信用卡卡號">
-                <input type="text" placeholder="持卡人姓名">
-                <h2>自訂卡片名稱</h2>
-                <input type="text" placeholder="請輸入信用卡暱稱">
-                <a href="#">新增卡片</a>
+                <form action="" method="POST">
+                    <label for="">卡片資訊</label>
+                    <input type="text" class="card" placeholder="信用卡卡號">
+                    <input type="text" class="cardName" placeholder="持卡人姓名">
+                    <label for="">自訂卡片名稱</label>
+                    <input type="text" class="card" placeholder="請輸入信用卡暱稱">
+                    <input type="submit" class="addcard" value="新增卡片">
+                </form>
             </div>
         </div>
     </div>

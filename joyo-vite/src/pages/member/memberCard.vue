@@ -8,11 +8,14 @@
                 <!-- <input type="button" value="增加卡片" class="btn"> -->
             </div>
             <MemberCreditCardMbc></MemberCreditCardMbc>
+            <!-- <MemberCardAddMbc></MemberCardAddMbc> -->
+            <!-- <MemberCardEditMbc></MemberCardEditMbc> -->
         </div>
     </div>
 </template>
 
 <script setup>
+import MemberCardAddMbc from '../../components/MemberCard/MemberCardAddMbc.vue';
 import MemberCreditCardMbc from '../../components/MemberCard/MemberCreditCardMbc.vue';
 
 
