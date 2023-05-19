@@ -140,6 +140,11 @@
     margin-bottom: 30px;
     box-shadow: $shadow;
     border-radius: 5px;
+
+    &:hover{
+        background-color: #dedddd;
+        cursor: pointer;
+    }
 }
 
 // ===== 文章左側評分&發文人&發文日期 ==== //
@@ -308,8 +313,8 @@
 
 
 
-// ===== 手機版 ===== //
-@media screen and (max-width: 414px){
+// ===== 手機版 414px ===== //
+@include m(){
 .forum_wrapper{
     width: 370px;
     flex-direction: column;

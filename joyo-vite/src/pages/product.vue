@@ -18,7 +18,6 @@
 
 <script setup>
 //這裡是手動匯入
-
 //這裡是手動匯入
 import { useRoute } from 'vue-router'
 
@@ -40,7 +39,54 @@ onMounted(() => {
 
 
 <style lang="scss" scoped>
- .product-wrapper {
+.col-1 {
+    width: 8.3333333333%;
+  }
+  
+  .col-2 {
+    width: 16.6666666667%;
+  }
+  
+  .col-3 {
+    width: 25%;
+  }
+  
+  .col-4 {
+    width: 33.3333333333%;
+  }
+  
+  .col-5 {
+    width: 41.6666666667%;
+  }
+  
+  .col-6 {
+    width: 50%;
+  }
+  
+  .col-7 {
+    width: 58.3333333333%;
+  }
+  
+  .col-8 {
+    width: 66.6666666667%;
+  }
+  
+  .col-9 {
+    width: 75%;
+  }
+  
+  .col-10 {
+    width: 83.3333333333%;
+  }
+  
+  .col-11 {
+    width: 91.6666666667%;
+  }
+  
+  .col-12 {
+    width: 100%;
+  }
+.product-wrapper {
     width: 1200px;
     margin: 0 auto;
     line-height: 1.5;
@@ -76,6 +122,12 @@ onMounted(() => {
     aside {
         width: 200px;
     }
+}
+
+
+
+.prouct-item-card-infor .btn {
+    
 }
 
 .breadcrumb ol {
@@ -362,6 +414,10 @@ onMounted(() => {
 }
 
 .prouct-item-card.prouct-item-card-infor button {
+
+    background-color: #fff;
+    border-radius: 100%;
+
     border-radius: 100%;
     border: 0;
     background-color: #fff;

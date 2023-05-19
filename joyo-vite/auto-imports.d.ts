@@ -6,6 +6,7 @@ export {}
 declare global {
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
+  const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
   const IfrBtPDCNF: typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
   const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
@@ -88,6 +89,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
     readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>

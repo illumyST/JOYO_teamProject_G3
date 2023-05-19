@@ -14,10 +14,11 @@
     <header>
         <nav class="header_nav">
             <a href="#" class="header_nav_logoBox"><img class="header_nav_logo" src="../../assets/img/logo.svg" alt=""></a>
+            <div class="header_nav_right_inputBox">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="header_nav_right_inputBox-input" type="text">
+            </div>
             <ul class="header_nav_right">
-                <li class="header_nav_right_inputBox">
-                    <input class="header_nav_right_inputBox-input" type="text">
-                </li>
                 <li><a href="#">桌遊商城</a>
                     <ol>
                         <li><a href="#">派對遊戲</a></li>
@@ -71,6 +72,13 @@
                         <option value="">發問區</option>
                         <option value="">揪團區</option>
                     </select>
+
+                    <select class="forumPost_form_area" id="forumPost_form_area">
+                        <option value="">揪團地點</option>
+                        <option value="">台北市</option>
+                        <option value="">基隆市</option>
+                        <option value="">新北市</option>
+                    </select>
                 </div>
 
                 <div class="forumPost_form_middle">
@@ -82,12 +90,10 @@
 
                    <label for="" class="forumPost_form_middle_bottom">為你的文章客製標籤</label>
                    <input type="text" class="forumPost_form_middle_bottom_text" id="forumPost_form_middle_bottom_text" placeholder="為你的文章客製標籤">
-                </div>
 
-                <div class="forumPost_form_button">
-                    <input type="submit" class="forumPost_form_button_btn" id="forumPost_form_button_btn" value="發文">
+                   <input type="submit" class="forumPost_form_button" id="forumPost_form_button" value="發文">
                 </div>
-
+            
             </form>
 
     </section>

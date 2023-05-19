@@ -2,62 +2,74 @@
     // border: 1px solid red;
     @include wrapper();
     color: $brown;
-    // margin: 75px auto;
+}
 
+.contact_top_bgc{
+    width: 100%;
+    height: 1200px;
+    background-color: $orange;
+    clip-path: ellipse(1000px 500px at 50% 20%);
+    position: absolute;
+    top: -80px;
+    z-index: -1;
 }
 
 .contact_top{
     // border: 1px solid blue;
     width: 100%;
-    height: 600px;
     @include flex-container();
-    justify-content: center;
-    align-content: flex-start;
-    // border-radius: 0 0 80% 80%;
-    background-color: $orange;
-    clip-path: ellipse(800px 300px at 50% 20%);
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 300px;
 }
 
 .contact_top_titel{
-    text-align: center;
-    font-size: $h1_pri;
-    color: white;
     width: 100%;
-    margin: 20px 0;
-    letter-spacing: 1px;
+    margin-bottom: 75px;
+    h1{
+        width: 100%;
+        font-size: $h1_pri;
+        color: white;
+        letter-spacing: 1px;
+        text-align: center;
+    }
 }
 
 .contact_top_left{
     // border: 1px solid green;
-    color: white;
-    width: 30%;
+    width: 40%;
     text-align: center;
     margin-right: 20px;
+    flex-grow: 1;
 
-    h1{
-        font-size: 80px;
-        font-weight: 900;
-        line-height: 1.5;
+    img{
+        width: 85%;
+        margin-bottom: 50px;
     }
+
 
     p{
-        font-size: $h3;
+        font-size: 28px;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 13px;
     }
 }
+
+
 
 .contact_top_right{
     // border: 1px solid yellow;
     width: 40%;
-    line-height: 2;
-    font-size: $h3;
-    letter-spacing: 2px;
-    
+    flex-grow: 1;
 
-    span{
-        background-color: wheat;
-        padding: 8px;
+    h2{
+        line-height: 2;
+        font-size: $h3;
+        letter-spacing: 2px;
+        font-weight: 600;
     }
-
+    
     i{
         margin-right: 10px;
     }
@@ -70,6 +82,15 @@
 .contact_top_right_text{
     margin-bottom: 15px;
     text-align: justify;
+    
+    a{
+        display: inline-block;
+        background-color: wheat;
+        padding: 8px;
+        border-radius: 5px;
+        line-height: 1;
+    }
+    
 }
 
 
@@ -79,29 +100,32 @@
 .contact_middle{
     // border: 1px solid purple;
     width:  100%;
-    // margin-top: 100px;
+
+    h1{
+        font-size: $h1_pri;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
+        font-weight: 600;
+    }
 }
 
 
-.contact_middle_title{
-    font-size: $h1_pri;
-    text-align: center;
-    letter-spacing: 1px;
-    margin-bottom: 50px;
-}
+
 
 .contact_middle_qa{
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
 
     h3{
         // border: 1px solid blue;
         font-size: $h3;
-        padding: 10px 20px;
+        padding: 0 30px;
         background-color: $green;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: 550; 
+        line-height: 2;   
     }
 
     h3::after{
@@ -111,11 +135,17 @@
         color:  $brown;
     }
 
+    h3:hover{
+        background-color: #83af5fb9;
+        cursor: pointer;
+    }
+
     p{
         line-height: 2;
         letter-spacing: 1px;
         background-color: $bg;
-        padding: 20px;
+        padding: 20px 30px;
+        
     }
 }
 
@@ -140,7 +170,7 @@
 .contact_bottom{
     // border: 1px solid green;
     @include flex-container();
-    margin: 50px 0;
+    margin: 120px 0;
     position: relative;
 }
 
@@ -157,7 +187,7 @@
 
 .contact_bottom_info{
     @include flex-container(row, wrap, flex-start);
-    width: 90%;
+    width: 100%;
     margin: 40px 0;
     
 
@@ -217,10 +247,10 @@
     width: 20%;
     position: absolute;
     z-index: -1;
-    top: 0;
-    right: 188px;
+    top: -90px;
+    right: 155px;
 
-    img{
+    svg{
         width: 100%;
     }
 }
@@ -229,10 +259,10 @@
 
 
 .contact_bottom_customer_service{
-    border: 10px solid white;
+    border: 3px solid white;
     position: absolute;
-    bottom: 30px;
-    right: 170px;
+    bottom: 20px;
+    right: 135px;
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -356,4 +386,103 @@
     font-size: $h1_sub;
     text-align: center;
     color: $orange;
+}
+
+
+
+// ===== 手機版 414px ===== //
+@include m(){
+    .contact_wrapper{
+        width: 370px;
+    }
+
+    .contact_top_bgc{
+        height: 580px;
+        clip-path: ellipse(400px 230px at 50% 10%);
+        top: 40px;
+    }
+
+    .contact_top{
+        flex-direction: column;
+        margin-bottom: 140px;
+    }
+
+    .contact_top_titel{
+        display: none;
+    }
+
+    .contact_top_left{
+        width: 100%;
+        img{
+            display: none;
+        }
+
+        p{
+            width: 100%;
+            font-size: $p;
+            letter-spacing: 8px;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+
+    .contact_top_right{
+        width: 100%;
+
+        .contact_top_right_text{
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        > h2 + h2{
+            display: none;
+        }
+    }
+
+    .contact_middle{
+        h1{
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+    }
+
+    .contact_middle_qa{
+        h3{
+            font-size: 1rem;
+        }
+    }
+
+    .contact_bottom{
+        margin: 40px 0 50px;
+
+        h1{
+            font-size: 1.4rem;
+        }
+    }
+
+    .contact_bottom_info{
+        margin-top: 30px;
+    }
+
+    .contact_bottom_info1{
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .contact_bottom_info2{
+        display: none;
+    }
+
+    .contact_bottom_info3{
+        display: none;
+    }
+
+    .contact_bottom_line{
+        display: none;
+    }
+
+    .contact_bottom_customer_service{
+        bottom: 210px;
+        right: 0;
+    }
 }
