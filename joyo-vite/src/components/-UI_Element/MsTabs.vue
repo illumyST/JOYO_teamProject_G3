@@ -1,17 +1,30 @@
 <template>
   <div class="ms_tabs">
-    <button class="-active"><slot name="button1">請輸入內容</slot></button>
+    <button class="" :class="{ '-active': open1 }">
+      <slot name="button1">請輸入內容</slot>
+    </button>
     <!-- 如果不想顯示第二個按鈕，則在引入時加上showBtn2屬性，並設定為false -->
     <!-- <MsTabs :showBtn2="false"></MsTabs>  -->
-    <button v-if="showBtn2" class=""><slot name="button2">請輸入內容</slot></button>
+    <button v-if="showBtn2" class="" :class="{ '-active': open2 }">
+      <slot name="button2">請輸入內容</slot>
+    </button>
   </div>
 </template>
 <script>
 export default {
+  // props: ["open1", "open2", "showBtn2"],
   props: {
+    open1: {
+      type: Boolean, 
+      default: true, 
+    }, 
+    open2: {
+      type: Boolean, 
+      default: false, 
+    }, 
     showBtn2: {
-        type: Boolean, 
-        default: true, 
+        type: Boolean,
+        default: true,
     }
   },
   data() {},
@@ -19,6 +32,9 @@ export default {
     func() {
       console.log("hi");
     },
+  },
+  mounted() {
+    console.log(this.open1);
   },
 };
 </script>
@@ -36,7 +52,7 @@ export default {
     margin-right: 15px;
     background-color: $bg;
     color: $brown;
-    cursor:pointer; 
+    cursor: pointer;
   }
   .-active {
     background-color: $orange;
