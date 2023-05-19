@@ -1,7 +1,7 @@
 <template>
   <!-- 廣告區域 -->
   <div class="forum_advertise">
-    <img src="./assets/img/forum_advertise.jpg" alt="" />
+    <!-- <img src="./assets/img/forum_advertise.jpg" alt="" /> -->
   </div>
 </template>
 

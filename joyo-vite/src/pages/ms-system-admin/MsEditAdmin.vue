@@ -1,7 +1,5 @@
 <template>
-    <div>
-        msEditAdmin
-    </div>
+    <msEditAdminForm></msEditAdminForm>
 </template>
 
 <script setup>
