@@ -65,48 +65,50 @@
             <h2>個人檔案</h2>
             <div class="member-right-card">
                 <!-- 右邊最上面 頭貼+名字 -->
-                <div class="member-right-name">
-                    <img src="assets/img/cat.png" alt="">
-                    <div class="name">
-                        <h3>用戶名稱</h3>
-                        <input type="text" class="member-name-text" placeholder="註冊時輸入的資料自動帶入">
+                <form action="">
+                    <div class="member-right-name">
+                        <img src="assets/img/cat.png" alt="">
+                        <div class="name">
+                            <label for="">用戶名稱</label>
+                            <input type="text" class="member-name-text" placeholder="註冊時輸入的資料自動帶入">
+                        </div>
                     </div>
-                </div>
-                <!-- email -->
-                <div class="email">
-                    <h3>電子郵件</h3>
-                    <input type="text" class="member-text" placeholder="註冊時輸入的資料自動帶入">
-                </div>
-                <!-- 生日 -->
-                <div class="birth">
-                    <h3>生日</h3>
-                    <input type="text" class="member-text" placeholder="輸入您的生日">
-                </div>
-                <!-- 電話號碼 -->
-                <div class="phone">
-                    <h3>手機號碼</h3>
-                    <input type="text" class="member-text" placeholder="輸入您的手機號碼">
-                </div>
-                <!-- 地址 -->
-                <div class="address">
-                    <h3>地址</h3>
-                    <div class="address-top">
-                        <select name="" id="">
-                            <option value="">城市/縣</option>
-                            <option value="">台北市</option>
-                            <option value="">新北市</option>
-                            <option value="">桃園市</option>
-                            <option value="">台中市</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">區域</option>
-                        </select>
+                    <!-- email -->
+                    <div class="email">
+                        <label for="">電子郵件</label>
+                        <input type="text" class="member-text" placeholder="註冊時輸入的資料自動帶入">
                     </div>
-                    <div class="address-bottom">
-                        <input type="text" class="member-text" placeholder="輸入您的詳細地址">
+                    <!-- 生日 -->
+                    <div class="birth">
+                        <label for="">生日</label>
+                        <input type="text" class="member-text" placeholder="輸入您的生日">
                     </div>
-                </div>
-                <input type="submit" class="submit" value="儲存">
+                    <!-- 電話號碼 -->
+                    <div class="phone">
+                        <label for="">機號碼</label>
+                        <input type="text" class="member-text" placeholder="輸入您的手機號碼">
+                    </div>
+                    <!-- 地址 -->
+                    <div class="address">
+                        <label for="">地址</label>
+                        <div class="address-top">
+                            <select name="" id="">
+                                <option value="">城市/縣</option>
+                                <option value="">台北市</option>
+                                <option value="">新北市</option>
+                                <option value="">桃園市</option>
+                                <option value="">台中市</option>
+                            </select>
+                            <select name="" id="">
+                                <option value="">區域</option>
+                            </select>
+                        </div>
+                        <div class="address-bottom">
+                            <input type="text" class="member-text" placeholder="輸入您的詳細地址">
+                        </div>
+                    </div>
+                    <input type="submit" class="submit" value="儲存">
+                </form>
             </div>
         </div>
     </div>  

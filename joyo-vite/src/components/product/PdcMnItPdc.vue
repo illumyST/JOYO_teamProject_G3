@@ -73,15 +73,11 @@ export default {
     }
 }
 </script>
-<<<<<<< HEAD
-
-=======
 <style>
 .prouct-item-card-icon{
    
 }
 </style>
->>>>>>> peiya
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {

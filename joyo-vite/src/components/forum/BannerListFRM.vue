@@ -18,7 +18,7 @@
         </button>
         <ul class="forum_sort_order">
           <li v-for="item in SortLi" :key="item">
-            <a class="forum_dropdown_item" href="#"> {{ item }} </a>
+            <RouterLink class="forum_dropdown_item" to="/">{{ item }} </RouterLink>
           </li>
         </ul>
       </div>
@@ -38,7 +38,7 @@
   <!-- 手機版的選單 -->
   <div class="forum_media">
     <div class="forum_media_button">
-      <h3>我要發文</h3>
+      <RouterLink to="/forum/forumPost">我要發文</RouterLink>
     </div>
 
     <!-- <div class="forum_media_select">
@@ -61,7 +61,7 @@
       </button>
       <ul class="forum_media_select_order">
         <li v-for="item in MediaSeclet" :key="item">
-          <a class="forum_media_select_dropdown_item" href="#">{{ item }}</a>
+          <RouterLink class="forum_media_select_dropdown_item" to="/">{{ item }}</RouterLink>
         </li>
       </ul>
     </div>
@@ -76,9 +76,7 @@
       </button>
       <ul class="forum_media_sort_order">
         <li v-for="item in SortLi" :key="item">
-          <a class="forum_media_sort_dropdown_item" href="#"
-            >{{ item }}</a
-          >
+          <a class="forum_media_sort_dropdown_item" href="#">{{ item }}</a>
         </li>
       </ul>
     </div>
@@ -161,23 +159,38 @@ const Items = ref([
     NumLabel: "2-5人",
     CustomLabel: "超好玩",
     ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
-    ItemText:"如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
+    ItemText:
+      "如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
     ItemLoveNum: "1122",
     ItemReadNum: "44",
   },
   {
     ItemCategory: "教學",
-    ItemName: "王小明",
-    ItemDate: "2023/05/01",
-    CategoryLabel: "心得分享",
-    SortLabel: "家庭遊戲",
-    NumLabel: "2-5人",
+    ItemName: "王小雅",
+    ItemDate: "2023/05/11",
+    CategoryLabel: "教學區",
+    SortLabel: "策略遊戲",
+    NumLabel: "2-6人",
     CustomLabel: "超好玩",
-    ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
+    ItemTitle: "有人有新版電力公司的中文規則嗎？",
     ItemText:
-      "如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
-    ItemLoveNum: "1122",
-    ItemReadNum: "44",
+      "如果你正在尋找新版電力公司的中文規則，我建議你可以到遊戲官方網站或者論壇上尋找相關資訊，或者向遊戲發行商或書店詢問。另外，也可以在一些桌遊社群或論壇上詢問其他玩家是否有這方面的資料或經驗，他們可能會提供你有用的建議和幫助。此外，如果你還沒有玩過電力公司這款遊戲，我非常推薦你試試看，這是一款非常經典和受歡迎的桌遊，適合家庭、朋友、團隊等多種場合和人數。遊戲中需要玩家們通過購買發電廠、購買燃料、升級發電廠等方式，來提高自己的能源產量和利潤，同時也需要競爭和合作與其他玩家展開交易和競爭，達成最終勝利。遊戲操作簡單、策略性強，可以讓玩家們體驗到經濟管理、投資規劃等方面的樂趣和挑戰，同時也有很多不同的版本和擴展包，可以讓遊戲更加豐富和有趣。",
+    ItemLoveNum: "555",
+    ItemReadNum: "34",
+  },
+  {
+    ItemCategory: "揪團",
+    ItemName: "王小軒",
+    ItemDate: "2023/05/08",
+    CategoryLabel: "揪團區",
+    SortLabel: "派對遊戲",
+    NumLabel: "6人以上",
+    CustomLabel: "超好玩",
+    ItemTitle: "BANG(砰)上班族假日策略團，目前西門4缺2",
+    ItemText:
+      "大家好，我們是一個上班族假日策略團，目前正在尋找三位有興趣一起加入我們的團隊，共同探索西門町的美食和景點，同時也喜歡桌遊的朋友更是歡迎加入！我們的團隊主要以健康和自然為主題，不會有賭博活動，因此歡迎喜歡玩桌遊的朋友們加入我們的行列，一起享受假日的樂趣。如果你是喜歡挑戰策略的人，我們可以一起玩各種桌遊，例如「經典桌遊大富翁」、「卡牌遊戲魔獸爭霸」、「角色扮演遊戲暗黑破壞神」等等，讓我們在遊戲中提升思考能力，同時也能增進彼此之間的感情。如果你對於新穎的桌遊有興趣，我們也非常歡迎你加入我們的團隊，一起探索各種有趣的桌遊，並分享彼此的遊戲心得。無論你是已經熟悉桌遊或是新手，我們都非常歡迎你的加入，讓我們一起度過充實又有趣的假日時光。",
+    ItemLoveNum: "1100",
+    ItemReadNum: "55",
   },
 ]);
 
@@ -208,9 +221,26 @@ const MediaSeclet = reactive({
 
 .forum_media_button {
   // border: 1px solid blue;
-  @include btn($brown, 2.2, 100%, $orange);
+  background: $brown;
+  line-height: 2.2;
+  width: 100%;
+  display: block;
+  text-decoration: none;
   text-align: center;
-  font-size: $h3;
+  border-radius: 5px;
+  box-shadow: $shadow;
+  transition: 0.3s;
+  cursor: pointer;
+  a {
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  &:hover {
+    background: $orange;
+  }
+  margin-bottom: 20px;
 }
 
 // =====  文章title ===== //
