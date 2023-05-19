@@ -1,9 +1,9 @@
 <template>
   <div class="ms_tabs">
-    <button class="ms_transactions -active"><slot name="button1">請輸入內容</slot></button>
+    <button class="-active"><slot name="button1">請輸入內容</slot></button>
     <!-- 如果不想顯示第二個按鈕，則在引入時加上showBtn2屬性，並設定為false -->
     <!-- <MsTabs :showBtn2="false"></MsTabs>  -->
-    <button v-if="showBtn2" class="ms_sendReport"><slot name="button2">請輸入內容</slot></button>
+    <button v-if="showBtn2" class=""><slot name="button2">請輸入內容</slot></button>
   </div>
 </template>
 <script>

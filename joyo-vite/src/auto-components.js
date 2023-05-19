@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     MsContentManagementBanner: typeof import('./pages/ms-content-management/MsContentManagementBanner.vue')['default']
     MsContentManagementForum: typeof import('./pages/ms-content-management/MsContentManagementForum.vue')['default']
     MsDataManagementOrder: typeof import('./pages/ms-data-management/MsDataManagementOrder.vue')['default']
+    MsDataManagementReportSending: typeof import('./pages/ms-data-management/MsDataManagementReportSending.vue')['default']
     MsDataManagementSendReport: typeof import('./pages/ms-data-management/MsDataManagementSendReport.vue')['default']
     MsDefault: typeof import('./layouts/MsDefault.vue')['default']
     MsEditAdmin: typeof import('./pages/ms-system-admin/MsEditAdmin.vue')['default']
