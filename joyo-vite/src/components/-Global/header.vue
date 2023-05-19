@@ -237,6 +237,7 @@ header {
 @include m() {
     header {
         height: 50px;
+        margin-bottom: 40px;
     }
 
     .header_nav {
