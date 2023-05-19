@@ -75,6 +75,7 @@ declare module '@vue/runtime-core' {
     MsSeachBar: typeof import('./components/-UI_Element/MsSeachBar.vue')['default']
     MsSystemAdmin: typeof import('./pages/ms-system-admin/MsSystemAdmin.vue')['default']
     MsSystemAdminBtn: typeof import('./components/msSystemAdmin/MsSystemAdminBtn.vue')['default']
+    MsSystemAdminTable: typeof import('./components/msSystemAdmin/MsSystemAdminTable.vue')['default']
     MsTabs: typeof import('./components/-UI_Element/MsTabs.vue')['default']
     MsUserData: typeof import('./pages/ms-customer-service/MsUserData.vue')['default']
     MsUserDataTable: typeof import('./components/MsTable/msUserDataTable.vue')['default']

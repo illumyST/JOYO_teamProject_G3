@@ -6,11 +6,11 @@ export {}
 declare global {
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
-  const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
   const IfrBtPDCNF: typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
   const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
   const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
+  const MsChangeAdminPasswordForm: typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']
   const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
   const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
@@ -89,11 +89,11 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
     readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
     readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
+    readonly MsChangeAdminPasswordForm: UnwrapRef<typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']>
     readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
     readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>

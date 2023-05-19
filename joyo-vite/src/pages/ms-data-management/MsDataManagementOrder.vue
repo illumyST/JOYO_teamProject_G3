@@ -5,7 +5,7 @@
         <MsTabs :showBtn2="false" :open1="true">
           <template #button1>訂單管理</template>
         </MsTabs>
-        <MsSeachBar></MsSeachBar>
+        <MsSeachBar :name="'訂單管理'"></MsSeachBar>
       </div>
     </div>
   </template>
