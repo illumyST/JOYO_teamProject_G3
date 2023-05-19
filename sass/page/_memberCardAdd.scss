@@ -6,6 +6,7 @@
     border-radius: 5px;
     box-shadow: $shadow;
     position: relative;
+    color: $brown;
     h1{
         font-size: $h2;
         letter-spacing: 1px;
@@ -20,31 +21,43 @@
         width: 50px;
         text-align: center;
         i{
+            &:hover{
+                color: $orange;
+            }
+            transition: .2s;
             font-size: 35px;
             color: $brown;
         }
     }
     .cardimfo{
         padding: 33px;
-        h2{
+        label{
+            display: block;
             font-size: $h3;
             letter-spacing: 1px;
-            margin-bottom: 20px;
+            margin-bottom: 23px;
+        }
+        .cardName{
+            margin-bottom: 53px;
         }
         input{
-            @include input-text(50px, 525px);
+            @include input-text(46px, 525px);
             font-size: 22px;
             color: $brown;
+            margin-bottom: 34px;
             &::placeholder{
             font-size: 16px;
         }
-            margin-bottom: 34px;
         }
-        a{
-            @include btn($orange, 59px, 525px, $green);
+        .addcard{
+            @include btn($orange, 57px, 525px, $green);
             font-size: $h2;
             letter-spacing: 1px;
             margin-top: 70px;
+            border: none;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 17px;
         }
     }
 }
@@ -70,7 +83,7 @@
         padding-bottom: 20px;
         box-sizing: border-box;
     }
-    .memberCardAdd .cardimfo h2{
+    .memberCardAdd .cardimfo label{
         font-size: 18px;
         margin-bottom: 14px;
     }
@@ -80,7 +93,7 @@
         padding-left: 15px;
         font-size: 16px;
     }
-    .memberCardAdd .cardimfo a{
+    .memberCardAdd .cardimfo .addcard{
         width: 156px;
         line-height: 40px;
         font-size: 16px;

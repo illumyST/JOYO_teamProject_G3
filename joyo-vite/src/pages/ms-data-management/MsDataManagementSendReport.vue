@@ -1,4 +1,5 @@
 <template>
+
   <div class="ms_wrapper">
     <MsLeftSideMenu></MsLeftSideMenu>
     <div class="ms_right_side_content">
