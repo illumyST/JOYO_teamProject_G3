@@ -65,6 +65,7 @@ declare module '@vue/runtime-core' {
     MsLoginFormMLI: typeof import('./components/MsLogin/MsLoginFormMLI.vue')['default']
     MsMsgListMLC: typeof import('./components/MsLiveChat/MsMsgListMLC.vue')['default']
     MsOrderManagement: typeof import('./pages/ms-order-management/MsOrderManagement.vue')['default']
+    MsPagination: typeof import('./components/-UI_Element/MsPagination.vue')['default']
     MsProductManagement: typeof import('./pages/ms-product-management/MsProductManagement.vue')['default']
     MsSystemAdmin: typeof import('./pages/ms-system-admin/MsSystemAdmin.vue')['default']
     MsTabs: typeof import('./components/-UI_Element/MsTabs.vue')['default']

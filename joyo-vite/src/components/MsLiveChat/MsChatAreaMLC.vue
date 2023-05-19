@@ -1,6 +1,5 @@
 <template>
-  <section class="ms_chat_area">
-  </section>
+
 </template>
 <script></script>
 <style lang="scss" scoped>
