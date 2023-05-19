@@ -52,6 +52,12 @@
 .product-wrapper {
     color: $brown;
     font-family: 'Noto Sans TC';
+    h1{
+        color:$brown;
+    }
+    h2{
+        color:$brown;
+    }
 }
 
 button {
@@ -108,7 +114,10 @@ button {
 
 .infor-item-img-bg {
     text-align: center;
+    display:flex;
     width: 500px;
+    align-items: center;
+    justify-content: center;
 }
 
 .infor-item-img-bg img {
@@ -123,6 +132,7 @@ button {
 .infor-item-infor p {
     margin-bottom: 10px;
     font-size: 20px;
+    color:$brown;
 }
 
 .sel-amount {
@@ -150,6 +160,7 @@ button {
         padding: 0;
         font-weight: 800;
         width: 56px;
+        color:$brown;
     }
 }
 
@@ -165,6 +176,9 @@ button {
     margin-bottom: 65px;
     margin-top: 65px;
     font-weight: 800;
+}
+.infor-item-infor label {
+    color:$brown;
 }
 
 .infor-item-buy {
@@ -402,6 +416,30 @@ button {
 }
 
 @media screen and (max-width: 414px) {
+    .product-wrapper{.infor-item-infor {
+        width: 100%;
+        margin-top: 10px;
+
+        label {
+            font-size: $p;
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+    }}
     .infor-top {
         margin-top: 0;
     }
@@ -474,31 +512,8 @@ button {
         margin-top: 10px;
         margin-bottom: 18px;
     }
-
-    .infor-item-infor {
-        width: 100%;
-        margin-top: 10px;
-
-        label {
-            font-size: $p;
-        }
-
-        h1 {
-            text-align: left;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 16px;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            margin-top: 30px;
-        }
-
-    }
+    
+    
 
     .infor-detail-nav ul li:nth-child(1) ::after {
         top: 55px;
@@ -1255,10 +1270,10 @@ button {
   .col-4 {
     width: 33.3333333333%;
   }
-  
   .col-5 {
     width: 41.6666666667%;
   }
+  
   
   .col-6 {
     width: 50%;

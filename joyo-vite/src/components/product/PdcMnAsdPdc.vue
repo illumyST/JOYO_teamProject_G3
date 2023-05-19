@@ -20,7 +20,27 @@
 
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
+.product-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
 
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
 .btn.active {
     background-color: $orange;
 }
@@ -38,6 +58,11 @@
 
     aside {
         width: 200px;
+        text-align:center;
+        h1{
+            margin-bottom:25px;
+            color:$brown;
+        }
     }
 }
 
