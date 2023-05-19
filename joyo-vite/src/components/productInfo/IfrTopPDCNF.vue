@@ -591,14 +591,17 @@ button {
 
     h1 {
         font-size: 32px;
+        color:$brown;
     }
 
     h2 {
         font-size: 24px;
+        color:$brown;
     }
 
     h3 {
         font-size: 20px;
+        color:$brown;
     }
 }
 .product-top {
@@ -631,16 +634,17 @@ button {
     width: 36%;
     margin-right: 8px;
     width: 92px;
-
+    color:$brown;
     a {
         margin-left: 3px;
+        color:$brown;
     }
 }
 
 .breadcrumb-item a::after {
     content: ">";
     margin-left: 14px;
-    color: black;
+    color:$brown;
 }
 
 .breadcrumb-item li:hover {

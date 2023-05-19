@@ -47,13 +47,11 @@ export default {
       }
       let arr1=(this.tg.filter((game)=>"ID:"+game.ID == this.callBackId));
       this.filetData=arr1[0];
-        console.log(this.filetData);
     },
     guessLike(){
         let category=this.filetData.CATEGORY;
         let arr2=(this.tg.filter((game)=>game.CATEGORY == category));
         this.guess=arr2.slice(0,4);
-        console.log(this.guess);
 
     }
 
