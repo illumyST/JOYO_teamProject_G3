@@ -1,5 +1,6 @@
 
 <template>
+    <div class="product-top ">
     <div class="col-3 breadcrumb">
                 <h2>全部商品</h2>
                 <nav class="breadcrumb">
@@ -16,7 +17,7 @@
                             <button class="product-filter-btn" type="button" id=""
                                 v-on:click="product_filter_cater_show">
                                 <span>全部商品</span>
-                                <span><img src="./assets/img/Vector.png" alt=""></span>
+                                <span><img src="/img/Vector.png" alt=""></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li><a class="dropdown-item" href="#">全部商品</a></li>
@@ -33,7 +34,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_player_show">
-                                    <span>遊玩人數</span><span><img src="./assets/img/Vector.png" alt=""></span>
+                                    <span>遊玩人數</span><span><img src="/img/Vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -57,7 +58,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
-                                            src="./assets/img/Vector.png" alt=""></span>
+                                            src="/img/Vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
@@ -85,7 +86,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_order_show">
-                                    <span>排序方式</span><span><img src="./assets/img/Vector.png" alt=""></span>
+                                    <span>排序方式</span><span><img src="/img/Vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -106,6 +107,7 @@
                     </div>
                 </div>
             </div>
+</div>
 </template>
 <script setup>
 
@@ -113,6 +115,53 @@
 
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
+.col-1 {
+    width: 8.3333333333%;
+  }
+  
+  .col-2 {
+    width: 16.6666666667%;
+  }
+  
+  .col-3 {
+    width: 25%;
+  }
+  
+  .col-4 {
+    width: 33.3333333333%;
+  }
+  
+  .col-5 {
+    width: 41.6666666667%;
+  }
+  
+  .col-6 {
+    width: 50%;
+  }
+  
+  .col-7 {
+    width: 58.3333333333%;
+  }
+  
+  .col-8 {
+    width: 66.6666666667%;
+  }
+  
+  .col-9 {
+    width: 75%;
+  }
+  
+  .col-10 {
+    width: 83.3333333333%;
+  }
+  
+  .col-11 {
+    width: 91.6666666667%;
+  }
+  
+  .col-12 {
+    width: 100%;
+  }
 .product-wrapper {
     width: 1200px;
     margin: 0 auto;
@@ -275,18 +324,18 @@
 .product-filter-player {
     width: 170px;
     right: 425px;
-    top: 217px;
+    top: 270px;
 }
 
 .product-filter-age {
     width: 170px;
     right: 235px;
-    top: 216px;
+    top: 270px;
 }
 
 .product-filter-order {
     width: 170px;
-    top: 218px;
+    top: 270ppx;
 }
 
 .product-filter-player.active {

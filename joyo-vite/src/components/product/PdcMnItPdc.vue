@@ -75,7 +75,7 @@ export default {
 </script>
 <style>
 .prouct-item-card-icon{
-
+   
 }
 </style>
 <style lang="scss" scoped>
@@ -151,7 +151,12 @@ export default {
 .breadcrumb-item li:hover {
     background-color: $orange;
 }
+.prouct-item-card.prouct-item-card-icon .btn{
+    width: 56px;
+    height: 56px;
+    background-color: #fff;
 
+}
 .breadcrumb-item.active a::after {
     display: none;
 }
