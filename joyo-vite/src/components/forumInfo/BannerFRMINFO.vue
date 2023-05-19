@@ -286,7 +286,7 @@ const ForumInfoMsgs = ref([
     margin: 10px 0 10px 40px;
     line-height: 1.5;
     letter-spacing: 1px;
-    
+    text-align: justify
   }
 }
 
@@ -423,33 +423,30 @@ const ForumInfoMsgs = ref([
   }
 
   .forumInfo_comments_text_title {
-    width: 100%;
+    width: 85%;
     margin: 20px 25px 0;
 
     img {
       width: 8.4%;
     }
-  }
 
-  .forumInfo_comments_text_main,
-  .forumInfo_comments_text2_main {
-    margin-left: 65px;
-    margin-right: 25px;
-  }
-
-  .forumInfo_comments_text_line {
-    width: 85%;
-    margin: 10px 25px 0;
-  }
-
-  .forumInfo_comments_text2_title {
-    width: 100%;
-    margin: 0 25px;
-
-    img {
-      width: 8.4%;
+    .forumInfo_comments_text_msg{
+      width: 100%;
     }
   }
+
+  // .forumInfo_comments_text_main,
+  // .forumInfo_comments_text2_main {
+  //   margin-left: 65px;
+  //   margin-right: 25px;
+  // }
+
+  // .forumInfo_comments_text_line {
+  //   width: 85%;
+  //   margin: 10px 25px 0;
+  // }
+
+
 
   .forumInfo_right_msg_text {
     width: 75%;
