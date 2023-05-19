@@ -199,6 +199,10 @@ footer {
 }
 
 @include m() {
+    footer{
+        margin-top: 40px;
+    }
+
     .footer_nav {
         width: 370px;
         flex-direction: column;
@@ -215,11 +219,6 @@ footer {
 
     .footer_nav_left_icons {
         font-size: 28px;
-    }
-
-    .footer_nav_left_icons a i {
-        font-family: "Font Awesome 6 Free";
-        font-weight: 400;
     }
 
     .footer_nav_left_icons a {

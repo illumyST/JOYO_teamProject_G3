@@ -67,8 +67,7 @@ const product_data = ref({
 
 
 <style lang="scss" scoped>
-.index_hotProduct,
-.index_newProductList {
+.index_hotProduct {
     margin-bottom: 140px;
     color: $brown;
 
@@ -98,8 +97,7 @@ const product_data = ref({
         }
     }
 
-    .index_hotProduct_list,
-    .index_newProductList_list {
+    .index_hotProduct_list {
         display: flex;
     }
 
@@ -216,4 +214,105 @@ const product_data = ref({
     }
 
 }
-</style>
+
+@include m() {
+    .index_hotProduct {
+        margin-bottom: 40px;
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .h1_sub {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 16px;
+            letter-spacing: .1em;
+            color: #fff;
+
+            p {
+                font-size: 16px;
+                margin-top: 6px;
+            }
+
+            span {
+                display: block;
+                margin: 0;
+                margin-top: 10px;
+            }
+        }
+
+        // ------------- card li ------------- //
+        .index_hotProduct_list li {
+            width: 110px;
+            border: 2px solid $green;
+            margin: 0;
+
+            .product_list_pInfo {
+                padding: 6px 12px;
+                flex-direction: column;
+            }
+
+            img {
+                height: 120px;
+                margin:0;
+            }
+
+            .index_hotProduct_list_pInfo {
+                padding: 6px 8px;
+                flex-direction: column;
+            }
+        }
+
+        .index_hotProduct_list li::before {
+            font-size: 18px;
+            width: 30px;
+            height: 30px;
+            line-height: 26px;
+            left: 8px;
+            top: -20px;
+
+        }
+
+        // ------------- first-card li ------------- //
+        .index_hotProduct_list li:first-child {
+            flex-grow: initial;
+
+            h3 {
+                padding-top: 0px;
+                font-size: 16px;
+            }
+
+            img {
+                margin:0;
+                height: 120px;
+            }
+
+            .index_hotProduct_list_topPInfo {
+                flex-direction: column;
+                display: flex;
+                padding: 0;
+            }
+
+            .index_hotProduct_list_topPInfo_word {
+                display: none;
+            }
+
+            ;
+
+            .index_hotProduct_list_pInfo {
+                justify-content: flex-end;
+                padding: 8px 10px;
+            }
+        }
+        .index_hotProduct_list li:not(:last-child){
+            margin-right: 20px;
+        }
+    }
+
+}</style>
