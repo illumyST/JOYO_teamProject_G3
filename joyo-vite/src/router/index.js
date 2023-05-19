@@ -83,16 +83,17 @@ const routes = [
                 component: () => import('@/pages/cart.vue'),
                 children: [
                     {
-                        path: '',
+                        path: '/cartConfirm',
                         name: 'cartConfirm',
                         component: () => import('@/pages/cart/cartConfirm.vue'),
                     },
-                    {
-                        path: '',
-                        name: 'cartFill',
-                        component: () => import('@/pages/cart/cartFill.vue'),
-                    },
+
                 ]
+            },
+            {
+                path: '/cartFill',
+                name: 'cartFill',
+                component: () => import('@/pages/cart/cartFill.vue'),
             },
 
             // 前台子頁＿[forum] -------------------

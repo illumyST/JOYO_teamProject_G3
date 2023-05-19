@@ -105,7 +105,7 @@ const sendData = () => {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../../css/style.css';
+
 .cartFill_deliv_submit{
     cursor: pointer;
 }

@@ -1,4 +1,10 @@
 <template>
+<div class="cartConfirm_wrapper">
+    <CcfTpCT></CcfTpCT>
+    <CcfCnCT></CcfCnCT>
+    <CcfDvCT></CcfDvCT>
+</div>
+
     <div>
         <div class="cartConfirm_wrapper">
         <div class="cartConfirm_top">
@@ -12,7 +18,7 @@
                 <li>填寫資料</li>
                 <li>訂單完成</li>
             </ul>
-        </div>
+    </div>
         
     <div v-if="page == 1">
         <div class="cartConfirm_con">
@@ -100,11 +106,6 @@
 
 <script setup>
 
-import cartConfirm from '@/pages/cart/cartConfirm.vue';
-import cartFill from '@/pages/cart/cartFill.vue';
-import {onMounted, ref ,computed , provide} from 'vue' ;
-
-
 const prodects = ref([{
     id : '花磚物語',
     sel : 799,
@@ -187,14 +188,29 @@ provide('TotalAll', TotalAll);
 const handlePage = (num) => {
   page.value = num;
 };
-</script>
+//</script>
 
 <style lang="scss" scoped>
-@import '../../../sass/style.scss';
-.fa-trash-can{
-    cursor: pointer;
-}
-.selbtn{
-    cursor: pointer;
-}
+    .cartConfirm_wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: $brown;
+    font-family: 'Noto Sans TC';
+    input:focus {
+        outline: none;
+    }
+    }
+    @media screen and (max-width: 414px) {
+    .cartConfirm_wrapper {
+        width: auto;
+
+        .cartConfirm_prog_f::after {
+            width: 196px;
+            right: -200px;
+        }
+
+    }
+    }
 </style>
