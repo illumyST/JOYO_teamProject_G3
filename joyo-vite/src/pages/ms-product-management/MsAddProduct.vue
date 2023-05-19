@@ -1,6 +1,6 @@
 <template>
-    <div>
-        msAddProduct
+    <div class="lightbox">
+         <msAddProductForm></msAddProductForm>
     </div>
 </template>
 
