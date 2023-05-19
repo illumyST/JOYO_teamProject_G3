@@ -2,17 +2,17 @@
 <article class="infor-detail">
             <div class="infor-detail-nav">
                 <ul class="col-12">
-                    <li class="col-4"><a href="">商品描述</a></li>
-                    <li class="col-4"><a href="">購買須知</a></li>
-                    <li class="col-4"><a href="">用戶評價</a></li>
+                    <li class="col-4"><a href="" v-on:click="turn">商品描述</a></li>
+                    <li class="col-4"><a href="" v-on:click="turn">購買須知</a></li>
+                    <li class="col-4"><a href="" v-on:click="turn">用戶評價</a></li>
                 </ul>
             </div>
             <div class="infor-detail-contain">
-                <div v-show="show" class="infor-detail-ds">
+                <div v-show="show === 'ds'" class="infor-detail-ds">
                  {{filetData.DESCRIPTION}}
                 </div>
-                <div v-show="show" class="infor-detail-no"></div>
-                <div v-show="show" class="infor-detail-star">
+                <div v-show="show === 'no'" class="infor-detail-no"></div>
+                <div v-show="show === 'star'" class="infor-detail-star">
                     <div class="col-3 infor-detail-star-rank">
                         <p>總星等</p>
                         <ul>
@@ -37,7 +37,7 @@
                     <div class="col-12 infor-detail-star-comment">
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="./assets/img/cat.png" alt="">
+                                <img src="/img/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
                                 <div>
                                     <ul>
@@ -65,7 +65,7 @@
                         </article>
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="pic/product/Mask group.png" alt="">
+                                <img src="/img/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
                                 <div>
                                     <ul>
@@ -103,8 +103,19 @@
         filetData: {
         type: Object,
         required: true
-    }
-  }
+        }
+    },
+    data(){
+        return{
+            show:"ds" ,
+        }
+    },
+    methods:{
+        // turn(e){
+        //     e.preventDefault();
+        //     this.show=e.
+        // },
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -700,6 +711,7 @@ button {
     display: flex;
 
     aside {
+
         width: 200px;
     }
 }
