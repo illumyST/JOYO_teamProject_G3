@@ -22,7 +22,7 @@
       <h3>教學區</h3>
     </li>
     <li>
-      <RouterLink to="/forum/forumInfo">我要發文</RouterLink>
+      <RouterLink to="/forum/forumPost">我要發文</RouterLink>
     </li>
   </ul>
 
