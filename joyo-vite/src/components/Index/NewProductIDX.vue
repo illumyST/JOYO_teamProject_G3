@@ -84,4 +84,42 @@ const newProduct = ref('')
             z-index: -1;
         }
     }
-}</style>
+
+    //------------------------RWD---------------------//
+    @include m() {
+        width: auto;
+        margin-bottom: 80px;
+        display: block;
+
+        .index_newProduct_left {
+            margin-bottom: 30px;
+            padding-top: 40px;
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+
+                &::before {
+                    font-size: 60px;
+                }
+            }
+
+            span {
+                font-size: 16px;
+                padding: 4px 8px;
+            }
+
+        }
+
+        .index_newProduct_right {
+            width: 90%;
+            height: 300px; //暫時加著
+            margin-right: 20px;
+
+            img {
+                width: 100%
+            }
+        }
+    }
+}
+</style>
