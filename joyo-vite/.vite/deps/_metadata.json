@@ -1,23 +1,23 @@
 {
-  "hash": "aa8f1eb3",
-  "browserHash": "c2c4569d",
+  "hash": "4524f34c",
+  "browserHash": "57280062",
   "optimized": {
     "vue": {
       "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "d2f519cd",
+      "fileHash": "9b11758d",
       "needsInterop": false
     },
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "ff90fc65",
+      "fileHash": "f956da79",
       "needsInterop": false
     },
     "vue-axios": {
       "src": "../../node_modules/vue-axios/dist/vue-axios.esm.min.js",
       "file": "vue-axios.js",
-      "fileHash": "1e96fd91",
+      "fileHash": "59f97983",
       "needsInterop": false
     }
   },

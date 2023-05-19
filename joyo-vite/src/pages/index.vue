@@ -4,9 +4,9 @@
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
         <HotProductIDX></HotProductIDX>
-        <!-- <NewProductIDX></NewProductIDX> -->
-        <!-- <NewProductListIDX></NewProductListIDX> -->
-        <!-- <HotForumPostIDX></HotForumPostIDX> -->
+        <NewProductIDX></NewProductIDX>
+        <NewProductListIDX></NewProductListIDX>
+        <HotForumPostIDX></HotForumPostIDX>
     </main>
 </template>
 
