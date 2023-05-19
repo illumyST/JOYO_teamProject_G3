@@ -43,58 +43,71 @@
 </script>
 
 <style lang="scss" scoped>
-.index_hotForumPost{
+.index_hotForumPost {
     color: $brown;
     letter-spacing: .1em;
     margin-bottom: 80px;
-    .index_hotForumPost_top{
+
+    .index_hotForumPost_top {
         display: flex;
         justify-content: space-between;
         margin-bottom: 40px;
     }
-    .index_hotForumPost_left{
-        h1{
+
+    .index_hotForumPost_left {
+        h1 {
             margin-bottom: 60px;
         }
+
         width: 770px;
         margin-right: 40px;
-        .index_hotForumPost_left_post{
+
+        .index_hotForumPost_left_post {
             margin-bottom: 40px;
             padding-left: 38px;
             position: relative;
             color: $brown;
-            h3{
+
+            h3 {
                 font-size: 22px;
                 margin-bottom: 16px;
             }
-            p{
-                overflow:hidden;
+
+            p {
+                overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }
-            &:before{
+
+            &:before {
                 content: "";
-                width:14px;
+                width: 14px;
                 height: 100%;
                 background-color: $d-pink;
                 position: absolute;
                 left: 0;
             }
+
             transition: .2s;
-            &:hover{
+
+            &:hover {
                 opacity: .7;
             }
         }
     }
-    .index_hotForumPost_right{
+
+    .index_hotForumPost_right {
         align-self: flex-end;
         margin-bottom: 24px;
-        h2{
+
+        h2 {
             font-size: 28px;
             margin-bottom: 30px;
         }
+
         text-align: right;
-        .index_hotForumPost_right_tag{
+
+        .index_hotForumPost_right_tag {
             display: inline-block;
             color: #fff;
             padding: 10px 16px;
@@ -102,7 +115,57 @@
             background-color: $b-pink;
             margin-bottom: 16px;
         }
-    
+
+    }
+
+    //-------------------------RWD--------------------
+    @include m() {
+        margin-bottom: 40px;
+
+        .index_hotForumPost_top {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .index_hotForumPost_left {
+            h1 {
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            width: auto;
+            margin: 0;
+            margin-bottom: 30px;
+
+            .index_hotForumPost_left_post {
+                margin-bottom: 20px;
+                padding-left: 20px;
+
+                h3 {
+                    font-size: 18px;
+                    margin-bottom: 12px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                p {
+                    font-size: 14px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                &:before {
+                    width: 8px;
+                }
+            }
+        }
+    }
+
+    .index_hotForumPost_right {
+        display: none;
     }
 }
 </style>
