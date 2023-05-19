@@ -73,7 +73,15 @@ export default {
     }
 }
 </script>
+<<<<<<< HEAD
 
+=======
+<style>
+.prouct-item-card-icon{
+   
+}
+</style>
+>>>>>>> peiya
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {
@@ -147,7 +155,12 @@ export default {
 .breadcrumb-item li:hover {
     background-color: $orange;
 }
+.prouct-item-card.prouct-item-card-icon .btn{
+    width: 56px;
+    height: 56px;
+    background-color: #fff;
 
+}
 .breadcrumb-item.active a::after {
     display: none;
 }
