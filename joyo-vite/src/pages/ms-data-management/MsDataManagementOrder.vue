@@ -6,11 +6,101 @@
           <template #button1>訂單管理</template>
         </MsTabs>
         <MsSeachBar :name="'訂單管理'"></MsSeachBar>
+        <MsDataManagementOrderTable></MsDataManagementOrderTable>
+        <!-- <testTable></testTable> -->
       </div>
     </div>
   </template>
   
-  <script setup></script>
+<script setup>
+import {provide, ref} from 'vue'
+const us = ref(['訂單編號','用戶帳號','訂單金額','付款方式','訂單狀態','物流']);
+const order = ref([{
+  tid:'1111111',
+  email:'11111@gmail.com',
+  get total() {
+    let ott = 0 ;
+      for(let n = 0 ; n<this.order.length ;n++){
+        ott += this.order[n].psel;
+      }
+      return ott
+    },
+  stp:'信用卡',
+  snw:'訂單成立',
+  got:'新竹物流',
+  fron: 'N',
+  open:false,
+  one:'2023/4/24 14:20:13',
+  two:'',
+  the:'',
+  four:'',
+  order:[{
+    prd:'領土爭奪-標準版',
+    psel: 1200 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'阿瓦隆：蘭斯洛特 擴充',
+    psel: 1400 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  }]},
+  {
+  tid:'1111111',
+  email:'11111@gmail.com',
+  get total() {
+    let ott = 0 ;
+      for(let n = 0 ; n<this.order.length ;n++){
+        ott += this.order[n].psel;
+      }
+      return ott
+    },
+  stp:'信用卡',
+  snw:'訂單成立',
+  got:'新竹物流',
+  fron:'N',
+  one:'',
+  two:'',
+  the:'',
+  four:'',
+  open:false,
+  order:[{
+    prd:'領土爭奪-標準版',
+    psel: 1200 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  }]}
+]);
+provide('us',us);
+provide('order',order);
+
+
+
+// console.log(order.value[0].total);
+// console.log(order.value[0].order[0].psel);
+
+
+</script>
   
   <style lang="scss" scoped>
   //
