@@ -10,23 +10,23 @@
                </li>
      <!-- //------------------------------------------------------------------------------------------------------- -->
                <li class="ms_order_title" v-for="(item,index) in order" @click="openC(index)">
-                   <h3>{{ item.tid }}</h3>
-                   <h3>{{ item.email }}</h3>
-                   <h3>{{ item.total }}</h3>
-                   <h3>{{ item.stp }}</h3>
+                   <span class="ordrta"><h4>{{ item.tid }}</h4></span>
+                   <span class="ordrta"><h4>{{ item.email }}</h4></span>
+                   <span class="ordrta"><h4>{{ item.total }}</h4></span>
+                   <span class="ordrta"><h4>{{ item.stp }}</h4></span>
+                   <span class="ordrta ot"  @click.prevent="openC(index)">
+                         <h4 v-if="item.fron == 'N' && !item.upopen">編輯訂單狀態</h4>
+                         <h4 v-if="item.fron == '1' && !item.upopen">訂單成立</h4>
+                         <h4 v-if="item.fron == '2' && !item.upopen">已出貨</h4>
+                         <h4 v-if="item.fron == '3' && !item.upopen">運送中</h4>
+                         <h4 v-if="item.fron == '4' && !item.upopen">訂單完成</h4>
+                         <input type="text" name="" id="" v-if="item.upopen" v-model="item.fron" @change="ifron(index)" @keyup.enter="change(index)"
+                         @blur="change(index)">
+                         <i class="bi bi-pencil-square" @click="change(index)"></i>
+                   </span>
+                   <span class="ordrta"><h4>{{ item.got }}</h4></span>
 
-                   <h3><select name="" class="vision" @click="item.open = true" >
-                            <!-- <optgroup label="文章編號"></optgroup> -->
-                            <option value="" >請選擇訂單狀態</option>
-                            <option value="" >訂單成立</option>
-                            <option value="" >已出貨</option>
-                            <option value="" >運送中</option>
-                            <option value="" >訂單完成</option>
-                        </select></h3>
-
-                   <h3>{{ item.got }}</h3>
-
-                    <div class="ms_order_min " style="overflow: hidden;" v-if="item.open">
+                    <div class="ms_order_min " style="overflow: hidden;" v-if="item.open" @click.prevent="openC(index)">
                         <ul>
                             <li v-for="(ittm,index) in item.order">
                                 <img :src="ittm.img" alt="" >
@@ -37,22 +37,23 @@
                         </ul>
                     
                         <div class="ms_order_right">
-                            <div>
+                            <div @click="item.one = nowDate ">
                             <h5>訂單成立</h5>
                             <p>{{ item.one }}</p>
+                            <!-- <p>{{ currentDate }}</p> -->
                             </div>
 
-                            <div>
+                            <div @click="item.two = nowDate ">
                             <h5>已出貨</h5>
                             <p>{{ item.two }}</p>
                             </div>
 
-                            <div>
+                            <div @click="item.the = nowDate ">
                             <h5>運送中</h5>
                             <p>{{ item.the }}</p>
                             </div>
 
-                            <div>
+                            <div @click="item.four = nowDate ">
                             <h5>訂單完成</h5>
                             <p>{{ item.four }}</p>
                             </div>
@@ -70,7 +71,7 @@
    </template>
      
    <script setup>
-import {ref,inject} from 'vue'
+import {ref,inject,onMounted} from 'vue'
 const order = inject('order');
 // console.log(order.value);
 
@@ -95,7 +96,75 @@ const openC = (e)=>{
     //     }
     // }
 
+const change = (e)=>{
+    if(order.value[e].upopen){
+    order.value[e].upopen = false ;
+    }else{
+    order.value[e].upopen = true ;
+    }
+} 
 
+const nowDate = ref();
+onMounted(() => {
+    setInterval(()=>{
+
+        var year = new Date().getFullYear();
+        var month = String(new Date().getMonth() + 1).padStart(2, '0');
+        var day = String(new Date().getDate()).padStart(2, '0');
+        var hours = String(new Date().getHours()).padStart(2, '0');
+        var minutes = String(new Date().getMinutes()).padStart(2, '0');
+        var seconds = String(new Date().getSeconds()).padStart(2, '0');
+        nowDate.value = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    },1000)
+// console.log(currentDate.value)
+})
+
+const ifron = (e)=>{
+    console.log(order.value[e].fron);
+    if(order.value[e].fron == "N"){
+        order.value[e].one = "";
+        order.value[e].two = "" ;
+        order.value[e].the = "" ;
+        order.value[e].four = "" ;
+    }
+    if(order.value[e].fron == "1"){
+        console.log("1");
+        order.value[e].one = nowDate.value ;
+        order.value[e].two = "" ;
+        order.value[e].the = "" ;
+        order.value[e].four = "" ;
+    }
+    else if (order.value[e].fron == "2"){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+        order.value[e].two = nowDate.value ;
+        order.value[e].the = "" ;
+        order.value[e].four = "" ;
+    }
+    else if (order.value[e].fron == "3"){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+        if(order.value[e].two == ""){
+            order.value[e].two = nowDate.value ;  
+        }
+        order.value[e].the = nowDate.value ;
+        order.value[e].four = "" ;
+    }
+    else if (order.value[e].fron == "4"){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+        if(order.value[e].two == ""){
+            order.value[e].two = nowDate.value ;  
+        }
+        if(order.value[e].the == ""){
+            order.value[e].the = nowDate.value ;  
+        }
+        order.value[e].four = nowDate.value ;
+    }
+}
 
    </script>
      
@@ -123,20 +192,34 @@ const openC = (e)=>{
        display: flex;
        justify-content: space-between;
        flex-wrap: wrap;
-       ul.ordnw{
-        outline: 1px solid red;
-        li{
-            position: absolute;
-            color: black;
+        h3{
+            cursor:pointer; 
+       padding: 10px;
+       text-align: center;
+       width: 140px;
+       flex-grow: 1;
+       font-size: $p; 
         }
-       }
-      h3{
+        span.ot{
+            display: flex;
+            justify-content: space-evenly;
+        }
+      span.ordrta{
        cursor:pointer; 
        padding: 10px;
        text-align: center;
        width: 140px;
        flex-grow: 1;
        font-size: $p;
+       input{
+        // outline: 1px solid red;
+        width: 100px;
+        text-align: center;
+       }
+       h4{
+        // outline: 1px solid red;
+        display: inline;
+       }
       }
       div.ms_order_min{
         // position: relative;
@@ -189,12 +272,8 @@ const openC = (e)=>{
         bottom: 0;
         justify-content: space-evenly;
        div{
-//            flex-direction: column;
-        //    outline: 1px solid red;
-           width: 140px;
+           width: 200px;
            height: 50px;
-//            width: 63%;
-//            margin: 30px 0;
         h5{
             padding-bottom: 3px;
             
@@ -209,7 +288,7 @@ const openC = (e)=>{
            width: 20px;
            height: 20px;
            position: relative;
-           left: 60px;
+           left:90px;
            bottom: 30px;
        }
 
@@ -220,7 +299,7 @@ const openC = (e)=>{
            height: 5px;
         //    width: 0;
            top: 35px;
-           left: 160px;
+           left: 140px;
            // height: 0px;  //  2:220px    3:440px    4:660px
            position: absolute;
        }
@@ -229,7 +308,7 @@ const openC = (e)=>{
    li.ms_order_title:nth-child(even){
        // outline: 1px solid black;
        background-color: $orange;
-       h3{
+       h4{
            color: white;
        }
        
@@ -251,11 +330,11 @@ const openC = (e)=>{
     width: 210px;
 }
 .thr{
-    width: 420px;
+    width: 450px;
 }
 
 .fur{
-    width: 640px;
+    width: 670px;
 }
 
      </style>
