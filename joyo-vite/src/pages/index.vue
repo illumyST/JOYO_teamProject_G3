@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper">
+    <main class="wrapper" @click="echoTest()">
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
