@@ -48,7 +48,6 @@ declare module '@vue/runtime-core' {
     IndexMs: typeof import('./pages/indexMs.vue')['default']
     IndexUser: typeof import('./pages/indexUser.vue')['default']
     MailCheck: typeof import('./pages/mailCheck.vue')['default']
-    MailCheckRedirect: typeof import('./components/mailCheck/mailCheckRedirect.vue')['default']
     McrMC: typeof import('./components/mailCheck/McrMC.vue')['default']
     Member: typeof import('./pages/member.vue')['default']
     MemberCard: typeof import('./pages/member/memberCard.vue')['default']
