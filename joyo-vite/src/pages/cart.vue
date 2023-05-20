@@ -93,15 +93,13 @@
     </div>
 </div>
 
-<cartConfirm v-if="page == 2" @child-data="handlePage" ></cartConfirm>
+<!-- <cartConfirm v-if="page == 2" @child-data="handlePage" ></cartConfirm>
 
-<cartFill v-if="page == 3"></cartFill>
+<cartFill v-if="page == 3"></cartFill> -->
 </template>
 
 <script setup>
 
-import cartConfirm from '@/pages/cart/cartConfirm.vue';
-import cartFill from '@/pages/cart/cartFill.vue';
 import {onMounted, ref ,computed , provide} from 'vue' ;
 
 

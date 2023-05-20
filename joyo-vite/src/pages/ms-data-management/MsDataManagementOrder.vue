@@ -7,6 +7,7 @@
         </MsTabs>
         <MsSeachBar :name="'訂單管理'"></MsSeachBar>
         <MsDataManagementOrderTable></MsDataManagementOrderTable>
+        <!-- <testTable></testTable> -->
       </div>
     </div>
   </template>
@@ -27,6 +28,12 @@ const order = ref([{
   stp:'信用卡',
   snw:'訂單成立',
   got:'新竹物流',
+  fron: 'N',
+  open:false,
+  one:'2023/4/24 14:20:13',
+  two:'',
+  the:'',
+  four:'',
   order:[{
     prd:'領土爭奪-標準版',
     psel: 1200 ,
@@ -42,10 +49,8 @@ const order = ref([{
     psel: 1500 ,
     amo: 1 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }],
-  fron: '2',
-  open:false
-},{
+  }]},
+  {
   tid:'1111111',
   email:'11111@gmail.com',
   get total() {
@@ -58,6 +63,12 @@ const order = ref([{
   stp:'信用卡',
   snw:'訂單成立',
   got:'新竹物流',
+  fron:'N',
+  one:'',
+  two:'',
+  the:'',
+  four:'',
+  open:false,
   order:[{
     prd:'領土爭奪-標準版',
     psel: 1200 ,
@@ -68,10 +79,18 @@ const order = ref([{
     psel: 1500 ,
     amo: 1 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }],
-  fron:'4',
-  open:false
-}]);
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  }]}
+]);
 provide('us',us);
 provide('order',order);
 

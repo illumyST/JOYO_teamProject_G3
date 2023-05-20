@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddCartBtn: typeof import('./components/-UI_Element/AddCartBtn.vue')['default']
+    BannerFRMINFO: typeof import('./components/forumInfo/BannerFRMINFO.vue')['default']
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BannerListFRM: typeof import('./components/forum/BannerListFRM.vue')['default']
     BannerTopFRM: typeof import('./components/forum/BannerTopFRM.vue')['default']
@@ -98,7 +99,9 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
+    SidemenuFRMINFO: typeof import('./components/forumInfo/SidemenuFRMINFO.vue')['default']
     SignIn: typeof import('./pages/signIn.vue')['default']
+    TestTable: typeof import('./components/msTable/testTable.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
   }

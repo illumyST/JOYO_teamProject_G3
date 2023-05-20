@@ -42,7 +42,8 @@
     border-radius: 5px;
     box-shadow: $shadow;
     padding-top: 59px;
-    h3{
+    label{
+        display: block;
         font-size: $h2;
         margin-bottom: 8px;
     }
@@ -52,6 +53,9 @@
         justify-content: space-between;
         width: 691px;
         margin-bottom: 28px;
+        img{
+            cursor: pointer
+        }
         .member-name-text{
             @include input-text(50px, 500px);
             font-size: 22px;
@@ -113,7 +117,7 @@
     .member-right-name>img{
         width: 80px;
     }
-    .member-right-card h3{
+    .member-right-card label{
         font-size: 16px;
     }
     .member-right-card .member-right-name .member-name-text{
@@ -140,9 +144,10 @@
         height: 35px;
         padding-left: 10px;
     }
-    .member-right-card a{
+    .member-right-card .submit{
         width: 335px;
         line-height: 40px;
         font-size: 18px;
+        margin-bottom: 50px;
     }
 }
