@@ -2,7 +2,7 @@
   <header class="ms_header">
     <nav class="ms_nav">
       <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
-      <div v-if="isLogIn" class="logOut">登出</div>
+      <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
     </nav>
   </header>
 </template>
@@ -20,6 +20,15 @@ onMounted(() => {
         isLogIn.value = data;
     })
 });
+
+
+const logOut = () => {
+    axios.post('/api/logIn&Out/logOut.php')
+        .then(res => {
+            alert('登出成功！');
+            location.href = '/ms';
+        });
+}
 </script>
   
 <style lang="scss" scoped>

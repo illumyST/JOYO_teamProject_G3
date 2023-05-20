@@ -27,7 +27,7 @@ const seach = ()=>{
   // console.log(text.value);
 }
 const us = inject('us')
-console.log(us.value);
+// console.log(us.value);
 
 
 const props = defineProps({
