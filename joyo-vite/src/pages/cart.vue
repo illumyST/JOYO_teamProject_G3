@@ -106,12 +106,9 @@
 
 <script setup>
 
-<<<<<<< HEAD
-=======
 import {onMounted, ref ,computed , provide} from 'vue' ;
 
 
->>>>>>> albert
 const prodects = ref([{
     id : '花磚物語',
     sel : 799,
