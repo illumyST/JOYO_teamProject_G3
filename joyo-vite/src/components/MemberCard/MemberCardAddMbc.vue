@@ -1,8 +1,9 @@
 <template>
-    <div class="member_wrapper">
+    <!-- <div class="member_wrapper"> -->
+    <div class="member_overlay" v-if="isMemberCardAddVisible" @click="close">
         <div class="memberCardAdd">
             <h1>新增信用卡/金融卡</h1>
-            <a href="#" class="close"><i class="fa-solid fa-xmark"></i></a>
+            <a href="#" class="close" @click="close"><i class="fa-solid fa-xmark"></i></a>
             <div class="cardimfo">
                 <form action="" method="POST">
                     <label for="">卡片資訊</label>
@@ -15,9 +16,20 @@
             </div>
         </div>
     </div>
+    <!-- </div> -->
 </template>
-
+    
 <script setup>
+
+    const isMemberCardAddVisible = ref(true);
+    
+    const close = () => {
+        // alert("測試按鈕大小中")
+        isMemberCardAddVisible.value = false;
+
+       
+    };
+
 </script>
 
 <style lang="scss" scoped>
@@ -51,6 +63,16 @@
         outline: none;
         letter-spacing: 1px;
     }
+
+    .member_overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
     .memberCardAdd{
         margin: 0 auto;
         width: 590px;
@@ -58,8 +80,13 @@
         padding-top: 42px;
         border-radius: 5px;
         box-shadow: $shadow;
-        position: relative;
+        // position: relative;
         color: $brown;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);        
+        z-index: 3;
         h1{
             font-size: $h2;
             letter-spacing: 1px;
@@ -69,10 +96,10 @@
         }
         .close{
             position: absolute;
-            top: 45px;
+            top: 26px;
             right: 25px;
-            width: 50px;
             text-align: center;
+            display: block;
             i{
                 &:hover{
                     color: $orange;
@@ -80,6 +107,8 @@
                 transition: .2s;
                 font-size: 35px;
                 color: $brown;
+                width: 65px;
+                line-height: 65px;
             }
         }
         .cardimfo{
@@ -124,11 +153,13 @@
             font-size: 20px;
         }
         .memberCardAdd .close{
-            top: 26px;
+            top: 10px;
             right: 7px;
         }
         .memberCardAdd .close i{
             font-size: 30px;
+            width: 50px;
+            line-height: 50px;
         }
         .memberCardAdd .cardimfo{
             padding-left: 18px;
