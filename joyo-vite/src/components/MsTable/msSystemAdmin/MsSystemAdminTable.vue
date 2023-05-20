@@ -9,12 +9,13 @@
         <tbody>
             <tr class="ms_table_body" v-for="(item,index) in admins">
                 <td>{{ item.name }}</td>
-                <td><p v-if="item.update">{{ item.id }}</p><input type="text" name="" id="" v-if="!item.update" v-model="item.id"></td>
-                <td><p v-if="item.update">{{ item.pas }}</p><input type="text" name="" id="" v-if="!item.update" v-model="item.pas"></td>
+                <td><p>{{ item.id }}</p></td>
+                <td><p>{{ item.pas }}</p></td>
                 <td class="msn_icon">
                   <i class="bi bi-pencil-square" @click="change(index)"></i>
                   <i class="bi bi-trash3-fill" @click="del(index)"></i>
                 </td>
+                <msEditAdminForm v-if="item.fixe" @close="close($event,index)"></msEditAdminForm>
             </tr> 
         </tbody>
     </table>
@@ -30,16 +31,17 @@
       }
     
       const change=(e)=>{
-        if(admins.value[e].update){
-            admins.value[e].update = false
-        }else{
-            admins.value[e].update = true
+        for(var n= 0 ; n<admins.value.length ;n++){
+            admins.value[n].fixe = false ;
         }
+            admins.value[e].fixe = true;
         // console.log(prodects.value[e].update);
       }
     
     
-    
+    const close =(i,e)=>{
+        admins.value[e].fixe = i;
+    }
     
     
       </script>

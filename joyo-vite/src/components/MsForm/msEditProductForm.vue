@@ -1,13 +1,15 @@
 <template>
  
     <section class="ms_form_long">
-            <i class="bi bi-x-lg"></i>
+            <i class="bi bi-x-lg" @click="close"></i>
             <form action="" method="POST">
                 <h1>編輯商品</h1>
+                <div class="one">
                 <label for="">商品名稱 : </label>
                 <input type="text" class="ms_input">
                 <label for="">價格 : </label>
                 <input type="text" class="ms_input">
+                </div>
                 <div class="select">
                     <div>
                     <label for="">遊戲分類 : </label>
@@ -73,24 +75,17 @@
   </template>
 
   <script setup>
-  import { ref } from "vue";
+  import { ref ,} from "vue";
   const isPasswordVisible = ref(false);
   
-  const passwordToggle = () => {
-    isPasswordVisible.value = !isPasswordVisible.value;
-  };
-  // export default {
-  //   data() {
-  //     return {
-  //       isPasswordVisible: false,
-  //     };
-  //   },
-  //   methods: {
-  //     passwordToggle() {
-  //       this.isPasswordVisible = !this.isPasswordVisible;
-  //     },
-  //   },
-  // };
+//   const passwordToggle = () => {
+//     isPasswordVisible.value = !isPasswordVisible.value;
+//   };
+  
+const emits = defineEmits(['close']);
+  const close = ()=>{
+    emits("close",false)
+  }
   </script>
 
 
@@ -118,60 +113,63 @@
     font-family: "Noto Sans TC", sans-serif;
     border-radius: 5px;
     box-sizing: border-box;
-    // height: 100px;
+    height: 680px;
     display: block;
     background-color: #f2f2f2;
-    margin: 100px auto;
-    padding: 20px;
-    position: relative;
+    margin: auto;
+    padding: 10px;
+    position: fixed;
     border-radius: 10px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     i.bi-x-lg{
         position: absolute;
         top: 15px;
         right: 15px;
-        font-size: $h2;
+        font-size: $h3;
         cursor: pointer;
     }
     h1{
-        font-size: $h1_sub;
-        margin-bottom: 20px;
+        font-size: $h2;
+        margin-bottom: 3px;
     }
-    label{
-        font-size: $h3;
-        display: block;
-        padding-bottom: 10px;
+    div.one{
+        padding: 0 10px;
+        label{
+        font-size: $p;
     }
+    }
+    
     input.ms_input{
-        height: 30px;
+        height: 25px;
         width: 95%;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
         padding: 0 10px;
         outline: none;
         font-size: $p;
         letter-spacing: 0.1em;
     }
     .ms_submit_btn{
-        margin-top: 10px;
+        margin-top: 5px;
     }
     div.select{
         // outline: 1px solid red;
         // height: 1000px;
         display: flex;
+
         flex-wrap: wrap;
-        
-        div:first-child{
-            width: 500px;
-        }
         div{
         // outline: 1px solid red;
         width: 100px;
         flex-grow: 1;
-        padding: 10px;
+        padding:5px 10px;
         }
-        margin-bottom: 10px;
+        // margin-bottom: 5px;
         select{
             width: 100%;
-            height: 40px;
+            height: 30px;
             text-align: center;
         }
        
@@ -179,11 +177,12 @@
 
     div.file{
         // outline: 1px solid red;
-        padding: 10px;
+        // padding: 10px;
         display: flex;
         flex-wrap: wrap;
         font-size: $p;
-        line-height: 1.5;
+        line-height: 1.2;
+        margin-bottom: 0 !important;
         // text-align: center;
         label:first-child{
             
@@ -191,14 +190,16 @@
         }
         label{
         outline: 1px solid $bg; 
+        line-height: 1.5;
         background-color: white; 
         margin: 10px;
-        width: 50px;
+        width: 60px;
         flex-grow: 1;
-        padding: 15px;
+        padding: 10px;
         font-size: 16px;
         overflow: hidden;
         cursor: pointer;
+        margin-bottom: 0;
         }
         input.op0{
             opacity: 0;
@@ -207,6 +208,8 @@
     }
 
     textarea{
+        // border: 1px solid red;
+        height: 100px;
         width: 95%;
         resize: none;
         margin-bottom: 10px;
@@ -217,13 +220,14 @@
     }
 }
 .ms_login_btn {
-      margin-top: 20px;
+    //   margin-top: 20px;
+    margin-top: -10px;
       width: 100%;
       input {
         font-size: 18px;
         outline: none;
         border: none;
-        @include btn($orange, 40px, 100%, $green);
+        @include btn($orange, 30px, 100%, $green);
         font-family: "Noto Sans TC", sans-serif;
       }
     }

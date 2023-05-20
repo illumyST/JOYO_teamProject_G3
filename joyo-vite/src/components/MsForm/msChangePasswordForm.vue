@@ -69,6 +69,7 @@
     }
   }
   .ms_form {
+    
     position: relative;
     font-family: "Noto Sans TC", sans-serif;
     width: 550px;
@@ -76,9 +77,9 @@
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 30px auto ;
     padding: 60px 70px;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
     // height: 450px;
   
     .ms_login_form {

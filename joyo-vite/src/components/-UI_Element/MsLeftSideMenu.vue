@@ -3,7 +3,7 @@
     <li :class="{ '-active': $route.path == '/ms/msDataManagementSendReport' }">
       <router-link to="/ms/msDataManagementSendReport">數據管理</router-link>
     </li>
-    <li :class="{ '-active': $route.path == 'msContentManagementBanner' }">
+    <li :class="{ '-active': $route.path == 'msContentManagementBanner' || $route.path == '/ms/MsContentManagementForum'}">
       <router-link to="/ms/msContentManagementBanner">版務管理</router-link>
     </li>
 
@@ -11,13 +11,14 @@
      <router-link to="/ms/msProductManagement">商品頁面</router-link>
     </li>
 
-    <li :class="{ '-active': $route.path == '/ms/mslivechat' }">
-      <router-link to="/ms/msCustomerService">客服中心/會員管理</router-link>
+    <li :class="{ '-active': $route.path == '/ms/mslivechat' || $route.path == '/ms/MsUserData' }">
+      <router-link to="/ms/MsUserData">客服中心/會員管理</router-link>
     </li>
-    <li :class="{ '-active': $route.path == '/ms/OrderManagement' }">
-      <router-link to="/ms/OrderManagement">訂單資料管理</router-link>
+
+    <li :class="{ '-active': $route.path == '/ms/MsDataManagementOrder' }">
+      <router-link to="/ms/MsDataManagementOrder">訂單資料管理</router-link>
     </li>
-    <li :class="{ '-active': $route.path == '/ms/msSystemAdmin' }">
+    <li :class="{ '-active': ($route.path == '/ms/msSystemAdmin') || ($route.path == '/ms/MsChangePassword') }">
       <router-link to="/ms/msSystemAdmin">系統管理</router-link>
     </li>
   </ul>

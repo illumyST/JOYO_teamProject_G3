@@ -15,12 +15,12 @@
                    <span class="ordrta"><h4>{{ item.total }}</h4></span>
                    <span class="ordrta"><h4>{{ item.stp }}</h4></span>
                    <span class="ordrta ot"  @click.prevent="openC(index)">
-                         <h4 v-if="item.fron == 'N' && !item.upopen">編輯訂單狀態</h4>
-                         <h4 v-if="item.fron == '1' && !item.upopen">訂單成立</h4>
-                         <h4 v-if="item.fron == '2' && !item.upopen">已出貨</h4>
-                         <h4 v-if="item.fron == '3' && !item.upopen">運送中</h4>
-                         <h4 v-if="item.fron == '4' && !item.upopen">訂單完成</h4>
-                         <input type="text" name="" id="" v-if="item.upopen" v-model="item.fron" @change="ifron(index)" @keyup.enter="change(index)"
+                         <h4 v-if="(item.fron != 1 && item.fron != 2 && item.fron != 3 && item.fron != 4) && !item.upopen">編輯訂單狀態</h4>
+                         <h4 v-if="item.fron == 1 && !item.upopen">訂單成立</h4>
+                         <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
+                         <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
+                         <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
+                         <input type="number" min="1" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
                          @blur="change(index)">
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
                    </span>
@@ -121,20 +121,22 @@ onMounted(() => {
 
 const ifron = (e)=>{
     console.log(order.value[e].fron);
-    if(order.value[e].fron == "N"){
+    if(order.value[e].fron != 1 && order.value[e].fron != 2 
+    && order.value[e].fron != 3 && order.value[e].fron != 4){
+        order.value[e].fron = 0;
         order.value[e].one = "";
         order.value[e].two = "" ;
         order.value[e].the = "" ;
         order.value[e].four = "" ;
     }
-    if(order.value[e].fron == "1"){
+    if(order.value[e].fron == 1){
         console.log("1");
         order.value[e].one = nowDate.value ;
         order.value[e].two = "" ;
         order.value[e].the = "" ;
         order.value[e].four = "" ;
     }
-    else if (order.value[e].fron == "2"){
+    else if (order.value[e].fron == 2){
         if(order.value[e].one == ""){
             order.value[e].one = nowDate.value ;   
         }
@@ -142,7 +144,7 @@ const ifron = (e)=>{
         order.value[e].the = "" ;
         order.value[e].four = "" ;
     }
-    else if (order.value[e].fron == "3"){
+    else if (order.value[e].fron == 3){
         if(order.value[e].one == ""){
             order.value[e].one = nowDate.value ;   
         }
@@ -152,7 +154,7 @@ const ifron = (e)=>{
         order.value[e].the = nowDate.value ;
         order.value[e].four = "" ;
     }
-    else if (order.value[e].fron == "4"){
+    else if (order.value[e].fron == 4){
         if(order.value[e].one == ""){
             order.value[e].one = nowDate.value ;   
         }
