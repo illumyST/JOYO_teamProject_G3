@@ -1,7 +1,7 @@
 <template>
   <div class="forumInfo_right_main">
     <div class="forumInfo_right_main_top">
-      <img src="./assets/img/cat.png" alt="" />
+      <img src="../../assets/img/cat.png" alt="" />
       <p>王小明</p>
       <p>2023/05/01</p>
     </div>
@@ -56,14 +56,12 @@
 
       <div class="forumInfo_comments_text">
         <div class="forumInfo_comments_text_title" v-for="(item, index) in ForumInfoMsgs" :key="index">
-          <img src="./assets/img/cat.png" alt="" />
+          <img src="../../assets/img/cat.png" alt="" />
           <p>{{ item.MsgName }}</p>
           <p>{{ item.MsgDate }}</p>
           <p class="forumInfo_comments_text_msg">{{ item.MsgText }}</p>
         </div>
       </div>
-
-      <!-- <span class="forumInfo_comments_text_line"></span> -->
     </div>
   </div>
 
@@ -81,6 +79,7 @@
 </template>
 
 <script setup>
+import{ ref } from "vue";
 const CommentsNum = ref(44);
 
 const ForumInfoMsgs = ref([

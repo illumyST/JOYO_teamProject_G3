@@ -10,10 +10,12 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddCartBtn: typeof import('./components/-UI_Element/AddCartBtn.vue')['default']
+    BannerCNT: typeof import('./components/contact/BannerCNT.vue')['default']
     BannerFRMINFO: typeof import('./components/forumInfo/BannerFRMINFO.vue')['default']
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BannerListFRM: typeof import('./components/forum/BannerListFRM.vue')['default']
     BannerTopFRM: typeof import('./components/forum/BannerTopFRM.vue')['default']
+    BottomCNT: typeof import('./components/contact/BottomCNT.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Cart: typeof import('./pages/cart.vue')['default']
     CartConfirm: typeof import('./pages/cart/cartConfirm.vue')['default']
@@ -23,6 +25,8 @@ declare module '@vue/runtime-core' {
     Footer: typeof import('./components/-Global/footer.vue')['default']
     ForgetPassword: typeof import('./pages/signIn/forgetPassword.vue')['default']
     ForgetPasswordRedirect: typeof import('./pages/signIn/forgetPasswordRedirect.vue')['default']
+    FormFRMPost: typeof import('./components/forumPost/FormFRMPost.vue')['default']
+    FormFRMPOST: typeof import('./components/forumPost/FormFRMPOST.vue')['default']
     Forum: typeof import('./pages/forum.vue')['default']
     ForumHome: typeof import('./pages/forum/forumHome.vue')['default']
     ForumInfo: typeof import('./pages/forum/forumInfo.vue')['default']
@@ -99,6 +103,7 @@ declare module '@vue/runtime-core' {
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
     SidemenuFRMINFO: typeof import('./components/forumInfo/SidemenuFRMINFO.vue')['default']
     SignIn: typeof import('./pages/signIn.vue')['default']
+    TitleCNT: typeof import('./components/contact/TitleCNT.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
   }
