@@ -2,7 +2,7 @@
     <div class="registerRedirect_wrappper">
         <div class="registerRedirect_box">
             <div class="registerRedirect_logo">
-            <img class="registerRedirect_logo_img" src="./assets/img/logo_orange.svg" alt="">
+            <!-- <img class="registerRedirect_logo_img" src="fa-flip-vertical/assets/img/logo_orange.svg" alt=""> -->
             </div> 
             <div class="registerRedirect_completed">
                 <i class="fa-solid fa-circle-check"></i>

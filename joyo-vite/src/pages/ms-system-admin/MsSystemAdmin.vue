@@ -6,7 +6,7 @@
           <template #button1>權限管理</template>
         </MsTabs>
         <MsSystemAdminBtn :name="'管理員權限管理'"></MsSystemAdminBtn>
-        <msProductManagementTable></msProductManagementTable>
+        <msSystemAdminTable></msSystemAdminTable>
       </div>
     </div>
 </template>
@@ -20,26 +20,28 @@ const getseach=(n)=>{
     console.log(n);
 }
 
-const prodects = ref([{
-    pronum:12443,
-    proname:'阿瓦隆',
-    protype:'益智',
-    propice: 549 ,
-    update: true 
+const admins = ref([{
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true
 },{
-    pronum:13434,
-    proname:'風聲',
-    protype:'益智',
-    propice: 231 ,
-    update: true 
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true
 },{
-    pronum:13255,
-    proname:'神秘大地',
-    protype:'益智',
-    propice: 1549 ,
-    update: true 
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true
+},{
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true
 },]) 
-provide('prodects',prodects)
+provide('admins',admins)
 
 
 </script>

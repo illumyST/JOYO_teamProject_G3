@@ -23,7 +23,6 @@
 </script>
 
 <style lang="scss" scoped>
-//
 
 @mixin btn($bg , $lh, $w, $hover) {
     background: $bg;

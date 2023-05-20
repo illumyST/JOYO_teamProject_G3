@@ -94,7 +94,7 @@
     }
     .membercard-right main li h3{
         font-size: 16px;
-        width: 110px;
+        width: 100px;
     }
     .membercard-right main li .delete{
         width: 90px;

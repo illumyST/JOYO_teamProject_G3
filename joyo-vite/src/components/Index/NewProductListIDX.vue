@@ -66,7 +66,8 @@ const product_data = ref({
 </script>
 
 
-<style lang="scss" scoped>.index_newProductList {
+<style lang="scss" scoped>
+.index_newProductList {
     margin-bottom: 140px;
     color: $brown;
 
@@ -95,6 +96,7 @@ const product_data = ref({
             margin: 0 20px;
         }
     }
+
     .index_newProductList_list {
         display: flex;
     }
@@ -147,14 +149,83 @@ const product_data = ref({
     }
 
 }
-.index_newProductList{
-    .index_newProductList_list{
+
+.index_newProductList {
+    .index_newProductList_list {
         margin-bottom: 80px;
         justify-content: space-between;
-        li{
+
+        li {
             margin: initial;
         }
     }
-    
+
 }
-</style>
+
+@include m() {
+    .index_newProductList {
+        margin-bottom: 40px;
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .h1_sub {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 16px;
+            letter-spacing: .1em;
+            color: #fff;
+
+            p {
+                font-size: 16px;
+                margin-top: 10px;
+            }
+
+            span {
+                display: block;
+                margin: 0;
+                margin-top: 10px;
+            }
+        }
+
+        // ------------- card li ------------- //
+        .index_newProductList_list li {
+            width: 110px;
+            border: 2px solid $green;
+            margin: 0;
+
+            img {
+                height: 120px;
+                margin:0;
+            }
+            .product_list_pInfo {
+                padding: 6px 8px;
+                flex-direction: column;
+            }
+        }
+
+        // ------------- first-card li ------------- //
+        .index_hotProduct_list li:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
+    .index_newProductList {
+        margin-bottom: 40px;
+
+        .index_newProductList_list {
+            margin-bottom: 30px;
+        }
+
+        .index_newProductList_list li:last-child {
+            display: none;
+        }
+
+    }
+}</style>

@@ -17,7 +17,7 @@
                             <button class="product-filter-btn" type="button" id=""
                                 v-on:click="product_filter_cater_show">
                                 <span>全部商品</span>
-                                <span><img src="/img/Vector.png" alt=""></span>
+                                <span><img src="/IMG/vector.png" alt=""></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li><a class="dropdown-item" href="#">全部商品</a></li>
@@ -34,7 +34,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_player_show">
-                                    <span>遊玩人數</span><span><img src="/img/Vector.png" alt=""></span>
+                                    <span>遊玩人數</span><span><img src="/IMG/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -58,7 +58,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
-                                            src="/img/Vector.png" alt=""></span>
+                                            src="/IMG/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
@@ -86,7 +86,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_order_show">
-                                    <span>排序方式</span><span><img src="/img/Vector.png" alt=""></span>
+                                    <span>排序方式</span><span><img src="/IMG/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -112,7 +112,56 @@
 <script setup>
 
 </script>
+<script>
+    export default {
+    data(){
+        return{
+            product_filter_cater_active: false,
+            product_filter_player_active: false,
+            product_filter_age_active: false,
+            product_filter_order_active: false,
+            product_filter_player_cate: false,
+        }
+    },
+    methods:{
+        product_filter_cater_show(e) {
+                    e.stopPropagation();
+                    this.product_filter_cater_active = !this.product_filter_cater_active;
+                },
+                product_filter_player_show(e) {
+                    this.product_filter_player_active = !this.product_filter_player_active;
+                    e.stopPropagation();
+                    console.log(123);
+                },
+                product_filter_age_show(e) {
+                    this.product_filter_age_active = !this.product_filter_age_active;
+                    e.stopPropagation();
+                },
+                product_filter_order_show(e) {
+                    this.product_filter_order_active = !this.product_filter_order_active;
+                    e.stopPropagation();
+                },
+                //篩選列表隱藏
+                product_filter_close(e) {
 
+                    if (this.product_filter_player_active) {
+                        this.product_filter_player_active = !this.product_filter_player_active;
+                    }
+                    if (this.product_filter_age_active) {
+                        this.product_filter_age_active = !this.product_filter_age_active;
+                    }
+                    if (this.product_filter_order_active) {
+                        this.product_filter_order_active = !this.product_filter_order_active;
+                    }
+                },
+    },
+    mounted() {
+        window.addEventListener("click", () => {
+            this.product_filter_close();
+        });
+        }
+    }
+</script>
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .col-1 {
@@ -173,14 +222,18 @@
 
     h1 {
         font-size: 32px;
+        color:$brown;
     }
 
     h2 {
         font-size: 24px;
+        margin-bottom:15px;
+        color:$brown;
     }
 
     h3 {
         font-size: 20px;
+        color:$brown;
     }
 }
 
@@ -221,6 +274,7 @@
 
     a {
         margin-left: 3px;
+        color:$brown;
     }
 }
 
@@ -244,7 +298,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     height: 60px;
-
+    position:relative;
     .product-filter-div {
         box-sizing: border-box;
         display: flex;
@@ -323,19 +377,21 @@
 
 .product-filter-player {
     width: 170px;
-    right: 425px;
-    top: 270px;
+    right: 393px;
+    top: 57px;
+
 }
 
 .product-filter-age {
     width: 170px;
-    right: 235px;
-    top: 270px;
+    right: 203px;
+    top: 57px;
+
 }
 
 .product-filter-order {
     width: 170px;
-    top: 270ppx;
+    top: 57px;
 }
 
 .product-filter-player.active {
@@ -602,19 +658,18 @@
 
         .product-filter-order {
             width: 114.7px;
-            top: 206px;
-            right: 22px;
+            top: 67px;
         }
 
         .product-filter-age {
             width: 114.9px;
-            right: 149.5px;
-            top: 206px;
+            right: 127.5px;
+            top: 67px;
         }
 
         .product-filter-player {
-            top: 206px;
-            right: 277.5px;
+            top: 67px;
+            right: 255.5px;
             width: 114.7px;
         }
 

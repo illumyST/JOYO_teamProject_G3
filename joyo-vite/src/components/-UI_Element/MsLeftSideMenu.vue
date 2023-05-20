@@ -6,7 +6,11 @@
     <li :class="{ '-active': $route.path == '/ms/msContentManagementBanner' }">
       <router-link to="/ms/msContentManagementBanner">版務管理</router-link>
     </li>
-    <li><router-link to="/ms/msProductManagement">商品頁面</router-link></li>
+
+    <li :class="{ '-active' : $route.path == '/ms/msProductManagement'}">
+     <router-link to="/ms/msProductManagement">商品頁面</router-link>
+    </li>
+
     <li :class="{ '-active': $route.path == '/ms/mslivechat' }">
       <router-link to="/ms/msCustomerService">客服中心/會員管理</router-link>
     </li>

@@ -91,7 +91,7 @@ console.log(props.name)
       color: #fff;
 
       &:hover{
-          background: green;
+          background: $green;
       }
 
       height: 34px;

@@ -16,6 +16,7 @@ declare global {
   const MsLoginFormMLI: typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
   const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
+  const PdcTopPdc: typeof import('./src/components/product/PdcTopPdc.vue')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -101,6 +102,7 @@ declare module 'vue' {
     readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
     readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
+    readonly PdcTopPdc: UnwrapRef<typeof import('./src/components/product/PdcTopPdc.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
