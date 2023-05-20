@@ -52,5 +52,5 @@ const isValidPassword =computed(()=>{
 
 
 <style lang="scss" scoped>
-@import '../../../../css/style.css';
+// @import '../../../../css/style.css';
 </style>

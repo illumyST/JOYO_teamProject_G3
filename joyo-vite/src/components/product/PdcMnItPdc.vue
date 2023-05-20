@@ -1,7 +1,7 @@
 <template>
 
-<div class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
-  <div v-for="(card, index) in list" :key="index" class="prouct-item-card">
+<ul class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
+  <li v-for="(card, index) in list" :key="index" class="prouct-item-card">
   <router-link :to="'productInfo/' +'ID:'+card.ID" v-on:click="saveLocal">
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
@@ -21,15 +21,13 @@
         <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
         <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
       </div>
-      <button class="btn prouct-item-card-icon">
-      <a href="#">
+      <button class="btn prouct-item-card-icon" v-on:click="addCart">
          <i class="fa-solid fa-cart-shopping custom-icon"></i>
-      </a>
        </button>
     </div>
   </router-link>
-  </div>
-</div>
+  </li>
+</ul>
 
 </template>
 
@@ -64,6 +62,9 @@ export default {
         i=i+this.page; 
         }
         console.log(this.total_page[0][0]);
+      },
+      addCart(e){
+        e.preventDefault();
       }
     },
     mounted(){
@@ -73,15 +74,6 @@ export default {
     }
 }
 </script>
-<<<<<<< HEAD
-
-=======
-<style>
-.prouct-item-card-icon{
-   
-}
-</style>
->>>>>>> peiya
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {
@@ -126,6 +118,7 @@ export default {
 
     aside {
         width: 200px;
+        text-align:center;
     }
 }
 
@@ -154,12 +147,6 @@ export default {
 
 .breadcrumb-item li:hover {
     background-color: $orange;
-}
-.prouct-item-card.prouct-item-card-icon .btn{
-    width: 56px;
-    height: 56px;
-    background-color: #fff;
-
 }
 .breadcrumb-item.active a::after {
     display: none;
@@ -386,8 +373,21 @@ export default {
     div {
         width: 200px;
     }
+    
+    button {
+        width: 55px;
+        height: 55px;
+        background-color: #fff;
+        border-radius:50%;
+        text-align:center;
+        padding: 0px;
+        padding-left: 3px;
+        line-height: 1.2;
+        .custom-icon {
+            font-size: 26px;
+        }
+    }
 }
-
 .product-main aside ul {
     display: flex;
     flex-direction: column;

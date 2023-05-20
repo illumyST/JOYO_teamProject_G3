@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const addToCart = function(){
+const addToCart = function () {
     console.log(1)
 };
 
@@ -24,5 +24,20 @@ button {
     font-size: 22px;
     color: $green;
     cursor: pointer;
+}
+
+@include m() {
+    button {
+        position: absolute;
+        right: 5px;
+        bottom: 55px;
+        width: 35px;
+        height: 35px;
+        line-height:10px;
+
+        i {
+            font-size: 16px;
+        }
+    }
 }
 </style>

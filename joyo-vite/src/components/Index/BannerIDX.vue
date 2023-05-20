@@ -13,9 +13,9 @@
 <script setup>
 import { ref } from "vue"
 const index_banner_src = ref({
-    left:'',
-    rightTop:'',
-    rightBottom:''
+    left: '',
+    rightTop: '',
+    rightBottom: ''
 })
 </script>
 
@@ -28,20 +28,38 @@ const index_banner_src = ref({
         margin-right: 20px;
         border: 1px solid $orange;
         height: 380px;
-        flex-basis: 692px;
+        width: 692px;
     }
 
     &_rightBox {
         display: flex;
-        flex-basis: 488px;
+        width: 488px;
         flex-direction: column;
         justify-content: space-between;
 
-        &_banner{
+        &_banner {
             border: 1px solid $orange;
             height: 180px;
         }
     }
 }
 
-</style>
+@include m() {
+    .index_banner {
+        flex-direction: column;
+        margin-bottom: 40px;
+
+        &_leftSlidder {
+            margin: 0;
+            height: 100px;
+            width: 100%;
+            img {
+                height: 100%;
+            }
+        }
+
+        &_rightBox {
+            display: none;
+        }
+    }
+}</style>

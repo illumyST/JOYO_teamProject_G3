@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper">
+    <main class="wrapper" @click="echoTest()">
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
@@ -7,7 +7,6 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-        <router-link :to="{ name: 'product'}">商品一</router-link>
     </main>
 </template>
 

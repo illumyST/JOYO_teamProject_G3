@@ -5,14 +5,30 @@
                     <li class="col-4"><a href="" v-on:click="turn">商品描述</a></li>
                     <li class="col-4"><a href="" v-on:click="turn">購買須知</a></li>
                     <li class="col-4"><a href="" v-on:click="turn">用戶評價</a></li>
+                    <li class="col-4 infor-detail-nav-line"><p></p></li>
                 </ul>
             </div>
             <div class="infor-detail-contain">
-                <div v-show="show === 'ds'" class="infor-detail-ds">
+                <div v-show="show === '商品描述'" class="infor-detail-ds">
                  {{filetData.DESCRIPTION}}
                 </div>
-                <div v-show="show === 'no'" class="infor-detail-no"></div>
-                <div v-show="show === 'star'" class="infor-detail-star">
+                <div v-show="show === '購買須知'" class="infor-detail-no">
+                <h3>鑑賞期：</h3>
+                在您收到桌遊商品後的7天內，您享有鑑賞期的權益。這意味著您可以仔細檢查商品，確保其完整性和符合您的期望。如需退貨或換貨，請在鑑賞期內與我們的客服團隊聯繫，我們將協助您進一步處理。
+
+                <h3>退貨及換貨處理：</h3>
+                若您在鑑賞期內決定退貨或換貨，請遵循以下程序：
+                <br>1.請聯繫我們的客服團隊，提供訂單號碼、商品名稱和退換貨原因。
+                我們的客服人員將向您提供退貨及換貨的相關指引。
+                <br>2.請確保商品及配件（如有）保持完整且在退貨或換貨過程中適當包裝，以防損壞。
+                <br>3.退貨時，您需自行承擔退貨運費。換貨時，我們將負擔換貨商品的運費。
+                <h3>請注意以下情況，可能影響您退貨及換貨的權益：</h3>
+
+                商品已經使用或損壞，超出了正常鑑賞的範圍。
+                商品的原始包裝已損毀或遺失。
+                商品無法清楚辨認出自我們的產品。
+                </div>
+                <div v-show="show === '用戶評價'" class="infor-detail-star">
                     <div class="col-3 infor-detail-star-rank">
                         <p>總星等</p>
                         <ul>
@@ -37,9 +53,9 @@
                     <div class="col-12 infor-detail-star-comment">
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="/img/cat.png" alt="">
+                                <img src="/IMG/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
-                                <div>
+                                <div class="infor-detail-star-comment-top-start">
                                     <ul>
                                         <li class="star1" value="1">
                                             <i class="fa-solid fa-star"></i>
@@ -65,7 +81,7 @@
                         </article>
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="/img/cat.png" alt="">
+                                <img src="/IMG/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
                                 <div>
                                     <ul>
@@ -107,14 +123,19 @@
     },
     data(){
         return{
-            show:"ds" ,
+            show:"商品描述" ,
         }
     },
     methods:{
-        // turn(e){
-        //     e.preventDefault();
-        //     this.show=e.
-        // },
+        turn(e){
+            let decorate=document.querySelector(".infor-detail-nav-line");
+            let decorateX=decorate.getBoundingClientRect().left;
+            let evenX=e.target.getBoundingClientRect().left;
+            e.preventDefault();
+            this.show=e.target.innerHTML;
+            let displacement=(evenX-decorateX);
+            decorate.style.left = `${decorateX + displacement -33}px`;
+        },
     },
 }
 </script>
@@ -128,22 +149,8 @@ button {
     cursor: pointer;
 }
 
-.infor-top {
-    width: 100%;
-    margin-top: 40px;
-}
 
-.breadcrumb-item.active a {
-    color: $orange;
-    font-weight: 600;
-}
 
-.infor-item {
-    margin-top: 30px;
-    margin-bottom: 70px;
-    display: flex;
-    justify-content: space-between;
-}
 
 .infor-item-img {
     display: flex;
@@ -174,15 +181,6 @@ button {
             cursor: pointer;
         }
     }
-}
-
-.infor-item-img-bg {
-    text-align: center;
-    width: 500px;
-}
-
-.infor-item-img-bg img {
-    width: 90%;
 }
 
 .infor-item-infor h1 {
@@ -266,6 +264,31 @@ button {
     a {
         color: $brown;
     }
+    .infor-detail-contain{
+        max-height:500px;
+        overflow-y:auto;
+        div{
+            margin-top:40px;
+            line-height:40px;
+            font-size:16px;
+            .infor-detail-star-comment-top{
+                margin-top:10px;
+            }
+            div{
+               margin-top:10px;
+               div{
+                margin-top:0px;
+                margin-bottom:10px;
+                div{
+                    margin-bottom:0px;
+                }
+               }
+               .infor-detail-star-comment-main{
+                line-height:30px
+               } 
+            }
+        }
+    }
 
 }
 
@@ -280,21 +303,17 @@ button {
         align-items: center;
         justify-content: center;
         position: relative;
+        .infor-detail-nav-line{
+            display:block;
+            border:1.5px solid $orange;
+            position: absolute;
+            left:0px;
+            top:80.5px
+        }
     }
 
     li {
         border-bottom: 1px solid black;
-    }
-
-    ul li:nth-child(1) ::after {
-        content: "";
-        display: block;
-        width: 398px;
-        border: 1.7px solid $orange;
-        height: 0.1px;
-        position: absolute;
-        top: 81px;
-        left: 0px;
     }
 
     a {
@@ -331,9 +350,6 @@ button {
     display: block;
 }
 
-.infor-detail-contain section.active {
-    display: block;
-}
 
 .infor-bottom h2 {
     margin-top: 100px;
@@ -437,6 +453,7 @@ button {
 
 .infor-detail-star-rank ul {
     margin-left: 10px;
+    margin-right: 10px;
     display: flex;
 }
 
@@ -460,7 +477,9 @@ button {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 20px;
-
+    .infor-detail-star-comment-top-start{
+        margin-top:0; 
+    }
     img {
         display: block;
         width: 30px;
@@ -473,8 +492,21 @@ button {
 }
 
 @media screen and (max-width: 414px) {
-    .infor-top {
-        margin-top: 0;
+    .infor-detail-star{
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        .infor-detail-star-rank{
+            width:100%;
+            margin-left:0px;
+            justify-content: flex-start;
+        }
+        .infor-detail-star-comment-top{
+            width:54%;
+        }
+        .infor-detail-star-comment-main{
+            width:100%;
+        }
     }
 
     .infor-item {
@@ -492,7 +524,7 @@ button {
         .infor-item-img-bg {
             width: 100%;
             height: 285px;
-
+            
             img {
                 width: 66%;
             }
@@ -571,10 +603,6 @@ button {
 
     }
 
-    .infor-detail-nav ul li:nth-child(1) ::after {
-        top: 55px;
-        width: 375px;
-    }
 
     .infor-detail {
         width: 100%;
@@ -587,7 +615,12 @@ button {
         .infor-detail-nav {
             margin-top: 30px;
             height: 52px;
-
+            ul{
+                .infor-detail-nav-line{
+                    top:55px;
+                    width:130px
+                }
+            }
             a {
                 font-size: 14px;
                 left: 3px;
