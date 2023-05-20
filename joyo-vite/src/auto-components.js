@@ -101,7 +101,6 @@ declare module '@vue/runtime-core' {
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
     SidemenuFRMINFO: typeof import('./components/forumInfo/SidemenuFRMINFO.vue')['default']
     SignIn: typeof import('./pages/signIn.vue')['default']
-    TestTable: typeof import('./components/msTable/testTable.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']
   }
