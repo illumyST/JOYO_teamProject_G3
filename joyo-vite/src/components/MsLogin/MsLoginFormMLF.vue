@@ -1,6 +1,6 @@
 <template>
     <section class="ms_form">
-      <form action="#" class="ms_login_form">
+      <form method="POST" action="#" class="ms_login_form">
         <img
           class="ms_login_form_logo"
           src="../../assets/img/logo_orange.svg"
