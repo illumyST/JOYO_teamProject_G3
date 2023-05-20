@@ -1,40 +1,36 @@
 <template>
   <div class="ms_tabs">
-    <button class="" :class="{ '-active': open1 }">
+    <button :class="{ '-active': isOpen }" @click="activeBtn(1)">
       <slot name="button1">請輸入內容</slot>
     </button>
     <!-- 如果不想顯示第二個按鈕，則在引入時加上showBtn2屬性，並設定為false -->
     <!-- <MsTabs :showBtn2="false"></MsTabs>  -->
-    <button v-if="showBtn2" class="" :class="{ '-active': open2 }">
+    <button v-if="showBtn2" :class="{ '-active': !isOpen }" @click="activeBtn(2)">
       <slot name="button2">請輸入內容</slot>
     </button>
   </div>
 </template>
 <script>
 export default {
-  // props: ["open1", "open2", "showBtn2"],
   props: {
-    open1: {
-      type: Boolean, 
-      default: true, 
-    }, 
-    open2: {
-      type: Boolean, 
-      default: false, 
-    }, 
+    isOpen: {
+      type: Boolean,
+      default: true,
+    },
     showBtn2: {
-        type: Boolean,
-        default: true,
-    }
-  },
-  data() {},
-  methods: {
-    func() {
-      console.log("hi");
+      type: Boolean,
+      default: true,
     },
   },
-  mounted() {
-    console.log(this.open1);
+
+  methods: {
+    activeBtn(btn) {
+      if (btn === 1) {
+        this.$emit('tabSwitch');
+      } else if (btn === 2) {
+        this.$emit('tabSwitch');
+      }
+    },
   },
 };
 </script>
