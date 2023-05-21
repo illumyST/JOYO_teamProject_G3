@@ -33,6 +33,7 @@ const logInData = ref({
   pwd: ''
 })
 
+
 const passwordToggle = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
@@ -46,7 +47,7 @@ const doLogInCheck = function () {
       logInSuccess.value = data;
       if (logInSuccess.value == 1) {
         alert('登入成功！');
-        location.href = '/ms/msDataManagementOrder'
+        location.href = '/ms'
       }
     });
 };
