@@ -157,6 +157,11 @@ const routes = [
                 name: 'redirect',
                 component: () => import('@/pages/signIn/redirect.vue'),
             },
+            {
+                path: 'forgetPassword',
+                name: 'forgetPassword',
+                component: () => import('@/pages/forgetPassword.vue'),
+            },
         ]
     },
 
