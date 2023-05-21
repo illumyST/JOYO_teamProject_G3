@@ -103,15 +103,27 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 
 const isLogIn = ref(0);
+const route = useRoute();
 
 onMounted(() => {
-    axios.get('/api/logIn&Out/sessionCheck.php')
-        .then(res => {
-            const data = res.data;
-            isLogIn.value = data;
-        })
+    // axios.get('/api/logIn&Out/sessionCheck.php')
+    // .then(res => {
+    //   const data = res.data;
+    //   isLogIn.value = data;
+    //   // console.log('data', res.data)
+    //   // console.log('isLogIn.value', isLogIn.value)
+
+    //   // 得放在 axios 裡面，因為會有時間落差？
+    //   if (isLogIn.value == 0 && route.path != '/signIn') {
+
+    //     // TODO 會可以看到其他頁面
+    //     location.href = '/signIn';
+    //     alert('您尚未登入！');
+    //   };
+    // });
 });
 
 const logOut = () => {
