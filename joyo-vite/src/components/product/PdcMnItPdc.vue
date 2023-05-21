@@ -1,4 +1,4 @@
-<template>
+<template v-if="currentCategory">
 
 <ul class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
   <li v-for="(card, index) in list" :key="index" class="prouct-item-card">
@@ -33,8 +33,25 @@
 
 <script setup>
 
-import { onMounted, ref } from 'vue';
+import { defineProps,  ref, watch,computed} from 'vue';
 import axios from 'axios';
+const props = defineProps({
+        currentCategory: {
+        type: Array,
+        required: true,
+        },
+        
+    });
+    const index=0;
+    const currentCategoryCopy =computed(() => [...props.currentCategory]);
+   
+    watch(()=>currentCategoryCopy,(newValue) => {
+    // 更新 props.inputValue 的值
+    props.currentCategory = newValue;
+    fetchData().then(() => {
+    getPage();
+    });
+    });
 </script>
 <script>
 export default {
@@ -44,24 +61,31 @@ export default {
       tg:null,
       page:12,
       total_page:[],
+      fliterTg:null,
       }
     },
     methods:{
        fetchData() {
+        console.log(123);
         return axios.get('/API/boardGame.json')
           .then(res => {
+            let i=0;
             this.tg = res.data;
+            if(this.currentCategory[i].cate !="全部商品"){
+               this.fliterTg=this.tg.filter((ele)=>ele.CATEGORY == this.currentCategory[i].cate); 
+            }else{
+                this.fliterTg=this.tg
+            }
         })
         .catch(err => {
           console.error(err);
         });
     },
       getPage(e){
-       for(let i=0;i<this.tg.length;){
-        this.total_page.push(this.tg.slice(i,i+12));
+       for(let i=0;i<this.fliterTg.length;){
+        this.total_page.push(this.fliterTg.slice(i,i+12));
         i=i+this.page; 
         }
-        console.log(this.total_page[0][0]);
       },
       addCart(e){
         e.preventDefault();

@@ -1,21 +1,39 @@
-<template>
+<template v-if="currentCategory">
     <aside class="col-2 ">
                 <h1>遊戲分類</h1>
                 <ul>
-                    <li class="active"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">派對遊戲</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
-                    <li><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li>
+                    <li :class="{active:currentCategory[index].cate=='全部商品'}"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
+                    <li :class="{active:currentCategory[index].cate=='派對遊戲'}"><a href="" v-on:click="product_filter_get_cate">派對遊戲</a></li>
+                    <li :class="{active:currentCategory[index].cate=='輕度策略'}"><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
+                    <li :class="{active:currentCategory[index].cate=='戰爭遊戲'}"><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
+                    <li :class="{active:currentCategory[index].cate=='棋奕遊戲'}"><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
+                    <li :class="{active:currentCategory[index].cate=='主題遊戲'}"><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
+                    <li :class="{active:currentCategory[index].cate=='家庭遊戲'}"><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
+                    <li :class="{active:currentCategory[index].cate=='團隊合作'}"><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li>
                 </ul>
 
             </aside>
 </template>
 <script setup>
-
+    import { defineProps,  ref, watch,computed} from 'vue';
+    const props = defineProps({
+        currentCategory: {
+        type: Array,
+        required: true,
+        },
+        
+    });
+    const index=0;
+    const currentCategoryCopy =computed(() => [...props.currentCategory]);
+    
+    const product_filter_get_cate=(e)=>{
+        e.preventDefault();
+        props.currentCategory[index].cate=e.target.innerHTML;
+    };
+    watch(currentCategoryCopy, (newValue) => {
+    // 更新 props.inputValue 的值
+    props.currentCategory = newValue;
+    });
 </script>
 
 <style lang="scss" scoped>
