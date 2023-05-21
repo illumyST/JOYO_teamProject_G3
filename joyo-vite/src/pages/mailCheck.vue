@@ -2,7 +2,7 @@
     <div class="mailCheck_wrapper">
   <div class="mailCheck_box">
         <div class="mailCheck_logo">
-          <img class="mailCheck_logo_img" src="./assets/img/logo_orange.svg" alt="">
+          <img class="mailCheck_logo_img" src="../assets/img/logo_orange.svg" alt="">
         </div>
       <div class="mailCheck_little_box">
         <p class="mailCheck_p">桌迷藏註冊驗證碼</p>
