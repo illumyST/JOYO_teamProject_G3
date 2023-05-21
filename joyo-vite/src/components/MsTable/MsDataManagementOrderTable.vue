@@ -20,7 +20,7 @@
                          <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
                          <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
-                         <input type="number" min="2" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
+                         <input type="number" min="1" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
                          @blur="change(index)"  >
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
                    </span>
@@ -37,10 +37,10 @@
                         </ul>
                     
                         <div class="ms_order_right">
-                            <div @click="itupop(index,'one')">
+                            <div >
                             <h5>訂單成立</h5>
-                            <p v-if="!item.oneop">{{ item.one }}</p>
-                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent="itupop(index,'one')">
+                            <p v-if="!item.oneop" @click="itupop(index,'oneop')">{{ item.one }}</p>
+                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent="itupop(index,'onecl')">
                             <!-- <p>{{ currentDate }}</p> -->
                             </div>
 
@@ -369,6 +369,7 @@ const itupop= (e,i)=>{
     width: 0px;
 }
 .two{
+    
     width: 210px;
 }
 .thr{

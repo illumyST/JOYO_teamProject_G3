@@ -14,6 +14,7 @@
 </template>
 
 <style lang="scss" scoped>
+    
     .cartFill_del_info {
     font-size: 24px;
     margin-top: 40px;

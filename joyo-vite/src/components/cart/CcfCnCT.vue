@@ -1,4 +1,4 @@
-<template>
+<template v-if="prodects">
     <div class="cartConfirm_con">
             <h2>確認您的購物車</h2>
             <ul class="col-12 cartConfirm_con_title">
@@ -9,49 +9,24 @@
                 <li class="cartConfirm_con_del"></li>
             </ul>
             <ul class="col-12 cartConfirm_con_title_item">
-                <li class="col-12">
+                <li class="col-12" v-for="(list,index) in prodects" :key="list.id">
                     <ul>
-                        <li class="cartConfirm_con_title_item_img"><img src="/IMG/product_AzUL.png" alt=""></li>
+                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.img" alt=""></li>
                         <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">花磚物語</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>699</span></li>
+                            <li class=" cartConfirm_con_title_item_name">{{list.name}}</li>
+                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list.sel}}</span></li>
                             <li class="cartConfirm_con_title_item_num order-2">
                                 <div>
-                                    <button class="col-2"><i class="fas fa-minus"></i></button>
-                                    <input class="col-8" type="text" placeholder="2">
-                                    <button class="col-2"><i class="fa-solid fa-plus"></i></button>
+                                    <button class="col-2" @click="numMinus(index)"><i class="fas fa-minus"></i></button>
+                                    <input class="col-8" type="text"   v-model.trim="list.amount">
+                                    <button class="col-2"  @click="numPlus(index)"><i class="fa-solid fa-plus"></i></button>
                                 </div>
 
                             </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> 1398</span>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{list.total}}</span>
 
                             </li>
-                            <li class="col-1"> <i class="fa-solid fa-trash-can "></i></li>
-
-                        </ul>
-
-                    </ul>
-
-                </li>
-                <li class="col-12">
-                    <ul>
-                        <li class="cartConfirm_con_title_item_img"><img src="/IMG/product_pathwork.png" alt="">
-                        </li>
-                        <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">拼布對決</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>699</span></li>
-                            <li class="cartConfirm_con_title_item_num order-2">
-                                <div>
-                                    <button class="col-2"><i class="fas fa-minus"></i></button>
-                                    <input class="col-8" type="text" placeholder="2">
-                                    <button class="col-2"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-
-                            </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> 1398</span>
-
-                            </li>
-                            <li class="col-1"> <i class="fa-solid fa-trash-can"></i></li>
+                            <li class="col-1" @click="remove(index)"> <i class="fa-solid fa-trash-can "></i></li>
 
                         </ul>
 
@@ -62,6 +37,39 @@
         </div>
 
 </template>
+<script setup>
+import { computed,defineProps, watch } from 'vue';
+    const props = defineProps({
+        prodects: {
+        type: Array,
+        required: true,
+        },
+        
+    });
+    const prodectsValueCopy = computed(() => [...props.prodects]);
+    const numPlus = (index) => {
+        if(props.prodects[index].amount<props.prodects[index].stock){
+            props.prodects[index].amount++;
+        }else{
+            alert (`數量不可大於庫存:${props.prodects[index].stock}`);
+        }
+        
+};  const numMinus = (index) => {
+        if(props.prodects[index].amount>1){
+                props.prodects[index].amount--;
+        }else{
+                alert (`數量不可小於1`);
+            }
+    };
+    const remove=(index)=>{
+        console.log("123");
+        props.prodects.splice(index,1);
+    }
+    watch( prodectsValueCopy, (newValue) => {
+    // 更新 props.inputValue 的值
+    props.prodects = newValue;
+    });
+</script>
 <style lang="scss" scoped>
     .cartConfirm_wrapper {
     width: 1200px;
@@ -208,7 +216,7 @@
     box-sizing: border-box;
     margin-right: 0;
     width: 208px;
-    padding-left: 38px;
+    //padding-left: 38px;
 }
 .col-1 {
     width: 8.3333333333%;

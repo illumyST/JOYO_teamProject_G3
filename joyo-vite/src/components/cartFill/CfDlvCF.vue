@@ -1,5 +1,5 @@
 <template>
-   <div class="col-12 cartFill_deliv">
+   <div class="col-12 cartFill_deliv"  v-show="susspay">
             <div>
                 <h2>送貨資訊
                     <div>
@@ -39,20 +39,31 @@
                     <li class="cartFill_deliv_credit_num">
                         <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 信用卡號">
                     </li>
-                    <li>
-                        <input type="tel" class="col-12 cartFill_deliv_y" placeholder="到期年月">
-                    </li>
-                    <li>
-                        <input type="tel" class="col-12 cartFill_deliv_psw" placeholder="安全碼">
-                    </li>
+                    
                 </ul>
-                <input type="submit" value="確認付款" class="cartFill_deliv_submit">
+                <input type="submit" value="確認付款" class="cartFill_deliv_submit" @click="toPay">
             </div>
-        </div>
-    
+    </div>
+    <CrdCT v-show="suss"></CrdCT>
 </template>
 
+<script setup>
+    import { ref, defineEmits} from 'vue';
+    const emits = defineEmits("updateSusspay");
+    const susspay = ref(true);
+    const suss = ref(false);
+    function toPay(){
+            suss.value=true;
+            susspay.value=false;
+            console.log(suss.value,susspay.value);
+            emits('updateSusspay', susspay.value);
+    }
+</script>
+<script>
+</script>
 <style lang="scss" scoped>
+
+
 
 .cartFill_wrapper {
     width: 1200px;
@@ -189,7 +200,7 @@
         }
 
         input:nth-last-child(1) {
-            margin-top: 0;
+            margin-top: 0px;
             height: 50px;
         }
 
@@ -208,6 +219,7 @@
 
             input {
                 width: 580px;
+                margin-bottom: 73px;
             }
 
         }
@@ -357,6 +369,7 @@
             width: 99%;
             height: 35px;
             font-size: 16px;
+            margin-bottom: 30px;
         }
 
         ul {

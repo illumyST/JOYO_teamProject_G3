@@ -1,9 +1,9 @@
 <template>
     <!-- <div class="member_wrapper"> -->
-    <div class="member_overlay" v-if="isMemberCardAddVisible" @click="close">
+    <div class="member_overlay" v-if="isMemberCardAddhide" @click="close">
         <div class="memberCardAdd">
             <h1>新增信用卡/金融卡</h1>
-            <a href="#" class="close" @click="close"><i class="fa-solid fa-xmark"></i></a>
+            <a href="#" class="close" @click.stop="close"><i class="fa-solid fa-xmark"></i></a>
             <div class="cardimfo">
                 <form action="" method="POST">
                     <label for="">卡片資訊</label>
@@ -19,15 +19,17 @@
     <!-- </div> -->
 </template>
     
-<script setup>
+<script setup>    
 
-    const isMemberCardAddVisible = ref(true);
+    const isMemberCardAddhide = ref(true);
+    console.log(isMemberCardAddhide.value)
     
     const close = () => {
         // alert("測試按鈕大小中")
-        isMemberCardAddVisible.value = false;
+        isMemberCardAddhide.value = false;
 
-       
+        console.log(isMemberCardAddhide.value)
+        
     };
 
 </script>

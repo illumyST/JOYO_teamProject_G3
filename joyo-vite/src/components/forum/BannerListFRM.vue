@@ -18,7 +18,9 @@
         </button>
         <ul class="forum_sort_order">
           <li v-for="item in SortLi" :key="item">
-            <RouterLink class="forum_dropdown_item" to="/">{{ item }} </RouterLink>
+            <RouterLink class="forum_dropdown_item" to="/"
+              >{{ item }}
+            </RouterLink>
           </li>
         </ul>
       </div>
@@ -61,7 +63,9 @@
       </button>
       <ul class="forum_media_select_order">
         <li v-for="item in MediaSeclet" :key="item">
-          <RouterLink class="forum_media_select_dropdown_item" to="/">{{ item }}</RouterLink>
+          <RouterLink class="forum_media_select_dropdown_item" to="/">{{
+            item
+          }}</RouterLink>
         </li>
       </ul>
     </div>
@@ -90,57 +94,59 @@
       v-for="(item, index) in Items"
       :key="index"
     >
-      <!-- 第一文章列表左側 -->
-      <ul class="forum_article_item1_left">
-        <li class="forum_category">
-          <h2>{{ item.ItemCategory }}</h2>
-        </li>
-        <li class="forum_name_data">
-          <p>{{ item.ItemName }}</p>
-          <p>{{ item.ItemDate }}</p>
-        </li>
-      </ul>
-
-      <!-- 第一文章列表右側 -->
-      <div class="forum_article_item1_right">
-        <!-- 第一文章列表右側上方標籤 -->
-        <ul class="forum_article_item1_right_label">
-          <li>
-            <P>{{ item.CategoryLabel }}</P>
+      <RouterLink to="forum/forumInfo/">
+        <!-- 第一文章列表左側 -->
+        <ul class="forum_article_item1_left">
+          <li class="forum_category">
+            <h2>{{ item.ItemCategory }}</h2>
           </li>
-          <li>
-            <p>{{ item.SortLabel }}</p>
-          </li>
-          <li>
-            <p>{{ item.NumLabel }}</p>
-          </li>
-          <li>
-            <p>{{ item.CustomLabel }}</p>
+          <li class="forum_name_data">
+            <p>{{ item.ItemName }}</p>
+            <p>{{ item.ItemDate }}</p>
           </li>
         </ul>
 
-        <!-- 第一文章列表右側中間標題和內文-->
-        <ul class="forum_article_item1_right_middle">
-          <li>
-            <h2>{{ item.ItemTitle }}</h2>
-          </li>
-          <li>
-            <p>{{ item.ItemText }}</p>
-          </li>
-        </ul>
+        <!-- 第一文章列表右側 -->
+        <div class="forum_article_item1_right">
+          <!-- 第一文章列表右側上方標籤 -->
+          <ul class="forum_article_item1_right_label">
+            <li>
+              <P>{{ item.CategoryLabel }}</P>
+            </li>
+            <li>
+              <p>{{ item.SortLabel }}</p>
+            </li>
+            <li>
+              <p>{{ item.NumLabel }}</p>
+            </li>
+            <li>
+              <p>{{ item.CustomLabel }}</p>
+            </li>
+          </ul>
 
-        <!-- 第一文章列表右側下方 -->
-        <ul class="forum_article_item1_right_bottom">
-          <li>
-            <i class="fa-solid fa-heart"></i>
-            <p>{{ item.ItemLoveNum }}</p>
-          </li>
-          <li>
-            <i class="fa-solid fa-comment"></i>
-            <p>{{ item.ItemReadNum }}</p>
-          </li>
-        </ul>
-      </div>
+          <!-- 第一文章列表右側中間標題和內文-->
+          <ul class="forum_article_item1_right_middle">
+            <li>
+              <h2>{{ item.ItemTitle }}</h2>
+            </li>
+            <li>
+              <p>{{ item.ItemText }}</p>
+            </li>
+          </ul>
+
+          <!-- 第一文章列表右側下方 -->
+          <ul class="forum_article_item1_right_bottom">
+            <li>
+              <i class="fa-solid fa-heart"></i>
+              <p>{{ item.ItemLoveNum }}</p>
+            </li>
+            <li>
+              <i class="fa-solid fa-comment"></i>
+              <p>{{ item.ItemReadNum }}</p>
+            </li>
+          </ul>
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -312,7 +318,6 @@ const MediaSeclet = reactive({
 // ===== 中間文章區域 ===== //
 .forum_article_item1 {
   // border: 1px solid plum;
-  @include flex-container(row, nowrap, start, center);
   background-color: $bg;
   margin-bottom: 30px;
   box-shadow: $shadow;
@@ -321,6 +326,11 @@ const MediaSeclet = reactive({
   &:hover {
     background-color: #dedddd;
     cursor: pointer;
+  }
+
+  a{
+    @include flex-container(row, nowrap, start, center);
+    width: 100%;
   }
 }
 
@@ -545,7 +555,10 @@ const MediaSeclet = reactive({
   .forum_article_item1 {
     width: 100%;
     margin-bottom: 20px;
-    flex-direction: column;
+    a{
+      flex-direction: column;
+      width: 100%;
+    }
   }
 
   .forum_article_item1_left {
