@@ -107,7 +107,7 @@ declare module '@vue/runtime-core' {
     ProductInfo: typeof import('./pages/product/productInfo.vue')['default']
     Redirect: typeof import('./pages/signIn/redirect.vue')['default']
     Register: typeof import('./pages/register.vue')['default']
-    RegisterRedirect: typeof import('./pages/signIn/registerRedirect.vue')['default']
+    RegisterRedirect: typeof import('./pages/registerRedirect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidemenuFRM: typeof import('./components/forum/SidemenuFRM.vue')['default']
