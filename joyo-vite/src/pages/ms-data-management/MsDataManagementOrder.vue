@@ -30,12 +30,12 @@ const order = ref([
     },
   stp:'信用卡',
   got:'新竹物流',
-  fron: 0,
+  fron: 1,
   open:false,
-  one:'',
-  two:'',
-  the:'',
-  four:'',
+  one:'2023/05/21 12:09:08',oneop:false,
+  two:'',twoop:false,
+  the:'',theop:false,
+  four:'',fourop:false,
   upopen: false,
   order:[{
     prd:'領土爭奪-標準版',
@@ -65,9 +65,9 @@ const order = ref([
     },
   stp:'現金',
   got:'新竹物流',
-  fron: 0,
+  fron: 1,
   open:false,
-  one:'',
+  one:'2023/05/21 12:09:08',
   two:'',
   the:'',
   four:'',
@@ -90,7 +90,7 @@ const order = ref([
   },{
     prd:'阿瓦隆：蘭斯洛特 擴充',
     psel: 1400 ,
-    amo: 1 ,
+    amo: 3 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
   },{
     prd:'泳池派對',

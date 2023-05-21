@@ -3,7 +3,10 @@
     <li :class="{ '-active': $route.path == '/ms/msDataManagementSendReport' }">
       <router-link to="/ms/msDataManagementSendReport">數據管理</router-link>
     </li>
+
+
     <li :class="{ '-active': $route.path == 'msContentManagementBanner' || $route.path == '/ms/MsContentManagementForum'}">
+
       <router-link to="/ms/msContentManagementBanner">版務管理</router-link>
     </li>
 

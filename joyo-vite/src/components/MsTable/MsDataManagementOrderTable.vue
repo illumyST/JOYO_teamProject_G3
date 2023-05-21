@@ -20,8 +20,8 @@
                          <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
                          <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
-                         <input type="number" min="1" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
-                         @blur="change(index)">
+                         <input type="number" min="2" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
+                         @blur="change(index)"  >
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
                    </span>
                    <span class="ordrta"><h4>{{ item.got }}</h4></span>
@@ -37,25 +37,29 @@
                         </ul>
                     
                         <div class="ms_order_right">
-                            <div @click="item.one = nowDate ">
+                            <div @click="itupop(index,'one')">
                             <h5>訂單成立</h5>
-                            <p>{{ item.one }}</p>
+                            <p v-if="!item.oneop">{{ item.one }}</p>
+                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent="itupop(index,'one')">
                             <!-- <p>{{ currentDate }}</p> -->
                             </div>
 
-                            <div @click="item.two = nowDate ">
+                            <div @click="itupop(index,'two')" >
                             <h5>已出貨</h5>
-                            <p>{{ item.two }}</p>
+                            <p v-if="!item.twoop">{{ item.two }}</p>
+                            <input type="text" v-model="item.two" v-if="item.twoop" @click.prevent="itupop(index,'two')">
                             </div>
 
-                            <div @click="item.the = nowDate ">
+                            <div @click="itupop(index,'the')">
                             <h5>運送中</h5>
-                            <p>{{ item.the }}</p>
+                            <p v-if="!item.theop">{{ item.the }}</p>
+                            <input type="text" v-model="item.the" v-if="item.theop" @click.prevent="itupop(index,'the')">
                             </div>
 
-                            <div @click="item.four = nowDate ">
+                            <div @click="itupop(index,'four')">
                             <h5>訂單完成</h5>
-                            <p>{{ item.four }}</p>
+                            <p v-if="!item.fourop">{{ item.four }}</p>
+                            <input type="text" v-model="item.four" v-if="item.fourop" @click.prevent="itupop(index,'four')">
                             </div>
                             
                             <span class="dash" :class="{'one':item.fron == '1'},{'two':item.fron == '2'},{'thr':item.fron == '3'},{'fur':item.fron == '4'}" ></span>
@@ -120,23 +124,14 @@ onMounted(() => {
 })
 
 const ifron = (e)=>{
-    console.log(order.value[e].fron);
-    if(order.value[e].fron != 1 && order.value[e].fron != 2 
-    && order.value[e].fron != 3 && order.value[e].fron != 4){
-        order.value[e].fron = 0;
-        order.value[e].one = "";
+    // console.log(order.value[e].fron);
+    if(order.value[e].fron != 2 && order.value[e].fron != 3 && order.value[e].fron != 4){
+        order.value[e].fron = 1;
         order.value[e].two = "" ;
         order.value[e].the = "" ;
         order.value[e].four = "" ;
     }
-    if(order.value[e].fron == 1){
-        console.log("1");
-        order.value[e].one = nowDate.value ;
-        order.value[e].two = "" ;
-        order.value[e].the = "" ;
-        order.value[e].four = "" ;
-    }
-    else if (order.value[e].fron == 2){
+    if (order.value[e].fron == 2){
         if(order.value[e].one == ""){
             order.value[e].one = nowDate.value ;   
         }
@@ -167,6 +162,40 @@ const ifron = (e)=>{
         order.value[e].four = nowDate.value ;
     }
 }
+
+
+const itupop= (e,i)=>{
+    if(i == "one"){
+        if(order.value[e].oneop){
+            order.value[e].oneop = false ;
+        }else{
+            order.value[e].oneop = true ;
+        }
+        
+    }
+    else if(i == "two"){
+        if(order.value[e].twoop){
+            order.value[e].twoop = false ;
+        }else{
+            order.value[e].twoop = true ;
+        }
+    }
+    else if(i == "the"){
+        if(order.value[e].theop){
+            order.value[e].theop = false ;
+        }else{
+            order.value[e].theop = true ;
+        }
+    }
+    else if(i == "four"){
+        if(order.value[e].fourop){
+            order.value[e].fourop = false ;
+        }else{
+            order.value[e].fourop = true ;
+        }
+    }
+}
+
 
    </script>
      
@@ -204,7 +233,9 @@ const ifron = (e)=>{
         }
         span.ot{
             display: flex;
-            justify-content: space-evenly;
+            justify-content: center;
+            // outline: 1px solid red;
+            align-items: center;
         }
       span.ordrta{
        cursor:pointer; 
@@ -217,10 +248,16 @@ const ifron = (e)=>{
         // outline: 1px solid red;
         width: 100px;
         text-align: center;
+        // -moz-appearance:;
        }
        h4{
         // outline: 1px solid red;
         display: inline;
+       }
+       i{
+        // outline: 1px solid red;
+        margin-left: 10px;
+        margin-right: -20px;
        }
       }
       div.ms_order_min{
@@ -273,6 +310,9 @@ const ifron = (e)=>{
         height: 100px;
         bottom: 0;
         justify-content: space-evenly;
+        input{
+            text-align: center;
+        }
        div{
            width: 200px;
            height: 50px;
@@ -329,6 +369,7 @@ const ifron = (e)=>{
     width: 0px;
 }
 .two{
+    
     width: 210px;
 }
 .thr{

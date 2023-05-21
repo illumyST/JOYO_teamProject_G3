@@ -324,8 +324,8 @@ const ForumInfoMsgs = ref([
 
 .forumInfo_right_msg_icon {
   // border: 1px solid red;
-  width: 13.668%;
-  line-height: 3.4;
+  width: 13.667%;
+  line-height: 3.37;
   background-color: #f3dad8;
   text-align: center;
 
@@ -452,7 +452,7 @@ const ForumInfoMsgs = ref([
   }
 
   .forumInfo_right_msg_icon {
-    width: 21.76%;
+    width: 21.75%;
     .fa-paper-plane {
       font-size: 1.2rem;
       margin: 5px;

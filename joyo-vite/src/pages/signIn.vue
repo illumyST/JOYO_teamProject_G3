@@ -27,6 +27,7 @@
 
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
 
 @mixin input-text($lh, $w){
     padding-left: 20px;
@@ -38,6 +39,11 @@
     box-sizing: border-box;
     outline: none;
     letter-spacing: 1px;
+=======
+input.errorInput{
+    // outline: 10px solid red;
+    background-color: rgb(255, 0, 0,.3);
+>>>>>>> db1c501d55833b743ff2d5648f2ba93478d1011d
 }
 
 @mixin btn($bg , $lh, $w, $hover){

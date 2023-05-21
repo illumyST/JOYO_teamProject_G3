@@ -95,11 +95,11 @@
       margin-bottom: 7px;
     }
     input{
-      @include input_text(50px, 590px);
+      // @include input_text(50px, 590px);
       margin-bottom: 50px;
     }
     a{
-      @include btn($green, 59px, 590px, $orange);
+      // @include btn($green, 59px, 590px, $orange);
       margin-top: 20px;
       font-size: 24px;
       letter-spacing: 1px;

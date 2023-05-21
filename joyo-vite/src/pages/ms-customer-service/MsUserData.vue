@@ -51,6 +51,11 @@ const getseach=(n)=>{
 </script>
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
+
+
+=======
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 //
+>>>>>>> 321bd2e94f82cb1eb467aa225197d95ad735f5bc
 </style>
