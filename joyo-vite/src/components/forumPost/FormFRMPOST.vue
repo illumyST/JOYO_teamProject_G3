@@ -1,5 +1,5 @@
 <template>
-  <form action="get" class="forumPost_form" id="forumPost_form">
+  <form action="post" class="forumPost_form" id="forumPost_form">
     <div class="forumPost_form_title">
       <select class="forumPost_form_category" id="forumPost_form_category" v-model="SelectCgy">
         <option v-for="(item, index) in FormCgy" :key="index" :value="item.Value">{{ item.Name }}</option>
@@ -13,7 +13,7 @@
       />
 
       <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore">
-        <!-- <option :value="FormScore.Value">{{FormScore.Name}}</option> -->
+        <option :value="FormScore.Value">{{FormScore.Name}}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 

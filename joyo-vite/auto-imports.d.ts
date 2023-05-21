@@ -13,8 +13,8 @@ declare global {
   const MsChangeAdminPasswordForm: typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']
   const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
-  const PdcMnItPDC: typeof import('./src/components/product/PdcMnItPDC.vue')['default']
-  const PdcTopPDC: typeof import('./src/components/product/PdcTopPDC.vue')['default']
+  const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
+  const PdcTopPdc: typeof import('./src/components/product/PdcTopPdc.vue')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -97,8 +97,8 @@ declare module 'vue' {
     readonly MsChangeAdminPasswordForm: UnwrapRef<typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']>
     readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
-    readonly PdcMnItPDC: UnwrapRef<typeof import('./src/components/product/PdcMnItPDC.vue')['default']>
-    readonly PdcTopPDC: UnwrapRef<typeof import('./src/components/product/PdcTopPDC.vue')['default']>
+    readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
+    readonly PdcTopPdc: UnwrapRef<typeof import('./src/components/product/PdcTopPdc.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
