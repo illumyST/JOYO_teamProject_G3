@@ -248,6 +248,7 @@ const openC = (e)=>{
     width: 0px;
 }
 .two{
+    
     width: 210px;
 }
 .thr{
