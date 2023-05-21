@@ -369,6 +369,7 @@ const itupop= (e,i)=>{
     width: 0px;
 }
 .two{
+    
     width: 210px;
 }
 .thr{
