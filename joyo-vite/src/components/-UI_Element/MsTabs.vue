@@ -1,11 +1,11 @@
 <template>
   <div class="ms_tabs">
-    <button :class="{ '-active': isOpen }" @click="activeBtn(1)">
+    <button :class="{ '-active': isOpen }" @click="activeBtn(1)" ref="button1">
       <slot name="button1">請輸入內容</slot>
     </button>
     <!-- 如果不想顯示第二個按鈕，則在引入時加上showBtn2屬性，並設定為false -->
     <!-- <MsTabs :showBtn2="false"></MsTabs>  -->
-    <button v-if="showBtn2" :class="{ '-active': !isOpen }" @click="activeBtn(2)">
+    <button v-if="showBtn2" :class="{ '-active': !isOpen }" @click="activeBtn(2)" ref="button2">
       <slot name="button2">請輸入內容</slot>
     </button>
   </div>
@@ -25,9 +25,11 @@ export default {
 
   methods: {
     activeBtn(btn) {
-      if (btn === 1) {
+      if (btn === 1 && !this.isOpen) {
+        console.log(btn); 
         this.$emit('tabSwitch');
-      } else if (btn === 2) {
+      } else if (btn === 2 && this.isOpen) {
+        console.log(btn); 
         this.$emit('tabSwitch');
       }
     },
