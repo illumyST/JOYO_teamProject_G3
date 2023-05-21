@@ -19,7 +19,12 @@
       <div class="ms_img_upload">
         <div class="flex-col">
           <label for="">上傳圖片</label>
-          <input type="file" id="imageUpload" @change="previewImage" accept="image/*" />
+          <input
+            type="file"
+            id="imageUpload"
+            @change="previewImage"
+            accept="image/*"
+          />
         </div>
 
         <div class="flex-col">
@@ -42,28 +47,35 @@
     </form>
     <div class="img_preview">
       <p>圖片預覽:</p>
-      <img :src="imgPreviewUrl" alt="" />
+      <img :src="preview" alt="" />
     </div>
   </div>
-  
-  
 </template>
 <script>
 export default {
   data() {
     return {
-      imgPreviewUrl : '',
-    }
-  }, 
+      preview: null,
+      image: null,
+    };
+  },
   methods: {
     previewImage(event) {
-      const file = event.target.files[0]; 
-      if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader(); 
+      const input = event.target;
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.preview = e.target.result;
+        };
+        this.image = input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        this.preview = null;
+        this.image = null;
       }
-    } 
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -88,6 +100,15 @@ export default {
 // input text欄位
 .img_preview {
   border: 1px solid gray;
+  width: 345px;
+  padding: 20px;
+  box-sizing: border-box;
+  p {
+    margin-bottom: 20px;
+  }
+  img {
+    width: 80%;
+  }
 }
 .ms_content_management_dashboard {
   display: flex;
@@ -101,9 +122,7 @@ export default {
   box-shadow: $shadow;
   padding: 30px 50px;
   box-sizing: border-box;
-  .img_preview {
-    width: 40%;
-  }
+
   .ms_cms_form {
     width: 400px;
     display: flex;
