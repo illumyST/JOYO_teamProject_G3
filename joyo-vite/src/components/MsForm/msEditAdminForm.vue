@@ -31,6 +31,7 @@
       </form>
     </section>
   </template>
+
   <script setup>
   import { ref ,defineEmits} from "vue";
   const isPasswordVisible = ref(false);
@@ -43,6 +44,7 @@
     emits("close",false)
   }
   </script>
+  
   <style lang="scss" scoped>
   @mixin btn($bg, $lh, $w, $hover) {
     background: $bg;
