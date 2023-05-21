@@ -26,8 +26,10 @@
       let admins = inject('admins');
     
       const del = (index)=>{
-      admins.value.splice(index,1);
-      // console.log(seach.value);
+      var YN =  confirm("確定要刪除嗎 ? ") ;
+      if(YN){
+        admins.value.splice(index,1);
+      }
       }
     
       const change=(e)=>{

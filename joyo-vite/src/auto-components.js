@@ -31,7 +31,7 @@ declare module '@vue/runtime-core' {
     CrdCT: typeof import('./components/cartFill/CrdCT.vue')['default']
     Default: typeof import('./layouts/default.vue')['default']
     Footer: typeof import('./components/-Global/footer.vue')['default']
-    ForgetPassword: typeof import('./pages/signIn/forgetPassword.vue')['default']
+    ForgetPassword: typeof import('./pages/forgetPassword.vue')['default']
     ForgetPasswordRedirect: typeof import('./pages/signIn/forgetPasswordRedirect.vue')['default']
     FormFRMPOST: typeof import('./components/forumPost/FormFRMPOST.vue')['default']
     Forum: typeof import('./pages/forum.vue')['default']
