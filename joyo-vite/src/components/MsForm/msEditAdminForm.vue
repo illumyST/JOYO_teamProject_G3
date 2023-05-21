@@ -12,23 +12,23 @@
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="name">姓名</label>
-          <input type="text" id="name" placeholder="請輸入姓名"/>
+          <input type="text" id="name" placeholder="請輸入姓名" v-model="upform.name"/>
         </div>
 
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="account">帳號</label>
-          <input type="text" id="account" placeholder="請輸入帳號"/>
+          <input type="text" id="account" placeholder="請輸入帳號" v-model="upform.id"/>
         </div>
   
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="pas">密碼</label>
-          <input type="password"  id="pas" placeholder="請輸入密碼"/>
+          <input type="password"  id="pas" placeholder="請輸入密碼" v-model="upform.pas"/>
         </div>
   
   
         <div class="ms_login_btn">
-          <input type="submit" value="登入" />
+          <input type="submit" value="登入" @click="upAdmin"/>
         </div>
       </form>
     </section>
@@ -37,6 +37,28 @@
 
   <script setup>
   import { ref ,defineEmits} from "vue";
+
+  const upform = ref({
+  name:"",
+  id:"",
+  pas:""
+  });
+
+  const upAdmin = ()=>{
+    var a = ref(0);
+    for(let n of Object.values(upform.value)){
+      if(n != ""){
+      a.value++
+      if(a.value ===  Object.values(upform.value).length){
+        if(confirm("確認編輯嗎")){
+          emits("upform",upform.value);
+          close();
+        }
+      }
+      
+    }
+  }}
+
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {

@@ -11,7 +11,7 @@
         <msSystemAdminTable></msSystemAdminTable>
       </div>
     </div>
-    <msAddAdminsForm v-if="addop" @close="close"></msAddAdminsForm>
+    <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
     <MsChangeAdminPasswordForm v-if="updat" @close1="close1"></MsChangeAdminPasswordForm>
 </template>
 
@@ -78,6 +78,13 @@ const close =(e)=>{
 }
 const close1 =(e)=>{
   updat.value = e
+}
+
+const addAdmins =(e)=>{
+  e['update']=true;
+  e['fixe']=false;
+  console.log(e);
+  admins.value.push(e);
 }
 
 </script>

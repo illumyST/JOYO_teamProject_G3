@@ -10,24 +10,24 @@
         </div>
 
         <div class="ms_login_input_field">
-          <label class="ms_login_label" for="name">姓名</label>
-          <input type="text" id="name" placeholder="請輸入姓名"/>
+          <label class="ms_login_label" for="name" >姓名</label>
+          <input type="text" id="name" placeholder="請輸入姓名" v-model="addform.name"/>
         </div>
 
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="account">帳號</label>
-          <input type="text" id="account" placeholder="請輸入帳號"/>
+          <input type="text" id="account" placeholder="請輸入帳號" v-model="addform.id"/>
         </div>
   
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="pas">密碼</label>
-          <input type="password"  id="pas" placeholder="請輸入密碼"/>
+          <input type="password"  id="pas" placeholder="請輸入密碼" v-model="addform.pas"/>
         </div>
   
   
         <div class="ms_login_btn">
-          <input type="submit" value="新增管理員" />
+          <input type="submit" value="新增管理員" @click="addAdmins"/>
         </div>
       </form>
     </section>
@@ -35,15 +35,44 @@
   </template>
   <script setup>
   import { ref,defineEmits} from "vue";
+  const emits = defineEmits(['close','addAdmins']);
+
+const addform = ref({
+  name:"",
+  id:"",
+  pas:""
+})
+
+const addAdmins = ()=>{
+  var a = ref(0);
+  for(let n of Object.values(addform.value)){
+    if(n != ""){
+      a.value++
+      if(a.value ===  Object.values(addform.value).length){
+        // console.log("123");
+        emits("addAdmins",addform.value);
+        close();
+      }
+      
+    }
+
+  }
+  // 
+  // console.log(value.value)
+}
+
+
+
+
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {
     isPasswordVisible.value = !isPasswordVisible.value;
   };
 
-  const emits = defineEmits(['close']);
+
   const close = ()=>{
-    emits("close",false)
+    emits("close",false);
   }
   </script>
   <style lang="scss" scoped>

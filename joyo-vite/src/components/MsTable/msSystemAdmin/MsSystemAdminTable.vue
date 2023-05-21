@@ -15,7 +15,7 @@
                   <i class="bi bi-pencil-square" @click="change(index)"></i>
                   <i class="bi bi-trash3-fill" @click="del(index)"></i>
                 </td>
-                <msEditAdminForm v-if="item.fixe" @close="close($event,index)"></msEditAdminForm>
+                <msEditAdminForm v-if="item.fixe" @close="close($event,index)" @upform="upform(index,$event)"></msEditAdminForm>
             </tr> 
         </tbody>
     </table>
@@ -45,7 +45,12 @@
         admins.value[e].fixe = i;
     }
     
-    
+    const upform = (i,t)=>{
+        t['update']=true
+        t['fixe']=false
+        admins.value[i] = t
+        console.log(admins.value);
+    }
       </script>
       
       
