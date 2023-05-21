@@ -1,5 +1,5 @@
 <template>
-    <div class="register_box">
+      <div class="register_box">
         <div class="register_link">
             <a href="#">會員登入</a>
             <a href="#">會員註冊</a>
@@ -56,6 +56,34 @@
       }
     }
   }
+  @mixin input-text($lh, $w){
+    padding-left: 20px;
+    line-height: $lh;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: $p;
+    width: $w;
+    box-sizing: border-box;
+    outline: none;
+    letter-spacing: 1px;
+}
+@mixin btn($bg , $lh, $w, $hover){
+    background: $bg;
+    line-height: $lh;
+    width: $w;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    transition: .3s;
+    cursor: pointer ;
+    color: #fff;
+    &:hover{
+        background: $hover;
+    }
+};
+
   .register_container{
     display: flex;
     flex-direction: column;
