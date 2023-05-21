@@ -15,7 +15,7 @@
           @click="passwordToggle"></i>
       </div>
 
-      <div class="ms_test_acct">測試帳號 : admin 密碼 : admin</div>
+      <div class="ms_test_acct">測試帳號：MGR&emsp;密碼：password</div>
 
       <div class="ms_login_btn">
         <input type="submit" @click.prevent="doLogInCheck(e)" value="登入" />
