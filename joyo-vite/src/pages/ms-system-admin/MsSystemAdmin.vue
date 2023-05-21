@@ -56,7 +56,7 @@ const updat = ref(false);
 
 const cladd = (e)=>{
   if(addop.value){
-    addop.value = !e
+    addop.value = !e 
 
   }else{
     addop.value = e
