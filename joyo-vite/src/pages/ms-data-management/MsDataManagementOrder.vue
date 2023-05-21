@@ -15,25 +15,63 @@
 <script setup>
 import {provide, ref} from 'vue'
 const us = ref(['訂單編號','用戶帳號','訂單金額','付款方式','訂單狀態','物流']);
-const order = ref([{
+
+// --------------------------------------------------------------------------------
+const order = ref([
+  {
   tid:'1111111',
   email:'11111@gmail.com',
   get total() {
     let ott = 0 ;
       for(let n = 0 ; n<this.order.length ;n++){
-        ott += this.order[n].psel;
+        ott += (this.order[n].psel*this.order[n].amo);
       }
       return ott
     },
   stp:'信用卡',
-  snw:'訂單成立',
   got:'新竹物流',
-  fron: 'N',
+  fron: 0,
   open:false,
-  one:'2023/4/24 14:20:13',
+  one:'',
   two:'',
   the:'',
   four:'',
+  upopen: false,
+  order:[{
+    prd:'領土爭奪-標準版',
+    psel: 1200 ,
+    amo: 3 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'阿瓦隆：蘭斯洛特 擴充',
+    psel: 1400 ,
+    amo: 2 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  },{
+    prd:'泳池派對',
+    psel: 1500 ,
+    amo: 1 ,
+    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
+  }]},
+  {
+  tid:'22222',
+  email:'22222@gmail.com',
+  get total() {
+    let ott = 0 ;
+      for(let n = 0 ; n<this.order.length ;n++){
+        ott += (this.order[n].psel*this.order[n].amo);
+      }
+      return ott
+    },
+  stp:'現金',
+  got:'新竹物流',
+  fron: 0,
+  open:false,
+  one:'',
+  two:'',
+  the:'',
+  four:'',
+  upopen: false,
   order:[{
     prd:'領土爭奪-標準版',
     psel: 1200 ,
@@ -47,50 +85,22 @@ const order = ref([{
   },{
     prd:'泳池派對',
     psel: 1500 ,
-    amo: 1 ,
+    amo: 2 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }]},
-  {
-  tid:'1111111',
-  email:'11111@gmail.com',
-  get total() {
-    let ott = 0 ;
-      for(let n = 0 ; n<this.order.length ;n++){
-        ott += this.order[n].psel;
-      }
-      return ott
-    },
-  stp:'信用卡',
-  snw:'訂單成立',
-  got:'新竹物流',
-  fron:'N',
-  one:'',
-  two:'',
-  the:'',
-  four:'',
-  open:false,
-  order:[{
-    prd:'領土爭奪-標準版',
-    psel: 1200 ,
+  },{
+    prd:'阿瓦隆：蘭斯洛特 擴充',
+    psel: 1400 ,
     amo: 1 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
   },{
     prd:'泳池派對',
-    psel: 1500 ,
+    psel: 2200 ,
     amo: 1 ,
     img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'泳池派對',
-    psel: 1500 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'泳池派對',
-    psel: 1500 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }]}
+  }]}  
 ]);
+// --------------------------------------------------------------------------------
+
 provide('us',us);
 provide('order',order);
 

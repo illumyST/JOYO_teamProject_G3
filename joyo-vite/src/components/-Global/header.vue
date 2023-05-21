@@ -90,7 +90,7 @@
                         <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
                     </RouterLink>
-                    <div v-if="isLogIn" class="logOut">登出</div>
+                    <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
                 </li>
             </ul>
             <div class="header_nav_rwdBtn">
@@ -108,11 +108,20 @@ const isLogIn = ref(0);
 
 onMounted(() => {
     axios.get('/api/logIn&Out/sessionCheck.php')
-    .then( res=> {
-        const data = res.data;
-        isLogIn.value = data;
-    })
+        .then(res => {
+            const data = res.data;
+            isLogIn.value = data;
+        })
 });
+
+const logOut = () => {
+    console.log(1)
+    axios.post('/api/logIn&Out/logOut.php')
+        .then(res => {
+            alert('登出成功！');
+            location.href = '/ms';
+        });
+}
 
 </script>
 
@@ -316,7 +325,7 @@ header {
     .header_nav_right {
         position: absolute;
         flex-direction: column;
-        // height: 0;
+        height: 0;
         overflow: hidden;
         width: 414px;
         background-color: $green;
@@ -420,4 +429,5 @@ header {
             border: none;
         }
     }
-}</style>
+}
+</style>

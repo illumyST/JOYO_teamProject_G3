@@ -47,11 +47,20 @@
             background: $bg;
             border-radius: 5px;
             box-shadow: $shadow;
+            transition: .3s;
+            &:hover{
+                background: $orange;
+                color: #fff;
+            }
         }
         a{
             display: flex;
             font-size: 20px;
             color: $brown;
+            transition: .3s;
+            &:hover{
+                color: #fff;
+            }
             h3{
                 width: 192px;
                 text-align: center;

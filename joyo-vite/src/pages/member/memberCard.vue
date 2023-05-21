@@ -4,12 +4,12 @@
         <div class="membercard-right">
             <div class="membercard-right-title">
                 <h2>信用卡/金融卡</h2>
-                <a href="#">增加卡片<i class="fa-solid fa-plus"></i></a>
+                <a href="#" @click="showMemberCardAdd">增加卡片<i class="fa-solid fa-plus"></i></a>
                 <!-- <input type="button" value="增加卡片" class="btn"> -->
             </div>
             <MemberCreditCardMbc></MemberCreditCardMbc>
-            <!-- <MemberCardAddMbc></MemberCardAddMbc> -->
-            <!-- <MemberCardEditMbc></MemberCardEditMbc> -->
+            <MemberCardAddMbc v-if="isMemberCardAddVisible"></MemberCardAddMbc>
+            <MemberCardEditMbc></MemberCardEditMbc>
         </div>
     </div>
 </template>
@@ -17,6 +17,17 @@
 <script setup>
 import MemberCardAddMbc from '../../components/MemberCard/MemberCardAddMbc.vue';
 import MemberCreditCardMbc from '../../components/MemberCard/MemberCreditCardMbc.vue';
+
+    // const showMemberCardAdd = () => {
+    //     console.log("點擊成功")
+    // };
+
+    const isMemberCardAddVisible = ref(false);
+
+    const showMemberCardAdd = () => {
+        isMemberCardAddVisible.value = true;
+    };
+    
 
 
 </script>

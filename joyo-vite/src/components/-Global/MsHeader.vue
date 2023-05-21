@@ -1,8 +1,10 @@
 <template>
   <header class="ms_header">
     <nav class="ms_nav">
-      <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
-      <div v-if="isLogIn" class="logOut">登出</div>
+      <RouterLink to="/ms">
+        <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
+      </RouterLink>
+      <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
     </nav>
   </header>
 </template>
@@ -12,14 +14,31 @@ import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
 const isLogIn = ref(0);
+const route = useRoute();
+
+// 得在 onMounted 前，避免使用者看到非 /ms 畫面
+
 
 onMounted(() => {
-    axios.get('/api/logIn&Out/sessionCheck.php')
-    .then( res=> {
-        const data = res.data;
-        isLogIn.value = data;
-    })
+  axios.get('/api/logIn&Out/sessionCheck.php')
+    .then(res => {
+      const data = res.data;
+      isLogIn.value = data;
+      if (isLogIn.value == 0 && route.path != '/ms') {
+        location.href = '/ms';
+        alert('您尚未登入！');
+      };
+    });
 });
+
+
+const logOut = () => {
+  axios.post('/api/logIn&Out/logOut.php')
+    .then(res => {
+      alert('登出成功！');
+      location.href = '/ms';
+    });
+}
 </script>
   
 <style lang="scss" scoped>
@@ -60,7 +79,7 @@ onMounted(() => {
   margin: 0 auto;
 }
 
-.logOut{
+.logOut {
   color: #fff;
   cursor: pointer;
   padding: 10px;
