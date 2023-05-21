@@ -325,7 +325,7 @@ header {
     .header_nav_right {
         position: absolute;
         flex-direction: column;
-        // height: 0;
+        height: 0;
         overflow: hidden;
         width: 414px;
         background-color: $green;
