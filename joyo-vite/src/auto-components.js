@@ -64,30 +64,20 @@ declare module '@vue/runtime-core' {
     MsAddAdminsForm: typeof import('./components/msForm/msAddAdminsForm.vue')['default']
     MsAddProduct: typeof import('./pages/ms-product-management/MsAddProduct.vue')['default']
     MsAddProductForm: typeof import('./components/msForm/msAddProductForm.vue')['default']
-<<<<<<< HEAD
     MsBannerManagement: typeof import('./components/MsContentManagement/MsBannerManagement.vue')['default']
-=======
->>>>>>> albert
     MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
     MsChangeAdminPasswordForm: typeof import('./components/msForm/MsChangeAdminPasswordForm.vue')['default']
     MsChangePassword: typeof import('./pages/ms-system-admin/MsChangePassword.vue')['default']
     MsChangePasswordForm: typeof import('./components/msForm/msChangePasswordForm.vue')['default']
-<<<<<<< HEAD
     MsChatAreaMLC: typeof import('./components/MsLiveChat/MsChatAreaMLC.vue')['default']
     MsChatBoxMLC: typeof import('./components/MsLiveChat/MsChatBoxMLC.vue')['default']
-=======
->>>>>>> albert
     MsContentManagementBanner: typeof import('./pages/ms-content-management/MsContentManagementBanner.vue')['default']
     MsContentManagementForum: typeof import('./pages/ms-content-management/MsContentManagementForum.vue')['default']
     MsContentManagementForumTable: typeof import('./components/msTable/msContentManagementForumTable.vue')['default']
     MsDataManagementOrder: typeof import('./pages/ms-data-management/MsDataManagementOrder.vue')['default']
-<<<<<<< HEAD
     MsDataManagementOrderMDS: typeof import('./components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']
     MsDataManagementOrderTable: typeof import('./components/msTable/MsDataManagementOrderTable.vue')['default']
     MsDataManagementReportSending: typeof import('./pages/ms-data-management/MsDataManagementReportSending.vue')['default']
-=======
-    MsDataManagementOrderTable: typeof import('./components/msTable/MsDataManagementOrderTable.vue')['default']
->>>>>>> albert
     MsDataManagementSendReport: typeof import('./pages/ms-data-management/MsDataManagementSendReport.vue')['default']
     MsDefault: typeof import('./layouts/MsDefault.vue')['default']
     MsEditAdmin: typeof import('./pages/ms-system-admin/MsEditAdmin.vue')['default']
