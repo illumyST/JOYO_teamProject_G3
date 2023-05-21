@@ -27,7 +27,7 @@ const seach = ()=>{
   // console.log(text.value);
 }
 const us = inject('us')
-console.log(us.value);
+// console.log(us.value);
 
 
 const props = defineProps({
@@ -91,7 +91,7 @@ console.log(props.name)
       color: #fff;
 
       &:hover{
-          background: green;
+          background: $green;
       }
 
       height: 34px;

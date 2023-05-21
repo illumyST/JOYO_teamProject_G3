@@ -20,17 +20,13 @@
         </template> 
            
 </div>
-
+<!-- 
 <forgetPassword v-if="forget == 2" @email-check="emailCheck"></forgetPassword>
 <forgetPasswordRedirect v-if="forget == 3"></forgetPasswordRedirect>
-<registerRedirect v-if="send == true"></registerRedirect>
+<registerRedirect v-if="send == true"></registerRedirect> -->
 </template>
 
 <script setup>
-import register from '@/pages/signin/register.vue'
-import forgetPassword from '@/pages/signIn/forgetPassword.vue';
-import forgetPasswordRedirect from '@/pages/signIn/forgetPasswordRedirect.vue';
-import registerRedirect from './signIn/registerRedirect.vue'
 import {ref , computed} from 'vue'
 
 const send = ref(false) ;
@@ -97,7 +93,6 @@ forget.value = page ;
 </script>
 
 <style lang="scss" scoped>
-@import '../../../css/style.css';
 input.errorInput{
     // outline: 10px solid red;
     background-color: rgb(255, 0, 0,.3);

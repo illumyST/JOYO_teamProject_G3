@@ -1,28 +1,39 @@
 <template>
   <div class="ms_tabs">
-    <button class="ms_transactions" :class="{'-active':open1}"><slot name="button1">請輸入內容</slot></button>
+    <button :class="{ '-active': isOpen }" @click="activeBtn(1)" ref="button1">
+      <slot name="button1">請輸入內容</slot>
+    </button>
     <!-- 如果不想顯示第二個按鈕，則在引入時加上showBtn2屬性，並設定為false -->
     <!-- <MsTabs :showBtn2="false"></MsTabs>  -->
-    <button v-if="showBtn2" class="ms_sendReport" :class="{'-active':open2}"><slot name="button2">請輸入內容</slot></button>
+    <button v-if="showBtn2" :class="{ '-active': !isOpen }" @click="activeBtn(2)" ref="button2">
+      <slot name="button2">請輸入內容</slot>
+    </button>
   </div>
 </template>
 <script>
 export default {
-  props:['open1','open2','showBtn2'],
-  // props: {
-  //   showBtn2: {
-  //       type: Boolean, 
-  //       default: true, 
-  //   }
-  // },
-  data() {},
-  methods: {
-    func() {
-      console.log("hi");
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: true,
     },
-  },mounted(){
-    console.log(this.open1);
-  }
+    showBtn2: {
+      type: Boolean,
+      default: true,
+    },
+  },
+// 控制-active class
+  methods: {
+    activeBtn(btn) {
+      if (btn === 1 && !this.isOpen) {
+        console.log(btn); 
+        this.$emit('tabSwitch');
+      } else if (btn === 2 && this.isOpen) {
+        console.log(btn); 
+        this.$emit('tabSwitch');
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -39,7 +50,7 @@ export default {
     margin-right: 15px;
     background-color: $bg;
     color: $brown;
-    cursor:pointer; 
+    cursor: pointer;
   }
   .-active {
     background-color: $orange;

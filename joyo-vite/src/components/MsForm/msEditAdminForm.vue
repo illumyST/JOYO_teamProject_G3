@@ -1,7 +1,7 @@
 <template>
     <section class="ms_form">
         
-        
+      <i class="bi bi-x-lg" @click="close"></i>
         <form action="#" class="ms_login_form">
 
         <div class="ms_login_input_field top">
@@ -31,26 +31,20 @@
       </form>
     </section>
   </template>
+
   <script setup>
-  import { ref } from "vue";
+  import { ref ,defineEmits} from "vue";
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {
     isPasswordVisible.value = !isPasswordVisible.value;
   };
-  // export default {
-  //   data() {
-  //     return {
-  //       isPasswordVisible: false,
-  //     };
-  //   },
-  //   methods: {
-  //     passwordToggle() {
-  //       this.isPasswordVisible = !this.isPasswordVisible;
-  //     },
-  //   },
-  // };
+  const emits = defineEmits(['close']);
+  const close = ()=>{
+    emits("close",false)
+  }
   </script>
+  
   <style lang="scss" scoped>
   @mixin btn($bg, $lh, $w, $hover) {
     background: $bg;
@@ -69,25 +63,36 @@
     }
   }
   .ms_form {
-    position: relative;
+    position: fixed;
     font-family: "Noto Sans TC", sans-serif;
     width: 550px;
+    height: 500px;
     background-color: #f2f2f2;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     box-sizing: border-box;
-    margin: 0 auto;
-    padding: 60px 70px;
-    margin-bottom: 50px;
-    // height: 450px;
-  
+    margin:auto;
+    padding: 30px 40px;
+    // margin-bottom: 50px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    // bottom: 0;
+    i{
+      // outline: 1px solid red;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
     .ms_login_form {
       display: flex;
       flex-direction: column;
       align-items: center;
       .ms_login_form_logo {
         width: 170px;
-        margin-bottom: 40px;
+        // margin-bottom: 40px;
       }
     }
   
@@ -103,10 +108,11 @@
         outline: none;
         border: 1px solid #ccc;
         height: 35px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         font-size: 16px;
       }
       .ms_login_label {
+        text-align: left;
         letter-spacing: 0.2em;
         font-size: 18px;
         padding-bottom: 10px;

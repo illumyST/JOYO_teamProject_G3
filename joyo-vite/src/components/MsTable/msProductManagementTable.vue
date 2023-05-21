@@ -10,15 +10,18 @@
     <tbody>
         <tr class="ms_table_body" v-for="(item,index) in prodects">
             <td>{{ item.pronum }}</td>
-            <td><p v-if="item.update">{{ item.proname }}</p><input type="text" name="" id="" v-if="!item.update" v-model="item.proname"></td>
-            <td><p v-if="item.update">{{ item.protype }}</p><input type="text" name="" id="" v-if="!item.update" v-model="item.protype"></td>
-            <td><p v-if="item.update">{{ item.propice }}</p><input type="text" name="" id="" v-if="!item.update" v-model="item.propice"></td>
+            <td><p>{{ item.proname }}</p></td>
+            <td><p>{{ item.protype }}</p></td>
+            <td><p>{{ item.propice }}</p></td>
             <td class="msn_icon">
               <i class="bi bi-pencil-square" @click="change(index)"></i>
               <i class="bi bi-trash3-fill" @click="del(index)"></i>
             </td>
+            <msEditProductForm v-if="!item.update"
+            @close="close($event,index)"></msEditProductForm>
         </tr> 
     </tbody>
+    
 </table>
 </template>
   
@@ -27,20 +30,29 @@
   let prodects = inject('prodects');
 
   const del = (index)=>{
-  prodects.value.splice(index,1);
-  // console.log(seach.value);
+    var ny = confirm("你確定刪除資料嗎？");
+    if(ny){
+        prodects.value.splice(index,1);
+    }
   }
 
   const change=(e)=>{
     if(prodects.value[e].update){
-        prodects.value[e].update = false
-    }else{
-        prodects.value[e].update = true
-    }
+        for(var n = 0 ; n<prodects.value.length ; n++){
+            prodects.value[n].update = true;
+        }
+        prodects.value[e].update = false;}
+        else{
+            prodects.value[e].update = true;  
+        }
     // console.log(prodects.value[e].update);
   }
 
+  const close=(i,e)=>{
+    // prodects.value[e].update
+    prodects.value[e].update = !i
 
+  }
 
 
 

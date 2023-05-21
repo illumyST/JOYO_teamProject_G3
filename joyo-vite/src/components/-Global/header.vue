@@ -81,15 +81,16 @@
                 </li>
                 <li>
                     <RouterLink to="/cart">
-                    <i class="fa-regular fa-cart-shopping"></i>
+                        <i class="fa-regular fa-cart-shopping"></i>
                         <span>購物車</span>
                     </RouterLink>
                 </li>
-                <li>
+                <li class="memberLi">
                     <RouterLink to="/member">
-                    <i class="fa-regular fa-user"></i>
+                        <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
                     </RouterLink>
+                    <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
                 </li>
             </ul>
             <div class="header_nav_rwdBtn">
@@ -100,6 +101,39 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+import { useRoute } from 'vue-router';
+
+const isLogIn = ref(0);
+const route = useRoute();
+
+onMounted(() => {
+    // axios.get('/api/logIn&Out/sessionCheck.php')
+    // .then(res => {
+    //   const data = res.data;
+    //   isLogIn.value = data;
+    //   // console.log('data', res.data)
+    //   // console.log('isLogIn.value', isLogIn.value)
+
+    //   // 得放在 axios 裡面，因為會有時間落差？
+    //   if (isLogIn.value == 0 && route.path != '/signIn') {
+
+    //     // TODO 會可以看到其他頁面
+    //     location.href = '/signIn';
+    //     alert('您尚未登入！');
+    //   };
+    // });
+});
+
+const logOut = () => {
+    console.log(1)
+    axios.post('/api/logIn&Out/logOut.php')
+        .then(res => {
+            alert('登出成功！');
+            location.href = '/ms';
+        });
+}
 
 </script>
 
@@ -232,6 +266,44 @@ header {
     line-height: 50px;
 }
 
+.memberLi:hover .logOut {
+    display: block;
+}
+
+.logOut {
+    opacity: .7;
+    display: none;
+    border: 1px solid $orange;
+    position: absolute;
+    color: $brown;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    @include center();
+    top: 110%;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translate(-50%);
+        width: 0;
+        height: 0;
+        border: 8px solid;
+        border-color: transparent transparent #fff transparent;
+    }
+
+    &:hover {
+        color: $orange;
+    }
+}
+
 // ---------------------- RWD ---------------------- //
 
 @include m() {
@@ -267,15 +339,6 @@ header {
         flex-direction: column;
         height: 0;
         overflow: hidden;
-    }
-
-    .header_nav_rwdBtn {
-        display: block;
-        text-align: right;
-        font-size: 25px;
-    }
-
-    .header_nav_right {
         width: 414px;
         background-color: $green;
         position: absolute;
@@ -286,9 +349,19 @@ header {
 
     }
 
+    .header_nav_rwdBtn {
+        display: block;
+        text-align: right;
+        font-size: 25px;
+    }
+
     .header_nav_right>li {
         margin: 0;
         position: relative;
+    }
+
+    .header_nav_right i {
+        margin-right: 10px;
     }
 
     .header_nav_right>li:not(:last-child)::after {
@@ -338,6 +411,35 @@ header {
 
     .header_nav_right>li>ol a {
         color: $brown;
+    }
+
+    .header_nav_right>li:last-child {
+        display: flex;
+        justify-content: center;
+
+        a {
+            margin-left: 20px;
+        }
+
+        span {
+            margin-right: 10px;
+        }
+    }
+
+    .logOut {
+        font-size: 12px;
+        width: 36px;
+        height: 20px;
+        line-height: 20px;
+        border: none;
+        align-self: center;
+        display: inline-block;
+        position: static;
+        transform: none;
+
+        &::before {
+            border: none;
+        }
     }
 }
 </style>
