@@ -19,7 +19,7 @@
       <div class="ms_img_upload">
         <div class="flex-col">
           <label for="">上傳圖片</label>
-          <input type="file" />
+          <input type="file" id="imageUpload" @change="previewImage" accept="image/*" />
         </div>
 
         <div class="flex-col">
@@ -31,11 +31,6 @@
       <!-- Img alt -->
       <div class="ms_img_alt">
         <div class="flex-col">
-          <label for="">圖片說明</label>
-          <input type="text" />
-        </div>
-
-        <div class="flex-col">
           <label for="">選擇日期</label>
           <input type="date" class="ms_date" />
         </div>
@@ -45,9 +40,31 @@
         <input type="submit" value="送出" />
       </div>
     </form>
+    <div class="img_preview">
+      <p>圖片預覽:</p>
+      <img :src="imgPreviewUrl" alt="" />
+    </div>
   </div>
+  
+  
 </template>
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      imgPreviewUrl : '',
+    }
+  }, 
+  methods: {
+    previewImage(event) {
+      const file = event.target.files[0]; 
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader(); 
+      }
+    } 
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 // mixins
@@ -69,19 +86,12 @@
 }
 
 // input text欄位
-@mixin input-text($lh, $w) {
-  padding-left: 20px;
-  line-height: $lh;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: $p;
-  width: $w;
-  box-sizing: border-box;
-  outline: none;
-  letter-spacing: 1px;
+.img_preview {
+  border: 1px solid gray;
 }
-
 .ms_content_management_dashboard {
+  display: flex;
+  justify-content: space-between;
   background-color: $bg;
   width: 963px;
   height: 700px;
@@ -91,6 +101,9 @@
   box-shadow: $shadow;
   padding: 30px 50px;
   box-sizing: border-box;
+  .img_preview {
+    width: 40%;
+  }
   .ms_cms_form {
     width: 400px;
     display: flex;
@@ -106,11 +119,18 @@
       margin-top: 50px;
       font-size: $p;
     }
+    input[type="text"] {
+      box-sizing: border-box;
+      line-height: 1.4;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      outline: none;
+      letter-spacing: 0.1em;
+      width: 150px;
+      padding-left: 5px;
+    }
   }
-
-  // .flex-col.a {
-  //     margin-right: 105px;
-  // }
 
   .ms_selection_div,
   .ms_img_upload {
@@ -134,13 +154,36 @@
     align-items: start;
     .ms_date {
       width: 150px;
+      box-sizing: border-box;
+      height: 26.39px;
+      line-height: 1.4;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      outline: none;
+      padding-left: 10px;
     }
   }
 
-  .flex.col input {
-    // width: 150px;
-    // box-sizing: border-box;
-    @include input-text(1.6, 150px);
+  .ms_selection_div {
+    display: flex;
+    justify-content: space-between;
+    select {
+      width: 150px;
+      padding-left: 0;
+    }
+  }
+
+  select {
+    height: 26.39px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    outline: none;
+    letter-spacing: 0.1em;
+    width: 150px;
+    text-indent: 6px;
   }
 }
 </style>

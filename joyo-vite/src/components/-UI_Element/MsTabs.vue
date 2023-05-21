@@ -22,7 +22,7 @@ export default {
       default: true,
     },
   },
-
+// 控制-active class
   methods: {
     activeBtn(btn) {
       if (btn === 1) {

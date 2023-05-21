@@ -22,6 +22,7 @@ export default {
     data() {
         return {
             isOpen: true,
+            // isOepn2: false, 
         };
     },
     methods: {
