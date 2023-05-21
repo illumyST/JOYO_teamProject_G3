@@ -2,11 +2,11 @@
 <template>
     <div class="product-top ">
     <div class="col-3 breadcrumb">
-                <h2>全部商品</h2>
+                <h2>{{currentCategory[index].cate}}</h2>
                 <nav class="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
-                        <li class="breadcrumb-item active"><a href="#">所有商品</a></li>
+                        <li class="breadcrumb-item active"><a href="#">{{currentCategory[index].cate}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -110,7 +110,20 @@
 </div>
 </template>
 <script setup>
-
+    import { defineProps,  ref, watch,computed} from 'vue';
+    const props = defineProps({
+        currentCategory: {
+        type: Array,
+        required: true,
+        },
+        
+    });
+    const index=0;
+    const currentCategoryCopy =computed(() => [...props.currentCategory]);
+    watch(currentCategoryCopy, (newValue) => {
+    // 更新 props.inputValue 的值
+    props.currentCategory = newValue;
+    });
 </script>
 <script>
     export default {

@@ -620,9 +620,7 @@ button {
         width: 200px;
     }
 }
-.prouct-item-card-infor .btn {
-    
-}
+
 .breadcrumb ol {
     display: flex;
     font-size: 16px;

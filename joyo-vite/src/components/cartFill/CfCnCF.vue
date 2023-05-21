@@ -1,6 +1,6 @@
 <template>
    <div class="cartConfirm_con">
-            <h2>本次購買合計NTD ： $<span class="cartConfirm_con_price">2,796</span></h2>
+            <h2>本次購買合計NTD ： $<span class="cartConfirm_con_price">{{calculateTotal()}}</span></h2>
             <ul class="col-12 cartConfirm_con_title">
                 <li class="col-4">商品資料</li>
                 <li class="col-2">商品價格</li>
@@ -8,17 +8,17 @@
                 <li class="col-2">金額總計</li>
                 <li class="cartConfirm_con_del"></li>
             </ul>
-            <ul class="col-12 cartConfirm_con_title_item">
+            <ul class="col-12 cartConfirm_con_title_item" v-for="(list,index) in prodects" :key="list.id">
                 <li class="col-12">
                     <ul>
-                        <li class="cartConfirm_con_title_item_img"><img src="/IMG/product_AzUL.png" alt=""></li>
+                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.img" alt=""></li>
                         <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">花磚物語</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>699</span></li>
+                            <li class=" cartConfirm_con_title_item_name">{{list.name}}</li>
+                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list.sel}}</span></li>
                             <li class="cartConfirm_con_title_item_num order-2">
                                 2
                             </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> 1398</span>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> {{list.total}}</span>
 
                             </li>
                             <li class="col-1"></li>
@@ -28,30 +28,21 @@
                     </ul>
 
                 </li>
-                <li class="col-12">
-                    <ul>
-                        <li class="cartConfirm_con_title_item_img"><img src="/IMG/product_pathwork.png" alt="">
-                        </li>
-                        <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">拼布對決</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>699</span></li>
-                            <li class="cartConfirm_con_title_item_num order-2">
-                                2
-
-                            </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> 1398</span>
-
-                            </li>
-                            <li class="col-1"> </li>
-
-                        </ul>
-
-                    </ul>
-
-                </li>
+                
             </ul>
         </div>
 </template>
+<script setup>
+    import { defineProps} from 'vue';
+        const props = defineProps({
+            prodects: {
+            type: Array,
+            required: true,
+            },
+            calculateTotal: Function,
+            
+    });
+</script>
 <style lang="scss" scoped>
 .cartConfirm_wrapper {
     width: 1200px;
@@ -198,7 +189,6 @@
     box-sizing: border-box;
     margin-right: 0;
     width: 208px;
-    padding-left: 38px;
 }
 .col-1 {
     width: 8.3333333333%;

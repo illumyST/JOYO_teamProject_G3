@@ -33,14 +33,17 @@ const routes = [
                         path: ':categoryId',
                         name: 'productCategory',
                         component: () => import('@/pages/product.vue'),
-                    }
-                ]
+                    },
+                    
+                ],
             },
 
             {
                 path: 'productInfo/:id',
                 name: 'productInfo',
                 component: () => import('@/pages/product/productInfo.vue'),
+                
+                
             },
 
             // 前台子頁＿[會員中心] -------------------
@@ -91,7 +94,7 @@ const routes = [
                 ]
             },
             {
-                path: '/cartFill',
+                path: 'cartFill',
                 name: 'cartFill',
                 component: () => import('@/pages/cart/cartFill.vue'),
             },
