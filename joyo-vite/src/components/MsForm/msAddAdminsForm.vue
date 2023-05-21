@@ -1,8 +1,8 @@
 <template>
     <section class="ms_form">
         
-        
-        <form action="#" class="ms_login_form">
+      <i class="bi bi-x-lg" @click="close"></i>
+        <form action="#" class="ms_login_form" >
 
         <div class="ms_login_input_field top">
         <label class="ms_login_label" for="account">新增管理員</label>
@@ -26,30 +26,23 @@
   
   
         <div class="ms_login_btn">
-          <input type="submit" value="登入" />
+          <input type="submit" value="新增管理員" />
         </div>
       </form>
     </section>
   </template>
   <script setup>
-  import { ref } from "vue";
+  import { ref,defineEmits} from "vue";
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {
     isPasswordVisible.value = !isPasswordVisible.value;
   };
-  // export default {
-  //   data() {
-  //     return {
-  //       isPasswordVisible: false,
-  //     };
-  //   },
-  //   methods: {
-  //     passwordToggle() {
-  //       this.isPasswordVisible = !this.isPasswordVisible;
-  //     },
-  //   },
-  // };
+
+  const emits = defineEmits(['close']);
+  const close = ()=>{
+    emits("close",false)
+  }
   </script>
   <style lang="scss" scoped>
   @mixin btn($bg, $lh, $w, $hover) {
@@ -69,18 +62,32 @@
     }
   }
   .ms_form {
-    position: relative;
+    // float: left;
+    // display: fixed;
+    position: fixed;
     font-family: "Noto Sans TC", sans-serif;
     width: 550px;
+    height: 550px;
     background-color: #f2f2f2;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin:auto;
     padding: 60px 70px;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    // bottom: 0;
     // height: 450px;
-  
+    i{
+      // outline: 1px solid red;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
     .ms_login_form {
       display: flex;
       flex-direction: column;

@@ -99,12 +99,15 @@
     </div>
 </div>
 
-<cartConfirm v-if="page == 2" @child-data="handlePage" ></cartConfirm>
+<!-- <cartConfirm v-if="page == 2" @child-data="handlePage" ></cartConfirm>
 
-<cartFill v-if="page == 3"></cartFill>
+<cartFill v-if="page == 3"></cartFill> -->
 </template>
 
 <script setup>
+
+import {onMounted, ref ,computed , provide} from 'vue' ;
+
 
 const prodects = ref([{
     id : '花磚物語',

@@ -5,10 +5,14 @@
         <MsTabs :showBtn2="false" :open1="true">
           <template #button1>權限管理</template>
         </MsTabs>
-        <MsSystemAdminBtn :name="'管理員權限管理'"></MsSystemAdminBtn>
-        <msProductManagementTable></msProductManagementTable>
+        <MsSystemAdminBtn :name="'管理員權限管理'"
+        @cladd="cladd" @updat="updae"
+        ></MsSystemAdminBtn>
+        <msSystemAdminTable></msSystemAdminTable>
       </div>
     </div>
+    <msAddAdminsForm v-if="addop" @close="close"></msAddAdminsForm>
+    <MsChangeAdminPasswordForm v-if="updat" @close1="close1"></MsChangeAdminPasswordForm>
 </template>
 
 <script setup>
@@ -20,31 +24,66 @@ const getseach=(n)=>{
     console.log(n);
 }
 
-const prodects = ref([{
-    pronum:12443,
-    proname:'阿瓦隆',
-    protype:'益智',
-    propice: 549 ,
-    update: true 
+const admins = ref([{
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true,
+    fixe:false
 },{
-    pronum:13434,
-    proname:'風聲',
-    protype:'益智',
-    propice: 231 ,
-    update: true 
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true,
+    fixe:false
 },{
-    pronum:13255,
-    proname:'神秘大地',
-    protype:'益智',
-    propice: 1549 ,
-    update: true 
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true,
+    fixe:false
+},{
+    name:'王小明',
+    id:'abc123',
+    pas:'password',
+    update:true,
+    fixe:false
 },]) 
-provide('prodects',prodects)
+provide('admins',admins)
 
+const addop = ref(false);
+const updat = ref(false);
+
+const cladd = (e)=>{
+  if(addop.value){
+    addop.value = !e
+
+  }else{
+    addop.value = e
+    updat.value = !e
+  }
+  
+}
+const updae = (e)=>{
+  if(updat.value){
+    updat.value = !e
+  }else{
+    updat.value = e
+    addop.value = !e
+  }
+  // console.log(e);
+}
+const close =(e)=>{
+  addop.value = e
+}
+const close1 =(e)=>{
+  updat.value = e
+}
 
 </script>
 
 <style lang="scss" scoped>
+
  @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 //
 </style>

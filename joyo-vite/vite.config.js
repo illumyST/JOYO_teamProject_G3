@@ -39,4 +39,14 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    port:'5173',
+    proxy:{
+      '/api':{
+        target:'http://localhost:80',
+        changeOrigin:true,
+        rewrite: path => path.replace(/^\/api/,'/teamProject_G3/joyo-vite/PDO'),
+      },
+    }
+  }
 });

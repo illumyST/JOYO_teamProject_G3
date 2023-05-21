@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper">
+    <main class="wrapper" @click="echoTest()">
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
@@ -10,9 +10,7 @@
     </main>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 
 <style lang="scss" scoped>

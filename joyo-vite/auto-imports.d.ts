@@ -10,8 +10,10 @@ declare global {
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
   const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
   const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
-  const MsChangeAdminPasswordForm: typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']
-  const MsLoginFormMLF: typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']
+  const MsBannerManagement: typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']
+  const MsDataManagementReportSending: typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']
+  const MsDataManagementSendReport: typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']
+  const MsLoginFormMLI: typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
   const PdcMnItPdc: typeof import('./src/components/product/PdcMnItPdc.vue')['default']
   const PdcTopPdc: typeof import('./src/components/product/PdcTopPdc.vue')['default']
@@ -31,11 +33,8 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
-  const msAddAdminsForm: typeof import('./src/components/MsForm/msAddAdminsForm.vue')['default']
   const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
   const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
-  const msEditAdminForm: typeof import('./src/components/MsForm/msEditAdminForm.vue')['default']
-  const msEditProductForm: typeof import('./src/components/MsForm/msEditProductForm.vue')['default']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -94,8 +93,10 @@ declare module 'vue' {
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
     readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
-    readonly MsChangeAdminPasswordForm: UnwrapRef<typeof import('./src/components/MsForm/MsChangeAdminPasswordForm.vue')['default']>
-    readonly MsLoginFormMLF: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLF.vue')['default']>
+    readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
+    readonly MsDataManagementReportSending: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']>
+    readonly MsDataManagementSendReport: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']>
+    readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
     readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
     readonly PdcTopPdc: UnwrapRef<typeof import('./src/components/product/PdcTopPdc.vue')['default']>
@@ -115,11 +116,8 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddAdminsForm: UnwrapRef<typeof import('./src/components/MsForm/msAddAdminsForm.vue')['default']>
     readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
     readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
-    readonly msEditAdminForm: UnwrapRef<typeof import('./src/components/MsForm/msEditAdminForm.vue')['default']>
-    readonly msEditProductForm: UnwrapRef<typeof import('./src/components/MsForm/msEditProductForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
