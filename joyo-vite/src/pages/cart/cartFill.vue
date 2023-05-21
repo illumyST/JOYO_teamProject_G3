@@ -1,17 +1,53 @@
 <template>
    <div class="cartFill_wrapper">
-       <CfTpCF></CfTpCF>
-        <CfCnCF></CfCnCF>
-        <CfDlIfCF></CfDlIfCF>
-        <CfDlvCF></CfDlvCF>
+        <CfTpCF v-show="susspay"></CfTpCF>
+        <CfCnCF :prodects="prodects" :calculateTotal="calculateTotal" v-show="susspay"></CfCnCF>
+        <CfDlIfCF v-show="susspay"> </CfDlIfCF>
+        <CfDlvCF @update-Susspay="updateSusspay"></CfDlvCF>
    </div>
     
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
+import CfDlvCF from '@/components/cartFill/CfDlvCF.vue';
+const susspay=ref(true);
+const updateSusspay=(val)=>{
+    susspay.value=false;
+}
+const prodects = ref([{
+    id:1,
+    name : '花磚物語',
+    sel : 799,
+    amount : 1 ,
+    stock:12,
+    get total() {
+      return (this.sel*this.amount);
+    },
+    img:"/IMG/product_AzUL.png",
+    },{
+    id:2,
+    name : '拼布對決',
+    sel : 699,
+    amount : 1 ,
+    stock:5,
+    get total() {
+      return (this.sel*this.amount);
+    },
+    img:"/IMG/product_pathwork.png",
+    }
+]);
+const calculateTotal=()=>{
+      let sum=0;
+      for(let i=0;i<prodects.value.length;i++){
+        sum = sum + prodects.value[i].total;
+      }
+      return sum;
+};
 </script>
-
+<script>
+   
+</script>
 
 <style lang="scss" scoped>
     .cartFill_wrapper {

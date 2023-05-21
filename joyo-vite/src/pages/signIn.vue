@@ -93,7 +93,6 @@ forget.value = page ;
 </script>
 
 <style lang="scss" scoped>
-@import '../../../css/style.css';
 input.errorInput{
     // outline: 10px solid red;
     background-color: rgb(255, 0, 0,.3);

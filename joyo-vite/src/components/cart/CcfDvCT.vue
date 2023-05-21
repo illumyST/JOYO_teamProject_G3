@@ -27,20 +27,27 @@
             </div>
             <div>
                 <h2>訂單資訊</h2>
-                <p>小計 <span>NTD $ <span>2,796</span></span></p>
+                <p>小計 <span>NTD $ <span>{{calculateTotal()}}</span></span></p>
                 <h3 class="cartConfirm_deliv-h3-discount">使用優惠代碼
                     <select name="" id="" disabled class="col-8">
                         <option value=""></option>
                     </select>
                 </h3>
-                <router-link :to="'cartFill/'">
+                <router-link :to="'cartFill/'" >
                     <input type="submit" value="前往結帳">
                 </router-link>
             </div>
         </div>
 
 </template>
+<script setup>
+    import { defineProps} from 'vue';
+        const props = defineProps({
+            calculateTotal: Function,
+            
+    });
 
+</script>
 <style lang="scss" scoped>
     .cartConfirm_wrapper {
     width: 1200px;

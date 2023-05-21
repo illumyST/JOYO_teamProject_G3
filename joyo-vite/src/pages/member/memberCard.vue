@@ -18,14 +18,15 @@
 import MemberCardAddMbc from '../../components/MemberCard/MemberCardAddMbc.vue';
 import MemberCreditCardMbc from '../../components/MemberCard/MemberCreditCardMbc.vue';
 
-    // const showMemberCardAdd = () => {
+    // const showMemberCardAdd = () => {    
     //     console.log("點擊成功")
     // };
 
     const isMemberCardAddVisible = ref(false);
 
     const showMemberCardAdd = () => {
-        isMemberCardAddVisible.value = true;
+        // isMemberCardAddVisible.value = true;
+        isMemberCardAddVisible.value =  !isMemberCardAddVisible.value;
     };
     
 

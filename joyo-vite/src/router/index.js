@@ -33,14 +33,17 @@ const routes = [
                         path: ':categoryId',
                         name: 'productCategory',
                         component: () => import('@/pages/product.vue'),
-                    }
-                ]
+                    },
+                    
+                ],
             },
 
             {
                 path: 'productInfo/:id',
                 name: 'productInfo',
                 component: () => import('@/pages/product/productInfo.vue'),
+                
+                
             },
 
             // 前台子頁＿[會員中心] -------------------
@@ -91,7 +94,7 @@ const routes = [
                 ]
             },
             {
-                path: '/cartFill',
+                path: 'cartFill',
                 name: 'cartFill',
                 component: () => import('@/pages/cart/cartFill.vue'),
             },
@@ -157,6 +160,11 @@ const routes = [
                 name: 'redirect',
                 component: () => import('@/pages/signIn/redirect.vue'),
             },
+            {
+                path: 'forgetPassword',
+                name: 'forgetPassword',
+                component: () => import('@/pages/forgetPassword.vue'),
+            },
         ]
     },
 
@@ -167,10 +175,21 @@ const routes = [
         component: () => import('@/pages/indexMs.vue'),
 
         children: [
-
-            // 後台子頁＿預設＿[登入] -------------------
+            // 後台子頁＿預設＿[ms-data-management] -------------------
             {
                 path: '',
+                name: 'msDataManagementOrder',
+                component: () => import('@/pages/ms-data-management/msDataManagementOrder.vue'),
+            },
+            {
+                path: 'msDataManagementSendReport',
+                name: 'msDataManagementSendReport',
+                component: () => import('@/pages/ms-data-management/msDataManagementSendReport.vue'),
+            },
+
+            // 後台子頁＿[登入] -------------------
+            {
+                path: 'logIn',
                 name: 'MsLogin',
                 component: () => import('@/pages/ms-login/MsLogin.vue'),
             },
@@ -198,18 +217,6 @@ const routes = [
                 path: 'msUserData',
                 name: 'msUserData',
                 component: () => import('@/pages/ms-customer-service/msUserData.vue'),
-            },
-
-            // 後台子頁＿[ms-data-management] -------------------
-            {
-                path: 'msDataManagementOrder',
-                name: 'msDataManagementOrder',
-                component: () => import('@/pages/ms-data-management/msDataManagementOrder.vue'),
-            },
-            {
-                path: 'msDataManagementSendReport',
-                name: 'msDataManagementSendReport',
-                component: () => import('@/pages/ms-data-management/msDataManagementSendReport.vue'),
             },
 
             // 後台子頁＿[ms-order-management] -------------------

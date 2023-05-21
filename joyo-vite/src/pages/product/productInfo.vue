@@ -7,6 +7,7 @@
       <IfrBtPDCNF :guess="guess"></IfrBtPDCNF>
     </div>
   </div>
+  
 </template>
   
 <script setup>
@@ -101,9 +102,6 @@ export default {
     aside {
         width: 200px;
     }
-}
-.prouct-item-card-infor .btn {
-    
 }
 .breadcrumb ol {
     display: flex;
