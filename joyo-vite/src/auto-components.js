@@ -81,7 +81,7 @@ declare module '@vue/runtime-core' {
     MsLeftSideMenu: typeof import('./components/-UI_Element/MsLeftSideMenu.vue')['default']
     MsLiveChat: typeof import('./pages/ms-customer-service/MsLiveChat.vue')['default']
     MsLogin: typeof import('./pages/ms-login/MsLogin.vue')['default']
-    MsLoginFormMLF: typeof import('./components/msLogin/MsLoginFormMLF.vue')['default']
+    MsLoginFormMLF: typeof import('./components/MsLogin/MsLoginFormMLF.vue')['default']
     MsOrderManagement: typeof import('./pages/ms-order-management/MsOrderManagement.vue')['default']
     MsProductManagement: typeof import('./pages/ms-product-management/MsProductManagement.vue')['default']
     MsProductManagementTable: typeof import('./components/msTable/msProductManagementTable.vue')['default']
