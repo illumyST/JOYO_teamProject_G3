@@ -153,8 +153,8 @@ const routes = [
                 component: () => import('@/pages/mailCheck.vue'),
             },
             {
-                path: 'registerRedirect',
-                name: 'registerRedirect',
+                path: 'redirect',
+                name: 'redirect',
                 component: () => import('@/pages/signIn/redirect.vue'),
             },
         ]
