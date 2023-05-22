@@ -10,37 +10,49 @@
 </template>
   
 <script setup>
-import { onMounted, ref } from 'vue';
-import axios from 'axios';
+// import { onMounted, ref } from 'vue';
+// import axios from 'axios';
 
-const isLogIn = ref(0);
-const route = useRoute();
+// const isLogIn = ref(0);
+// const route = useRoute();
 
 // 得在 onMounted 前，避免使用者看到非 /ms 畫面
+console.log(isLogIn.value)
+
 
 if (isLogIn.value == 1 && route.path == '/ms/logIn') {
   location.href = '/ms';
 }
+// onMounted(() => {
+//   axios.get('/api/logIn&Out/sessionCheck.php')
+//     .then(res => {
+//       const data = res.data;
+//       isLogIn.value = data;
+//       // console.log('data', res.data)
+//       // console.log('isLogIn.value', isLogIn.value)
 
-onMounted(() => {
-  axios.get('/api/logIn&Out/sessionCheck.php')
-    .then(res => {
-      const data = res.data;
-      isLogIn.value = data;
-      // console.log('data', res.data)
-      // console.log('isLogIn.value', isLogIn.value)
+//       // 得放在 axios 裡面，因為會有時間落差？
+//       // if (isLogIn.value === 0 && route.path != '/ms/logIn') {
 
-      // 得放在 axios 裡面，因為會有時間落差？
-      if (isLogIn.value == 0 && route.path != '/ms/logIn') {
+// TODO 會可以看到其他頁面
+//location.href = '/ms/logIn';
+// alert('您尚未登入！');
+//};});
+// if (isLogIn.value != 0 && route.path == '/ms/logIn') {
+//   location.href = '/ms';
+// }
+//       //   // TODO 會可以看到其他頁面
+//       //   alert('您尚未登入！');
 
-        // TODO 會可以看到其他頁面
-        location.href = '/ms/logIn';
-        alert('您尚未登入！');
-      };
-    });
+//       //   location.href = '/ms/logIn';
+//       // };
+//       // if (isLogIn.value != 0 && route.path == '/ms/logIn') {
+//       //   location.href = '/ms';
+//       // }
+//     });
 
-  // console.log(isLogIn.value) //0
-});
+//   // console.log(isLogIn.value) //0
+// });
 
 
 const logOut = () => {

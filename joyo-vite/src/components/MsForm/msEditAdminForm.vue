@@ -1,5 +1,11 @@
 <template>
+<<<<<<< HEAD
+
+<div class="member_overlay" @click="close">
+    <section class="ms_form" @click.prevent.stop>
+=======
     <section class="ms_form">
+>>>>>>> will
         
       <i class="bi bi-x-lg" @click="close"></i>
         <form action="#" class="ms_login_form">
@@ -10,30 +16,75 @@
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="name">姓名</label>
+<<<<<<< HEAD
+          <input type="text" id="name" placeholder="請輸入姓名" v-model="upform.name"/>
+=======
           <input type="text" id="name" placeholder="請輸入姓名"/>
+>>>>>>> will
         </div>
 
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="account">帳號</label>
+<<<<<<< HEAD
+          <input type="text" id="account" placeholder="請輸入帳號" v-model="upform.id"/>
+=======
           <input type="text" id="account" placeholder="請輸入帳號"/>
+>>>>>>> will
         </div>
   
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="pas">密碼</label>
+<<<<<<< HEAD
+          <input type="password"  id="pas" placeholder="請輸入密碼" v-model="upform.pas"/>
+=======
           <input type="password"  id="pas" placeholder="請輸入密碼"/>
+>>>>>>> will
         </div>
   
   
         <div class="ms_login_btn">
+<<<<<<< HEAD
+          <input type="submit" value="登入" @click="upAdmin"/>
+        </div>
+      </form>
+    </section>
+  </div>   
+=======
           <input type="submit" value="登入" />
         </div>
       </form>
     </section>
+>>>>>>> will
   </template>
 
   <script setup>
   import { ref ,defineEmits} from "vue";
+<<<<<<< HEAD
+
+  const upform = ref({
+  name:"",
+  id:"",
+  pas:""
+  });
+
+  const upAdmin = ()=>{
+    var a = ref(0);
+    for(let n of Object.values(upform.value)){
+      if(n != ""){
+      a.value++
+      if(a.value ===  Object.values(upform.value).length){
+        if(confirm("確認編輯嗎")){
+          emits("upform",upform.value);
+          close();
+        }
+      }
+      
+    }
+  }}
+
+=======
+>>>>>>> will
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {
@@ -62,6 +113,19 @@
       background: $hover;
     }
   }
+<<<<<<< HEAD
+
+  .member_overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+=======
+>>>>>>> will
   .ms_form {
     position: fixed;
     font-family: "Noto Sans TC", sans-serif;

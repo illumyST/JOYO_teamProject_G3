@@ -4,12 +4,17 @@
 }
 .cartRedirect_box{
   width: 671px;
+<<<<<<< HEAD
+=======
+  height: 573px;
+>>>>>>> will
   margin: 0 auto;
   background: #F2F2F2;
   box-shadow: $shadow;
   margin-top: 50px;
   margin-bottom: 70px;
   box-sizing: border-box;
+<<<<<<< HEAD
   padding-bottom: 80px;
   .cartRedirect_logo{
     padding-top: 80px;
@@ -18,24 +23,50 @@
       display: block;
       margin: 0 auto;      
       margin-bottom: 50px;
+=======
+  .cartRedirect_logo{
+    padding-top: 45px;
+    height: 80px;
+  }
+    .cartRedirect_logo_img{
+      display: block;
+      margin: 40px auto;
+      // border: 3px solid palegreen;
+      width: 170px;
+      height: 41px;
+      
+      margin-bottom: 40px;
+>>>>>>> will
     }
       .cartRedirect_completed{
         .fa-solid{
         display: block;
+<<<<<<< HEAD
         font-size: 160px;
+=======
+        font-size: 100px;
+>>>>>>> will
         color: $orange;
         text-align: center;
         margin: 0 auto;
         margin-top: 30px;
+<<<<<<< HEAD
         margin-bottom: 50px;
+=======
+        margin-bottom: 100px;
+>>>>>>> will
         }
       }
         .cartRedirect_p_text{
         font-size: $h1_sub;
         color: $orange;
         text-align: center;
+<<<<<<< HEAD
         margin-bottom: 33px;
         letter-spacing: 1px;
+=======
+        margin-bottom: 25px;
+>>>>>>> will
         }
         .cartRedirect_p_text:last-child{
           font-size: 24px;
@@ -78,6 +109,29 @@
 
 }
 
+@media screen and (max-width:414px){
+  body{
+    display: block;
+    width: 100%;
+}
+.cartRedirect_box {
+  margin-top: 50px;
+  width: 95%;
+  height: auto;
+
+}
+
+.cartRedirect_logo{
+  margin-bottom: 50px;
+}
+
+.cartRedirect_box .cartRedirect_p_text {
+font-size: 19px;
+padding-bottom: 20px;
+}
+
+
+}
 
 
 
@@ -85,5 +139,9 @@
 
 
 
+<<<<<<< HEAD
 
 
+
+=======
+>>>>>>> will

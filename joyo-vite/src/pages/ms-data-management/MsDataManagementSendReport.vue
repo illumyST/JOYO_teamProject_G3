@@ -15,6 +15,22 @@
 
 <script>
 // import MsDataManagementOrder from './MsDataManagementOrder.vue';
+<<<<<<< HEAD
+// Tabs Togggle
+export default {
+  data() {
+    return {
+      isOpen: true,
+      // isOepn2: false,
+    };
+  },
+  methods: {
+    tabSwitch() {
+      console.log("hihi");
+      this.isOpen = !this.isOpen;
+    },
+  },
+=======
 
 // Tabs Togggle
 
@@ -32,6 +48,7 @@ export default {
         }
     },
 
+>>>>>>> will
 };
 </script>
 

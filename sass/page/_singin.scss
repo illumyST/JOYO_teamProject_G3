@@ -1,10 +1,19 @@
+<<<<<<< HEAD
 .singin_box{
   width: 794px;
+=======
+
+
+.singin_box {
+  width: 794px;
+  height: 656px;
+>>>>>>> will
   margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 100px;
   border-radius: 5px;
   box-shadow: $shadow;
+<<<<<<< HEAD
   background: $bg;
   position: relative;
   .singin_little_box{
@@ -91,6 +100,123 @@
     font-size: 18px;
     margin-top: 10px;
   }
+=======
+  // border: 5px solid gold;
+  margin-top: 70px;
+  margin-bottom: 200px;
+    .singin_little_box{
+      border: 2px solid palegreen;
+      margin: 0 auto;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+    .singin_member_singin, .singin_member{
+      width: 50%;
+      display: flex;
+      height: 86px;
+      text-align: center;
+      // border: 6px solid rgb(69, 14, 151);
+      justify-content: center;
+      align-items: center;  
+    }
+      .singin_member {
+      background-color: $green;
+      }
+      .singin_member a{
+        color: black;
+      }
+        .singin_main {
+          margin: 0 auto;
+          justify-content: center;
+          /* 垂直置中 */
+          align-items: center;
+          // border: 3px solid palegreen;
+          width: fit-content;
+          display: block;
+          
+            li{
+                margin: 0 auto;
+                display: block;
+                margin-top: 70px;
+              }
+            input{
+              // border: 5px solid peru;
+            display: flex;
+            justify-content: center;
+            }
+        }
+          .singin_text {
+            padding-left: 20px;
+            line-height: 50px;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            font-size: 16PX;
+            width: 590px;
+            box-sizing: border-box;
+            outline: none;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+          }
+            .singin_btn {
+              background: $green;
+              line-height: 59px;
+              width: 590px;
+              display: block;
+              text-decoration: none;
+              text-align: center;
+              border-radius: 5px;
+              box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+              transition: 0.3s;
+              cursor: pointer;
+              color: #fff;
+              display: block;
+              margin: 0 auto;
+            }
+              .singin_btn:hover {
+                background: #513F2E;
+              }
+              .singin_forgetPassword_a_link{
+                float: right;
+                // border: 5px solid  teal;
+                margin-top: 60px;
+                margin-right: 150px;
+                
+              }
+}
+
+@media screen and (max-width:414px){
+  body{
+    width: auto;
+    display: block;
+  }
+  .singin_box{
+    width: 370px;
+    height: 470px;
+  }
+  .singin_box .singin_main input {
+    display: flex;
+    
+    width: 100%;
+  }
+  .singin_box .singin_btn {
+    width: 335px;
+    height: 40px;
+  }
+  .singin_box .singin_forgetPassword_a_link {
+    margin-right: 17px;
+  }
+
+
+
+
+
+
+
+
+
+
+>>>>>>> will
 }
 
 

@@ -34,7 +34,7 @@ const routes = [
                         name: 'productCategory',
                         component: () => import('@/pages/product.vue'),
                     },
-                    
+
                 ],
             },
 
@@ -42,8 +42,8 @@ const routes = [
                 path: 'productInfo/:id',
                 name: 'productInfo',
                 component: () => import('@/pages/product/productInfo.vue'),
-                
-                
+
+
             },
 
             // 前台子頁＿[會員中心] -------------------
@@ -84,14 +84,6 @@ const routes = [
                 path: 'cart',
                 name: 'cart',
                 component: () => import('@/pages/cart.vue'),
-                children: [
-                    {
-                        path: '/cartConfirm',
-                        name: 'cartConfirm',
-                        component: () => import('@/pages/cart/cartConfirm.vue'),
-                    },
-
-                ]
             },
             {
                 path: 'cartFill',
@@ -163,7 +155,7 @@ const routes = [
             {
                 path: 'forgetPassword',
                 name: 'forgetPassword',
-                component: () => import('@/pages/forgetPassword.vue'),
+                // component: () => import('@/pages/forgetPassword.vue'),
             },
         ]
     },
@@ -177,7 +169,7 @@ const routes = [
         children: [
             // 後台子頁＿預設＿[ms-data-management] -------------------
             {
-                path: '',
+                path: 'msDataManagementOrder',
                 name: 'msDataManagementOrder',
                 component: () => import('@/pages/ms-data-management/msDataManagementOrder.vue'),
             },
@@ -280,9 +272,18 @@ const routes = [
     },
 ];
 
+const scrollBehavior = () => {
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+}
+
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
+    scrollBehavior
 });
 
 export default router;

@@ -15,7 +15,7 @@
             </aside>
 </template>
 <script setup>
-    import { defineProps,  ref, watch,computed} from 'vue';
+    import { defineProps,  ref, watch,computed ,defineEmits} from 'vue';
     const props = defineProps({
         currentCategory: {
         type: Array,
@@ -25,15 +25,13 @@
     });
     const index=0;
     const currentCategoryCopy =computed(() => [...props.currentCategory]);
-    
+    //測欄更新傳回父層
+    const emits = defineEmits("updateCatergory");
     const product_filter_get_cate=(e)=>{
         e.preventDefault();
         props.currentCategory[index].cate=e.target.innerHTML;
+        emits('updateCatergory', e.target.innerHTML);
     };
-    watch(currentCategoryCopy, (newValue) => {
-    // 更新 props.inputValue 的值
-    props.currentCategory = newValue;
-    });
 </script>
 
 <style lang="scss" scoped>
@@ -382,7 +380,7 @@
 }
 
 .product-main aside ul li:hover {
-    background-color: #c2c990;
+    background-color: $orange;
 }
 
 .prouct-item-card.prouct-item-card-infor button {

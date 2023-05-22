@@ -1,5 +1,10 @@
 <template>
+<<<<<<< HEAD
+ <div class="member_overlay" @click="close">
+    <section class="ms_form" @click.prevent.stop >
+=======
     <section class="ms_form">
+>>>>>>> will
         
       <i class="bi bi-x-lg" @click="close"></i>
         <form action="#" class="ms_login_form" >
@@ -9,23 +14,75 @@
         </div>
 
         <div class="ms_login_input_field">
+<<<<<<< HEAD
+          <label class="ms_login_label" for="name" >姓名</label>
+          <input type="text" id="name" placeholder="請輸入姓名" v-model="addform.name"/>
+=======
           <label class="ms_login_label" for="name">姓名</label>
           <input type="text" id="name" placeholder="請輸入姓名"/>
+>>>>>>> will
         </div>
 
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="account">帳號</label>
+<<<<<<< HEAD
+          <input type="text" id="account" placeholder="請輸入帳號" v-model="addform.id"/>
+=======
           <input type="text" id="account" placeholder="請輸入帳號"/>
+>>>>>>> will
         </div>
   
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="pas">密碼</label>
+<<<<<<< HEAD
+          <input type="password"  id="pas" placeholder="請輸入密碼" v-model="addform.pas"/>
+=======
           <input type="password"  id="pas" placeholder="請輸入密碼"/>
+>>>>>>> will
         </div>
   
   
         <div class="ms_login_btn">
+<<<<<<< HEAD
+          <input type="submit" value="新增管理員" @click="addAdmins"/>
+        </div>
+      </form>
+    </section>
+  </div>
+  </template>
+  <script setup>
+  import { ref,defineEmits} from "vue";
+  const emits = defineEmits(['close','addAdmins']);
+
+const addform = ref({
+  name:"",
+  id:"",
+  pas:""
+})
+
+const addAdmins = ()=>{
+  var a = ref(0);
+  for(let n of Object.values(addform.value)){
+    if(n != ""){
+      a.value++
+      if(a.value ===  Object.values(addform.value).length){
+        // console.log("123");
+        emits("addAdmins",addform.value);
+        close();
+      }
+      
+    }
+
+  }
+  // 
+  // console.log(value.value)
+}
+
+
+
+
+=======
           <input type="submit" value="新增管理員" />
         </div>
       </form>
@@ -33,15 +90,22 @@
   </template>
   <script setup>
   import { ref,defineEmits} from "vue";
+>>>>>>> will
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {
     isPasswordVisible.value = !isPasswordVisible.value;
   };
 
+<<<<<<< HEAD
+
+  const close = ()=>{
+    emits("close",false);
+=======
   const emits = defineEmits(['close']);
   const close = ()=>{
     emits("close",false)
+>>>>>>> will
   }
   </script>
   <style lang="scss" scoped>
@@ -157,5 +221,17 @@
         }
     }
   }
+<<<<<<< HEAD
+  .member_overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+=======
+>>>>>>> will
   </style>
   

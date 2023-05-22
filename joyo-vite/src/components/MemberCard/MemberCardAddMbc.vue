@@ -1,6 +1,10 @@
 <template>
     <!-- <div class="member_wrapper"> -->
+<<<<<<< HEAD
+    <div class="memberCardAdd_overlay" v-if="isMemberCardAddhide">
+=======
     <div class="member_overlay" v-if="isMemberCardAddhide" @click="close">
+>>>>>>> will
         <div class="memberCardAdd">
             <h1>新增信用卡/金融卡</h1>
             <a href="#" class="close" @click.stop="close"><i class="fa-solid fa-xmark"></i></a>
@@ -22,6 +26,16 @@
 <script setup>    
 
     const isMemberCardAddhide = ref(true);
+<<<<<<< HEAD
+    console.log("Add頁面成功出現")
+
+    // 關閉的按鈕在這
+    const close = (event) => {
+        event.preventDefault();
+        isMemberCardAddhide.value = !isMemberCardAddhide.value;
+
+        console.log("Add關閉")
+=======
     console.log(isMemberCardAddhide.value)
     
     const close = () => {
@@ -29,6 +43,7 @@
         isMemberCardAddhide.value = false;
 
         console.log(isMemberCardAddhide.value)
+>>>>>>> will
         
     };
 
@@ -66,7 +81,12 @@
         letter-spacing: 1px;
     }
 
+<<<<<<< HEAD
+    .memberCardAdd_overlay{
+        // pointer-events: none;
+=======
     .member_overlay{
+>>>>>>> will
         position: fixed;
         top: 0;
         left: 0;
@@ -76,6 +96,10 @@
         z-index: 9999;
     }
     .memberCardAdd{
+<<<<<<< HEAD
+        // pointer-events: none;
+=======
+>>>>>>> will
         margin: 0 auto;
         width: 590px;
         background: $bg;

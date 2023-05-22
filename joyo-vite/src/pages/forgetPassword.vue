@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="forgetPassword_box">
       <div class="forgetPassword_logo">
       <img class="forgetPassword_logo_img" src="@/assets/img/logo_orange.svg" alt="">
@@ -33,6 +34,24 @@ const emailSend = ()=>{
   console.log(data.value);
   }
 }
+=======
+<div class="forgetPassword_box">
+    <div class="forgetPassword_logo">
+    <img class="forgetPassword_logo_img" src="../assets/img/logo_orange.svg" alt="">
+    </div>
+  <div class="forgetPassword_main">
+    <p class="forgetPassword_p">請輸入你的電子信箱來取得密碼重置信</p>
+    <input type="text" class="forgetPassword_text" placeholder="輸入電子信箱">
+      <div class="forgetPassword_btn">
+      <a href="#" class="forgetPassword_btn">送出</a>
+  </div>
+      </div>
+</div>
+</template>
+
+<script setup>
+
+>>>>>>> will
 
 </script>
 
@@ -108,8 +127,14 @@ const emailSend = ()=>{
 width: 80%;
 margin: 0 auto;
 }
+<<<<<<< HEAD
 
 
+=======
+.forgetPassword_box .forgetPassword_p{
+  font-size: 16px;
+}
+>>>>>>> will
 
 .forgetPassword_box .forgetPassword_btn{
   width: 70%;

@@ -1,16 +1,18 @@
 <template>
-    <RouterView/>
+    <RouterView />
 </template>
 
+  
 <script setup>
 
 </script>
+  
 
 <style lang="scss" scoped>
 .member_wrapper{
     display: flex;
     justify-content: space-between;  
-    padding-bottom: 150px;
+    // padding-bottom: 150px;
     width: 1200px;
     margin: 0 auto;
     font-family: 'Noto Sans TC';
@@ -22,7 +24,7 @@
         flex-direction: column;
         align-items: center;
         padding-top: 0px;
-        padding-bottom: 70px;
+        // padding-bottom: 70px;
     }
 }
 </style>

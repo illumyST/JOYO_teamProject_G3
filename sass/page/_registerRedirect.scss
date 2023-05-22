@@ -10,6 +10,7 @@
   margin-top: 50px;
   margin-bottom: 70px;
   box-sizing: border-box;
+<<<<<<< HEAD
   padding-bottom: 80px;
   .registerRedirect_logo{
     padding-top: 80px;
@@ -18,6 +19,20 @@
       display: block;
       margin: 0 auto;      
       margin-bottom: 50px;
+=======
+  .registerRedirect_logo{
+    padding-top: 45px;
+    height: 80px;
+  }
+    .registerRedirect_logo_img{
+      display: block;
+      margin: 40px auto;
+      // border: 3px solid palegreen;
+      width: 170px;
+      height: 41px;
+      
+      margin-bottom: 40px;
+>>>>>>> will
     }
       .registerRedirect_completed{
         .fa-solid{
@@ -27,15 +42,23 @@
         text-align: center;
         margin: 0 auto;
         margin-top: 30px;
+<<<<<<< HEAD
         margin-bottom: 50px;
+=======
+        margin-bottom: 100px;
+>>>>>>> will
         }
       }
         .registerRedirect_p_text{
         font-size: $h1_sub;
         color: $orange;
         text-align: center;
+<<<<<<< HEAD
         margin-bottom: 33px;
         letter-spacing: 1px;
+=======
+        margin-bottom: 25px;
+>>>>>>> will
         }
         .registerRedirect_p_text:last-child{
           font-size: 24px;
@@ -78,6 +101,29 @@
 
 }
 
+@media screen and (max-width:414px){
+  header{
+    display: none;
+}
+.wrapper{
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.registerRedirect_box{
+  margin-top: 50px;
+  width: 370px;
+  // height: 401px;
+  border: 5px solid palegreen;
+}
+
+
+
+.registerRedirect_box .registerRedirect_p_text {
+  font-size: 19px;
+  margin-bottom: 70px;
+}
 
 
 
@@ -87,3 +133,21 @@
 
 
 
+
+<<<<<<< HEAD
+=======
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+>>>>>>> will
