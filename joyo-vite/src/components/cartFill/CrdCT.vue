@@ -3,7 +3,7 @@
     <div class="cartRedirect_box">
     
         <div class="cartRedirect_logo">
-        <img class="cartRedirect_logo_img" src="./assets/img/logo_orange.svg" alt="">
+        <img class="cartRedirect_logo_img" src="@/assets/img/logo_orange.svg" alt="">
         </div>
         
         <div class="cartRedirect_completed">

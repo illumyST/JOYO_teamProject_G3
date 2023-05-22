@@ -57,10 +57,12 @@
             susspay.value=false;
             console.log(suss.value,susspay.value);
             emits('updateSusspay', susspay.value);
-    }
+    };
+    
 </script>
 <script>
 </script>
+
 <style lang="scss" scoped>
 
 

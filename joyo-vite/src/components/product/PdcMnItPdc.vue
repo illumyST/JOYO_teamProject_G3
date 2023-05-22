@@ -1,7 +1,7 @@
-<template v-if="currentCategory">
+<template v-if="pageInfor">
 
-<ul class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in total_page" :key="index">
-  <li v-for="(card, index) in list" :key="index" class="prouct-item-card">
+<ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInfor" :key="index">
+  <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
   <router-link :to="'productInfo/' +'ID:'+card.ID" v-on:click="saveLocal">
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
@@ -40,62 +40,34 @@ const props = defineProps({
         type: Array,
         required: true,
         },
+        pageInfor:{
+        type: Array,
+        required: true,    
+        }
+
+        
         
     });
-    const index=0;
-    const currentCategoryCopy =computed(() => [...props.currentCategory]);
-   
-    watch(()=>currentCategoryCopy,(newValue) => {
-    // 更新 props.inputValue 的值
-    props.currentCategory = newValue;
-    fetchData().then(() => {
-    getPage();
-    });
-    });
+
+    // console.log(props.pageInfor,'sss');
+    // const 0=0;
+//     const pageInforCopy = ref(() => [...props.pageInfor]);
+//     watch(() => props.pageInfor, (newValue) => {
+//         if (newValue && newValue.length > 0) {
+//     pageInforCopy.value = [...newValue];
+//   }
+//     });
 </script>
 <script>
 export default {
-  components: {},
-  data(){
-    return{
-      tg:null,
-      page:12,
-      total_page:[],
-      fliterTg:null,
-      }
-    },
+
     methods:{
-       fetchData() {
-        console.log(123);
-        return axios.get('/API/boardGame.json')
-          .then(res => {
-            let i=0;
-            this.tg = res.data;
-            if(this.currentCategory[i].cate !="全部商品"){
-               this.fliterTg=this.tg.filter((ele)=>ele.CATEGORY == this.currentCategory[i].cate); 
-            }else{
-                this.fliterTg=this.tg
-            }
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    },
-      getPage(e){
-       for(let i=0;i<this.fliterTg.length;){
-        this.total_page.push(this.fliterTg.slice(i,i+12));
-        i=i+this.page; 
-        }
-      },
+       
       addCart(e){
         e.preventDefault();
       }
     },
-    mounted(){
-      this.fetchData().then(() => {
-      this.getPage();
-    });
-    }
+    
 }
 </script>
 <style lang="scss" scoped>
@@ -719,7 +691,7 @@ export default {
         }
 
         .prouct-item-card-img {
-            height: 138px;
+            height: 134px;
             width: 100%;
 
             img {

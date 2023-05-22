@@ -2,7 +2,7 @@
     <div class="product-page">
             <button><i class="fa-sharp fa-solid fa-angle-left"></i></button>
             <ul>
-                <li><a href="" class="active">1</a></li>
+                <li><a href="" :class="{active:currentCategory[index].page==1}">1</a></li>
                 <li><a href="">2</a></li>
                 <li><a href="">3</a></li>
                 <li><a href="">4</a></li>
@@ -14,7 +14,19 @@
 </template>
 
 <script setup>
-
+import { defineProps,  ref, watch,computed} from 'vue';
+const props = defineProps({
+        currentCategory: {
+        type: Array,
+        required: true,
+        },
+        pageInfor:{
+        type: Array,
+        required: true,    
+        }
+        
+    });
+const index=0;
 </script>
 
 <style lang="scss" scoped>

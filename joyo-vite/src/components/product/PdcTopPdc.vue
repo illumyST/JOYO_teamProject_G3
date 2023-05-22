@@ -119,11 +119,7 @@
         
     });
     const index=0;
-    const currentCategoryCopy =computed(() => [...props.currentCategory]);
-    watch(currentCategoryCopy, (newValue) => {
-    // 更新 props.inputValue 的值
-    props.currentCategory = newValue;
-    });
+   
 </script>
 <script>
     export default {
