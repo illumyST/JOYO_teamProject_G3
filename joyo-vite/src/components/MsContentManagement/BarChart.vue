@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 export default {
   mounted() {
     const ctx = document.getElementById("myCanvas");
