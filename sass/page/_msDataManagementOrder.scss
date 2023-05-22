@@ -1,0 +1,86 @@
+.ms_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ms_right_side_content {
+  display: flex;
+  flex-direction: column;
+}
+
+#myCanvas {
+  border: 1px solid red;
+  height: 315px;
+  margin-top: 40px;
+}
+
+.ms_data_management_fiter {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ms_data_management_fiter {
+  select {
+    font-size: $p;
+    font-family: "Noto Sans TC", sans-serif;
+    width: 170px;
+    height: 37.5px;
+    text-align: center;
+    background-color: $orange;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    letter-spacing: 0.1em;
+    outline: none;
+    // -webkit-appearance: none;
+    cursor: pointer;
+    // background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    // background-repeat: no-repeat;
+  }
+}
+
+.ms_transaction_data_table {
+  width: 100%;
+  margin-top: 60px;
+  .ms_transaction_data_head {
+    border-bottom: 2px solid $brown;
+    padding-bottom: 30px;
+  }
+  tbody {
+    margin-top: 20px;
+  }
+  tr {
+    align-items: left;
+    font-family: "Noto Sans TC", sans-serif;
+    th {
+      font-size: $h3;
+      line-height: 2;
+      width: calc(100% / 10);
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+
+    td {
+      width: calc(100% / 4);
+      line-height: 2.5;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+.ms_csv_button {
+  position: relative;
+   i {
+    position: absolute;
+    cursor: pointer;
+    top: 20px;
+    right: 0;
+    font-size: 24px;
+  }
+  i:hover {
+    color: #ccc;
+  }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>報表寄送</title>
+  </head>
+
+  <body>
+    <!-- Nav bar -->
+    <header class="ms_header">
+      <nav class="ms_nav">
+        <img class="ms_logo" src="./assets/img/logo.svg" alt="" />
+      </nav>
+    </header>
+
+    <div class="ms_wrapper">
+      <!-- Left side Menu -->
+      <ul class="ms_left_side_menu">
+        <li><a href="#">數據管理</a></li>
+        <li><a href="#">版務管理</a></li>
+        <li><a href="#">商品頁面</a></li>
+        <li><a href="#">客服中心/會員管理</a></li>
+        <li><a href="#">訂單資料管理</a></li>
+        <li><a href="#">系統管理</a></li>
+      </ul>
+      <!-- Right side content -->
+      <div class="ms_right_side_content">
+        <!-- Tabs -->
+        <div class="ms_tabs">
+          <button class="ms_transactions -active">交易與金流數據</button>
+          <button class="ms_sendReport">報表寄送</button>
+        </div>
+
+        
+
+        <!-- Data Range Picker & Filter -->
+        <div class="ms_data_management_fiter">
+          <input type="date" class="ms_date_picker" />
+        </div>
+
+        <!-- Send Email -->
+        <form action="#" class="ms_send_report_form">
+          <label for="email_list">收件人名單</label>
+          <input type="text" id="email_list" placeholder="輸入email">
+          <input type="submit" value="送出">
+        </form>
+
+        <canvas id="myCanvas"></canvas>
+        <div class="ms_csv_button">
+          <i class="fa-solid fa-file-csv" id="ms_csv"></i>
+        </div>
+        <table class="ms_transaction_data_table">
+          <tr class="ms_transaction_data_head">
+            <th>訂單編號</th>
+            <th>訂單金額</th>
+            <th>訂單時間</th>
+            <th>訂購用戶</th>
+            <!-- <th><i class="fa-solid fa-file-csv"></i></th> -->
+          </tr>
+
+          <tbody>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewfwefewfewf@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fwefewf@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewwe@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfwefwefewfewfwefew@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewfwefwe@gmail.com</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <!-- pagination -->
+        <div class="ms_pagination">
+            <a href="#">&lt;</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&gt;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

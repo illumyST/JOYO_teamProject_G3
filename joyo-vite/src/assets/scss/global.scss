@@ -1,0 +1,84 @@
+// ------- copied from G4 ------- //
+@import "mixins.scss";
+
+* {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+// grid
+// 字級設定
+// 色票
+// 顏色在這裡
+$orange: #f29441;
+$green: #afbf30;
+$bg: #f2f2f2;
+$brown: #513f2e;
+$d-pink: #f25790;
+$b-pink: #f3dad8;
+
+// 文字大小在這裡
+$h1_pri: 38px;
+$h1_sub: 32px;
+$h2: 24px;
+$h3: 20px;
+$p: 16px;
+
+// 陰影在這裡
+$shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+
+//lightbox 黑幕
+$lightbox: rgb(0, 0, 0, 0.8);
+
+h1 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 1.5em;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1em;
+  color: $brown;
+}
+
+i {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+@mixin m() {
+  @media screen and (max-width: 414px) {
+    @content;
+  }
+}
+
+@mixin wrapper() {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  @include wrapper();
+  @include m() {
+    width: 370px;
+  }
+}
+
+
+// 後台共通設定
+.ms_wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ms_right_side_content {
+  width: 963px;
+}
+
+@include btn(200px){
+
+}
+
