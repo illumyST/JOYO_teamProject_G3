@@ -58,7 +58,7 @@ export default {
   }
   button:hover {
     background-color: $orange;
-    color: white;
+    color: white !important;
     transition: 0.2s;
   }
 }

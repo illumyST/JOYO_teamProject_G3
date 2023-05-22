@@ -26,4 +26,14 @@
   margin: 30px auto;
   height: 520px;
 }
+a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  &:hover{
+    color:white;
+    transition: 0.2s;
+  }
+}
 </style>
