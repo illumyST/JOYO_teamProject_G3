@@ -7,9 +7,15 @@
                 <a href="#" @click="showMemberCardAdd">增加卡片<i class="fa-solid fa-plus"></i></a>
                 <!-- <input type="button" value="增加卡片" class="btn"> -->
             </div>
+<<<<<<< HEAD
             <MemberCreditCardMbc @ismember-Card-Editshow="ismemberCardEditshow" :ismemberCardEditvisible="ismemberCardEditvisible"></MemberCreditCardMbc>
             <MemberCardAddMbc v-if="isMemberCardAddVisible"></MemberCardAddMbc>
             <MemberCardEditMbc v-show="ismemberCardEditvisible" @ismember-Card-Editshow="ismemberCardEditshow" :ismemberCardEditvisible="ismemberCardEditvisible"></MemberCardEditMbc>
+=======
+            <MemberCreditCardMbc></MemberCreditCardMbc>
+            <MemberCardAddMbc v-if="isMemberCardAddVisible"></MemberCardAddMbc>
+            <MemberCardEditMbc></MemberCardEditMbc>
+>>>>>>> will
         </div>
     </div>
 </template>
@@ -17,6 +23,7 @@
 <script setup>
 import MemberCardAddMbc from '../../components/MemberCard/MemberCardAddMbc.vue';
 import MemberCreditCardMbc from '../../components/MemberCard/MemberCreditCardMbc.vue';
+<<<<<<< HEAD
 import { ref } from 'vue';
     // 預設Add彈出視窗是關閉的
     const isMemberCardAddVisible = ref(false);
@@ -35,6 +42,22 @@ import { ref } from 'vue';
         ismemberCardEditvisible.value = val;
     };
     
+=======
+
+    // const showMemberCardAdd = () => {    
+    //     console.log("點擊成功")
+    // };
+
+    const isMemberCardAddVisible = ref(false);
+
+    const showMemberCardAdd = () => {
+        // isMemberCardAddVisible.value = true;
+        isMemberCardAddVisible.value =  !isMemberCardAddVisible.value;
+    };
+    
+
+
+>>>>>>> will
 </script>
 
 <style lang="scss" scoped>

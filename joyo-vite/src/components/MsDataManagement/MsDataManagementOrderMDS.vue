@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="ms_content_toggle_container">
     <div class="ms_data_management_fiter">
       <input type="date" class="ms_date_picker" />
@@ -151,6 +152,162 @@
   </div>
 </template>
 <script></script>
+=======
+      <div class="ms_content_toggle_container">
+        <div class="ms_data_management_fiter">
+          <input type="date" class="ms_date_picker" />
+          <select name="" id="" class="fa">
+            <option value="">每頁顯示:10筆</option>
+            <option value="">每頁顯示:20筆</option>
+            <option value="">每頁顯示:30筆</option>
+            <option value="">每頁顯示:40筆</option>
+          </select>
+        </div>
+
+        <canvas id="myCanvas"></canvas>
+        <div class="ms_csv_button">
+          <i class="fa-solid fa-file-csv" id="ms_csv"></i>
+        </div>
+        <table class="ms_transaction_data_table">
+          <tr class="ms_transaction_data_head first_row">
+            <th>訂單編號</th>
+            <th>訂單金額</th>
+            <th>訂單時間</th>
+            <th>訂購用戶</th>
+          </tr>
+
+          <tbody>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewfwefewfe @gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fwefewf@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewwe@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfwefwefewfewfwefew@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewfwefwe@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>fewfewfefe@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+            <tr>
+              <td>123213213213123</td>
+              <td>599</td>
+              <td>2023/12/3 14:20:33</td>
+              <td>willchou@gmail.com</td>
+            </tr>
+          </tbody>
+        </table>
+        <MsPagination></MsPagination>
+      </div>
+
+
+</template>
+<script>
+
+</script>
+>>>>>>> will
 <style lang="scss" scoped>
 .ms_right_side_content {
   display: flex;
@@ -240,4 +397,8 @@
     color: #ccc;
   }
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> will

@@ -15,7 +15,10 @@ declare module '@vue/runtime-core' {
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BannerListFRM: typeof import('./components/forum/BannerListFRM.vue')['default']
     BannerTopFRM: typeof import('./components/forum/BannerTopFRM.vue')['default']
+<<<<<<< HEAD
     BarChart: typeof import('./components/MsContentManagement/BarChart.vue')['default']
+=======
+>>>>>>> will
     BottomCNT: typeof import('./components/contact/BottomCNT.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Cart: typeof import('./pages/cart.vue')['default']

@@ -15,7 +15,11 @@
                   <i class="bi bi-pencil-square" @click="change(index)"></i>
                   <i class="bi bi-trash3-fill" @click="del(index)"></i>
                 </td>
+<<<<<<< HEAD
                 <msEditAdminForm v-if="item.fixe" @close="close($event,index)" @upform="upform(index,$event)"></msEditAdminForm>
+=======
+                <msEditAdminForm v-if="item.fixe" @close="close($event,index)"></msEditAdminForm>
+>>>>>>> will
             </tr> 
         </tbody>
     </table>
@@ -26,10 +30,15 @@
       let admins = inject('admins');
     
       const del = (index)=>{
+<<<<<<< HEAD
       var YN =  confirm("確定要刪除嗎 ? ") ;
       if(YN){
         admins.value.splice(index,1);
       }
+=======
+      admins.value.splice(index,1);
+      // console.log(seach.value);
+>>>>>>> will
       }
     
       const change=(e)=>{
@@ -45,12 +54,16 @@
         admins.value[e].fixe = i;
     }
     
+<<<<<<< HEAD
     const upform = (i,t)=>{
         t['update']=true
         t['fixe']=false
         admins.value[i] = t
         console.log(admins.value);
     }
+=======
+    
+>>>>>>> will
       </script>
       
       

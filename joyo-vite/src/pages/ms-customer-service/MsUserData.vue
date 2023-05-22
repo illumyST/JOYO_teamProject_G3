@@ -1,5 +1,6 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div class="ms_wrapper">
     <MsLeftSideMenu></MsLeftSideMenu>
     <div class="ms_right_side_content">
@@ -79,6 +80,24 @@ import {ref , provide} from 'vue';
 
 let isOpen = ref(false) ;
 
+=======
+    <div class="ms_wrapper">
+      <MsLeftSideMenu></MsLeftSideMenu>
+      <div class="ms_right_side_content">
+        <MsTabs :showBtn2="true" :open2="true">
+          <template #button1>客服訊息</template>
+          <template #button2>會員資料</template>
+        </MsTabs>
+        <MsSeachBar @text="getseach" :name="'會員資料查詢'"></MsSeachBar>
+        <msUserDataTable></msUserDataTable>
+      </div>
+    </div>
+</template>
+
+<script setup>
+import {ref , provide} from 'vue';
+
+>>>>>>> will
 const user = ref([{
     no:2132,
     name: '小明' ,
@@ -112,6 +131,7 @@ provide('us', userSelect);
 const getseach=(n)=>{
     console.log(n);
 }
+<<<<<<< HEAD
 
 // const tabSwitch = (e)=>{
 //     console.log("hihi");
@@ -134,3 +154,16 @@ a{
 }
 </style>
 >>>>>>> a2f106df00974320ee3f0fd1930a4d85ea403880
+=======
+</script>
+
+<style lang="scss" scoped>
+<<<<<<< HEAD
+
+
+=======
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+//
+>>>>>>> 321bd2e94f82cb1eb467aa225197d95ad735f5bc
+</style>
+>>>>>>> will

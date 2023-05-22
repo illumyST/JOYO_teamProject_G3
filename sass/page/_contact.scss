@@ -2,6 +2,7 @@
     // border: 1px solid red;
     @include wrapper();
     color: $brown;
+<<<<<<< HEAD
 }
 
 .contact_top_bgc{
@@ -12,12 +13,17 @@
     position: absolute;
     top: -80px;
     z-index: -1;
+=======
+    // margin: 75px auto;
+
+>>>>>>> will
 }
 
 .contact_top{
     // border: 1px solid blue;
     width: 100%;
     @include flex-container();
+<<<<<<< HEAD
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 300px;
@@ -33,10 +39,26 @@
         letter-spacing: 1px;
         text-align: center;
     }
+=======
+    justify-content: center;
+    align-content: flex-start;
+    border-radius: 0 0 80% 80%;
+    background-color: $orange;
+}
+
+.contact_top_titel{
+    text-align: center;
+    font-size: $h1_pri;
+    color: white;
+    width: 100%;
+    margin: 20px 0;
+    letter-spacing: 1px;
+>>>>>>> will
 }
 
 .contact_top_left{
     // border: 1px solid green;
+<<<<<<< HEAD
     width: 40%;
     text-align: center;
     margin-right: 20px;
@@ -70,6 +92,37 @@
         font-weight: 600;
     }
     
+=======
+    color: white;
+    width: 30%;
+    text-align: center;
+    margin-right: 20px;
+
+    h1{
+        font-size: 80px;
+        font-weight: 900;
+        line-height: 1.5;
+    }
+
+    p{
+        font-size: $h3;
+    }
+}
+
+.contact_top_right{
+    // border: 1px solid yellow;
+    width: 40%;
+    line-height: 2;
+    font-size: $h3;
+    letter-spacing: 2px;
+    
+
+    span{
+        background-color: wheat;
+        padding: 8px;
+    }
+
+>>>>>>> will
     i{
         margin-right: 10px;
     }
@@ -81,6 +134,7 @@
 
 .contact_top_right_text{
     margin-bottom: 15px;
+<<<<<<< HEAD
     text-align: justify;
     
     a{
@@ -91,6 +145,8 @@
         line-height: 1;
     }
     
+=======
+>>>>>>> will
 }
 
 
@@ -100,6 +156,7 @@
 .contact_middle{
     // border: 1px solid purple;
     width:  100%;
+<<<<<<< HEAD
 
     h1{
         font-size: $h1_pri;
@@ -115,17 +172,40 @@
 
 .contact_middle_qa{
     width: 100%;
+=======
+    margin-top: 100px;
+}
+
+
+.contact_middle_title{
+    font-size: $h1_pri;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+}
+
+.contact_middle_qa{
+    width: 60%;
+    margin: 0 auto;
+>>>>>>> will
 
     h3{
         // border: 1px solid blue;
         font-size: $h3;
+<<<<<<< HEAD
         padding: 0 30px;
+=======
+        padding: 10px 20px;
+>>>>>>> will
         background-color: $green;
         display: flex;
         justify-content: space-between;
         align-items: center;
+<<<<<<< HEAD
         font-weight: 550; 
         line-height: 2;   
+=======
+>>>>>>> will
     }
 
     h3::after{
@@ -135,17 +215,24 @@
         color:  $brown;
     }
 
+<<<<<<< HEAD
     h3:hover{
         background-color: #83af5fb9;
         cursor: pointer;
     }
 
+=======
+>>>>>>> will
     p{
         line-height: 2;
         letter-spacing: 1px;
         background-color: $bg;
+<<<<<<< HEAD
         padding: 20px 30px;
         
+=======
+        padding: 20px;
+>>>>>>> will
     }
 }
 
@@ -170,7 +257,11 @@
 .contact_bottom{
     // border: 1px solid green;
     @include flex-container();
+<<<<<<< HEAD
     margin: 120px 0;
+=======
+    margin: 50px 0;
+>>>>>>> will
     position: relative;
 }
 
@@ -187,7 +278,11 @@
 
 .contact_bottom_info{
     @include flex-container(row, wrap, flex-start);
+<<<<<<< HEAD
     width: 100%;
+=======
+    width: 90%;
+>>>>>>> will
     margin: 40px 0;
     
 
@@ -247,10 +342,17 @@
     width: 20%;
     position: absolute;
     z-index: -1;
+<<<<<<< HEAD
     top: -90px;
     right: 155px;
 
     svg{
+=======
+    top: 0;
+    right: 188px;
+
+    img{
+>>>>>>> will
         width: 100%;
     }
 }
@@ -259,10 +361,17 @@
 
 
 .contact_bottom_customer_service{
+<<<<<<< HEAD
     border: 3px solid white;
     position: absolute;
     bottom: 20px;
     right: 135px;
+=======
+    border: 10px solid white;
+    position: absolute;
+    bottom: 30px;
+    right: 170px;
+>>>>>>> will
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -386,6 +495,7 @@
     font-size: $h1_sub;
     text-align: center;
     color: $orange;
+<<<<<<< HEAD
 }
 
 
@@ -485,4 +595,6 @@
         bottom: 210px;
         right: 0;
     }
+=======
+>>>>>>> will
 }

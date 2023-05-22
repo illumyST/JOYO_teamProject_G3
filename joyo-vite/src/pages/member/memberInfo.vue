@@ -163,6 +163,16 @@
 }
 
 @media screen  and (max-width: 414px){
+<<<<<<< HEAD
+=======
+    .member_wrapper{
+        width: 414px;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0px;
+        padding-bottom: 70px;
+    }
+>>>>>>> will
     .member-right-card{
         width: 370px;
     }

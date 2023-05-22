@@ -1,9 +1,16 @@
 <template>
     <!-- <div class="member_wrapper"> -->
+<<<<<<< HEAD
         <div class="memberCardEdit_overlay"  @ismember-Cardvisible="ismemberCardvisible">
             <div class="memberCardEdit">
                 <h1>更新卡片資訊</h1>
                 <a href="#" class="close" @click.stop="close"><i class="fa-solid fa-xmark"></i></a>
+=======
+        <div class="member_overlay">
+            <div class="memberCardEdit">
+                <h1>更新卡片資訊</h1>
+                <a href="#" class="close"><i class="fa-solid fa-xmark"></i></a>
+>>>>>>> will
                 <div class="cardimfo">
                     <form action="" method="POST">
                         <label for="">卡片資訊</label>
@@ -20,6 +27,7 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
     import { defineProps, ref, defineEmits} from 'vue';
 
     // 這行的宣告是為了下面點擊close的時候能夠把數值反轉
@@ -41,6 +49,8 @@
         emits('ismemberCardEditshow', false)
         console.log("Edit關閉")
     };
+=======
+>>>>>>> will
 </script>
 
 <style lang="scss" scoped>
@@ -75,8 +85,13 @@
         letter-spacing: 1px;
     }
 
+<<<<<<< HEAD
     .memberCardEdit_overlay{
         // display: none;
+=======
+    .member_overlay{
+        display: none;
+>>>>>>> will
         position: fixed;
         top: 0;
         left: 0;

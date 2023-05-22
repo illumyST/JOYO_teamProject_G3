@@ -14,8 +14,13 @@
      <router-link to="/ms/msProductManagement">商品頁面</router-link>
     </li>
 
+<<<<<<< HEAD
     <li :class="{ '-active': $route.path == '/ms/MsLiveChat' || $route.path == '/ms/MsUserData' }">
       <router-link to="/ms/MsLiveChat">客服中心/會員管理</router-link>
+=======
+    <li :class="{ '-active': $route.path == '/ms/mslivechat' || $route.path == '/ms/MsUserData' }">
+      <router-link to="/ms/MsUserData">客服中心/會員管理</router-link>
+>>>>>>> will
     </li>
 
     <li :class="{ '-active': $route.path == '/ms/MsDataManagementOrder' }">
