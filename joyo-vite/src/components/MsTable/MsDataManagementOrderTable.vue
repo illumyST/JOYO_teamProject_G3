@@ -20,7 +20,7 @@
                          <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
                          <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
-                         <input type="number" min="2" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
+                         <input type="number" min="1" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
                          @blur="change(index)"  >
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
                    </span>
@@ -40,26 +40,26 @@
                             <div @click="itupop(index,'one')">
                             <h5>訂單成立</h5>
                             <p v-if="!item.oneop">{{ item.one }}</p>
-                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent="itupop(index,'one')">
+                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent.stop @keyup.enter="itupop(index,'one')">
                             <!-- <p>{{ currentDate }}</p> -->
                             </div>
 
                             <div @click="itupop(index,'two')" >
                             <h5>已出貨</h5>
                             <p v-if="!item.twoop">{{ item.two }}</p>
-                            <input type="text" v-model="item.two" v-if="item.twoop" @click.prevent="itupop(index,'two')">
+                            <input type="text" v-model="item.two" v-if="item.twoop" @click.prevent.stop @keyup.enter="itupop(index,'two')">
                             </div>
 
                             <div @click="itupop(index,'the')">
                             <h5>運送中</h5>
                             <p v-if="!item.theop">{{ item.the }}</p>
-                            <input type="text" v-model="item.the" v-if="item.theop" @click.prevent="itupop(index,'the')">
+                            <input type="text" v-model="item.the" v-if="item.theop" @click.prevent.stop @keyup.enter="itupop(index,'the')">
                             </div>
 
                             <div @click="itupop(index,'four')">
                             <h5>訂單完成</h5>
                             <p v-if="!item.fourop">{{ item.four }}</p>
-                            <input type="text" v-model="item.four" v-if="item.fourop" @click.prevent="itupop(index,'four')">
+                            <input type="text" v-model="item.four" v-if="item.fourop" @click.prevent.stop @keyup.enter="itupop(index,'four')">
                             </div>
                             
                             <span class="dash" :class="{'one':item.fron == '1'},{'two':item.fron == '2'},{'thr':item.fron == '3'},{'fur':item.fron == '4'}" ></span>

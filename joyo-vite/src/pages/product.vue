@@ -1,9 +1,11 @@
 <template>
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPDC></PdcTopPDC>
+        <PdcTopPDC :currentCategory="currentCategory"></PdcTopPDC>
         <div class="product-main">
-            <PdcMnAsdPDC></PdcMnAsdPDC>
-            <PdcMnItPDC></PdcMnItPDC>
+            <PdcMnAsdPDC :currentCategory="currentCategory">
+                :currentCategory.sync="currentCategory"
+            </PdcMnAsdPDC>
+            <PdcMnItPDC :currentCategory="currentCategory"></PdcMnItPDC>
         </div>
         <PdcPgPDC></PdcPgPDC>
     </div>
@@ -13,12 +15,16 @@
 </template>
 
 <script setup>
-//這裡是手動匯入
-//這裡是手動匯入
-import { useRoute } from 'vue-router'
 
+import { useRoute} from 'vue-router'
+import { onMounted, ref,defineProps } from 'vue';
 // 在组件中使用 useRoute 函数获取当前路由信息
-const route = useRoute()
+const route = useRoute();
+const currentCategory=ref([
+    {cate:"全部商品",
+    page:1
+    },
+]);
 
 // 在组件挂载后执行的生命周期钩子函数中处理逻辑
 onMounted(() => {
@@ -27,7 +33,6 @@ onMounted(() => {
     const id = route.params.categoryId
 
     // 在控制台输出 categoryId
-    console.log(id)
 })
 
 </script>
@@ -122,9 +127,6 @@ onMounted(() => {
 
 
 
-.prouct-item-card-infor .btn {
-    
-}
 
 .breadcrumb ol {
     display: flex;

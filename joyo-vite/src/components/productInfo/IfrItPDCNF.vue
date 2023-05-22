@@ -30,9 +30,13 @@
                     <button><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="col-12 infor-item-buy">
-                    <button class=" btn buy">立即購買</button>
+                    <router-link to="/cart">
+                        <button class=" btn buy">立即購買</button>
+                    </router-link>
+                    
                     <button class=" btn car">加入購物車</button>
                 </div>
+                
             </div>
 
         </div>
@@ -658,9 +662,7 @@ button {
         width: 200px;
     }
 }
-.prouct-item-card-infor .btn {
-    
-}
+
 .breadcrumb ol {
     display: flex;
     font-size: 16px;

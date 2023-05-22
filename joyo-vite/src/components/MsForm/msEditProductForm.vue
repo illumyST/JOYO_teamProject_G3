@@ -1,6 +1,6 @@
 <template>
- 
-    <section class="ms_form_long">
+  <div class="member_overlay" @click="close">
+    <section class="ms_form_long" @click.prevent.stop>
             <i class="bi bi-x-lg" @click="close"></i>
             <form action="" method="POST">
                 <h1>編輯商品</h1>
@@ -71,7 +71,7 @@
                 </div>
             </form> 
         </section>
-
+    </div>
   </template>
 
   <script setup>
@@ -107,6 +107,16 @@ const emits = defineEmits(['close']);
       background: $hover;
     }
   }
+
+  .member_overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
   .ms_form_long{
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
     width: 600px;
