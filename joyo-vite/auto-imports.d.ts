@@ -38,12 +38,17 @@ declare global {
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
 <<<<<<< HEAD
+<<<<<<< HEAD
   const msAddProductForm: typeof import('./src/components/msForm/msAddProductForm.vue')['default']
   const msChangePasswordForm: typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']
 =======
   const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
   const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
 >>>>>>> will
+=======
+  const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
+  const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
+>>>>>>> A_stone
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -130,12 +135,17 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
 <<<<<<< HEAD
+<<<<<<< HEAD
     readonly msAddProductForm: UnwrapRef<typeof import('./src/components/msForm/msAddProductForm.vue')['default']>
     readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']>
 =======
     readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
     readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
 >>>>>>> will
+=======
+    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
+    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
+>>>>>>> A_stone
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>

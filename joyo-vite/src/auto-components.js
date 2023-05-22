@@ -22,7 +22,6 @@ declare module '@vue/runtime-core' {
     BottomCNT: typeof import('./components/contact/BottomCNT.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Cart: typeof import('./pages/cart.vue')['default']
-    CartConfirm: typeof import('./pages/cart/cartConfirm.vue')['default']
     CartFill: typeof import('./pages/cart/cartFill.vue')['default']
     CcfCnCT: typeof import('./components/cart/CcfCnCT.vue')['default']
     CcfDvCT: typeof import('./components/cart/CcfDvCT.vue')['default']
