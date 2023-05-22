@@ -6,7 +6,11 @@
                 <h3>{{ item.creaditcard_nickname }}</h3>
                 <h3 class="cardnum">{{ item.creaditcard_num }}</h3>
                 <div class="delete">
+<<<<<<< HEAD
                     <a href="#" @click="showMemberCardEdit"><i class="fa-regular fa-pen-to-square"></i></a>
+=======
+                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+>>>>>>> will
                     <a href="#"><i class="fa-solid fa-trash-can"></i></a> 
                 </div>
             </li>
@@ -15,6 +19,7 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
     import { defineEmits,defineProps} from 'vue';
 
     const emits = defineEmits(['ismemberCardvisible']);
@@ -29,6 +34,8 @@
          console.log("編輯按鈕點擊成功");
          emits('ismemberCardEditshow', true)
     };
+=======
+>>>>>>> will
 
     const member_data = ref([
         {
@@ -75,7 +82,10 @@
                 letter-spacing: 1px;
                 width: 180px;
                 text-align: center;
+<<<<<<< HEAD
                 white-space: nowrap;
+=======
+>>>>>>> will
             }
             .delete{
                 display: flex;

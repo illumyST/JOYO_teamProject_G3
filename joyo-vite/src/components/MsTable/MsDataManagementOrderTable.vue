@@ -14,7 +14,11 @@
                    <span class="ordrta"><h4>{{ item.email }}</h4></span>
                    <span class="ordrta"><h4>{{ item.total }}</h4></span>
                    <span class="ordrta"><h4>{{ item.stp }}</h4></span>
+<<<<<<< HEAD
                    <span class="ordrta ot"  @click.prevent.stop>
+=======
+                   <span class="ordrta ot"  @click.prevent="openC(index)">
+>>>>>>> will
                          <h4 v-if="(item.fron != 1 && item.fron != 2 && item.fron != 3 && item.fron != 4) && !item.upopen">編輯訂單狀態</h4>
                          <h4 v-if="item.fron == 1 && !item.upopen">訂單成立</h4>
                          <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
@@ -26,7 +30,11 @@
                    </span>
                    <span class="ordrta"><h4>{{ item.got }}</h4></span>
 
+<<<<<<< HEAD
                     <div class="ms_order_min " style="overflow: hidden;" v-if="item.open" @click.prevent.stop>
+=======
+                    <div class="ms_order_min " style="overflow: hidden;" v-if="item.open" @click.prevent="openC(index)">
+>>>>>>> will
                         <ul>
                             <li v-for="(ittm,index) in item.order">
                                 <img :src="ittm.img" alt="" >
@@ -37,6 +45,7 @@
                         </ul>
                     
                         <div class="ms_order_right">
+<<<<<<< HEAD
                             <div>
                             <h5 :class="[{'onpoint':item.fron == 1},{'outpoint':item.fron > 1}]">訂單成立</h5>
                             <p>{{ item.one }}</p>
@@ -73,6 +82,31 @@
                             <input type="text" v-model="item.four"  @click.prevent.stop @keyup.enter="itupop(index,'four')">
                             <i class="bi bi-x-circle-fill" @click="clear(index,'4')"></i>
                             </span>
+=======
+                            <div >
+                            <h5>訂單成立</h5>
+                            <p v-if="!item.oneop" @click="itupop(index,'oneop')">{{ item.one }}</p>
+                            <input type="text" v-model="item.one" v-if="item.oneop" @click.prevent="itupop(index,'onecl')">
+                            <!-- <p>{{ currentDate }}</p> -->
+                            </div>
+
+                            <div @click="itupop(index,'two')" >
+                            <h5>已出貨</h5>
+                            <p v-if="!item.twoop">{{ item.two }}</p>
+                            <input type="text" v-model="item.two" v-if="item.twoop" @click.prevent="itupop(index,'two')">
+                            </div>
+
+                            <div @click="itupop(index,'the')">
+                            <h5>運送中</h5>
+                            <p v-if="!item.theop">{{ item.the }}</p>
+                            <input type="text" v-model="item.the" v-if="item.theop" @click.prevent="itupop(index,'the')">
+                            </div>
+
+                            <div @click="itupop(index,'four')">
+                            <h5>訂單完成</h5>
+                            <p v-if="!item.fourop">{{ item.four }}</p>
+                            <input type="text" v-model="item.four" v-if="item.fourop" @click.prevent="itupop(index,'four')">
+>>>>>>> will
                             </div>
                             
                             <span class="dash" :class="{'one':item.fron == '1'},{'two':item.fron == '2'},{'thr':item.fron == '3'},{'fur':item.fron == '4'}" ></span>
@@ -100,6 +134,7 @@ const openC = (e)=>{
        order.value[e].open = true ;
        order.value[e].ordop= false;
    }
+<<<<<<< HEAD
 }
 
 const clear=(i,n)=>{
@@ -113,6 +148,20 @@ const clear=(i,n)=>{
         order.value[i].four="";
     }
 }
+=======
+
+// console.log(order.value[e].open)
+}
+    // const ordop= (e)=>{
+    //     if(order.value[e].ordop){
+    //         order.value[e].ordop= false;
+    // //         order.value[e].open = true ;
+    //     }else{
+    //         order.value[e].ordop= true; 
+    //         order.value[e].open = true ;
+    //     }
+    // }
+>>>>>>> will
 
 const change = (e)=>{
     if(order.value[e].upopen){
@@ -145,6 +194,7 @@ const ifron = (e)=>{
         order.value[e].the = "" ;
         order.value[e].four = "" ;
     }
+<<<<<<< HEAD
 
     if (order.value[e].fron == 2 && order.value[e].two == ""){
         order.value[e].two = nowDate.value ;
@@ -154,15 +204,38 @@ const ifron = (e)=>{
     }
 
     if (order.value[e].fron == 3 && order.value[e].the == ""){
+=======
+    if (order.value[e].fron == 2){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+        order.value[e].two = nowDate.value ;
+        order.value[e].the = "" ;
+        order.value[e].four = "" ;
+    }
+    else if (order.value[e].fron == 3){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+>>>>>>> will
         if(order.value[e].two == ""){
             order.value[e].two = nowDate.value ;  
         }
         order.value[e].the = nowDate.value ;
+<<<<<<< HEAD
     }else if (order.value[e].fron == 3 && order.value[e].four != ""){
         order.value[e].four = "" ;
     }
 
     if (order.value[e].fron == 4 &&  order.value[e].four == ""){
+=======
+        order.value[e].four = "" ;
+    }
+    else if (order.value[e].fron == 4){
+        if(order.value[e].one == ""){
+            order.value[e].one = nowDate.value ;   
+        }
+>>>>>>> will
         if(order.value[e].two == ""){
             order.value[e].two = nowDate.value ;  
         }
@@ -175,7 +248,19 @@ const ifron = (e)=>{
 
 
 const itupop= (e,i)=>{
+<<<<<<< HEAD
     if(i == "two"){
+=======
+    if(i == "one"){
+        if(order.value[e].oneop){
+            order.value[e].oneop = false ;
+        }else{
+            order.value[e].oneop = true ;
+        }
+        
+    }
+    else if(i == "two"){
+>>>>>>> will
         if(order.value[e].twoop){
             order.value[e].twoop = false ;
         }else{
@@ -312,10 +397,17 @@ const itupop= (e,i)=>{
         height: 100px;
         bottom: 0;
         justify-content: space-evenly;
+<<<<<<< HEAD
+=======
+        input{
+            text-align: center;
+        }
+>>>>>>> will
        div{
            width: 200px;
            height: 50px;
         h5{
+<<<<<<< HEAD
             padding-bottom: 3px;  
         }
         h5.cp{
@@ -342,6 +434,10 @@ const itupop= (e,i)=>{
                     color: $green;
                 }
             }
+=======
+            padding-bottom: 3px;
+            
+>>>>>>> will
         }
        }
        div::before{
@@ -403,6 +499,7 @@ const itupop= (e,i)=>{
     width: 670px;
 }
 
+<<<<<<< HEAD
 .onpoint{
     font-weight: 800;
     color: red;
@@ -411,4 +508,6 @@ const itupop= (e,i)=>{
 .nopoint{
     opacity: .2;
 }
+=======
+>>>>>>> will
      </style>

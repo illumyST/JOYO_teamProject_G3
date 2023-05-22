@@ -10,6 +10,7 @@
   margin-top: 50px;
   margin-bottom: 70px;
   box-sizing: border-box;
+<<<<<<< HEAD
   padding-bottom: 80px;
   .mailCheckRedirect_logo{
     padding-top: 80px;
@@ -18,31 +19,58 @@
       display: block;
       margin: 0 auto;      
       margin-bottom: 50px;
+=======
+  .mailCheckRedirect_logo{
+    padding-top: 45px;
+    height: 80px;
+  }
+    .mailCheckRedirect_logo_img{
+      display: block;
+      margin: 40px auto;
+      // border: 3px solid palegreen;
+      width: 170px;
+      height: 41px;
+      
+      margin-bottom: 40px;
+>>>>>>> will
     }
       .mailCheckRedirect_completed{
         .fa-solid{
         display: block;
+<<<<<<< HEAD
         font-size: 160px;
+=======
+        font-size: 100px;
+>>>>>>> will
         color: $orange;
         text-align: center;
         margin: 0 auto;
         margin-top: 30px;
+<<<<<<< HEAD
         margin-bottom: 50px;
+=======
+        margin-bottom: 100px;
+>>>>>>> will
         }
       }
         .mailCheckRedirect_p_text{
         font-size: $h1_sub;
         color: $orange;
         text-align: center;
+<<<<<<< HEAD
         margin-bottom: 33px;
         letter-spacing: 1px;
         }
         .mailCheckRedirect_p_text:last-child{
           font-size: 24px;
+=======
+        margin-bottom: 25px;
+>>>>>>> will
         }
 }
 
 @media screen and (max-width:414px){
+<<<<<<< HEAD
   .wrapper{
       align-items: center;
       width: 100%;
@@ -76,6 +104,29 @@
     margin-bottom: 0;
   }
 
+=======
+  header{
+    display: none;
+}
+.wrapper{
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.mailCheckRedirect_box{
+  margin-top: 50px;
+  width: 370px;
+  // height: 401px;
+  border: 5px solid palegreen;
+}
+
+
+
+.mailCheckRedirect_box .mailCheckRedirect_p_text {
+  font-size: 18px;
+  margin-bottom: 70px;
+>>>>>>> will
 }
 
 
@@ -87,3 +138,19 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+
+}
+
+
+
+
+
+
+
+
+
+
+>>>>>>> will

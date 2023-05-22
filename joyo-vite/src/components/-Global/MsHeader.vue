@@ -17,8 +17,15 @@ const isLogIn = ref(0);
 const route = useRoute();
 
 // 得在 onMounted 前，避免使用者看到非 /ms 畫面
+<<<<<<< HEAD
 console.log(isLogIn.value)
 
+=======
+
+if (isLogIn.value == 1 && route.path == '/ms/logIn') {
+  location.href = '/ms';
+}
+>>>>>>> will
 
 onMounted(() => {
   axios.get('/api/logIn&Out/sessionCheck.php')
@@ -33,11 +40,16 @@ onMounted(() => {
 
         // TODO 會可以看到其他頁面
         location.href = '/ms/logIn';
+<<<<<<< HEAD
         // alert('您尚未登入！');
       };
       if (isLogIn.value != 0 && route.path == '/ms/logIn') {
         location.href = '/ms';
       }
+=======
+        alert('您尚未登入！');
+      };
+>>>>>>> will
     });
 
   // console.log(isLogIn.value) //0

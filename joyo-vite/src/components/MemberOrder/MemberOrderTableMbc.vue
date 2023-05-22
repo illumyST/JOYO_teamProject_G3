@@ -2,7 +2,11 @@
     <div class="memberOrder_list">
                 <ul>
                     <li>
+<<<<<<< HEAD
                         <a href="#" style="background: #f29441; color: #fff;">
+=======
+                        <a href="#" style="background: #f29441;">
+>>>>>>> will
                             <h3>213213123</h3>
                             <h3>$2,829</h3>
                             <h3>2023/3/23</h3>
@@ -14,17 +18,26 @@
                                 <img src="../../assets/img/board1.png" alt="">
                                 <h5>領土爭奪-標準版</h5>
                                 <h5>1,200元</h5>
+<<<<<<< HEAD
                                 <h5>1 個</h5>
+=======
+                                <h5>1</h5>
+>>>>>>> will
                             </li>
                             <li>
                                 <img src="../../assets/img/board2.png" alt="">
                                 <h5>阿瓦隆：蘭斯洛特 擴充</h5>
                                 <h5>680元</h5>
+<<<<<<< HEAD
                                 <h5>2 個</h5>
+=======
+                                <h5>2</h5>
+>>>>>>> will
                             </li>
                             <li class="Orderbottom">
                                 <div>
                                     <h4>訂單成立</h4>
+<<<<<<< HEAD
                                     <p>4/24</p>
                                 </div>
                                 <div>
@@ -38,17 +51,41 @@
                                 <div>
                                     <h4>訂單完成</h4>
                                     <p>4/26</p>
+=======
+                                    <p>2023/4/24 14:20:13</p>
+                                </div>
+                                <div>
+                                    <h4>已出貨</h4>
+                                    <p>2023/4/24 20:42:20</p>
+                                </div>
+                                <div>
+                                    <h4>運送中</h4>
+                                    <p>2023/4/25 09:50:29</p>
+                                </div>
+                                <div>
+                                    <h4>訂單完成</h4>
+                                    <p>2023/4/26 11:39:40</p>
+>>>>>>> will
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="#">
                             <h3>204819952</h3>
                             <h3>$560</h3>
                             <h3>2023/4/11</h3>
                             <h3>貨到付款</h3>
                             <h3>訂單完成</h3>
+=======
+                        <a href="#" style="background: #f2f2f2; color: #513f2e;">
+                            <h3>213213123</h3>
+                            <h3>$2,829</h3>
+                            <h3>2023/3/23</h3>
+                            <h3>貨到付款</h3>
+                            <h3>訂單成立</h3>
+>>>>>>> will
                         </a>
                         <ul class="Order" style="display: none;">
                             <li>
@@ -84,12 +121,21 @@
                         </ul>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="#">
                             <h3>244017783</h3>
                             <h3>$3,600</h3>
                             <h3>2023/4/19</h3>
                             <h3>貨到付款</h3>
                             <h3>訂單完成</h3>
+=======
+                        <a href="#" style="background: #f2f2f2; color: #513f2e;">
+                            <h3>213213123</h3>
+                            <h3>$2,829</h3>
+                            <h3>2023/3/23</h3>
+                            <h3>貨到付款</h3>
+                            <h3>訂單成立</h3>
+>>>>>>> will
                         </a>
                         <ul class="Order" style="display: none;">
                             <li>
@@ -125,12 +171,21 @@
                         </ul>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="#">
                             <h3>260123874</h3>
                             <h3>$990</h3>
                             <h3>2023/5/05</h3>
                             <h3>貨到付款</h3>
                             <h3>訂單完成</h3>
+=======
+                        <a href="#" style="background: #f2f2f2; color: #513f2e;">
+                            <h3>213213123</h3>
+                            <h3>$2,829</h3>
+                            <h3>2023/3/23</h3>
+                            <h3>貨到付款</h3>
+                            <h3>訂單成立</h3>
+>>>>>>> will
                         </a>
                         <ul class="Order" style="display: none;">
                             <li>
@@ -186,7 +241,11 @@
             a{
                 display: flex;
                 font-size: 20px;
+<<<<<<< HEAD
                 color: $brown;
+=======
+                color: #fff;
+>>>>>>> will
                 transition: .3s;
                 border-radius: 5px;
                 &:hover{
@@ -200,6 +259,10 @@
                 }
             }
             .Order{
+<<<<<<< HEAD
+=======
+                padding: 5px;
+>>>>>>> will
                 li{
                     padding-top: 20px;
                     padding-bottom: 20px;
@@ -225,7 +288,10 @@
         text-align: center;
         div{
             padding-top: 50px;
+<<<<<<< HEAD
             width: 68px;
+=======
+>>>>>>> will
             &::before{
                 content: "";
                 display: block;
@@ -234,7 +300,11 @@
                 width: 20px;
                 height: 20px;
                 position: relative;
+<<<<<<< HEAD
                 left: 24px;
+=======
+                left: 69px;
+>>>>>>> will
                 bottom: 30px;
             }
             h4{
@@ -311,6 +381,10 @@
         width: 50px;
     }
     .Orderbottom div::before{
+<<<<<<< HEAD
         left: 24px;   
+=======
+        left: 36px;
+>>>>>>> will
     }
 }</style>
