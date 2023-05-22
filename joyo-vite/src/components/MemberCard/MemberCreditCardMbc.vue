@@ -61,6 +61,7 @@
                 letter-spacing: 1px;
                 width: 180px;
                 text-align: center;
+                white-space: nowrap;
             }
             .delete{
                 display: flex;

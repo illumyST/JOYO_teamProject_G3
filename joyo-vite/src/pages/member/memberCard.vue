@@ -24,10 +24,12 @@ import MemberCreditCardMbc from '../../components/MemberCard/MemberCreditCardMbc
 
     const isMemberCardAddVisible = ref(false);
 
-    const showMemberCardAdd = () => {
-        // isMemberCardAddVisible.value = true;
+    const showMemberCardAdd = (event) => {
+        event.preventDefault();
         isMemberCardAddVisible.value =  !isMemberCardAddVisible.value;
     };
+
+    
     
 
 
