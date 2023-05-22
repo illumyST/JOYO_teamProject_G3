@@ -6,7 +6,7 @@
                 <h3>{{ item.creaditcard_nickname }}</h3>
                 <h3 class="cardnum">{{ item.creaditcard_num }}</h3>
                 <div class="delete">
-                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="#" @click="showMemberCardEdit"><i class="fa-regular fa-pen-to-square"></i></a>
                     <a href="#"><i class="fa-solid fa-trash-can"></i></a> 
                 </div>
             </li>
@@ -15,6 +15,20 @@
 </template>
 
 <script setup>
+    import { defineEmits,defineProps} from 'vue';
+
+    const emits = defineEmits(['ismemberCardvisible']);
+    const props = defineProps ({
+        ismemberCardEditvisible: {
+            type: Boolean,
+            required: true,
+        }
+    });
+    const showMemberCardEdit = (event) => {
+         event.preventDefault();
+         console.log("編輯按鈕點擊成功");
+         emits('ismemberCardEditshow', true)
+    };
 
     const member_data = ref([
         {
