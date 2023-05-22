@@ -51,7 +51,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -123,6 +122,7 @@ export default {
   box-shadow: $shadow;
   padding: 30px 50px;
   box-sizing: border-box;
+
   .ms_cms_form {
     width: 400px;
     display: flex;

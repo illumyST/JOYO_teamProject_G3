@@ -14,7 +14,7 @@
      <router-link to="/ms/msProductManagement">商品頁面</router-link>
     </li>
 
-    <li :class="{ '-active': $route.path.toLowerCase() == '/ms/MsLiveChat' || $route.path == '/ms/MsUserData' }">
+    <li :class="{ '-active': $route.path.toLowerCase() == '/ms/mslivechat'}">
       <router-link to="/ms/MsLiveChat">客服中心/會員管理</router-link>
     </li>
 
