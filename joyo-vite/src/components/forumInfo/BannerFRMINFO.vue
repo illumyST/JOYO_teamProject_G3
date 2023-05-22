@@ -302,6 +302,7 @@ const ForumInfoMsgs = ref([
   // border: 1px solid blue;
   @include flex-container(row, wrap, start);
   margin: 20px 0 0;
+  cursor: pointer;
 }
 
 .forumInfo_right_msg_text {

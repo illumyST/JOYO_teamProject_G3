@@ -1,6 +1,6 @@
 <template>
   <section class="forumInfo_wrapper">
-    <SidemenuFRMINFO></SidemenuFRMINFO>
+    <SidemenuFRMINFO :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRMINFO>
     <div class="forumInfo_right">
         <BannerFRMINFO></BannerFRMINFO>
     </div>
@@ -8,6 +8,19 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
+
+const forumCategory = ref([
+  {
+  cate:"所有文章",
+  page:1
+  }
+]);
+
+const updateCategory = (val) => {
+  let index = 0;
+  forumCategory.value[index].cate = val;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +36,6 @@
   width: 75%;
   background-color: $bg;
   box-shadow: $shadow;
-  margin-bottom: 120px;
 }
 
 // ------------ RWD -----------//

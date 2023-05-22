@@ -1,7 +1,7 @@
 <template>
   <!-- 廣告區域 -->
   <div class="forum_advertise">
-    <!-- <img src="./assets/img/forum_advertise.jpg" alt="" /> -->
+    <img src="../../assets/img/forum_advertise.jpg" alt="" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@
 .forum_advertise {
   width: 100%;
   height: 223px;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   img {
     width: 100%;

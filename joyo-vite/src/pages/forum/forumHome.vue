@@ -1,11 +1,11 @@
 <template>
   <!-- 手機版廣告區域 -->
   <div class="forum_media_advertise">
-    <img src="./assets/img/forum_advertise.jpg" alt="" />
+    <img src="../../assets/img/forum_advertise.jpg" alt="" />
   </div>
 
   <section class="forum_wrapper">
-    <SidemenuFRM></SidemenuFRM>
+    <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRM>
     <div class="forum_right">
       <BannerTopFRM></BannerTopFRM>
       <BannerListFRM></BannerListFRM>
@@ -15,6 +15,20 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
+
+const forumCategory = ref([
+  {
+  cate:"所有文章",
+  page:1
+  }
+]);
+
+const updateCategory = (val) => {
+  let index = 0;
+  forumCategory.value[index].cate = val;
+  console.log(val)
+}
 </script>
 
 <style lang="scss" scoped>

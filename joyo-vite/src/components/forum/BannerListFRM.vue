@@ -3,38 +3,26 @@
     <!-- 文章區域 -->
     <div class="forum_article_title">
       <h2>所有文章</h2>
-      <!-- <select class="forum_sort" id="forum_sort">
-                        <option value="">排序方式</option>
-                        <option value="">排序方式</option>
-                        <option value="">排序方式</option>
-                        <option value="">排序方式</option>
-                        <option value="">排序方式</option>
-                    </select> -->
 
       <div class="forum_sort">
-        <button class="forum_sort_btn" type="button" id="forum_sort_btn">
-          <span>排序方式</span
-          ><span><i class="fa-solid fa-angle-down"></i></span>
+        <button
+          class="forum_sort_btn"
+          type="button"
+          id="forum_sort_btn"
+          @click.stop="forum_sort_order_show"
+        >
+          <span>排序方式</span>
+          <span><i class="fa-solid fa-angle-down"></i></span>
         </button>
-        <ul class="forum_sort_order">
+        <ul class="forum_sort_order" v-show="forum_sort_btn_active">
           <li v-for="item in SortLi" :key="item">
-            <RouterLink class="forum_dropdown_item" to="/"
-              >{{ item }}
-            </RouterLink>
+            <RouterLink class="forum_dropdown_item" to="#">{{
+              item
+            }}</RouterLink>
           </li>
         </ul>
       </div>
     </div>
-
-    <!-- <div class="forum_media_sort">
-                            <select class="forum_media_menu_sort" id="forum_media_menu_sort">
-                                <option value="">排序方式</option>
-                                <option value="">排序方式</option>
-                                <option value="">排序方式</option>
-                                <option value="">排序方式</option>
-                                <option value="">排序方式</option>
-                            </select>
-                        </div> -->
   </div>
 
   <!-- 手機版的選單 -->
@@ -43,27 +31,18 @@
       <RouterLink to="/forum/forumPost">我要發文</RouterLink>
     </div>
 
-    <!-- <div class="forum_media_select">
-            <select class="forum_media_menu_select" id="forum_media_menu_select">
-                <option value="">所有文章</option>
-                <option value="">心得分享</option>
-                <option value="">揪團區</option>
-                <option value="">發問區</option>
-                <option value="">教學區</option>
-            </select>
-        </div>     -->
-
     <div class="forum_media_select">
       <button
         class="forum_media_menu_btn"
         type="button"
         id="forum_media_menu_btn"
+        @click.stop="forum_media_select_order_show"
       >
         <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
-      <ul class="forum_media_select_order">
+      <ul class="forum_media_select_order" v-show="forum_media_menu_btn_active">
         <li v-for="item in MediaSeclet" :key="item">
-          <RouterLink class="forum_media_select_dropdown_item" to="/">{{
+          <RouterLink class="forum_media_select_dropdown_item" to="#">{{
             item
           }}</RouterLink>
         </li>
@@ -75,12 +54,15 @@
         class="forum_media_sort_btn"
         type="button"
         id="forum_media_sort_btn"
+        @click.stop="forum_media_sort_order_show"
       >
         <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
-      <ul class="forum_media_sort_order">
+      <ul class="forum_media_sort_order" v-show="forum_media_sort_btn_active">
         <li v-for="item in SortLi" :key="item">
-          <a class="forum_media_sort_dropdown_item" href="#">{{ item }}</a>
+          <RouterLink class="forum_media_sort_dropdown_item" to="#">{{
+            item
+          }}</RouterLink>
         </li>
       </ul>
     </div>
@@ -152,7 +134,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, onMounted } from "vue";
 
 // ===== 文章列表 ===== //
 const Items = ref([
@@ -213,7 +195,41 @@ const MediaSeclet = reactive({
   MediaSeclet3: "發問區",
   MediaSeclet4: "教學區",
 });
-// const SortClick = computed(() => {});
+
+let forum_sort_btn_active = ref(false);
+let forum_media_menu_btn_active = ref(false);
+let forum_media_sort_btn_active = ref(false);
+
+const forum_sort_order_show = () => {
+  forum_sort_btn_active.value = !forum_sort_btn_active.value;
+  // console.log(forum_sort_btn_active);
+};
+
+const forum_media_select_order_show = () => {
+  forum_media_menu_btn_active.value = !forum_media_menu_btn_active.value;
+  console.log(forum_media_menu_btn_active);
+};
+
+const forum_media_sort_order_show = () => {
+  forum_media_sort_btn_active.value = !forum_media_sort_btn_active.value;
+};
+
+// const forum_sort_close = () => {
+//   if (forum_sort_btn_active) {
+//     forum_sort_btn_active.value = !forum_sort_btn_active.value;
+//   }
+//   if (forum_media_menu_btn_active) {
+//     forum_media_menu_btn_active.value = !forum_media_menu_btn_active.value;
+//   }
+//   if (forum_media_sort_btn_active) {
+//     forum_media_sort_btn_active.value = !forum_media_sort_btn_active.value;
+//   }
+// };
+
+// onMounted("click", () => {
+//   forum_sort_close();
+//   console.log("1111");
+// });
 </script>
 
 
@@ -290,10 +306,9 @@ const MediaSeclet = reactive({
     }
     ul {
       // border: 1px solid black;
-      width: 16%;
-      top: 316px;
-      right: 55px;
-      display: none;
+      width: 16.5%;
+      top: 523px;
+      right: 32px;
       li {
         // border: 1px solid blue;
         display: block;
@@ -311,7 +326,7 @@ const MediaSeclet = reactive({
   }
 }
 
-.forum_sort_order.active {
+.forum_sort_order .active {
   display: block;
 }
 
@@ -328,7 +343,7 @@ const MediaSeclet = reactive({
     cursor: pointer;
   }
 
-  a{
+  a {
     @include flex-container(row, nowrap, start, center);
     width: 100%;
   }
@@ -474,9 +489,7 @@ const MediaSeclet = reactive({
 
       ul {
         width: 89.3%;
-        top: 392px;
-        display: none;
-
+        top: 352px;
         li {
           width: 100%;
           display: block;
@@ -492,7 +505,7 @@ const MediaSeclet = reactive({
       }
     }
 
-    .forum_media_select_order.active {
+    .forum_media_select_order .active {
       display: block;
     }
 
@@ -518,9 +531,7 @@ const MediaSeclet = reactive({
 
       ul {
         width: 89.3%;
-        top: 443px;
-        display: none;
-
+        top: 402px;
         li {
           display: block;
           width: 100%;
@@ -535,7 +546,7 @@ const MediaSeclet = reactive({
       }
     }
 
-    .forum_media_sort_order.active {
+    .forum_media_sort_order .active {
       display: block;
     }
   }
@@ -555,7 +566,7 @@ const MediaSeclet = reactive({
   .forum_article_item1 {
     width: 100%;
     margin-bottom: 20px;
-    a{
+    a {
       flex-direction: column;
       width: 100%;
     }
