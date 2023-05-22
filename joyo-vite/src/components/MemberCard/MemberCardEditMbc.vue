@@ -1,9 +1,9 @@
 <template>
     <!-- <div class="member_wrapper"> -->
-        <div class="member_overlay">
+        <div class="memberCardEdit_overlay"  @ismember-Cardvisible="ismemberCardvisible">
             <div class="memberCardEdit">
                 <h1>更新卡片資訊</h1>
-                <a href="#" class="close"><i class="fa-solid fa-xmark"></i></a>
+                <a href="#" class="close" @click.stop="close"><i class="fa-solid fa-xmark"></i></a>
                 <div class="cardimfo">
                     <form action="" method="POST">
                         <label for="">卡片資訊</label>
@@ -20,6 +20,27 @@
 </template>
 
 <script setup>
+    import { defineProps, ref, defineEmits} from 'vue';
+
+    // 這行的宣告是為了下面點擊close的時候能夠把數值反轉
+    // let ismemberCardEditvisible = ref(false)
+
+    // console.log(ismemberCardEditvisible.value)
+    
+    const props = defineProps ({
+        ismemberCardEditvisible: {
+            type: Boolean,
+            required: true,
+        }
+    });
+
+    const emits = defineEmits(['ismemberCardvisible']);
+    const close = (event) => {
+        event.preventDefault();
+        // ismemberCardEditvisible.value = !ismemberCardEditvisible.value;
+        emits('ismemberCardEditshow', false)
+        console.log("Edit關閉")
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -54,8 +75,8 @@
         letter-spacing: 1px;
     }
 
-    .member_overlay{
-        display: none;
+    .memberCardEdit_overlay{
+        // display: none;
         position: fixed;
         top: 0;
         left: 0;

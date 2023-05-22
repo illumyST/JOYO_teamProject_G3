@@ -22,7 +22,7 @@
         flex-direction: column;
         align-items: center;
         padding-top: 0px;
-        padding-bottom: 70px;
+        // padding-bottom: 70px;
     }
 }
 </style>

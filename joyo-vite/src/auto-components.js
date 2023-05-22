@@ -74,8 +74,6 @@ declare module '@vue/runtime-core' {
     MsContentManagementBanner: typeof import('./pages/ms-content-management/MsContentManagementBanner.vue')['default']
     MsContentManagementForum: typeof import('./pages/ms-content-management/MsContentManagementForum.vue')['default']
     MsContentManagementForumTable: typeof import('./components/MsTable/msContentManagementForumTable.vue')['default']
-    MsDataManagementChar: typeof import('./components/MsContentManagement/MsDataManagementChar.vue')['default']
-    MsDataManagementChart: typeof import('./components/MsContentManagement/MsDataManagementChart.vue')['default']
     MsDataManagementOrder: typeof import('./pages/ms-data-management/MsDataManagementOrder.vue')['default']
     MsDataManagementOrderMDS: typeof import('./components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']
     MsDataManagementOrderTable: typeof import('./components/MsTable/MsDataManagementOrderTable.vue')['default']
