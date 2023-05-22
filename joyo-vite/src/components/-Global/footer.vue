@@ -200,7 +200,8 @@ footer {
 
 @include m() {
     footer{
-        margin-top: 40px;
+        margin-top:40px;
+        height: 250px;   
     }
 
     .footer_nav {

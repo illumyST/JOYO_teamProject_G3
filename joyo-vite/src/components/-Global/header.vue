@@ -8,9 +8,9 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="header_nav_right_inputBox-input" type="text">
             </div>
-            <ul class="header_nav_right">
+            <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
                 <li>
-                    <RouterLink to="/product">桌遊商城</RouterLink>
+                    <a href="/product" class="productLink">桌遊商城</a>
                     <ol>
                         <li>
                             <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }">
@@ -50,7 +50,10 @@
                     </ol>
                 </li>
                 <li>
-                    <RouterLink to="/forum">討論區</RouterLink>
+                    <RouterLink to="/forum" class="forumLink">討論區</RouterLink>
+                    <!-- <div class="forumLink -mobile" @click.native="toggleSub(e)">
+                        討論區
+                    </div> -->
                     <ol>
                         <li>
                             <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }">
@@ -93,12 +96,18 @@
                     <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
                 </li>
             </ul>
-            <div class="header_nav_rwdBtn">
-                <i class="far fa-bars fa-regular rwdBar"></i>
+            <div class="header_nav_rwdBtn" @click.prevent="toggleNav()" :class="{ '-on': nav_open === true }">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
 </template>
+
+<script>
+
+</script>
 
 <script setup>
 import { onMounted, ref } from 'vue';
@@ -107,33 +116,53 @@ import { useRoute } from 'vue-router';
 
 const isLogIn = ref(0);
 const route = useRoute();
+const nav_open = ref(false)
 
-onMounted(() => {
-    // axios.get('/api/logIn&Out/sessionCheck.php')
-    // .then(res => {
-    //   const data = res.data;
-    //   isLogIn.value = data;
-    //   // console.log('data', res.data)
-    //   // console.log('isLogIn.value', isLogIn.value)
 
-    //   // 得放在 axios 裡面，因為會有時間落差？
-    //   if (isLogIn.value == 0 && route.path != '/signIn') {
+// 手機版 bar 點擊後 toggle nav 選單 
+const toggleNav = () => {
+    nav_open.value = !nav_open.value
 
-    //     // TODO 會可以看到其他頁面
-    //     location.href = '/signIn';
-    //     alert('您尚未登入！');
-    //   };
-    // });
-});
 
-const logOut = () => {
-    console.log(1)
-    axios.post('/api/logIn&Out/logOut.php')
-        .then(res => {
-            alert('登出成功！');
-            location.href = '/ms';
-        });
-}
+    // document.getElementsByClassName('header_nav_right')[0].classList.toggle('-on');
+    // document.getElementsByClassName('header_nav_rwdBtn')[0].classList.toggle('-on');
+};
+
+// 手機版 nav 選單中的子選單
+const toggleSub = (e) => {
+
+};
+
+// if (window.innerWidth <= 976) {
+//     document.getElementsByClassName('productLink')[0]
+// }
+
+// onMounted(() => {
+//     axios.get('/api/logIn&Out/sessionCheck.php')
+//     .then(res => {
+//       const data = res.data;
+//       isLogIn.value = data;
+//       // console.log('data', res.data)
+//       // console.log('isLogIn.value', isLogIn.value)
+
+//       // 得放在 axios 裡面，因為會有時間落差？
+//       if (isLogIn.value == 0 && route.path != '/signIn') {
+
+//         // TODO 會可以看到其他頁面
+//         location.href = '/signIn';
+//         alert('您尚未登入！');
+//       };
+//     });
+// });
+
+// const logOut = () => {
+//     console.log(1)
+//     axios.post('/api/logIn&Out/logOut.php')
+//         .then(res => {
+//             alert('登出成功！');
+//             location.href = '/ms';
+//         });
+// }
 
 </script>
 
@@ -258,12 +287,38 @@ header {
 .header_nav_rwdBtn {
     width: 50px;
     height: 50px;
-    text-align: center;
     display: none;
+    justify-content: center;
+    align-items: end;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 
-.header_nav_rwdBtn i {
-    line-height: 50px;
+.header_nav_rwdBtn span {
+    width: 24px;
+    height: 2.5px;
+    border-radius: 3px;
+    background-color: #fff;
+    position: relative;
+    transition: .2s;
+}
+
+.header_nav_rwdBtn span:not(:last-child) {
+    margin-bottom: 6px;
+}
+
+.header_nav_rwdBtn.-on span:first-child {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.header_nav_rwdBtn.-on span:last-child {
+    transform: rotate(-45deg);
+    top: -8px;
+}
+
+.header_nav_rwdBtn.-on span:nth-child(2) {
+    opacity: 0;
 }
 
 .memberLi:hover .logOut {
@@ -346,11 +401,17 @@ header {
         left: 50%;
         transform: translate(-50%, 0);
         text-align: center;
+        transition: .3s;
 
+        &.-on {
+            height: 100vh;
+        }
     }
 
+
     .header_nav_rwdBtn {
-        display: block;
+        display: flex;
+        flex-direction: column;
         text-align: right;
         font-size: 25px;
     }

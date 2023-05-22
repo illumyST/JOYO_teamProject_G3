@@ -1,5 +1,5 @@
 <template>
-    <a href="#"><img class="topBtn" src="@/assets/img/topBtn.svg" alt=""></a>
+    <img @click="" class="topBtn" src="@/assets/img/topBtn.svg" alt="">
 </template>
 
 <script setup>
