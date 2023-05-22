@@ -3,10 +3,10 @@
             <div class="col-6 infor-item-img">
                 <div class="col-3 infor-item-img-sm">
                     <ul class="col-12">
-                        <li><img src="/IMG/productInfo_2.png" alt=""></li>
-                        <li><img src="/IMG/productInfo_3.png" alt=""></li>
-                        <li><img src="/IMG/productInfo_4.png" alt=""></li>
-                        <li><img v-bind:src="filetData.IMG_URL" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/IMG/productInfo_2.png" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/IMG/productInfo_3.png" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/IMG/productInfo_4.png" alt=""></li>
+                        <li v-on:click="changeImg"><img v-bind:src="filetData.IMG_URL" alt=""></li>
                     </ul>
                 </div>
                 <div class="col-9 infor-item-img-bg">
@@ -18,7 +18,7 @@
                 <div class="intro">
                     <p>遊戲分類： <span class="catergory">{{filetData.CATEGORY}}</span></p>
                     <p>遊玩人數： <span class="player-min">{{filetData.MIN_PLAYER}}</span><span>-</span><span class="player-max">{{filetData.MAX_PLAYER
-}}</span>人</p>
+                        }}</span>人</p>
                     <p>試玩年齡： <span class="age">{{filetData.MIN_AGE}}+</span></p>
                 </div>
                 <h2 class="intro-price">NTD： {{filetData.PRICE}}<span class="price"></span></h2>
@@ -30,7 +30,7 @@
                     <button><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="col-12 infor-item-buy">
-                    <router-link to="/cart">
+                    <router-link to="/cart" class=" infor-item-buy-a">
                         <button class=" btn buy">立即購買</button>
                     </router-link>
                     
@@ -41,14 +41,23 @@
 
         </div>
 </template>
-<script setup></script>
+<script setup>
+    import { ref } from 'vue';
+
+    const changeImg = (e) => {
+        let imgSrc = e.currentTarget.querySelector('img').getAttribute('src');
+        let aim =document.querySelector(".infor-item-img-bg img");
+        aim.setAttribute('src', imgSrc);
+        
+    };
+</script>
 <script>
     export default {
     props: {
         filetData: {
         type: Object,
         required: true
-    }
+    },
   }
 }
 </script>
@@ -499,6 +508,12 @@ button {
         button {
             width: 47%;
 
+        }
+        a{
+            width: 47%;
+            button{
+                width: 100%;
+            }
         }
 
         .btn {

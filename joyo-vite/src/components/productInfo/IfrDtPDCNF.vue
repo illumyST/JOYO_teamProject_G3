@@ -114,7 +114,8 @@
 </template>
 <script setup></script>
 <script>
-    export default {
+    
+export default {
     props: {
         filetData: {
         type: Object,
@@ -128,16 +129,38 @@
     },
     methods:{
         turn(e){
+            //取得裝置寬度
+            let screenWidth = window.innerWidth;
             let decorate=document.querySelector(".infor-detail-nav-line");
             let decorateX=decorate.getBoundingClientRect().left;
             let evenX=e.target.getBoundingClientRect().left;
             e.preventDefault();
             this.show=e.target.innerHTML;
             let displacement=(evenX-decorateX);
-            decorate.style.left = `${decorateX + displacement -33}px`;
+            if(screenWidth>=1200){
+                let initX=(1275-1200)/2;
+                decorate.style.left = `${decorateX + displacement -initX}px`;
+            }else if(screenWidth<420){
+                let initX=(414-370)/2;
+                decorate.style.left = `${decorateX + displacement -initX}px`;
+            };
+            
         },
+        //當網頁裝置大小切換，修改初始值
+        resizeInit(){
+            let decorate=document.querySelector(".infor-detail-nav-line");
+            let decorateX=decorate.getBoundingClientRect().left;
+            let screenWidth = window.innerWidth;
+                decorate.style.left = "0px";
+            
+              
+        }
     },
-}
+    mounted(){
+        window.addEventListener("resize", this.resizeInit);
+    },
+};
+
 </script>
 <style lang="scss" scoped>
 .product-wrapper {
@@ -305,6 +328,7 @@ button {
         position: relative;
         .infor-detail-nav-line{
             display:block;
+            width: 400px;
             border:1.5px solid $orange;
             position: absolute;
             left:0px;
@@ -618,7 +642,7 @@ button {
             ul{
                 .infor-detail-nav-line{
                     top:55px;
-                    width:130px
+                    width:123.5px
                 }
             }
             a {
