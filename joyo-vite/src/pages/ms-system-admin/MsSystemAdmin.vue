@@ -2,11 +2,7 @@
     <div class="ms_wrapper">
       <MsLeftSideMenu></MsLeftSideMenu>
       <div class="ms_right_side_content">
-<<<<<<< HEAD
         <MsTabs :showBtn2="false">
-=======
-        <MsTabs :showBtn2="false" :open1="true">
->>>>>>> will
           <template #button1>權限管理</template>
         </MsTabs>
         <MsSystemAdminBtn :name="'管理員權限管理'"
@@ -15,11 +11,7 @@
         <msSystemAdminTable></msSystemAdminTable>
       </div>
     </div>
-<<<<<<< HEAD
     <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
-=======
-    <msAddAdminsForm v-if="addop" @close="close"></msAddAdminsForm>
->>>>>>> will
     <MsChangeAdminPasswordForm v-if="updat" @close1="close1"></MsChangeAdminPasswordForm>
 </template>
 
@@ -88,7 +80,6 @@ const close1 =(e)=>{
   updat.value = e
 }
 
-<<<<<<< HEAD
 const addAdmins =(e)=>{
   e['update']=true;
   e['fixe']=false;
@@ -96,8 +87,6 @@ const addAdmins =(e)=>{
   admins.value.push(e);
 }
 
-=======
->>>>>>> will
 </script>
 
 <style lang="scss" scoped>
