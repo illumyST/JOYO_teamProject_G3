@@ -1,16 +1,6 @@
 <template>
-
-  <div class="ms_wrapper">
-    <MsLeftSideMenu></MsLeftSideMenu>
-    <div class="ms_right_side_content">
-      <MsTabs :showBtn2="true" :open2="true">
-        <template #button1>客服訊息</template>
-        <template #button2>會員資料</template>
-      </MsTabs>
-      <MsSeachBar @text="getseach" :name="'會員資料查詢'"></MsSeachBar>
-      <msUserDataTable></msUserDataTable>
-    </div>
-  </div>
+    <MsSeachBar @text="getseach" :name="'會員資料查詢'"></MsSeachBar>
+    <msUserDataTable></msUserDataTable>
 </template>
 
 <script setup>
