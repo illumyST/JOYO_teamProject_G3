@@ -7,7 +7,7 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-        <BarChart></BarChart> 
+        <!-- <BarChart></BarChart>  -->
 
     </main>
 </template>

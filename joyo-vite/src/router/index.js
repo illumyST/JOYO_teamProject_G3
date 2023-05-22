@@ -177,7 +177,7 @@ const routes = [
         children: [
             // 後台子頁＿預設＿[ms-data-management] -------------------
             {
-                path: '',
+                path: 'msDataManagementOrder',
                 name: 'msDataManagementOrder',
                 component: () => import('@/pages/ms-data-management/msDataManagementOrder.vue'),
             },

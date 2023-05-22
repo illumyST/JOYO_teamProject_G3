@@ -162,10 +162,10 @@
                 }
             }
         }
-    }
 
-    .index_hotForumPost_right {
-        display: none;
+        .index_hotForumPost_right {
+            display: none;
+        }
     }
 }
 </style>

@@ -24,8 +24,9 @@
     const isMemberCardAddhide = ref(true);
     console.log(isMemberCardAddhide.value)
     
-    const close = () => {
+    const close = (event) => {
         // alert("測試按鈕大小中")
+        event.preventDefault();
         isMemberCardAddhide.value = false;
 
         console.log(isMemberCardAddhide.value)

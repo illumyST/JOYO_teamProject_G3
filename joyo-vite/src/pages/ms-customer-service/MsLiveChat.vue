@@ -4,7 +4,7 @@
     <div class="ms_right_side_content">
       <MsTabs :showBtn2="true">
         <template #button1>用戶訊息</template>
-        <template #button2>會員資訊</template>
+        <template #button2> <router-link to="/ms/MsUserData">會員資訊</router-link></template>
       </MsTabs>
       <section class="ms_chat_area">
         <MsMsgListMLC></MsMsgListMLC>
@@ -25,5 +25,15 @@
   // flex-wrap: wrap;
   margin: 30px auto;
   height: 520px;
+}
+a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  &:hover{
+    color:white;
+    transition: 0.2s;
+  }
 }
 </style>
