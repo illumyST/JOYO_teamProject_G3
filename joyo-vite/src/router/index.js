@@ -177,11 +177,7 @@ const routes = [
         children: [
             // 後台子頁＿預設＿[ms-data-management] -------------------
             {
-<<<<<<< HEAD
                 path: 'msDataManagementOrder',
-=======
-                path: '',
->>>>>>> will
                 name: 'msDataManagementOrder',
                 component: () => import('@/pages/ms-data-management/msDataManagementOrder.vue'),
             },

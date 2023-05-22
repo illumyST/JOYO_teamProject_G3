@@ -7,11 +7,8 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-<<<<<<< HEAD
         <!-- <BarChart></BarChart>  -->
 
-=======
->>>>>>> will
     </main>
 </template>
 
