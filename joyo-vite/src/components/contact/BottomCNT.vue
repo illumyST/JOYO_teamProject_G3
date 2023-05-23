@@ -1,5 +1,5 @@
 <template>
-  <div class="contact_bottom">
+  <div class="contact_bottom" id="contact_bottom">
     <h1>線上即時客服</h1>
 
     <div class="contact_bottom_info">

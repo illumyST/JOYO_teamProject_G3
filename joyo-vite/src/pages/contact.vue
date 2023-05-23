@@ -1,16 +1,16 @@
 <template>
     <!-- 聯絡我們title背景 -->
     <div class="contact_top_bgc"></div>
-    <section class="contact_wrapper">
+    <div class="contact_wrapper">
         <TitleCNT></TitleCNT>
         <BannerCNT></BannerCNT>
         <BottomCNT></BottomCNT>
-    </section>
+    </div>
 
 </template>
 
 <script setup>
-
+// import TitleCNT from "../components/contact/TitleCNT.vue"
 </script>
 
 <style lang="scss" scoped>
