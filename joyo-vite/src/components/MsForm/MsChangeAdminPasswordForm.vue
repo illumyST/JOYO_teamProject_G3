@@ -33,13 +33,10 @@
   </template>
   <script setup>
   import { ref } from "vue";
-<<<<<<< HEAD
 
  
 
 
-=======
->>>>>>> will
   const isPasswordVisible = ref(false);
   
   const passwordToggle = () => {

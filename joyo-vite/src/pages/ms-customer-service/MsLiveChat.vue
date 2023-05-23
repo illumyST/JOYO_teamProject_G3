@@ -2,25 +2,37 @@
   <div class="ms_wrapper">
     <MsLeftSideMenu></MsLeftSideMenu>
     <div class="ms_right_side_content">
-      <MsTabs :showBtn2="true">
+      <MsTabs :showBtn2="true" :isOpen="isOpen" @tabSwitch="tabSwitch">
         <template #button1>用戶訊息</template>
-<<<<<<< HEAD
-        <template #button2> <router-link to="/ms/MsUserData">會員資訊</router-link></template>
-=======
         <template #button2>會員資訊</template>
->>>>>>> will
       </MsTabs>
-      <section class="ms_chat_area">
+      <!-- <section class="ms_chat_area">
         <MsMsgListMLC></MsMsgListMLC>
         <MsChatBoxMLC></MsChatBoxMLC>
       </section>
-      <MsPagination></MsPagination>
+      <MsPagination></MsPagination> -->
+      <MsChat v-if="isOpen"></MsChat>
+      <MsUserData v-else></MsUserData>
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
 // import MsChatAreaMLC from '../../components/MsLiveChat/MsChatAreaMLC.vue';
+export default {
+  data() {
+    return {
+      isOpen: true,
+      // isOepn2: false,
+    };
+  },
+  methods: {
+    tabSwitch() {
+      console.log("hihi");
+      this.isOpen = !this.isOpen;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -30,17 +42,14 @@
   margin: 30px auto;
   height: 520px;
 }
-<<<<<<< HEAD
-a{
+a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height:100%;
-  &:hover{
-    color:white;
+  height: 100%;
+  &:hover {
+    color: white;
     transition: 0.2s;
   }
 }
-=======
->>>>>>> will
 </style>

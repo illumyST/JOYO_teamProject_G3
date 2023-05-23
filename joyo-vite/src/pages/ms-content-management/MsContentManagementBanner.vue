@@ -7,13 +7,29 @@
         <template #button2>討論區管理</template>
       </MsTabs>
 
-      <MsBannerManagement></MsBannerManagement>
+      <MsBannerManagement v-show="isOpen"></MsBannerManagement>
+      <div v-show="!isOpen">
+        <MsContentManagementForum ></MsContentManagementForum>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      isOpen: true,
+      // isOepn2: false,
+    };
+  },
+  methods: {
+    tabSwitch() {
+      console.log("hihi");
+      this.isOpen = !this.isOpen;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

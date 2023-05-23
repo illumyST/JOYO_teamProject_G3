@@ -58,11 +58,7 @@ export default {
   }
   button:hover {
     background-color: $orange;
-<<<<<<< HEAD
     color: white !important;
-=======
-    color: white;
->>>>>>> will
     transition: 0.2s;
   }
 }

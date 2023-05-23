@@ -17,12 +17,12 @@
 // const route = useRoute();
 
 // 得在 onMounted 前，避免使用者看到非 /ms 畫面
-console.log(isLogIn.value)
+// console.log(isLogIn.value)
 
 
-if (isLogIn.value == 1 && route.path == '/ms/logIn') {
-  location.href = '/ms';
-}
+// if (isLogIn.value == 1 && route.path == '/ms/logIn') {
+//   location.href = '/ms';
+// }
 // onMounted(() => {
 //   axios.get('/api/logIn&Out/sessionCheck.php')
 //     .then(res => {

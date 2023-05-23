@@ -11,7 +11,8 @@
       <input type="submit" value="送出" />
     </form>
 
-    <canvas id="myCanvas"></canvas>
+    <!-- <canvas id="myCanvas"></canvas> -->
+    <BarChart></BarChart>
     <div class="ms_csv_button">
       <i class="fa-solid fa-file-csv" id="ms_csv"></i>
     </div>
@@ -135,7 +136,7 @@ export default {};
 #myCanvas {
   width: 100%;
   border: 1px solid red;
-  height: 315px;
+  height: 200px;
   margin-top: 40px;
 }
 .ms_send_report_form {
