@@ -53,7 +53,7 @@
                     <div class="col-12 infor-detail-star-comment">
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="/IMG/cat.png" alt="">
+                                <img src="@/assets/img/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
                                 <div class="infor-detail-star-comment-top-start">
                                     <ul>
@@ -81,7 +81,7 @@
                         </article>
                         <article>
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="/IMG/cat.png" alt="">
+                                <img src="@/assets/img/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
                                 <div>
                                     <ul>

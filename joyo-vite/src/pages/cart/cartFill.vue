@@ -24,7 +24,7 @@ const prodects = ref([{
     get total() {
       return (this.sel*this.amount);
     },
-    img:"/IMG/product_AzUL.png",
+    img:"/src/assets/img/product_AzUL.png",
     },{
     id:2,
     name : '拼布對決',
@@ -34,7 +34,7 @@ const prodects = ref([{
     get total() {
       return (this.sel*this.amount);
     },
-    img:"/IMG/product_pathwork.png",
+    img:"/src/assets/img/product_pathwork.png",
     }
 ]);
 const calculateTotal=()=>{
