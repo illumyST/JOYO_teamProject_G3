@@ -67,12 +67,8 @@ declare module '@vue/runtime-core' {
     MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
     MsChangeAdminPasswordForm: typeof import('./components/msForm/MsChangeAdminPasswordForm.vue')['default']
     MsChangePassword: typeof import('./pages/ms-system-admin/MsChangePassword.vue')['default']
-<<<<<<< HEAD
-    MsChangePasswordForm: typeof import('./components/MsForm/msChangePasswordForm.vue')['default']
-    MsChat: typeof import('./components/MsLiveChat/MsChat.vue')['default']
-=======
     MsChangePasswordForm: typeof import('./components/msForm/msChangePasswordForm.vue')['default']
->>>>>>> albert
+    MsChat: typeof import('./components/MsLiveChat/MsChat.vue')['default']
     MsChatAreaMLC: typeof import('./components/MsLiveChat/MsChatAreaMLC.vue')['default']
     MsChatBoxMLC: typeof import('./components/MsLiveChat/MsChatBoxMLC.vue')['default']
     MsContentManagementBanner: typeof import('./pages/ms-content-management/MsContentManagementBanner.vue')['default']
