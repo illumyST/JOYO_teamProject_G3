@@ -109,7 +109,6 @@ declare module '@vue/runtime-core' {
     PdcMnAsdPdc: typeof import('./components/product/PdcMnAsdPdc.vue')['default']
     PdcMnItPdc: typeof import('./components/product/PdcMnItPdc.vue')['default']
     PdcPgPdc: typeof import('./components/product/PdcPgPdc.vue')['default']
-    PdcTopPdc: typeof import('./components/product/PdcTopPdc.vue')['default']
     PdcTopPDC: typeof import('./components/product/PdcTopPDC.vue')['default']
     Product: typeof import('./pages/product.vue')['default']
     ProductCard: typeof import('./components/-UI_Element/ProductCard.vue')['default']
