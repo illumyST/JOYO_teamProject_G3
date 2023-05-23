@@ -2,12 +2,12 @@
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
         <PdcTopPDC :currentCategory="currentCategory"></PdcTopPDC>
         <div class="product-main">
-            <PdcMnAsdPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory">
+            <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
                 
-            </PdcMnAsdPDC>
-            <PdcMnItPDC :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPDC>
+            </PdcMnAsdPdc>
+            <PdcMnItPdc :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
         </div>
-        <PdcPgPDC :currentCategory="currentCategory"></PdcPgPDC>
+        <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
     </div>
     <div :class="$route.params.categoryId">
         {{ $route.params.categoryId }}
@@ -33,7 +33,7 @@ const pageInfor=ref([{
     fliterTg:null,
 }]);
 const fetchData=()=>{
-    return axios.get('/API/boardGame.json')
+    return axios.get('/src/assets/json/boardGame.json')
         .then(res => {
             console.log('fetch');
             let i=0;

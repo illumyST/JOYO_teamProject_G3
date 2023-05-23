@@ -3,9 +3,9 @@
             <div class="col-6 infor-item-img">
                 <div class="col-3 infor-item-img-sm">
                     <ul class="col-12">
-                        <li v-on:click="changeImg"><img src="/IMG/productInfo_2.png" alt=""></li>
-                        <li v-on:click="changeImg"><img src="/IMG/productInfo_3.png" alt=""></li>
-                        <li v-on:click="changeImg"><img src="/IMG/productInfo_4.png" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_2.png" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_3.png" alt=""></li>
+                        <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_4.png" alt=""></li>
                         <li v-on:click="changeImg"><img v-bind:src="filetData.IMG_URL" alt=""></li>
                     </ul>
                 </div>
@@ -115,6 +115,7 @@ button {
                 width: 80%;
                 margin-top: 10px;
                 margin-left: 10px;
+
             }
         }
 

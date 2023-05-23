@@ -19,9 +19,18 @@
                     </li>
                 </ul>
                 <div class="col-12 cartFill_deliv_add twzipcode">
-                    <select class=" form-select" data-role="county">
+                    <select class=" form-select" data-role="county" >
+                        <option value="">縣市</option>
+                        <option value="">台北市</option>
+                        <option value="">新北市</option>
+                        <option value="">桃園市</option>
+                        <option value="">新竹市</option>
                     </select>
                     <select class=" form-select" data-role="district">
+                        <option value="" >鄉鎮市區</option>
+                        <option value="">北投區</option>
+                        <option value="">士林區</option>
+                        <option value="">中山區</option>
                     </select>
                     <input type="hidden" data-role="zipcode" />
                     <input type="text" class="col-12" placeholder="詳細地址">
@@ -49,9 +58,11 @@
 
 <script setup>
     import { ref, defineEmits} from 'vue';
+   
     const emits = defineEmits("updateSusspay");
     const susspay = ref(true);
     const suss = ref(false);
+    
     function toPay(){
             suss.value=true;
             susspay.value=false;
@@ -443,6 +454,7 @@
             width: 48%;
             height: 35px;
             margin-top: 0;
+            
         }
 
     }
