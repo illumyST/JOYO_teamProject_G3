@@ -10,9 +10,10 @@
         class="forumPost_form_title_text"
         id="forumPost_form_title_text"
         placeholder="請輸入桌遊名稱"
+        v-show="shouldShowTitleText"
       />
 
-      <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore">
+      <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore" v-if="shouldShowScoreSelect">
         <option :value="FormScore.Value">{{FormScore.Name}}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
@@ -87,6 +88,14 @@ const SelectScore = ref("0")
 const FormScore = ref({
     Name:"桌遊評分",
     Value:"0"
+});
+
+const shouldShowTitleText = computed(() => {
+  return SelectCgy.value !== 'Cgy5';
+});
+
+const shouldShowScoreSelect = computed(() => {
+  return SelectCgy.value !== 'Cgy5';
 });
 </script>
   

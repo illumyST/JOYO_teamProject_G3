@@ -15,10 +15,7 @@ declare module '@vue/runtime-core' {
     BannerIDX: typeof import('./components/Index/BannerIDX.vue')['default']
     BannerListFRM: typeof import('./components/forum/BannerListFRM.vue')['default']
     BannerTopFRM: typeof import('./components/forum/BannerTopFRM.vue')['default']
-<<<<<<< HEAD
     BarChart: typeof import('./components/MsContentManagement/BarChart.vue')['default']
-=======
->>>>>>> will
     BottomCNT: typeof import('./components/contact/BottomCNT.vue')['default']
     BtnTesttttt: typeof import('./components/-UI_Element/BtnTesttttt.vue')['default']
     Cart: typeof import('./pages/cart.vue')['default']
@@ -112,7 +109,7 @@ declare module '@vue/runtime-core' {
     PdcMnAsdPdc: typeof import('./components/product/PdcMnAsdPdc.vue')['default']
     PdcMnItPdc: typeof import('./components/product/PdcMnItPdc.vue')['default']
     PdcPgPdc: typeof import('./components/product/PdcPgPdc.vue')['default']
-    PdcTopPdc: typeof import('./components/product/PdcTopPdc.vue')['default']
+    PdcTopPDC: typeof import('./components/product/PdcTopPDC.vue')['default']
     Product: typeof import('./pages/product.vue')['default']
     ProductCard: typeof import('./components/-UI_Element/ProductCard.vue')['default']
     ProductInfo: typeof import('./pages/product/productInfo.vue')['default']

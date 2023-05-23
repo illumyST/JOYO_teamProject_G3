@@ -134,7 +134,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted } from "vue";
 
 // ===== 文章列表 ===== //
 const Items = ref([
@@ -207,29 +207,30 @@ const forum_sort_order_show = () => {
 
 const forum_media_select_order_show = () => {
   forum_media_menu_btn_active.value = !forum_media_menu_btn_active.value;
-  console.log(forum_media_menu_btn_active);
+  // console.log(forum_media_menu_btn_active);
 };
 
 const forum_media_sort_order_show = () => {
   forum_media_sort_btn_active.value = !forum_media_sort_btn_active.value;
 };
 
-// const forum_sort_close = () => {
-//   if (forum_sort_btn_active) {
-//     forum_sort_btn_active.value = !forum_sort_btn_active.value;
-//   }
-//   if (forum_media_menu_btn_active) {
-//     forum_media_menu_btn_active.value = !forum_media_menu_btn_active.value;
-//   }
-//   if (forum_media_sort_btn_active) {
-//     forum_media_sort_btn_active.value = !forum_media_sort_btn_active.value;
-//   }
-// };
+const forum_sort_close = (e) => {
+  if (forum_media_menu_btn_active.value = true) 
+  {
+    forum_sort_btn_active.value = false;
+  }
+  if (forum_media_menu_btn_active.value = true) {
+    forum_media_menu_btn_active.value = false;
+  }
+  if (forum_media_sort_btn_active.value = true) {
+    forum_media_sort_btn_active.value = false;
+  }
+};
 
-// onMounted("click", () => {
-//   forum_sort_close();
-//   console.log("1111");
-// });
+onMounted(() => {
+   window.addEventListener('click', forum_sort_close);
+  // console.log("1111");
+});
 </script>
 
 
