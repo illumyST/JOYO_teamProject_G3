@@ -9,8 +9,11 @@
                 <input class="header_nav_right_inputBox-input" type="text">
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
-                <li>
-                    <a href="/product" class="productLink">桌遊商城</a>
+                <li :class="{ '-on': sub_nav_open['product'].value === true }">
+                    <RouterLink v-if="!isPhone" to="/product" class="link">桌遊商城</RouterLink>
+                    <div v-else class="link -mobile" @click="toggleSub('product')" >
+                        桌遊商城
+                    </div>
                     <ol>
                         <li>
                             <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }">
@@ -49,12 +52,12 @@
                         </li>
                     </ol>
                 </li>
-                <li>
-                    <RouterLink to="/forum" class="forumLink">討論區</RouterLink>
-                    <!-- <div class="forumLink -mobile" @click.native="toggleSub(e)">
+                <li :class="{ '-on': sub_nav_open['forum'].value === true }">
+                    <RouterLink to="/forum" class="link" v-if="!isPhone">討論區</RouterLink>
+                    <div v-else class="link -mobile" @click="toggleSub('forum')" >
                         討論區
-                    </div> -->
-                    <ol>
+                    </div>
+                    <ol >
                         <li>
                             <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }">
                                 心得分享
@@ -78,21 +81,30 @@
                     </ol>
                 </li>
                 <li>
-                    <RouterLink to="/contact">
+                    <RouterLink to="/contact" class="link" v-if="!isPhone">
                         聯絡我們
                     </RouterLink>
+                    <div v-else class="link -mobile" @click="toggleSub(e)">
+                        聯絡我們
+                    </div>
                 </li>
                 <li>
-                    <RouterLink to="/cart">
+                    <RouterLink to="/cart" class="link" v-if="!isPhone">
+                        <i class="fa-regular fa-cart-shopping"></i>
+                    </RouterLink>
+                    <div v-else class="link -mobile" @click="toggleSub(e)">
                         <i class="fa-regular fa-cart-shopping"></i>
                         <span>購物車</span>
-                    </RouterLink>
+                    </div>
                 </li>
                 <li class="memberLi">
-                    <RouterLink to="/member">
+                    <RouterLink to="/member" class="link" v-if="!isPhone">
+                        <i class="fa-regular fa-user"></i>
+                    </RouterLink>
+                    <div v-else class="link -mobile" @click="toggleSub(e)">
                         <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
-                    </RouterLink>
+                    </div>
                     <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
                 </li>
             </ul>
@@ -105,32 +117,46 @@
     </header>
 </template>
 
-<script>
-
-</script>
-
 <script setup>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+const route = useRoute();
 
 const isLogIn = ref(0);
-const route = useRoute();
-const nav_open = ref(false)
+const nav_open = ref(false);
+const sub_nav_open = {
+  product: ref(false),
+  forum: ref(false)
+};
 
+const isPhone = ref(false);
+
+// 確認.value是否為手機版，以切換標籤
+const checkIsPhone = () => {
+    if (window.innerWidth <= 976) {
+        console.log(true);
+        isPhone.value = true;
+
+    } else {
+        console.log(false);
+        isPhone.value = false
+    }
+}
+
+onMounted(() => {
+    checkIsPhone();
+})
 
 // 手機版 bar 點擊後 toggle nav 選單 
 const toggleNav = () => {
     nav_open.value = !nav_open.value
-
-
-    // document.getElementsByClassName('header_nav_right')[0].classList.toggle('-on');
-    // document.getElementsByClassName('header_nav_rwdBtn')[0].classList.toggle('-on');
 };
 
 // 手機版 nav 選單中的子選單
-const toggleSub = (e) => {
-
+const toggleSub = (sub) => {
+    sub_nav_open[sub].value = !sub_nav_open[sub].value
+    // console.log(sub,sub_nav_open[sub].value)
 };
 
 // if (window.innerWidth <= 976) {
@@ -241,13 +267,13 @@ header {
     outline: none;
 }
 
-.header_nav_right>li>a {
+.header_nav_right>li>.link {
     color: #fff;
     line-height: 70px;
     transition: .2s;
 }
 
-.header_nav_right>li:hover>a {
+.header_nav_right>li:hover>.link {
     color: $brown;
 }
 
@@ -443,10 +469,14 @@ header {
         font-size: 14px;
         position: absolute;
         right: 135px;
-        top: 24px;
+        top: 28px;
         transition: .2s;
     }
 
+    .header_nav_right>li.-on:before{
+        transform: rotate(180deg);
+        top:30px;
+    }
     .header_nav_right>li:nth-child(2):before {
         right: 144px;
     }
@@ -462,6 +492,23 @@ header {
     }
 
     // --------- sub-menu --------- //
+    .header_nav_right>li:nth-child(1):hover>ol {
+        height: 0px;
+    }
+
+    .header_nav_right>li:nth-child(2):hover>ol {
+        height: 0px;
+    }
+
+    .header_nav_right>li.-on:nth-child(1)>ol {
+        height: 350px;
+    }
+
+    .header_nav_right>li.-on:nth-child(2)>ol {
+        height: 200px;
+    }
+
+
     .header_nav_right>li>ol {
         position: static;
         transform: none;
