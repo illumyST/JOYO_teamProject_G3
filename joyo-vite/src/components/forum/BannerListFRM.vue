@@ -214,7 +214,7 @@ const forum_media_sort_order_show = () => {
   forum_media_sort_btn_active.value = !forum_media_sort_btn_active.value;
 };
 
-const forum_sort_close = (e) => {
+const forum_sort_close = () => {
   if (forum_media_menu_btn_active.value = true) 
   {
     forum_sort_btn_active.value = false;

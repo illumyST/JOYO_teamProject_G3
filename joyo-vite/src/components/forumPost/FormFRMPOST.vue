@@ -18,8 +18,8 @@
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 
-      <select class="forumPost_form_area" id="forumPost_form_area">
-        <option disabled value="">揪團地點</option>
+      <select class="forumPost_form_area" id="forumPost_form_area" v-if="shouldShowAreaSelect">
+        <option value="">揪團地點</option>
         <option value="">台北市</option>
         <option value="">基隆市</option>
         <option value="">新北市</option>
@@ -62,7 +62,7 @@
 </template>
   
 <script setup>
-import{ ref } from "vue";
+import{ ref, computed } from "vue";
 const SelectCgy = ref("Cgy1")
 const FormCgy = ref([
     {
@@ -96,6 +96,10 @@ const shouldShowTitleText = computed(() => {
 
 const shouldShowScoreSelect = computed(() => {
   return SelectCgy.value !== 'Cgy5';
+});
+
+const shouldShowAreaSelect = computed(() => {
+  return SelectCgy.value === 'Cgy5';
 });
 </script>
   
@@ -132,7 +136,7 @@ const shouldShowScoreSelect = computed(() => {
 }
 
 .forumPost_form_area{
-    display: none
+    margin-left: 40px;
 }
 
 .forumPost_form_title_text{
@@ -278,8 +282,9 @@ input[type=submit]{
         width: 47.3%;
     }
 
-
-
+    .forumPost_form_area{
+        margin-left: 0;
+    }
 
     .forumPost_form_middle{
         width: 100%;
