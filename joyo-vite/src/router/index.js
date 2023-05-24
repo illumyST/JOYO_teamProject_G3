@@ -155,7 +155,7 @@ const routes = [
             {
                 path: 'forgetPassword',
                 name: 'forgetPassword',
-                // component: () => import('@/pages/forgetPassword.vue'),
+                component: () => import('@/pages/forgetPassword.vue'),
             },
         ]
     },

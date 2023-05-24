@@ -18,19 +18,15 @@
 
                     </li>
                 </ul>
-                <div class="col-12 cartFill_deliv_add twzipcode">
-                    <select class=" form-select" data-role="county" >
-                        <option value="">縣市</option>
-                        <option value="">台北市</option>
-                        <option value="">新北市</option>
-                        <option value="">桃園市</option>
-                        <option value="">新竹市</option>
+                <!-- 自動帶入台灣縣市區域 -->
+                <div class="col-12 cartFill_deliv_add twzipcode" v-if="address.country.length">
+                    <select class=" form-select twzipcode twzipcode__zipcode" data-role="county" @change="selectCity">
+                        <option value="-1">縣市</option>
+                        <option :value="index" v-for="(country,index) in address.country" >{{ country }} </option>
                     </select>
-                    <select class=" form-select" data-role="district">
-                        <option value="" >鄉鎮市區</option>
-                        <option value="">北投區</option>
-                        <option value="">士林區</option>
-                        <option value="">中山區</option>
+                    <select class=" form-select" data-role="district" >
+                        <option value="-1" >鄉鎮市區</option>
+                        <option value="index" v-for="(city,index) in address.city">{{ city }}</option>
                     </select>
                     <input type="hidden" data-role="zipcode" />
                     <input type="text" class="col-12" placeholder="詳細地址">
@@ -58,17 +54,52 @@
 
 <script setup>
     import { ref, defineEmits} from 'vue';
-   
+    import axios from 'axios';
     const emits = defineEmits("updateSusspay");
     const susspay = ref(true);
     const suss = ref(false);
-    
+    //自動填入縣市以及對應的區域相關變數
+    const address =ref({
+        twzipcode:{},
+        country:[],
+        city:{},
+    });
+
+    //取得地址資料
     function toPay(){
             suss.value=true;
             susspay.value=false;
             console.log(suss.value,susspay.value);
             emits('updateSusspay', susspay.value);
     };
+     //取得縣市區域JSON資料並將縣市資料填入address的country
+    const fetchData=()=>{
+        return axios.get('/src/assets/json/address.json')
+                .then(
+                    res =>{
+                    address.value.twzipcode=res.data;
+                    address.value.country=Object.keys(res.data);
+                    })
+                .catch(err => {
+                    console.error(err);
+                });
+    }
+    //選擇縣市的內容後變更address的city
+    const selectCity=(e)=>{
+        let index=e.target.value;
+        //當使用者沒有選取縣市時，會清空上一個縣市的紀錄
+        if(index==-1){
+            address.value.city.length=0;
+        }else{
+            let city=address.value.country[index];
+            address.value.city=Object.keys(address.value.twzipcode[city]);  
+        }
+        
+       
+    };
+    onMounted(()=>{
+        fetchData();
+    });
     
 </script>
 <script>

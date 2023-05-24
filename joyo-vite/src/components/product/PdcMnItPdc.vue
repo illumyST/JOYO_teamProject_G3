@@ -1,8 +1,8 @@
-<template v-if="pageInfor">
+<template v-if="pageInfor" >
 
 <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInfor" :key="index">
   <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-  <router-link :to="'productInfo/' +'ID:'+card.ID" v-on:click="saveLocal">
+  <router-link :to="'productInfo/' +'ID:'+card.ID" >
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
       <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>

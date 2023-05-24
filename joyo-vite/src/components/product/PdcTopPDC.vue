@@ -110,7 +110,7 @@
 </div>
 </template>
 <script setup>
-    import { defineProps,  ref, watch,computed} from 'vue';
+    import { defineProps, ref, watch,computed} from 'vue';
     const props = defineProps({
         currentCategory: {
         type: Array,
