@@ -48,5 +48,8 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/,'/teamProject_G3/joyo-vite/PDO'),
       },
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/production-sub-path/'
+  : '/'
 });
