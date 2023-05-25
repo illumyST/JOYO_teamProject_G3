@@ -5,11 +5,7 @@
             <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
                 
             </PdcMnAsdPdc>
-<<<<<<< HEAD
             <PdcMnItPdc :currentCategory="currentCategory" :pageInfor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
-=======
-            <PdcMnItPdc :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
->>>>>>> 60919b3 (product 出現商品（珮）)
         </div>
         <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
     </div>
