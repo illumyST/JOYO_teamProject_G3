@@ -1,9 +1,9 @@
-<template>
+<template v-if="pageInfor.fliterTg">
  <div>
     <div class="product-wrapper">
-      <IfrTopPDCNF :filetData="filetData"></IfrTopPDCNF>
-      <IfrItPDCNF :filetData="filetData"></IfrItPDCNF>
-      <IfrDtPDCNF :filetData="filetData"></IfrDtPDCNF>
+      <IfrTopPDCNF :filetData="pageInfor.fliterTg"></IfrTopPDCNF>
+      <IfrItPDCNF :filetData="pageInfor.fliterTg"></IfrItPDCNF>
+      <IfrDtPDCNF :filetData="pageInfor.fliterTg"></IfrDtPDCNF>
       <IfrBtPDCNF :guess="guess"></IfrBtPDCNF>
     </div>
   </div>
@@ -11,60 +11,54 @@
 </template>
   
 <script setup>
-import { onMounted, ref} from 'vue';
+import { onMounted, ref ,onBeforeMount} from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 const route = useRoute();
-</script>
+const pageInfor=ref({
+    tg:[],
+    page:12,
+    total_page:[],
+    fliterTg:[],
+});
 
-<script>
-
-export default {
-  components: {},
-  data() {
-    return {
-      tg: null,
-      callBackId: "",
-      filetData: null,
-      guess: [],
-    }
-  },
-  methods: {
-    fetchData() {
-      return axios.get('/API/boardGame.json')
+let guess=ref([]);
+const fetchData=()=>{
+    return axios.get('/api/product/test.php')
         .then(res => {
-          this.tg = res.data;
-        })
+            pageInfor.value.tg=res.data;
+            }
+            )
         .catch(err => {
-          console.error(err);
+            // console.error(err);
         });
-    },
-    getGame() {
-      this.callBackId = this.$route.params.id; 
-      if(this.callBackId !=""){
+};
+const getGame=()=>{
+    let callBackId = route.params.id; 
+      if(callBackId !=""){
 
       }else{
-        this.callBackId ="ID：1";
+        callBackId ="ID：1";
       }
-      let arr1=(this.tg.filter((game)=>"ID:"+game.ID == this.callBackId));
-      this.filetData=arr1[0];
-    },
-    guessLike(){
-        let category=this.filetData.CATEGORY;
-        let arr2=(this.tg.filter((game)=>game.CATEGORY == category));
-        this.guess=arr2.slice(0,4);
-
-    }
-
-  },
-  beforeMount() {
-    this.fetchData().then(() => {
-      this.getGame();
-      this.guessLike();
+      let arr1=(pageInfor.value.tg.filter((game)=>"ID:"+game.PRODUCT_ID == callBackId));
+     
+      pageInfor.value.fliterTg=arr1[0];
+   
+};
+const guessLike=()=>{
+    let category=pageInfor.value.fliterTg.CATEGORY;
+        let arr2=(pageInfor.value.tg.filter((game)=>game.CATEGORY == category));
+        guess.value=arr2.slice(0,4);
+};
+onBeforeMount(()=>{
+    
+    fetchData().then(() => {
+    getGame();
+    guessLike();
     });
-  }
-}
+})
 </script>
+
 <style lang="scss" scoped>
 .product-wrapper {
     width: 1200px;

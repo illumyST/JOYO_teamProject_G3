@@ -5,9 +5,9 @@
             <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
                 
             </PdcMnAsdPdc>
-            <PdcMnItPdc :currentCategory="currentCategory" :pageInfor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
+            <PdcMnItPdc :currentCategory="currentCategory" :pageInforTotalPage="pageInfor.total_page" :key="currentCategory.cate"></PdcMnItPdc>
         </div>
-        <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
+        <PdcPgPdc :currentCategory="currentCategory" ></PdcPgPdc>
     </div>
     <div :class="$route.params.categoryId">
         {{ $route.params.categoryId }}
@@ -17,31 +17,31 @@
 <script setup>
 
 import {useRoute} from 'vue-router'
-import {onMounted, ref,defineProps } from 'vue';
+import {onMounted, ref,defineProps,onBeforeMount } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
-const currentCategory=ref([{
+const currentCategory=ref({
     cate:"全部商品",
     page:1
     },
-]);
-const pageInfor=ref([{
+);
+const pageInfor=ref({
     tg:[],
     page:12,
     total_page:[],
     fliterTg:[],
-}]);
+});
 const fetchData=()=>{
-    return axios.get('/API/boardGame.json')
+    return axios.get('/api/product/test.php')
         .then(res => {
-            let i=0;
-            pageInfor.value[i].tg = res.data;
+            
+            pageInfor.value.tg = res.data;
             // console.log(currentCategory.value[i].cate);
-            if(currentCategory.value[i].cate !="全部商品"){
-                pageInfor.value[i].fliterTg=pageInfor.value[i].tg.filter((ele)=>ele.CATEGORY == currentCategory.value[i].cate); 
+            if(currentCategory.value.cate !="全部商品"){
+                pageInfor.value.fliterTg=pageInfor.value.tg.filter((ele)=>ele.CATEGORY == currentCategory.value.cate); 
             }else{
-                pageInfor.value[i].fliterTg=pageInfor.value[i].tg;
+                pageInfor.value.fliterTg=pageInfor.value.tg;
 
             }
             }
@@ -52,26 +52,23 @@ const fetchData=()=>{
 };
 const getPage=()=>{
 
-    let i=0;
-        //清空
-       
-    for(let j=0;j<pageInfor.value[i].fliterTg.length;){
-        pageInfor.value[i].total_page.push( pageInfor.value[i].fliterTg.slice(j,j+12));
-         j=j+ pageInfor.value[i].page; 
+    
+    for(let j=0;j<pageInfor.value.fliterTg.length;){
+        pageInfor.value.total_page.push( pageInfor.value.fliterTg.slice(j,j+12));
+         j=j+ pageInfor.value.page; 
        }
     //    console.log(pageInfor.value[i].total_page);
 };
 const updateCatergory=(val)=>{
-    let i=0;
-    currentCategory.value[i].cate=val;
+    currentCategory.value.cate=val;
     fetchData().then(() => {
-         pageInfor.value[i].total_page.length=0;
+         pageInfor.value.total_page.length=0;
         getPage();
      });
 
 }
 // 在组件挂载后执行的生命周期钩子函数中处理逻辑
-onMounted(() => {
+onBeforeMount(() => {
     // 获取路由参数 categoryId
     // id 就是要用 axios 傳給後端的資料
     const id = route.params.categoryId;

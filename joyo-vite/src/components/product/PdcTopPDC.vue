@@ -2,11 +2,11 @@
 <template>
     <div class="product-top ">
     <div class="col-3 breadcrumb">
-                <h2>{{currentCategory[index].cate}}</h2>
+                <h2>{{currentCategory.cate}}</h2>
                 <nav class="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
-                        <li class="breadcrumb-item active"><a href="#">{{currentCategory[index].cate}}</a></li>
+                        <li class="breadcrumb-item active"><a href="#">{{currentCategory.cate}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -113,7 +113,7 @@
     import { defineProps, ref, watch,computed} from 'vue';
     const props = defineProps({
         currentCategory: {
-        type: Array,
+        type: Object,
         required: true,
         },
         

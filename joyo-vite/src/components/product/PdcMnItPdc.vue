@@ -1,8 +1,7 @@
-<template v-if="pageInfor" >
-
-<ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInfor" :key="index">
+<template v-if="pageInforTotalPage" >
+<ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index">
   <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-  <router-link :to="'productInfo/' +'ID:'+card.ID" >
+  <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
       <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
@@ -37,10 +36,10 @@ import { defineProps,  ref, watch,computed} from 'vue';
 import axios from 'axios';
 const props = defineProps({
         currentCategory: {
-        type: Array,
+        type:  Object,
         required: true,
         },
-        pageInfor:{
+        pageInforTotalPage:{
         type: Array,
         required: true,    
         }

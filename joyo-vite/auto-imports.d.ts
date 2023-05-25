@@ -36,8 +36,8 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
-  const msAddProductForm: typeof import('./src/components/msForm/msAddProductForm.vue')['default']
-  const msChangePasswordForm: typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']
+  const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
+  const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -54,7 +54,6 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
-  const productInfo: typeof import('./src/pages/product/productInfo.vue')['default']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -123,8 +122,8 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/msForm/msAddProductForm.vue')['default']>
-    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']>
+    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
+    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -141,7 +140,6 @@ declare module 'vue' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
-    readonly productInfo: UnwrapRef<typeof import('./src/pages/product/productInfo.vue')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -204,8 +202,8 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/msForm/msAddProductForm.vue')['default']>
-    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']>
+    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
+    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -222,7 +220,6 @@ declare module '@vue/runtime-core' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
-    readonly productInfo: UnwrapRef<typeof import('./src/pages/product/productInfo.vue')['default']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
