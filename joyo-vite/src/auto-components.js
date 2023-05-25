@@ -67,7 +67,15 @@ declare module '@vue/runtime-core' {
     MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
     MsChangeAdminPasswordForm: typeof import('./components/MsForm/MsChangeAdminPasswordForm.vue')['default']
     MsChangePassword: typeof import('./pages/ms-system-admin/MsChangePassword.vue')['default']
+<<<<<<< HEAD
     MsChangePasswordForm: typeof import('./components/MsForm/msChangePasswordForm.vue')['default']
+=======
+<<<<<<< HEAD
+    MsChangePasswordForm: typeof import('./components/msForm/msChangePasswordForm.vue')['default']
+=======
+    MsChangePasswordForm: typeof import('./components/MsForm/msChangePasswordForm.vue')['default']
+>>>>>>> 60919b3 (product 出現商品（珮）)
+>>>>>>> dev
     MsChat: typeof import('./components/MsLiveChat/MsChat.vue')['default']
     MsChatAreaMLC: typeof import('./components/MsLiveChat/MsChatAreaMLC.vue')['default']
     MsChatBoxMLC: typeof import('./components/MsLiveChat/MsChatBoxMLC.vue')['default']
