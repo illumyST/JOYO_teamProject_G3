@@ -118,11 +118,7 @@ input.errorInput{
   .singin_btn a {
     
     position: absolute;
-<<<<<<< HEAD
     right: 100px;
-=======
-    right: 26px;
->>>>>>> will
     bottom: 10px;
     // border: 10px solid yellow;
     
