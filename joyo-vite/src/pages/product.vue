@@ -5,7 +5,10 @@
             <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
                 
             </PdcMnAsdPdc>
+
             <PdcMnItPdc :currentCategory="currentCategory" :pageInfor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
+            <PdcMnItPdc :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
+
         </div>
         <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
     </div>
