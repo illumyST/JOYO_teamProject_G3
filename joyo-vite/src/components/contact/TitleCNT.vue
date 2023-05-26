@@ -13,13 +13,13 @@
     <div class="contact_top_right">
       <h2 class="contact_top_right_text">
         歡迎您蒞臨桌迷藏官網，我們致力為您提供豐富的桌遊商品，以及良好的討論區體驗，如有任何問題，歡迎聯繫致電、寄信或使用
-        <a href="#contact_bottom">即時客服</a>，我們將竭誠為您服務！
+        <a href="#contact_bottom" class="contact_title_serive">即時客服</a>，我們將竭誠為您服務！
       </h2>
       <h2>
-        <a href="#"><i class="fa-solid fa-envelope"></i>joyo2023@gmail.com</a>
+        <i class="fa-solid fa-envelope"></i>joyo2023@gmail.com
       </h2>
       <h2>
-        <a href="#"><i class="fa-solid fa-phone"></i>09123456789</a>
+        <i class="fa-solid fa-phone"></i>09123456789
       </h2>
     </div>
   </div>
@@ -96,7 +96,7 @@
   margin-bottom: 15px;
   text-align: justify;
 
-  a {
+  .contact_title_serive {
     display: inline-block;
     background-color: wheat;
     padding: 8px;
