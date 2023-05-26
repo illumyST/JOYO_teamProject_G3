@@ -135,14 +135,11 @@ const isPhone = ref(false);
 // 確認.value是否為手機版，以切換標籤
 const checkIsPhone = () => {
     if (window.innerWidth <= 976) {
-        console.log(true);
         isPhone.value = true;
-
     } else {
-        console.log(false);
-        isPhone.value = false
-    }
-}
+        isPhone.value = false;
+    };
+};
 
 onMounted(() => {
     checkIsPhone();
@@ -150,7 +147,7 @@ onMounted(() => {
 
 // 手機版 bar 點擊後 toggle nav 選單 
 const toggleNav = () => {
-    nav_open.value = !nav_open.value
+    nav_open.value = !nav_open.value;
 };
 
 // 手機版 nav 選單中的子選單

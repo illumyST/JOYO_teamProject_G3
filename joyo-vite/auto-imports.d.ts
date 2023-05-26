@@ -204,8 +204,8 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/msForm/msAddProductForm.vue')['default']>
-    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']>
+    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
+    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>

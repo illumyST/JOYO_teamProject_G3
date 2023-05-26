@@ -1,5 +1,5 @@
 <template>
-    <main class="wrapper" @click="echoTest()">
+    <main class="wrapper">
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
@@ -7,8 +7,6 @@
         <NewProductIDX></NewProductIDX>
         <NewProductListIDX></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
-        <!-- <BarChart></BarChart>  -->
-
     </main>
 </template>
 
