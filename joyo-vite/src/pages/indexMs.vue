@@ -1,6 +1,8 @@
 <template>
     <MsDefault>
-            <RouterView v-if="false"/>
+        <div v-if="isLogIn">
+            <RouterView />
+        </div>
     </MsDefault>
 </template>
 
@@ -8,19 +10,19 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
-const isLogIn = ref(0);
+const isLogIn = ref(false);
 
-console.log(isLogIn.value)
+// console.log(isLogIn.value)
 
-onMounted(() => {
-    axios.get('/api/logIn&Out/sessionCheck.php')
-        .then(res => {
-            const data = res.data;
-            isLogIn.value = data;
-            console.log('data', res.data)
-            console.log('isLogIn.value', isLogIn.value)
-        });
-});
+// onMounted(() => {
+//     axios.get('/api/logIn&Out/sessionCheck.php')
+//         .then(res => {
+//             const data = res.data;
+//             isLogIn.value = data;
+//             console.log('data', res.data)
+//             console.log('isLogIn.value', isLogIn.value)
+//         });
+// });
 
 </script>
 
