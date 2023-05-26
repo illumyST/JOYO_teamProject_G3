@@ -17,39 +17,14 @@
 
 <script setup>
 import {ref , provide} from 'vue';
+import axios from 'axios' ;
 
 const userSelect = ref(["商品編號","商品名稱","遊戲類型","價格","動作"])
 provide('us', userSelect);
-const getseach=(n)=>{
-    console.log(n);
-}
 
-const admins = ref([{
-    name:'王小明',
-    id:'abc123',
-    pas:'password',
-    update:true,
-    fixe:false
-},{
-    name:'王小明',
-    id:'abc123',
-    pas:'password',
-    update:true,
-    fixe:false
-},{
-    name:'王小明',
-    id:'abc123',
-    pas:'password',
-    update:true,
-    fixe:false
-},{
-    name:'王小明',
-    id:'abc123',
-    pas:'password',
-    update:true,
-    fixe:false
-},]) 
-provide('admins',admins)
+const admins = ref([]) ;
+
+provide('admins',admins);
 
 const addop = ref(false);
 const updat = ref(false);
@@ -86,6 +61,21 @@ const addAdmins =(e)=>{
   console.log(e);
   admins.value.push(e);
 }
+
+axios.get("/api/msBack_Account/msBack_Account.php")
+.then(data=>{
+  var list = data.data;
+
+  for(var n=0 ; n<data.data.length ; n++){
+    // console.log(list[n]['USER_NAME']);
+    admins.value.push({name:list[n]['USER_NAME'],
+        id:list[n]['ACCOUNT'],
+        pas:list[n]['PASSWORD'],
+        update:true,
+        fixe:false});
+  }
+})
+.catch(error =>{ console.log(error)})
 
 </script>
 
