@@ -36,8 +36,8 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
-  const msAddProductForm: typeof import('./src/components/msForm/msAddProductForm.vue')['default']
-  const msChangePasswordForm: typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']
+  const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
+  const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -67,7 +67,6 @@ declare global {
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
-  const toValue: typeof import('vue')['toValue']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
@@ -90,87 +89,6 @@ declare global {
 // for vue template auto import
 import { UnwrapRef } from 'vue'
 declare module 'vue' {
-  interface ComponentCustomProperties {
-    readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
-    readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
-    readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
-    readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
-    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
-    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
-    readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
-    readonly MsContentManagementBanner: UnwrapRef<typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']>
-    readonly MsDataManagementReportSending: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']>
-    readonly MsDataManagementSendReport: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']>
-    readonly MsLiveChat: UnwrapRef<typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']>
-    readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
-    readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
-    readonly PdcMnItPdc: UnwrapRef<typeof import('./src/components/product/PdcMnItPdc.vue')['default']>
-    readonly PdcTopPDC: UnwrapRef<typeof import('./src/components/product/PdcTopPDC.vue')['default']>
-    readonly computed: UnwrapRef<typeof import('vue')['computed']>
-    readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
-    readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
-    readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
-    readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
-    readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
-    readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly imgPath: UnwrapRef<typeof import('./src/utils/imgPath.js')['default']>
-    readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
-    readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
-    readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
-    readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/msForm/msAddProductForm.vue')['default']>
-    readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/msForm/msChangePasswordForm.vue')['default']>
-    readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
-    readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
-    readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
-    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('vue-router')['onBeforeRouteUpdate']>
-    readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
-    readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
-    readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
-    readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
-    readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
-    readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
-    readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
-    readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
-    readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
-    readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
-    readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
-    readonly productInfo: UnwrapRef<typeof import('./src/pages/product/productInfo.vue')['default']>
-    readonly provide: UnwrapRef<typeof import('vue')['provide']>
-    readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
-    readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
-    readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
-    readonly router: UnwrapRef<typeof import('./src/router/index.js')['default']>
-    readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
-    readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
-    readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
-    readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
-    readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
-    readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
-    readonly unref: UnwrapRef<typeof import('vue')['unref']>
-    readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
-    readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
-    readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
-    readonly watch: UnwrapRef<typeof import('vue')['watch']>
-    readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
-    readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
-    readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
-  }
-}
-declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
@@ -235,7 +153,6 @@ declare module '@vue/runtime-core' {
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
-    readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
