@@ -6,7 +6,11 @@
             </RouterLink>
             <div class="header_nav_right_inputBox">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="header_nav_right_inputBox-input" type="text">
+                <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" 
+                        @keyup="searchItem">
+                <ul id="selectbox" v-if="searchBoxOpen">
+                    <li v-for="(item,index) in selectModel"><a :href="item.href">{{ item.name }}</a></li>
+                </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
                 <li :class="{ '-on': sub_nav_open['product'].value === true }">
@@ -189,6 +193,42 @@ const toggleSub = (sub) => {
 //             location.href = '/ms';
 //         });
 // }
+
+const data = ref({
+    select: ''
+});
+const selectModel= ref([]);
+
+const searchBoxOpen = ref(false);
+const searchItem=()=>{
+    axios.post('/api/select/select.php', data)
+  .then(response => {
+//     // 處理回應資料
+
+    const responseData = response.data;
+    selectModel.value = [] ;
+    // console.log(responseData);
+//     // if(selectModel.value != []){
+        for(let n =0 ; n<responseData.length ; n++){
+        // console.log(responseData[n]);
+        if(responseData[n][1] != undefined){
+            searchBoxOpen.value = true;
+            let a =responseData[n][1]
+            selectModel.value.push({name:a,href:`http://localhost:5173/productInfo/ID:${responseData[n][0]}`});
+        }else{
+            searchBoxOpen.value = false;
+        }
+    // }
+    }
+  })
+  .catch(error => {
+    // 處理錯誤
+    console.error(error);
+  });
+}
+
+
+
 
 </script>
 
@@ -547,6 +587,28 @@ header {
 
         &::before {
             border: none;
+        }
+    }
+}
+
+#selectbox{
+   
+    width: 45%;
+    max-height: 300px;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    background-color: $bg;
+    li{
+        // outline: 1px solid red;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid white;
+        background-color: $green;
+        margin-bottom: 5px;
+        a{
+            color: white;
+            text-decoration: none;
         }
     }
 }
