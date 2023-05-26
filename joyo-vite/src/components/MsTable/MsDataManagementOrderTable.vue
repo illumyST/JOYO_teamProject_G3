@@ -20,8 +20,14 @@
                          <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
                          <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
-                         <input type="number" min="1" max="4" v-if="item.upopen" v-model="item.fron" @change="ifron(index)"
-                         @blur="change(index)"  >
+                     
+                         <select name="" id="" v-if="item.upopen"  v-model="item.fron" @change="ifron(index)" >
+                            <option value="1">訂單成立</option>
+                            <option value="2">已出貨</option>
+                            <option value="3">運送中</option>
+                            <option value="4">訂單完成</option>
+                         </select>
+
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
                    </span>
                    <span class="ordrta"><h4>{{ item.got }}</h4></span>
@@ -48,7 +54,7 @@
                             
                             <p v-if="!item.twoop">{{ item.two }}</p>
                             <span class="input-icon" v-if="item.twoop && item.fron >= 2">
-                            <input type="text" v-model="item.two"  @click.prevent.stop @keyup.enter="itupop(index,'two')">
+                            <input type="date" v-model="item.two"  @click.prevent.stop @keyup.enter="itupop(index,'two')">
                             <i class="bi bi-x-circle-fill" @click="clear(index,'2')"></i>
                             </span>
                             </div>
@@ -59,7 +65,7 @@
 
                             <p v-if="!item.theop">{{ item.the }}</p>
                             <span class="input-icon" v-if="item.theop && item.fron >= 3">
-                            <input type="text" v-model="item.the"  @click.prevent.stop @keyup.enter="itupop(index,'the')">
+                            <input type="date" v-model="item.the"  @click.prevent.stop @keyup.enter="itupop(index,'the')">
                             <i class="bi bi-x-circle-fill" @click="clear(index,'3')"></i>
                             </span>
                             </div>
@@ -70,7 +76,7 @@
 
                             <p v-if="!item.fourop">{{ item.four }}</p>
                             <span class="input-icon" v-if="item.fourop && item.fron >= 4">
-                            <input type="text" v-model="item.four"  @click.prevent.stop @keyup.enter="itupop(index,'four')">
+                            <input type="date" v-model="item.four"  @click.prevent.stop @keyup.enter="itupop(index,'four')">
                             <i class="bi bi-x-circle-fill" @click="clear(index,'4')"></i>
                             </span>
                             </div>
@@ -129,10 +135,10 @@ onMounted(() => {
         var year = new Date().getFullYear();
         var month = String(new Date().getMonth() + 1).padStart(2, '0');
         var day = String(new Date().getDate()).padStart(2, '0');
-        var hours = String(new Date().getHours()).padStart(2, '0');
-        var minutes = String(new Date().getMinutes()).padStart(2, '0');
-        var seconds = String(new Date().getSeconds()).padStart(2, '0');
-        nowDate.value = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+        // var hours = String(new Date().getHours()).padStart(2, '0');
+        // var minutes = String(new Date().getMinutes()).padStart(2, '0');
+        // var seconds = String(new Date().getSeconds()).padStart(2, '0');
+        nowDate.value = `${year}-${month}-${day}`;
     },1000)
 // console.log(currentDate.value)
 })
@@ -246,11 +252,13 @@ const itupop= (e,i)=>{
        width: 140px;
        flex-grow: 1;
        font-size: $p;
-       input{
+       select{
+        padding: 5px;
+        outline: none;
         // outline: 1px solid red;
         width: 100px;
         text-align: center;
-        // -moz-appearance:;
+        // outline: 1px solid red;
        }
        h4{
         // outline: 1px solid red;
@@ -259,7 +267,7 @@ const itupop= (e,i)=>{
        i{
         // outline: 1px solid red;
         margin-left: 10px;
-        margin-right: -20px;
+        margin-right: -25px;
        }
       }
       div.ms_order_min{
@@ -326,7 +334,7 @@ const itupop= (e,i)=>{
             // outline: 1px solid red;
             align-items: center;
             input{
-                margin-left: 15px;
+                margin-left: 45px;
                 outline: none;
                 border:none;
                 border-bottom: 1px solid $brown;
@@ -334,9 +342,10 @@ const itupop= (e,i)=>{
                 padding: 3px;
             }
             i{
+                background-color: white;
                 cursor: pointer;
                 transition: .3s;
-                margin-left: -15px;
+                margin-left: -19px;
                 color: $orange;
                 &:hover{
                     color: $green;

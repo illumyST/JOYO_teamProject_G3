@@ -12,8 +12,8 @@
                 <td><p>{{ item.id }}</p></td>
                 <td><p>{{ item.pas }}</p></td>
                 <td class="msn_icon">
-                  <i class="bi bi-pencil-square" @click="change(index)"></i>
-                  <i class="bi bi-trash3-fill" @click="del(index)"></i>
+                  <i class="bi bi-pencil-square" @click="change(index,item)"></i>
+                  <i class="bi bi-trash3-fill" @click="del(item,index)"></i>
                 </td>
                 <msEditAdminForm v-if="item.fixe" @close="close($event,index)" @upform="upform(index,$event)"></msEditAdminForm>
             </tr> 
@@ -22,13 +22,17 @@
     </template>
       
       <script setup>
+      import axios from 'axios';
       import {ref ,inject} from 'vue';
       let admins = inject('admins');
     
-      const del = (index)=>{
+      const del = (item,index)=>{
       var YN =  confirm("確定要刪除嗎 ? ") ;
       if(YN){
         admins.value.splice(index,1);
+        axios.post("/api/msBack_Account/msBack_AccountDL.php",item)
+        .then(data=>{console.log(data.data)})
+        .catch(error=>{console.log(error)});
       }
       }
     

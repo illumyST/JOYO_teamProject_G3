@@ -82,6 +82,13 @@
         font-weight: bold;
     }
     .memberOrder-right .memberOrder_state{
+        // display: none;
+        line-height: 50px;
+    }
+    .memberOrder-right .memberOrder_state ul li{
+        font-size: 17px;
+    }
+    .memberOrder-right .memberOrder_state ul li:nth-last-child(2){
         display: none;
     }
     .memberOrder-right .memberOrder_list a{

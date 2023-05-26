@@ -17,7 +17,7 @@
                             <button class="product-filter-btn" type="button" id=""
                                 v-on:click="product_filter_cater_show">
                                 <span>全部商品</span>
-                                <span><img src="/IMG/vector.png" alt=""></span>
+                                <span><img src="@/assets/img/vector.png" alt=""></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li><a class="dropdown-item" href="#">全部商品</a></li>
@@ -34,7 +34,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_player_show">
-                                    <span>遊玩人數</span><span><img src="/IMG/vector.png" alt=""></span>
+                                    <span>遊玩人數</span><span><img src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -58,7 +58,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
-                                            src="/IMG/vector.png" alt=""></span>
+                                            src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
@@ -86,7 +86,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_order_show">
-                                    <span>排序方式</span><span><img src="/IMG/vector.png" alt=""></span>
+                                    <span>排序方式</span><span><img src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li><a class="dropdown-item" href="#"
@@ -110,7 +110,7 @@
 </div>
 </template>
 <script setup>
-    import { defineProps,  ref, watch,computed} from 'vue';
+    import { defineProps, ref, watch,computed} from 'vue';
     const props = defineProps({
         currentCategory: {
         type: Array,

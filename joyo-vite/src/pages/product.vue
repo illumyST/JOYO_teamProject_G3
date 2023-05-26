@@ -1,13 +1,16 @@
-<template>
+<template v-if="pageInfor">
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
         <PdcTopPDC :currentCategory="currentCategory"></PdcTopPDC>
         <div class="product-main">
-            <PdcMnAsdPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory">
+            <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
                 
-            </PdcMnAsdPDC>
-            <PdcMnItPDC :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPDC>
+            </PdcMnAsdPdc>
+
+            <PdcMnItPdc :currentCategory="currentCategory" :pageInfor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
+            <PdcMnItPdc :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
+
         </div>
-        <PdcPgPDC :currentCategory="currentCategory"></PdcPgPDC>
+        <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
     </div>
     <div :class="$route.params.categoryId">
         {{ $route.params.categoryId }}
@@ -16,8 +19,8 @@
 
 <script setup>
 
-import { useRoute} from 'vue-router'
-import { onMounted, ref,defineProps } from 'vue';
+import {useRoute} from 'vue-router'
+import {onMounted, ref,defineProps } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
@@ -27,15 +30,14 @@ const currentCategory=ref([{
     },
 ]);
 const pageInfor=ref([{
-    tg:null,
+    tg:[],
     page:12,
     total_page:[],
-    fliterTg:null,
+    fliterTg:[],
 }]);
 const fetchData=()=>{
     return axios.get('/API/boardGame.json')
         .then(res => {
-            console.log('fetch');
             let i=0;
             pageInfor.value[i].tg = res.data;
             // console.log(currentCategory.value[i].cate);
@@ -45,22 +47,18 @@ const fetchData=()=>{
                 pageInfor.value[i].fliterTg=pageInfor.value[i].tg;
 
             }
-            console.log(pageInfor.value[i].fliterTg,'fff');
             }
             )
         .catch(err => {
-            console.error(err);
+            // console.error(err);
         });
 };
 const getPage=()=>{
 
     let i=0;
-        console.log('get page',pageInfor.value[i].fliterTg);
         //清空
-        pageInfor.value[i].total_page.length=0;
-    // console.log('get page');
+       
     for(let j=0;j<pageInfor.value[i].fliterTg.length;){
-
         pageInfor.value[i].total_page.push( pageInfor.value[i].fliterTg.slice(j,j+12));
          j=j+ pageInfor.value[i].page; 
        }
@@ -70,7 +68,7 @@ const updateCatergory=(val)=>{
     let i=0;
     currentCategory.value[i].cate=val;
     fetchData().then(() => {
-        // console.log(123);
+         pageInfor.value[i].total_page.length=0;
         getPage();
      });
 

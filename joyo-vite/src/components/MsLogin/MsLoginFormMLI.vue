@@ -23,10 +23,14 @@
     </div>
   </section>
 </template>
+
 <script setup>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 const isPasswordVisible = ref(false);
+
+const router = useRouter();
+
 const logInSuccess = ref(0);
 const logInData = ref({
   account: '',
@@ -47,10 +51,15 @@ const doLogInCheck = function () {
       logInSuccess.value = data;
       if (logInSuccess.value == 1) {
         alert('登入成功！');
-        location.href = '/ms'
+        router.push('/ms/msDataManagementSendReport');
       }
     });
 };
+
+// onMounted(() => {
+//   console.log(route)
+//   console.log(this.$router)
+// })
   // export default {
   //   data() {
   //     return {
