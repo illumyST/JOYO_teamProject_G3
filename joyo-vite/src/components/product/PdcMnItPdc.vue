@@ -20,6 +20,7 @@
         <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
         <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
       </div>
+      <!-- <AddCartBtn></AddCartBtn> -->
       <button class="btn prouct-item-card-icon" v-on:click="addCart">
          <i class="fa-solid fa-cart-shopping custom-icon"></i>
        </button>

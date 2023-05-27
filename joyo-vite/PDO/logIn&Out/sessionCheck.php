@@ -1,9 +1,12 @@
 <?php
     session_start();
     if(!$_SESSION||$_SESSION['isLogIn']!= true){
-        echo 0;      
+        echo 'false'; 
+        // indexMs.vue 會 console 布林值
+        // 如果寫 false 會 console.log(isLogIn.value) 空值
+        
     }else{
-        echo 1;
+        echo 'true';
     };
 ?>
 

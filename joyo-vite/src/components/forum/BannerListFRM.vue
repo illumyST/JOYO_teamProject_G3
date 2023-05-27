@@ -310,6 +310,7 @@ onMounted(() => {
       width: 16.5%;
       top: 523px;
       right: 32px;
+      // border: 1px solid $brown;
       li {
         // border: 1px solid blue;
         display: block;
@@ -320,7 +321,7 @@ onMounted(() => {
           font-size: $p;
           line-height: 3;
           letter-spacing: 0.1em;
-          color: white;
+          color: $brown;
         }
       }
     }

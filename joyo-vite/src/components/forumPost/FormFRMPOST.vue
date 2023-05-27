@@ -52,7 +52,7 @@
       />
 
       <input
-        type="submit"
+        type="button"
         class="forumPost_form_button"
         id="forumPost_form_button"
         value="發文"
@@ -116,23 +116,28 @@ const shouldShowAreaSelect = computed(() => {
 .forumPost_form_title{
     // border: 1px solid blue;
     margin: 0 80px;
+    display: flex;
+    align-items: center;
 }
 
 .forumPost_form_category, 
 .forumPost_form_score,
 .forumPost_form_area{
-    border: 1px solid purple;
-    background-color: $orange;
+    // border: 1px solid purple;
+    background-color: #dedddd;
     border: none;
     outline: none;
     border-radius: 5px;
-    color: white;
+    color: $brown;
     padding: 5px 10px;
     font-size: $h3;
     cursor: pointer;
     width: 170px;
     height: 50px;
     letter-spacing: .1em;
+    option{
+        background-color: white;
+    }
 }
 
 .forumPost_form_area{
@@ -140,8 +145,9 @@ const shouldShowAreaSelect = computed(() => {
 }
 
 .forumPost_form_title_text{
+    height: 50px;
+    max-height: 50px;
     padding-left: 20px;
-    line-height: 2.9;
     border-radius: 5px;
     font-size: $p;
     width: 300px;
@@ -224,7 +230,7 @@ const shouldShowAreaSelect = computed(() => {
 
 
 .forumPost_form_button{
-    background: $orange;
+    background-color: $brown;
     line-height: 2;
     width: 100%;
     display: block;
@@ -236,7 +242,7 @@ const shouldShowAreaSelect = computed(() => {
     cursor: pointer;
     border: none;
     &:hover{
-        background: $green;
+        background: $orange;
     }
 }
 

@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     CfDlIfCF: typeof import('./components/cartFill/CfDlIfCF.vue')['default']
     CfDlvCF: typeof import('./components/cartFill/CfDlvCF.vue')['default']
     CfTpCF: typeof import('./components/cartFill/CfTpCF.vue')['default']
+    ChatBoxCNT: typeof import('./components/contact/ChatBoxCNT.vue')['default']
     Contact: typeof import('./pages/contact.vue')['default']
     CrdCT: typeof import('./components/cartFill/CrdCT.vue')['default']
     Default: typeof import('./layouts/default.vue')['default']
