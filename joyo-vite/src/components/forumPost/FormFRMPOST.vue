@@ -52,7 +52,7 @@
       />
 
       <input
-        type="submit"
+        type="button"
         class="forumPost_form_button"
         id="forumPost_form_button"
         value="發文"

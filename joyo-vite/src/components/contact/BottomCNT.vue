@@ -27,9 +27,19 @@
 
     <!-- 彈窗的虛線 -->
     <div class="contact_bottom_line">
-      <svg class="animate-dash" width="390" height="366" viewBox="0 0 390 366" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        ref="svgRef"
+        width="390"
+        height="366"
+        viewBox="0 0 390 366"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-            d="M2 48.2421C87 -19.7578 209.001 -10.0949 275 59.7438C335 123.234 275 236.244 245.5 204.58C218.144 175.218 323.643 143.423 367.5 204.58C408.018 261.08 377.746 328.86 363.127 364.58" stroke="#F29441" stroke-width="4" />
+          d="M2 48.2421C87 -19.7578 209.001 -10.0949 275 59.7438C335 123.234 275 236.244 245.5 204.58C218.144 175.218 323.643 143.423 367.5 204.58C408.018 261.08 377.746 328.86 363.127 364.58"
+          stroke="#F29441"
+          stroke-width="4"
+        />
       </svg>
     </div>
 
@@ -72,16 +82,44 @@
 </template>
 
 <script setup>
-import{ ref, onMounted } from "vue"
+import { ref, onMounted, onUnmounted } from "vue";
 
 const ChatBox = ref(false);
 
 const ChatBoxShow = () => {
   ChatBox.value = !ChatBox.value;
   // console.log("111");
-}
+};
 
+const svgRef = ref(null); // 创建一个 ref
 
+const handleScroll = () => {
+  const contactBottomElement = svgRef.value; // 获取 DOM 元素
+  const rect = contactBottomElement.getBoundingClientRect(); // 获取元素的位置信息
+
+  // 检查元素是否在视口内
+  if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+    contactBottomElement.classList.add('animate_dash');
+    console.log('开始动画');
+  }else{
+    contactBottomElement.classList.remove('animate_dash');
+  }
+};
+
+// 监听滚动事件
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+// 清除滚动事件监听器
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
+  // 清除 Intersection Observer 实例
+  onUnmounted(() => {
+    observer.disconnect();
+  });
 
 </script>
 
@@ -100,7 +138,6 @@ const ChatBoxShow = () => {
     margin: 30px 0;
   }
 }
-
 
 .contact_bottom_info {
   @include flex-container(row, wrap, flex-start);
@@ -160,22 +197,25 @@ const ChatBoxShow = () => {
   top: -40px;
   right: 155px;
 
-  .animate-dash {
+  svg {
     width: 100%;
+  }
+  .animate_dash {
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
     animation: dash 3s linear forwards;
   }
+
   @keyframes dash {
-    0%{
-        stroke-dasharray: 10000;
-        stroke-dashoffset: 10000;
+    0% {
+      stroke-dasharray: 10000;
+      stroke-dashoffset: 10000;
     }
-    
-    100%{
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 0;
-      }
+
+    100% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+    }
   }
 }
 
@@ -201,16 +241,15 @@ const ChatBoxShow = () => {
 .contact_bottom_chat {
   // border: 1px solid blueviolet;
   //  background-color: $orange;
-   width: 40%;
-   position: absolute;
-   right: 0px;
-   bottom: 140px;
-   max-height: 400px;
- }
- .contact_bottom_chat.show{
+  width: 40%;
+  position: absolute;
+  right: 0px;
+  bottom: 140px;
+  max-height: 400px;
+}
+.contact_bottom_chat.show {
   display: block;
- }
-
+}
 
 // .contact_bottom_chat_title {
 //   @include flex-container();
