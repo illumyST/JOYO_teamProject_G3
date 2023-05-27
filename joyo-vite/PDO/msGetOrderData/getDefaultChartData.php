@@ -2,7 +2,7 @@
 
 $host = '127.0.0.1';
 $user = 'root';
-$pas = '123';
+$pas = 'password';
 $select = 'JOYO';
 
 $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";

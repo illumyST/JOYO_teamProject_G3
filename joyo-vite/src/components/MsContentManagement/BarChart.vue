@@ -29,9 +29,6 @@ export default {
     this.setDefaultChart();
     this.getDefaultChartData();
   },
-  mounted() {
-    this.getDefaultChartData();
-  },
   methods: {
     setDefaultChart() {
       setTimeout(() => {
@@ -63,7 +60,7 @@ export default {
       axios
         .get("/api/msGetOrderData/getDefaultChartData.php")
         .then((res) => {
-          const jsonData = res.data;
+          const jsonData = res.jsonData;
           console.log(jsonData);
         })
         .catch((error) => {

@@ -25,7 +25,6 @@ onBeforeRouteUpdate((to, from) => {
 // session 判斷是否已登入 05/25_已完成
 const isLogIn = ref();
 onMounted(() => {
-
     axios.get('/api/logIn&Out/sessionCheck.php')
         .then(res => {
             const data = res.data;
