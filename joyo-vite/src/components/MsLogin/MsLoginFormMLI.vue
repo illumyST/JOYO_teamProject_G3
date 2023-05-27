@@ -1,18 +1,34 @@
 <template>
   <section class="ms_form">
     <div class="ms_login_form">
-      <img class="ms_login_form_logo" src="../../assets/img/logo_orange.svg" alt="" />
+      <img
+        class="ms_login_form_logo"
+        src="../../assets/img/logo_orange.svg"
+        alt=""
+      />
       <div class="ms_login_input_field">
         <label class="ms_login_label" for="account">帳號</label>
-        <input type="text" v-model="logInData.account" id="account" placeholder="請輸入帳號" />
+        <input
+          type="text"
+          v-model="logInData.account"
+          id="account"
+          placeholder="請輸入帳號"
+        />
       </div>
 
       <div class="ms_login_input_field">
         <label class="ms_login_label" for="passowrd">密碼</label>
-        <input :type="isPasswordVisible ? 'text' : 'password'" id="password" placeholder="請輸入密碼"
-          v-model="logInData.pwd" />
-        <i class="fa-solid fa-eye-slash" :class="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"
-          @click="passwordToggle"></i>
+        <input
+          :type="isPasswordVisible ? 'text' : 'password'"
+          id="password"
+          placeholder="請輸入密碼"
+          v-model="logInData.pwd"
+        />
+        <i
+          class="fa-solid fa-eye-slash"
+          :class="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"
+          @click="passwordToggle"
+        ></i>
       </div>
 
       <div class="ms_test_acct">測試帳號：MGR&emsp;密碼：password</div>
@@ -25,53 +41,49 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import axios from 'axios';
+import { onMounted, ref } from "vue";
+import axios from "axios";
 const isPasswordVisible = ref(false);
 
 const router = useRouter();
 
 const logInSuccess = ref(0);
 const logInData = ref({
-  account: '',
-  pwd: ''
-})
-
+  account: "",
+  pwd: "",
+});
 
 const passwordToggle = () => {
   isPasswordVisible.value = !isPasswordVisible.value;
 };
 
 const doLogInCheck = function () {
-  axios.post('/api/logIn&Out/logInCheck.php',
-    logInData.value
-  )
-    .then(res => {
-      const data = res.data;
-      logInSuccess.value = data;
-      if (logInSuccess.value == 1) {
-        alert('登入成功！');
-        router.push('/ms/msDataManagementSendReport');
-      }
-    });
+  axios.post("/api/logIn&Out/logInCheck.php", logInData.value).then((res) => {
+    const data = res.data;
+    logInSuccess.value = data;
+    if (logInSuccess.value == 1) {
+      alert("登入成功！");
+      router.push("/ms/msDataManagementSendReport");
+    }
+  });
 };
 
 // onMounted(() => {
 //   console.log(route)
 //   console.log(this.$router)
 // })
-  // export default {
-  //   data() {
-  //     return {
-  //       isPasswordVisible: false,
-  //     };
-  //   },
-  //   methods: {
-  //     passwordToggle() {
-  //       this.isPasswordVisible = !this.isPasswordVisible;
-  //     },
-  //   },
-  // };
+// export default {
+//   data() {
+//     return {
+//       isPasswordVisible: false,
+//     };
+//   },
+//   methods: {
+//     passwordToggle() {
+//       this.isPasswordVisible = !this.isPasswordVisible;
+//     },
+//   },
+// };
 </script>
 <style lang="scss" scoped>
 @mixin btn($bg, $lh, $w, $hover) {
@@ -184,4 +196,3 @@ const doLogInCheck = function () {
   }
 }
 </style>
-  
