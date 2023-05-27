@@ -1,5 +1,5 @@
 <?php
-    include "../conn.php"
+    include "../conn.php"; 
 
 
     $form_category = $_POST["forumPost_form_category"];
