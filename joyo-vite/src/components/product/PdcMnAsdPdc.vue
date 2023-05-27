@@ -21,11 +21,15 @@
         type:  Object,
         required: true,
         },
+        page:{
+        type: Object,
+        required: true,
+        },
         
     });
     const index=0;
     //測欄更新傳回父層
-    const emits = defineEmits("updateCatergory");
+    const emits = defineEmits("updateCatergory","updatePage");
     const product_filter_get_cate=(e)=>{
         e.preventDefault();
         emits('updateCatergory', e.target.innerHTML);

@@ -1,5 +1,6 @@
 <template v-if="pageInforTotalPage" >
-<ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index">
+<div>
+  <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
   <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
   <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
     <div class="prouct-item-card-tag">
@@ -26,7 +27,9 @@
     </div>
   </router-link>
   </li>
-</ul>
+</ul>  
+</div>
+
 
 </template>
 
@@ -263,6 +266,7 @@ export default {
     margin-top: 30px;
     position: relative;
     height: 1866px;
+    min-height: 600px;
 }
 
 
@@ -296,6 +300,10 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
 
 }
 
@@ -352,6 +360,9 @@ export default {
     height: 233px;
     margin: 16px auto;
     text-align: center;
+    img{
+        width: 80%;
+    }
 }
 
 .prouct-item-card-infor {
