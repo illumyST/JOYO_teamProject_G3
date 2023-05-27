@@ -4,67 +4,43 @@
       <a href="/ms">
         <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
       </a>
-      <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
+      <div v-if="showLogOut" class="logOut" @click="logOut()">登出</div>
     </nav>
   </header>
 </template>
-  
+
+<script>
+// window.location.reload();
+</script>
+
 <script setup>
-// import { onMounted, ref } from 'vue';
-// import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
-// const isLogIn = ref(0);
-// const route = useRoute();
+// 利用 indexMs 的 session 判斷，決定登出按鈕的出現
+const showLogOut = ref(false);
 
-// 得在 onMounted 前，避免使用者看到非 /ms 畫面
-// console.log(isLogIn.value)
+onMounted(() => {
+  axios.get('/api/logIn&Out/sessionCheck.php')
+    .then(res => {
+      const data = res.data;
+      showLogOut.value = data;
+    });
+});
 
-
-// if (isLogIn.value == 1 && route.path == '/ms/logIn') {
-//   location.href = '/ms';
-// }
-// onMounted(() => {
-//   axios.get('/api/logIn&Out/sessionCheck.php')
-//     .then(res => {
-//       const data = res.data;
-//       isLogIn.value = data;
-//       // console.log('data', res.data)
-//       // console.log('isLogIn.value', isLogIn.value)
-
-//       // 得放在 axios 裡面，因為會有時間落差？
-//       // if (isLogIn.value === 0 && route.path != '/ms/logIn') {
-
-// TODO 會可以看到其他頁面
-//location.href = '/ms/logIn';
-// alert('您尚未登入！');
-//};});
-// if (isLogIn.value != 0 && route.path == '/ms/logIn') {
-//   location.href = '/ms';
-// }
-//       //   // TODO 會可以看到其他頁面
-//       //   alert('您尚未登入！');
-
-//       //   location.href = '/ms/logIn';
-//       // };
-//       // if (isLogIn.value != 0 && route.path == '/ms/logIn') {
-//       //   location.href = '/ms';
-//       // }
-//     });
-
-//   // console.log(isLogIn.value) //0
-// });
-
-
+// 登出按鈕點擊後登出
 const logOut = () => {
   axios.post('/api/logIn&Out/logOut.php')
     .then(res => {
-      isLogIn.value = 0;
+      showLogOut.value = false;
       alert('登出成功！');
-      location.href = '/ms/logIn';
+      location.href = '/#/ms/logIn';
     });
 }
+
 </script>
-  
+
+
 <style lang="scss" scoped>
 .ms_header {
   background-color: $orange;

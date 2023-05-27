@@ -48,5 +48,5 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/,'/teamProject_G3/joyo-vite/PDO'),
       },
     }
-  }
+  },
 });

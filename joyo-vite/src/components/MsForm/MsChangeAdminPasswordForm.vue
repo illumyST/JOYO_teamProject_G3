@@ -69,7 +69,7 @@
   .ms_form {
     // float: left;
     // display: fixed;
-    position: fixed;
+    // position: fixed;
     font-family: "Noto Sans TC", sans-serif;
     width: 550px;
     height: 550px;

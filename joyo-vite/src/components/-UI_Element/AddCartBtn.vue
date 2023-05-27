@@ -5,8 +5,14 @@
 </template>
 
 <script setup>
-const addToCart = function () {
-    console.log(1)
+
+const addToCart = () => {
+    // 點擊後需要先判斷他是否為登入狀態
+    // if(){
+    //     如果是登入就跑這，把商品資訊存到該使用者的資料庫
+    // }else{
+    //     沒登入就跑這，把商品資訊存到localstorage
+    // }
 };
 
 </script>
