@@ -10,15 +10,16 @@
         class="forumPost_form_title_text"
         id="forumPost_form_title_text"
         placeholder="請輸入桌遊名稱"
+        v-show="shouldShowTitleText"
       />
 
-      <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore">
+      <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore" v-if="shouldShowScoreSelect">
         <option :value="FormScore.Value">{{FormScore.Name}}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 
-      <select class="forumPost_form_area" id="forumPost_form_area">
-        <option disabled value="">揪團地點</option>
+      <select class="forumPost_form_area" id="forumPost_form_area" v-if="shouldShowAreaSelect">
+        <option value="">揪團地點</option>
         <option value="">台北市</option>
         <option value="">基隆市</option>
         <option value="">新北市</option>
@@ -51,7 +52,7 @@
       />
 
       <input
-        type="submit"
+        type="button"
         class="forumPost_form_button"
         id="forumPost_form_button"
         value="發文"
@@ -61,7 +62,7 @@
 </template>
   
 <script setup>
-import{ ref } from "vue";
+import{ ref, computed } from "vue";
 const SelectCgy = ref("Cgy1")
 const FormCgy = ref([
     {
@@ -88,6 +89,18 @@ const FormScore = ref({
     Name:"桌遊評分",
     Value:"0"
 });
+
+const shouldShowTitleText = computed(() => {
+  return SelectCgy.value !== 'Cgy5';
+});
+
+const shouldShowScoreSelect = computed(() => {
+  return SelectCgy.value !== 'Cgy5';
+});
+
+const shouldShowAreaSelect = computed(() => {
+  return SelectCgy.value === 'Cgy5';
+});
 </script>
   
 <style lang="scss" scoped>
@@ -103,32 +116,38 @@ const FormScore = ref({
 .forumPost_form_title{
     // border: 1px solid blue;
     margin: 0 80px;
+    display: flex;
+    align-items: center;
 }
 
 .forumPost_form_category, 
 .forumPost_form_score,
 .forumPost_form_area{
-    border: 1px solid purple;
-    background-color: $orange;
+    // border: 1px solid purple;
+    background-color: #dedddd;
     border: none;
     outline: none;
     border-radius: 5px;
-    color: white;
+    color: $brown;
     padding: 5px 10px;
     font-size: $h3;
     cursor: pointer;
     width: 170px;
     height: 50px;
     letter-spacing: .1em;
+    option{
+        background-color: white;
+    }
 }
 
 .forumPost_form_area{
-    display: none
+    margin-left: 40px;
 }
 
 .forumPost_form_title_text{
+    height: 50px;
+    max-height: 50px;
     padding-left: 20px;
-    line-height: 2.9;
     border-radius: 5px;
     font-size: $p;
     width: 300px;
@@ -211,7 +230,7 @@ const FormScore = ref({
 
 
 .forumPost_form_button{
-    background: $orange;
+    background-color: $brown;
     line-height: 2;
     width: 100%;
     display: block;
@@ -223,7 +242,7 @@ const FormScore = ref({
     cursor: pointer;
     border: none;
     &:hover{
-        background: $green;
+        background: $orange;
     }
 }
 
@@ -269,8 +288,9 @@ input[type=submit]{
         width: 47.3%;
     }
 
-
-
+    .forumPost_form_area{
+        margin-left: 0;
+    }
 
     .forumPost_form_middle{
         width: 100%;

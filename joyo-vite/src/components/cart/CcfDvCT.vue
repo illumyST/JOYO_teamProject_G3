@@ -223,6 +223,9 @@
                 height: 35px;
                 width: 94%;
                 font-size: 16px;
+                option{
+                    width: 173px;
+                }
 
             }
 

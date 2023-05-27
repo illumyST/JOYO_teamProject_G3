@@ -8,10 +8,16 @@
     <div class="contact_middle_qa" v-for="(item, index) in arr_qa" :key="index">
       <div
         class="contact_middle_qa_item"
+        :class="{ active: item.is_active }"
+        @click="toggleAnswer(index)"
       >
-        <h3>Q{{ index + 1 }}：{{ item.q }}</h3>
+        <h3 :class="{ active: item.is_active }">Q{{ index + 1 }}：{{ item.q }}
+          <i class="fa-thin fa-plus" v-if="!item.is_active"></i>
+          <i class="fa-solid fa-minus" v-else></i>
+        </h3>
+        
 
-        <div class="contact_middle_a1">
+        <div class="contact_middle_a1" v-if="item.is_active">
           <p>{{ item.a }}</p>
         </div>
       </div>
@@ -49,6 +55,17 @@ const arr_qa = ref([
     is_active:false
   },
 ]);
+
+let previousIndex = -1; // 追蹤前一個被點擊的索引值
+
+const toggleAnswer = (index) => {
+  if (previousIndex !== -1 && previousIndex !== index) {
+    arr_qa.value[previousIndex].is_active = false; // 折疊前一個 contact_middle_a1 區域
+  }
+  arr_qa.value[index].is_active = !arr_qa.value[index].is_active;
+  previousIndex = index; // 更新前一個被點擊的索引值
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -69,10 +86,6 @@ const arr_qa = ref([
 .contact_middle_qa {
   width: 100%;
 
-  .active {
-    background-color: #83af5fb9;
-  }
-
   h3 {
     // border: 1px solid blue;
     font-size: $h3;
@@ -83,13 +96,18 @@ const arr_qa = ref([
     align-items: center;
     font-weight: 550;
     line-height: 2;
-  }
 
-  h3::after {
-    content: "\002B";
-    font-size: 24px;
-    font-weight: bold;
-    color: $brown;
+    .fa-plus,
+    .fa-minus{
+      font-size: 24px;
+      font-weight: bold;
+      color: $brown;
+      cursor: pointer;
+    }
+
+    .fa-minus{
+      line-height: 2;
+    }
   }
 
   h3:hover {
@@ -107,10 +125,10 @@ const arr_qa = ref([
 
 .contact_middle_qa_item {
   margin-bottom: 20px;
-}
 
-.contact_middle_a1 {
-  // display: none;
+  .active {
+    background-color: #83af5fb9;
+  }
 }
 
 //------------------ RWD ------------------//

@@ -39,13 +39,17 @@
     button{
         width: 100%;
         height: $h;
-        background-color: $orange ;
+        background-color: #dedddd ;
         border-radius: 5px;
         border: 0;
         font-size: 20px; 
-        color: #fff;
+        color: $brown;
         position: relative;
         cursor: pointer ;
+        &:hover {
+            background-color: #b3b3b3;
+            color: white;
+        }
     }
     ul{
         display: block;
@@ -55,9 +59,13 @@
             width: $liW;
             height: $liH;
             text-align: center;
-            background-color: $orange ;
-            color: #fff;
-            display: none;
+            background-color: white ;
+            color: $brown;
+            display: block;
+            &:hover a{
+                background-color: #b3b3b3;
+                color: white;
+            }
         }
     }
 }

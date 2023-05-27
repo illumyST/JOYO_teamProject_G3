@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <Header></Header>
-    <RouterView />
-  </div>
+    <MsHeader></MsHeader>
+    <slot></slot>
 </template>
 
 <script setup>
-import Header from "@/components/-Global/MsHeader.vue";
+import MsHeader from '../components/-Global/MsHeader.vue';
 </script>
 
 <style lang="scss" scoped></style>

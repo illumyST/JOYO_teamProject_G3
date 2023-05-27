@@ -1,12 +1,17 @@
 <template>
     <Default>
-        <RouterView/>
+        <div v-if="isLogIn">
+            <RouterView />
+        </div>
     </Default>
 </template>
 
 <script setup>
-import Default from '@/layouts/Default.vue';
-import { RouterView } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+
+const isLogIn = ref(true);
+// console.log(isLogIn.value)
 </script>
 
 <style lang="scss" scoped>

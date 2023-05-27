@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
+
+// 不要用 createWebHistory ，用 createWebHashHistory
 
 const routes = [
 
@@ -155,7 +157,7 @@ const routes = [
             {
                 path: 'forgetPassword',
                 name: 'forgetPassword',
-                // component: () => import('@/pages/forgetPassword.vue'),
+                component: () => import('@/pages/forgetPassword.vue'),
             },
         ]
     },
@@ -281,7 +283,7 @@ const scrollBehavior = () => {
 }
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
     scrollBehavior
 });

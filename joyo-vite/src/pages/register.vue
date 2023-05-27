@@ -24,36 +24,6 @@
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-=======
-@mixin btn($bg , $lh, $w, $hover){
-    background: $bg;
-    line-height: $lh;
-    width: $w;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: $shadow;
-    transition: .3s;
-    cursor: pointer ;
-    color: #fff;
-    &:hover{
-        background: $hover;
-    }
-};
-@mixin input-text($lh, $w){
-    padding-left: 20px;
-    line-height: $lh;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: $p;
-    width: $w;
-    box-sizing: border-box;
-    outline: none;
-    letter-spacing: 1px;
-}
->>>>>>> will
 .register_box{
   width: 794px;
   margin: 0 auto;
@@ -86,7 +56,6 @@
       }
     }
   }
-<<<<<<< HEAD
   @mixin input-text($lh, $w){
     padding-left: 20px;
     line-height: $lh;
@@ -115,8 +84,6 @@
     }
 };
 
-=======
->>>>>>> will
   .register_container{
     display: flex;
     flex-direction: column;
@@ -128,19 +95,11 @@
       margin-bottom: 7px;
     }
     input{
-<<<<<<< HEAD
       // @include input_text(50px, 590px);
       margin-bottom: 50px;
     }
     a{
       // @include btn($green, 59px, 590px, $orange);
-=======
-      @include input_text(50px, 590px);
-      margin-bottom: 50px;
-    }
-    a{
-      @include btn($green, 59px, 590px, $orange);
->>>>>>> will
       margin-top: 20px;
       font-size: 24px;
       letter-spacing: 1px;
@@ -178,11 +137,4 @@
   }
 }
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> will
 </style>

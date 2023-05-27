@@ -21,8 +21,8 @@
         session_start();
         $_SESSION['isLogIn'] = true;
         $_SESSION['account'] = $account;
-        echo 1;
+        echo true;
     }else{
-        echo 0;
+        echo false;
     }
 ?>
