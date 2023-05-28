@@ -53,6 +53,7 @@ const fetchData=()=>{
             if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
         } else {
+
             pageInfor.value.fliterTg = pageInfor.value.tg;
         }        
             }

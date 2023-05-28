@@ -22,7 +22,7 @@
         <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
       </div>
       <!-- <AddCartBtn></AddCartBtn> -->
-      <button class="btn prouct-item-card-icon" v-on:click="addCart">
+        <button class="btn prouct-item-card-icon" v-on:click="(e)=>addCart(e,card)" >
          <i class="fa-solid fa-cart-shopping custom-icon"></i>
        </button>
     </div>
@@ -36,8 +36,14 @@
 
 <script setup>
 
-import { defineProps,  ref, watch,computed} from 'vue';
+import { defineProps,  onMounted,  ref, watch} from 'vue';
 import axios from 'axios';
+const cartItem=ref({
+    PRODUCT_ID:"",
+    AMOUNT:1,
+    MEMBER_ID:"-1",
+});
+const cartList=ref([]);
 const props = defineProps({
         currentCategory: {
         type:  Object,
@@ -47,32 +53,64 @@ const props = defineProps({
         type: Array,
         required: true,    
         }
-
-        
-        
     });
-
-    // console.log(props.pageInfor,'sss');
-    // const 0=0;
-//     const pageInforCopy = ref(() => [...props.pageInfor]);
-//     watch(() => props.pageInfor, (newValue) => {
-//         if (newValue && newValue.length > 0) {
-//     pageInforCopy.value = [...newValue];
-//   }
-//     });
-</script>
-<script>
-export default {
-
-    methods:{
-       
-      addCart(e){
-        e.preventDefault();
-      }
-    },
+const loginState=()=>{
+    let state=sessionStorage.getItem('login');
+    //如果為登入情況下，取回會員編號並設定變數MEMBER_ID
+    cartItem.value.MEMBER_ID=state;
     
-}
+    console.log(cartItem.value.MEMBER_ID);
+};
+const setLogin=(MEMBER_ID)=>{
+    sessionStorage.setItem('login', MEMBER_ID);
+    cartItem.value.MEMBER_ID=MEMBER_ID;
+    console.log(cartItem.value.MEMBER_ID);
+};
+const addCart=(e,card)=>{
+       e.preventDefault();
+        cartItem.value.PRODUCT_ID=card.PRODUCT_ID;
+        //如果不是會員登入的情況下，取得購物車的暫存紀錄
+        //沒有登入會員的話MEMBER_ID預設為-1
+        if(cartItem.value.MEMBER_ID ==="-1"){
+            cartList.value=JSON.parse(localStorage.getItem("cart")) || [];
+            if(cartList.value.length===0){
+                cartList.value.unshift(cartItem.value);
+                localStorage.setItem("cart",JSON.stringify(cartList.value));
+            }else {
+                let found=false;
+                for(let i=0;i<cartList.value.length;i++){
+                    if( cartList.value[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
+                        cartList.value[i].AMOUNT=cartList.value[i].AMOUNT+1;
+                        console.log(cartList.value[i].AMOUNT);
+                        found =!found;
+                        break;
+                    } 
+                };
+                if(!found){
+                    cartList.value.unshift(cartItem.value);
+                }
+            }
+        localStorage.setItem("cart",JSON.stringify(cartList.value));
+        }else {
+            axios.post('/api/product/Insert.php', cartItem)
+                .then(response => {
+            // 处理成功响应
+                console.log(response.data);
+            })
+            .catch(error => {
+            // 处理错误
+            console.error(error);
+        });
+        }
+        
+      
+    };
+onMounted(() => {
+    sessionStorage.removeItem('login');
+    setLogin("10");
+});
 </script>
+
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {
@@ -430,7 +468,11 @@ export default {
 }
 
 .prouct-item-card-infor {
-
+    h2{
+        white-space: nowrap; /* 不換行 */
+        overflow: hidden; /* 超出部分隱藏 */
+        text-overflow: ellipsis; /* 使用省略號表示被隱藏的文字 */
+    }
     h2,
     h3 {
         color: #fff;

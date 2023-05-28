@@ -29,7 +29,7 @@
     });
     const index=0;
     //測欄更新傳回父層
-    const emits = defineEmits("updateCatergory","updatePage");
+    const emits = defineEmits("updateCatergory");
     const product_filter_get_cate=(e)=>{
         e.preventDefault();
         emits('updateCatergory', e.target.innerHTML);
