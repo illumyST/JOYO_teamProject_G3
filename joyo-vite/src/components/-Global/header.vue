@@ -6,16 +6,15 @@
             </RouterLink>
             <div class="header_nav_right_inputBox">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" 
-                        @keyup="searchItem">
+                <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem">
                 <ul id="selectbox" v-if="searchBoxOpen">
-                    <li v-for="(item,index) in selectModel"><a :href="item.href">{{ item.name }}</a></li>
+                    <li v-for="(item, index) in selectModel"><a :href="item.href">{{ item.name }}</a></li>
                 </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
                 <li :class="{ '-on': sub_nav_open['product'].value === true }">
                     <RouterLink v-if="!isPhone" to="/product" class="link">桌遊商城</RouterLink>
-                    <div v-else class="link -mobile" @click="toggleSub('product')" >
+                    <div v-else class="link -mobile" @click="toggleSub('product')">
                         桌遊商城
                     </div>
                     <ol>
@@ -58,10 +57,10 @@
                 </li>
                 <li :class="{ '-on': sub_nav_open['forum'].value === true }">
                     <RouterLink to="/forum" class="link" v-if="!isPhone">討論區</RouterLink>
-                    <div v-else class="link -mobile" @click="toggleSub('forum')" >
+                    <div v-else class="link -mobile" @click="toggleSub('forum')">
                         討論區
                     </div>
-                    <ol >
+                    <ol>
                         <li>
                             <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }">
                                 心得分享
@@ -109,7 +108,7 @@
                         <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
                     </div>
-                    <div v-if="isLogIn" class="logOut" @click="logOut()">登出</div>
+                    <slot></slot>
                 </li>
             </ul>
             <div class="header_nav_rwdBtn" @click.prevent="toggleNav()" :class="{ '-on': nav_open === true }">
@@ -122,16 +121,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUpdated, ref,defineEmits } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { inject } from 'vue';
 const route = useRoute();
 
-const isLogIn = ref(0);
+const showLogOut = ref(false);
+
 const nav_open = ref(false);
+
 const sub_nav_open = {
-  product: ref(false),
-  forum: ref(false)
+    product: ref(false),
+    forum: ref(false)
 };
 
 const isPhone = ref(false);
@@ -145,9 +147,20 @@ const checkIsPhone = () => {
     };
 };
 
+
 onMounted(() => {
     checkIsPhone();
-})
+    // 決定登出按鈕的出現
+
+    // axios.get('/api/logIn&Out/frontSessionCheck.php')
+    //     .then(res => {
+    //         showLogOut.value = res.data;
+    //         console.log('showLogOut.value', showLogOut.value);
+
+    //     });
+});
+
+
 
 // 手機版 bar 點擊後 toggle nav 選單 
 const toggleNav = () => {
@@ -160,72 +173,44 @@ const toggleSub = (sub) => {
     // console.log(sub,sub_nav_open[sub].value)
 };
 
-// if (window.innerWidth <= 976) {
-//     document.getElementsByClassName('productLink')[0]
-// }
 
-// onMounted(() => {
-//     axios.get('/api/logIn&Out/sessionCheck.php')
-//     .then(res => {
-//       const data = res.data;
-//       isLogIn.value = data;
-//       // console.log('data', res.data)
-//       // console.log('isLogIn.value', isLogIn.value)
 
-//       // 得放在 axios 裡面，因為會有時間落差？
-//       if (isLogIn.value == 0 && route.path != '/signIn') {
-
-//         // TODO 會可以看到其他頁面
-//         location.href = '/signIn';
-//         alert('您尚未登入！');
-//       };
-//     });
-// });
-
-// const logOut = () => {
-//     console.log(1)
-//     axios.post('/api/logIn&Out/logOut.php')
-//         .then(res => {
-//             alert('登出成功！');
-//             location.href = '/ms';
-//         });
-// }
+// ------------------------------- pei ------------------------------- //
 
 const data = ref({
     select: ''
 });
-const selectModel= ref([]);
+const selectModel = ref([]);
 
 const searchBoxOpen = ref(false);
-const searchItem=()=>{
+const searchItem = () => {
     axios.post('/api/select/select.php', data)
-  .then(response => {
-//     // 處理回應資料
+        .then(response => {
+            //     // 處理回應資料
 
-    const responseData = response.data;
-    selectModel.value = [] ;
-    // console.log(responseData);
-//     // if(selectModel.value != []){
-        for(let n =0 ; n<responseData.length ; n++){
-        // console.log(responseData[n]);
-        if(responseData[n][1] != undefined){
-            searchBoxOpen.value = true;
-            let a =responseData[n][1]
-            selectModel.value.push({name:a,href:`http://localhost:5173/productInfo/ID:${responseData[n][0]}`});
-        }else{
-            searchBoxOpen.value = false;
-        }
-    // }
-    }
-  })
-  .catch(error => {
-    // 處理錯誤
-    console.error(error);
-  });
+            const responseData = response.data;
+            selectModel.value = [];
+            // console.log(responseData);
+            //     // if(selectModel.value != []){
+            for (let n = 0; n < responseData.length; n++) {
+                // console.log(responseData[n]);
+                if (responseData[n][1] != undefined) {
+                    searchBoxOpen.value = true;
+                    let a = responseData[n][1]
+                    selectModel.value.push({ name: a, href: `http://localhost:5173/productInfo/ID:${responseData[n][0]}` });
+                } else {
+                    searchBoxOpen.value = false;
+                }
+                // }
+            }
+        })
+        .catch(error => {
+            // 處理錯誤
+            console.error(error);
+        });
 }
 
-
-
+// ------------------------------- pei ------------------------------- //
 
 </script>
 
@@ -384,43 +369,45 @@ header {
     opacity: 0;
 }
 
-.memberLi:hover .logOut {
-    display: block;
-}
+// 改寫在 default 中
 
-.logOut {
-    opacity: .7;
-    display: none;
-    border: 1px solid $orange;
-    position: absolute;
-    color: $brown;
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    @include center();
-    top: 110%;
-    background-color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+// .memberLi:hover .logOut {
+//     display: block;
+// }
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translate(-50%);
-        width: 0;
-        height: 0;
-        border: 8px solid;
-        border-color: transparent transparent #fff transparent;
-    }
+// .logOut {
+//     opacity: .7;
+//     display: none;
+//     border: 1px solid $orange;
+//     position: absolute;
+//     color: $brown;
+//     width: 50px;
+//     height: 30px;
+//     line-height: 30px;
+//     text-align: center;
+//     @include center();
+//     top: 110%;
+//     background-color: #fff;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     font-size: 14px;
 
-    &:hover {
-        color: $orange;
-    }
-}
+//     &::before {
+//         content: '';
+//         position: absolute;
+//         top: -15px;
+//         left: 50%;
+//         transform: translate(-50%);
+//         width: 0;
+//         height: 0;
+//         border: 8px solid;
+//         border-color: transparent transparent #fff transparent;
+//     }
+
+//     &:hover {
+//         color: $orange;
+//     }
+// }
 
 // ---------------------- RWD ---------------------- //
 
@@ -510,10 +497,11 @@ header {
         transition: .2s;
     }
 
-    .header_nav_right>li.-on:before{
+    .header_nav_right>li.-on:before {
         transform: rotate(180deg);
-        top:30px;
+        top: 30px;
     }
+
     .header_nav_right>li:nth-child(2):before {
         right: 144px;
     }
@@ -588,22 +576,24 @@ header {
     }
 }
 
-#selectbox{
-   
+#selectbox {
+
     width: 45%;
     max-height: 300px;
     overflow: auto;
     position: absolute;
     right: 0;
     background-color: $bg;
-    li{
+
+    li {
         // outline: 1px solid red;
         padding: 10px;
         text-align: center;
         border-bottom: 1px solid white;
         background-color: $green;
         margin-bottom: 5px;
-        a{
+
+        a {
             color: white;
             text-decoration: none;
         }
