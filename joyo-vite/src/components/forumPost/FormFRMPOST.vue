@@ -1,7 +1,7 @@
 <template>
   <form action="post" class="forumPost_form" id="forumPost_form">
     <div class="forumPost_form_title">
-      <select class="forumPost_form_category" id="forumPost_form_category" v-model="SelectCgy">
+      <select class="forumPost_form_category" id="forumPost_form_category" name="forumPost_form_category" v-model="SelectCgy">
         <option v-for="(item, index) in FormCgy" :key="index" :value="item.Value">{{ item.Name }}</option>
       </select>
 
@@ -9,20 +9,20 @@
         type="text"
         class="forumPost_form_title_text"
         id="forumPost_form_title_text"
+        name="forumPost_form_title_text"
         placeholder="請輸入桌遊名稱"
         v-show="shouldShowTitleText"
+        v-model.trim="title"
       />
 
-      <select class="forumPost_form_score" id="forumPost_form_score" v-model="SelectScore" v-if="shouldShowScoreSelect">
+      <select class="forumPost_form_score" id="forumPost_form_score" name="forumPost_form_score" v-model="SelectScore" v-if="shouldShowScoreSelect">
         <option :value="FormScore.Value">{{FormScore.Name}}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 
-      <select class="forumPost_form_area" id="forumPost_form_area" v-if="shouldShowAreaSelect">
-        <option value="">揪團地點</option>
-        <option value="">台北市</option>
-        <option value="">基隆市</option>
-        <option value="">新北市</option>
+      <select class="forumPost_form_area" id="forumPost_form_area" name="forumPost_form_area" v-if="shouldShowAreaSelect" data-role="Area" v-model="SelectedArea">
+        <option value="-1">揪團地點</option>
+        <option :value="index" v-for="(item,index) in Add_Area.Area" :key="index">{{ item }}</option>
       </select>
     </div>
 
@@ -32,16 +32,20 @@
         type="text"
         class="forumPost_form_middle_input"
         id="forumPost_form_middle_input"
+        name="forumPost_form_middle_input"
         placeholder="下個吸睛的標題吧..."
+        v-model.trim="postTitle"
       />
 
       <label for="" class="forumPost_form_middle_text">內文</label>
       <textarea
         class="forumPost_form_middle_textarea"
         id="forumPost_form_middle_textarea"
+        name="forumPost_form_middle_textarea"
+        v-model.trim="postContent"
       ></textarea>
 
-      <label for="" class="forumPost_form_middle_bottom"
+      <label for="" class="forumPost_form_middle_bottom" name="forumPost_form_middle_bottom"
         >為你的文章客製標籤</label
       >
       <input
@@ -49,6 +53,7 @@
         class="forumPost_form_middle_bottom_text"
         id="forumPost_form_middle_bottom_text"
         placeholder="為你的文章客製標籤"
+        v-model.trim="postTags"
       />
 
       <input
@@ -56,6 +61,7 @@
         class="forumPost_form_button"
         id="forumPost_form_button"
         value="發文"
+        @click="submitPost"
       />
     </div>
   </form>
@@ -63,7 +69,30 @@
   
 <script setup>
 import{ ref, computed } from "vue";
-const SelectCgy = ref("Cgy1")
+import axios from 'axios';
+
+// 選擇文章類型
+const SelectCgy = ref("Cgy1");
+const formCategories = ref([]);
+const ShowTitleText = ref(true);
+const title = ref('');
+
+// 選擇桌遊評分
+const SelectScore = ref("0");
+const formScore = ref({});
+const ShowScoreSelect = ref(true);
+
+// 選擇揪團地點
+const SelectedArea = ref('-1');
+const ShowAreaSelect = ref(true);
+const areas = ref([]);
+
+// 標題、內文和客製標籤
+const postTitle = ref('');
+const postContent = ref('');
+const postTags = ref('');
+
+// 文章類別選單
 const FormCgy = ref([
     {
         Name:"文章類型",
@@ -84,11 +113,105 @@ const FormCgy = ref([
     },
 ]);
 
-const SelectScore = ref("0")
+// 桌遊評分選單
 const FormScore = ref({
     Name:"桌遊評分",
     Value:"0"
 });
+
+// 揪團地點
+const Add_Area = ref({
+    Area:[]
+});
+
+const fetchData=()=>{
+    // 揪團地點串JSON檔
+    return axios.get('/src/assets/json/address.json')
+            .then(
+                res =>{
+                    Add_Area.value.Area=Object.keys(res.data);
+                })
+            .catch(err => {
+                console.error(err);
+            });
+};
+
+    // axios
+    //     .get('your_json_file_path.json') // 替换为你的 JSON 文件路径
+    //     .then(res => {
+    //       formCategories.value = res.data.FormCgy;
+    //       formScore.value = res.data.FormScore;
+    //       areas.value = res.data.Add_Area.Area;
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching data:', error);
+    //     });
+
+    const submitPost = () => {
+      if (SelectCgy.value == "Cgy1") {
+        alert('請選擇文章類別');
+        return;
+      }
+
+      if(SelectCgy.value !== "Cgy5"){
+        if (!ShowTitleText.value && !title.value.trim()) {
+            alert('請輸入桌遊名稱');
+            return;
+        }
+      }
+
+      if(SelectCgy.value !== "Cgy5"){
+        if (!ShowScoreSelect.value && SelectedScore.value == "0" ) {
+            alert('請選擇評分');
+            return;
+        }
+      }   
+
+      if(SelectCgy.value == "Cgy5"){
+        if (ShowAreaSelect.value && SelectedArea.value == "-1") {
+            alert('請選擇揪團地點');
+            return;
+        }
+      }
+
+      if (!postTitle.value.trim()) {
+        alert('請輸入文章標題');
+        return;
+      }
+
+      if (!postContent.value.trim()) {
+        alert('請輸入文章内容');
+        return;
+      }
+
+      const postData = {
+        category: SelectCgy.value,
+        title: title.value,
+        score: SelectScore.value,
+        area: SelectedArea.value,
+        postTitle: postTitle.value,
+        postContent: postContent.value,
+        postTags: postTags.value,
+      };
+
+      axios
+        .post('../../../PDO/forumPost/forumPost_ADD.php', postData.value) // PHP 文件路径
+        .then(res => {
+          console.log(postData);
+          alert('發文成功');
+        })
+        .catch(error => {
+          console.error('Error submitting post:', error);
+          alert('發文失敗');
+        });
+    };
+
+
+    onMounted(()=>{
+        fetchData();
+    });
+
+
 
 const shouldShowTitleText = computed(() => {
   return SelectCgy.value !== 'Cgy5';
@@ -101,6 +224,12 @@ const shouldShowScoreSelect = computed(() => {
 const shouldShowAreaSelect = computed(() => {
   return SelectCgy.value === 'Cgy5';
 });
+
+
+
+
+
+
 </script>
   
 <style lang="scss" scoped>
@@ -246,7 +375,7 @@ const shouldShowAreaSelect = computed(() => {
     }
 }
 
-input[type=submit]{
+input[type=button]{
     font-size: $h2;
     color: white;
 }
