@@ -1,32 +1,63 @@
-<template>
+<template v-if="page">
     <div class="product-page">
-            <button><i class="fa-sharp fa-solid fa-angle-left"></i></button>
+            <button :class="{disappear:page.appearPage[page.appearPage.length-1]<=10}" @click="lastPage"><i class="fa-sharp fa-solid fa-angle-left"></i></button>
             <ul>
-                <li><a href="" :class="{active:currentCategory[index].page==1}">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li><a href="">5</a></li>
-                <li><a href="">6</a></li>
+                <li v-for="(page,index) in page.appearPage"><a href="" :class="{active:currentCategory.page ==page} " @click="toPage">{{page}}</a></li>
             </ul>
-            <button><i class="fa-sharp fa-solid fa-angle-right"></i></button>
-        </div>
+            <button :class="{disappear:(page.total_page.length-page.appearPage[page.appearPage.length-1])<=0}" @click="nextPage"><i class="fa-sharp fa-solid fa-angle-right"></i></button>
+    </div>
+    <div class="product-page-select">
+        <ul>
+            <li>
+                <p>第</p>
+            </li>
+            <li>
+                <select class=""  id="" @change="choosePage">
+                <option :value="pagei+1" v-for="(p,pagei) in page.total_page">{{pagei+1}}</option>
+                </select>
+                
+            </li>
+            <li>頁</li>
+            <li>/</li>
+            <li>
+               共<span>{{page.total_page.length}}</span>頁
+            </li>
+        </ul>
+        
+        
+    </div>
 </template>
 
 <script setup>
-import { defineProps,  ref, watch,computed} from 'vue';
+import { defineProps,  ref, watch,computed,onMounted} from 'vue';
 const props = defineProps({
         currentCategory: {
-        type: Array,
+        type: Object,
         required: true,
         },
-        pageInfor:{
-        type: Array,
-        required: true,    
-        }
+        page:{
+        type: Object,
+        required: true,
+        },
         
     });
-const index=0;
+const emits = defineEmits(["updatePage",'toPage','choosePage']);
+const nextPage=()=>{
+     emits('updatePage', "+");
+};
+const lastPage=()=>{
+    emits('updatePage', "-");
+}
+const toPage=(e)=>{
+   e.preventDefault();
+   emits('toPage', e.target.innerText);
+}
+const choosePage=(e)=>{
+    let val=e.target.value;
+    emits('choosePage',val);
+
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -85,7 +116,55 @@ const index=0;
         margin-left: 3px;
     }
 }
-
+.product-page-select{
+    color: $brown;
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+    font-size: 12px;
+    align-items: center;
+    ul{
+       display: flex; 
+       justify-content: center;
+       li{
+        margin-right: 2px;
+        display: flex;
+        span{
+            display: block;
+            width: 30px;
+        }
+       }
+       select{
+        width: 24px;
+        font-size: 12px;
+        text-align: center;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        option{
+            border:0.8px solid rgb(203, 203, 203);
+        }
+        
+       }
+       select:hover{
+        background-color: $orange;
+       }
+       select::-webkit-scrollbar {
+        width: 10px;
+        background-color: #fff;
+        }
+        select::-webkit-scrollbar-thumb {
+        background-color:$green;
+        border-radius: 2px;
+        height: 10px;
+  }
+    }
+   
+    
+}
 .breadcrumb-item a::after {
     content: ">";
     margin-left: 14px;
@@ -149,13 +228,13 @@ const index=0;
 }
 
 .product-filter-btn {
-    width: 100%;
-    height: 53px;
+    width: 70px;
+    height: 35px;
     background-color: $orange ;
     margin-right: 10px;
     border-radius: 5px;
     border: 0;
-    font-size: 20px;
+    font-size: 16px;
     color: #fff;
     position: relative;
     cursor: pointer;
@@ -178,7 +257,7 @@ const index=0;
     display: block;
 }
 
-.product-filter li a:hover {
+.product-filter ul li a:hover {
     background-color: $green;
     color: #fff;
 }
@@ -293,6 +372,8 @@ const index=0;
 
 }
 
+    
+
 .prouct-item-card-tag-player {
     width: 64px;
 }
@@ -384,12 +465,16 @@ const index=0;
     display: flex;
     margin: 20px auto;
     justify-content: space-evenly;
+    .disappear{
+        display: none;
+    }
 }
 
 .product-page button {
     border: 0;
     background-color: #ffffff00;
     cursor: pointer;
+    
 }
 
 .product-page ul {
@@ -409,10 +494,55 @@ const index=0;
 .product-page ul li a:hover {
     color: $green;
 }
+.product-filter {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 60px;
+    position:relative;
+    .product-filter-div {
+        box-sizing: border-box;
+        display: flex;
+        text-align: center;
+        padding-right: 13px;
+        justify-content: flex-end;
 
-.product-filter-cater {
-    display: none;
+        div {
+            margin-left: 20px;
+            width: 170px;
+
+        }
+    }
+
+    ul {
+        display: none;
+        position: absolute;
+        z-index: 1;
+
+        transition: .5s
+    }
+
+    li {
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        background-color: $orange ;
+        color: #fff;
+
+        a {
+            height: 40px;
+            color: #fff;
+            line-height: 2.5;
+        }
+    }
+
+    .active {
+        display: block;
+    }
 }
+
+
 
 // RWD
 @media screen and (max-width: 414px) {
@@ -450,8 +580,7 @@ const index=0;
         justify-content: center;
         margin-top: 50px;
         font-size: 14px;
-
-        .product-filter-cater-ul {
+        ul {
             position: absolute;
             top: 36px;
             width: 370px;

@@ -66,9 +66,6 @@ const toggleAnswer = (index) => {
   previousIndex = index; // 更新前一個被點擊的索引值
 };
 
-// const toggleAnswer = (index) => {
-//   arr_qa.value[index].is_active = !arr_qa.value[index].is_active;
-// };
 </script>
 
 <style lang="scss" scoped>
@@ -106,6 +103,10 @@ const toggleAnswer = (index) => {
       font-weight: bold;
       color: $brown;
       cursor: pointer;
+    }
+
+    .fa-minus{
+      line-height: 2;
     }
   }
 

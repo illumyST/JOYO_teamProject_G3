@@ -34,7 +34,8 @@
   </div>
   </template>
   <script setup>
-  import { ref,defineEmits} from "vue";
+  import axios from "axios";
+import { ref,defineEmits} from "vue";
   const emits = defineEmits(['close','addAdmins']);
 
 const addform = ref({
@@ -49,16 +50,17 @@ const addAdmins = ()=>{
     if(n != ""){
       a.value++
       if(a.value ===  Object.values(addform.value).length){
-        // console.log("123");
+        // console.log("123"); 
         emits("addAdmins",addform.value);
         close();
-      }
-      
+      } 
     }
-
   }
-  // 
-  // console.log(value.value)
+  axios.post('/api/msBack_Account/msBack_AccountADD.php',addform.value)
+        .then(data=>{
+          console.log(data.data);
+        })
+        .catch(error=>{console.log(error)});
 }
 
 

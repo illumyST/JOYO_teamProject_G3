@@ -72,8 +72,8 @@
       placeholder="留言"
     ></textarea>
     <div class="forumInfo_right_msg_icon">
-      <i class="fa-solid fa-paper-plane"></i>
-      <i class="fa-regular fa-heart"></i>
+      <botton class="fa-paper-plane_icon"><i class="fa-solid fa-paper-plane"></i></botton>
+      <botton class="fa-heart_icon"><i class="fa-regular fa-heart"></i></botton>
     </div>
   </div>
 </template>
@@ -330,14 +330,20 @@ const ForumInfoMsgs = ref([
   background-color: #f3dad8;
   text-align: center;
 
+  .fa-paper-plane_icon{
+    display: inline-block;
+    height: 100%;
+  }
   .fa-paper-plane {
-    margin-right: 15px;
     font-size: $h2;
     color: white;
     font-weight: 100;
     margin: 10px;
   }
-
+  .fa-heart_icon{
+    display: inline-block;
+    height: 100%;
+  }
   .fa-heart {
     font-size: $h2;
     color: white;

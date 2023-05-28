@@ -1,12 +1,20 @@
 <template>
-    <button @click.prevent="addToCart()">
+    <button @click.prevent="addToCart(list)">
         <i class="fa-solid fa-cart-shopping custom-icon"></i>
     </button>
 </template>
 
 <script setup>
-const addToCart = function () {
-    console.log(1)
+import { defineProps,  onMounted,  ref, watch} from 'vue';
+import axios from 'axios';
+const props = defineProps({
+    list: {
+        type:  Object,
+        required: true,
+        }
+    });
+const addToCart = (list) => {
+    console.log(list);
 };
 
 </script>
