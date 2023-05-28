@@ -2,15 +2,12 @@
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
         <PdcTopPDC :currentCategory="currentCategory"></PdcTopPDC>
         <div class="product-main">
-            <PdcMnAsdPdc :currentCategory="currentCategory" @update-Catergory="updateCatergory">
+            <PdcMnAsdPdc :currentCategory="currentCategory" :page="pageInfor" @update-Catergory="updateCatergory"  >
                 
             </PdcMnAsdPdc>
-
-            <PdcMnItPdc :currentCategory="currentCategory" :pageInfor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
-            <PdcMnItPdc :page-infor="pageInfor[0].total_page" :key="currentCategory[0].cate"></PdcMnItPdc>
-
+            <PdcMnItPdc :currentCategory="currentCategory" :pageInforTotalPage="pageInfor.total_page" :key="currentCategory.cate"></PdcMnItPdc>
         </div>
-        <PdcPgPdc :currentCategory="currentCategory"></PdcPgPdc>
+        <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
     </div>
     <div :class="$route.params.categoryId">
         {{ $route.params.categoryId }}
@@ -20,66 +17,185 @@
 <script setup>
 
 import {useRoute} from 'vue-router'
-import {onMounted, ref,defineProps } from 'vue';
+import {onMounted, ref,defineProps,onBeforeMount } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
-const currentCategory=ref([{
+//定義傳給子頁的變數
+const currentCategory=ref({
+    //篩選條件使用的商品種類，初始定義為全部商品
     cate:"全部商品",
+    //表示當前頁面
     page:1
     },
-]);
-const pageInfor=ref([{
+);
+//定義傳給子頁的變數
+const pageInfor=ref({
+    //頁面第一次載入存放資料庫的資料
     tg:[],
+    //表示一頁呈現幾筆資料
     page:12,
-    total_page:[],
+    //依照篩選條件將資料庫資料過濾後存放的變數
     fliterTg:[],
-}]);
+    //依照呈現資料筆數來轉換成多維陣列
+    total_page:[],
+    //頁簽要顯示的頁數
+    appearPage:[],
+});
+//利用axios取得資料庫桌遊資料
 const fetchData=()=>{
-    return axios.get('/API/boardGame.json')
+    return axios.get('/api/product/test.php')
         .then(res => {
-            let i=0;
-            pageInfor.value[i].tg = res.data;
-            // console.log(currentCategory.value[i].cate);
-            if(currentCategory.value[i].cate !="全部商品"){
-                pageInfor.value[i].fliterTg=pageInfor.value[i].tg.filter((ele)=>ele.CATEGORY == currentCategory.value[i].cate); 
-            }else{
-                pageInfor.value[i].fliterTg=pageInfor.value[i].tg;
+            //將資料庫回傳的資料存在tg變數中
+            pageInfor.value.tg = res.data;
+            // console.log(currentCategory.value[i].cate);  
+            //判斷當前商品種類，並且存在 fliterTg變數中
+            if (currentCategory.value.cate !== "全部商品") {
+            pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
+        } else {
 
-            }
+            pageInfor.value.fliterTg = pageInfor.value.tg;
+        }        
             }
             )
         .catch(err => {
-            // console.error(err);
+            console.error(err);
         });
 };
+//當側邊選單切換商品種類所用的功能，將tg資料進行過濾並存在fliterTg
+const filterData = () => {
+  return Promise.resolve().then(() => {
+    if (currentCategory.value.cate !== "全部商品") {
+      pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
+    } else {
+      pageInfor.value.fliterTg = pageInfor.value.tg;
+    }
+  });
+};
+//取得total_page內容
 const getPage=()=>{
-
-    let i=0;
-        //清空
-       
-    for(let j=0;j<pageInfor.value[i].fliterTg.length;){
-        pageInfor.value[i].total_page.push( pageInfor.value[i].fliterTg.slice(j,j+12));
-         j=j+ pageInfor.value[i].page; 
+    for(let j=0;j<pageInfor.value.fliterTg.length;){
+        pageInfor.value.total_page.push( pageInfor.value.fliterTg.slice(j,j+12));
+         j=j+ pageInfor.value.page; 
        }
     //    console.log(pageInfor.value[i].total_page);
 };
+//取得頁簽內容
+const getAppearPage=()=>{
+    //刪除原本頁簽的資料
+    pageInfor.value.appearPage.length=0;
+    if(pageInfor.value.total_page.length >=10){
+        for(let i=1;i<=10;i++){
+            pageInfor.value.appearPage.push(i);
+        }
+        
+    }else{
+        for(let i=1;i<=pageInfor.value.total_page.length;i++){
+            pageInfor.value.appearPage.push(i);
+        }
+    }
+}
 const updateCatergory=(val)=>{
-    let i=0;
-    currentCategory.value[i].cate=val;
-    fetchData().then(() => {
-         pageInfor.value[i].total_page.length=0;
+    currentCategory.value.cate=val;
+    filterData().then(() => {
+        pageInfor.value.total_page.length=0;
         getPage();
+        getAppearPage();
+        //更新遊戲分類時初始頁面都是第一頁
+        currentCategory.value.page=pageInfor.value.appearPage[0];
+        changeHeight(1);
+        scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
      });
 
-}
+};
+const updatePage=(val)=>{
+    //判斷是下10頁還是上10頁
+    if(val==="+"){
+        //判斷剩下頁數是否有大於或等於10筆，如果大於10筆將頁簽陣列每個數值+10
+       if((pageInfor.value.total_page.length-pageInfor.value.appearPage[pageInfor.value.appearPage.length-1])>=10){
+        pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+10});
+        currentCategory.value.page=pageInfor.value.appearPage[0];
+        }
+        //如果不足，則重新定義頁簽長度，移除不足10的部分
+        else{
+            pageInfor.value.appearPage.length=(pageInfor.value.total_page.length-pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]);
+            pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+10});
+            currentCategory.value.page=pageInfor.value.appearPage[0];
+        } 
+    }else if(val==="-"){
+        if(pageInfor.value.appearPage.length<10){
+            let increase=10-pageInfor.value.appearPage.length;
+            for(let i=0;i<increase;i++){
+                pageInfor.value.appearPage.push(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]+1);
+                
+            }
+            pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page-10});
+            currentCategory.value.page=pageInfor.value.appearPage[0];
+        }else{
+            pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page-10});
+            currentCategory.value.page=pageInfor.value.appearPage[0];
+        }
+    }
+    scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+    
+};
+//跳轉至其他頁面
+const toPage=(val)=>{
+    //更新當前頁面
+    currentCategory.value.page=val;
+    changeHeight(val);
+    scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+};
+
+const changeHeight=(val)=>{
+    //計算頁面整體高度
+    let aimPage=document.querySelectorAll(".prouct-item")[val-1];
+    let layer=Math.ceil(aimPage.children.length/3);
+    let h=405*layer;
+    //修改高度屬性
+    let productMain=document.querySelector(".product-main");
+    productMain.style.height=`${h+240}px`;
+};
+const choosePage=(val)=>{
+    currentCategory.value.page=val;
+    changeHeight(val);
+    scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    //修改頁簽內容
+    if(Math.floor(pageInfor.value.appearPage[0]/10)!=Math.floor(val/10)){
+        let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10);
+        pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
+        if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
+            //移除多餘的頁數
+            let remove=pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]-pageInfor.value.total_page.length;
+            for(let i=0;i<remove;i++){
+                pageInfor.value.appearPage.pop();
+            }
+        }
+
+    }
+};
+
 // 在组件挂载后执行的生命周期钩子函数中处理逻辑
-onMounted(() => {
+onBeforeMount(() => {
     // 获取路由参数 categoryId
     // id 就是要用 axios 傳給後端的資料
     const id = route.params.categoryId;
     fetchData().then(() => {
+        
         getPage();
+        getAppearPage();
      });
  
 })

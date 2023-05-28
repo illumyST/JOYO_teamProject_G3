@@ -1,8 +1,8 @@
-<template v-if="pageInfor" >
-
-<ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInfor" :key="index">
+<template v-if="pageInforTotalPage" >
+<div>
+  <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
   <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-  <router-link :to="'productInfo/' +'ID:'+card.ID" >
+  <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
     <div class="prouct-item-card-tag">
       <p class="prouct-item-card-tag-player">
       <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
@@ -22,55 +22,95 @@
         <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
       </div>
       <!-- <AddCartBtn></AddCartBtn> -->
-      <button class="btn prouct-item-card-icon" v-on:click="addCart">
+        <button class="btn prouct-item-card-icon" v-on:click="(e)=>addCart(e,card)" >
          <i class="fa-solid fa-cart-shopping custom-icon"></i>
        </button>
     </div>
   </router-link>
   </li>
-</ul>
+</ul>  
+</div>
+
 
 </template>
 
 <script setup>
 
-import { defineProps,  ref, watch,computed} from 'vue';
+import { defineProps,  onMounted,  ref, watch} from 'vue';
 import axios from 'axios';
+const cartItem=ref({
+    PRODUCT_ID:"",
+    AMOUNT:1,
+    MEMBER_ID:"-1",
+});
+const cartList=ref([]);
 const props = defineProps({
         currentCategory: {
-        type: Array,
+        type:  Object,
         required: true,
         },
-        pageInfor:{
+        pageInforTotalPage:{
         type: Array,
         required: true,    
         }
-
-        
-        
     });
-
-    // console.log(props.pageInfor,'sss');
-    // const 0=0;
-//     const pageInforCopy = ref(() => [...props.pageInfor]);
-//     watch(() => props.pageInfor, (newValue) => {
-//         if (newValue && newValue.length > 0) {
-//     pageInforCopy.value = [...newValue];
-//   }
-//     });
-</script>
-<script>
-export default {
-
-    methods:{
-       
-      addCart(e){
-        e.preventDefault();
-      }
-    },
+const loginState=()=>{
+    let state=sessionStorage.getItem('login');
+    //如果為登入情況下，取回會員編號並設定變數MEMBER_ID
+    cartItem.value.MEMBER_ID=state;
     
-}
+    console.log(cartItem.value.MEMBER_ID);
+};
+const setLogin=(MEMBER_ID)=>{
+    sessionStorage.setItem('login', MEMBER_ID);
+    cartItem.value.MEMBER_ID=MEMBER_ID;
+    console.log(cartItem.value.MEMBER_ID);
+};
+const addCart=(e,card)=>{
+       e.preventDefault();
+        cartItem.value.PRODUCT_ID=card.PRODUCT_ID;
+        //如果不是會員登入的情況下，取得購物車的暫存紀錄
+        //沒有登入會員的話MEMBER_ID預設為-1
+        if(cartItem.value.MEMBER_ID ==="-1"){
+            cartList.value=JSON.parse(localStorage.getItem("cart")) || [];
+            if(cartList.value.length===0){
+                cartList.value.unshift(cartItem.value);
+                localStorage.setItem("cart",JSON.stringify(cartList.value));
+            }else {
+                let found=false;
+                for(let i=0;i<cartList.value.length;i++){
+                    if( cartList.value[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
+                        cartList.value[i].AMOUNT=cartList.value[i].AMOUNT+1;
+                        console.log(cartList.value[i].AMOUNT);
+                        found =!found;
+                        break;
+                    } 
+                };
+                if(!found){
+                    cartList.value.unshift(cartItem.value);
+                }
+            }
+        localStorage.setItem("cart",JSON.stringify(cartList.value));
+        }else {
+            axios.post('/api/product/Insert.php', cartItem)
+                .then(response => {
+            // 处理成功响应
+                console.log(response.data);
+            })
+            .catch(error => {
+            // 处理错误
+            console.error(error);
+        });
+        }
+        
+      
+    };
+onMounted(() => {
+    sessionStorage.removeItem('login');
+    setLogin("10");
+});
 </script>
+
 <style lang="scss" scoped>
 // 沒有加這行會吃不到 globsl.scss
 .product-wrapper {
@@ -265,6 +305,7 @@ export default {
     margin-top: 30px;
     position: relative;
     height: 1866px;
+    min-height: 600px;
 }
 
 
@@ -298,6 +339,10 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
 
 }
 
@@ -354,6 +399,9 @@ export default {
     height: 233px;
     margin: 16px auto;
     text-align: center;
+    img{
+        width: 80%;
+    }
 }
 
 .prouct-item-card-infor {
@@ -420,7 +468,11 @@ export default {
 }
 
 .prouct-item-card-infor {
-
+    h2{
+        white-space: nowrap; /* 不換行 */
+        overflow: hidden; /* 超出部分隱藏 */
+        text-overflow: ellipsis; /* 使用省略號表示被隱藏的文字 */
+    }
     h2,
     h3 {
         color: #fff;
