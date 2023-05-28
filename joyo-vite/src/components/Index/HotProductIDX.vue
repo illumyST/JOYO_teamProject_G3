@@ -21,7 +21,7 @@
                         <h3>{{ product_data.name }}
                             <p>{{ product_data.price }}</p>
                         </h3>
-                        <AddCartBtn></AddCartBtn>
+                        <AddCartBtn @add-To-Cart="addToCart"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -32,7 +32,7 @@
                         <h3>{{ product_data.name }}
                             <p>{{ product_data.price }}</p>
                         </h3>
-                        <AddCartBtn></AddCartBtn>
+                        <AddCartBtn @add-To-Cart="addToCart"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -43,7 +43,7 @@
                         <h3>{{ product_data.name }}
                             <p>{{ product_data.price }}</p>
                         </h3>
-                        <AddCartBtn></AddCartBtn>
+                        <AddCartBtn @add-To-Cart="addToCart"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -54,6 +54,13 @@
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
 import { ref } from "vue"
+
+const pruduct_imfo = ref({
+   product:[
+    {
+        product_id : "",
+    }], 
+});
 
 const product_data = ref({
     product_info_url: '/productInfo/12345',

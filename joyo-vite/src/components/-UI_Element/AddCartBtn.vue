@@ -5,15 +5,29 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 
+// 要先判斷是否為登入狀態
+
+// 點擊加入購物車的icon後
 const addToCart = () => {
-    // 點擊後需要先判斷他是否為登入狀態
-    // if(){
-    //     如果是登入就跑這，把商品資訊存到該使用者的資料庫
-    // }else{
-    //     沒登入就跑這，把商品資訊存到localstorage
-    // }
+    
+    if(confirm("確定加入購物車?")){
+        let product_data = {
+            name: '璀璨寶石',
+            product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
+            price: '$116'
+        }  
+    
+        const cartItems =  [];
+        cartItems.push(product_data);  //將商品資料推到陣列裡
+
+        // 將購物車數據保存到localStorage，並且轉成JSON
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+       
 };
+
 
 </script>
 
