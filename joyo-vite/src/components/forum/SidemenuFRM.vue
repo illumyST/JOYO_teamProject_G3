@@ -48,7 +48,8 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits,  ref, computed, onMounted } from "vue";
+import axios from 'axios';
 
 const props = defineProps({
   forumCategory: {
@@ -67,6 +68,10 @@ const forumInfo_sidemenu_Category = (e) => {
     e.currentTarget.querySelector("h3").innerHTML;
   emits("updateCategory", e.currentTarget.querySelector("h3").innerHTML);
 };
+
+
+
+
 </script>
 
 <style lang="scss" scoped>

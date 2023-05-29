@@ -49,6 +49,8 @@ const doLogInCheck = function () {
     .then(res => {
       const data = res.data;
       logInSuccess.value = data;
+      
+      // TODO 改成 true
       if (logInSuccess.value == 1) {
         alert('登入成功！');
         router.push('/ms/msDataManagementSendReport');

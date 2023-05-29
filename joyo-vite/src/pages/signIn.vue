@@ -1,25 +1,73 @@
 <template>
-<div class="singin_box">
-<div class="singin_little_box">
-    <a href="#">會員登入</a>
-    <a href="#">會員註冊</a>
-</div>
-        <div class="singin_main">
-            <label for="電子郵件">電子郵件</label>
-            <input type="text" placeholder="">
-            <label for="密碼">密碼</label>
-            <input type="text" placeholder="">
-            <a href="#">登入</a>
-        </div>
+  <div class="singin_box">
+    <div class="singin_little_box">
+      <a href="#">會員登入</a>
+      <a href="#">會員註冊</a>
+    </div>
+    <div class="singin_main">
+      <label for="電子郵件">電子郵件</label>
+      <input type="text" placeholder="">
+      <label for="密碼">密碼</label>
+      <input type="text" placeholder="">
+      <div class="btn" @click="doLogInCheck()">登入</div>
+    </div>
 
-            <div class="singin_btn">
-                <a href="#" class="singin_forgetPassword_a_link">忘記密碼?</a>
-            </div>
-</div>
+    <div class="singin_btn">
+      <a href="#" class="singin_forgetPassword_a_link">忘記密碼?</a>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router';
+import axios from 'axios';
 
+const logInSuccess = ref(false);
+
+// 登入成功 測資
+const logInData = ref({
+  mail: 'illumy.design@gmail.com',
+  pwd: 'password'
+})
+
+// 登入失敗功 測資
+// const logInData = ref({
+//   mail: 'illumy@gmail.com',
+//   pwd: 'password'
+// });
+
+const route = useRoute();
+const router = useRouter();
+
+// ?. 如果屬性不存在也不會發生錯誤 
+const redirectUrl = route?.query?.redirect;
+const redirectUrlStr = ref('');
+
+if (redirectUrl) {
+  redirectUrlStr.value = redirectUrl.toString();
+};
+
+const doLogInCheck = function () {
+  axios.post('/api/logIn&Out/frontLogInCheck.php',
+    logInData.value
+  )
+    .then(res => {
+      const data = res.data;
+      logInSuccess.value = data;
+      if (logInSuccess.value) {
+        alert('登入成功！');
+        if (redirectUrl) {
+          
+          router.push({ path: redirectUrlStr.value });
+
+        } else {
+          router.push('/');
+        }
+      } else {
+        alert('登入失敗！');
+      }
+    });
+};
 
 </script>
 
@@ -27,41 +75,44 @@
 
 
 <style lang="scss" scoped>
-
-@mixin input-text($lh, $w){
-    padding-left: 20px;
-    line-height: $lh;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: $p;
-    width: $w;
-    box-sizing: border-box;
-    outline: none;
-    letter-spacing: 1px;
-  }
-input.errorInput{
-    // outline: 10px solid red;
-    background-color: rgb(255, 0, 0,.3);
+@mixin input-text($lh, $w) {
+  padding-left: 20px;
+  line-height: $lh;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: $p;
+  width: $w;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
 }
 
-@mixin btn($bg , $lh, $w, $hover){
-    background: $bg;
-    line-height: $lh;
-    width: $w;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: $shadow;
-    transition: .3s;
-    cursor: pointer ;
-    color: #fff;
-    &:hover{
-        background: $hover;
-    }
-};
+input.errorInput {
+  // outline: 10px solid red;
+  background-color: rgb(255, 0, 0, .3);
+}
 
-.singin_box{
+@mixin btn($bg , $lh, $w, $hover) {
+  background: $bg;
+  line-height: $lh;
+  width: $w;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: $shadow;
+  transition: .3s;
+  cursor: pointer;
+  color: #fff;
+
+  &:hover {
+    background: $hover;
+  }
+}
+
+;
+
+.singin_box {
   width: 794px;
   margin: 0 auto;
   margin-top: 100px;
@@ -70,10 +121,12 @@ input.errorInput{
   box-shadow: $shadow;
   background: $bg;
   position: relative;
-  .singin_little_box{
+
+  .singin_little_box {
     display: flex;
     border-radius: 5px;
-    a{
+
+    a {
       width: 50%;
       display: block;
       text-decoration: none;
@@ -84,76 +137,86 @@ input.errorInput{
       letter-spacing: 1px;
       border-radius: 5px;
       transition: .3s;
-      &:hover{
+
+      &:hover {
         background: $green;
         color: #fff;
       }
-      &:focus{
+
+      &:focus {
         background: $green;
         color: #fff;
       }
     }
   }
-  .singin_main{
+
+  .singin_main {
     display: flex;
     flex-direction: column;
     padding: 70px 100px 90px 100px;
     box-sizing: border-box;
-    label{
+
+    label {
       font-size: 20px;
       letter-spacing: 1px;
       margin-bottom: 7px;
     }
-    input{
+
+    input {
       @include input_text(50px, 590px);
       margin-bottom: 50px;
     }
-    a{
-      @include btn($green, 59px, 590px, $orange);
-      margin-top: 20px;
-      font-size: 24px;
-      letter-spacing: 1px;
+
+    .btn {
+      width: 100%;
+
+      max-width: initial;
     }
   }
+
   .singin_btn a {
-    
+
     position: absolute;
     right: 100px;
     bottom: 10px;
     // border: 10px solid yellow;
-    
+
 
   }
 }
 
 @media screen and (max-width:414px) {
-  .singin_box{
+  .singin_box {
     width: 370px;
     margin-top: 50px;
     margin-bottom: 50px;
   }
-  .singin_box .singin_link a{
+
+  .singin_box .singin_link a {
     line-height: 63px;
     font-size: 16px;
   }
-  .singin_box .singin_main{
+
+  .singin_box .singin_main {
     padding: 40px 17px 50px 17px;
   }
-  .singin_box .singin_main label{
+
+  .singin_box .singin_main label {
     font-size: 16px;
   }
-  .singin_box .singin_main input{
+
+  .singin_box .singin_main input {
     width: 335px;
     line-height: 35px;
     margin-bottom: 38px;
     padding-left: 15px;
   }
-  .singin_box .singin_main a{
+
+  .singin_box .singin_main a {
     width: 335px;
     line-height: 40px;
     font-size: 18px;
     margin-top: 10px;
+  }
 }
-}
-
 </style>

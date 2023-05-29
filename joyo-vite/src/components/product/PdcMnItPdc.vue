@@ -1,33 +1,33 @@
 <template v-if="pageInforTotalPage" >
 <div>
   <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
-  <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-  <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
-    <div class="prouct-item-card-tag">
-      <p class="prouct-item-card-tag-player">
-      <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
-      <span>-</span>
-      <span class="prouct-item-card-tag-player-min">{{card.MAX_PLAYER}}</span>
-      <span>人
-      </span>
-      </p>
-      <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
-    </div>
-    <div class="prouct-item-card-img">
-      <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
-    </div>
-    <div class="prouct-item-card-infor">
-      <div>
-        <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
-        <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
-      </div>
-      <!-- <AddCartBtn></AddCartBtn> -->
-        <button class="btn prouct-item-card-icon" v-on:click="(e)=>addCart(e,card)" >
-         <i class="fa-solid fa-cart-shopping custom-icon"></i>
-       </button>
-    </div>
-  </router-link>
-  </li>
+    <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
+    <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
+        <div class="prouct-item-card-tag">
+            <p class="prouct-item-card-tag-player">
+            <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
+            <span>-</span>
+            <span class="prouct-item-card-tag-player-min">{{card.MAX_PLAYER}}</span>
+            <span>人
+            </span>
+            </p>
+            <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
+        </div>
+        <div class="prouct-item-card-img">
+            <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
+        </div>
+        <div class="prouct-item-card-infor">
+            <div>
+                <h2 class="prouct-item-card-infor-name">{{card.NAME}}</h2>
+                <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
+            </div>
+       
+            <button class="btn prouct-item-card-icon" v-on:click="(e)=>addCart(e,card)" >
+            <i class="fa-solid fa-cart-shopping custom-icon"></i>
+        </button>
+        </div>
+    </router-link>
+    </li>
 </ul>  
 </div>
 
@@ -92,13 +92,13 @@ const addCart=(e,card)=>{
             }
         localStorage.setItem("cart",JSON.stringify(cartList.value));
         }else {
-            axios.post('/api/product/Insert.php', cartItem)
+            axios.post('/api/product/Insert.php', cartItem.value)
                 .then(response => {
-            // 处理成功响应
+            // 處理成功
                 console.log(response.data);
             })
             .catch(error => {
-            // 处理错误
+            // 處理失敗
             console.error(error);
         });
         }
@@ -107,7 +107,8 @@ const addCart=(e,card)=>{
     };
 onMounted(() => {
     sessionStorage.removeItem('login');
-    setLogin("10");
+    //輸入假資料可以切換會員編號(編號要是資料庫裡有的)
+    setLogin("3");
 });
 </script>
 

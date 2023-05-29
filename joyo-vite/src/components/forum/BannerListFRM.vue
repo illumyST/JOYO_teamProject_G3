@@ -478,7 +478,7 @@ onMounted(() => {
         align-items: center;
         background-color: $green;
         font-size: 1.1rem;
-
+        
         span {
           letter-spacing: 0.1em;
           margin: 0 10px;
@@ -541,7 +541,7 @@ onMounted(() => {
           a {
             width: 100%;
             line-height: 2.5;
-            color: white;
+            color: $brown;
             letter-spacing: 0.1em;
           }
         }
