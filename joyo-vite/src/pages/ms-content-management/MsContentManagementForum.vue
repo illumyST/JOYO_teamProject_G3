@@ -6,28 +6,10 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref, provide } from "vue";
 
-const arr = ref([
-  {
-    id: 2132,
-    user: "132132aaaa1@gmail.com",
-    day: "2023/12/3 14:30:22",
-    tbname: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
-  },
-  {
-    id: 2134,
-    user: "vrevervev@gmail.com",
-    day: "2023/11/3 14:30:22",
-    tbname: "Once Upon A Time－中文版新的桌遊推薦從前從前…",
-  },
-  {
-    id: 2135,
-    user: "rev43245erverv@gmail.com",
-    day: "2023/12/3 14:30:22",
-    tbname: "從前…Time 新的桌遊推薦從前從前…Once Upon A ",
-  },
-]);
+const arr = ref([]);
 provide("arr", arr);
 
 const userSelect = ref(["會員編號", "用戶", "發文日期", "文章標題", "動作"]);
@@ -36,6 +18,30 @@ provide("us", userSelect);
 const getseach = (n) => {
   console.log(n);
 };
+
+axios.get('/api/MsContentManagement/MsContentManagement.php')
+.then(data=>{
+  
+ var list = data.data ;
+
+ for(var n of list){
+  // console.log(n);
+  arr.value.push({
+    id: n['ARTICLE_ID'],
+    user: n['MAIL'],
+    day: n['DATE'],
+    tbname: n['TITLE'],
+  })
+
+
+
+ }
+
+
+
+
+})
+.catch(error=>{console.log(error)});
 </script>
 
 <style lang="scss" scoped>

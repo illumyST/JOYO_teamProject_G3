@@ -17,7 +17,7 @@
             <td>{{item.day}}</td>
             <td class="tb">{{item.tbname}}</td>
             <td class="msn_icon">
-            <i class="bi bi-trash3-fill" @click="del(index)"></i>
+            <i class="bi bi-trash3-fill" @click="del(index,item)"></i>
             </td>
         </tr> 
     </tbody>    
@@ -26,12 +26,16 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import {ref ,inject} from 'vue';
 let arr = inject('arr');
 
-const del = (index)=>{
+const del = (index,item)=>{
   arr.value.splice(index,1);
-  // console.log(seach.value);
+  console.log(item);
+  axios.post('/api/MsContentManagement/MsContentManagementDL.php',item)
+  .then(data=>{console.log(data.data)})
+  .catch(error=>{console.log(error)})
 }
 
 

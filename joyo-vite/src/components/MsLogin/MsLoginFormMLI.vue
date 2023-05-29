@@ -47,8 +47,10 @@ const doLogInCheck = function () {
     logInData.value
   )
     .then(res => {
+      // console.log("123");
       const data = res.data;
       logInSuccess.value = data;
+      console.log(logInSuccess.value)
       if (logInSuccess.value == 1) {
         alert('登入成功！');
         router.push('/ms/msDataManagementSendReport');

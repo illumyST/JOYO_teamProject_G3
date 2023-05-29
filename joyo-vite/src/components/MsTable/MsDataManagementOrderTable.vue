@@ -21,7 +21,7 @@
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
                          <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
                      
-                         <select name="" id="" v-if="item.upopen"  v-model="item.fron" @change="ifron(index)" >
+                         <select name="" id="" v-if="item.upopen"  v-model="item.fron" @change="ifron(index,item)" >
                             <option value="1">訂單成立</option>
                             <option value="2">已出貨</option>
                             <option value="3">運送中</option>
@@ -94,6 +94,7 @@
    </template>
      
    <script setup>
+import axios from 'axios';
 import {ref,inject,onMounted} from 'vue'
 const order = inject('order');
 // console.log(order.value);
@@ -141,71 +142,139 @@ onMounted(() => {
         nowDate.value = `${year}-${month}-${day}`;
     },1000)
 // console.log(currentDate.value)
+// console.log(order.value)
 })
 
-const ifron = (e)=>{
+
+const time = ref();
+const ifron = (e,i)=>{
     // console.log(order.value[e].fron);
     if(order.value[e].fron != 2 && order.value[e].fron != 3 && order.value[e].fron != 4){
         order.value[e].fron = 1;
-        order.value[e].two = "" ;
-        order.value[e].the = "" ;
-        order.value[e].four = "" ;
+        order.value[e].two = null ;
+        order.value[e].the = null ;
+        order.value[e].four = null ;
     }
 
-    if (order.value[e].fron == 2 && order.value[e].two == ""){
+    if (order.value[e].fron == 2 && order.value[e].two == null){
         order.value[e].two = nowDate.value ;
-    }else if (order.value[e].fron == 2 && order.value[e].the != ""){
-        order.value[e].the = "" ;
-        order.value[e].four = "" ;
+    }else if (order.value[e].fron == 2 && order.value[e].the != null){
+        order.value[e].the = null ;
+        order.value[e].four = null ;
     }
 
-    if (order.value[e].fron == 3 && order.value[e].the == ""){
-        if(order.value[e].two == ""){
+    if (order.value[e].fron == 3 && order.value[e].the == null){
+        if(order.value[e].two == null){
             order.value[e].two = nowDate.value ;  
         }
         order.value[e].the = nowDate.value ;
-    }else if (order.value[e].fron == 3 && order.value[e].four != ""){
-        order.value[e].four = "" ;
+    }else if (order.value[e].fron == 3 && order.value[e].four != null){
+        order.value[e].four = null ;
     }
 
-    if (order.value[e].fron == 4 &&  order.value[e].four == ""){
-        if(order.value[e].two == ""){
+    if (order.value[e].fron == 4 &&  order.value[e].four ==null){
+        if(order.value[e].two == null){
             order.value[e].two = nowDate.value ;  
         }
-        if(order.value[e].the == ""){
+        if(order.value[e].the == null){
             order.value[e].the = nowDate.value ;  
         }
         order.value[e].four = nowDate.value ;
     }
+
+  time.value={
+    tid:i.tid,
+    SHIPPING_TIME:i.two,
+    DELIVERY_TIME:i.the,
+    COMPELETE_TIME:i.four,
+    get STATUS(){
+        if(order.value[e].fron == 1){return "訂單成立"}
+        if(order.value[e].fron == 2){return "出貨中"}
+        if(order.value[e].fron == 3){return "運送中"}
+        if(order.value[e].fron == 4){return "已完成"}
+    }
+  };  
+// console.log(time.value);
+axios.post('/api/msDataMangOrder/msDataMangOrderUP.php',time)
+.then(data =>{console.log(data.data)})
+.catch(error=>{console.log(error)});
+
 }
 
-
+const chTIME = ref();
 const itupop= (e,i)=>{
     if(i == "two"){
-        if(order.value[e].twoop){
+        if(order.value[e].twoop && order.value[e].two != ""){
+            chTIME.value ={
+                tid:order.value[e].tid,
+                num:2,
+                time:order.value[e].two,
+            } 
+            // console.log(chTIME.value);
             order.value[e].twoop = false ;
-        }else{
+            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            .then(data=>{console.log(data.data)})
+            .catch(error=>{console.log(error)})
+        }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
+            order.value[e].theop = false ;
             order.value[e].twoop = true ;
+            order.value[e].fourop = false ;
         }
     }
-    else if(i == "the"){
-        if(order.value[e].theop){
+    else if(i == "the" ){
+        if(order.value[e].theop && order.value[e].the != ""){
+            chTIME.value ={
+                tid:order.value[e].tid,
+                num:3,
+                time:order.value[e].the,
+            } 
             order.value[e].theop = false ;
-        }else{
+            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            .then(data=>{console.log(data.data)})
+            .catch(error=>{console.log(error)})
+        }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
+            order.value[e].twoop = false ;
             order.value[e].theop = true ;
+            order.value[e].fourop = false ;
         }
     }
     else if(i == "four"){
-        if(order.value[e].fourop){
+        if(order.value[e].fourop && order.value[e].four != ""){
+            chTIME.value ={
+                tid:order.value[e].tid,
+                num:4,
+                time:order.value[e].four,
+            } 
             order.value[e].fourop = false ;
-        }else{
+            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            .then(data=>{console.log(data.data)})
+            .catch(error=>{console.log(error)})
+        }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].fourop = true ;
         }
     }
 }
 
 
-   </script>
+axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+.then(data=>{
+    for(var n of order.value){
+        console.log(n.tid);
+        for(var a of data.data){
+            // console.log(a['STATUS']);
+            if(n.tid == a[0]){
+                if(a['STATUS'] == "訂單成立"){ n.fron = 1 }
+                else if(a['STATUS'] == "出貨中"){ n.fron = 2 }
+                else if(a['STATUS'] == "運送中"){ n.fron = 3 }
+                else if(a['STATUS'] == "已完成"){ n.fron = 4 }
+            }
+        }
+    }})
+.catch(error=>{console.log(error)})
+
+
+
+</script>
      
      
 
@@ -294,7 +363,7 @@ const itupop= (e,i)=>{
             display: flex;
             align-items: center;
             img{
-                width: 100px;
+                height: 100px;
             }
             p{
                 // outline: 1px solid red;

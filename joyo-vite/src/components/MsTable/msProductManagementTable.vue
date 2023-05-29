@@ -15,7 +15,7 @@
             <td><p>{{ item.propice }}</p></td>
             <td class="msn_icon">
               <i class="bi bi-pencil-square" @click="change(index)"></i>
-              <i class="bi bi-trash3-fill" @click="del(index)"></i>
+              <i class="bi bi-trash3-fill" @click="del(index,item.pronum)"></i>
             </td>
             <msEditProductForm v-if="!item.update"
             @close="close($event,index)"></msEditProductForm>
@@ -26,14 +26,19 @@
 </template>
   
   <script setup>
-  import {ref ,inject} from 'vue';
+  import axios from 'axios';
+import {ref ,inject} from 'vue';
   let prodects = inject('prodects');
 
-  const del = (index)=>{
+  const del = (index,id)=>{
     var ny = confirm("你確定刪除資料嗎？");
     if(ny){
         prodects.value.splice(index,1);
     }
+    // console.log(id);
+    axios.post('/api/msProduct/msProductDL.php',id)
+    .then(data=>{console.log(data.data)})
+    .catch(error=>{console.log(error)})
   }
 
   const change=(e)=>{
