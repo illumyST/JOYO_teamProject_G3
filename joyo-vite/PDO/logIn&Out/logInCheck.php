@@ -1,5 +1,5 @@
 <?php
-    include('../connect/conn.php');
+    include('../conn.php');
 
     $request_body = file_get_contents('php://input');
     $data = json_decode($request_body, true);
@@ -8,7 +8,7 @@
     $pwd = $data['pwd'];
 
 
-    $sql = "select * from back_account where account= :account and PASSWORD= :pwd ";
+    $sql = "SELECT * FROM back_account WHERE account= :account and PASSWORD= :pwd ";
 
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(":account",$account);

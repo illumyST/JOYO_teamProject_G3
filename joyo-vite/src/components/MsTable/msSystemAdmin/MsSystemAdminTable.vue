@@ -36,7 +36,7 @@
       }
       }
     
-      const change=(e)=>{
+      const change=(e,i)=>{
         for(var n= 0 ; n<admins.value.length ;n++){
             admins.value[n].fixe = false ;
         }
@@ -50,10 +50,16 @@
     }
     
     const upform = (i,t)=>{
-        t['update']=true
-        t['fixe']=false
+        let ort = [admins.value[i]] ;
+        t['update']=true;
+        t['fixe']=false;
+        ort.push(t);
+        // console.log(i,t);
+        axios.post('/api/msBack_Account/msBack_AccountUP.php',ort)
+        .then(data=>{console.log(data.data)})
+        .catch(error=>{console.log(error)});
+        // console.log(admins.value);
         admins.value[i] = t
-        console.log(admins.value);
     }
       </script>
       
