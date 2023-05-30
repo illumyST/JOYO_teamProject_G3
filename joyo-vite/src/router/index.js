@@ -145,9 +145,9 @@ const routes = [
             {
                 path: 'signIn',
                 name: 'signIn',
-                component: () => import('@/pages/signIn.vue'),
+                component: () => import('@/pages/signInRegister.vue'),
                 meta: {
-                    title: '登入',
+                    title: '登入註冊',
                     requiresAuth: false,
                 },
             },
@@ -298,10 +298,14 @@ const scrollBehavior = () => {
     })
 }
 
+
+
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
     scrollBehavior
 });
+
+
 
 export default router;
