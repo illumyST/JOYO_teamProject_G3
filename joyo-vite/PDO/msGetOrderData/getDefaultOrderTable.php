@@ -10,13 +10,11 @@ $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 $pdo = new PDO($dsn, $user, $pas);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-// 預設顯示30筆資料
-$sql = 'SELECT DATE(`DATE`) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
-FROM BUY 
-WHERE STATUS = "已完成"
-GROUP BY `GroupedDate`
-ORDER BY `GroupedDate` DESC
-LIMIT 30';
+
+// 预设显示30笔资料
+$sql = 'SELECT BUY_ID, TOTAL_PRICE,DATE, MAIL FROM BUY
+LEFT JOIN MEMBER ON BUY.MEMBER_ID = MEMBER.MEMBER_ID
+ORDER BY DATE DESC';
 
 $statement = $pdo->prepare($sql);
 $statement->execute();
