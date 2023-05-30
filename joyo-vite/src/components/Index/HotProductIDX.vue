@@ -7,7 +7,7 @@
             <li v-for="(list,index) in productInfor.hotItem" :key="index">
                 <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
                     <div class="index_hotProduct_list_topPInfo">
-                        <img v-bind:src="list.IMG_URL" alt="">
+                        <img v-bind:src="list.IMG_URL_ONE" alt="">
                         <div class="index_hotProduct_list_topPInfo_word" v-show="index==0">
                             <p>團隊合作最佳推薦！<br>
                                 蟬聯月熱銷排行 5 個月！<br>

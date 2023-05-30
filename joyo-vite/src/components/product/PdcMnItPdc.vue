@@ -14,7 +14,7 @@
             <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
         </div>
         <div class="prouct-item-card-img">
-            <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
+            <img v-bind:src="card.IMG_URL_ONE" alt="" class="prouct-item-card-img">
         </div>
         <div class="prouct-item-card-infor">
             <div>

@@ -6,7 +6,7 @@
         </div>
         <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
         <a href="#" class="index_newProduct_right">
-            <img  v-bind:src="list.IMG_URL" alt="">
+            <img  v-bind:src="list.IMG_URL_ONE" alt="">
         </a>
         </RouterLink>
     </div>

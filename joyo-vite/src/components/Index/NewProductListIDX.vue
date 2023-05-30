@@ -3,7 +3,7 @@
         <ul class="index_newProductList_list" v-if="productInfor.newItem">
             <li v-for="(list,index) in productInfor.newItem" :key="index">
                 <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
-                    <img v-bind:src="list.IMG_URL" alt="">
+                    <img v-bind:src="list.IMG_URL_ONE" alt="">
                     <div class="product_list_pInfo">
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
