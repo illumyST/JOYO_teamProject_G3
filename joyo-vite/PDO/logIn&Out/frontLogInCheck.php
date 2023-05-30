@@ -7,7 +7,7 @@
     $mail = $data['mail'];
     $pwd = $data['pwd'];
 
-    $sql = "select * from member where MAIL= :mail and PASSWORD= :pwd ";
+    $sql = "select * from MEMBER where MAIL= :mail and PASSWORD= :pwd ";
 
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(":mail",$mail);
@@ -19,6 +19,7 @@
     if(count($data)>0){
         session_start();
         $_SESSION['frontIsLogIn'] = true;
+        // 存MEMBER_ID
         echo 'true';
     }else{
         echo 'false';
