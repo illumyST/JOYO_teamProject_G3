@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-    import { defineProps, ref, defineEmits} from 'vue';
+    import { defineProps, defineEmits} from 'vue';
 
     // 這行的宣告是為了下面點擊close的時候能夠把數值反轉
     // let ismemberCardEditvisible = ref(false)

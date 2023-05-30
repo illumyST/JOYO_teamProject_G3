@@ -47,6 +47,7 @@ const doLogInCheck = function () {
     logInData.value
   )
     .then(res => {
+      // console.log("123");
       const data = res.data;
       logInSuccess.value = data;
       

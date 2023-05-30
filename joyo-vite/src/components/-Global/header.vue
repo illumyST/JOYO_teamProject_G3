@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem">
                 <ul id="selectbox" v-if="searchBoxOpen">
-                    <li v-for="(item, index) in selectModel"><a :href="item.href">{{ item.name }}</a></li>
+                    <li v-for="(item,index) in selectModel"><RouterLink :to="item.href" @click="searchBoxOpen = false;">{{ item.name }}</RouterLink></li>
                 </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
@@ -188,26 +188,27 @@ const searchItem = () => {
         .then(response => {
             //     // 處理回應資料
 
-            const responseData = response.data;
-            selectModel.value = [];
-            // console.log(responseData);
-            //     // if(selectModel.value != []){
-            for (let n = 0; n < responseData.length; n++) {
-                // console.log(responseData[n]);
-                if (responseData[n][1] != undefined) {
-                    searchBoxOpen.value = true;
-                    let a = responseData[n][1]
-                    selectModel.value.push({ name: a, href: `http://localhost:5173/productInfo/ID:${responseData[n][0]}` });
-                } else {
-                    searchBoxOpen.value = false;
-                }
-                // }
-            }
-        })
-        .catch(error => {
-            // 處理錯誤
-            console.error(error);
-        });
+    const responseData = response.data;
+    selectModel.value = [] ;
+    // console.log(responseData);
+//     // if(selectModel.value != []){
+        for(let n =0 ; n<responseData.length ; n++){
+        // console.log(responseData[n]);
+        if(responseData[n][1] != undefined){
+            searchBoxOpen.value = true;
+            let a =responseData[n][1]
+            selectModel.value.push({name:a,href:`productInfo/ID:${responseData[n][0]}`});
+            console.log(selectModel.value);
+        }else{
+            searchBoxOpen.value = false;
+        }
+    // }
+    }
+  })
+  .catch(error => {
+    // 處理錯誤
+    console.error(error);
+  });
 }
 
 // ------------------------------- pei ------------------------------- //

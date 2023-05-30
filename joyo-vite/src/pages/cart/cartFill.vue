@@ -39,8 +39,8 @@ const prodects = ref([{
 ]);
 const calculateTotal=()=>{
       let sum=0;
-      for(let i=0;i<prodects.value.length;i++){
-        sum = sum + prodects.value[i].total;
+      for(let i=0;i<products.value.length;i++){
+        sum = sum + products.value[i].total;
       }
       return sum;
 };
