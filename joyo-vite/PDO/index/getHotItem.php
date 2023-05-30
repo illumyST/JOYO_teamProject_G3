@@ -10,7 +10,7 @@ include '../connect/conn.php';
                     B.PRODUCT_ID,
                     P.NAME,
                     P.PRICE,
-                    P.IMG_URL,
+                    P.IMG_URL_ONE,
                     P.CATEGORY,
                     SUM(B.AMOUNT)
                 from 
