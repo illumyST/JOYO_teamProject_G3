@@ -17,6 +17,7 @@ const addToCart = (list) => {
     console.log(list);
 };
 
+
 </script>
 
 <style lang="scss" scoped>
