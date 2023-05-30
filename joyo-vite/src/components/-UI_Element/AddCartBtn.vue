@@ -1,19 +1,22 @@
 <template>
-    <button @click.prevent="addToCart()">
+    <button @click.prevent="addToCart(list)">
         <i class="fa-solid fa-cart-shopping custom-icon"></i>
     </button>
 </template>
 
 <script setup>
-
-const addToCart = () => {
-    // 點擊後需要先判斷他是否為登入狀態
-    // if(){
-    //     如果是登入就跑這，把商品資訊存到該使用者的資料庫
-    // }else{
-    //     沒登入就跑這，把商品資訊存到localstorage
-    // }
+import { defineProps,  onMounted,  ref, watch} from 'vue';
+import axios from 'axios';
+const props = defineProps({
+    list: {
+        type:  Object,
+        required: true,
+        }
+    });
+const addToCart = (list) => {
+    console.log(list);
 };
+
 
 </script>
 

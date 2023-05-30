@@ -1,22 +1,42 @@
 <?php
-    include "../conn.php"; 
+    include "../connect/conn.php";
+
+    //將資料格式轉換
+    $postData = file_get_contents('php://input');
+
+    $postItemData = json_decode($postData, true);
+    print_r($postItemData);
+    $category = $postItemData['category'];
+    $title = $postItemData['title'];
+    $score = intval($postItemData['score']);
+    $postTitle = $postItemData['postTitle'];
+    $postContent = $postItemData['postContent'];
+    $postTags = $postItemData['postTags'];
+    $memberId = $postItemData['memberId'];
 
 
-    $form_category = $_POST["forumPost_form_category"];
-    $form_title_text = $_POST["forumPost_form_title_text"];
-    $form_score = $_POST["forumPost_form_score"];
-    $form_area = $_POST["forumPost_form_area"];
-    $form_middle_title = $_POST["forumPost_form_middle_title"];
-    $form_middle_textarea = $_POST["forumPost_form_middle_textarea"];
-    $form_label = $_POST["forumPost_form_middle_bottom_text"];
+    //建立一個新的變數存放資料庫數據
+       $Post = new PDO($dsn,$user,$pas);
+
     //建立SQL
-    $sql = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, CONTENT, DATE, LABEL) VALUES ('$form_middle_title', '$form_category', '$form_title_text', '$form_score', '$form_area', '$form_middle_textarea', NOW(), '$form_label')";
-
-    //執行
-    $affectedRow = $pdo->exec($sql);
-    if($affectedRow > 0){
-        echo "新增成功!";
-    }else{
-         echo "新增失敗!";
-    }
+//     if (empty($category) || empty($title) || empty($postTitle) || empty($postContent)) {
+//        // 处理空值情况
+//        echo "字段不能为空";
+//      } else {
+       //建立SQL
+        $sqlinsert = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, ARTICLE_CONTENT, ARTICLE_DATE, TAG, MEMBER_ID) VALUES ('$postTitle', '$category', '$title', '$score',  '$postContent', NOW(), '$postTags', '$memberId')";
+       // $sql = "INSERT INTO 'ARTICLE'(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, ARTICLE_CONTENT, ARTICLE_DATE, TAG, MEMBER_ID) VALUES ('妙語偵探社', '心得分享', '分享妙語偵探社 Detective Club', '9', '', '在妙語偵探社中，每個玩家都會拿到一張卡牌，上面寫有一個詞語或者短語，玩家們需要在自己的回合輪流發言，並且盡量讓其他玩家相信自己拿到的卡牌是真正的。在遊戲的某個時刻，一位玩家會成為叛徒，他或她知道其他玩家拿到的卡牌，並且要盡力讓其他人猜錯。', NOW(), '健康不賭博,輕度策略團', '1')";
+       
+       // $test="INSERT INTO `JOYO`.`ARTICLE` (`TITLE`, `ARTICLE_CATEGORY`, `RATE`, `ARTICLE_CONTENT`, `ARTICLE_DATE`, `MEMBER_ID`) VALUES ('捉迷藏心得分享', '心得分享', '6', '好雷', NOW(), '1');";
+       $forumPost = $Post->query($sqlinsert);
+       $json_data = json_encode($forumPost);
+       echo $json_data;
+       if($json_data > 0){
+              echo $json_data;
+              // 轉址到原本PDO範例中的Select.php
+              // header("Location: Select.php");
+       }else{
+              echo "新增失敗!";
+       }
+//      }
 ?>

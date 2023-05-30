@@ -55,6 +55,10 @@ const routes = [
                 //「127.0.0.1:5173/member」
                 name: 'member',
                 component: () => import('@/pages/member.vue'),
+                meta: {
+                    title: '會員',
+                    requiresAuth: true,
+                },
                 children: [
                     {
                         path: '', //空的意思是 member 預設進入這頁
@@ -91,6 +95,10 @@ const routes = [
                 path: 'cartFill',
                 name: 'cartFill',
                 component: () => import('@/pages/cart/cartFill.vue'),
+                meta: {
+                    title: '前往結賬',
+                    requiresAuth: true,
+                },
             },
 
             // 前台子頁＿[forum] -------------------
@@ -118,6 +126,10 @@ const routes = [
                         path: 'forumPost',
                         name: 'forumPost',
                         component: () => import('@/pages/forum/forumPost.vue'),
+                        meta: {
+                            title: '前往結賬',
+                            requiresAuth: true,
+                        },
                     },
                 ]
             },
@@ -133,7 +145,11 @@ const routes = [
             {
                 path: 'signIn',
                 name: 'signIn',
-                component: () => import('@/pages/signIn.vue'),
+                component: () => import('@/pages/signInRegister.vue'),
+                meta: {
+                    title: '登入註冊',
+                    requiresAuth: false,
+                },
             },
 
             // 前台子頁＿[register] -------------------
@@ -169,7 +185,7 @@ const routes = [
         component: () => import('@/pages/indexMs.vue'),
 
         children: [
-            // 後台子頁＿預設＿[ms-data-management] -------------------
+            // 後台子頁＿[ms-data-management] -------------------
             {
                 path: 'msDataManagementOrder',
                 name: 'msDataManagementOrder',
@@ -181,9 +197,9 @@ const routes = [
                 component: () => import('@/pages/ms-data-management/msDataManagementSendReport.vue'),
             },
 
-            // 後台子頁＿[登入] -------------------
+            // 後台子頁＿預設＿[登入] -------------------
             {
-                path: 'logIn',
+                path: '',
                 name: 'MsLogin',
                 component: () => import('@/pages/ms-login/MsLogin.vue'),
             },
@@ -282,10 +298,14 @@ const scrollBehavior = () => {
     })
 }
 
+
+
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
     scrollBehavior
 });
+
+
 
 export default router;

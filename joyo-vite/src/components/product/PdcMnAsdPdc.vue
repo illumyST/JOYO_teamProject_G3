@@ -2,34 +2,47 @@
     <aside class="col-2 ">
                 <h1>遊戲分類</h1>
                 <ul>
-                    <li :class="{active:currentCategory[index].cate=='全部商品'}"><a href="#" v-on:click="product_filter_get_cate">全部商品</a></li>
-                    <li :class="{active:currentCategory[index].cate=='派對遊戲'}"><a href="" v-on:click="product_filter_get_cate">派對遊戲</a></li>
-                    <li :class="{active:currentCategory[index].cate=='輕度策略'}"><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
-                    <li :class="{active:currentCategory[index].cate=='戰爭遊戲'}"><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
-                    <li :class="{active:currentCategory[index].cate=='棋奕遊戲'}"><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
-                    <li :class="{active:currentCategory[index].cate=='主題遊戲'}"><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
-                    <li :class="{active:currentCategory[index].cate=='家庭遊戲'}"><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
-                    <li :class="{active:currentCategory[index].cate=='團隊合作'}"><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li>
+                    <li :class="{active:currentCategory.cate==list}" v-for="(list,index) in category" :key="index">
+                        <RouterLink :to="'/product' +'/'+index">
+                        <a href="#" v-on:click="product_filter_get_cate">{{list}}</a>
+                        </RouterLink>
+                    </li>
+                    <!-- <li :class="{active:currentCategory.cate=='派對遊戲'}">
+                        <RouterLink :to="'product/' +'ID:'+card.PRODUCT_ID">
+                            <a href="" v-on:click="product_filter_get_cate">派對遊戲</a>
+                        </RouterLink>
+                    </li>
+                    <li :class="{active:currentCategory.cate=='輕度策略'}"><a href="" v-on:click="product_filter_get_cate">輕度策略</a></li>
+                    <li :class="{active:currentCategory.cate=='戰爭遊戲'}"><a href="" v-on:click="product_filter_get_cate">戰爭遊戲</a></li>
+                    <li :class="{active:currentCategory.cate=='棋奕遊戲'}"><a href="" v-on:click="product_filter_get_cate">棋奕遊戲</a></li>
+                    <li :class="{active:currentCategory.cate=='主題遊戲'}"><a href="" v-on:click="product_filter_get_cate">主題遊戲</a></li>
+                    <li :class="{active:currentCategory.cate=='家庭遊戲'}"><a href="" v-on:click="product_filter_get_cate">家庭遊戲</a></li>
+                    <li :class="{active:currentCategory.cate=='團隊合作'}"><a href="" v-on:click="product_filter_get_cate">團隊合作</a></li> -->
                 </ul>
 
             </aside>
 </template>
 <script setup>
     import { defineProps,  ref, watch,computed ,defineEmits} from 'vue';
+    const category=[
+    '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
+    ];
     const props = defineProps({
         currentCategory: {
-        type: Array,
+        type:  Object,
+        required: true,
+        },
+        page:{
+        type: Object,
         required: true,
         },
         
     });
     const index=0;
-    const currentCategoryCopy =computed(() => [...props.currentCategory]);
     //測欄更新傳回父層
     const emits = defineEmits("updateCatergory");
     const product_filter_get_cate=(e)=>{
-        e.preventDefault();
-        props.currentCategory[index].cate=e.target.innerHTML;
+        // e.preventDefault();
         emits('updateCatergory', e.target.innerHTML);
     };
 </script>

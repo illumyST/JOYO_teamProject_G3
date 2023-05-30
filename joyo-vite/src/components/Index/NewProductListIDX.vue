@@ -1,7 +1,18 @@
 <template>
     <div class="index_newProductList">
-        <ul class="index_newProductList_list">
-            <li>
+        <ul class="index_newProductList_list" v-if="productInfor.newItem">
+            <li v-for="(list,index) in productInfor.newItem" :key="index">
+                <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
+                    <img v-bind:src="list.IMG_URL_ONE" alt="">
+                    <div class="product_list_pInfo">
+                        <h3>{{ list.NAME }}
+                            <p>${{ list.PRICE }}</p>
+                        </h3>
+                        <AddCartBtn :list="list"></AddCartBtn>
+                    </div>
+                </RouterLink>
+            </li>
+            <!-- <li>
                 <RouterLink :to="product_data.product_info_url">
                     <img :src="product_data.product_img_url" alt="">
                     <div class="product_list_pInfo">
@@ -33,18 +44,7 @@
                         <AddCartBtn></AddCartBtn>
                     </div>
                 </RouterLink>
-            </li>
-            <li>
-                <RouterLink :to="product_data.product_info_url">
-                    <img :src="product_data.product_img_url" alt="">
-                    <div class="product_list_pInfo">
-                        <h3>{{ product_data.name }}
-                            <p>{{ product_data.price }}</p>
-                        </h3>
-                        <AddCartBtn></AddCartBtn>
-                    </div>
-                </RouterLink>
-            </li>
+            </li> -->
         </ul>
         <RouterLink to="/product" class="btn">商城逛逛</RouterLink>
     </div>
@@ -52,16 +52,49 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref } from "vue"
+import { ref,onBeforeMount } from "vue"
 import { RouterLink } from "vue-router";
-
+import axios from 'axios';
 const product_data = ref({
-    product_info_url: '/productInfo/12345',
-    name: '璀璨寶石',
-    product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
-    price: '$116'
+    ID:'1',
+    NAME: '璀璨寶石',
+    IMG_URL: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
+    PRICE: '116',
+    CATEGORY:"輕度策略",
+});
+const productInfor=ref({
+    newItem:[],
+});
+const fetchData=()=>{
+    return axios.get('/api/index/getNewItem.php')
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            if(res.data.length===4){
+                productInfor.value.newItem = res.data;
+            }//如果資料不足4筆重複放置第一筆資料
+            else if(res.data.length>0 &&res.data.length<4){
+                let ln=4-res.data.length;
+                productInfor.value.newItem = res.data;
+                for(let i=0;i<ln;i++){
+                    productInfor.value.newItem.push(res.data[0]);
+                }
+            }else if(res.data.length==0){
+                for(let i=0;i<4;i++){
+                productInfor.value.newItem.push(product_data.value);
+                }
+                
+            }else if(res.data.length>4){
+                productInfor.value.newItem = res.data.splice(3);
+            }  
+        }
+        )
+        .catch(err => {
+            console.error(err);
+        });
+};
+onBeforeMount(() => {
+    fetchData();
 })
-
 
 </script>
 
@@ -120,7 +153,7 @@ const product_data = ref({
             display: block;
             margin: 20px auto;
             // padding-top: 20px;
-            height: 200px;
+            height: 173px;
 
         }
 

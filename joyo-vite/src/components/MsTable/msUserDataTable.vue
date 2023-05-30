@@ -4,14 +4,17 @@
         <td>會員編號</td>
         <td>姓名</td>
         <td>帳號 / 信箱</td>
-        <td>註冊日期</td>
+        <td>驗證狀態</td>
     </thead>
     <tbody>
         <tr class="ms_table_body" v-for="(item,index) in user">
             <td>{{ item.no }}</td>
             <td><p>{{ item.name }}</p></td>
             <td><p>{{ item.email }}</p></td>
-            <td><p>{{ item.date }}</p></td>
+            <td>
+                <p v-if="item.date == 1"> 已驗證 </p>
+                <p v-if="item.date == 0"> 未驗證 </p>
+            </td>
         </tr> 
     </tbody>
 </table>

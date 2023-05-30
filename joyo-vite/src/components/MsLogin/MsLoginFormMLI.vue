@@ -58,14 +58,20 @@ const passwordToggle = () => {
 };
 
 const doLogInCheck = function () {
-  axios.post("/api/logIn&Out/logInCheck.php", logInData.value).then((res) => {
-    const data = res.data;
-    logInSuccess.value = data;
-    if (logInSuccess.value == 1) {
-      alert("登入成功！");
-      router.push("/ms/msDataManagementSendReport");
-    }
-  });
+  axios.post('/api/logIn&Out/logInCheck.php',
+    logInData.value
+  )
+    .then(res => {
+      // console.log("123");
+      const data = res.data;
+      logInSuccess.value = data;
+      
+      // TODO 改成 true
+      if (logInSuccess.value == 1) {
+        alert('登入成功！');
+        router.push('/ms/msDataManagementSendReport');
+      }
+    });
 };
 
 // onMounted(() => {

@@ -1,18 +1,39 @@
-<template>
-    <div class="index_newProduct">
+<template v-if="productInfor.newItem.length" >
+    <div class="index_newProduct" v-for="(list,index) in productInfor.newItem">
         <div class="index_newProduct_left">
             <h1>新品上架</h1>
-            <span>茂林源記 — 超人氣戰棋遊戲</span>
+            <span>{{ list.NAME }} — 超人氣{{ list.CATEGORY }}</span>
         </div>
+        <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
         <a href="#" class="index_newProduct_right">
-            <img :src="newProduct" alt="">
+            <img  v-bind:src="list.IMG_URL_ONE" alt="">
         </a>
+        </RouterLink>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
-const newProduct = ref('')
+import { ref, onBeforeMount} from "vue";
+import axios from 'axios';
+const productInfor=ref({
+    newItem:[],
+});
+const index=0;
+const fetchData=()=>{
+    return axios.get('/api/index/getNewItem.php')
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            productInfor.value.newItem = res.data;
+            productInfor.value.newItem.length=1;
+        }
+        )
+        .catch(err => {
+            console.error(err);
+        });
+};
+onBeforeMount(() => {
+    fetchData();
+})
 </script>
 
 <style lang="scss" scoped>
@@ -66,11 +87,14 @@ const newProduct = ref('')
         padding: 20px;
         margin-right: 40px;
         box-sizing: border-box;
-
+        display: block;
+        width: 280px;
+        height: 262px;
         img {
             // border: 1px solid red;
             display: block;
-            width: 280px;
+            margin: 0 auto;
+            width: 69%;
         }
 
         &::before {

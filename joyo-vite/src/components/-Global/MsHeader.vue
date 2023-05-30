@@ -1,9 +1,9 @@
 <template>
   <header class="ms_header">
     <nav class="ms_nav">
-      <a href="/ms">
+      <RouterLink to="/ms">
         <img class="ms_logo" src="../../assets/img/logo_white.svg" alt="" />
-      </a>
+      </RouterLink>
       <div v-if="showLogOut" class="logOut" @click="logOut()">登出</div>
     </nav>
   </header>
@@ -34,7 +34,7 @@ const logOut = () => {
     .then(res => {
       showLogOut.value = false;
       alert('登出成功！');
-      location.href = '/#/ms/logIn';
+      location.href = '/#/ms';
     });
 }
 

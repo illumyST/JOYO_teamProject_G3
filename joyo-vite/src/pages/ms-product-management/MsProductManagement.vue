@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import {ref , provide} from 'vue';
 
 const userSelect = ref(["商品編號","商品名稱","遊戲類型","價格","動作"])
@@ -20,25 +21,32 @@ const getseach=(n)=>{
     console.log(n);
 }
 
-const prodects = ref([{
-    pronum:12443,
-    proname:'阿瓦隆',
-    protype:'益智',
-    propice: 549 ,
+const prodects = ref([]) 
+
+axios.get('/api/msProduct/msProduct.php')
+.then(data=>{
+let arr =data.data ;
+for(var n of arr){
+  // console.log(n);
+  prodects.value.push({
+    pronum:n["PRODUCT_ID"],
+    proname:n['NAME'],
+    protype:n['CATEGORY'],
+    propice: n['PRICE'] ,
     update: true 
-},{
-    pronum:13434,
-    proname:'風聲',
-    protype:'益智',
-    propice: 231 ,
-    update: true 
-},{
-    pronum:13255,
-    proname:'神秘大地',
-    protype:'益智',
-    propice: 1549 ,
-    update: true 
-},]) 
+})
+}
+
+
+
+
+})
+.catch(error=>{console.log(error)})
+
+
+
+
+
 provide('prodects',prodects)
 
 

@@ -1,8 +1,10 @@
 <template v-if="guess">
 <div class="col-12 infor-bottom" >
             <h2>猜你喜歡</h2>
-            <div class="infor-bottom-item" >
-                <div class="prouct-item-card" v-for="(list,index) in guess" :key="index">
+            <ul class="infor-bottom-item" >
+                
+                <li class="prouct-item-card" v-for="(list,index) in guess" :key="index">
+                <router-link :to="'/productInfo' +'/ID:'+list.PRODUCT_ID" @:click="changeItem(list)">   
                     <div class="prouct-item-card-tag">
                         <p class="prouct-item-card-tag-player">
                             <span class="prouct-item-card-tag-player-min"></span>
@@ -29,23 +31,27 @@
                         </button>
 
                     </div>
-                </div>
-            </div>
+                </router-link>
+                </li>
+
+            </ul>
         </div>
 </template>
 <script setup>
-
-</script>
-<script >
-    export default {
-    props: {
-        guess:{
+import { defineProps,  onMounted,  ref, watch,defineEmits} from 'vue';
+const props = defineProps({
+    guess:{
         type: Array,
         required: true 
-        }
-    }
-}
+    },
+    });
+const emits = defineEmits("changeInfoItem");
+const changeItem=(list)=>{
+    console.log(list.PRODUCT_ID);
+    emits('changeInfoItem', list.PRODUCT_ID);
+};
 </script>
+
 <style lang="scss" scoped>
 .product-wrapper {
     color: $brown;

@@ -13,102 +13,88 @@
   </template>
   
 <script setup>
-import {provide, ref} from 'vue'
+import axios from 'axios';
+import {compile, provide, ref} from 'vue'
 const us = ref(['訂單編號','用戶帳號','訂單金額','付款方式','訂單狀態','物流']);
-
+provide('us',us);
 // --------------------------------------------------------------------------------
-const order = ref([
+const order = ref([]);
+// --------------------------------------------------------------------------------
+axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+.then(data=>{
+  // console.log(data.data);
+for(var n of data.data){
+  // console.log(n);
+order.value.push(
   {
-  tid:'1111111',
-  email:'11111@gmail.com',
+  tid:n['BUY_ID'],
+  email:n['MAIL'],
   get total() {
     let ott = 0 ;
       for(let n = 0 ; n<this.order.length ;n++){
         ott += (this.order[n].psel*this.order[n].amo);
       }
-      return ott
+      const TATL = {
+        tid:this.tid,
+        ott:ott
+      }
+      // console.log(TATL);
+      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      .then(data=>{})
+      .catch(error=>{console.log(error)})
+      return ott;
     },
   stp:'信用卡',
   got:'新竹物流',
-  fron: 1,
+  fron: 2,
   open:false,
-  one:'2023-05-21',oneop:false,
-  two:'',twoop:false,
-  the:'',theop:false,
-  four:'',fourop:false,
+  one:n["DATE"],oneop:false,
+  two:n["SHIPPING_TIME"],twoop:false,
+  the:n["DELIVERY_TIME"],theop:false,
+  four:n["COMPELETE_TIME"],fourop:false,
   upopen: false,
-  order:[{
-    prd:'領土爭奪-標準版',
-    psel: 1200 ,
-    amo: 3 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'阿瓦隆：蘭斯洛特 擴充',
-    psel: 1400 ,
-    amo: 2 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'泳池派對',
-    psel: 1500 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }]},
-  {
-  tid:'22222',
-  email:'22222@gmail.com',
-  get total() {
-    let ott = 0 ;
-      for(let n = 0 ; n<this.order.length ;n++){
-        ott += (this.order[n].psel*this.order[n].amo);
-      }
-      return ott
-    },
-  stp:'現金',
-  got:'新竹物流',
-  fron: 1,
-  open:false,
-  one:'2023-05-21',
-  two:'',
-  the:'',
-  four:'',
-  upopen: false,
-  order:[{
-    prd:'領土爭奪-標準版',
-    psel: 1200 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'阿瓦隆：蘭斯洛特 擴充',
-    psel: 1400 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'泳池派對',
-    psel: 1500 ,
-    amo: 2 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'阿瓦隆：蘭斯洛特 擴充',
-    psel: 1400 ,
-    amo: 3 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  },{
-    prd:'泳池派對',
-    psel: 2200 ,
-    amo: 1 ,
-    img:'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png'
-  }]}  
-]);
-// --------------------------------------------------------------------------------
+  order:[]})
+}
 
-provide('us',us);
+axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+.then(data=>{
+for(var n = 0 ; n< order.value.length ; n++){
+  for(var a of data.data){
+    if(a["BUY_ID"] == order.value[n].tid){
+      order.value[n].order.push(
+        {
+          prd:a["NAME"],
+          psel: a['PRICE'] ,
+          amo: a["AMOUNT"] ,
+          img: a['IMG_URL']
+        }
+      );
+    }
+  }
+}
+})
+.catch(error=>{console.log(error)});
+// console.log(order.value);
+
+
+})
+.catch(error=>{console.log(error)});
+
+
+
 provide('order',order);
 
-
-
+// console.log(this.tid);
+// for(let n of order){
+// }
+// const ott1 = {tid:this.tid,tal:ott}
+      // axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',ott1)
+      // .then(data=>{
+      //   console.log(data.data)
+      // })
+      // .catch(error=>{console.log(error)})
 // console.log(order.value[0].total);
 // console.log(order.value[0].order[0].psel);
-
 
 </script>
   
