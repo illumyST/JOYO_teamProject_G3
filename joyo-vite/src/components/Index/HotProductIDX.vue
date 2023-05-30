@@ -21,11 +21,8 @@
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
                         </h3>
-<<<<<<< HEAD
-                        <AddCartBtn @add-To-Cart="addToCart"></AddCartBtn>
-=======
-                        <AddCartBtn :list="list"></AddCartBtn>
->>>>>>> e5b5b98413e83855c9eae825878d3259c4a9fd1a
+                        <AddCartBtn @add-To-Cart="addToCart" :list="list"></AddCartBtn>
+
                     </div>
                 </RouterLink>
             </li>
@@ -57,9 +54,8 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-<<<<<<< HEAD
-import { ref } from "vue"
-
+import { ref,onBeforeMount } from "vue"
+import axios from 'axios';
 const pruduct_imfo = ref({
    product:[
     {
@@ -67,14 +63,7 @@ const pruduct_imfo = ref({
     }], 
 });
 
-const product_data = ref({
-    product_info_url: '/productInfo/12345',
-    name: '璀璨寶石',
-    product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
-    price: '$116'
-=======
-import { ref ,onBeforeMount} from "vue";
-import axios from 'axios';
+
 //從資料庫取得銷售最多的商品(用but list篩選資料)
 const product_data = ref({
     ID:'1',
@@ -118,7 +107,6 @@ const fetchData=()=>{
 onBeforeMount(() => {
     
     fetchData();
->>>>>>> e5b5b98413e83855c9eae825878d3259c4a9fd1a
 })
 
 </script>
