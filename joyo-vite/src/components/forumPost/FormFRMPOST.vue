@@ -5,7 +5,7 @@
         class="forumPost_form_category"
         id="forumPost_form_category"
         name="forumPost_form_category"
-        v-model="SelectCgy"
+        v-model="postData.category"
         @click="chooseSelect"
       >
         <option value="0">文章類型</option>
@@ -25,17 +25,17 @@
         name="forumPost_form_title_text"
         placeholder="請輸入桌遊名稱"
         v-show="ShowTitleText"
-        v-model.trim="title"
+        v-model.trim="postData.title"
       />
 
       <select
         class="forumPost_form_score"
         id="forumPost_form_score"
         name="forumPost_form_score"
-        v-model="SelectScore"
+        v-model="postData.score"
         v-show="ShowScoreSelect"
       >
-        <option :value="FormScore.Value">{{ FormScore.Name }}</option>
+        <option :value="0">{{ FormScore.Name }}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 
@@ -45,7 +45,7 @@
         name="forumPost_form_area"
         v-show="ShowAreaSelect"
         data-role="Area"
-        v-model="SelectedArea"
+        v-model="postData.area"
       >
         <option value="0">揪團地點</option>
         <option
@@ -66,7 +66,7 @@
         id="forumPost_form_middle_input"
         name="forumPost_form_middle_input"
         placeholder="下個吸睛的標題吧..."
-        v-model.trim="postTitle"
+        v-model.trim="postData.postTitle"
       />
 
       <label for="forumPost_form_middle_textarea" class="forumPost_form_middle_text">內文</label>
@@ -74,7 +74,7 @@
         class="forumPost_form_middle_textarea"
         id="forumPost_form_middle_textarea"
         name="forumPost_form_middle_textarea"
-        v-model.trim="postContent"
+        v-model.trim="postData.postContent"
       ></textarea>
 
       <label
@@ -88,7 +88,7 @@
         class="forumPost_form_middle_bottom_text"
         id="forumPost_form_middle_bottom_text"
         placeholder="為你的文章客製標籤"
-        v-model.trim="postTags"
+        v-model.trim="postData.postTags"
       />
 
       <input
@@ -107,12 +107,10 @@ import { ref, computed } from "vue";
 import axios from "axios";
 
 // 選擇文章類型
-const SelectCgy = ref("0");
+// const SelectCgy = ref("0");
 const ShowTitleText = ref(true);
-const title = ref("");
 
 // 選擇桌遊評分
-const SelectScore = ref("0");
 const ShowScoreSelect = ref(true);
 
 // 選擇揪團地點
@@ -120,9 +118,9 @@ const SelectedArea = ref("0");
 const ShowAreaSelect = ref(false);
 
 // 標題、內文和客製標籤
-const postTitle = ref("");
-const postContent = ref("");
-const postTags = ref("");
+// const postTitle = ref("");
+// const postContent = ref("");
+// const postTags = ref("");
 
 // 會員編號
 // const MEMBERID = sessionStorage.getItem('MEMBER_ID');
@@ -147,13 +145,14 @@ const Add_Area = ref({
 });
 //要傳送的資料
 const postData = ref({
-      category: SelectCgy.value,
-      title: title.value,
-      score: SelectScore.value,
-      postTitle: postTitle.value,
-      postContent: postContent.value,
-      postTags: postTags.value,
-      memberId: "1"
+      category: "0",
+      title: "",
+      score: "0",
+      postTitle: "",
+      postContent: "",
+      postTags: "",
+      memberId: "1",
+      area:"0",
   });
 
 const fetchData = () => {
@@ -168,19 +167,18 @@ const fetchData = () => {
     });
 };
 const chooseSelect = () =>{
-    if (SelectCgy.value == "1" || SelectCgy.value == "2" || SelectCgy.value == "3") {
-      if(SelectCgy.value != "1"){
-        console.log(SelectCgy.value,"not 1");
+    if (postData.value.category == "1" || postData.value.category == "2" || postData.value.category == "3") {
+      if(postData.value.category != "1"){
         ShowScoreSelect.value = false;
       }else{
         ShowScoreSelect.value = true;
         console.log(SelectCgy.value,"not 2.3");
       }
-    }else if(SelectCgy.value == "4"){
+    }else if(postData.value.category == "4"){
       ShowScoreSelect.value = false;
       ShowTitleText.value = false;
       ShowAreaSelect.value = true;
-    }else if(SelectCgy.value == "0"){
+    }else if(postData.value.category == "0"){
       ShowScoreSelect.value = true;
       ShowTitleText.value = true;
       ShowAreaSelect.value = false;
@@ -188,61 +186,53 @@ const chooseSelect = () =>{
   }
 
 const submitPost = () => {
-    
-  if (SelectCgy.value == "0") {
+  //印為選擇分類的value是數字，把他轉成分類字串
+  postData.value.category=FormCgy.value[postData.value.category-1];
+  if (postData.value.category == "0") {
     alert("請選擇文章類別");
     return;
   }
 
-  if (SelectCgy.value !== "4") {
-    if (!ShowTitleText.value || !title.value.trim()) {
+  if (postData.value.category !== "5") {
+    if (!ShowTitleText.value || !postData.value.title.trim()) {
       alert("請輸入桌遊名稱");
       return;
     }
   }
 
-  if (SelectCgy.value !== "4") {
-    if (!ShowScoreSelect.value || SelectScore.value == "0") {
+  if (postData.value.category !== "5") {
+    if (!ShowScoreSelect.value || postData.value.score.value == "0") {
       alert("請選擇評分");
       return;
     }
   }
 
-  if (SelectCgy.value == "4") {
-    if (ShowAreaSelect.value && SelectedArea.value == "-1") {
+  if (postData.value.category == "5") {
+    if (ShowAreaSelect.value && postData.value.area == "-1") {
       alert("請選擇揪團地點");
       return;
     }
   }
-  if (SelectCgy.value == "1") {
-    if (ShowAreaSelect.value && SelectedArea.value == "-1") {
-      alert("請選擇");
-      // postData.value.category = SelectCgy.value;
+  if (postData.value.category == "2") {
+    if (ShowAreaSelect.value && postData.value.area == "-1") {
+      alert("請選擇揪團地點");
+      postData.value="心得分享";
       return {
        
   };
       };
     }
 
-  if (!postTitle.value.trim()) {
+  if (!postData.value.postTitle.trim()) {
     alert("請輸入文章標題");
     return;
   }
 
-  if (!postContent.value.trim()) {
+  if (!postData.value.postContent.trim()) {
     alert("請輸入文章内容");
     return;
   }
   
-  // const postData = {
-  //   category: gameName,
-  //   title: title.value,
-  //   score: SelectScore.value,
-  //   postTitle: postTitle.value,
-  //   postContent: postContent.value,
-  //   postTags: postTags.value,
-  //   memberId: "1"
-  // };
 
   axios
     .post("/api/forumPost/forumPost_ADD.php", postData) // PHP 文件路径
