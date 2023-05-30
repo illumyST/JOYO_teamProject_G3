@@ -8,12 +8,13 @@
         v-model="SelectCgy"
         @click="chooseSelect"
       >
+        <option value="0">文章類型</option>
         <option
           v-for="(item, index) in FormCgy"
           :key="index"
-          :value="item.Value"
+          :value="index+1"
         >
-          {{ item.Name }}
+          {{ item }}
         </option>
       </select>
 
@@ -46,9 +47,9 @@
         data-role="Area"
         v-model="SelectedArea"
       >
-        <option value="-1">揪團地點</option>
+        <option value="0">揪團地點</option>
         <option
-          :value="index"
+          :value="index+1"
           v-for="(item, index) in Add_Area.Area"
           :key="index"
         >
@@ -106,7 +107,7 @@ import { ref, computed } from "vue";
 import axios from "axios";
 
 // 選擇文章類型
-const SelectCgy = ref("Cgy1");
+const SelectCgy = ref("0");
 const ShowTitleText = ref(true);
 const title = ref("");
 
@@ -115,7 +116,7 @@ const SelectScore = ref("0");
 const ShowScoreSelect = ref(true);
 
 // 選擇揪團地點
-const SelectedArea = ref("-1");
+const SelectedArea = ref("0");
 const ShowAreaSelect = ref(false);
 
 // 標題、內文和客製標籤
@@ -124,30 +125,11 @@ const postContent = ref("");
 const postTags = ref("");
 
 // 會員編號
-const MEMBERID = sessionStorage.getItem('MEMBER_ID');
+// const MEMBERID = sessionStorage.getItem('MEMBER_ID');
 
 // 文章類別選單
 const FormCgy = ref([
-  {
-    Name: "文章類型",
-    Value: "Cgy1",
-  },
-  {
-    Name: "心得分享",
-    Value: "Cgy2",
-  },
-  {
-    Name: "教學區",
-    Value: "Cgy3",
-  },
-  {
-    Name: "發問區",
-    Value: "Cgy4",
-  },
-  {
-    Name: "揪團區",
-    Value: "Cgy5",
-  },
+  "心得分享","教學區","發問區","揪團區"
 ]);
 
 // 桌遊評分選單
@@ -160,6 +142,16 @@ const FormScore = ref({
 const Add_Area = ref({
   Area: [],
 });
+//要傳送的資料
+const postData = ref({
+      category: "心得分享",
+      title: title.value,
+      score: SelectScore.value,
+      postTitle: postTitle.value,
+      postContent: postContent.value,
+      postTags: postTags.value,
+      memberId: "1"
+  });
 
 const fetchData = () => {
   // 揪團地點串JSON檔
@@ -173,17 +165,17 @@ const fetchData = () => {
     });
 };
 const chooseSelect = () =>{
-    if (SelectCgy.value == "Cgy2" || SelectCgy.value == "Cgy3" || SelectCgy.value == "Cgy4") {
-      if(SelectCgy.value !== "Cgy2"){
+    if (SelectCgy.value == "1" || SelectCgy.value == "2" || SelectCgy.value == "3") {
+      if(SelectCgy.value !== "1"){
         ShowScoreSelect.value = false;
       }else{
         ShowScoreSelect.value = true;
       }
-    }else if(SelectCgy.value == "Cgy5"){
+    }else if(SelectCgy.value == "4"){
       ShowScoreSelect.value = false;
       ShowTitleText.value = false;
       ShowAreaSelect.value = true;
-    }else if(SelectCgy.value == "Cgy1"){
+    }else if(SelectCgy.value == "0"){
       ShowScoreSelect.value = true;
       ShowTitleText.value = true;
       ShowAreaSelect.value = false;
@@ -191,6 +183,7 @@ const chooseSelect = () =>{
   }
 
 const submitPost = () => {
+    
   if (SelectCgy.value == "Cgy1") {
     alert("請選擇文章類別");
     return;
@@ -216,6 +209,15 @@ const submitPost = () => {
       return;
     }
   }
+  if (SelectCgy.value == "Cgy2") {
+    if (ShowAreaSelect.value && SelectedArea.value == "-1") {
+      alert("請選擇揪團地點");
+      postData.value="心得分享";
+      return {
+       
+  };
+      };
+    }
 
   if (!postTitle.value.trim()) {
     alert("請輸入文章標題");
@@ -227,24 +229,21 @@ const submitPost = () => {
     return;
   }
   
-
-
-  const postData = {
-    category: SelectCgy.value,
-    title: title.value,
-    score: SelectScore.value,
-    area: SelectedArea.value,
-    postTitle: postTitle.value,
-    postContent: postContent.value,
-    postTags: postTags.value,
-    memberId: MEMBERID
-  };
+  // const postData = {
+  //   category: gameName,
+  //   title: title.value,
+  //   score: SelectScore.value,
+  //   postTitle: postTitle.value,
+  //   postContent: postContent.value,
+  //   postTags: postTags.value,
+  //   memberId: "1"
+  // };
 
   axios
     .post("/api/forumPost/forumPost_ADD.php", postData) // PHP 文件路径
     .then((res) => {
-      console.log(res);
-      alert("發文成功");
+      console.log(res.data);
+      alert(res.data);
     })
     .catch((error) => {
       console.error("Error submitting post:", error);
