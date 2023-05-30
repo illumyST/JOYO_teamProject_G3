@@ -18,8 +18,17 @@
 
     if(count($data)>0){
         session_start();
-        $_SESSION['frontIsLogIn'] = true;
+
+        $sql = "select MEMBER_ID from MEMBER where MAIL=?";
+        $statement = $pdo->prepare($sql);
+        $statement -> bindParam(1,$mail);
+        $statement -> execute();
+        $data = $statement->fetchAll();
+        
         // 存MEMBER_ID
+        $_SESSION['member_id'] = $data[0][0];
+        $_SESSION['frontIsLogIn'] = true;
+        
         echo 'true';
     }else{
         echo 'false';

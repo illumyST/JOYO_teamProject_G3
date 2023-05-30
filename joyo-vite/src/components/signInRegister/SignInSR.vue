@@ -37,6 +37,7 @@ const doLogInCheck = function () {
     )
         .then(res => {
             if (res.data) {
+                console.log(res.data);
                 alert('登入成功！');
                 if (redirectUrl) {
                     router.push({ path: redirectUrlStr.value });
