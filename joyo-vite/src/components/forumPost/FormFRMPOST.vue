@@ -126,6 +126,9 @@ const postTags = ref("");
 
 // 會員編號
 // const MEMBERID = sessionStorage.getItem('MEMBER_ID');
+// const getMemberId=()=>{
+//   postData.value.memberId = sessionStorage.getItem('MEMBER_ID');
+// };
 
 // 文章類別選單
 const FormCgy = ref([
@@ -144,7 +147,7 @@ const Add_Area = ref({
 });
 //要傳送的資料
 const postData = ref({
-      category: "心得分享",
+      category: SelectCgy.value,
       title: title.value,
       score: SelectScore.value,
       postTitle: postTitle.value,
@@ -166,10 +169,12 @@ const fetchData = () => {
 };
 const chooseSelect = () =>{
     if (SelectCgy.value == "1" || SelectCgy.value == "2" || SelectCgy.value == "3") {
-      if(SelectCgy.value !== "1"){
+      if(SelectCgy.value != "1"){
+        console.log(SelectCgy.value,"not 1");
         ShowScoreSelect.value = false;
       }else{
         ShowScoreSelect.value = true;
+        console.log(SelectCgy.value,"not 2.3");
       }
     }else if(SelectCgy.value == "4"){
       ShowScoreSelect.value = false;
@@ -184,35 +189,35 @@ const chooseSelect = () =>{
 
 const submitPost = () => {
     
-  if (SelectCgy.value == "Cgy1") {
+  if (SelectCgy.value == "0") {
     alert("請選擇文章類別");
     return;
   }
 
-  if (SelectCgy.value !== "Cgy5") {
+  if (SelectCgy.value !== "4") {
     if (!ShowTitleText.value || !title.value.trim()) {
       alert("請輸入桌遊名稱");
       return;
     }
   }
 
-  if (SelectCgy.value !== "Cgy5") {
+  if (SelectCgy.value !== "4") {
     if (!ShowScoreSelect.value || SelectScore.value == "0") {
       alert("請選擇評分");
       return;
     }
   }
 
-  if (SelectCgy.value == "Cgy5") {
+  if (SelectCgy.value == "4") {
     if (ShowAreaSelect.value && SelectedArea.value == "-1") {
       alert("請選擇揪團地點");
       return;
     }
   }
-  if (SelectCgy.value == "Cgy2") {
+  if (SelectCgy.value == "1") {
     if (ShowAreaSelect.value && SelectedArea.value == "-1") {
-      alert("請選擇揪團地點");
-      postData.value="心得分享";
+      alert("請選擇");
+      // postData.value.category = SelectCgy.value;
       return {
        
   };
