@@ -4,7 +4,7 @@
       <IfrTopPDCNF :filetData="pageInfor.fliterTg"></IfrTopPDCNF>
       <IfrItPDCNF :filetData="pageInfor.fliterTg"></IfrItPDCNF>
       <IfrDtPDCNF :filetData="pageInfor.fliterTg"></IfrDtPDCNF>
-      <IfrBtPDCNF :guess="guess"></IfrBtPDCNF>
+      <IfrBtPDCNF :guess="guess" @change-Info-Item="changeInfoItem"></IfrBtPDCNF>
     </div>
   </div>
   
@@ -50,8 +50,14 @@ const guessLike=()=>{
         let arr2=(pageInfor.value.tg.filter((game)=>game.CATEGORY == category));
         guess.value=arr2.slice(0,4);
 };
+//點擊猜你喜歡的商品卡後更換商品
+const changeInfoItem=(val)=>{
+    console.log(val);
+    let arr1=(pageInfor.value.tg.filter((game)=>game.PRODUCT_ID == val));
+    pageInfor.value.fliterTg=arr1[0];
+
+}
 onBeforeMount(()=>{
-    
     fetchData().then(() => {
     getGame();
     guessLike();

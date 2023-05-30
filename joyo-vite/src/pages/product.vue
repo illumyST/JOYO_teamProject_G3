@@ -1,6 +1,6 @@
 <template v-if="pageInfor">
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPDC :currentCategory="currentCategory"></PdcTopPDC>
+        <PdcTopPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory"   @update-Arrange="updateArrange"  ></PdcTopPDC>
         <div class="product-main">
             <PdcMnAsdPdc :currentCategory="currentCategory" :page="pageInfor" @update-Catergory="updateCatergory"  >
                 
@@ -8,9 +8,6 @@
             <PdcMnItPdc :currentCategory="currentCategory" :pageInforTotalPage="pageInfor.total_page" :key="currentCategory.cate"></PdcMnItPdc>
         </div>
         <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
-    </div>
-    <div :class="$route.params.categoryId">
-        {{ $route.params.categoryId }}
     </div>
 </template>
 
@@ -50,6 +47,36 @@ const fetchData=()=>{
             pageInfor.value.tg = res.data;
             // console.log(currentCategory.value[i].cate);  
             //判斷當前商品種類，並且存在 fliterTg變數中
+            if(route.params.categoryId>0){
+                let callBackId = route.params.categoryId; 
+                switch (callBackId){
+                    case '1' :
+                    currentCategory.value.cate ="派對遊戲";
+                    break; 
+                    case '2' :
+                    currentCategory.value.cate ="輕度策略";
+                    break;
+                    case '3' :
+                    currentCategory.value.cate ="戰爭遊戲";
+                    break;
+                    case '4' :
+                    currentCategory.value.cate ="棋奕遊戲";
+                    break;
+                    case '5' :
+                    currentCategory.value.cate ="主題遊戲";
+                    break;
+                    case '6' :
+                    currentCategory.value.cate ="家庭遊戲";
+                    break;
+                    case '7' :
+                    currentCategory.value.cate ="團隊合作";
+                    break;
+                       
+                }
+            }else{
+                console.log(0);
+            }
+            
             if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
         } else {
@@ -110,6 +137,17 @@ const updateCatergory=(val)=>{
     })
      });
 
+};
+const updateArrange=(val)=>{
+    if(val===0){
+        console.log(val);
+    }else if(val===1){
+        console.log(val);
+    }else if(val===2){
+        console.log(val);
+    }else {
+        console.log(val);
+    }
 };
 const updatePage=(val)=>{
     //判斷是下10頁還是上10頁
@@ -191,9 +229,7 @@ const choosePage=(val)=>{
 onBeforeMount(() => {
     // 获取路由参数 categoryId
     // id 就是要用 axios 傳給後端的資料
-    const id = route.params.categoryId;
     fetchData().then(() => {
-        
         getPage();
         getAppearPage();
      });
