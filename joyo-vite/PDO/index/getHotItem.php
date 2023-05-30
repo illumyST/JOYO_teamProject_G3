@@ -10,6 +10,7 @@ include '../connect/conn.php';
                     P.NAME,
                     P.PRICE,
                     P.IMG_URL,
+                    P.CATEGORY,
                     SUM(B.AMOUNT)
                 from 
                     BUY_DETAIL as B

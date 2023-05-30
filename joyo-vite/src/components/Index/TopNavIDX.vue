@@ -1,6 +1,6 @@
 <template>
     <ul class="index_topNav">
-        <li>
+        <li >
             <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }">
                 派對遊戲
             </RouterLink>

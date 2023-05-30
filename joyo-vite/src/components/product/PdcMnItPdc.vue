@@ -2,7 +2,7 @@
 <div>
   <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
     <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-    <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
+    <router-link :to="'/productInfo' +'/ID:'+card.PRODUCT_ID" >
         <div class="prouct-item-card-tag">
             <p class="prouct-item-card-tag-player">
             <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
@@ -58,13 +58,12 @@ const loginState=()=>{
     let state=sessionStorage.getItem('login');
     //如果為登入情況下，取回會員編號並設定變數MEMBER_ID
     cartItem.value.MEMBER_ID=state;
-    
-    console.log(cartItem.value.MEMBER_ID);
+
 };
 const setLogin=(MEMBER_ID)=>{
     sessionStorage.setItem('login', MEMBER_ID);
     cartItem.value.MEMBER_ID=MEMBER_ID;
-    console.log(cartItem.value.MEMBER_ID);
+   
 };
 const addCart=(e,card)=>{
        e.preventDefault();
