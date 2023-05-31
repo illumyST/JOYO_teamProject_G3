@@ -6,11 +6,11 @@
                         <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_2.png" alt=""></li>
                         <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_3.png" alt=""></li>
                         <li v-on:click="changeImg"><img src="/src/assets/img/productInfo_4.png" alt=""></li>
-                        <li v-on:click="changeImg"><img v-bind:src="filetData.IMG_URL" alt=""></li>
+                        <li v-on:click="changeImg"><img v-bind:src="filetData.IMG_URL_ONE" alt=""></li>
                     </ul>
                 </div>
                 <div class="col-9 infor-item-img-bg">
-                    <img v-bind:src="filetData.IMG_URL" alt="">
+                    <img v-bind:src="filetData.IMG_URL_ONE" alt="">
                 </div>
             </div>
             <div class="col-5 infor-item-infor">

@@ -17,7 +17,7 @@
                     </div>
                     <div class="prouct-item-card-img">
 
-                        <img v-bind:src="list.IMG_URL" class="prouct-item-card-img">
+                        <img v-bind:src="list.IMG_URL_ONE" class="prouct-item-card-img">
 
                     </div>
 
