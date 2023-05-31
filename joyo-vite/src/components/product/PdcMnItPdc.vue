@@ -108,7 +108,7 @@ const addCart=(e,card)=>{
 onMounted(() => {
     sessionStorage.removeItem('login');
     //輸入假資料可以切換會員編號(編號要是資料庫裡有的)
-    setLogin("3");
+    setLogin("2");
 });
 </script>
 

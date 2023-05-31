@@ -5,17 +5,70 @@
 </template>
 
 <script setup>
-import { defineProps,  onMounted,  ref, watch} from 'vue';
 import axios from 'axios';
+import { defineProps,  onMounted,  ref, watch} from 'vue';
 const props = defineProps({
     list: {
         type:  Object,
         required: true,
         }
     });
-const addToCart = (list) => {
-    console.log(list);
+
+const cartItem = ref ({
+    PRODUCT_ID: "",
+    amount: 1,
+    MEMBER_ID: "-1", 
+});
+const cartList = ref([]);
+
+const setLogin = (MEMBER_ID) => {
+    sessionStorage.setItem('login',MEMBER_ID);
+    cartItem.value.MEMBER_ID = MEMBER_ID;
+    console.log(cartItem.value.MEMBER_ID);
+}
+
+const addToCart = (card) => {
+    // console.log(list)
+    cartItem.value.PRODUCT_ID = card.PRODUCT_ID;
+
+    if(cartItem.value.MEMBER_ID === '-1'){
+        cartList.value = JSON.parse(localStorage.getItem('cart')) || [];
+        alert("目前已經判斷沒有登入")
+        if(cartList.value.length === 0 ){
+            cartList.value.unshift(cartItem.value);
+            localStorage.setItem("cart",JSON.stringify(cartList.value));
+            alert("購物車目前筆數為0 推一筆資料進去了")
+        }else {
+            let found = false;
+            for(let i = 0; i < cartList.value.length; i++){
+                if( cartList.value[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
+                    cartList.value[i].amount = cartList.value[i].amount+1;
+                    found = !found;
+                    break;
+                }
+            }
+            if(!found){
+                cartList.value.unshift(cartItem.value);
+            }
+        }
+    localStorage.setItem('cart',JSON.stringify(cartList.value));
+    }else {
+        axios.post('/api/product/Insert.php', cartItem.value)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        alert("商品送到資料庫了")
+    } 
+    
 };
+
+onMounted(() => {
+    sessionStorage.removeItem('login')
+    setLogin("2")
+});
 
 
 </script>
