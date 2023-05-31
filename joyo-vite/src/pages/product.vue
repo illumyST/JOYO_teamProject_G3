@@ -1,13 +1,17 @@
 <template v-if="pageInfor">
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
-        <PdcTopPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory"   @update-Arrange="updateArrange"  ></PdcTopPDC>
+        <PdcTopPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory"   @update-Arrange="updateArrange" @update-Player-Num="updatePlayerNum" @update-Player-Age="updatePlayerAge"></PdcTopPDC>
         <div class="product-main">
             <PdcMnAsdPdc :currentCategory="currentCategory" :page="pageInfor" @update-Catergory="updateCatergory"  >
                 
             </PdcMnAsdPdc>
             <PdcMnItPdc :currentCategory="currentCategory" :pageInforTotalPage="pageInfor.total_page" :key="currentCategory.cate"></PdcMnItPdc>
         </div>
-        <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
+        <div  class="product-bottom">
+            <div  class="product-bottom-div"></div>
+            <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
+        </div>
+        
     </div>
 </template>
 
@@ -38,6 +42,7 @@ const pageInfor=ref({
     total_page:[],
     //頁簽要顯示的頁數
     appearPage:[],
+    attangeDateH:[],
 });
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
@@ -73,10 +78,7 @@ const fetchData=()=>{
                     break;
                        
                 }
-            }else{
-                console.log(0);
-            }
-            
+            }            
             if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
         } else {
@@ -130,7 +132,7 @@ const updateCatergory=(val)=>{
         getAppearPage();
         //更新遊戲分類時初始頁面都是第一頁
         currentCategory.value.page=pageInfor.value.appearPage[0];
-        changeHeight(1);
+        // changeHeight(1);
         scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -138,16 +140,73 @@ const updateCatergory=(val)=>{
      });
 
 };
+//篩選排序方式
 const updateArrange=(val)=>{
+    //依據上架時間，最新到最晚
     if(val===0){
-        console.log(val);
+        pageInfor.value.fliterTg.sort((a, b) => {
+        const timeA = new Date(a.PRODUCT_DATE).getTime();
+        const timeB = new Date(b.PRODUCT_DATE).getTime();
+        return timeB - timeA;
+        });
+        pageInfor.value.total_page.length=0;
+        getPage();
+    //依據上架時間，最舊到最新    
     }else if(val===1){
-        console.log(val);
+        pageInfor.value.fliterTg.sort((a, b) => {
+        const timeA = new Date(a.PRODUCT_DATE).getTime();
+        const timeB = new Date(b.PRODUCT_DATE).getTime();
+        return timeA - timeB;
+        });
+        pageInfor.value.total_page.length=0;
+        getPage();
+    //依據價格，最高到低 
     }else if(val===2){
-        console.log(val);
+        pageInfor.value.fliterTg.sort((a, b) => {
+        const priceA = a.PRICE;
+        const priceB = b.PRICE;
+        return priceB - priceA;
+        });
+        pageInfor.value.total_page.length=0;
+        getPage();
+    //依據價格，最低到高 
     }else {
-        console.log(val);
+        pageInfor.value.fliterTg.sort((a, b) => {
+        const priceA = a.PRICE;
+        const priceB = b.PRICE;
+        return priceA - priceB;
+        });
+        pageInfor.value.total_page.length=0;
+        getPage();
     }
+};
+//篩選玩家人數
+const updatePlayerNum=(val)=>{
+        if (currentCategory.value.cate !== "全部商品") {
+        pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
+        } else {
+        pageInfor.value.fliterTg = pageInfor.value.tg;
+        }
+        if(val<=7){
+            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= val && ele.MAX_PLAYER >= val) ;
+              
+        }else{
+            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= 8 && ele.MAX_PLAYER >= 8) ;
+        }
+        pageInfor.value.total_page.length=0; 
+        getPage();
+        getAppearPage();
+};
+const updatePlayerAge=(val)=>{
+    if (currentCategory.value.cate !== "全部商品") {
+        pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
+        } else {
+        pageInfor.value.fliterTg = pageInfor.value.tg;
+        }
+        pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_AGE <= val);
+        pageInfor.value.total_page.length=0; 
+        getPage();
+        getAppearPage();
 };
 const updatePage=(val)=>{
     //判斷是下10頁還是上10頁
@@ -187,7 +246,7 @@ const updatePage=(val)=>{
 const toPage=(val)=>{
     //更新當前頁面
     currentCategory.value.page=val;
-    changeHeight(val);
+    // changeHeight(val);
     scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -197,15 +256,19 @@ const toPage=(val)=>{
 const changeHeight=(val)=>{
     //計算頁面整體高度
     let aimPage=document.querySelectorAll(".prouct-item")[val-1];
+    console.log(aimPage.children);
+    console.log(aimPage.children.length);
     let layer=Math.ceil(aimPage.children.length/3);
     let h=405*layer;
+    console.log(layer,h);
     //修改高度屬性
     let productMain=document.querySelector(".product-main");
     productMain.style.height=`${h+240}px`;
+    console.log(productMain.style.height);
 };
 const choosePage=(val)=>{
     currentCategory.value.page=val;
-    changeHeight(val);
+    // changeHeight(val);
     scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -323,7 +386,14 @@ onBeforeMount(() => {
         width: 200px;
     }
 }
-
+.product-bottom{
+    width: 100%; 
+    display: flex;
+    .product-bottom-div{
+        width: 200px;
+        margin-right: 20px;
+    }
+}
 
 
 
