@@ -21,8 +21,7 @@
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
                         </h3>
-                        <AddCartBtn @add-To-Cart="addToCart" :list="list"></AddCartBtn>
-
+                        <AddCartBtn :list="list"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
