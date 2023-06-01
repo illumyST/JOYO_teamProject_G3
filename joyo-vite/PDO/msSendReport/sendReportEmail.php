@@ -26,9 +26,9 @@ $endDate = $_POST['endDate'];
 $mail->addAttachment('../../public/csvs/'.$startDate.'_'.$endDate.'.csv');
 $mail->CharSet = 'UTF-8';
 if ($mail->send()) {
-    echo "Success"; // 在成功发送邮件后返回成功字符串给前端
+    echo "Success"; 
 } else {
-    echo "Error sending email. Please try again."; // 在发送邮件时出错时返回错误字符串给前端
+    echo "Error sending email. Please try again.";
 }
 
 ?>
