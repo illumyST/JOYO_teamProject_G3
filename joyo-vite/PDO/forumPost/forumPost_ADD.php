@@ -17,7 +17,7 @@
     $area = $postItemData['area'];
 
     //建立SQL
-    $sqlinsert = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, `LOCATION`, ARTICLE_CONTENT, ARTICLE_DATE, TAG, MEMBER_ID) VALUES ('$postTitle', '$category', '$title', '$score', $area, '$postContent', NOW(), '$postTags', '$memberId')";
+    $sqlinsert = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, ARTICLE_CONTENT, ARTICLE_DATE, TAG, MEMBER_ID) VALUES ('$postTitle', '$category', '$title', '$score', $area, '$postContent', NOW(), '$postTags', '$memberId')";
 
     // 測試用的資料    
     // $test="INSERT INTO `JOYO`.`ARTICLE` (`TITLE`, `ARTICLE_CATEGORY`, `ARTICLE_CONTENT`, `ARTICLE_DATE`, `MEMBER_ID`) VALUES ('捉迷藏心得分享', '心得分享', '好雷', NOW(), '1');";
