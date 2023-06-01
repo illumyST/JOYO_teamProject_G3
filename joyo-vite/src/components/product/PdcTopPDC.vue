@@ -62,19 +62,10 @@
                                             src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >{{age}}</a>
-=======
-<<<<<<< HEAD
-                                    <li v-for="(age,index) in palyerAge" :key="index"><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+{{age}}</a>
-=======
+
+
                                     <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
->>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
->>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
-=======
-                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
->>>>>>> feeef1bdc51e95b99b6f20833eae06b2405f08a4
+
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
                                     </li>
@@ -103,19 +94,9 @@
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                                             v-on:click="(e)=>product_filter_get_order(e,index,arrange)">{{arrange}}</a>
-=======
-<<<<<<< HEAD
-                                            v-on:click="product_filter_get_order(index)">{{arrange}}</a>
-=======
-                                            v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
->>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
->>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
-=======
-                                            v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
->>>>>>> feeef1bdc51e95b99b6f20833eae06b2405f08a4
+
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">上架日期：由低到高</a>
@@ -146,13 +127,8 @@
     const category=[
     '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
     ];
-<<<<<<< HEAD
     const palyerNum=["遊玩人數","1人","2人","3人","4人","5人","6人","7人","多人"];
     const palyerAge=["試玩年齡",4,5,6,7,8,9,10,11,12,13];
-=======
-    const palyerNum=["1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
-    const palyerAge=[4,5,6,7,8,9,10,11,12,13];
->>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
     const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
     const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
     const product_filter_get_cate=(e,list)=>{
