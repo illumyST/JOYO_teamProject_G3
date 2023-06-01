@@ -43,6 +43,8 @@ const pageInfor=ref({
     //頁簽要顯示的頁數
     appearPage:[],
     attangeDateH:[],
+    age:100,
+    player:2,
 });
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
@@ -182,29 +184,44 @@ const updateArrange=(val)=>{
 };
 //篩選玩家人數
 const updatePlayerNum=(val)=>{
+    pageInfor.value.player=val;
+        if(val ==0){
+            pageInfor.value.player=2;
+        }
         if (currentCategory.value.cate !== "全部商品") {
         pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
         } else {
         pageInfor.value.fliterTg = pageInfor.value.tg;
         }
-        if(val<=7){
-            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= val && ele.MAX_PLAYER >= val) ;
+        if(val<=7 || val =="遊玩人數"){
+            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= pageInfor.value.player && ele.MAX_PLAYER >= pageInfor.value.player && ele.MIN_AGE <= pageInfor.value.age) ;
               
         }else{
-            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= 8 && ele.MAX_PLAYER >= 8) ;
+            pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= 8 && ele.MAX_PLAYER >= 8 && ele.MIN_AGE <= pageInfor.value.age) ;
         }
         pageInfor.value.total_page.length=0; 
         getPage();
         getAppearPage();
 };
 const updatePlayerAge=(val)=>{
+    if( val =="試玩年齡"){
+        pageInfor.value.age=100;
+    }else{
+        pageInfor.value.age=val;
+    }
+    
     if (currentCategory.value.cate !== "全部商品") {
-        pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
+        pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate );
         } else {
         pageInfor.value.fliterTg = pageInfor.value.tg;
         }
-        pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_AGE <= val);
+    if(val =="試玩年齡"){
+        pageInfor.value.total_page.length=0;
+    }else{
+        pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= pageInfor.value.player && ele.MAX_PLAYER >= pageInfor.value.player && ele.MIN_AGE <= pageInfor.value.age);
         pageInfor.value.total_page.length=0; 
+    }
+        
         getPage();
         getAppearPage();
 };
