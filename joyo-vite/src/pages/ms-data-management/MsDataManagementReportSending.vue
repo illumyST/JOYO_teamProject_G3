@@ -93,24 +93,6 @@ export default {
           console.error(error);
         });
     },
-    sendReport() {
-      const enteredEmail = this.$refs.emailList.value;
-      console.log(enteredEmail);
-      const emailValidation =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      if (enteredEmail.match(emailValidation)) {
-        console.log("valid email");
-        Email.send({
-          SecureToken: "709c1c70-2636-4be4-ae02-7d7e8fae5347",
-          To: enteredEmail,
-          From: "hsuanchen1234@gmail.com",
-          Subject: "This is the subject",
-          Body: "And this is the body",
-        }).then((message) => alert('信件已送出'));
-      } else {
-        alert("請輸入有效的電子郵件"); 
-      }
-    },
   },
 };
 </script>
