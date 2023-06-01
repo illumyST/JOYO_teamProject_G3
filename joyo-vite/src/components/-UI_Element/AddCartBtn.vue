@@ -11,27 +11,38 @@ const props = defineProps({
     list: {
         type:  Object,
         required: true,
-        }
+        },
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
     });
+// console.log(props.list)
 
-const cartItem = ref ({
-    PRODUCT_ID: "",
-    amount: 1,
-    MEMBER_ID: "-1", 
-});
 const cartList = ref([]);
 
-const setLogin = (MEMBER_ID) => {
-    sessionStorage.setItem('login',MEMBER_ID);
-    cartItem.value.MEMBER_ID = MEMBER_ID;
-    console.log(cartItem.value.MEMBER_ID);
-}
+// const getmember_id = () => {
+//     return axios.get('/api/forumPost/forumCheckLogin.php')
+//     .then(res => {
+//         if(res.data){
+//             cartItem.value.MEMBER_ID = res.data;
+//             console.log(cartItem.value.MEMBER_ID);
+//         }else{
+//             console.log(cartItem.value.MEMBER_ID);
+//         }
+        
+//         console.log(cartItem.value.MEMBER_ID);
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
+// } 
 
 const addToCart = (card) => {
-    // console.log(list)
+    console.log(cartItem.value.PRODUCT_ID);
     cartItem.value.PRODUCT_ID = card.PRODUCT_ID;
-
-    if(cartItem.value.MEMBER_ID === '-1'){
+    console.log(cartItem.value.MEMBER_ID);
+    if(cartItem.value.MEMBER_ID == '-1'){
         cartList.value = JSON.parse(localStorage.getItem('cart')) || [];
         alert("目前已經判斷沒有登入")
         if(cartList.value.length === 0 ){
@@ -60,14 +71,14 @@ const addToCart = (card) => {
             .catch(error => {
                 console.log(error);
             });
-        alert("商品送到資料庫了")
+        alert(cartItem.value.MEMBER_ID);
     } 
     
 };
 
 onMounted(() => {
-    sessionStorage.removeItem('login')
-    setLogin("2")
+    // getmember_id();
+    
 });
 
 

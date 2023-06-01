@@ -52,7 +52,7 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref,onBeforeMount } from "vue"
+import { ref,onBeforeMount,defineProps } from "vue"
 import { RouterLink } from "vue-router";
 import axios from 'axios';
 const product_data = ref({
@@ -65,6 +65,13 @@ const product_data = ref({
 const productInfor=ref({
     newItem:[],
 });
+const props = defineProps({
+    
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
+    });
 const fetchData=()=>{
     return axios.get('/api/index/getNewItem.php')
         .then(res => {
