@@ -5,14 +5,25 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
+import { defineProps,  onMounted,  ref, watch} from 'vue';
+import axios from 'axios';
+=======
 import axios from 'axios';
 import { defineProps,  onMounted,  ref, watch} from 'vue';
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 const props = defineProps({
     list: {
         type:  Object,
         required: true,
         }
     });
+<<<<<<< HEAD
+const addToCart = (list) => {
+    console.log(list);
+};
+
+=======
 
 const cartItem = ref ({
     PRODUCT_ID: "",
@@ -70,6 +81,7 @@ onMounted(() => {
     setLogin("2")
 });
 
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 
 </script>
 

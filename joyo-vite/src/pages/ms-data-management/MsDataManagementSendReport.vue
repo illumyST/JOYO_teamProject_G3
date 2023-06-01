@@ -2,13 +2,13 @@
   <div class="ms_wrapper">
     <MsLeftSideMenu></MsLeftSideMenu>
     <div class="ms_right_side_content">
-      <MsTabs :showBtn2="true" :isOpen="isOpen" @tabSwitch="tabSwitch">
+      <MsTabs :showBtn2="false" :isOpen="isOpen" @tabSwitch="tabSwitch">
         <template #button1>訂單金流數據</template>
         <template #button2>報表寄送</template>
       </MsTabs>
 
       <MsDataManagementOrderMDS v-if="isOpen"></MsDataManagementOrderMDS>
-      <MsDataManagementReportSending v-else></MsDataManagementReportSending>
+      <!-- <MsDataManagementReportSending v-else></MsDataManagementReportSending> -->
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
       this.isOpen = !this.isOpen;
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

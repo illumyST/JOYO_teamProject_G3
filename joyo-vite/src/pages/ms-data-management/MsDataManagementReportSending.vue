@@ -1,102 +1,121 @@
 <template>
   <div class="ms_content_toggle_container">
     <div class="ms_data_management_fiter">
-      <input type="date" class="ms_date_picker" />
+      <VueDatePicker
+        input-class="my-date-picker"
+        v-model="date"
+        range
+        :partial-range="false"
+        :picker-options="pickerOptions"
+        :enable-time-picker="false"
+      ></VueDatePicker>
     </div>
 
     <!-- Send Email -->
     <form action="#" class="ms_send_report_form">
       <label for="email_list">收件人名單</label>
       <input type="text" id="email_list" placeholder="輸入email" />
-      <input type="submit" value="送出" />
+      <input type="submit" value="送出" @click.prevent="sendReport">
     </form>
 
-    <!-- <canvas id="myCanvas"></canvas> -->
-    <BarChart></BarChart>
+    <BarChart :filteredDate="filteredDate"></BarChart>
     <div class="ms_csv_button">
-      <i class="fa-solid fa-file-csv" id="ms_csv"></i>
+      <i class="fa-solid fa-file-csv" id="ms_csv" @click="downloadCSV"></i>
     </div>
-    <table class="ms_transaction_data_table">
-      <tr class="ms_transaction_data_head first_row">
-        <th>訂單編號</th>
-        <th>訂單金額</th>
-        <th>訂單時間</th>
-        <th>訂購用戶</th>
-        <!-- <th><i class="fa-solid fa-file-csv"></i></th> -->
-      </tr>
-
-      <tbody>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewfwefewfewf@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fwefewf@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewwe@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfwefwefewfewfwefew@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewfwefwe@gmail.com</td>
-        </tr>
-      </tbody>
-    </table>
+    <MsOrderListTable :filteredDate="filteredDate"></MsOrderListTable>
     <MsPagination></MsPagination>
   </div>
 </template>
 
 <script>
-export default {};
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+import axios from "axios";
+
+export default {
+  components: { VueDatePicker },
+  data() {
+    return {
+      date: null,
+      pickerOptions: {
+        showTime: false,
+      },
+      filteredDate: [],
+    };
+  },
+  created() {
+    this.getDefaultChartData();
+  },
+  watch: {
+    date() {
+      const startDate = new Date(this.date[0]);
+      const endDate = new Date(this.date[1]);
+
+      const formattedStartDate = startDate.toISOString().slice(0, 10);
+      const formattedEndDate = endDate.toISOString().slice(0, 10);
+
+      this.filteredDate = [formattedStartDate, formattedEndDate];
+    },
+  },
+  methods: {
+    getDefaultChartData() {
+      axios
+        .get("/api/msGetOrderData/getDefaultChartData.php")
+        .then((res) => {
+          const jsonData = res.data;
+          this.date = [
+            jsonData[jsonData.length - 1].GroupedDate,
+            jsonData[0].GroupedDate,
+          ];
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    downloadCSV() {
+      axios
+        .get("/api/msGetCSVFile/GetCSVFile.php", {
+          responseType: 'blob',
+          params: {
+            startDate: this.filteredDate[0],
+            endDate: this.filteredDate[1],
+          },
+        })
+        .then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${this.filteredDate[0]}_${this.filteredDate[1]}業績報表.csv`);
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    sendReport() {
+      const enteredEmail = this.$refs.emailList.value;
+      console.log(enteredEmail);
+      const emailValidation =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if (enteredEmail.match(emailValidation)) {
+        console.log("valid email");
+        Email.send({
+          SecureToken: "709c1c70-2636-4be4-ae02-7d7e8fae5347",
+          To: enteredEmail,
+          From: "hsuanchen1234@gmail.com",
+          Subject: "This is the subject",
+          Body: "And this is the body",
+        }).then((message) => alert('信件已送出'));
+      } else {
+        alert("請輸入有效的電子郵件"); 
+      }
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @mixin btn($bg, $lh, $w, $hover) {
   background: $bg;
   line-height: $lh;
@@ -133,12 +152,6 @@ export default {};
   justify-content: space-between;
 }
 
-#myCanvas {
-  width: 100%;
-  border: 1px solid red;
-  height: 200px;
-  margin-top: 40px;
-}
 .ms_send_report_form {
   display: flex;
   flex-direction: column;
@@ -220,4 +233,6 @@ export default {};
     }
   }
 }
+
+
 </style>

@@ -8,11 +8,19 @@
         v-model="postData.category"
         @click="chooseSelect"
       >
+<<<<<<< HEAD
+        <option value="0">文章類型</option>
+        <option
+          v-for="(item, index) in FormCgy"
+          :key="index"
+          :value="index+1"
+=======
         <option :value="SelectCgy">文章類型</option>
         <option
           v-for="(item, index) in FormCgy"
           :key="index"
           :value="index + 1"
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
         >
           {{ item }}
         </option>
@@ -47,9 +55,15 @@
         data-role="Area"
         v-model="postData.area"
       >
+<<<<<<< HEAD
+        <option value="0">揪團地點</option>
+        <option
+          :value="index+1"
+=======
         <option :value="SelectedArea">揪團地點</option>
         <option
           :value="index + 1"
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
           v-for="(item, index) in Add_Area.Area"
           :key="index"
         >
@@ -59,11 +73,15 @@
     </div>
 
     <div class="forumPost_form_middle">
+<<<<<<< HEAD
+      <label for="forumPost_form_middle_input" class="forumPost_form_middle_title">標題</label>
+=======
       <label
         for="forumPost_form_middle_input"
         class="forumPost_form_middle_title"
         >標題</label
       >
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
       <input
         type="text"
         class="forumPost_form_middle_input"
@@ -73,11 +91,15 @@
         v-model.trim="postData.postTitle"
       />
 
+<<<<<<< HEAD
+      <label for="forumPost_form_middle_textarea" class="forumPost_form_middle_text">內文</label>
+=======
       <label
         for="forumPost_form_middle_textarea"
         class="forumPost_form_middle_text"
         >內文</label
       >
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
       <textarea
         class="forumPost_form_middle_textarea"
         id="forumPost_form_middle_textarea"
@@ -111,11 +133,19 @@
 </template>
   
 <script setup>
+<<<<<<< HEAD
+import { ref, computed } from "vue";
+import axios from "axios";
+
+// 選擇文章類型
+// const SelectCgy = ref("0");
+=======
 import { ref } from "vue";
 import axios from "axios";
 
 // 選擇文章類型
 const SelectCgy = ref("0");
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 const ShowTitleText = ref(true);
 
 // 選擇桌遊評分
@@ -125,6 +155,23 @@ const ShowScoreSelect = ref(true);
 const SelectedArea = ref("0");
 const ShowAreaSelect = ref(false);
 
+<<<<<<< HEAD
+// 標題、內文和客製標籤
+// const postTitle = ref("");
+// const postContent = ref("");
+// const postTags = ref("");
+
+// 會員編號
+// const MEMBERID = sessionStorage.getItem('MEMBER_ID');
+// const getMemberId=()=>{
+//   postData.value.memberId = sessionStorage.getItem('MEMBER_ID');
+// };
+
+// 文章類別選單
+const FormCgy = ref([
+  "心得分享","教學區","發問區","揪團區"
+]);
+=======
 // 會員編號
 // const getMemberId=()=>{
 //  let MEMBERID = sessionStorage.getItem("login");
@@ -133,6 +180,7 @@ const ShowAreaSelect = ref(false);
 
 // 文章類別選單
 const FormCgy = ref(["心得分享", "教學區", "發問區", "揪團區"]);
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 
 // 桌遊評分選單
 const FormScore = ref({
@@ -140,6 +188,11 @@ const FormScore = ref({
   Value: "0",
 });
 
+<<<<<<< HEAD
+// 揪團地點
+const Add_Area = ref({
+  Area: [],
+=======
 //要傳送的資料
 const postData = ref({
   category: "0",
@@ -150,8 +203,90 @@ const postData = ref({
   postTags: "",
   memberId: "1",
   area: "0",
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 });
+//要傳送的資料
+const postData = ref({
+      category: "0",
+      title: "",
+      score: "0",
+      postTitle: "",
+      postContent: "",
+      postTags: "",
+      memberId: "1",
+      area:"0",
+  });
 
+const fetchData = () => {
+  // 揪團地點串JSON檔
+  return axios
+    .get("/src/assets/json/address.json")
+    .then((res) => {
+      Add_Area.value.Area = Object.keys(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+const chooseSelect = () =>{
+    if (postData.value.category == "1" || postData.value.category == "2" || postData.value.category == "3") {
+      if(postData.value.category != "1"){
+        ShowScoreSelect.value = false;
+      }else{
+        ShowScoreSelect.value = true;
+        console.log(SelectCgy.value,"not 2.3");
+      }
+    }else if(postData.value.category == "4"){
+      ShowScoreSelect.value = false;
+      ShowTitleText.value = false;
+      ShowAreaSelect.value = true;
+    }else if(postData.value.category == "0"){
+      ShowScoreSelect.value = true;
+      ShowTitleText.value = true;
+      ShowAreaSelect.value = false;
+    }
+  }
+
+const submitPost = () => {
+  //印為選擇分類的value是數字，把他轉成分類字串
+  postData.value.category=FormCgy.value[postData.value.category-1];
+  if (postData.value.category == "0") {
+    alert("請選擇文章類別");
+    return;
+  }
+
+  if (postData.value.category !== "5") {
+    if (!ShowTitleText.value || !postData.value.title.trim()) {
+      alert("請輸入桌遊名稱");
+      return;
+    }
+  }
+
+<<<<<<< HEAD
+  if (postData.value.category !== "5") {
+    if (!ShowScoreSelect.value || postData.value.score.value == "0") {
+      alert("請選擇評分");
+      return;
+    }
+  }
+
+  if (postData.value.category == "5") {
+    if (ShowAreaSelect.value && postData.value.area == "-1") {
+      alert("請選擇揪團地點");
+      return;
+    }
+  }
+  if (postData.value.category == "2") {
+    if (ShowAreaSelect.value && postData.value.area == "-1") {
+      alert("請選擇揪團地點");
+      postData.value="心得分享";
+      return {
+       
+  };
+      };
+    }
+
+=======
 // 揪團地點
 const Add_Area = ref({
   Area: [],
@@ -227,6 +362,7 @@ const submitPost = () => {
     }
   }
 
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
   if (!postData.value.postTitle.trim()) {
     alert("請輸入文章標題");
     return;
@@ -236,6 +372,15 @@ const submitPost = () => {
     alert("請輸入文章内容");
     return;
   }
+<<<<<<< HEAD
+  
+
+  axios
+    .post("/api/forumPost/forumPost_ADD.php", postData) // PHP 文件路径
+    .then((res) => {
+      console.log(res.data);
+      alert(res.data);
+=======
 
   axios
     .post("/api/forumPost/forumPostADD.php", JSON.stringify(postData.value)) // PHP 文件路径
@@ -252,6 +397,7 @@ const submitPost = () => {
       postData.value.postTags = "";
       postData.value.area = "0";
       ShowScoreSelect.value = true;
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
     })
     .catch((error) => {
       console.error("Error submitting post:", error);
@@ -261,8 +407,23 @@ const submitPost = () => {
 
 onMounted(() => {
   fetchData();
+<<<<<<< HEAD
+=======
   // getMemberId();
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 });
+
+// const shouldShowTitleText = computed(() => {
+//   return SelectCgy.value !== "Cgy5";
+// });
+
+// const shouldShowScoreSelect = computed(() => {
+//   return SelectCgy.value !== "Cgy5";
+// });
+
+// const shouldShowAreaSelect = computed(() => {
+//   return SelectCgy.value === "Cgy5";
+// });
 </script>
   
 <style lang="scss" scoped>
@@ -417,6 +578,7 @@ input[type="button"] {
     padding: 0;
     background-color: white;
   }
+<<<<<<< HEAD
 
   .forumPost_form_title {
     width: 100%;
@@ -443,6 +605,34 @@ input[type="button"] {
     width: 47.3%;
   }
 
+=======
+
+  .forumPost_form_title {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .forumPost_form_title_text {
+    width: 100%;
+    margin: 20px 0 0;
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  .forumPost_form_category {
+    order: -2;
+    width: 47.3%;
+  }
+
+  .forumPost_form_score {
+    order: -1;
+    width: 47.3%;
+  }
+
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
   .forumPost_form_area {
     margin-left: 0;
   }

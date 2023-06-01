@@ -1,17 +1,25 @@
 <template v-if="pageInfor">
     <div class="product-wrapper" id="product-wrapper" v-on:click="product_filter_close">
+<<<<<<< HEAD
+        <PdcTopPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory"   @update-Arrange="updateArrange"  ></PdcTopPDC>
+=======
         <PdcTopPDC :currentCategory="currentCategory" @update-Catergory="updateCatergory"   @update-Arrange="updateArrange" @update-Player-Num="updatePlayerNum" @update-Player-Age="updatePlayerAge"></PdcTopPDC>
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
         <div class="product-main">
             <PdcMnAsdPdc :currentCategory="currentCategory" :page="pageInfor" @update-Catergory="updateCatergory"  >
                 
             </PdcMnAsdPdc>
             <PdcMnItPdc :currentCategory="currentCategory" :pageInforTotalPage="pageInfor.total_page" :key="currentCategory.cate"></PdcMnItPdc>
         </div>
+<<<<<<< HEAD
+        <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
+=======
         <div  class="product-bottom">
             <div  class="product-bottom-div"></div>
             <PdcPgPdc :currentCategory="currentCategory" :page="pageInfor" @update-Page="updatePage" @to-Page="toPage" @choose-Page="choosePage"></PdcPgPdc>
         </div>
         
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
     </div>
 </template>
 
@@ -42,9 +50,15 @@ const pageInfor=ref({
     total_page:[],
     //頁簽要顯示的頁數
     appearPage:[],
+<<<<<<< HEAD
+=======
     attangeDateH:[],
+<<<<<<< HEAD
     age:100,
     player:2,
+=======
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
+>>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
 });
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
@@ -80,7 +94,14 @@ const fetchData=()=>{
                     break;
                        
                 }
+<<<<<<< HEAD
+            }else{
+                console.log(0);
+            }
+            
+=======
             }            
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
             if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
         } else {
@@ -134,7 +155,11 @@ const updateCatergory=(val)=>{
         getAppearPage();
         //更新遊戲分類時初始頁面都是第一頁
         currentCategory.value.page=pageInfor.value.appearPage[0];
+<<<<<<< HEAD
+        changeHeight(1);
+=======
         // changeHeight(1);
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
         scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -142,6 +167,19 @@ const updateCatergory=(val)=>{
      });
 
 };
+<<<<<<< HEAD
+const updateArrange=(val)=>{
+    if(val===0){
+        console.log(val);
+    }else if(val===1){
+        console.log(val);
+    }else if(val===2){
+        console.log(val);
+    }else {
+        console.log(val);
+    }
+};
+=======
 //篩選排序方式
 const updateArrange=(val)=>{
     //依據上架時間，最新到最晚
@@ -225,6 +263,7 @@ const updatePlayerAge=(val)=>{
         getPage();
         getAppearPage();
 };
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 const updatePage=(val)=>{
     //判斷是下10頁還是上10頁
     if(val==="+"){
@@ -263,7 +302,11 @@ const updatePage=(val)=>{
 const toPage=(val)=>{
     //更新當前頁面
     currentCategory.value.page=val;
+<<<<<<< HEAD
+    changeHeight(val);
+=======
     // changeHeight(val);
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
     scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -273,6 +316,17 @@ const toPage=(val)=>{
 const changeHeight=(val)=>{
     //計算頁面整體高度
     let aimPage=document.querySelectorAll(".prouct-item")[val-1];
+<<<<<<< HEAD
+    let layer=Math.ceil(aimPage.children.length/3);
+    let h=405*layer;
+    //修改高度屬性
+    let productMain=document.querySelector(".product-main");
+    productMain.style.height=`${h+240}px`;
+};
+const choosePage=(val)=>{
+    currentCategory.value.page=val;
+    changeHeight(val);
+=======
     console.log(aimPage.children);
     console.log(aimPage.children.length);
     let layer=Math.ceil(aimPage.children.length/3);
@@ -286,6 +340,7 @@ const changeHeight=(val)=>{
 const choosePage=(val)=>{
     currentCategory.value.page=val;
     // changeHeight(val);
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
     scrollTo({
         top: 0,
         behavior: 'smooth'
