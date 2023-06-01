@@ -125,15 +125,10 @@ const ShowScoreSelect = ref(true);
 const SelectedArea = ref("0");
 const ShowAreaSelect = ref(false);
 
-// 標題、內文和客製標籤
-// const postTitle = ref("");
-// const postContent = ref("");
-// const postTags = ref("");
-
 // 會員編號
-// const MEMBERID = sessionStorage.getItem('MEMBER_ID');
 // const getMemberId=()=>{
-//   postData.value.memberId = sessionStorage.getItem('MEMBER_ID');
+//  let MEMBERID = sessionStorage.getItem("login");
+//  postData.value.memberId = MEMBERID;
 // };
 
 // 文章類別選單
@@ -241,23 +236,14 @@ const submitPost = () => {
     alert("請輸入文章内容");
     return;
   }
-  // 發文成功回到最初狀態
-  // const clearpostData = ref({
-  //   category: "0",
-  //   title: "",
-  //   score: "0",
-  //   postTitle: "",
-  //   postContent: "",
-  //   postTags: "",
-  //   area: "0",
-  // });
 
   axios
-    .post("/api/forumPost/forumPost_ADD.php", JSON.stringify(postData.value)) // PHP 文件路径
+    .post("/api/forumPost/forumPostADD.php", JSON.stringify(postData.value)) // PHP 文件路径
     .then((res) => {
       console.log(res.data);
       alert(res.data);
 
+      // 發文成功所有欄位回到最初狀態
       postData.value.category = "0";
       postData.value.title = "";
       postData.value.score = "0";
@@ -266,7 +252,6 @@ const submitPost = () => {
       postData.value.postTags = "";
       postData.value.area = "0";
       ShowScoreSelect.value = true;
-      // clearpostData();
     })
     .catch((error) => {
       console.error("Error submitting post:", error);
