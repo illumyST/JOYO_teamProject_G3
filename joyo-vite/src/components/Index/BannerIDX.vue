@@ -6,26 +6,26 @@
           <!-- //:autoplay="2000" :wrap-around="true"> 自動運行參數 -->
             
             
-          <Slide :key="slide">
-            <!-- <div class="carousel__item">{{ slide }}</div> -->
+          <Slide :key="Slide">
+            <div class="carousel__item">{{ Slide }}</div>
             <img src="/src/assets/img/Group 495.png" alt="" class="pic">
           </Slide>  
         
 
 
-          <Slide :key="slide">
+          <Slide :key="Slide">
             <img src="/src/assets/img/Group 496.png" alt="" class="pic">
           </Slide>
 
 
-          <Slide :key="slide">
+          <Slide :key="Slide">
             <img src="/src/assets/img/Group 497.png" alt="" class="pic">
           </Slide>
 
       
           <template #addons>
             <Navigation />
-            <!-- <Pagination /> -->
+            <Pagination />
           </template>
         </Carousel>
       </div>
@@ -56,15 +56,15 @@
 //     },
 //   })
 
-onMounted(()=>{
-  let buttonArrow=document.querySelectorAll(".carousel__next")[0];
-  // console.log(buttonArrow);
-  buttonArrow.style.color='#513F2E';
-  let buttonArro=document.querySelectorAll(".carousel__prev")[0];
-  // console.log(buttonArrow);
-  buttonArro.style.color='#513F2E';
-}
-)
+// onMounted(()=>{
+//   // let buttonArrow=document.querySelectorAll(".carousel__next")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArrow.style.color='#513F2E';
+//   // let buttonArro=document.querySelectorAll(".carousel__prev")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArro.style.color='#513F2E';
+// }
+// )
   </script>
   
 

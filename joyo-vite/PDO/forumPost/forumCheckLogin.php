@@ -8,6 +8,6 @@ include '../connect/conn.php';
     $data = $_SESSION['member_id'];
             echo $data;
 } else {
-    echo "nolog";
+    echo "is_not_login";
 }
 ?>

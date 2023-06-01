@@ -69,19 +69,14 @@ const props = defineProps({
     });
 
 //從資料庫取得銷售最多的商品(用but list篩選資料)
-const product_data = ref({
-    ID:'1',
-    NAME: '璀璨寶石',
-    IMG_URL: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
-    PRICE: '116',
-    CATEGORY:"輕度策略",
-});
+
 const productInfor=ref({
     hotItem:[],
 });
 
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
+    console.log(props.cartItem);
     return axios.get('/api/index/getHotItem.php')
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
@@ -110,6 +105,7 @@ const fetchData=()=>{
         });
 };
 onBeforeMount(() => {
+
     fetchData();
 })
 
