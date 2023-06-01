@@ -7,7 +7,6 @@ declare global {
   const BarChart: typeof import('./src/components/MsContentManagement/BarChart.vue')['default']
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
-  const IfrBtPDCNF: typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
   const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
   const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
@@ -92,7 +91,6 @@ declare module 'vue' {
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
     readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
@@ -171,7 +169,6 @@ declare module '@vue/runtime-core' {
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IfrBtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrBtPDCNF.vue')['default']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
     readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
