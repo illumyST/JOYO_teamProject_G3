@@ -110,6 +110,7 @@ declare module '@vue/runtime-core' {
     NewProductListIDX: typeof import('./components/Index/NewProductListIDX.vue')['default']
     NotFound: typeof import('./pages/notFound.vue')['default']
     Pages: typeof import('./pages/index.vue')['default']
+    Pagination: typeof import('./components/-UI_Element/Pagination.vue')['default']
     PaginationBarFRM: typeof import('./components/forum/PaginationBarFRM.vue')['default']
     PdcMnAsdPdc: typeof import('./components/product/PdcMnAsdPdc.vue')['default']
     PdcMnItPdc: typeof import('./components/product/PdcMnItPdc.vue')['default']

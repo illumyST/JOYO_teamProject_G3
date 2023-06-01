@@ -70,9 +70,10 @@
       class="forumInfo_right_msg_text"
       id="forumInfo_right_msg_text"
       placeholder="留言"
+      v-model="messageText"
     ></textarea>
     <div class="forumInfo_right_msg_icon">
-      <botton class="fa-paper-plane_icon"><i class="fa-solid fa-paper-plane"></i></botton>
+      <botton class="fa-paper-plane_icon" @click="handleSendButtonClick"><i class="fa-solid fa-paper-plane"></i></botton>
       <botton class="fa-heart_icon"><i class="fa-regular fa-heart"></i></botton>
     </div>
   </div>
@@ -121,6 +122,44 @@ const ForumInfoMsgs = ref([
   },
   
 ]);
+
+
+const isMember = ref(false); // 假设用户不是会员
+const messageText = ref(""); // 留言文本内容
+
+  // 輔助函数：格式化日期
+  const formatDate = (date) => {
+    // 替換為實際的日期格式化邏輯
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+  };
+
+// 处理发送按钮点击事件
+const handleSendButtonClick = () => {
+  if (!isMember.value) {
+    // console.log("1111111");
+
+    // 用户是會員，執行發送
+    const newMessage = {
+      MsgImg: "",
+      MsgName: "", // 替換為實際的用戶名稱
+      MsgDate: formatDate(new Date()), // 替換為實際的日期格式化函数
+      MsgText: messageText.value,
+    };
+    // console.log(newMessage);
+
+    ForumInfoMsgs.value.push(newMessage); // 添加新留言到留言列表
+    CommentsNum.value++; // 更新留言數目
+    // console.log(CommentsNum.value);
+    // console.log(ForumInfoMsgs.value);
+
+    // 清空留言文本框
+    messageText.value = "";
+  } else {
+    // 用户不是会员，给出提示或要求登入/註冊
+    alert("請登入或註冊為會員");
+    // 或執行其他邏輯
+};
+};
 </script>
 
 <style lang="scss" scoped>

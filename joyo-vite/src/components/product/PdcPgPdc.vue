@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template v-if="page">
     <div class="product-page">
             <button :class="{disappear:page.appearPage[page.appearPage.length-1]<=10}" @click="lastPage"><i class="fa-sharp fa-solid fa-angle-left"></i></button>
@@ -26,6 +27,41 @@
         
         
     </div>
+=======
+<template v-if="page" >
+<div class="product-bottom-pages">
+    <div class="product-page">
+                <button :class="{disappear:page.appearPage[page.appearPage.length-1]<=10}" @click="lastPage"><i class="fa-sharp fa-solid fa-angle-left"></i></button>
+                <ul>
+                    <li v-for="(page,index) in page.appearPage"><a href="" :class="{active:currentCategory.page ==page} " @click="toPage">{{page}}</a></li>
+                </ul>
+                <button :class="{disappear:(page.total_page.length-page.appearPage[page.appearPage.length-1])<=0}" @click="nextPage"><i class="fa-sharp fa-solid fa-angle-right"></i></button>
+    </div>
+    <div class="product-page-select">
+            <ul>
+                <li>
+                    <p>第</p>
+                </li>
+                <li>
+                    <select class=""  id="" @change="choosePage">
+                    <option :value="pagei+1" v-for="(p,pagei) in page.total_page">{{pagei+1}}</option>
+                    </select>
+                    
+                </li>
+                <li>頁</li>
+                <li>/</li>
+                <li>
+                共<span>{{page.total_page.length}}</span>頁
+                </li>
+            </ul>
+            
+            
+    </div>
+
+
+</div>
+    
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 </template>
 
 <script setup>
@@ -540,10 +576,21 @@ const choosePage=(e)=>{
     .active {
         display: block;
     }
+<<<<<<< HEAD
 }
 
 
 
+=======
+}
+.product-bottom-pages{
+    width: 960px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+>>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 // RWD
 @media screen and (max-width: 414px) {
     .product-wrapper {
