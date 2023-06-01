@@ -21,11 +21,7 @@
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li v-for="(list,index) in category" :key="index">
-<<<<<<< HEAD
-                                    <a class="dropdown-item" href="#" v-on:click="product_filter_get_cate">{{list}}</a></li>
-=======
                                     <a class="dropdown-item" href="#" v-on:click="(e)=>product_filter_get_cate(e,list)">{{list}}</a></li>
->>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
                                 <!-- <li><a class="dropdown-item" href="#">派對遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">輕度策略</a></li>
                                 <li><a class="dropdown-item" href="#">戰爭遊戲</a></li>
@@ -42,13 +38,8 @@
                                     <span>遊玩人數</span><span><img src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
-<<<<<<< HEAD
-                                    <li v-for="(num,index) in palyerNum" :key="index"><a class="dropdown-item" href="#"
-                                            v-on:click="product_filter_get_player">{{num}}</a></li>
-=======
                                     <li v-for="(num,index) in palyerNum" :key="index" v-on:click="(e)=>product_filter_player(e,index)"><a class="dropdown-item" href="#"
                                             >{{num}}</a></li>
->>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
                                     <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_player">2人遊戲</a></li>
                                     <li><a class="dropdown-item" href="#"
@@ -72,6 +63,7 @@
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >{{age}}</a>
 =======
 <<<<<<< HEAD
@@ -80,6 +72,9 @@
                                     <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
 >>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 >>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
+=======
+                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
+>>>>>>> feeef1bdc51e95b99b6f20833eae06b2405f08a4
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
                                     </li>
@@ -109,6 +104,7 @@
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             v-on:click="(e)=>product_filter_get_order(e,index,arrange)">{{arrange}}</a>
 =======
 <<<<<<< HEAD
@@ -117,6 +113,9 @@
                                             v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
 >>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 >>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
+=======
+                                            v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
+>>>>>>> feeef1bdc51e95b99b6f20833eae06b2405f08a4
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">上架日期：由低到高</a>
@@ -152,19 +151,6 @@
     const palyerAge=["試玩年齡",4,5,6,7,8,9,10,11,12,13];
 =======
     const palyerNum=["1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
-<<<<<<< HEAD
-    const palyerAge=[3,4,5,6,7,8,9,10,11,12];
-    const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
-    const emits = defineEmits(["updateCatergory","updateArrange"]);
-    const product_filter_get_cate=(e)=>{
-        // e.preventDefault();
-        emits('updateCatergory', e.target.innerHTML);
-    };
-    const product_filter_get_order=(index)=>{
-        // e.preventDefault();
-        emits('updateArrange', index);
-    };
-=======
     const palyerAge=[4,5,6,7,8,9,10,11,12,13];
 >>>>>>> 1f675cd2df5bb1450f400221e96138ddf818e206
     const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
@@ -216,7 +202,6 @@
         }
         emits('updatePlayerAge', age);
     };
->>>>>>> ea1e6eb8c08357a9deeb3799eaff3549db93c6d9
 </script>
 <script>
     export default {
