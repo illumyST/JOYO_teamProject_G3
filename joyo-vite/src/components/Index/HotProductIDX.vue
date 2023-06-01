@@ -21,7 +21,7 @@
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
                         </h3>
-                        <AddCartBtn :list="list"></AddCartBtn>
+                        <AddCartBtn :list="list" :cartItem="cartItem"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -53,15 +53,20 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref,onBeforeMount } from "vue"
+import { ref,onBeforeMount,defineProps } from "vue"
 import axios from 'axios';
 const pruduct_imfo = ref({
    product:[
-    {
-        product_id : "",
+    { product_id : "",
     }], 
 });
-
+const props = defineProps({
+    
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
+    });
 
 //從資料庫取得銷售最多的商品(用but list篩選資料)
 const product_data = ref({
@@ -74,6 +79,7 @@ const product_data = ref({
 const productInfor=ref({
     hotItem:[],
 });
+
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
     return axios.get('/api/index/getHotItem.php')
@@ -104,7 +110,6 @@ const fetchData=()=>{
         });
 };
 onBeforeMount(() => {
-    
     fetchData();
 })
 
