@@ -416,7 +416,7 @@ onMounted(() => {
     align-items: center;
 
     div {
-        width: 200px;
+        width: 196px;
     }
     
     button {
