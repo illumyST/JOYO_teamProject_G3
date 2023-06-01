@@ -16,19 +16,39 @@
 
 <script setup>
 import { ref } from "vue"
-
+import axios from "axios"
 const forumCategory = ref([
   {
   cate:"所有文章",
   page:1
   }
 ]);
+const forumArticle=ref({
+  articleAll:[],
+  articleFilter:[],
+  articlePage:[]
+});
+
+const fetchData=()=>{
+    return axios.get('/api/product/test.php')
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            forumArticle.value.articleAll = res.data;
+            console.log(forumArticle.value.articleAll);
+               
+        }
+    )
+        .catch(err => {
+            console.error(err);
+        });
+};
 
 const updateCategory = (val) => {
   let index = 0;
   forumCategory.value[index].cate = val;
   console.log(val)
 }
+
 </script>
 
 <style lang="scss" scoped>
