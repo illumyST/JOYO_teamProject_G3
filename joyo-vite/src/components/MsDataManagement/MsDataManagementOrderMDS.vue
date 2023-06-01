@@ -56,8 +56,11 @@ export default {
     };
   },
   created() {
+    // 只有在第一次載入時，抓取預設數據
     this.getDefaultChartData();
     this.filteredDate = this.date;
+    //
+    // this.filteredDate = date;
   },
   watch: {
     // 監控日期變化
@@ -110,11 +113,11 @@ export default {
     },
     sendReport() {
       const enteredEmail = this.$refs.emailList.value;
+      const startDate = new Date(this.filteredDate[0]);
+      const endDate = new Date(this.filteredDate[1]);
       console.log(enteredEmail);
       const emailValidation =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      // 產生對應日期的報表檔案
-
       if (enteredEmail.match(emailValidation)) {
         axios
           .get("/api/msGetCSVFile/createCSVFile.php", {
@@ -132,8 +135,8 @@ export default {
 
         // 從PHPMailer 發送email
         setTimeout(() => {
-          const formattedStartDate = this.date[0].toISOString().slice(0, 10);
-          const formattedEndDate = this.date[1].toISOString().slice(0, 10);
+          const formattedStartDate = startDate.toISOString().slice(0, 10);
+          const formattedEndDate = endDate.toISOString().slice(0, 10);
           const formData = new FormData();
           formData.append("email", enteredEmail);
           formData.append(
@@ -147,11 +150,9 @@ export default {
             .post("/api/msSendReport/sendReportEmail.php", formData)
             .then((res) => {
               console.log(res, "success");
-              this.$refs.emailList.value = ''; 
+              this.$refs.emailList.value = "";
             });
         }, 300);
-      } else {
-        alert("請輸入正確Email");
       }
     },
   },
