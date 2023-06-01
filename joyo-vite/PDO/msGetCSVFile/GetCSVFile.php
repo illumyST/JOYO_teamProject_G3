@@ -29,7 +29,7 @@ if (count($data) > 0) {
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="output.csv"');
 
-    // 打开输出流，将CSV数据直接输出到浏览器
+    // 輸出csv
     $output = fopen('php://output', 'w');
 
     // 写入CSV文件的表头
@@ -44,6 +44,6 @@ if (count($data) > 0) {
     fclose($output);
     exit(); // 终止脚本执行，确保只返回CSV文件内容
 } else {
-    echo "查询失败";
+    echo "輸出失敗";
 }
 ?>

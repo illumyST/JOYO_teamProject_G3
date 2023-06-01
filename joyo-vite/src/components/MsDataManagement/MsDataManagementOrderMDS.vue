@@ -56,11 +56,8 @@ export default {
     };
   },
   created() {
-    // 只有在第一次載入時，抓取預設數據
     this.getDefaultChartData();
     this.filteredDate = this.date;
-    //
-    // this.filteredDate = date;
   },
   watch: {
     // 監控日期變化
@@ -116,17 +113,45 @@ export default {
       console.log(enteredEmail);
       const emailValidation =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      // 產生對應日期的報表檔案
+
       if (enteredEmail.match(emailValidation)) {
-        console.log("valid email");
-        Email.send({
-          SecureToken: "709c1c70-2636-4be4-ae02-7d7e8fae5347",
-          To: enteredEmail,
-          From: "hsuanchen1234@gmail.com",
-          Subject: "This is the subject",
-          Body: "And this is the body",
-        }).then((message) => alert('信件已送出'));
+        axios
+          .get("/api/msGetCSVFile/createCSVFile.php", {
+            params: {
+              startDate: this.date[0],
+              endDate: this.date[1],
+            },
+          })
+          .then((res) => {
+            console.log("報表已產出至指定路徑");
+          })
+          .catch((error) => {
+            console.log("error" + error);
+          });
+
+        // 從PHPMailer 發送email
+        setTimeout(() => {
+          const formattedStartDate = this.date[0].toISOString().slice(0, 10);
+          const formattedEndDate = this.date[1].toISOString().slice(0, 10);
+          const formData = new FormData();
+          formData.append("email", enteredEmail);
+          formData.append(
+            "subject",
+            `${formattedStartDate} 至 ${formattedEndDate} 業績報表`
+          );
+          formData.append("message", "報表如附件，請知悉");
+          formData.append("startDate", formattedStartDate);
+          formData.append("endDate", formattedEndDate);
+          axios
+            .post("/api/msSendReport/sendReportEmail.php", formData)
+            .then((res) => {
+              console.log(res, "success");
+              this.$refs.emailList.value = ''; 
+            });
+        }, 300);
       } else {
-        alert("請輸入有效的電子郵件"); 
+        alert("請輸入正確Email");
       }
     },
   },

@@ -1,36 +1,28 @@
 <?php
-
-$host = '127.0.0.1';
-$user = 'root';
-$pas = 'password';
-$select = 'JOYO';
-
+// 直接產生csv檔案到指定路徑
+include("../conn.php");
 $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
 $pdo = new PDO($dsn, $user, $pas);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-$startDate = $_GET['startDate'];
-$endDate = $_GET['endDate'];
+$startDate = date('Y-m-d', strtotime($_GET['startDate']));
+$endDate = date('Y-m-d', strtotime($_GET['endDate']));
 
 
-$sql = 'SELECT BUY_ID, TOTAL_PRICE,DATE, MAIL FROM BUY
+$sql = 'SELECT BUY_ID, TOTAL_PRICE, DATE, MAIL FROM BUY
 LEFT JOIN MEMBER ON BUY.MEMBER_ID = MEMBER.MEMBER_ID
 WHERE DATE BETWEEN "' . $startDate . '" AND "' . $endDate . '"
 ORDER BY DATE DESC';
 
 $statement = $pdo->prepare($sql);
 $statement->execute();
-// $affectedRow = $pdo->exec($sql);
-// header('Content-Type: application/json');
 $data = $statement->fetchAll();
 if (count($data) > 0) {
-    // 设置响应头，告诉浏览器将输出保存为CSV文件
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="output.csv"');
+    $outputFilePath = '../../public/csvs/'.$startDate.'_'.$endDate.'.csv';
 
-    // 打开输出流，将CSV数据直接输出到浏览器
-    $output = fopen('php://output', 'w');
+    // 打开输出流，将CSV数据写入文件
+    $output = fopen($outputFilePath, 'w');
 
     // 写入CSV文件的表头
     fputcsv($output, array_keys($data[0]));
@@ -42,7 +34,9 @@ if (count($data) > 0) {
 
     // 关闭输出流
     fclose($output);
-    exit(); // 终止脚本执行，确保只返回CSV文件内容
+
+    // 输出成功消息或进行其他操作
+    echo "文件保存成功";
 } else {
     echo "查询失败";
 }
