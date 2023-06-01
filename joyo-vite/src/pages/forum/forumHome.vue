@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref } from "vue"
-import 
+import axios from "axios"
 const forumCategory = ref([
   {
   cate:"所有文章",
@@ -48,7 +48,7 @@ const updateCategory = (val) => {
   forumCategory.value[index].cate = val;
   console.log(val)
 }
-on
+
 </script>
 
 <style lang="scss" scoped>
