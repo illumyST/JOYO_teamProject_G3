@@ -45,7 +45,7 @@ export default defineConfig({
       '/api':{
         target:'http://localhost:80',
         changeOrigin:true,
-        rewrite: path => path.replace(/^\/api/,'/G3/joyo-vite/PDO'),
+        rewrite: path => path.replace(/^\/api/,'/teamProject_G3/joyo-vite/PDO'),
       },
     }
   },
