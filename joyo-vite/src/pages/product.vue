@@ -217,7 +217,7 @@ const updatePlayerAge=(val)=>{
         } else {
         pageInfor.value.fliterTg = pageInfor.value.tg;
         }
-    if(val =="試玩年齡"){
+    if(val =="適玩年齡"){
         pageInfor.value.total_page.length=0;
     }else{
         pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= pageInfor.value.player && ele.MAX_PLAYER >= pageInfor.value.player && ele.MIN_AGE <= pageInfor.value.age);

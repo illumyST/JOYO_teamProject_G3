@@ -23,7 +23,7 @@
             </aside>
 </template>
 <script setup>
-    import { defineProps,  ref, watch,computed ,defineEmits} from 'vue';
+    import { defineProps, defineEmits} from 'vue';
     const category=[
     '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
     ];
@@ -38,7 +38,6 @@
         },
         
     });
-    const index=0;
     //測欄更新傳回父層
     const emits = defineEmits(["updateCatergory"]);
     const product_filter_get_cate=(e)=>{

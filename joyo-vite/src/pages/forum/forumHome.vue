@@ -1,40 +1,46 @@
 <template>
   <!-- 手機版廣告區域 -->
   <div class="forum_media_advertise">
-    <img src="../../assets/img/forum_advertise.jpg" alt="" />
+    <img src="/src/assets/img/forum_advertise.jpg" alt="" />
   </div>
 
   <section class="forum_wrapper">
     <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRM>
     <div class="forum_right">
       <BannerTopFRM></BannerTopFRM>
-      <BannerListFRM></BannerListFRM>
-      <PaginationBarFRM></PaginationBarFRM>
+      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange"></BannerListFRM>
+      <PaginationBarFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @to-Page="toPage"></PaginationBarFRM>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 import axios from "axios"
-const forumCategory = ref([
+const forumCategory = ref(
   {
   cate:"所有文章",
   page:1
   }
-]);
+);
 const forumArticle=ref({
   articleAll:[],
   articleFilter:[],
-  articlePage:[]
+  articlePage:[],
+  //表示一頁呈現幾筆資料
+  page:4,
+  //頁籤內容
+  appearPage:[],
 });
 
 const fetchData=()=>{
-    return axios.get('/api/product/test.php')
+    return axios.get('/api/forum/forumGetArticle.php')
         .then(res => {
-            //將資料庫回傳的資料存在tg變數中
+            //將資料庫回傳的資料存在articleAll變數中
             forumArticle.value.articleAll = res.data;
-            console.log(forumArticle.value.articleAll);
+            //將articleAll的資料傳給之後會過濾不同類型文章的陣列(第一次載入頁面都是全部文章所以沒有過濾)
+            forumArticle.value.articleFilter = res.data;
+
                
         }
     )
@@ -42,13 +48,109 @@ const fetchData=()=>{
             console.error(err);
         });
 };
+const getPage=()=>{
+  console.log(forumArticle.value.articleFilter.length);
+    for(let j=0;j<forumArticle.value.articleFilter.length;){
+      forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+forumArticle.value.page));
+         j=j+ forumArticle.value.page; 
+       }
+       console.log(forumArticle.value.articlePage);
+};
 
-const updateCategory = (val) => {
-  let index = 0;
-  forumCategory.value[index].cate = val;
-  console.log(val)
+const getAppearPage=()=>{
+    //刪除原本頁簽的資料
+    forumArticle.value.appearPage.length=0;
+    if(forumArticle.value.articlePage.length >=10){
+        for(let i=1;i<=10;i++){
+          forumArticle.value.appearPage.push(i);
+        }
+        
+    }else{
+        for(let i=1;i<=forumArticle.value.articlePage.length;i++){
+          forumArticle.value.appearPage.push(i);
+        }
+    }
 }
+const toPage=(val)=>{
+    //更新當前頁面
+    forumCategory.value.page=val;
+    console.log(forumCategory.value.page);
+    // changeHeight(val);
+    scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+};
+const filterData = () => {
+  return Promise.resolve().then(() => {
+    if (forumCategory.value.cate !== "所有文章") {
+      forumArticle.value.articleFilter = forumArticle.value.articleAll.filter(ele => ele.ARTICLE_CATEGORY === forumCategory.value.cate);
+    } else {
+      forumArticle.value.articleFilter = forumArticle.value.articleAll;
+    }
+  });
+};
+const updateCategory=(val)=>{
+  forumCategory.value.cate=val;
+  filterData().then(() => {
+    forumArticle.value.articlePage.length=0;
+    getPage();
+    getAppearPage();
+    //更新遊戲分類時初始頁面都是第一頁
+    forumCategory.value.page=forumArticle.value.appearPage[0];
+    // changeHeight(1);
+    scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  });
 
+};
+const updateArrange=(val)=>{
+    //依據文章時間，最新到最舊
+    if(val===0){
+      forumArticle.value.articleFilter.sort((a, b) => {
+        const timeA = new Date(a.ARTICLE_DATE).getTime();
+        const timeB = new Date(b.ARTICLE_DATE).getTime();
+        return timeB - timeA;
+        });
+        forumArticle.value.articlePage.length=0;
+        getPage();
+    //依據文章時間，最舊到最新    
+    }else if(val===1){
+      forumArticle.value.articleFilter.sort((a, b) => {
+        const timeA = new Date(a.ARTICLE_DATE).getTime();
+        const timeB = new Date(b.ARTICLE_DATE).getTime();
+        return timeA - timeB;
+        });
+        forumArticle.value.articlePage.length=0;
+        getPage();
+    //依據觀看(喜愛)次數，最高到低 
+    }else if(val===2){
+      forumArticle.value.articleFilter.sort((a, b) => {
+        const likeA = a.LIKEARTICLE;
+        const likeB = b.LIKEARTICLE;
+        return likeB - likeA;
+        });
+        forumArticle.value.articlePage.length=0;
+        getPage();
+    //依據觀看(喜愛)次數，最低到高 
+    }else {
+      forumArticle.value.articleFilter.sort((a, b) => {
+        const likeA = a.LIKEARTICLE;
+        const likeB = b.LIKEARTICLE;
+        return likeA - likeB;
+        });
+        forumArticle.value.articlePage.length=0;
+        getPage();
+    }
+};
+onMounted(()=>{
+  fetchData().then(() => {
+    getPage();
+    getAppearPage();
+     });
+});
 </script>
 
 <style lang="scss" scoped>
