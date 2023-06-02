@@ -1,4 +1,5 @@
 <template>
+    <div id="box">
 <table class="ms_table">
     <thead>
         <td>會員編號</td>
@@ -18,6 +19,7 @@
         </tr> 
     </tbody>
 </table>
+</div>
 </template>
   
   <script setup>
@@ -28,6 +30,10 @@
   
   
   <style lang="scss" scoped>
+   div#box{
+    outline: 1px solid red;
+    height: 460px;
+  }
   table{
           width: 100%;
           text-align: center;

@@ -1,4 +1,5 @@
 <template>
+  <div id="box">
 <table class="ms_table">
     <thead>
         <td>商品編號</td>
@@ -7,12 +8,12 @@
         <td>價格</td>
         <td>編輯</td>
     </thead>
-    <tbody>
+    <tbody id="tbody">
         <tr class="ms_table_body" v-for="(item,index) in prodects">
             <td>{{ item.pronum }}</td>
             <td><p>{{ item.proname }}</p></td>
-            <td><p>{{ item.protype }}</p></td>
-            <td><p>{{ item.propice }}</p></td>
+            <td>{{ item.protype }}</td>
+            <td>{{ item.propice }}</td>
             <td class="msn_icon">
               <i class="bi bi-pencil-square" @click="change(index)"></i>
               <i class="bi bi-trash3-fill" @click="del(index,item.pronum)"></i>
@@ -23,12 +24,13 @@
     </tbody>
     
 </table>
+  </div>
 </template>
   
   <script setup>
-  import axios from 'axios';
+import axios from 'axios';
 import {ref ,inject} from 'vue';
-  let prodects = inject('prodects');
+  let prodects = inject('prodectsS');
 
   const del = (index,id)=>{
     var ny = confirm("你確定刪除資料嗎？");
@@ -65,37 +67,59 @@ import {ref ,inject} from 'vue';
   
   
   <style lang="scss" scoped>
+  div#box{
+    // outline: 1px solid red;
+    height: 560px;
+  }
   table{
           width: 100%;
           text-align: center;
           thead{
             td{
-                width: 192px;
+                // width: 192px;
             }
               font-size: 20px;
               height: 60px;
               line-height: 60px;
               padding-bottom:30px;
           }
+          tbody#tbody{
+            // display: block;
+            width: 100%;
+            // outline: 5px solid blue;
+            height: 50px !important;
+          }
           tr.ms_table_body{
+            font-size: 16px;
+            // display: block;
             td{
-                // outline: 1px solid red;
                 width: 192px;
                 input{
                     text-align: center;
                 }
-            }  
+            } 
+            td:nth-child(2){
+              p{
+                // outline: 1px solid red;
+                // height: 40px;
+                width: 250px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                // padding: 0 10px;
+              }
+              
+            } 
               background-color: $orange;
               font-size: 16px;
-              height: 40px;
               vertical-align: middle;
-              line-height: 40px;
+              line-height: 50px;
               td.msn_icon{
                   display: flex;
                   justify-content: center;
                   
                   i{
-                      margin: 0 3px;
+                      // margin: 0 3px;
                       cursor: pointer;  
                   }
               }

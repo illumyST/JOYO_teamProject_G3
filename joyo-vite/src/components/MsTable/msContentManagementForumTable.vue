@@ -1,5 +1,5 @@
 <template>
-
+  <div id="box">
   <table class="ms_table">
     <thead>
         <tr>
@@ -22,7 +22,7 @@
         </tr> 
     </tbody>    
 </table>
-
+</div>
 </template>
 
 <script setup>
@@ -43,6 +43,10 @@ const del = (index,item)=>{
 
 
 <style lang="scss" scoped>
+div#box{
+    outline: 1px solid red;
+    height: 460px;
+  }
 table{
         width: 100%;
         text-align: center;

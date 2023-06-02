@@ -134,6 +134,7 @@ const emits = defineEmits(['close']);
     right: 0;
     left: 0;
     bottom: 0;
+    text-align: left;
     i.bi-x-lg{
         position: absolute;
         top: 15px;

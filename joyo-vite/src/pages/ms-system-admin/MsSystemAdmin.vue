@@ -13,6 +13,7 @@
     </div>
     <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
     <MsChangeAdminPasswordForm v-if="updat" @close1="close1"></MsChangeAdminPasswordForm>
+    <msPage @page="chpage"></msPage>
 </template>
 
 <script setup>
@@ -23,11 +24,28 @@ const userSelect = ref(["商品編號","商品名稱","遊戲類型","價格","�
 provide('us', userSelect);
 
 const admins = ref([]) ;
+const adminsA = ref([]) ;
 
-provide('admins',admins);
+provide('admins',adminsA);
+provide("prodects",admins);
 
+
+
+const chpage=(n)=>{
+  adminsA.value=[];
+  for(var a = n[0] ;a<n[1] ; a++){
+    if(admins.value[a] != undefined){
+      adminsA.value.push(admins.value[a]);
+    }
+    // console.log(admins.value[a])
+   
+  }
+}
 const addop = ref(false);
 const updat = ref(false);
+
+
+
 
 const cladd = (e)=>{
   if(addop.value){
@@ -74,6 +92,11 @@ axios.get("/api/msBack_Account/msBack_Account.php")
         update:true,
         fixe:false});
   }
+  for(var a= 0 ;a<10 ; a++){
+   if(admins.value[a] != undefined){
+    adminsA.value.push(admins.value[a])
+   } 
+  } 
 })
 .catch(error =>{ console.log(error)})
 
