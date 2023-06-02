@@ -117,11 +117,11 @@ const routes = [
                         name: 'forumHome',
                         component: () => import('@/pages/forum/forumHome.vue'),
                     },
-                    {
-                        path: 'forumInfo',
-                        name: 'forumInfo',
-                        component: () => import('@/pages/forum/forumInfo.vue'),
-                    },
+                    // {
+                    //     path: 'forumInfo',
+                    //     name: 'forumInfo',
+                    //     component: () => import('@/pages/forum/forumInfo.vue'),
+                    // },
                     {
                         path: 'forumPost',
                         name: 'forumPost',
@@ -132,6 +132,14 @@ const routes = [
                         },
                     },
                 ]
+            },
+
+            {
+                path: 'forumInfo/:article:',
+                name: 'forumInfo',
+                component: () => import('@/pages/forum/forumInfo.vue'),
+
+
             },
 
             // 前台子頁＿[contact] -------------------

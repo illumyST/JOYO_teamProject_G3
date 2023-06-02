@@ -74,12 +74,13 @@
       v-for="(item, index) in Items"
       :key="index"
     >
-      <RouterLink to="forum/forumInfo/">
+    <!-- "'/forumInfo/'+item.ARTICLE_ID" -->
+      <RouterLink :to="'/forumInfo/article:'+item.ARTICLE_ID">
         <!-- 第一文章列表左側 -->
         <ul class="forum_article_item1_left">
           <li class="forum_category">
             <h2 v-show="item.ARTICLE_CATEGORY=='心得分享'">{{ item.RATE }}</h2>
-            <h2 v-show="item.ARTICLE_CATEGORY=='揪團區'">{{ item.LOCATION }}</h2>
+            <h2 v-show="item.ARTICLE_CATEGORY=='揪團區'" class="forum_category_area">{{ item.LOCATION }}</h2>
             <h2 v-show="item.ARTICLE_CATEGORY=='發問區'">發問</h2>
             <h2 v-show="item.ARTICLE_CATEGORY=='教學區'">教學</h2>
           </li>
@@ -389,14 +390,18 @@ onMounted(() => {
   // border: 1px solid black;
   background-color: white;
   text-align: center;
+  .forum_category_area{
+    font-size: 35px;
+    line-height: 3.3;
+  }
 }
 
 .forum_article_item1_left .forum_category h2 {
   color: $d-pink;
-  line-height: 4.8;
-  font-size: $h2;
+  line-height: 2.9;
+  font-size: 40px;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .forum_article_item1_left .forum_name_data {
