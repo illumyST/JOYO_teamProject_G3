@@ -1,29 +1,38 @@
 <template>
     <div class="outBg"></div>
-        <main class="wrapper">
-            <img class='logo' src="@/assets/img/logo_orange.svg" alt="">
-            <div class="landingBtn">
-                <router-link class="btn" to="/">前台</router-link>
-                <router-link class="btn" to="/ms">後台</router-link>
-            </div>
-        </main>
-    
+    <main class="wrapper">
+        <img class='logo' src="@/assets/img/logo_orange.svg" alt="">
+        <div class="landingBtn">
+            <router-link class="btn" to="/">前台</router-link>
+            <router-link class="btn" to="/ms">後台</router-link>
+        </div>
+    </main>
 </template>
 
 <script setup>
 
+// 測試打包後能否使用php
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    axios.post('/api/test/test.php')
+        .then(res => {
+                console.log(res.data);
+        });
+})
 </script>
 
 <style lang="scss" scoped>
-.outBg{
+.outBg {
     width: 100vw;
     height: 100vh;
     margin: 0 auto;
     position: absolute;
     background-color: $green;
     clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
-    
+
 }
+
 .wrapper {
     text-align: center;
     padding-top: 280px;
@@ -49,4 +58,5 @@
     background-color: $orange;
     display: inline-block;
     border-radius: 5px;
-}</style>
+}
+</style>

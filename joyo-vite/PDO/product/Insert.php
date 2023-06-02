@@ -15,7 +15,7 @@ include("../connect/conn.php");
        echo $PRODUCT_ID ;
        echo $MEMBER_ID ;
        //建立一個新的變數存放資料庫數據
-       $tg = new PDO($dsn, $db_user, $db_pass);
+       $tg = new PDO($dsn, $user, $pas);
        //查看會員購物車資料庫是否已存在相同商品
        //SQL指令，搜尋會員編號=$MEMBER_ID的購物車資料
        $sqlSelecMember = "SELECT * FROM CART where MEMBER_ID=$MEMBER_ID";

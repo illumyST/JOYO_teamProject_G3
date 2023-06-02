@@ -7,6 +7,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base:'./',
   plugins: [
     vue(),
     AutoImport({
@@ -49,4 +50,16 @@ export default defineConfig({
       },
     }
   },
+
+  // 打包用
+  // server: {
+  //   port: '5173',
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://tibamef2e.com/thd101/g3',
+  //       changeOrigin: true,
+  //       rewrite: path => path.replace(/^\/api/, '/PDO'),
+  //     },
+  //   }
+  // },
 });

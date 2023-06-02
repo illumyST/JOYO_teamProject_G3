@@ -13,12 +13,18 @@
 </template>
 
 <script setup>
-import { ref, onBeforeMount} from "vue";
+import { ref, onBeforeMount,defineProps} from "vue";
 import axios from 'axios';
 const productInfor=ref({
     newItem:[],
 });
 const index=0;
+const props = defineProps({
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
+    });
 const fetchData=()=>{
     return axios.get('/api/index/getNewItem.php')
         .then(res => {

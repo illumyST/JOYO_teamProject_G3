@@ -56,7 +56,7 @@
 
       <div class="forumInfo_comments_text">
         <div class="forumInfo_comments_text_title" v-for="(item, index) in ForumInfoMsgs" :key="index">
-          <img src="../../assets/img/cat.png" alt="" />
+          <img :src="item.MsgImg" alt="" />
           <p>{{ item.MsgName }}</p>
           <p>{{ item.MsgDate }}</p>
           <p class="forumInfo_comments_text_msg">{{ item.MsgText }}</p>
@@ -80,47 +80,20 @@
 </template>
 
 <script setup>
-import{ ref } from "vue";
-const CommentsNum = ref(44);
+import{ onMounted, ref } from "vue";
+import axios from "axios"
+
+let CommentsNum = ref(44);
+let memberId = ref("");
+
 
 const ForumInfoMsgs = ref([
   {
-    MsgImg:"",
+    MsgImg:"/src/assets/img/cat.png",
     MsgName:"林文玉",
     MsgDate:"2023/05/19",
     MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  {
-    MsgImg:"",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  {
-    MsgImg:"",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  {
-    MsgImg:"",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  {
-    MsgImg:"",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  {
-    MsgImg:"",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
-  },
-  
+  }
 ]);
 
 
@@ -128,38 +101,91 @@ const isMember = ref(false); // 假设用户不是会员
 const messageText = ref(""); // 留言文本内容
 
   // 輔助函数：格式化日期
+  // const formatDate = (date) => {
+  //   return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+  // };
+
   const formatDate = (date) => {
-    // 替換為實際的日期格式化邏輯
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-  };
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  
+  // 替換為實際的日期格式化邏輯
+  return `${year}/${month}/${day}`;
+};
+
+// 會員編號
+const getMemberId=()=>{
+    // console.log(123);
+    return axios.get('/api/forumPost/forumCheckLogin.php')
+        .then(res => {
+            //將資料庫回傳的資料存在變數中
+            memberId = res.data;
+            // console.log(memberId);
+            })
+        .catch(err => {
+            console.error(err);
+        });
+};
+
+
 
 // 处理发送按钮点击事件
 const handleSendButtonClick = () => {
   if (!isMember.value) {
     // console.log("1111111");
 
+    const getMember = () =>{
+      return axios.get('/api/forumPost/forumCheckLogin.php')
+        .then(res => {
+            //將資料庫回傳的資料存在變數中
+            memberId = res.data;
+            // console.log(memberId);
+            })
+        .catch(err => {
+            console.error(err);
+        });
+    }
+
     // 用户是會員，執行發送
     const newMessage = {
-      MsgImg: "",
-      MsgName: "", // 替換為實際的用戶名稱
+      MsgImg: "/src/assets/img/cat.png",
+      MsgName: "林冠伶", // 替換為實際的用戶名稱
       MsgDate: formatDate(new Date()), // 替換為實際的日期格式化函数
       MsgText: messageText.value,
     };
-    // console.log(newMessage);
+    console.log(newMessage);
 
-    ForumInfoMsgs.value.push(newMessage); // 添加新留言到留言列表
+    ForumInfoMsgs.value.unshift(newMessage); // 添加新留言到留言列表
     CommentsNum.value++; // 更新留言數目
     // console.log(CommentsNum.value);
     // console.log(ForumInfoMsgs.value);
 
     // 清空留言文本框
     messageText.value = "";
+
+    axios 
+    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(newMessage.value)) // PHP 文件路径
+    .then((res) => {
+          console.log(res.data);
+          // alert(res.data);
+          // alert("發文成功");
+        })
+        .catch((error) => {
+          console.error("Error submitting post:", error);
+          alert("發文失敗");
+        });
+
   } else {
     // 用户不是会员，给出提示或要求登入/註冊
     alert("請登入或註冊為會員");
     // 或執行其他邏輯
+  };
 };
-};
+
+onMounted(()=>{
+  getMemberId();
+})
 </script>
 
 <style lang="scss" scoped>
