@@ -85,6 +85,8 @@ import axios from "axios"
 
 let CommentsNum = ref(44);
 let memberId = ref("");
+let memberItem = ref({ Img: "", Name: "" });
+// console.log(memberItem);
 
 
 const ForumInfoMsgs = ref([
@@ -120,9 +122,26 @@ const getMemberId=()=>{
     return axios.get('/api/forumPost/forumCheckLogin.php')
         .then(res => {
             //將資料庫回傳的資料存在變數中
-            memberId = res.data;
-            // console.log(memberId);
+            memberId.value = res.data;
+            console.log(memberId.value);
+
+            // 傳送會員編號到後端搜尋會員資料
+            return axios.post('/api/forumInfo/forumInfoSelect.php', {
+              memberId: memberId.value
             })
+            .then(memberRes => {
+            const memberData = memberRes.data;
+            // console.log(memberRes.data);
+              memberItem.value = {
+                Img: memberData.Img,
+                Name: memberData.Name
+              };
+              // console.log(memberItem.value);
+            })
+            .catch(memberErr => {
+              console.error(memberErr);
+            });
+          })
         .catch(err => {
             console.error(err);
         });
@@ -130,29 +149,18 @@ const getMemberId=()=>{
 
 
 
-// 处理发送按钮点击事件
+
+// 處理發送按鈕點擊事件
 const handleSendButtonClick = () => {
   if (!isMember.value) {
     // console.log("1111111");
-
-    const getMember = () =>{
-      return axios.get('/api/forumPost/forumCheckLogin.php')
-        .then(res => {
-            //將資料庫回傳的資料存在變數中
-            memberId = res.data;
-            // console.log(memberId);
-            })
-        .catch(err => {
-            console.error(err);
-        });
-    }
-
     // 用户是會員，執行發送
     const newMessage = {
       MsgImg: "/src/assets/img/cat.png",
-      MsgName: "林冠伶", // 替換為實際的用戶名稱
+      MsgName: memberItem.value.Name, // 替換為實際的用戶名稱
       MsgDate: formatDate(new Date()), // 替換為實際的日期格式化函数
       MsgText: messageText.value,
+      MemberId: memberId.value
     };
     console.log(newMessage);
 
@@ -161,14 +169,21 @@ const handleSendButtonClick = () => {
     // console.log(CommentsNum.value);
     // console.log(ForumInfoMsgs.value);
 
+    // 将数据放在一个变量中
+    const postMsg = {
+      MsgDate: newMessage.MsgDate,
+      MsgText: newMessage.MsgText,
+      MemberId: newMessage.MemberId
+    };
+
     // 清空留言文本框
     messageText.value = "";
 
     axios 
-    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(newMessage.value)) // PHP 文件路径
+    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg)) // PHP 文件路径
     .then((res) => {
           console.log(res.data);
-          // alert(res.data);
+          alert(res.data);
           // alert("發文成功");
         })
         .catch((error) => {
@@ -185,7 +200,7 @@ const handleSendButtonClick = () => {
 
 onMounted(()=>{
   getMemberId();
-})
+});
 </script>
 
 <style lang="scss" scoped>
