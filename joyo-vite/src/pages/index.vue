@@ -3,14 +3,43 @@
         <!-- 使用元件標籤 -->
         <TopNavIDX></TopNavIDX>
         <BannerIDX></BannerIDX>
-        <HotProductIDX></HotProductIDX>
-        <NewProductIDX></NewProductIDX>
-        <NewProductListIDX></NewProductListIDX>
+        <HotProductIDX :cartItem="cartItem"></HotProductIDX>
+        <NewProductIDX :cartItem="cartItem"></NewProductIDX>
+        <NewProductListIDX :cartItem="cartItem"></NewProductListIDX>
         <HotForumPostIDX></HotForumPostIDX>
     </main>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref,onBeforeMount } from "vue"
+import axios from 'axios';
+const cartItem = ref ({
+    PRODUCT_ID: "",
+    amount: 1,
+    member_id: "-1", 
+});
+const getmember_id = () => {
+    return axios.get('/api/forumPost/forumCheckLogin.php')
+    .then(res => {
+        if(res.data){
+            cartItem.value.member_id = res.data;
+            // console.log(cartItem.value.MEMBER_ID);
+        }else{
+            // console.log(cartItem.value.MEMBER_ID);
+        }
+        
+        console.log(cartItem.value.member_id);
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+onBeforeMount(() => {
+    getmember_id();
+}) 
+
+</script>
 
 
 <style lang="scss" scoped>

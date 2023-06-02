@@ -141,7 +141,7 @@ const routes = [
                 component: () => import('@/pages/contact.vue'),
             },
 
-            // 前台子頁＿[signIn] -------------------
+            // 前台子頁＿[signIn & register] -------------------
             {
                 path: 'signIn',
                 name: 'signIn',
@@ -151,30 +151,22 @@ const routes = [
                     requiresAuth: false,
                 },
             },
-
-            // 前台子頁＿[register] -------------------
-            {
-                path: 'register',
-                name: 'register',
-                component: () => import('@/pages/register.vue'),
-            },
-
             // 前台子頁＿[mailCheck] -------------------
-            {
-                path: 'mailCheck',
-                name: 'mailCheck',
-                component: () => import('@/pages/mailCheck.vue'),
-            },
-            {
-                path: 'redirect',
-                name: 'redirect',
-                component: () => import('@/pages/signIn/redirect.vue'),
-            },
-            {
-                path: 'forgetPassword',
-                name: 'forgetPassword',
-                component: () => import('@/pages/forgetPassword.vue'),
-            },
+            // {
+            //     path: 'mailCheck',
+            //     name: 'mailCheck',
+            //     component: () => import('@/pages/mailCheck.vue'),
+            // },
+            // {
+            //     path: 'redirect',
+            //     name: 'redirect',
+            //     component: () => import('@/pages/signIn/redirect.vue'),
+            // },
+            // {
+            //     path: 'forgetPassword',
+            //     name: 'forgetPassword',
+            //     component: () => import('@/pages/forgetPassword.vue'),
+            // },
         ]
     },
 

@@ -8,7 +8,7 @@
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
                         </h3>
-                        <AddCartBtn :list="list"></AddCartBtn>
+                        <AddCartBtn :cartItem="cartItem" :list="list"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -52,7 +52,7 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref,onBeforeMount } from "vue"
+import { ref,onBeforeMount,defineProps } from "vue"
 import { RouterLink } from "vue-router";
 import axios from 'axios';
 const product_data = ref({
@@ -65,7 +65,14 @@ const product_data = ref({
 const productInfor=ref({
     newItem:[],
 });
+const props = defineProps({
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
+    });
 const fetchData=()=>{
+    console.log(props.cartItem);
     return axios.get('/api/index/getNewItem.php')
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
