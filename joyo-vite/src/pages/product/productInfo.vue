@@ -3,7 +3,7 @@
     <div class="product-wrapper">
       <IfrTopPDCNF :filetData="pageInfor.fliterTg"></IfrTopPDCNF>
       <IfrItPDCNF :filetData="pageInfor.fliterTg"></IfrItPDCNF>
-      <IfrDtPDCNF :filetData="pageInfor.fliterTg"></IfrDtPDCNF>
+      <IfrDtPDCNF :filetData="pageInfor.fliterTg" :productComment="pageInfor.productComment"></IfrDtPDCNF>
       <IfrBtPDCNF :guess="guess" @change-Info-Item="changeInfoItem"></IfrBtPDCNF>
     </div>
   </div>
@@ -20,13 +20,25 @@ const pageInfor=ref({
     page:12,
     total_page:[],
     fliterTg:[],
+    productAllComment:[],
+    productComment:[],
 });
 
 let guess=ref([]);
-const fetchData=()=>{
-    return axios.get('/api/product/test.php')
+const fetchData=async () =>{
+    try{
+        const res=await axios.get('/api/product/test.php');
+        pageInfor.value.tg=res.data;
+        await fetchComment();
+    } catch(err)  {
+         console.error(err);
+        };
+};
+const fetchComment=()=>{
+    return axios.get('/api/product/getProductComment.php')
         .then(res => {
-            pageInfor.value.tg=res.data;
+            pageInfor.value.productAllComment=res.data;
+            console.log(pageInfor.value.productAllComment);
             }
             )
         .catch(err => {
@@ -41,8 +53,9 @@ const getGame=()=>{
         callBackId ="ID：1";
       }
       let arr1=(pageInfor.value.tg.filter((game)=>"ID:"+game.PRODUCT_ID == callBackId));
-     
+      let arr2=(pageInfor.value.productAllComment.filter((comment)=>"ID:"+comment.PRODUCT_ID == callBackId));
       pageInfor.value.fliterTg=arr1[0];
+      pageInfor.value.productComment=arr2;
    
 };
 const guessLike=()=>{

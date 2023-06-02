@@ -1,6 +1,7 @@
 <template>
   <!-- 側邊選單 -->
   <ul class="forum_sidemenu">
+    
     <li
       class="forum_sidemenu_li"
       :class="{ active: forumCategory.cate == artiCate }"
@@ -8,8 +9,11 @@
       v-for="(artiCate,index) in artiCategory "
       :key="index"
     >
+    <RouterLink :to="'/forum' +'/'+index" >
       <i class="fa-regular fa-newspaper"></i>
-      <h3>{{artiCate}}</h3>
+      <h3>{{artiCate}}</h3>  
+    </RouterLink>
+          
     </li>
     <!-- <li
       class="forum_sidemenu_li"
@@ -75,12 +79,9 @@ const forumInfo_sidemenu_Category = (artiCate) => {
 
 <style lang="scss" scoped>
 // ===== 左側選單 ===== //
-.forum_sidemenu {
-  //    border: 1px solid purple;
-  display: inline-block;
-}
 
-.forum_sidemenu li {
+
+.forum_sidemenu li{
   // border: 1px solid blue;
   @include sidemenu();
   &:hover {
@@ -88,9 +89,23 @@ const forumInfo_sidemenu_Category = (artiCate) => {
   }
   @include flex-container(row, wrap, start);
   cursor: pointer;
+  a{
+    background-color:#ffffff00;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    i{
+       font-weight: 400;
+    }
+   
+  }
 }
-
-.forum_sidemenu li:last-child {
+.forum_sidemenu {
+  //    border: 1px solid purple;
+  display: inline-block;
+  
+}
+.forum_sidemenu li:last-child{
   margin-top: 50px;
   justify-content: center;
   padding: 0;

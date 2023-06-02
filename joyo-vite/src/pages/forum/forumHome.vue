@@ -15,8 +15,10 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue"
-import axios from "axios"
+import { onMounted, ref } from "vue";
+import axios from "axios";
+import {useRoute} from 'vue-router';
+const route = useRoute();
 const forumCategory = ref(
   {
   cate:"所有文章",
@@ -36,10 +38,33 @@ const forumArticle=ref({
 const fetchData=()=>{
     return axios.get('/api/forum/forumGetArticle.php')
         .then(res => {
-            //將資料庫回傳的資料存在articleAll變數中
-            forumArticle.value.articleAll = res.data;
+          //將資料庫回傳的資料存在articleAll變數中
+          forumArticle.value.articleAll = res.data;
+          if(route.params.categoryId>0){
+                let callBackId = route.params.categoryId; 
+                switch (callBackId){
+                    case '1' :
+                    forumCategory.value.cate ="心得分享";
+                    break; 
+                    case '2' :
+                    forumCategory.value.cate ="揪團區";
+                    break;
+                    case '3' :
+                    forumCategory.value.cate ="發問區";
+                    break;
+                    case '4' :
+                    forumCategory.value.cate ="教學區";
+                    break;
+                }
+            }
+            if (forumCategory.value.cate !== "所有文章") {
+              forumArticle.value.articleFilter = forumArticle.value.articleAll.filter(ele => ele.ARTICLE_CATEGORY === forumCategory.value.cate);
+            } else {
+              forumArticle.value.articleFilter = res.data;
+            }  
+            
             //將articleAll的資料傳給之後會過濾不同類型文章的陣列(第一次載入頁面都是全部文章所以沒有過濾)
-            forumArticle.value.articleFilter = res.data;
+            
 
                
         }

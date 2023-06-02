@@ -33,53 +33,53 @@
                         <p>總星等</p>
                         <ul>
                             <li class="star1" value="1">
-                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star" :class="{active:score>0}"></i>
                             </li>
                             <li class="star2" value="2">
-                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star" :class="{active:score>1}"></i>
                             </li>
                             <li class="star3" value="3">
-                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star" :class="{active:score>2}"></i>
                             </li>
                             <li class="star4" value="4">
-                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star" :class="{active:score>3}"></i>
                             </li>
                             <li class="star5" value="5">
-                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star" :class="{active:score>4}"></i>
                             </li>
                         </ul>
-                        <p>總留言 <span class="comment-count">1000</span><span>則</span></p>
+                        <p>總留言 <span class="comment-count">{{commentNum}}</span><span>則</span></p>
                     </div>
-                    <div class="col-12 infor-detail-star-comment">
-                        <article>
+                    <div class="col-12 infor-detail-star-comment" >
+                        <article v-for="(comment,index) in productComment" :key="index">
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img src="@/assets/img/cat.png" alt="">
-                                <p class="infor-detail-star-comment-top-name">王小貓</p>
+                                <img v-bind:src="comment.IMG_URL" alt="">
+                                <p class="infor-detail-star-comment-top-name">{{comment.MEMBER_NAME}}</p>
                                 <div class="infor-detail-star-comment-top-start">
                                     <ul>
                                         <li class="star1" value="1">
-                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star" :class="{active:comment.STAR>=1}"></i>
                                         </li>
                                         <li class="star2" value="2">
-                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star" :class="{active:comment.STAR>=2}"></i>
                                         </li>
                                         <li class="star3" value="3">
-                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star" :class="{active:comment.STAR>=3}"></i>
                                         </li>
                                         <li class="star4" value="4">
-                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star" :class="{active:comment.STAR>=4}"></i>
                                         </li>
                                         <li class="star5" value="5">
-                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star" :class="{active:comment.STAR>=5}"></i>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-11 infor-detail-star-comment-main">
-                                我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是
+                                {{comment.PRODUCT_COMMENT}}
                             </div>
                         </article>
-                        <article>
+                        <!-- <article> 
                             <div class="col-2 infor-detail-star-comment-top">
                                 <img src="@/assets/img/cat.png" alt="">
                                 <p class="infor-detail-star-comment-top-name">王小貓</p>
@@ -106,25 +106,44 @@
                             <div class="col-11 infor-detail-star-comment-main">
                                 我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是我的想法是
                             </div>
-                        </article>
+                        </article> -->
                     </div>
                 </div>
             </div>
         </article>
 </template>
-<script setup></script>
+<script setup>
+import { ref,watch} from 'vue';
+const props = defineProps({
+    filetData: {
+        type: Object,
+        required: true
+    },
+    productComment:{
+        type: Array,
+        required: true
+    }
+    });
+const commentNum=ref();
+const score=ref();
+watch(() => props.productComment, (newVal) => {
+  commentNum.value = newVal.length;
+  let sum=0;
+  for(let i=0;i<commentNum.value;i++){
+    sum=sum+newVal[i].STAR;
+  }
+  score.value=sum/commentNum.value;
+});
+
+</script>
 <script>
     
 export default {
-    props: {
-        filetData: {
-        type: Object,
-        required: true
-        }
-    },
+    
     data(){
         return{
             show:"商品描述" ,
+            commentNum:""
         }
     },
     methods:{
@@ -158,6 +177,7 @@ export default {
     },
     mounted(){
         window.addEventListener("resize", this.resizeInit);
+
     },
 };
 
@@ -464,7 +484,7 @@ button {
 }
 
 
-.fa-star {
+.fa-star.active {
     color: #ffd500;
 }
 
@@ -508,6 +528,7 @@ button {
         display: block;
         width: 30px;
         height: 30px;
+        border-radius: 50%;
     }
 
     ul {

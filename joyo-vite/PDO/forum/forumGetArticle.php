@@ -7,6 +7,7 @@ include '../connect/conn.php';
  $sql = "SELECT a.* ,
                 DATE(a.ARTICLE_DATE) as NEWDATE,
                 b.MEMBER_NAME,
+                b.IMG_URL,
                 c.PRODUCT_ID,
                 c.CATEGORY,
                 c.MIN_PLAYER,
