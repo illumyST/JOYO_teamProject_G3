@@ -9,22 +9,11 @@
 </template>
 
 <script setup>
-import { toRefs, defineProps } from 'vue';
+import {inject } from 'vue';
 import axios from 'axios';
 
-// const showLogOut = ref(false);
-
-const props = defineProps({
-        parentInfo: Boolean,
-});
-
-const { parentInfo } = toRefs(props);
-console.log('parentInfo', parentInfo);
-// console.log('props.parentInfo', props.parentInfo)
-// console.log('showLogOut.value', { showLogOut })
-
-// const showLogOut = ref(props.parentInfo);
-// console.log(props.parentInfo)
+// 抓取 main.js 的 is_login
+const  parentInfo  = inject('is_login');
 
 
 // 登出按鈕點擊後登出
@@ -55,7 +44,7 @@ const logOut = () => {
         line-height: 30px;
         text-align: center;
         @include center();
-        top: 110%;
+        top: 115%;
         background-color: #fff;
         border-radius: 5px;
         cursor: pointer;

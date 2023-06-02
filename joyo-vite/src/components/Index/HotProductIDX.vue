@@ -5,15 +5,15 @@
 
         <ul class="index_hotProduct_list" v-if="productInfor.hotItem">
             <li v-for="(list,index) in productInfor.hotItem" :key="index">
-                <RouterLink :to="productInfor.product_info_url">
+                <RouterLink :to="'productInfo/' +'ID:'+list.PRODUCT_ID">
                     <div class="index_hotProduct_list_topPInfo">
-                        <img v-bind:src="list.IMG_URL" alt="">
+                        <img v-bind:src="list.IMG_URL_ONE" alt="">
                         <div class="index_hotProduct_list_topPInfo_word" v-show="index==0">
                             <p>團隊合作最佳推薦！<br>
                                 蟬聯月熱銷排行 5 個月！<br>
                                 討論區熱門話題！</p>
                             <span>
-                                團隊合作類
+                                {{ list.CATEGORY}}類
                             </span>
                         </div>
                     </div>
@@ -21,11 +21,7 @@
                         <h3>{{ list.NAME }}
                             <p>${{ list.PRICE }}</p>
                         </h3>
-<<<<<<< HEAD
-                        <AddCartBtn @add-To-Cart="addToCart"></AddCartBtn>
-=======
-                        <AddCartBtn :list="list"></AddCartBtn>
->>>>>>> e5b5b98413e83855c9eae825878d3259c4a9fd1a
+                        <AddCartBtn :list="list" :cartItem="cartItem"></AddCartBtn>
                     </div>
                 </RouterLink>
             </li>
@@ -57,43 +53,51 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-<<<<<<< HEAD
-import { ref } from "vue"
-
+import { ref,onBeforeMount,defineProps } from "vue"
+import axios from 'axios';
 const pruduct_imfo = ref({
    product:[
-    {
-        product_id : "",
+    { product_id : "",
     }], 
 });
+const props = defineProps({
+    
+    cartItem:{
+        type:  Object,
+        required: true,
+    },
+    });
 
-const product_data = ref({
-    product_info_url: '/productInfo/12345',
-    name: '璀璨寶石',
-    product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
-    price: '$116'
-=======
-import { ref ,onBeforeMount} from "vue";
-import axios from 'axios';
 //從資料庫取得銷售最多的商品(用but list篩選資料)
-// const product_data = ref({
-//     product_info_url: '/productInfo/12345',
-//     name: '璀璨寶石',
-//     product_img_url: 'https://cdn.shopify.com/s/files/1/0513/4077/1515/products/scythe-board-game.jpg?v=1611090922',
-//     price: '$116'
-// });
+
 const productInfor=ref({
     hotItem:[],
-    product_info_url:'/productInfo/',
 });
+
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
+    console.log(props.cartItem);
     return axios.get('/api/index/getHotItem.php')
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            productInfor.value.hotItem = res.data;
-            console.log(res.data);
-            console.log( productInfor.value.hotItem[0].PRICE);  
+            if(res.data.length===3){
+                productInfor.value.hotItem = res.data;
+            }//如果熱門資料不足3筆重複放置第一筆資料
+            else if(res.data.length>0 &&res.data.length<3){
+                let ln=3-res.data.length;
+                productInfor.value.hotItem = res.data;
+                for(let i=0;i<ln;i++){
+                    productInfor.value.hotItem.push(res.data[0]);
+                }
+            }else if(res.data.length==0){
+                for(let i=0;i<3;i++){
+                productInfor.value.hotItem.push(product_data.value);
+                }
+                
+            }else if(res.data.length>3){
+                productInfor.value.hotItem = res.data.splice(2);
+            }
+            
         }
         )
         .catch(err => {
@@ -101,9 +105,8 @@ const fetchData=()=>{
         });
 };
 onBeforeMount(() => {
-    
+
     fetchData();
->>>>>>> e5b5b98413e83855c9eae825878d3259c4a9fd1a
 })
 
 </script>

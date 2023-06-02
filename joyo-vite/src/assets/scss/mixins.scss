@@ -1,6 +1,36 @@
 // 有用到的 mixins 再丟進來，不要全丟！
 // 只有自己用到的話就不要丟進來，寫在自己的 <style lang="scss" scoped> 裡面
 
+@mixin input-text($lh, $w){
+    padding-left: 20px;
+    line-height: $lh;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: $p;
+    width: $w;
+    box-sizing: border-box;
+    outline: none;
+    letter-spacing: 1px;
+}
+// 按鈕樣式
+@mixin btn($bg , $lh, $w, $hover){
+    background: $bg;
+    line-height: $lh;
+    width: $w;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    transition: .3s;
+    cursor: pointer ;
+    color: #fff;
+    &:hover{
+        background: $hover;
+    }
+};
+
+
 // 側邊選單
 @mixin sidemenu(){
     display: block;

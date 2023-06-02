@@ -1,28 +1,27 @@
 <?php
-    include "../conn.php";
+    include "../connect/conn.php";
+
+    //將資料格式轉換
+    $postData = file_get_contents('php://input');
+    $postItemData = json_decode($postData, true);
+    // print_r($postData);
 
 
-    $form_category = $_POST["category"];
-    $form_title_text = $_POST["title"];
-    $form_score = $_POST["score"];
-    $form_area = $_POST["area"];
-    $form_middle_title = $_POST["postTitle"];
-    $form_middle_textarea = $_POST["postContent"];
-    $form_label = $_POST["postTags"];
+    $category = $postItemData['category'];
+    $title = $postItemData['title'];
+    $score = intval( $postItemData['score']);
+    $postTitle = $postItemData['postTitle'];
+    $postContent = $postItemData['postContent'];
+    $postTags = $postItemData['postTags'];
+    $memberId = $postItemData['memberId'];
+    $area = $postItemData['area'];
+
     //建立SQL
+    $sqlinsert = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, ARTICLE_CONTENT, ARTICLE_DATE, TAG, MEMBER_ID) VALUES ('$postTitle', '$category', '$title', '$score', $area, '$postContent', NOW(), '$postTags', '$memberId')";
 
-    $sql = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, ARTICLE_CONTENT, DATE, TAG, MEMBER_ID) VALUES ('$form_middle_title', '$form_category', '$form_title_text', '$form_score', '$form_area', '$form_middle_textarea', NOW(), '$form_label')";
-    // $sql = "INSERT INTO ARTICLE(TITLE, ARTICLE_CATEGORY, GAME_NAME, RATE, LOCATION, ARTICLE_CONTENT, DATE, TAG, MEMBER_ID) VALUES ('妙語偵探社', '心得分享', '分享妙語偵探社 Detective Club', '9', '', '在妙語偵探社中，每個玩家都會拿到一張卡牌，上面寫有一個詞語或者短語，玩家們需要在自己的回合輪流發言，並且盡量讓其他玩家相信自己拿到的卡牌是真正的。在遊戲的某個時刻，一位玩家會成為叛徒，他或她知道其他玩家拿到的卡牌，並且要盡力讓其他人猜錯。', NOW(), '健康不賭博,輕度策略團')";
-    $forumPost = $pdo->exec($sql);
-
-
-//     if($forumPost > 0){
-//           echo "新增成功!";
-//         // 轉址到原本PDO範例中的Select.php
-//         // header("Location: Select.php");
-//    }else{
-//           echo "新增失敗!";
-//    }
-
-    
+    // 測試用的資料    
+    // $test="INSERT INTO `JOYO`.`ARTICLE` (`TITLE`, `ARTICLE_CATEGORY`, `ARTICLE_CONTENT`, `ARTICLE_DATE`, `MEMBER_ID`) VALUES ('捉迷藏心得分享', '心得分享', '好雷', NOW(), '1');";
+    $forumPost = $pdo->exec($sqlinsert);
+    $json_data = json_encode($forumPost);
+    // echo $json_data;
 ?>

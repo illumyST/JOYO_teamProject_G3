@@ -1,173 +1,287 @@
 <template>
   <div class="ms_content_toggle_container">
     <div class="ms_data_management_fiter">
-      <input type="date" class="ms_date_picker" />
-      <select name="" id="" class="fa">
-        <option value="">每頁顯示:10筆</option>
-        <option value="">每頁顯示:20筆</option>
-        <option value="">每頁顯示:30筆</option>
-        <option value="">每頁顯示:40筆</option>
-      </select>
+      <form action="#" class="ms_send_report_form">
+        <input
+          type="email"
+          id="email_list"
+          placeholder="輸入email"
+          ref="emailList"
+        />
+        <input type="submit" value="寄送報表" @click.prevent="sendReport" />
+      </form>
+
+      <div id="date-filter-selector">
+        <!-- <input type="date" class="ms_date_picker" /> -->
+        <VueDatePicker
+          input-class="my-date-picker"
+          v-model="date"
+          range
+          :partial-range="false"
+          :picker-options="pickerOptions"
+          :enable-time-picker="false"
+        ></VueDatePicker>
+
+        <select name="" id="" class="fa">
+          <option value="">每頁顯示:10筆</option>
+          <option value="">每頁顯示:20筆</option>
+          <option value="">每頁顯示:30筆</option>
+          <option value="">每頁顯示:40筆</option>
+        </select>
+      </div>
     </div>
 
-    <!-- <canvas id="myCanvas"></canvas> -->
-    <BarChart></BarChart>
-
+    <BarChart :filteredDate="filteredDate"></BarChart>
     <div class="ms_csv_button">
-      <i class="fa-solid fa-file-csv" id="ms_csv"></i>
+      <i class="fa-solid fa-file-csv" id="ms_csv" @click="downloadCSV"></i>
     </div>
-    <table class="ms_transaction_data_table">
-      <tr class="ms_transaction_data_head first_row">
-        <th>訂單編號</th>
-        <th>訂單金額</th>
-        <th>訂單時間</th>
-        <th>訂購用戶</th>
-      </tr>
-
-      <tbody>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewfwefewfe @gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fwefewf@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewwe@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfwefwefewfewfwefew@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewfwefwe@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>fewfewfefe@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-        <tr>
-          <td>123213213213123</td>
-          <td>599</td>
-          <td>2023/12/3 14:20:33</td>
-          <td>willchou@gmail.com</td>
-        </tr>
-      </tbody>
-    </table>
+    <MsOrderListTable :filteredDate="filteredDate"></MsOrderListTable>
     <MsPagination></MsPagination>
   </div>
 </template>
-<script></script>
-<style lang="scss" scoped>
+<script>
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+import axios from "axios";
+
+export default {
+  components: { VueDatePicker },
+  data() {
+    return {
+      date: null,
+      pickerOptions: {
+        showTime: false,
+      },
+      filteredDate: [],
+    };
+  },
+  created() {
+    // 只有在第一次載入時，抓取預設數據
+    this.getDefaultChartData();
+    this.filteredDate = this.date;
+    //
+    // this.filteredDate = date;
+  },
+  watch: {
+    // 監控日期變化
+    date() {
+      const startDate = new Date(this.date[0]);
+      const endDate = new Date(this.date[1]);
+      const formattedStartDate = startDate.toISOString().slice(0, 10);
+      const formattedEndDate = endDate.toISOString().slice(0, 10);
+      this.filteredDate = [formattedStartDate, formattedEndDate];
+    },
+  },
+  methods: {
+    getDefaultChartData() {
+      axios
+        .get("/api/msGetOrderData/getDefaultChartData.php")
+        .then((res) => {
+          const jsonData = res.data;
+          this.date = [
+            jsonData[jsonData.length - 1].GroupedDate,
+            jsonData[0].GroupedDate,
+          ];
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    downloadCSV() {
+      axios
+        .get("/api/msGetCSVFile/GetCSVFile.php", {
+          responseType: "blob",
+          params: {
+            startDate: this.filteredDate[0],
+            endDate: this.filteredDate[1],
+          },
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute(
+            "download",
+            `${this.filteredDate[0]}_${this.filteredDate[1]}業績報表.csv`
+          );
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    sendReport() {
+      const enteredEmail = this.$refs.emailList.value;
+      const startDate = new Date(this.filteredDate[0]);
+      const endDate = new Date(this.filteredDate[1]);
+      console.log(enteredEmail);
+      const emailValidation =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if (enteredEmail.match(emailValidation)) {
+        axios
+          .get("/api/msGetCSVFile/createCSVFile.php", {
+            params: {
+              startDate: this.date[0],
+              endDate: this.date[1],
+            },
+          })
+          .then((res) => {
+            console.log("報表已產出至指定路徑");
+          })
+          .catch((error) => {
+            console.log("error" + error);
+          });
+
+        // 從PHPMailer 發送email
+        setTimeout(() => {
+          const formattedStartDate = startDate.toISOString().slice(0, 10);
+          const formattedEndDate = endDate.toISOString().slice(0, 10);
+          const formData = new FormData();
+          formData.append("email", enteredEmail);
+          formData.append(
+            "subject",
+            `${formattedStartDate} 至 ${formattedEndDate} 業績報表`
+          );
+          formData.append("message", "報表如附件，請知悉");
+          formData.append("startDate", formattedStartDate);
+          formData.append("endDate", formattedEndDate);
+          axios
+            .post("/api/msSendReport/sendReportEmail.php", formData)
+            .then((res) => {
+              console.log(res, "success");
+              this.$refs.emailList.value = "";
+            });
+        }, 300);
+      }
+    },
+  },
+};
+</script>
+<style lang="scss">
+// 有用到的 mixins 再丟進來，不要全丟！
+// 只有自己用到的話就不要丟進來，寫在自己的 <style lang="scss" scoped> 裡面
+
+@mixin input-text($lh, $w) {
+  padding-left: 20px;
+  line-height: $lh;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: $p;
+  width: $w;
+  box-sizing: border-box;
+  outline: none;
+  letter-spacing: 1px;
+}
+// 按鈕樣式
+@mixin btn($bg, $lh, $w, $hover) {
+  background: $bg;
+  line-height: $lh;
+  width: $w;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: $shadow;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    background: $hover;
+  }
+}
+
+// 側邊選單
+@mixin sidemenu() {
+  display: block;
+  text-decoration: none;
+  border-radius: 5px;
+  line-height: 59px;
+  width: 200px;
+  color: #fff;
+  box-sizing: border-box;
+  padding-left: 35px;
+  font-size: $h3;
+  background: $green;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  letter-spacing: 2px;
+  &:hover {
+    background: $orange;
+  }
+}
+
+// flex排版
+@mixin flex-container(
+  $direction: row,
+  $wrap: wrap,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+//下拉式選單
+@mixin drowDown($w, $h, $liW, $liH) {
+  width: $w;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  button {
+    width: 100%;
+    height: $h;
+    background-color: #dedddd;
+    border-radius: 5px;
+    border: 0;
+    font-size: 20px;
+    color: $brown;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      background-color: #b3b3b3;
+      color: white;
+    }
+  }
+  ul {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    li {
+      width: $liW;
+      height: $liH;
+      text-align: center;
+      background-color: white;
+      color: $brown;
+      display: block;
+      &:hover a {
+        background-color: #b3b3b3;
+        color: white;
+      }
+    }
+  }
+}
+@mixin center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .ms_right_side_content {
   display: flex;
   flex-direction: column;
 }
 
-#myCanvas {
-  width: 100%;
-  border: 1px solid red;
-  height: 315px;
-  margin-top: 40px;
-}
-
 .ms_data_management_fiter {
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  height: 80px;
 }
 
 .ms_data_management_fiter {
@@ -175,7 +289,7 @@
     font-size: $p;
     font-family: "Noto Sans TC", sans-serif;
     width: 160px;
-    height: 35px;
+    height: 30px;
     text-align: center;
     background-color: $orange;
     border: none;
@@ -239,5 +353,45 @@
   i:hover {
     color: #ccc;
   }
+}
+.dp__input_wrap {
+  width: 270px !important;
+  height: 34px;
+}
+
+.ms_send_report_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  // height: 75px;
+  #email_list {
+    width: 150px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    height: 34px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    @include input-text(1.6, 270px);
+  }
+  input[type="submit"] {
+    outline: none;
+    background-color: $orange;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    @include btn($orange, 30px, 150px, $green);
+  }
+}
+#date-filter-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  // height: 75px;
 }
 </style>

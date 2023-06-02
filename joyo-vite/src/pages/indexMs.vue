@@ -25,8 +25,7 @@ const router = useRouter();
 // session 判斷是否已登入 05/25_已完成
 const isLogIn = ref();
 onMounted(() => {
-
-    axios.get('/api/logIn&Out/sessionCheck.php')
+    axios.get('../../PDO/logIn&Out/sessionCheck.php')
         .then(res => {
             const data = res.data;
             isLogIn.value = data;
@@ -43,4 +42,6 @@ onUpdated(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+//
+</style>

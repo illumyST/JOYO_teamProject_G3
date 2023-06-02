@@ -20,14 +20,15 @@
                                 <span><img src="@/assets/img/vector.png" alt=""></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
-                                <li><a class="dropdown-item" href="#">全部商品</a></li>
-                                <li><a class="dropdown-item" href="#">派對遊戲</a></li>
+                                <li v-for="(list,index) in category" :key="index">
+                                    <a class="dropdown-item" href="#" v-on:click="(e)=>product_filter_get_cate(e,list)">{{list}}</a></li>
+                                <!-- <li><a class="dropdown-item" href="#">派對遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">輕度策略</a></li>
                                 <li><a class="dropdown-item" href="#">戰爭遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">棋奕遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">主題遊戲</a></li>
                                 <li><a class="dropdown-item" href="#">家庭遊戲</a></li>
-                                <li><a class="dropdown-item" href="#">團隊合作</a></li>
+                                <li><a class="dropdown-item" href="#">團隊合作</a></li> -->
                             </ul>
                         </div>
                         <div class="product-filter-div">
@@ -37,9 +38,9 @@
                                     <span>遊玩人數</span><span><img src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
-                                    <li><a class="dropdown-item" href="#"
-                                            v-on:click="product_filter_get_player">1人遊戲</a></li>
-                                    <li><a class="dropdown-item" href="#"
+                                    <li v-for="(num,index) in palyerNum" :key="index" v-on:click="(e)=>product_filter_player(e,index)"><a class="dropdown-item" href="#"
+                                            >{{num}}</a></li>
+                                    <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_player">2人遊戲</a></li>
                                     <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_player">3人遊戲</a></li>
@@ -52,7 +53,7 @@
                                     <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_player">7人遊戲</a></li>
                                     <li><a class="dropdown-item" href="#"
-                                            v-on:click="product_filter_get_player">多人遊戲</a></li>
+                                            v-on:click="product_filter_get_player">多人遊戲</a></li> -->
                                 </ul>
                             </div>
                             <div>
@@ -61,9 +62,12 @@
                                             src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+3</a>
+
+
+                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
+
                                     </li>
-                                    <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
+                                    <!-- <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+5</a>
                                     </li>
@@ -80,7 +84,7 @@
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+11</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+12</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <div>
@@ -89,10 +93,12 @@
                                     <span>排序方式</span><span><img src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
-                                    <li><a class="dropdown-item" href="#"
-                                            v-on:click="product_filter_get_order">上架日期：由高到低</a>
+                                    <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
+
+                                            v-on:click="(e)=>product_filter_get_order(e,index,arrange)">{{arrange}}</a>
+
                                     </li>
-                                    <li><a class="dropdown-item" href="#"
+                                    <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">上架日期：由低到高</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#"
@@ -100,7 +106,7 @@
                                     </li>
                                     <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">建議售價：由低到高</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -110,7 +116,7 @@
 </div>
 </template>
 <script setup>
-    import { defineProps, ref, watch,computed} from 'vue';
+    import { defineProps, ref,defineEmits} from 'vue';
     const props = defineProps({
         currentCategory: {
         type: Object,
@@ -118,8 +124,60 @@
         },
         
     });
-    const index=0;
-   
+    const category=[
+    '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
+    ];
+    const palyerNum=["遊玩人數","1人","2人","3人","4人","5人","6人","7人","多人"];
+    const palyerAge=["試玩年齡",4,5,6,7,8,9,10,11,12,13];
+    const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
+    const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
+    const product_filter_get_cate=(e,list)=>{
+        e.preventDefault(e);
+        let buttonText=e.target.closest("ul").previousElementSibling;
+        appear.value=0;
+        buttonText.firstElementChild.innerText=`遊玩人數:${e.target.innerText}`;
+        emits('updateCatergory', list);
+    };
+    const product_filter_get_order=(e,index,arrange)=>{
+        e.preventDefault(e);
+
+        let buttonText=e.target.closest("ul").previousElementSibling;
+        let img=buttonText.lastElementChild;
+        buttonText.style.fontSize="16px";
+        img.style.display="none";
+        buttonText.firstElementChild.innerHTML=arrange;
+        // if(index==0){
+        //     buttonText.firstElementChild.innerHTML=`上架日期:<br>由高到低`;
+        // }else if(index==1){
+        //     buttonText.firstElementChild.innerHTML=`上架日期:<br>由低到高`;
+        // }else if(index==2){
+        //     buttonText.firstElementChild.innerHTML=`建議售價:<br>由高到低`;
+        // }else if(index==3){
+        //     buttonText.firstElementChild.innerHTML=`建議售價:<br>由低到高`;
+        // }
+        
+        emits('updateArrange', index);
+    };
+    const product_filter_player=(e,index)=>{
+        e.preventDefault(e);
+        let buttonText=e.target.closest("ul").previousElementSibling;
+        if(e.target.innerText==="遊玩人數"){
+            buttonText.firstElementChild.innerText=`${e.target.innerText}`;
+        }else {
+            buttonText.firstElementChild.innerText=`遊玩人數:${e.target.innerText}`;
+        }
+        emits('updatePlayerNum', index);
+    };
+    const product_filter_get_age=(e,age)=>{
+        e.preventDefault(e);
+        let buttonText=e.target.closest("ul").previousElementSibling;
+        if(e.target.innerText==="試玩年齡"){
+            buttonText.firstElementChild.innerText=`${e.target.innerText}`;
+        }else {
+            buttonText.firstElementChild.innerText=`試玩年齡:+${e.target.innerText}`;
+        }
+        emits('updatePlayerAge', age);
+    };
 </script>
 <script>
     export default {
@@ -140,7 +198,6 @@
                 product_filter_player_show(e) {
                     this.product_filter_player_active = !this.product_filter_player_active;
                     e.stopPropagation();
-                    console.log(123);
                 },
                 product_filter_age_show(e) {
                     this.product_filter_age_active = !this.product_filter_age_active;

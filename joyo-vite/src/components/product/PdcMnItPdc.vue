@@ -2,7 +2,7 @@
 <div>
   <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
     <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
-    <router-link :to="'productInfo/' +'ID:'+card.PRODUCT_ID" >
+    <router-link :to="'/productInfo' +'/ID:'+card.PRODUCT_ID" >
         <div class="prouct-item-card-tag">
             <p class="prouct-item-card-tag-player">
             <span class="prouct-item-card-tag-player-min">{{card.MIN_PLAYER }}</span>
@@ -14,7 +14,7 @@
             <p class="prouct-item-card-tag-age">{{card.MIN_AGE}}+</p>
         </div>
         <div class="prouct-item-card-img">
-            <img v-bind:src="card.IMG_URL" alt="" class="prouct-item-card-img">
+            <img v-bind:src="card.IMG_URL_ONE" alt="" class="prouct-item-card-img">
         </div>
         <div class="prouct-item-card-infor">
             <div>
@@ -58,13 +58,12 @@ const loginState=()=>{
     let state=sessionStorage.getItem('login');
     //如果為登入情況下，取回會員編號並設定變數MEMBER_ID
     cartItem.value.MEMBER_ID=state;
-    
-    console.log(cartItem.value.MEMBER_ID);
+
 };
 const setLogin=(MEMBER_ID)=>{
     sessionStorage.setItem('login', MEMBER_ID);
     cartItem.value.MEMBER_ID=MEMBER_ID;
-    console.log(cartItem.value.MEMBER_ID);
+   
 };
 const addCart=(e,card)=>{
        e.preventDefault();
@@ -108,7 +107,7 @@ const addCart=(e,card)=>{
 onMounted(() => {
     sessionStorage.removeItem('login');
     //輸入假資料可以切換會員編號(編號要是資料庫裡有的)
-    setLogin("3");
+    setLogin("2");
 });
 </script>
 
@@ -417,7 +416,7 @@ onMounted(() => {
     align-items: center;
 
     div {
-        width: 200px;
+        width: 196px;
     }
     
     button {
