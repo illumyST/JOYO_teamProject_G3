@@ -58,16 +58,19 @@ const passwordToggle = () => {
 };
 
 const doLogInCheck = function () {
+
   axios.post('/api/logIn&Out/logInCheck.php',
     logInData.value
   )
     .then(res => {
       // console.log("123");
+      console.log(logInData.value);
+      console.log(res.data)
       const data = res.data;
       logInSuccess.value = data;
       
       // TODO 改成 true
-      if (logInSuccess.value == 1) {
+      if (logInSuccess.value == true) {
         alert('登入成功！');
         router.push('/ms/msDataManagementSendReport');
       }

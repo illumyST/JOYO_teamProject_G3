@@ -43,7 +43,7 @@ export default defineConfig({
     },
   },
 
-  publicPath: '/api',
+  // publicPath: '/api',
 
   server: {
     port: '5173',
