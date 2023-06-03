@@ -8,6 +8,7 @@ include '../connect/conn.php';
                    *
                 from 
                     PRODUCT
+                    WHERE NAME <> '請輸入桌遊名稱'
                 order by PRODUCT_DATE desc
                 limit 4;";
  $statement = $pdo->query($sqlSelfRank);

@@ -2,7 +2,7 @@
   <section class="forumInfo_wrapper">
     <SidemenuFRMINFO :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRMINFO>
     <div class="forumInfo_right">
-        <BannerFRMINFO></BannerFRMINFO>
+        <BannerFRMINFO :forumCategory="forumCategory"></BannerFRMINFO>
     </div>
   </section>
 </template>

@@ -14,8 +14,10 @@ include '../connect/conn.php';
                     SUM(B.AMOUNT)
                 from 
                     BUY_DETAIL as B
+                    
                     join PRODUCT as P
                         on B.PRODUCT_ID=P.PRODUCT_ID
+                    WHERE P.NAME <> '請輸入桌遊名稱'
                 group by
                     PRODUCT_ID
                 order by SUM(AMOUNT) desc

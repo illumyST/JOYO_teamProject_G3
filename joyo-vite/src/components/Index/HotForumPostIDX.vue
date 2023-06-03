@@ -3,7 +3,11 @@
         <div class="index_hotForumPost_top">
             <div class="index_hotForumPost_left">
                 <h1>熱門討論</h1>
-                <a href="#" class="index_hotForumPost_left_post">
+                <RouterLink :to="'/forumInfo/article:'+article.ARTICLE_ID" class="index_hotForumPost_left_post" v-for="(article,index) in forumInfor.hotForum">
+                    <h3>{{article.TITLE}}</h3>
+                    <p>{{article.ARTICLE_CONTENT}}</p>
+                </RouterLink>
+                <!-- <a href="#" class="index_hotForumPost_left_post">
                     <h3>上班族假日策略團，目前西門5缺3</h3>
                     <p>大家好，我們是一個上班族假日策略團，目前正在尋找三位有興趣一起加入我們的團隊，共同探索西門町的美食和景點</p>
                 </a>
@@ -22,7 +26,7 @@
                 <a href="#" class="index_hotForumPost_left_post">
                     <h3>平日晚上放鬆啦賽團中山咖啡廳10缺2</h3>
                     <p>這次活動我們選擇了位於中山的一家咖啡廳作為聚會地點，這是一家非常舒適、寬敞的咖啡廳，提供各種咖啡、茶、點心等飲品和小吃，</p>
-                </a>
+                </a> -->
             </div>
             <div class="index_hotForumPost_right">
                 <h2>熱門標籤</h2>
@@ -39,7 +43,38 @@
 </template>
 
 <script setup>
-
+import { ref, onBeforeMount} from "vue";
+import axios from 'axios';
+const forumInfor=ref({
+    hotForum:[],
+});
+const fetchData=()=>{
+    return axios.get('/api/index/getHotForm.php')
+        .then(res => {
+            forumInfor.value.hotForum = res.data;
+            console.log(forumInfor.value.hotForum);
+            if(res.data.length>0 &&res.data.length<5){
+                let ln=3-res.data.length;
+                for(let i=0;i<ln;i++){
+                    forumInfor.value.hotForum.push(res.data[0]);
+                }
+            }else if(res.data.length==0){
+                for(let i=0;i<3;i++){
+                    forumInfor.value.hotForum.push(product_data.value);
+                }
+                
+            }else if(res.data.length>5){
+                forumInfor.value.hotForum = res.data.splice(4);
+            }
+        }
+        )
+        .catch(err => {
+            console.error(err);
+        });
+};
+onBeforeMount(() => {
+    fetchData();
+})
 </script>
 
 <style lang="scss" scoped>

@@ -13,7 +13,7 @@
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
                 <li :class="{ '-on': sub_nav_open['product'].value === true }">
-                    <RouterLink v-if="!isPhone" to="/product" class="link">桌遊商城</RouterLink>
+                    <RouterLink v-if="!isPhone" :to="{ name: 'productCategory', params: { categoryId: 0 } }" class="link">桌遊商城</RouterLink>
                     <div v-else class="link -mobile" @click="toggleSub('product')">
                         桌遊商城
                     </div>
@@ -56,7 +56,7 @@
                     </ol>
                 </li>
                 <li :class="{ '-on': sub_nav_open['forum'].value === true }">
-                    <RouterLink to="/forum" class="link" v-if="!isPhone">討論區</RouterLink>
+                    <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 0 } }" class="link" v-if="!isPhone">討論區</RouterLink>
                     <div v-else class="link -mobile" @click="toggleSub('forum')">
                         討論區
                     </div>

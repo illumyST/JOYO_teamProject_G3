@@ -53,7 +53,7 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref,onBeforeMount,defineProps } from "vue"
+import { ref,onBeforeMount} from "vue"
 import axios from 'axios';
 const pruduct_imfo = ref({
    product:[
@@ -132,7 +132,10 @@ onBeforeMount(() => {
         font-size: 24px;
         letter-spacing: .1em;
         color: #fff;
-
+        white-space: nowrap; /* 不換行 */
+        overflow: hidden; /* 超出部分隱藏 */
+        text-overflow: ellipsis; /* 使用省略號表示被隱藏的文字 */
+        width: 178px;
         p {
             font-size: 20px;
             margin-top: 15px;

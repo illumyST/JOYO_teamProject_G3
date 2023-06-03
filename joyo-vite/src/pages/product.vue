@@ -18,16 +18,30 @@
 <script setup>
 
 import {useRoute} from 'vue-router'
-import {onMounted, ref,defineProps,onBeforeMount } from 'vue';
+import {onMounted, ref,watch,onBeforeMount } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
+//監測路徑的值改變
+watch(route,(newVal)=>{
+    route.value=newVal;
+   
+    changeRoute();
+    turnGameType();
+    pageInfor.value.total_page.length=0; 
+    getPage();
+
+})
+const changeRoute=()=>{
+    currentCategory.value.cate=route.value.params.categoryId;
+}
 //定義傳給子頁的變數
 const currentCategory=ref({
     //篩選條件使用的商品種類，初始定義為全部商品
     cate:"全部商品",
     //表示當前頁面
-    page:1
+    page:1,
+    routeIndex:""
     },
 );
 //定義傳給子頁的變數
@@ -48,17 +62,14 @@ const pageInfor=ref({
     player:2,
 
 });
-//利用axios取得資料庫桌遊資料
-const fetchData=()=>{
-    return axios.get('/api/product/test.php')
-        .then(res => {
-            //將資料庫回傳的資料存在tg變數中
-            pageInfor.value.tg = res.data;
-            // console.log(currentCategory.value[i].cate);  
-            //判斷當前商品種類，並且存在 fliterTg變數中
-            if(route.params.categoryId>0){
+//判斷當前的router並轉換成桌遊類型
+const turnGameType=()=>{
+    if(route.params.categoryId>=0){
                 let callBackId = route.params.categoryId; 
                 switch (callBackId){
+                    case '0':
+                    currentCategory.value.cate ="全部商品";
+                    break;   
                     case '1' :
                     currentCategory.value.cate ="派對遊戲";
                     break; 
@@ -82,13 +93,23 @@ const fetchData=()=>{
                     break;
                        
                 }
-            }            
-            if (currentCategory.value.cate !== "全部商品") {
+    }  
+    if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
-        } else {
-
+        } else if(currentCategory.value.cate == "全部商品"){
             pageInfor.value.fliterTg = pageInfor.value.tg;
-        }        
+        }
+}
+
+//利用axios取得資料庫桌遊資料
+const fetchData=()=>{
+    return axios.get('/api/product/test.php')
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            pageInfor.value.tg = res.data;
+            // console.log(currentCategory.value[i].cate);  
+            //判斷當前商品種類，並且存在 fliterTg變數中
+            turnGameType();   
             }
             )
         .catch(err => {
