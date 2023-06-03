@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connect/conn.php';
 $sql = "SELECT * FROM BACK_ACCOUNT WHERE MGR = 0";
 $stm = $pdo -> prepare($sql); 
 $stm -> execute();

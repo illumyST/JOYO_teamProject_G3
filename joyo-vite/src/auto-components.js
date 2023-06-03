@@ -127,6 +127,7 @@ declare module '@vue/runtime-core' {
     SidemenuFRMINFO: typeof import('./components/forumInfo/SidemenuFRMINFO.vue')['default']
     SignInRegister: typeof import('./pages/signInRegister.vue')['default']
     SignInSR: typeof import('./components/signInRegister/SignInSR.vue')['default']
+    Test: typeof import('./pages/test.vue')['default']
     TitleCNT: typeof import('./components/contact/TitleCNT.vue')['default']
     TopBtn: typeof import('./components/-Global/topBtn.vue')['default']
     TopNavIDX: typeof import('./components/Index/TopNavIDX.vue')['default']

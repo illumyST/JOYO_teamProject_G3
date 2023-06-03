@@ -1,9 +1,12 @@
 <?php
 
-$host = '127.0.0.1';
-$user = 'root';
-$pas = 'password';
-$select = 'JOYO';
+// $host = '127.0.0.1';
+// $user = 'root';
+// $pas = 'password';
+// $select = 'JOYO';
+
+include '../connect/conn.php'; 
+
 
 $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 

@@ -10,10 +10,10 @@ include("../connect/conn.php");
        //取得加入購物車的商品ID
        $PRODUCT_ID = $cartItemData['PRODUCT_ID'];
        //取得會員ID 
-       $MEMBER_ID = $cartItemData['MEMBER_ID'];
+       $MEMBER_ID = $cartItemData['member_id'];
        //測試資料有成功取得
        echo $PRODUCT_ID ;
-       echo $MEMBER_ID ;
+       echo $MEMBER_ID_id ;
        //建立一個新的變數存放資料庫數據
        $tg = new PDO($dsn, $user, $pas);
        //查看會員購物車資料庫是否已存在相同商品

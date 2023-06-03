@@ -62,10 +62,7 @@
                                             src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
-
-
                                     <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
-
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
                                     </li>
@@ -94,9 +91,7 @@
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
-
-                                            v-on:click="(e)=>product_filter_get_order(e,index,arrange)">{{arrange}}</a>
-
+                                            v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">上架日期：由低到高</a>
@@ -127,8 +122,8 @@
     const category=[
     '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
     ];
-    const palyerNum=["遊玩人數","1人","2人","3人","4人","5人","6人","7人","多人"];
-    const palyerAge=["試玩年齡",4,5,6,7,8,9,10,11,12,13];
+    const palyerNum=["1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
+    const palyerAge=[4,5,6,7,8,9,10,11,12,13];
     const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
     const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
     const product_filter_get_cate=(e,list)=>{

@@ -2,7 +2,7 @@
   <div class="forum_article">
     <!-- 文章區域 -->
     <div class="forum_article_title">
-      <h2>所有文章</h2>
+      <h2>{{forumCategory.cate}}</h2>
 
       <div class="forum_sort">
         <button
@@ -15,10 +15,8 @@
           <span><i class="fa-solid fa-angle-down"></i></span>
         </button>
         <ul class="forum_sort_order" v-show="forum_sort_btn_active">
-          <li v-for="item in SortLi" :key="item">
-            <RouterLink class="forum_dropdown_item" to="#">{{
-              item
-            }}</RouterLink>
+          <li v-for="(arrange,index) in SortLi" :key="index" >
+            <a href="" class="forum_dropdown_item" v-on:click="(e)=>article_filter_get_order(e,index,arrange)">{{arrange }}</a>
           </li>
         </ul>
       </div>
@@ -69,22 +67,26 @@
   </div>
 
   <!-- 文章列表 -->
-  <div class="forum_article_item">
+  <div class="forum_article_item" v-for="(Items,page) in forumArticle.articlePage" :key="page" v-show="page+1 == forumCategory.page">
     <!-- 第一文章列表 -->
     <div
       class="forum_article_item1"
       v-for="(item, index) in Items"
       :key="index"
     >
-      <RouterLink to="forum/forumInfo/">
+    <!-- "'/forumInfo/'+item.ARTICLE_ID" -->
+      <RouterLink :to="'/forumInfo/article:'+item.ARTICLE_ID">
         <!-- 第一文章列表左側 -->
         <ul class="forum_article_item1_left">
           <li class="forum_category">
-            <h2>{{ item.ItemCategory }}</h2>
+            <h2 v-show="item.ARTICLE_CATEGORY=='心得分享'">{{ item.RATE }}</h2>
+            <h2 v-show="item.ARTICLE_CATEGORY=='揪團區'" class="forum_category_area">{{ item.LOCATION }}</h2>
+            <h2 v-show="item.ARTICLE_CATEGORY=='發問區'">發問</h2>
+            <h2 v-show="item.ARTICLE_CATEGORY=='教學區'">教學</h2>
           </li>
           <li class="forum_name_data">
-            <p>{{ item.ItemName }}</p>
-            <p>{{ item.ItemDate }}</p>
+            <p>{{ item.MEMBER_NAME }}</p>
+            <p>{{ item.NEWDATE }}</p>
           </li>
         </ul>
 
@@ -93,26 +95,26 @@
           <!-- 第一文章列表右側上方標籤 -->
           <ul class="forum_article_item1_right_label">
             <li>
-              <P>{{ item.CategoryLabel }}</P>
+              <P>{{ item.ARTICLE_CATEGORY }}</P>
             </li>
-            <li>
-              <p>{{ item.SortLabel }}</p>
+            <li v-if="item.CATEGORY !='無'" >
+              <p>{{ item.CATEGORY }}</p>
             </li>
-            <li>
-              <p>{{ item.NumLabel }}</p>
+            <li v-if="item.MIN_PLAYER !=0">
+              <p>{{ item.MIN_PLAYER }}-{{ item.MAX_PLAYER }}人</p>
             </li>
-            <li>
-              <p>{{ item.CustomLabel }}</p>
+            <li v-if="item.TAG">
+              <p >{{ item.TAG}}</p>
             </li>
           </ul>
 
           <!-- 第一文章列表右側中間標題和內文-->
           <ul class="forum_article_item1_right_middle">
             <li>
-              <h2>{{ item.ItemTitle }}</h2>
+              <h2>{{ item.TITLE }}</h2>
             </li>
             <li>
-              <p>{{ item.ItemText }}</p>
+              <p>{{ item.ARTICLE_CONTENT }}</p>
             </li>
           </ul>
 
@@ -120,11 +122,11 @@
           <ul class="forum_article_item1_right_bottom">
             <li>
               <i class="fa-solid fa-heart"></i>
-              <p>{{ item.ItemLoveNum }}</p>
+              <p>{{ item.LIKEARTICLE}}</p>
             </li>
             <li>
               <i class="fa-solid fa-comment"></i>
-              <p>{{ item.ItemReadNum }}</p>
+              <p>{{ item.COMMENT_NUM }}</p>
             </li>
           </ul>
         </div>
@@ -134,60 +136,82 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
-
+import { reactive, ref, onMounted,defineProps,defineEmits } from "vue";
+const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
+const article_filter_get_order=(e,index,arrange)=>{
+        e.preventDefault(e);
+        let buttonText=e.target.closest("ul").previousElementSibling;
+        let img=buttonText.lastElementChild;
+        buttonText.style.fontSize="16px";
+        img.style.display="none";
+        buttonText.firstElementChild.innerHTML=arrange;
+        console.log(index);
+        emits('updateArrange', index);
+    };
+//父層傳參數
+const props = defineProps({
+        forumArticle: {
+          type:  Object,
+          required: true,
+        },
+        forumCategory:{
+          type:  Object,
+          required: true,
+        }
+    });
 // ===== 文章列表 ===== //
-const Items = ref([
-  {
-    ItemCategory: "10",
-    ItemName: "王小明",
-    ItemDate: "2023/05/01",
-    CategoryLabel: "心得分享",
-    SortLabel: "家庭遊戲",
-    NumLabel: "2-5人",
-    CustomLabel: "超好玩",
-    ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
-    ItemText:
-      "如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
-    ItemLoveNum: "1122",
-    ItemReadNum: "44",
-  },
-  {
-    ItemCategory: "教學",
-    ItemName: "王小雅",
-    ItemDate: "2023/05/11",
-    CategoryLabel: "教學區",
-    SortLabel: "策略遊戲",
-    NumLabel: "2-6人",
-    CustomLabel: "超好玩",
-    ItemTitle: "有人有新版電力公司的中文規則嗎？",
-    ItemText:
-      "如果你正在尋找新版電力公司的中文規則，我建議你可以到遊戲官方網站或者論壇上尋找相關資訊，或者向遊戲發行商或書店詢問。另外，也可以在一些桌遊社群或論壇上詢問其他玩家是否有這方面的資料或經驗，他們可能會提供你有用的建議和幫助。此外，如果你還沒有玩過電力公司這款遊戲，我非常推薦你試試看，這是一款非常經典和受歡迎的桌遊，適合家庭、朋友、團隊等多種場合和人數。遊戲中需要玩家們通過購買發電廠、購買燃料、升級發電廠等方式，來提高自己的能源產量和利潤，同時也需要競爭和合作與其他玩家展開交易和競爭，達成最終勝利。遊戲操作簡單、策略性強，可以讓玩家們體驗到經濟管理、投資規劃等方面的樂趣和挑戰，同時也有很多不同的版本和擴展包，可以讓遊戲更加豐富和有趣。",
-    ItemLoveNum: "555",
-    ItemReadNum: "34",
-  },
-  {
-    ItemCategory: "揪團",
-    ItemName: "王小軒",
-    ItemDate: "2023/05/08",
-    CategoryLabel: "揪團區",
-    SortLabel: "派對遊戲",
-    NumLabel: "6人以上",
-    CustomLabel: "超好玩",
-    ItemTitle: "BANG(砰)上班族假日策略團，目前西門4缺2",
-    ItemText:
-      "大家好，我們是一個上班族假日策略團，目前正在尋找三位有興趣一起加入我們的團隊，共同探索西門町的美食和景點，同時也喜歡桌遊的朋友更是歡迎加入！我們的團隊主要以健康和自然為主題，不會有賭博活動，因此歡迎喜歡玩桌遊的朋友們加入我們的行列，一起享受假日的樂趣。如果你是喜歡挑戰策略的人，我們可以一起玩各種桌遊，例如「經典桌遊大富翁」、「卡牌遊戲魔獸爭霸」、「角色扮演遊戲暗黑破壞神」等等，讓我們在遊戲中提升思考能力，同時也能增進彼此之間的感情。如果你對於新穎的桌遊有興趣，我們也非常歡迎你加入我們的團隊，一起探索各種有趣的桌遊，並分享彼此的遊戲心得。無論你是已經熟悉桌遊或是新手，我們都非常歡迎你的加入，讓我們一起度過充實又有趣的假日時光。",
-    ItemLoveNum: "1100",
-    ItemReadNum: "55",
-  },
-]);
 
-const SortLi = reactive({
-  SortItem1: "文章日期：由最新到最舊",
-  SortItem2: "文章日期：由最舊到最新",
-  SortItem3: "觀看次數：由最多到最少",
-  SortItem4: "觀看次數：由最少到最多",
-});
+// const Items = ref([
+//   {
+//     ItemCategory: "10",
+//     ItemName: "王小明",
+//     ItemDate: "2023/05/01",
+//     CategoryLabel: "心得分享",
+//     SortLabel: "家庭遊戲",
+//     NumLabel: "2-5人",
+//     CustomLabel: "超好玩",
+//     ItemTitle: "新的桌遊推薦從前從前… Once Upon A Time－中文版",
+//     ItemText:
+//       "如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。",
+//     ItemLoveNum: "1122",
+//     ItemReadNum: "44",
+//   },
+//   {
+//     ItemCategory: "教學",
+//     ItemName: "王小雅",
+//     ItemDate: "2023/05/11",
+//     CategoryLabel: "教學區",
+//     SortLabel: "策略遊戲",
+//     NumLabel: "2-6人",
+//     CustomLabel: "超好玩",
+//     ItemTitle: "有人有新版電力公司的中文規則嗎？",
+//     ItemText:
+//       "如果你正在尋找新版電力公司的中文規則，我建議你可以到遊戲官方網站或者論壇上尋找相關資訊，或者向遊戲發行商或書店詢問。另外，也可以在一些桌遊社群或論壇上詢問其他玩家是否有這方面的資料或經驗，他們可能會提供你有用的建議和幫助。此外，如果你還沒有玩過電力公司這款遊戲，我非常推薦你試試看，這是一款非常經典和受歡迎的桌遊，適合家庭、朋友、團隊等多種場合和人數。遊戲中需要玩家們通過購買發電廠、購買燃料、升級發電廠等方式，來提高自己的能源產量和利潤，同時也需要競爭和合作與其他玩家展開交易和競爭，達成最終勝利。遊戲操作簡單、策略性強，可以讓玩家們體驗到經濟管理、投資規劃等方面的樂趣和挑戰，同時也有很多不同的版本和擴展包，可以讓遊戲更加豐富和有趣。",
+//     ItemLoveNum: "555",
+//     ItemReadNum: "34",
+//   },
+//   {
+//     ItemCategory: "揪團",
+//     ItemName: "王小軒",
+//     ItemDate: "2023/05/08",
+//     CategoryLabel: "揪團區",
+//     SortLabel: "派對遊戲",
+//     NumLabel: "6人以上",
+//     CustomLabel: "超好玩",
+//     ItemTitle: "BANG(砰)上班族假日策略團，目前西門4缺2",
+//     ItemText:
+//       "大家好，我們是一個上班族假日策略團，目前正在尋找三位有興趣一起加入我們的團隊，共同探索西門町的美食和景點，同時也喜歡桌遊的朋友更是歡迎加入！我們的團隊主要以健康和自然為主題，不會有賭博活動，因此歡迎喜歡玩桌遊的朋友們加入我們的行列，一起享受假日的樂趣。如果你是喜歡挑戰策略的人，我們可以一起玩各種桌遊，例如「經典桌遊大富翁」、「卡牌遊戲魔獸爭霸」、「角色扮演遊戲暗黑破壞神」等等，讓我們在遊戲中提升思考能力，同時也能增進彼此之間的感情。如果你對於新穎的桌遊有興趣，我們也非常歡迎你加入我們的團隊，一起探索各種有趣的桌遊，並分享彼此的遊戲心得。無論你是已經熟悉桌遊或是新手，我們都非常歡迎你的加入，讓我們一起度過充實又有趣的假日時光。",
+//     ItemLoveNum: "1100",
+//     ItemReadNum: "55",
+//   },
+// ]);
+
+const SortLi = reactive([
+  "文章日期：由最新到最舊",
+  "文章日期：由最舊到最新",
+  "案讚次數：由最多到最少",
+  "案讚次數：由最少到最多",
+]);
 
 const MediaSeclet = reactive({
   MediaSeclet1: "心得分享",
@@ -229,7 +253,6 @@ const forum_sort_close = () => {
 
 onMounted(() => {
    window.addEventListener('click', forum_sort_close);
-  // console.log("1111");
 });
 </script>
 
@@ -367,14 +390,18 @@ onMounted(() => {
   // border: 1px solid black;
   background-color: white;
   text-align: center;
+  .forum_category_area{
+    font-size: 35px;
+    line-height: 3.3;
+  }
 }
 
 .forum_article_item1_left .forum_category h2 {
   color: $d-pink;
-  line-height: 4.8;
-  font-size: $h2;
+  line-height: 2.9;
+  font-size: 40px;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .forum_article_item1_left .forum_name_data {
@@ -385,16 +412,19 @@ onMounted(() => {
 
 .forum_article_item1_right {
   width: 60%;
-  flex-grow: 1;
   color: $brown;
+  display: flex;
+  flex-direction: column;
 }
 
 // ===== 文章標籤 ===== //
 .forum_article_item1_right_label {
   // border: 1px solid blue;
-  @include flex-container(row, wrap, space-around);
-  width: 50%;
+  @include flex-container(row, wrap, flex-start);
+  width: 95%;
+  box-sizing: border-box;
   margin-bottom: 20px;
+  padding-left: 13px;
 }
 
 .forum_article_item1_right_label li {
@@ -402,6 +432,7 @@ onMounted(() => {
   background-color: $b-pink;
   font-size: $p;
   color: white;
+  margin-right: 10px;
   padding: 5px 10px;
   border-radius: 5px;
   display: inline-block;

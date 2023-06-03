@@ -4,6 +4,13 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
 
+    // 打包測試用的頁面
+    {
+        path: '/test',
+        name: 'test',
+        component: () => import('@/pages/test.vue')
+    },
+
     // 選擇前、後台 --------------------------------------
     {
         path: '/landing',
@@ -117,11 +124,11 @@ const routes = [
                         name: 'forumHome',
                         component: () => import('@/pages/forum/forumHome.vue'),
                     },
-                    {
-                        path: 'forumInfo',
-                        name: 'forumInfo',
-                        component: () => import('@/pages/forum/forumInfo.vue'),
-                    },
+                    // {
+                    //     path: 'forumInfo',
+                    //     name: 'forumInfo',
+                    //     component: () => import('@/pages/forum/forumInfo.vue'),
+                    // },
                     {
                         path: 'forumPost',
                         name: 'forumPost',
@@ -132,6 +139,14 @@ const routes = [
                         },
                     },
                 ]
+            },
+
+            {
+                path: 'forumInfo/:article:',
+                name: 'forumInfo',
+                component: () => import('@/pages/forum/forumInfo.vue'),
+
+
             },
 
             // 前台子頁＿[contact] -------------------

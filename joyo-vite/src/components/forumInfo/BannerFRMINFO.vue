@@ -1,37 +1,42 @@
 <template>
   <div class="forumInfo_right_main">
     <div class="forumInfo_right_main_top">
-      <img src="../../assets/img/cat.png" alt="" />
-      <p>王小明</p>
-      <p>2023/05/01</p>
+      <div class="container">
+        <img v-bind:src="forumArticle.articleFilter.IMG_URL" alt="" />
+      </div>
+      <p>{{forumArticle.articleFilter.MEMBER_NAME}}</p>
+      <p>{{forumArticle.articleFilter.ARTICLE_DATE}}</p>
     </div>
 
     <div class="forumInfo_right_main_title">
       <ul class="forumInfo_right_main_title_left">
         <li class="forumInfo_category">
-          <p>文章類別</p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='心得分享'">{{ forumArticle.articleFilter.RATE }}</p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='揪團區'" class="forum_category_area">{{ forumArticle.articleFilter.LOCATION }}</p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='發問區'">發問</p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='教學區'">教學</p>
         </li>
       </ul>
 
       <ul class="forumInfo_right_main_title_right">
         <li>
-          <h1>新的桌遊推薦從前從前… Once Upon A Time－中文版</h1>
+          <h1>{{forumArticle.articleFilter.TITLE}}</h1>
         </li>
       </ul>
 
       <div class="forumInfo_right_main_title_bottom">
         <ul class="forumInfo_right_main_title_bottom_label">
           <li>
-            <P>心得分享</P>
+            <P>{{forumArticle.articleFilter.ARTICLE_CATEGORY}}</P>
           </li>
           <li>
-            <p>家庭遊戲</p>
+            <p>{{forumArticle.articleFilter.CATEGORY}}</p>
           </li>
-          <li>
-            <p>2-5人</p>
+          <li v-if="forumArticle.articleFilter.MIN_PLAYER !=0">
+            <p>{{forumArticle.articleFilter.MIN_PLAYER}}-{{forumArticle.articleFilter.MAX_PLAYER}}人</p>
           </li>
-          <li>
-            <p>超好玩</p>
+          <li v-if="forumArticle.articleFilter.TAG">
+            <p>{{forumArticle.articleFilter.TAG}}</p>
           </li>
         </ul>
       </div>
@@ -39,19 +44,12 @@
 
     <div class="forumInfo_middle">
       <p>
-        如果你正在尋找一款家庭或派對遊戲，我強烈推薦Once Upon A
-        Time（中文版），這是一款非常有趣的桌遊，適合所有年齡層的人玩。 在Once
-        Upon A
-        Time中，每個玩家都扮演一個故事中的角色，例如公主、騎士、巫婆等等，然後玩家們必須用卡牌來講述一個故事，希望自己的故事能夠成為最後的結局。在遊戲過程中，其他玩家可以插話打斷你的講述，加入自己的故事線，或者使用特殊卡牌來干擾你。
-        Once Upon A
-        Time的遊戲設計非常精巧，能夠激發玩家的創造力和想象力，同時也可以培養玩家的溝通和協作能力。此外，遊戲的卡牌設計非常美觀，卡牌上的插圖也非常精緻，讓人一玩就愛不釋手。
-        總之，如果你想要一款可以讓你和家人、朋友一起共度歡樂時光的桌遊，Once
-        Upon A Time是一個非常不錯的選擇。
+        {{forumArticle.articleFilter.ARTICLE_CONTENT}}
       </p>
     </div>
 
     <div class="forumInfo_comments">
-      <h3>共{{ CommentsNum }}則留言</h3>
+      <h3>共{{forumArticle.articleFilter.COMMENT_NUM}}則留言</h3>
       <span class="forumInfo_comments_line"></span>
 
       <div class="forumInfo_comments_text">
@@ -81,11 +79,41 @@
 
 <script setup>
 import{ onMounted, ref } from "vue";
-import axios from "axios"
+import axios from "axios";
+import { useRoute } from 'vue-router';
 
 let CommentsNum = ref(44);
 let memberId = ref("");
+let memberItem = ref({ Img: "", Name: "" });
+// console.log(memberItem);
+const route = useRoute();
+const forumArticle=ref({
+  articleAll:[],
+  articleFilter:[],
+});
+//取得文章資訊
+const fetchData=()=>{
+    return axios.get('/api/forum/forumGetArticle.php')
+        .then(res => {
+          forumArticle.value.articleAll=res.data;
+            }
+            )
+        .catch(err => {
+            // console.error(err);
+        });
+};
+const getGame=()=>{
+    let callBackId = route.params.article;
+      if(callBackId !=""){
 
+      }else{
+        callBackId ="article：1";
+      }
+      let arr1=(forumArticle.value.articleAll.filter((article)=>"article:"+article.ARTICLE_ID == callBackId));
+      forumArticle.value.articleFilter=arr1[0];
+      console.log(forumArticle.value.articleFilter);
+   
+};
 
 const ForumInfoMsgs = ref([
   {
@@ -120,39 +148,42 @@ const getMemberId=()=>{
     return axios.get('/api/forumPost/forumCheckLogin.php')
         .then(res => {
             //將資料庫回傳的資料存在變數中
-            memberId = res.data;
-            // console.log(memberId);
+            memberId.value = res.data;
+            console.log(memberId.value);
+
+            // 傳送會員編號到後端搜尋會員資料
+            return axios.post('/api/forumInfo/forumInfoSelect.php', {
+              memberId: memberId.value
             })
+            .then(memberRes => {
+            const memberData = memberRes.data;
+            // console.log(memberRes.data);
+              memberItem.value = {
+                Img: memberData.Img,
+                Name: memberData.Name
+              };
+              // console.log(memberItem.value);
+            })
+            .catch(memberErr => {
+              console.error(memberErr);
+            });
+          })
         .catch(err => {
             console.error(err);
         });
 };
 
-
-
 // 处理发送按钮点击事件
 const handleSendButtonClick = () => {
   if (!isMember.value) {
     // console.log("1111111");
-
-    const getMember = () =>{
-      return axios.get('/api/forumPost/forumCheckLogin.php')
-        .then(res => {
-            //將資料庫回傳的資料存在變數中
-            memberId = res.data;
-            // console.log(memberId);
-            })
-        .catch(err => {
-            console.error(err);
-        });
-    }
-
     // 用户是會員，執行發送
     const newMessage = {
       MsgImg: "/src/assets/img/cat.png",
-      MsgName: "林冠伶", // 替換為實際的用戶名稱
+      MsgName: memberItem.value.Name, // 替換為實際的用戶名稱
       MsgDate: formatDate(new Date()), // 替換為實際的日期格式化函数
       MsgText: messageText.value,
+      MemberId: memberId.value
     };
     console.log(newMessage);
 
@@ -161,14 +192,21 @@ const handleSendButtonClick = () => {
     // console.log(CommentsNum.value);
     // console.log(ForumInfoMsgs.value);
 
+    // 将数据放在一个变量中
+    const postMsg = {
+      MsgDate: newMessage.MsgDate,
+      MsgText: newMessage.MsgText,
+      MemberId: newMessage.MemberId
+    };
+
     // 清空留言文本框
     messageText.value = "";
 
     axios 
-    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(newMessage.value)) // PHP 文件路径
+    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg)) // PHP 文件路径
     .then((res) => {
           console.log(res.data);
-          // alert(res.data);
+          alert(res.data);
           // alert("發文成功");
         })
         .catch((error) => {
@@ -185,6 +223,11 @@ const handleSendButtonClick = () => {
 
 onMounted(()=>{
   getMemberId();
+  //取得文章資料
+  
+  fetchData().then(() => {
+    getGame();
+    });
 })
 </script>
 
@@ -207,16 +250,31 @@ onMounted(()=>{
     background: #f6b1ca;
   }
 }
+.container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-block;
+  img{
+    width: 100%;
+    display: block;
+    border-radius: 50%;
+  }
+}
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 遮罩層的背景色，這裡使用半透明黑色 */
+  z-index: 1; /* 設定層級，使遮罩層位於圖片之上 */
+}
 .forumInfo_right_main_top {
   // border: 1px solid yellow;
   @include flex-container(row, wrap, start);
   margin-bottom: 40px;
-
-  img {
-    display: block;
-    width: 9.2%;
-  }
 
   > p {
     margin-left: 20px;
@@ -244,14 +302,16 @@ onMounted(()=>{
   background-color: white;
   width: 90%;
   margin: 20px auto;
-
+  .forum_category_area{
+    font-size: 27px;
+    line-height: 3.3;
+  }
   p {
-    line-height: 5.65;
+    line-height: 2;
     color: $d-pink;
-    font-size: $p;
+    font-size: 40px;
   }
 }
-
 .forumInfo_right_main_title_right {
   // border: 1px solid palevioletred;
   width: 80%;
@@ -278,8 +338,8 @@ onMounted(()=>{
 }
 
 .forumInfo_right_main_title_bottom_label {
-  @include flex-container(row, wrap, space-around);
-  width: 50%;
+  @include flex-container(row, wrap, flex-start);
+  width: 80%;
   li {
     background-color: $b-pink;
     font-size: $p;
@@ -288,6 +348,7 @@ onMounted(()=>{
     border-radius: 5px;
     display: inline-block;
     letter-spacing: 3px;
+    margin-right: 13px;
   }
 }
 
@@ -319,8 +380,6 @@ onMounted(()=>{
   margin: 6px 0 0;
 }
 
-.forumInfo_comments_text {
-}
 .forumInfo_comments_text_title {
   @include flex-container(row, wrap, start);
   border-bottom: 2px solid #513f2e20;

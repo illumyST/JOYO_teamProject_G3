@@ -1,3 +1,4 @@
+
 <template>
   <div class="Banner_box">
       <div class="left_box">
@@ -7,19 +8,19 @@
             
             
           <Slide :key="Slide">
-            <div class="carousel__item">{{ Slide }}</div>
-            <img src="/src/assets/img/Group 495.png" alt="" class="pic">
+            <!-- <div class="carousel__item">{{ slide }}</div> -->
+            <!-- <img src="/src/assets/img/Group 495.png" alt="" class="pic"> -->
           </Slide>  
         
 
 
           <Slide :key="Slide">
-            <img src="/src/assets/img/Group 496.png" alt="" class="pic">
+            <!-- <img src="/src/assets/img/Group 496.png" alt="" class="pic"> -->
           </Slide>
 
 
           <Slide :key="Slide">
-            <img src="/src/assets/img/Group 497.png" alt="" class="pic">
+            <!-- <img src="/src/assets/img/Group 497.png" alt="" class="pic"> -->
           </Slide>
 
       
@@ -30,11 +31,12 @@
         </Carousel>
       </div>
       <div class="right_box">
-        <img src="/src/assets/img/Group 490.png" alt="" class="right_box_pic">
-        <img src="/src/assets/img/Group 491.jpg" alt="" class="right_box_pic">
+        <!-- <img src="/src/assets/img/Group 490.png" alt="" class="right_box_pic"> -->
+        <!-- <img src="/src/assets/img/Group 491.jpg" alt="" class="right_box_pic"> -->
       </div>
   </div>
   </template>
+  
   
 
 
@@ -57,12 +59,12 @@
 //   })
 
 // onMounted(()=>{
-//   let buttonArrow=document.querySelectorAll(".carousel__next")[0];
-//   // console.log(buttonArrow);
-//   buttonArrow.style.color='#513F2E';
-//   let buttonArro=document.querySelectorAll(".carousel__prev")[0];
-//   // console.log(buttonArrow);
-//   buttonArro.style.color='#513F2E';
+//   // let buttonArrow=document.querySelectorAll(".carousel__next")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArrow.style.color='#513F2E';
+//   // let buttonArro=document.querySelectorAll(".carousel__prev")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArro.style.color='#513F2E';
 // }
 // )
   </script>
@@ -144,7 +146,7 @@
 .carousel__pagination-button{
   display: none;
   }
-  .carousel__pagination-button carousel__pagination-button--active{
+  .carousel__pagination-button .carousel__pagination-button--active{
     display: none;
 
   }
@@ -183,6 +185,3 @@
   color: #b70dc7;
 }
   </style>
-
-
-

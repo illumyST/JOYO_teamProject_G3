@@ -18,19 +18,23 @@ const props = defineProps({
     },
     });
 
+const cartItem = ref ({
+    PRODUCT_ID: "",
+    amount: 1,
+    MEMBER_ID: "-1", 
+});
 const cartList = ref([]);
 
 const addToCart = (list) => {
     // console.log(list.PRODUCT_ID);   
     props.cartItem.PRODUCT_ID = props.list.PRODUCT_ID;
-    console.log(`目前登入號碼是` + props.cartItem.member_id);
-    if(props.cartItem.member_id === '-1'){
+    if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){
+        props.cartItem.member_id ="-1";
         let localCart = JSON.parse(localStorage.getItem('cart')) || [];
-        alert("目前已經判斷沒有登入")
         if(localCart.length === 0 ){
             localCart.unshift(props.cartItem);
             localStorage.setItem("cart",JSON.stringify(localCart));
-            alert("購物車目前筆數為0 推一筆資料進去了")
+            alert("購物車新增成功!")
         }else {
             let found = false;
             for(let i = 0; i < localCart.length; i++){
@@ -57,6 +61,12 @@ const addToCart = (list) => {
     } 
     
 };
+
+onMounted(() => {
+    sessionStorage.removeItem('login')
+    setLogin("2")
+});
+
 
 </script>
 

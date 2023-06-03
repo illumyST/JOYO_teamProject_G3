@@ -1,9 +1,5 @@
 <?php
-
-$host = '127.0.0.1';
-$user = 'root';
-$pas = 'password';
-$select = 'JOYO';
+include ('../connect/conn.php');
 
 $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
@@ -25,24 +21,23 @@ $statement->execute();
 // header('Content-Type: application/json');
 $data = $statement->fetchAll();
 if (count($data) > 0) {
-    // 设置响应头，告诉浏览器将输出保存为CSV文件
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="output.csv"');
 
     // 輸出csv
     $output = fopen('php://output', 'w');
 
-    // 写入CSV文件的表头
+
     fputcsv($output, array_keys($data[0]));
 
-    // 逐行写入数据
+
     foreach ($data as $row) {
         fputcsv($output, $row);
     }
 
-    // 关闭输出流
+
     fclose($output);
-    exit(); // 终止脚本执行，确保只返回CSV文件内容
+    exit();
 } else {
     echo "輸出失敗";
 }

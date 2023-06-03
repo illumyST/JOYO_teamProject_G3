@@ -27,8 +27,6 @@ const getmember_id = () => {
         }else{
             // console.log(cartItem.value.MEMBER_ID);
         }
-        
-        console.log(cartItem.value.member_id);
     })
     .catch(err => {
         console.log(err)
