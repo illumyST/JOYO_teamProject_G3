@@ -27,6 +27,7 @@ if (redirectUrl) {
 
 const doRegister = function () {
 
+    // 抓子層資料
     const logInData = {
         member_name: member_name.value.modelValue,
         mail: mail.value.modelValue,
@@ -37,14 +38,11 @@ const doRegister = function () {
         logInData
     )
         .then(res => {
+            console.log(res.data)
             if (res.data) {
-                alert('註冊成功！');
-                console.log(res.data);
-                // if (redirectUrl) {
-                //     router.push({ path: redirectUrlStr.value });
-                // } else {
-                //     router.push('/');
-                // }
+                alert('請至註冊信箱收驗證信，完成會員驗證！');
+                router.push('/mailCheck');
+
             } else {
                 alert('註冊失敗！');
             }

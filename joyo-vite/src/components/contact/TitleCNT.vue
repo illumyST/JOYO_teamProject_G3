@@ -7,13 +7,13 @@
 
     <div class="contact_top_left">
       <img src="../../assets/img/logo_white.svg" alt="" />
-      <p>一桌迷人寶藏，盡在捉迷藏</p>
+      <p>一桌迷人寶藏，盡在桌迷藏</p>
     </div>
 
     <div class="contact_top_right">
       <h2 class="contact_top_right_text">
         歡迎您蒞臨桌迷藏官網，我們致力為您提供豐富的桌遊商品，以及良好的討論區體驗，如有任何問題，歡迎聯繫致電、寄信或使用
-        <a href="#contact_bottom" class="contact_title_serive">即時客服</a>，我們將竭誠為您服務！
+        <RouterLink to="#contact_bottom" class="contact_title_serive">即時客服</RouterLink>，我們將竭誠為您服務！
       </h2>
       <h2>
         <i class="fa-solid fa-envelope"></i>joyo2023@gmail.com
@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+
 </script>
 
 <style lang="scss" scoped>

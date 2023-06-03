@@ -166,12 +166,12 @@ const routes = [
                     requiresAuth: false,
                 },
             },
-            // 前台子頁＿[mailCheck] -------------------
-            // {
-            //     path: 'mailCheck',
-            //     name: 'mailCheck',
-            //     component: () => import('@/pages/mailCheck.vue'),
-            // },
+            //前台子頁＿[mailCheck] -------------------
+            {
+                path: 'mailCheck',
+                name: 'mailCheck',
+                component: () => import('@/pages/mailCheck.vue'),
+            },
             // {
             //     path: 'redirect',
             //     name: 'redirect',
@@ -297,14 +297,21 @@ const routes = [
     },
 ];
 
-const scrollBehavior = () => {
-    scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    })
+const scrollBehavior = (to) => {
+    if (to.hash === '#contact_bottom') {
+        scrollTo({
+            top: document.getElementById('contact_bottom').offsetTop,
+            left: 0,
+            behavior: 'smooth'
+        })
+    } else {
+        scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }
 }
-
 
 
 const router = createRouter({

@@ -1,4 +1,8 @@
 <?php
+    // 引入必要的PHPMailer類別
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
     include('../connect/conn.php');
 
     $request_body = file_get_contents('php://input');
@@ -7,9 +11,9 @@
     $member_name = $data['member_name'];
     $mail = $data['mail'];
     $password = $data['password'];
-
-    $sql = "insert into MEMBER(MEMBER_NAME,MAIL,PASSWORD,VERITY_STATE)
-            values( ?, ?, ?,0)" ;
+    $random = rand(100000, 999999);
+    $sql = "insert into MEMBER(MEMBER_NAME,MAIL,PASSWORD,VERIFY_STATE,VERRIFY_CODE)
+            values( ?, ?, ?,0,$random)" ;
     
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(1,$member_name);
@@ -21,11 +25,49 @@
     $affectedRow =  $statement -> fetchAll();
 
     if($affectedRow > 0){
-        echo 'true';
+
+// ----------------- 寄驗證信 -----------------------//
+
+        require '../msSendReport/PHPMailer/src/Exception.php';
+        require '../msSendReport/PHPMailer/src/PHPMailer.php';
+        require '../msSendReport/PHPMailer/src/SMTP.php';
+
+        // 建立PHPMailer物件
+        $mail = new PHPMailer(true);
+
+        // 設定SMTP
+        $mail->isSMTP(); // 使用SMTP協定寄送郵件
+        $mail->Host = 'smtp.gmail.com'; // 設定SMTP伺服器
+        $mail->SMTPAuth = true; // 啟用SMTP驗證
+        $mail->Username = 'joyogamethd101@gmail.com'; // Gmail帳號
+        $mail->Password = 'catobidshquojtxy'; // Gmail密碼
+        $mail->SMTPSecure = 'ssl'; // 使用SSL加密連線
+        $mail->Port = 465; // Gmail SMTP的連接埠
+
+        // 設定寄件者
+        $mail->setFrom('joyogamethd101@gmail.com');
+
+        // 設定郵件內容
+        $mail->isHTML(true); // 使用HTML格式的郵件內容
+        $mail->Subject = '桌迷藏會員驗證'; // 郵件主旨
+        $mail->Body = "<h3 style='font-size:24px'>感謝您註冊桌迷藏會員，請回桌迷藏官網輸入以下6位數驗證碼 <br> <b>$random</b> <h3>"; // 郵件內容
+
+        // 設定收件者
+        $mail->addAddress($data['mail']); // 從POST請求中取得收件者信箱
+
+        $mail->CharSet = 'UTF-8'; // 設定郵件編碼為UTF-8
+
+        // 寄送郵件並檢查是否成功
+        if ($mail->send()) {
+            echo 'true'; // 寄送成功
+        } 
+        // 因為前端已驗證過所以不會寄失敗...?
+        // else {
+        //     echo "Error sending email. Please try again."; // 寄送失敗
+        // };
+    
     }else{
         echo 'false';
     };
-
-
 
 ?>
