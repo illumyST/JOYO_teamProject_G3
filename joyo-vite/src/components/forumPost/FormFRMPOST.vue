@@ -131,14 +131,6 @@ const ShowAreaSelect = ref(false);
 // const postTags = ref("");
 
 
-
-// 會員編號
-// const getMemberId=()=>{
-//  let MEMBERID = sessionStorage.getItem("login");
-//  postData.value.memberId = MEMBERID;
-// };
-
-
 // 文章類別選單
 const FormCgy = ref(["心得分享", "教學區", "發問區", "揪團區"]);
 
@@ -161,78 +153,6 @@ const postData = ref({
       area:"0",
 });
 
-// 揪團地點
-const Add_Area = ref({
-  Area: [],
-});
-
-const fetchData = () => {
-  // 揪團地點串JSON檔
-  return axios
-    .get("/src/assets/json/address.json")
-    .then((res) => {
-      Add_Area.value.Area = Object.keys(res.data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-const chooseSelect = () =>{
-    if (postData.value.category == "1" || postData.value.category == "2" || postData.value.category == "3") {
-      if(postData.value.category != "1"){
-        ShowScoreSelect.value = false;
-      }else{
-        ShowScoreSelect.value = true;
-        console.log(SelectCgy.value,"not 2.3");
-      }
-    }else if(postData.value.category == "4"){
-      ShowScoreSelect.value = false;
-      ShowTitleText.value = false;
-      ShowAreaSelect.value = true;
-    }else if(postData.value.category == "0"){
-      ShowScoreSelect.value = true;
-      ShowTitleText.value = true;
-      ShowAreaSelect.value = false;
-    }
-  }
-
-const submitPost = () => {
-  //印為選擇分類的value是數字，把他轉成分類字串
-  postData.value.category=FormCgy.value[postData.value.category-1];
-  if (postData.value.category == "0") {
-    alert("請選擇文章類別");
-    return;
-  }
-
-  if (postData.value.category !== "5") {
-    if (!ShowTitleText.value || !postData.value.title.trim()) {
-      alert("請輸入桌遊名稱");
-      return;
-    }
-  }
-
-  if (postData.value.category !== "5") {
-    if (!ShowScoreSelect.value || postData.value.score.value == "0") {
-      alert("請選擇評分");
-      return;
-    }
-  }
-
-  if (postData.value.category == "5") {
-    if (ShowAreaSelect.value && postData.value.area == "-1") {
-      alert("請選擇揪團地點");
-      return;
-    }
-  }
-  if (postData.value.category == "2") {
-    if (ShowAreaSelect.value && postData.value.area == "-1") {
-      alert("請選擇揪團地點");
-      postData.value="心得分享";
-      return {
-       
-  };
-      };
-    }
 
 // 會員編號
 const getMemberId=()=>{
@@ -341,7 +261,7 @@ const submitPost = () => {
   axios
     .post("/api/forumPost/forumPost_ADD.php", JSON.stringify(postData.value)) // PHP 文件路径
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       // alert(res.data);
       alert("發文成功");
       // router.push('/forum');

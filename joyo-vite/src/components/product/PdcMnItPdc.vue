@@ -41,7 +41,7 @@ import axios from 'axios';
 const cartItem=ref({
     PRODUCT_ID:"",
     AMOUNT:1,
-    MEMBER_ID:"-1",
+    member_id:"-1",
 });
 const cartList=ref([]);
 const props = defineProps({

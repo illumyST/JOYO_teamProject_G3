@@ -26,7 +26,7 @@
       
           <template #addons>
             <Navigation />
-            <!-- <Pagination /> -->
+            <Pagination />
           </template>
         </Carousel>
       </div>
@@ -59,12 +59,12 @@
 //   })
 
 // onMounted(()=>{
-//   let buttonArrow=document.querySelectorAll(".carousel__next")[0];
-//   // console.log(buttonArrow);
-//   buttonArrow.style.color='#513F2E';
-//   let buttonArro=document.querySelectorAll(".carousel__prev")[0];
-//   // console.log(buttonArrow);
-//   buttonArro.style.color='#513F2E';
+//   // let buttonArrow=document.querySelectorAll(".carousel__next")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArrow.style.color='#513F2E';
+//   // let buttonArro=document.querySelectorAll(".carousel__prev")[0];
+//   // // console.log(buttonArrow);
+//   // buttonArro.style.color='#513F2E';
 // }
 // )
   </script>
@@ -146,7 +146,7 @@
 .carousel__pagination-button{
   display: none;
   }
-  .carousel__pagination-button carousel__pagination-button--active{
+  .carousel__pagination-button .carousel__pagination-button--active{
     display: none;
 
   }

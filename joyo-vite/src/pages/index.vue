@@ -22,13 +22,11 @@ const getmember_id = () => {
     return axios.get('/api/forumPost/forumCheckLogin.php')
     .then(res => {
         if(res.data){
-            cartItem.value.MEMBER_ID = res.data;
-            console.log(cartItem.value.MEMBER_ID);
+            cartItem.value.member_id = res.data;
+            // console.log(cartItem.value.MEMBER_ID);
         }else{
-            console.log(cartItem.value.MEMBER_ID);
+            // console.log(cartItem.value.MEMBER_ID);
         }
-        
-        console.log(cartItem.value.MEMBER_ID);
     })
     .catch(err => {
         console.log(err)

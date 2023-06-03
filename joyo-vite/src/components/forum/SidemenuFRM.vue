@@ -1,25 +1,31 @@
 <template>
   <!-- 側邊選單 -->
   <ul class="forum_sidemenu">
+    
     <li
       class="forum_sidemenu_li"
-      :class="{ active: forumCategory[index].cate == '所有文章' }"
-      @click="forumInfo_sidemenu_Category"
+      :class="{ active: forumCategory.cate == artiCate }"
+      @click="forumInfo_sidemenu_Category(artiCate)"
+      v-for="(artiCate,index) in artiCategory "
+      :key="index"
     >
+    <RouterLink :to="'/forum' +'/'+index" >
       <i class="fa-regular fa-newspaper"></i>
-      <h3>所有文章</h3>
+      <h3>{{artiCate}}</h3>  
+    </RouterLink>
+          
     </li>
-    <li
+    <!-- <li
       class="forum_sidemenu_li"
-      :class="{ active: forumCategory[index].cate == '心得分享' }"
+      :class="{ active: forumCategory.cate == '心得分享' }"
       @click="forumInfo_sidemenu_Category"
     >
       <i class="fa-solid fa-file-lines"></i>
       <h3>心得分享</h3>
-    </li>
-    <li
+    </li> -->
+    <!-- <li
       class="forum_sidemenu_li"
-      :class="{ active: forumCategory[index].cate == '揪團區' }"
+      :class="{ active: forumCategory.cate == '揪團區' }"
       @click="forumInfo_sidemenu_Category"
     >
       <i class="fa-solid fa-users"></i>
@@ -27,7 +33,7 @@
     </li>
     <li
       class="forum_sidemenu_li"
-      :class="{ active: forumCategory[index].cate == '發問區' }"
+      :class="{ active: forumCategory.cate == '發問區' }"
       @click="forumInfo_sidemenu_Category"
     >
       <i class="fa-solid fa-file-circle-question"></i>
@@ -35,12 +41,12 @@
     </li>
     <li
       class="forum_sidemenu_li"
-      :class="{ active: forumCategory[index].cate == '教學區' }"
+      :class="{ active: forumCategory.cate == '教學區' }"
       @click="forumInfo_sidemenu_Category"
     >
       <i class="fa-solid fa-chalkboard-user"></i>
       <h3>教學區</h3>
-    </li>
+    </li> -->
     <li>
       <RouterLink to="/forum/forumPost">我要發文</RouterLink>
     </li>
@@ -48,25 +54,22 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits,  ref, computed, onMounted } from "vue";
-import axios from 'axios';
+import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   forumCategory: {
-    type: Array,
+    type: Object,
     required: true,
   },
 });
-const index = 0;
 // const ForumCategoryCopy = computed(() => [...props.ForumCategory]);
-
+const artiCategory=[
+    '所有文章','心得分享','揪團區','發問區','教學區'
+  ];
 const emits = defineEmits("updateCategory");
-const forumInfo_sidemenu_Category = (e) => {
-  let index = 0;
-
-  props.forumCategory[index].cate =
-    e.currentTarget.querySelector("h3").innerHTML;
-  emits("updateCategory", e.currentTarget.querySelector("h3").innerHTML);
+const forumInfo_sidemenu_Category = (artiCate) => {
+    
+  emits("updateCategory", artiCate);
 };
 
 
@@ -76,12 +79,9 @@ const forumInfo_sidemenu_Category = (e) => {
 
 <style lang="scss" scoped>
 // ===== 左側選單 ===== //
-.forum_sidemenu {
-  //    border: 1px solid purple;
-  display: inline-block;
-}
 
-.forum_sidemenu li {
+
+.forum_sidemenu li{
   // border: 1px solid blue;
   @include sidemenu();
   &:hover {
@@ -89,9 +89,23 @@ const forumInfo_sidemenu_Category = (e) => {
   }
   @include flex-container(row, wrap, start);
   cursor: pointer;
+  a{
+    background-color:#ffffff00;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    i{
+       font-weight: 400;
+    }
+   
+  }
 }
-
-.forum_sidemenu li:last-child {
+.forum_sidemenu {
+  //    border: 1px solid purple;
+  display: inline-block;
+  
+}
+.forum_sidemenu li:last-child{
   margin-top: 50px;
   justify-content: center;
   padding: 0;
