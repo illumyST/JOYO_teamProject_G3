@@ -91,6 +91,12 @@ const forumArticle=ref({
   articleAll:[],
   articleFilter:[],
 });
+const props = defineProps({
+  forumCategory: {
+    type: Array,
+    required: true,
+  },
+});
 //取得文章資訊
 const fetchData=()=>{
     return axios.get('/api/forum/forumGetArticle.php')
@@ -111,7 +117,8 @@ const getGame=()=>{
       }
       let arr1=(forumArticle.value.articleAll.filter((article)=>"article:"+article.ARTICLE_ID == callBackId));
       forumArticle.value.articleFilter=arr1[0];
-      console.log(forumArticle.value.articleFilter);
+      props.forumCategory.cate=forumArticle.value.articleFilter.ARTICLE_CATEGORY;
+      console.log( props.forumCategory.cate);
    
 };
 

@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, onBeforeMount,defineProps} from "vue";
+import { ref, onBeforeMount} from "vue";
 import axios from 'axios';
 const productInfor=ref({
     newItem:[],
