@@ -48,6 +48,7 @@ const addToCart = (list) => {
                 localCart.unshift(props.cartItem);
             }
         }
+        console.log(props.cartItem.member_id)
     localStorage.setItem('cart',JSON.stringify(localCart));
     }else {
         axios.post('/api/product/Insert.php', props.cartItem)
@@ -63,8 +64,8 @@ const addToCart = (list) => {
 };
 
 onMounted(() => {
-    sessionStorage.removeItem('login')
-    setLogin("2")
+    // sessionStorage.removeItem('login')
+    // setLogin("2")
 });
 
 
