@@ -1,6 +1,6 @@
 <?php
 $data = json_decode(file_get_contents("php://input"),true);
-include '../conn.php';
+include '../connect/conn.php';
 $tid = $data["_value"]['tid'];
 $num = $data["_value"]['num'];
 $date = $data["_value"]['time'];

@@ -19,6 +19,7 @@ declare global {
   const MsLiveChat: typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']
   const MsLoginFormMLI: typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']
   const MsOrderListTable: typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']
+  const MsPagination: typeof import('./src/components/-UI_Element/MsPagination.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
   const PdcTopPDC: typeof import('./src/components/product/PdcTopPDC.vue')['default']
   const computed: typeof import('vue')['computed']
@@ -106,6 +107,7 @@ declare module 'vue' {
     readonly MsLiveChat: UnwrapRef<typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']>
     readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
     readonly MsOrderListTable: UnwrapRef<typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']>
+    readonly MsPagination: UnwrapRef<typeof import('./src/components/-UI_Element/MsPagination.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
     readonly PdcTopPDC: UnwrapRef<typeof import('./src/components/product/PdcTopPDC.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -187,6 +189,7 @@ declare module '@vue/runtime-core' {
     readonly MsLiveChat: UnwrapRef<typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']>
     readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
     readonly MsOrderListTable: UnwrapRef<typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']>
+    readonly MsPagination: UnwrapRef<typeof import('./src/components/-UI_Element/MsPagination.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
     readonly PdcTopPDC: UnwrapRef<typeof import('./src/components/product/PdcTopPDC.vue')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

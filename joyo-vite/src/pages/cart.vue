@@ -1,7 +1,7 @@
 <template>
 <div class="cartConfirm_wrapper">
     <CcfTpCT></CcfTpCT>
-    <CcfCnCT :prodects="prodects" ></CcfCnCT>
+    <CcfCnCT :product="product"></CcfCnCT>
     <CcfDvCT :calculateTotal="calculateTotal"></CcfDvCT>
 </div>
 
@@ -9,6 +9,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 const prodects = ref([{
     id:1,
     name : '花磚物語',
@@ -31,6 +32,33 @@ const prodects = ref([{
     img:"/src/assets/img/product_pathwork.png",
     }
 ]);
+const fetchData = () => {
+        return axios.get('/api/product/test.php')
+        .then(res => {
+            product.value.tg = res.data;
+            product.value.localCart = JSON.parse(localStorage.getItem('cart')) || [];
+            console.log(product.value.localCart);
+            for(let i = 0; i < product.value.localCart.length; i++){
+              product.value.productId.push(product.value.localCart[i].PRODUCT_ID)
+            }
+            for(let i = 0; i < product.value.productId.length; i++){
+              product.value.tgFilter.push(product.value.tg.filter(ele => ele.PRODUCT_ID === (product.value.productId[i] )));
+            }
+            console.log(product.value.tgFilter);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    };
+  
+const product=ref({
+      tg:[],
+      tgFilter:[],
+      productId:[],
+      localCart:[],
+      amount:[],  
+});
+
 const calculateTotal=()=>{
       let sum=0;
       for(let i=0;i<prodects.value.length;i++){
@@ -38,6 +66,9 @@ const calculateTotal=()=>{
       }
       return sum;
 };
+onMounted(()=>{
+    fetchData();
+});
 
 </script>
 

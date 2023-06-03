@@ -1,4 +1,4 @@
-<template v-if="prodects">
+<template v-if="product && amount.lenth>0"  >
     <div class="cartConfirm_con">
             <h2>確認您的購物車</h2>
             <ul class="col-12 cartConfirm_con_title">
@@ -9,21 +9,21 @@
                 <li class="cartConfirm_con_del"></li>
             </ul>
             <ul class="col-12 cartConfirm_con_title_item">
-                <li class="col-12" v-for="(list,index) in prodects" :key="list.id">
+                <li class="col-12" v-for="(list,index) in product.tgFilter" :key="index">
                     <ul>
-                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.img" alt=""></li>
+                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list[0].IMG_URL_ONE" alt=""></li>
                         <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">{{list.name}}</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list.sel}}</span></li>
+                            <li class=" cartConfirm_con_title_item_name">{{list[0].NAME}}</li>
+                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list[0].PRICE}}</span></li>
                             <li class="cartConfirm_con_title_item_num order-2">
                                 <div>
                                     <button class="col-2" @click="numMinus(index)"><i class="fas fa-minus"></i></button>
-                                    <input class="col-8" type="text"   v-model.trim="list.amount">
+                                    <input class="col-8" type="text"   v-model.trim="amount[index]">
                                     <button class="col-2"  @click="numPlus(index)"><i class="fa-solid fa-plus"></i></button>
                                 </div>
 
                             </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{list.total}}</span>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{ list[0].PRICE }}</span>
 
                             </li>
                             <li class="col-1" @click="remove(index)"> <i class="fa-solid fa-trash-can "></i></li>
@@ -38,38 +38,64 @@
 
 </template>
 <script setup>
-import { computed,defineProps, watch } from 'vue';
-    const props = defineProps({
-        prodects: {
-        type: Array,
+import {onBeforeMount} from "vue"
+const props = defineProps({
+    product:{
+        type: Object,
         required: true,
-        },
-        
-    });
-    const prodectsValueCopy = computed(() => [...props.prodects]);
-    const numPlus = (index) => {
-        if(props.prodects[index].amount<props.prodects[index].stock){
-            props.prodects[index].amount++;
-        }else{
-            alert (`數量不可大於庫存:${props.prodects[index].stock}`);
-        }
-        
-};  const numMinus = (index) => {
-        if(props.prodects[index].amount>1){
-                props.prodects[index].amount--;
-        }else{
-                alert (`數量不可小於1`);
-            }
-    };
-    const remove=(index)=>{
-        console.log("123");
-        props.prodects.splice(index,1);
     }
-    watch( prodectsValueCopy, (newValue) => {
-    // 更新 props.inputValue 的值
-    props.prodects = newValue;
-    });
+});
+const amount=ref([]);
+   
+
+
+
+    
+
+    // const prodectsValueCopy = computed(() => [...props.prodects]);
+
+    // 點擊商品數量+1
+    // const numPlus = (index) => {
+    //     if(props.product[index].amount<props.product[index].stock){
+    //         props.product[index].amount++;
+    //     }else{
+    //         alert (`數量不可大於庫存:${props.product[index].stock}`);
+    //     }
+    // };
+
+    // 點擊商品數量-1
+    // const numMinus = (index) => {
+    //     if(props.prodects[index].amount>1){
+    //             props.prodects[index].amount--;
+    //     }else{
+    //         alert (`數量不可小於1`);
+    //     }
+    // };
+
+    // 刪除商品
+    // const remove=(index)=>{
+    //     // console.log("123");
+    //     // props.prodects.splice(index,1);
+    //     let localCart = JSON.parse(localStorage.getItem('cart'))
+    //     localStorage.removeItem("cart",JSON.stringify(localCart))
+    //     props.prodects.splice(index,1);
+    //     console.log("移除");
+    // }
+
+    // watch( prodectsValueCopy, (newValue) => {
+    // // 更新 props.inputValue 的值
+    // props.prodects = newValue;
+    // });
+
+onBeforeMount(()=>{
+    for(let i=0;i<props.product.productId.length;i++){
+        amount.value.push(1);
+    }
+})
+
+
 </script>
+
 <style lang="scss" scoped>
     .cartConfirm_wrapper {
     width: 1200px;
