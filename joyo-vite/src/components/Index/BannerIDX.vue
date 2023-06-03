@@ -1,3 +1,4 @@
+
 <template>
   <div class="Banner_box">
       <div class="left_box">
@@ -8,18 +9,18 @@
             
           <Slide :key="Slide">
             <!-- <div class="carousel__item">{{ slide }}</div> -->
-            <img src="/src/assets/img/Group 495.png" alt="" class="pic">
+            <!-- <img src="/src/assets/img/Group 495.png" alt="" class="pic"> -->
           </Slide>  
         
 
 
           <Slide :key="Slide">
-            <img src="/src/assets/img/Group 496.png" alt="" class="pic">
+            <!-- <img src="/src/assets/img/Group 496.png" alt="" class="pic"> -->
           </Slide>
 
 
           <Slide :key="Slide">
-            <img src="/src/assets/img/Group 497.png" alt="" class="pic">
+            <!-- <img src="/src/assets/img/Group 497.png" alt="" class="pic"> -->
           </Slide>
 
       
@@ -30,11 +31,12 @@
         </Carousel>
       </div>
       <div class="right_box">
-        <img src="/src/assets/img/Group 490.png" alt="" class="right_box_pic">
-        <img src="/src/assets/img/Group 491.jpg" alt="" class="right_box_pic">
+        <!-- <img src="/src/assets/img/Group 490.png" alt="" class="right_box_pic"> -->
+        <!-- <img src="/src/assets/img/Group 491.jpg" alt="" class="right_box_pic"> -->
       </div>
   </div>
   </template>
+  
   
 
 
@@ -183,6 +185,3 @@
   color: #b70dc7;
 }
   </style>
-
-
-

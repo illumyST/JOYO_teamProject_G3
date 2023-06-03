@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <form action="post" class="forumPost_form" id="forumPost_form">
     <div class="forumPost_form_title">
       <select
@@ -580,5 +580,19 @@ input[type="button"] {
     margin-bottom: 25px;
   }
 }
+
+</style> -->
+
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped>
 
 </style>
