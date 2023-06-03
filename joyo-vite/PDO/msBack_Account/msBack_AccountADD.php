@@ -1,6 +1,6 @@
 <?php
 $data = json_decode(file_get_contents('php://input'), true);
-include '../conn.php';
+include '../connect/conn.php';
 // print_r($data);
 $userid = $data["name"];
 $username =  $data["id"];

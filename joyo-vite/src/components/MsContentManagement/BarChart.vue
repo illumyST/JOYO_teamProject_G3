@@ -20,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    this.setDefaultChart();
+    // this.setDefaultChart();
     // this.getDefaultChartData();
   },
   methods: {
