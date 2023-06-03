@@ -1,6 +1,6 @@
 <?php
 // 直接產生csv檔案到指定路徑
-include("../conn.php");
+include '../connect/conn.php';
 $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
 $pdo = new PDO($dsn, $user, $pas);
@@ -21,23 +21,23 @@ $data = $statement->fetchAll();
 if (count($data) > 0) {
     $outputFilePath = '../../public/csvs/'.$startDate.'_'.$endDate.'.csv';
 
-    // 打开输出流，将CSV数据写入文件
+
     $output = fopen($outputFilePath, 'w');
 
-    // 写入CSV文件的表头
+
     fputcsv($output, array_keys($data[0]));
 
-    // 逐行写入数据
+
     foreach ($data as $row) {
         fputcsv($output, $row);
     }
 
-    // 关闭输出流
+
     fclose($output);
 
-    // 输出成功消息或进行其他操作
-    echo "文件保存成功";
+
+    echo "儲存成功";
 } else {
-    echo "查询失败";
+    echo "失敗";
 }
 ?>

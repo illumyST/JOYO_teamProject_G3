@@ -22,11 +22,17 @@
           :enable-time-picker="false"
         ></VueDatePicker>
 
-        <select name="" id="" class="fa">
-          <option value="">每頁顯示:10筆</option>
-          <option value="">每頁顯示:20筆</option>
-          <option value="">每頁顯示:30筆</option>
-          <option value="">每頁顯示:40筆</option>
+        <select
+          name=""
+          id=""
+          class="fa"
+          @change="changeItemsPerPage"
+          ref="SelectItemsPerPage"
+        >
+          <option value="10">每頁顯示:10筆</option>
+          <option value="20">每頁顯示:20筆</option>
+          <option value="30">每頁顯示:30筆</option>
+          <option value="40">每頁顯示:40筆</option>
         </select>
       </div>
     </div>
@@ -35,8 +41,12 @@
     <div class="ms_csv_button">
       <i class="fa-solid fa-file-csv" id="ms_csv" @click="downloadCSV"></i>
     </div>
-    <MsOrderListTable :filteredDate="filteredDate"></MsOrderListTable>
-    <MsPagination></MsPagination>
+    <!-- table 不用寫組件 -->
+    <MsOrderListTable
+      :filteredDate="filteredDate"
+      :itemsPerPage="itemsPerPage"
+    ></MsOrderListTable>
+    <!-- <MsPagination :totalItems="orderDetails" :itemsPerPage="itemsPerPage" ></MsPagination> -->
   </div>
 </template>
 <script>
@@ -45,7 +55,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import axios from "axios";
 
 export default {
-  components: { VueDatePicker },
+  components: { VueDatePicker, MsPagination, MsOrderListTable },
   data() {
     return {
       date: null,
@@ -53,10 +63,11 @@ export default {
         showTime: false,
       },
       filteredDate: [],
+      orderDetails: null,
+      itemsPerPage: 10,
     };
   },
   created() {
-    // 只有在第一次載入時，抓取預設數據
     this.getDefaultChartData();
     this.filteredDate = this.date;
     //
@@ -73,6 +84,13 @@ export default {
     },
   },
   methods: {
+    changeItemsPerPage() {
+      this.itemsPerPage = this.$refs.SelectItemsPerPage.value;
+    },
+    setPaginator(orderDetails) {
+      this.orderDetails = orderDetails;
+      // console.log(this.dataNums);
+    },
     getDefaultChartData() {
       axios
         .get("/api/msGetOrderData/getDefaultChartData.php")
@@ -118,7 +136,7 @@ export default {
       console.log(enteredEmail);
       const emailValidation =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      if (enteredEmail.match(emailValidation)) {
+      if (enteredEmail.match(emailValidation) && enteredEmail !== '') {
         axios
           .get("/api/msGetCSVFile/createCSVFile.php", {
             params: {
@@ -151,8 +169,9 @@ export default {
             .then((res) => {
               console.log(res, "success");
               this.$refs.emailList.value = "";
+              alert("報表已送出"); 
             });
-        }, 300);
+        }, 100);
       }
     },
   },

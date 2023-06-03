@@ -43,10 +43,6 @@ const pageInfor=ref({
     //頁簽要顯示的頁數
     appearPage:[],
     attangeDateH:[],
-
-    age:100,
-    player:2,
-
 });
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{

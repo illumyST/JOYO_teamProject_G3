@@ -18,6 +18,11 @@ const props = defineProps({
     },
     });
 
+const cartItem = ref ({
+    PRODUCT_ID: "",
+    amount: 1,
+    MEMBER_ID: "-1", 
+});
 const cartList = ref([]);
 
 const addToCart = (list) => {
@@ -56,6 +61,12 @@ const addToCart = (list) => {
     } 
     
 };
+
+onMounted(() => {
+    sessionStorage.removeItem('login')
+    setLogin("2")
+});
+
 
 </script>
 
