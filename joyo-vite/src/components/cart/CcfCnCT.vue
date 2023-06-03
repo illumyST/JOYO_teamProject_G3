@@ -18,12 +18,12 @@
                             <li class="cartConfirm_con_title_item_num order-2">
                                 <div>
                                     <button class="col-2" @click="numMinus(index)"><i class="fas fa-minus"></i></button>
-                                    <input class="col-8" type="text"   v-model.trim="amount[index]">
+                                    <input class="col-8" type="text"   v-model.trim="product.amount[index]">
                                     <button class="col-2"  @click="numPlus(index)"><i class="fa-solid fa-plus"></i></button>
                                 </div>
 
                             </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{ list[0].PRICE }}</span>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{ countPrice(list[0].PRICE,product.amount[index]) }}</span>
 
                             </li>
                             <li class="col-1" @click="remove(index)"> <i class="fa-solid fa-trash-can "></i></li>
@@ -45,13 +45,11 @@ const props = defineProps({
         required: true,
     }
 });
-const amount=ref([]);
-   
-
-
-
-    
-
+//計算商品總金額
+const countPrice=(a,b)=>{
+        return  a*b
+        
+}
     // const prodectsValueCopy = computed(() => [...props.prodects]);
 
     // 點擊商品數量+1
