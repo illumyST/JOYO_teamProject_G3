@@ -37,26 +37,34 @@ const fetchData = () => {
         .then(res => {
             product.value.tg = res.data;
             product.value.localCart = JSON.parse(localStorage.getItem('cart')) || [];
-            console.log(product.value.localCart);
-            for(let i = 0; i < product.value.localCart.length; i++){
-              product.value.productId.push(product.value.localCart[i].PRODUCT_ID)
-            }
-            for(let i = 0; i < product.value.productId.length; i++){
-              product.value.tgFilter.push(product.value.tg.filter(ele => ele.PRODUCT_ID === (product.value.productId[i] )));
-            }
-            console.log(product.value.tgFilter);
+            // console.log(product.value.localCart);
+            //取得productId
+            getCartContent();
+            // console.log(product.value.tgFilter);
         })
         .catch(err => {
             console.error(err);
         });
     };
+const getCartContent=()=>{
+  for(let i = 0; i < product.value.localCart.length; i++){
+    //取得productID
+    product.value.productId.push(product.value.localCart[i].PRODUCT_ID);
+    //取得productNum
+    product.value.amount.push(product.value.localCart[i].amount);
+    }
+  for(let i = 0; i < product.value.productId.length; i++){
+    product.value.tgFilter.push(product.value.tg.filter(ele => ele.PRODUCT_ID === (product.value.productId[i] )));
+  }
+  //取得totalPrice
+};
   
 const product=ref({
       tg:[],
       tgFilter:[],
       productId:[],
       localCart:[],
-      amount:[],  
+      amount:[]
 });
 
 const calculateTotal=()=>{
