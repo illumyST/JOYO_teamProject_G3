@@ -16,7 +16,7 @@
       >
         <td>{{ order.BUY_ID }}</td>
         <td>{{ order.TOTAL_PRICE }}</td>
-        <td>{{ order.DATE }}</td>
+        <td>{{ order.BUY_DATE }}</td>
         <td>{{ order.MAIL }}</td>
       </tr>
     </tbody>

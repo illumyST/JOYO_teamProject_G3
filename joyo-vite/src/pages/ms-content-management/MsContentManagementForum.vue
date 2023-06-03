@@ -1,8 +1,6 @@
 <template>
-
-    <MsSeachBar @text="getseach" :name="'文章管理查詢'"></MsSeachBar>
-    <msContentManagementForumTable></msContentManagementForumTable>
-
+  <MsSeachBar @text="getseach" :name="'文章管理查詢'"></MsSeachBar>
+  <msContentManagementForumTable></msContentManagementForumTable>
 </template>
 
 <script setup>
@@ -19,29 +17,24 @@ const getseach = (n) => {
   console.log(n);
 };
 
-axios.get('/api/MsContentManagement/MsContentManagement.php')
-.then(data=>{
-  
- var list = data.data ;
+axios
+  .get("/api/MsContentManagement/MsContentManagement.php")
+  .then((data) => {
+    var list = data.data;
 
- for(var n of list){
-  // console.log(n);
-  arr.value.push({
-    id: n['ARTICLE_ID'],
-    user: n['MAIL'],
-    day: n['DATE'],
-    tbname: n['TITLE'],
+    for (var n of list) {
+      // console.log(n);
+      arr.value.push({
+        id: n["ARTICLE_ID"],
+        user: n["MAIL"],
+        day: n["DATE"],
+        tbname: n["TITLE"],
+      });
+    }
   })
-
-
-
- }
-
-
-
-
-})
-.catch(error=>{console.log(error)});
+  .catch((error) => {
+    console.log(error);
+  });
 </script>
 
 <style lang="scss" scoped>

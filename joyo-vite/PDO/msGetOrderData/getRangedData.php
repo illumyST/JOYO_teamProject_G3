@@ -7,20 +7,21 @@
 
 include '../connect/conn.php'; 
 
-$dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
-$pdo = new PDO($dsn, $user, $pas);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 $startDate = $_GET['startDate'];
 $endDate = $_GET['endDate'];
 
-// 预设显示30笔资料
-$sql = 'SELECT DATE(`DATE`) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
+// 預設顯示30天的資料
+$sql = 'SELECT DATE(BUY_DATE) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
 FROM BUY 
-WHERE STATUS = "已完成" AND DATE BETWEEN "' . $startDate . '" AND "' . $endDate . '"
+WHERE DATE(BUY_DATE) >= DATE("' . $startDate . '") AND DATE(BUY_DATE) <= DATE_ADD(DATE("' . $endDate . '"), INTERVAL 1 DAY)
+AND STATUS = "完成"
 GROUP BY `GroupedDate`
-ORDER BY `GroupedDate` DESC';
+ORDER BY `GroupedDate` DESC
+LIMIT 30';
+
 
 $statement = $pdo->prepare($sql);
 $statement->execute();

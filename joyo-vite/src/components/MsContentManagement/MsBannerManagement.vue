@@ -34,12 +34,6 @@
       </div>
 
       <!-- Img alt -->
-      <div class="ms_img_alt">
-        <div class="flex-col">
-          <label for="">選擇日期</label>
-          <input type="date" class="ms_date" />
-        </div>
-      </div>
 
       <div>
         <input type="submit" value="送出" />
@@ -60,6 +54,7 @@ export default {
     };
   },
   methods: {
+    // 圖片預覽
     previewImage(event) {
       const input = event.target;
       if (input.files && input.files[0]) {
@@ -74,6 +69,7 @@ export default {
         this.image = null;
       }
     },
+    
   },
 };
 </script>
