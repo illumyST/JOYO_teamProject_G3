@@ -1,4 +1,4 @@
-<template v-if="product && amount.lenth>0"  >
+<template v-if="product && amount.length > 0"  >
     <div class="cartConfirm_con">
             <h2>確認您的購物車</h2>
             <ul class="col-12 cartConfirm_con_title">
@@ -38,7 +38,7 @@
 
 </template>
 <script setup>
-import {onBeforeMount} from "vue"
+import {onBeforeUpdate} from "vue"
 const props = defineProps({
     product:{
         type: Object,
@@ -71,21 +71,26 @@ const countPrice=(a,b)=>{
     // };
 
     // 刪除商品
-    // const remove=(index)=>{
-    //     // console.log("123");
-    //     // props.prodects.splice(index,1);
-    //     let localCart = JSON.parse(localStorage.getItem('cart'))
-    //     localStorage.removeItem("cart",JSON.stringify(localCart))
-    //     props.prodects.splice(index,1);
-    //     console.log("移除");
-    // }
+    const remove=(index)=>{
+        if(confirm("確定移除商品")){
+            let localCart = JSON.parse(localStorage.getItem('cart'))
+            localStorage.removeItem("cart")
+            props.product.splice(index,1);
+        }else{
+            console.log("123")
+        }
+        // let localCart = JSON.parse(localStorage.getItem('cart'))
+        // localStorage.removeItem("cart",JSON.stringify(localCart))
+        // props.prodects.splice(index,1);
+        
+    }
 
     // watch( prodectsValueCopy, (newValue) => {
     // // 更新 props.inputValue 的值
     // props.prodects = newValue;
     // });
 
-onBeforeMount(()=>{
+onBeforeUpdate(()=>{
     for(let i=0;i<props.product.productId.length;i++){
         amount.value.push(1);
     }
