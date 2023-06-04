@@ -95,7 +95,7 @@ const props = defineProps({
   forumCategory: {
     type: Array,
     required: true,
-  },
+  }
 });
 //取得文章資訊
 const fetchData=()=>{
@@ -235,6 +235,7 @@ onMounted(()=>{
   fetchData().then(() => {
     getGame();
     });
+  
 })
 </script>
 
