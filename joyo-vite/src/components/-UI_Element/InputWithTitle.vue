@@ -1,6 +1,6 @@
 <template>
     <label>
-        <div>
+        <div class="text_wrapper">
             <slot>測試文字</slot>
         </div>
         <input type="text" v-model="modelValue">
@@ -28,7 +28,10 @@ div {
     letter-spacing: .1em;
     margin-bottom: 15px;
 }
-
+div.text_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
 input {
     padding-left: 15px;
     line-height: 45px;

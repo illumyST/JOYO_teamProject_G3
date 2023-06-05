@@ -177,11 +177,11 @@ const routes = [
             //     name: 'redirect',
             //     component: () => import('@/pages/signIn/redirect.vue'),
             // },
-            // {
-            //     path: 'forgetPassword',
-            //     name: 'forgetPassword',
-            //     component: () => import('@/pages/forgetPassword.vue'),
-            // },
+            {
+                path: 'forgetPassword',
+                name: 'forgetPassword',
+                component: () => import('@/pages/forgetPassword.vue'),
+            },
         ]
     },
 
@@ -206,7 +206,7 @@ const routes = [
 
             // 後台子頁＿預設＿[登入] -------------------
             {
-                path: '',
+                path: 'MsLogin',
                 name: 'MsLogin',
                 component: () => import('@/pages/ms-login/MsLogin.vue'),
             },

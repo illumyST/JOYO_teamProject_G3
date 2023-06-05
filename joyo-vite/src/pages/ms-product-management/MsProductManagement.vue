@@ -5,51 +5,143 @@
         <MsTabs :showBtn2="false">
           <template #button1>商品頁面管理</template>
         </MsTabs>
-        <MsSeachBar @text="getseach" :name="'商品管理查詢'"></MsSeachBar>
-        <msProductManagementTable></msProductManagementTable>
+        <MsSeachBar @text="getseach" :name="'商品管理查詢'" :add="true" @open="opp"></MsSeachBar>
+        <msProductManagementTable @productt="productt"></msProductManagementTable>
+        <msAddProductForm v-if="addop" @close="close"></msAddProductForm>
+        <msPage @Page="chPage"></msPage>
       </div>
     </div>
+    
 </template>
 
 <script setup>
 import axios from 'axios';
 import {ref , provide} from 'vue';
 
-const userSelect = ref(["商品編號","商品名稱","遊戲類型","價格","動作"])
+const userSelect = ref([{name:"商品編號",value:1},{name:"商品名稱",value:2},{name:"遊戲類型",value:3},{name:"價格",value:4}])
 provide('us', userSelect);
+
 const getseach=(n)=>{
     console.log(n);
+    prodectsS.value=[];
+    if(n != ""){
+   prodects.value=[];
+   var text ={
+    sear:n.text,
+    type:n.value
+   }
+   axios.post('/api/msProduct/msProductSR.php',text)
+    .then(data=>{
+    let arr =data.data ;
+    console.log(arr);
+    for(var n of arr){
+      // console.log(n);
+      prodects.value.push({
+        pronum:n["PRODUCT_ID"],
+        proname:n['NAME'],
+        protype:n['CATEGORY'],
+        propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
+        update: true 
+    })}
+   
+    for(var a=0 ; a<10 ; a++){
+      if(prodects.value[a] != undefined){
+        prodectsS.value.push(prodects.value[a]);
+      }
+    }
+    
+    })
+    .catch(error=>{console.log(error)})
+
+   
+}else{
+  axios.get('/api/msProduct/msProduct.php')
+    .then(data=>{
+    let arr =data.data ;
+    for(var n of arr){
+      // console.log(n);
+      prodects.value.push({
+        pronum:n["PRODUCT_ID"],
+        proname:n['NAME'],
+        protype:n['CATEGORY'],
+        propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
+        update: true 
+    })}
+    for(var a=0 ; a<10 ; a++){
+      if(prodects.value[a] != undefined){
+        prodectsS.value.push(prodects.value[a]);
+      }
+    }
+  })
+    .catch(error=>{console.log(error)})
+
+}}
+
+const addop = ref(false);
+const prodects = ref([]); 
+const prodectsS = ref([]);
+
+provide('prodects',prodects);
+provide('prodectsS',prodectsS);
+
+const opp = (e)=>{
+addop.value = !addop.value
 }
 
-const prodects = ref([]) 
+const close=(e)=>{
+  addop.value = e
+}
+
+
+
+
 
 axios.get('/api/msProduct/msProduct.php')
-.then(data=>{
-let arr =data.data ;
-for(var n of arr){
-  // console.log(n);
-  prodects.value.push({
-    pronum:n["PRODUCT_ID"],
-    proname:n['NAME'],
-    protype:n['CATEGORY'],
-    propice: n['PRICE'] ,
-    update: true 
-})
+    .then(data=>{
+    let arr =data.data ;
+    for(var n of arr){
+      // console.log(n);
+      prodects.value.push({
+        pronum:n["PRODUCT_ID"],
+        proname:n['NAME'],
+        protype:n['CATEGORY'],
+        propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
+        update: true 
+    })}
+    for(var a=0 ; a<10 ; a++){
+      if(prodects.value[a] != undefined){
+        prodectsS.value.push(prodects.value[a]);
+      }
+    }
+    
+    // console.log(prodectsS.value);
+  })
+    .catch(error=>{console.log(error)})
+
+const chPage= (n)=>{
+  prodectsS.value=[];
+  for(var a=n[0] ; a<n[1] ; a++){
+    if(a<prodects.value.length){
+      prodectsS.value.push(prodects.value[a]);
+    }}
+    // thispage.value = n[1]/10 ;
+    // console.log(thispage.value)
+  
+
 }
 
 
-
-
-})
-.catch(error=>{console.log(error)})
-
-
-
-
-
-provide('prodects',prodects)
-
-
+const productt =(n)=>{
+  for(var a = 0 ; a<prodects.value.length ; a ++){
+    if(prodects.value[a].pronum == n.pronum){
+      prodects.value[a] = n ;
+    }
+  }
+  // console.log();
+}
 </script>
 
 <style lang="scss" scoped>

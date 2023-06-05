@@ -658,6 +658,7 @@
                 font-size: 18px;
                 line-height: 1.5;
                 letter-spacing: 0.1em;
+                width: 80px;
             }
         }
 
