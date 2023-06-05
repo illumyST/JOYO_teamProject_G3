@@ -206,7 +206,7 @@ const routes = [
 
             // 後台子頁＿預設＿[登入] -------------------
             {
-                path: '',
+                path: 'MsLogin',
                 name: 'MsLogin',
                 component: () => import('@/pages/ms-login/MsLogin.vue'),
             },

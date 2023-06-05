@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
 
 $sql = "SELECT * FROM  MEMBER";
 $stm = $pdo -> query($sql);

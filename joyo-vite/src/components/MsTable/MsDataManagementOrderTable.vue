@@ -1,4 +1,5 @@
 <template>
+    <div id="box">
     <ul class="ms_order">
                <li >
                    <h3>訂單編號</h3>
@@ -17,15 +18,15 @@
                    <span class="ordrta ot"  @click.prevent.stop>
                          <h4 v-if="(item.fron != 1 && item.fron != 2 && item.fron != 3 && item.fron != 4) && !item.upopen">編輯訂單狀態</h4>
                          <h4 v-if="item.fron == 1 && !item.upopen">訂單成立</h4>
-                         <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
+                         <h4 v-if="item.fron == 2 && !item.upopen">出貨中</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
-                         <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
+                         <h4 v-if="item.fron == 4 && !item.upopen">已完成</h4>
                      
                          <select name="" id="" v-if="item.upopen"  v-model="item.fron" @change="ifron(index,item)" >
                             <option value="1">訂單成立</option>
-                            <option value="2">已出貨</option>
+                            <option value="2">出貨中</option>
                             <option value="3">運送中</option>
-                            <option value="4">訂單完成</option>
+                            <option value="4">已完成</option>
                          </select>
 
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
@@ -91,6 +92,7 @@
                 </li>
 
            </ul>
+        </div>   
    </template>
      
    <script setup>
@@ -196,7 +198,7 @@ const ifron = (e,i)=>{
   };  
 // console.log(time.value);
 axios.post('/api/msDataMangOrder/msDataMangOrderUP.php',time)
-.then(data =>{console.log(data.data)})
+.then(data =>{})
 .catch(error=>{console.log(error)});
 
 }
@@ -213,7 +215,7 @@ const itupop= (e,i)=>{
             // console.log(chTIME.value);
             order.value[e].twoop = false ;
             axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
+            .then(data=>{})
             .catch(error=>{console.log(error)})
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].theop = false ;
@@ -230,7 +232,7 @@ const itupop= (e,i)=>{
             } 
             order.value[e].theop = false ;
             axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
+            .then(data=>{})
             .catch(error=>{console.log(error)})
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].twoop = false ;
@@ -247,7 +249,7 @@ const itupop= (e,i)=>{
             } 
             order.value[e].fourop = false ;
             axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
+            .then(data=>{})
             .catch(error=>{console.log(error)})
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].fourop = true ;
@@ -294,6 +296,10 @@ axios.get('/api/msDataMangOrder/msDataMangOrder.php')
 
      <style lang="scss" scoped>
      @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+     div#box{
+        // outline: 1px solid red;
+        min-height: 500px;
+     }
   .ms_order{
    li{  
        // outline: 1px solid red;

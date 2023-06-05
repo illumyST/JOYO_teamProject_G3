@@ -1,34 +1,42 @@
 <template>
+  <div id="box">
 <table class="ms_table">
     <thead>
         <td>商品編號</td>
         <td>商品名稱</td>
         <td>遊戲類型</td>
         <td>價格</td>
+        <td>庫存</td>
         <td>編輯</td>
     </thead>
-    <tbody>
+    <tbody id="tbody">
         <tr class="ms_table_body" v-for="(item,index) in prodects">
             <td>{{ item.pronum }}</td>
             <td><p>{{ item.proname }}</p></td>
-            <td><p>{{ item.protype }}</p></td>
-            <td><p>{{ item.propice }}</p></td>
+            <td>{{ item.protype }}</td>
+            <td>{{ item.propice }}</td>
+            <td>{{ item.prstock }}</td>
             <td class="msn_icon">
               <i class="bi bi-pencil-square" @click="change(index)"></i>
               <i class="bi bi-trash3-fill" @click="del(index,item.pronum)"></i>
             </td>
             <msEditProductForm v-if="!item.update"
-            @close="close($event,index)"></msEditProductForm>
+            @close="close($event,index)"
+            :message="getMessage(item)"
+            @new="update($event,index)"
+            ></msEditProductForm>
         </tr> 
     </tbody>
     
 </table>
+  </div>
 </template>
   
   <script setup>
-  import axios from 'axios';
-import {ref ,inject} from 'vue';
-  let prodects = inject('prodects');
+import axios from 'axios';
+import {ref ,inject,defineEmits} from 'vue';
+const emits = defineEmits(['productt']);
+  let prodects = inject('prodectsS');
 
   const del = (index,id)=>{
     var ny = confirm("你確定刪除資料嗎？");
@@ -41,6 +49,8 @@ import {ref ,inject} from 'vue';
     .catch(error=>{console.log(error)})
   }
 
+
+  const content = ref();
   const change=(e)=>{
     if(prodects.value[e].update){
         for(var n = 0 ; n<prodects.value.length ; n++){
@@ -50,8 +60,12 @@ import {ref ,inject} from 'vue';
         else{
             prodects.value[e].update = true;  
         }
-    // console.log(prodects.value[e].update);
+  //  console.log(content.value)
   }
+  const getMessage = (n) => {
+  return n;
+};
+
 
   const close=(i,e)=>{
     // prodects.value[e].update
@@ -60,42 +74,69 @@ import {ref ,inject} from 'vue';
   }
 
 
+const update=(e,i)=>{
+// console.log(e,i);
+prodects.value[i] = e ;
+emits("productt",e)
+}
 
   </script>
   
   
   <style lang="scss" scoped>
+  div#box{
+    // outline: 1px solid red;
+    height: 570px;
+  }
   table{
           width: 100%;
           text-align: center;
           thead{
             td{
-                width: 192px;
+                // width: 192px;
             }
               font-size: 20px;
               height: 60px;
               line-height: 60px;
               padding-bottom:30px;
           }
+          tbody#tbody{
+            // display: block;
+            width: 100%;
+            // outline: 5px solid blue;
+            height: 50px !important;
+          }
           tr.ms_table_body{
+            font-size: 16px;
+            // display: block;
             td{
-                // outline: 1px solid red;
                 width: 192px;
                 input{
                     text-align: center;
                 }
-            }  
+            } 
+            td:nth-child(2){
+              p{
+                // outline: 1px solid red;
+                // height: 40px;
+                width: 250px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                // padding: 0 10px;
+              }
+              
+            } 
               background-color: $orange;
               font-size: 16px;
-              height: 40px;
               vertical-align: middle;
-              line-height: 40px;
+              line-height: 50px;
               td.msn_icon{
                   display: flex;
                   justify-content: center;
                   
                   i{
-                      margin: 0 3px;
+                      // margin: 0 3px;
                       cursor: pointer;  
                   }
               }

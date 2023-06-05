@@ -2,7 +2,7 @@
     <section class="ms_form">
         
         
-        <form action="#" class="ms_login_form">
+        <form  class="ms_login_form">
 
         <div class="ms_login_input_field top">
         <label class="ms_login_label" for="account">修改密碼</label>
@@ -10,34 +10,58 @@
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="name">當前密碼</label>
-          <input type="password" id="name" placeholder="請輸入當前密碼"/>
+          <input type="password" id="name" placeholder="請輸入當前密碼" v-model="chpw.pas" />
         </div>
 
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="account">新密碼</label>
-          <input type="password" id="account" placeholder="請輸入新密碼"/>
+          <input type="password" id="account" placeholder="請輸入新密碼" v-model="chpw.npas"/>
         </div>
   
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="pas">確認新密碼</label>
-          <input type="password"  id="pas" placeholder="請確認新密碼"/>
+          <input type="password"  id="pas" placeholder="請確認新密碼" v-model="chpw.chnpas"/>
         </div>
   
   
         <div class="ms_login_btn">
-          <input type="submit" value="登入" />
+          <input type="button" value="登入"  @click="passwordToggle"/>
         </div>
       </form>
     </section>
   </template>
   <script setup>
-  import { ref } from "vue";
+  import axios from "axios";
+import { ref } from "vue";
   const isPasswordVisible = ref(false);
-  
+ 
+  const chpw = ref({
+    pas:"",
+    npas:"",
+    chnpas:"",
+    check:false
+  })
+
   const passwordToggle = () => {
-    isPasswordVisible.value = !isPasswordVisible.value;
+    var c = 0 ;
+    for(let n in chpw.value){
+      if(chpw.value[n] != "" && (chpw.value["npas"] == chpw.value["chnpas"]) ){
+        c += 1 ;
+        if(c == 3){
+          chpw.value['check'] = true ;
+        }
+      }
+    }
+    if(chpw.value['check']){
+      axios.post("/api/msBack_Account/MsChangePassword.php",chpw.value)
+      .then(res=>{console.log(res.data)})
+      .catch(error=>{console.log(error)});
+    }
+
+    // isPasswordVisible.value = !isPasswordVisible.value;
   };
+
   // export default {
   //   data() {
   //     return {
