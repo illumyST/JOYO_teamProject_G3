@@ -6,11 +6,12 @@
           <template #button1>商品頁面管理</template>
         </MsTabs>
         <MsSeachBar @text="getseach" :name="'商品管理查詢'" :add="true" @open="opp"></MsSeachBar>
-        <msProductManagementTable></msProductManagementTable>
+        <msProductManagementTable @productt="productt"></msProductManagementTable>
         <msAddProductForm v-if="addop" @close="close"></msAddProductForm>
+        <msPage @Page="chPage"></msPage>
       </div>
     </div>
-    <msPage @Page="chPage"></msPage>
+    
 </template>
 
 <script setup>
@@ -40,6 +41,7 @@ const getseach=(n)=>{
         proname:n['NAME'],
         protype:n['CATEGORY'],
         propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
         update: true 
     })}
    
@@ -64,6 +66,7 @@ const getseach=(n)=>{
         proname:n['NAME'],
         protype:n['CATEGORY'],
         propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
         update: true 
     })}
     for(var a=0 ; a<10 ; a++){
@@ -105,6 +108,7 @@ axios.get('/api/msProduct/msProduct.php')
         proname:n['NAME'],
         protype:n['CATEGORY'],
         propice: n['PRICE'] ,
+        prstock: n['STOCK'] ,
         update: true 
     })}
     for(var a=0 ; a<10 ; a++){
@@ -130,7 +134,14 @@ const chPage= (n)=>{
 }
 
 
-
+const productt =(n)=>{
+  for(var a = 0 ; a<prodects.value.length ; a ++){
+    if(prodects.value[a].pronum == n.pronum){
+      prodects.value[a] = n ;
+    }
+  }
+  // console.log();
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
 $sql = 'select buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
 from buy 
 join MEMBER

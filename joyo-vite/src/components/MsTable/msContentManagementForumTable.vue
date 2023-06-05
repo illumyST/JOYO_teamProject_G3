@@ -31,11 +31,14 @@ import {ref ,inject} from 'vue';
 let arr = inject('arr');
 
 const del = (index,item)=>{
+var YN =  confirm("確定要刪除嗎 ? ") ;
+if(YN){
   arr.value.splice(index,1);
   console.log(item);
   axios.post('/api/MsContentManagement/MsContentManagementDL.php',item)
   .then(data=>{console.log(data.data)})
   .catch(error=>{console.log(error)})
+}
 }
 
 
@@ -44,8 +47,8 @@ const del = (index,item)=>{
 
 <style lang="scss" scoped>
 div#box{
-    outline: 1px solid red;
-    height: 460px;
+    // outline: 1px solid red;
+    height: 470px;
   }
 table{
         width: 100%;

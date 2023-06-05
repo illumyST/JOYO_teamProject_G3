@@ -31,7 +31,7 @@
   
   <style lang="scss" scoped>
    div#box{
-    outline: 1px solid red;
+    // outline: 1px solid red;
     height: 460px;
   }
   table{

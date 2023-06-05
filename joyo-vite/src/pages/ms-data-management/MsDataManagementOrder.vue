@@ -8,8 +8,11 @@
         <MsSeachBar :name="'訂單管理'" @text="getseach"></MsSeachBar>
         <MsDataManagementOrderTable></MsDataManagementOrderTable>
         <!-- <testTable></testTable> -->
+        <msPage @page="getPage"></msPage>
       </div>
+      
     </div>
+    
   </template>
   
 <script setup>
@@ -17,10 +20,22 @@ import axios from 'axios';
 import {compile, provide, ref} from 'vue'
 const us = ref([{name:'訂單編號',value:1},{name:'用戶帳號',value:2},{name:'訂單金額',value:3},{name:'付款方式',value:4},{name:'訂單狀態',value:5},{name:'物流',value:6}]);
 provide('us',us);
+provide("prodects",us);
 // --------------------------------------------------------------------------------
 const order = ref([]);
+const order2 = ref([]);
+const getPage =(n)=>{
+  order2.value = [];
+for(var a = n[0] ; a<n[1] ; a++){
+  if(order.value[a] != undefined){
+  order2.value.push(order.value[a]);
+  }
+}
+}
+
 const getseach = (n)=>{
-  order.value = [];
+  order.value = []; 
+  order2.value = [];
 if(n.text != ""){
   console.log(n);
   var sel = {
@@ -35,6 +50,7 @@ if(n.text != ""){
   if(n["STATUS"]=="出貨中"){ status = 2 }
   else if(n["STATUS"]=="運送中"){ status = 3 }
   else if(n["STATUS"]=="已完成"){ status = 4 }
+  else if(n["STATUS"]=="訂單成立"){ status = 1 }
   console.log(n["STATUS"]);
 order.value.push(
   {
@@ -84,15 +100,17 @@ for(var n = 0 ; n< order.value.length ; n++){
     }
   }
 }
+for(var n = 0 ; n<10 ; n++){
+if(order.value[n] != undefined){
+  order2.value.push(order.value[n]);
+}
+}
 })
-console.log(order.value)
 .catch(error=>{console.log(error)});
 })
 .catch(error=>{console.log(error)})
-  console.log(orderOR.value);
-  provide('order',order);
 }else{
-  axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get('/api/msDataMangOrder/msDataMangOrder.php')
 .then(data=>{
   // console.log(data.data);
 for(var n of data.data){
@@ -100,6 +118,7 @@ for(var n of data.data){
   if(n["STATUS"]=="出貨中"){ status = 2 }
   else if(n["STATUS"]=="運送中"){ status = 3 }
   else if(n["STATUS"]=="已完成"){ status = 4 }
+  else if(n["STATUS"]=="訂單成立"){ status = 1 }
   console.log(n["STATUS"]);
 order.value.push(
   {
@@ -150,9 +169,12 @@ for(var n = 0 ; n< order.value.length ; n++){
     }
   }
 }
+for(var n = 0 ; n<10 ; n++){
+if(order.value[n] != undefined){
+  order2.value.push(order.value[n]);
+}
+}
 })
-orderOR.value = order.value;
-console.log(orderOR.value)
 .catch(error=>{console.log(error)});
 })
 .catch(error=>{console.log(error)});
@@ -168,6 +190,7 @@ for(var n of data.data){
   if(n["STATUS"]=="出貨中"){ status = 2 }
   else if(n["STATUS"]=="運送中"){ status = 3 }
   else if(n["STATUS"]=="已完成"){ status = 4 }
+  else if(n["STATUS"]=="訂單成立"){ status = 1 }
   console.log(n["STATUS"]);
 order.value.push(
   {
@@ -218,16 +241,20 @@ for(var n = 0 ; n< order.value.length ; n++){
     }
   }
 }
+for(var n = 0 ; n<10 ; n++){
+if(order.value[n] != undefined){
+  order2.value.push(order.value[n]);
+}
+}
+
 })
-orderOR.value = order.value;
-console.log(orderOR.value)
 .catch(error=>{console.log(error)});
 })
 .catch(error=>{console.log(error)});
 
 
 
-provide('order',order);
+provide('order',order2);
 
 
 </script>

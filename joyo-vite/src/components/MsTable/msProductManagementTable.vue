@@ -6,6 +6,7 @@
         <td>商品名稱</td>
         <td>遊戲類型</td>
         <td>價格</td>
+        <td>庫存</td>
         <td>編輯</td>
     </thead>
     <tbody id="tbody">
@@ -14,12 +15,16 @@
             <td><p>{{ item.proname }}</p></td>
             <td>{{ item.protype }}</td>
             <td>{{ item.propice }}</td>
+            <td>{{ item.prstock }}</td>
             <td class="msn_icon">
               <i class="bi bi-pencil-square" @click="change(index)"></i>
               <i class="bi bi-trash3-fill" @click="del(index,item.pronum)"></i>
             </td>
             <msEditProductForm v-if="!item.update"
-            @close="close($event,index)"></msEditProductForm>
+            @close="close($event,index)"
+            :message="getMessage(item)"
+            @new="update($event,index)"
+            ></msEditProductForm>
         </tr> 
     </tbody>
     
@@ -29,7 +34,8 @@
   
   <script setup>
 import axios from 'axios';
-import {ref ,inject} from 'vue';
+import {ref ,inject,defineEmits} from 'vue';
+const emits = defineEmits(['productt']);
   let prodects = inject('prodectsS');
 
   const del = (index,id)=>{
@@ -43,6 +49,8 @@ import {ref ,inject} from 'vue';
     .catch(error=>{console.log(error)})
   }
 
+
+  const content = ref();
   const change=(e)=>{
     if(prodects.value[e].update){
         for(var n = 0 ; n<prodects.value.length ; n++){
@@ -52,8 +60,12 @@ import {ref ,inject} from 'vue';
         else{
             prodects.value[e].update = true;  
         }
-    // console.log(prodects.value[e].update);
+  //  console.log(content.value)
   }
+  const getMessage = (n) => {
+  return n;
+};
+
 
   const close=(i,e)=>{
     // prodects.value[e].update
@@ -62,6 +74,11 @@ import {ref ,inject} from 'vue';
   }
 
 
+const update=(e,i)=>{
+// console.log(e,i);
+prodects.value[i] = e ;
+emits("productt",e)
+}
 
   </script>
   
@@ -69,7 +86,7 @@ import {ref ,inject} from 'vue';
   <style lang="scss" scoped>
   div#box{
     // outline: 1px solid red;
-    height: 560px;
+    height: 570px;
   }
   table{
           width: 100%;

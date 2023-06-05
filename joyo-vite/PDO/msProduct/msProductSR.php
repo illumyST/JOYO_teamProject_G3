@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
 $data = json_decode(file_get_contents('php://input'),true);
 $type = $data["type"]; 
 $ser =  htmlspecialchars($data['sear']);

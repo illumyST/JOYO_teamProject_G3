@@ -9,11 +9,11 @@
         @cladd="cladd" @updat="updae"
         ></MsSystemAdminBtn>
         <msSystemAdminTable></msSystemAdminTable>
+        <msPage @page="chpage"></msPage>
       </div>
     </div>
     <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
     <MsChangeAdminPasswordForm v-if="updat" @close1="close1"></MsChangeAdminPasswordForm>
-    <msPage @page="chpage"></msPage>
 </template>
 
 <script setup>
@@ -25,11 +25,13 @@ provide('us', userSelect);
 
 const admins = ref([]) ;
 const adminsA = ref([]) ;
+const opage = ref(1);
+
 
 provide('admins',adminsA);
 provide("prodects",admins);
 
-
+provide("opage",opage);
 
 const chpage=(n)=>{
   adminsA.value=[];
@@ -37,7 +39,8 @@ const chpage=(n)=>{
     if(admins.value[a] != undefined){
       adminsA.value.push(admins.value[a]);
     }
-    // console.log(admins.value[a])
+    // console.log(n[1]/10);
+    opage.value = n[1]/10 ;
    
   }
 }
@@ -78,6 +81,9 @@ const addAdmins =(e)=>{
   e['fixe']=false;
   console.log(e);
   admins.value.push(e);
+  if(adminsA.value.length < 10){
+  adminsA.value.push(e);
+  }
 }
 
 axios.get("/api/msBack_Account/msBack_Account.php")

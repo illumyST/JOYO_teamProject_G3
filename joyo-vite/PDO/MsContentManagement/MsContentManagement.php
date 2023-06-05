@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
 // echo "test" ;
 $sql = "select ar.ARTICLE_ID , ar.TITLE  , ar.ARTICLE_DATE , mb.MAIL
 from  ARTICLE ar

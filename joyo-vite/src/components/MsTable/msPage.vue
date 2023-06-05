@@ -63,7 +63,7 @@
     
     width: 400px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin: 20px auto;
     align-items: center;
     li {
@@ -72,7 +72,7 @@
     //   margin: auto;
     }
     div.pages{
-    //    outline: 1px solid red;
+      //  outline: 1px solid red;
        justify-content: center;
         display: flex;
         width: 250px;

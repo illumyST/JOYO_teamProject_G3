@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
     $sql = " SELECT * from PRODUCT" ;
     $stm = $pdo -> query($sql);
     $data = $stm -> fetchAll() ;

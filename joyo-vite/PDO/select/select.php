@@ -1,6 +1,6 @@
 <?php
 $data = json_decode(file_get_contents('php://input'), true);
-include '../conn.php' ;
+include '../connest/conn.php';
 
 $sear = $data['_rawValue'] ['select'];
 // echo $sear ;

@@ -27,14 +27,38 @@
       import axios from 'axios';
       import {ref ,inject} from 'vue';
       let admins = inject('admins');
-    
+      const opage = inject("opage");
+      // const addall = ref([]);
+
       const del = (item,index)=>{
       var YN =  confirm("確定要刪除嗎 ? ") ;
       if(YN){
         admins.value.splice(index,1);
+        // var op =opage.value;
+        // admins.value=[]
         axios.post("/api/msBack_Account/msBack_AccountDL.php",item)
         .then(data=>{console.log(data.data)})
         .catch(error=>{console.log(error)});
+
+        // axios.get("/api/msBack_Account/msBack_Account.php")
+        // .then(data=>{
+        //   var list = data.data;
+
+        //   for(var n=0 ; n<data.data.length ; n++){
+        //     // console.log(list[n]['USER_NAME']);
+        //     addall.value.push({name:list[n]['USER_NAME'],
+        //         id:list[n]['ACCOUNT'],
+        //         pas:list[n]['PASSWORD'],
+        //         update:true,
+        //         fixe:false});
+        //   }
+        //   for(var a= op*10-10 ;a<op*10 ; a++){
+        //   if(addall.value[a] != undefined){
+        //     admins.value.push(addall.value[a])
+        //   } 
+        //   } 
+        // })
+        // .catch(error =>{ console.log(error)})
       }
       }
     
@@ -63,13 +87,15 @@
         // console.log(admins.value);
         admins.value[i] = t
     }
+
+    console.log(opage.value);
       </script>
       
       
       <style lang="scss" scoped>
       div#box{
-        outline: 1px solid red;
-        height: 460px;
+        // outline: 1px solid red;
+        height: 470px;
       }
       table{
               width: 100%;

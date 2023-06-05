@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../connest/conn.php';
 $data = json_decode(file_get_contents('php://input'),true);
 $ser = htmlspecialchars($data["text"]);
 $value = $data["value"];
