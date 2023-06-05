@@ -45,8 +45,11 @@ const updateCategory = (val) => {
     flex-direction: column;
   }
 
+  
   .forumInfo_right {
-    width: 100%;
-  }
+  // border: 1px solid blue;
+  width: 100%;
+  
+}
 }
 </style>

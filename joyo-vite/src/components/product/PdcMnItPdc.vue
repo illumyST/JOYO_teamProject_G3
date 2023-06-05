@@ -1,6 +1,6 @@
 <template v-if="pageInforTotalPage" >
-<div>
-  <ul   class="prouct-item" :class="'page'+(index+1)" v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page">
+<div class="product-main-prouct">
+  <ul   class="prouct-item"  v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page || pageActive[index]">
     <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
     <router-link :to="'/productInfo' +'/ID:'+card.PRODUCT_ID" >
         <div class="prouct-item-card-tag">
@@ -43,6 +43,7 @@ const cartItem=ref({
     AMOUNT:1,
     member_id:"-1",
 });
+const pageActive=ref([true]);
 const cartList=ref([]);
 const props = defineProps({
         currentCategory: {
@@ -80,7 +81,6 @@ const addCart=(e,card)=>{
                 for(let i=0;i<cartList.value.length;i++){
                     if( cartList.value[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
                         cartList.value[i].AMOUNT=cartList.value[i].AMOUNT+1;
-                        console.log(cartList.value[i].AMOUNT);
                         found =!found;
                         break;
                     } 
@@ -94,7 +94,7 @@ const addCart=(e,card)=>{
             axios.post('/api/product/Insert.php', cartItem.value)
                 .then(response => {
             // 處理成功
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
             // 處理失敗
@@ -104,7 +104,34 @@ const addCart=(e,card)=>{
         
       
     };
+const countPageActive=ref(1);
+const fitDeviceWidth=()=>{
+    
+    let screenWidth = window.innerWidth;
+    let currentScrollY = document.querySelectorAll(".product-main-prouct")[0].scrollTop;
+    console.log(currentScrollY);
+    if(screenWidth<500){
+        if(countPageActive.value==1){
+            if(currentScrollY >  countPageActive.value*100){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }else if(countPageActive.value>=2){
+            if(currentScrollY >  countPageActive.value*800){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }
+        
+    }
+    
+};
 onMounted(() => {
+    //裝置切換大小
+    //偵測高度變化事件
+    document.querySelectorAll(".product-main-prouct")[0].addEventListener('scroll', fitDeviceWidth);
     sessionStorage.removeItem('login');
     //輸入假資料可以切換會員編號(編號要是資料庫裡有的)
     setLogin("2");
@@ -532,13 +559,20 @@ onMounted(() => {
 @media screen and (max-width: 414px) {
     .product-wrapper {
         width: 370px;
-
-        .prouct-item {
-            max-height: 2000px;
+        
+        .product-main-prouct{
+            max-height: 1700px;
+            overflow: hidden;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .prouct-item {
+            height: 1808px;
+            position:static;
         }
     }
-
+  
     .product-page {
         display: none;
     }
@@ -677,7 +711,7 @@ onMounted(() => {
     }
 
     .product-main {
-
+        
         aside {
             display: none;
         }
@@ -740,6 +774,8 @@ onMounted(() => {
                 font-size: 18px;
                 line-height: 1.5;
                 letter-spacing: 0.1em;
+                
+                width: 150px;
             }
         }
 

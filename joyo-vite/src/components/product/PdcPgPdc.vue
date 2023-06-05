@@ -13,7 +13,7 @@
                     <p>第</p>
                 </li>
                 <li>
-                    <select class=""  id="" @change="choosePage">
+                    <select class=""  id="" @change="choosePage" :value="currentCategory.page">
                     <option :value="pagei+1" v-for="(p,pagei) in page.total_page">{{pagei+1}}</option>
                     </select>
                     
@@ -567,7 +567,9 @@ const choosePage=(e)=>{
     .product-page {
         display: none;
     }
-
+    .product-page-select{
+        display: none;
+    }
     .col-3.breadcrumb {
         width: 0;
         padding-left: 0;

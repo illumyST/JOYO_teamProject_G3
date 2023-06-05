@@ -5,10 +5,10 @@
   </div>
 
   <section class="forum_wrapper">
-    <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRM>
+    <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory" ></SidemenuFRM>
     <div class="forum_right">
       <BannerTopFRM></BannerTopFRM>
-      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange"></BannerListFRM>
+      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange" :pageActive="pageActive"></BannerListFRM>
       <PaginationBarFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @to-Page="toPage"></PaginationBarFRM>
     </div>
   </section>
@@ -181,11 +181,37 @@ const updateArrange=(val)=>{
         getPage();
     }
 };
+const countPageActive=ref(1);
+const pageActive=ref([true]);
+const fitDeviceWidth=()=>{
+  console.log(document.querySelectorAll(".forum_right")[0]);
+    let screenWidth = window.innerWidth;
+    let currentScrollY = document.querySelectorAll(".forum_right")[0].scrollTop;
+    console.log(currentScrollY);
+    if(screenWidth<500){
+        if(countPageActive.value==1){
+            if(currentScrollY >  countPageActive.value*10){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }else if(countPageActive.value>=2){
+            if(currentScrollY >  countPageActive.value*400){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }
+        
+    }
+    
+};
 onMounted(()=>{
   fetchData().then(() => {
     getPage();
     getAppearPage();
      });
+  document.querySelectorAll(".forum_right")[0].addEventListener('scroll', fitDeviceWidth);
 });
 </script>
 
@@ -233,6 +259,12 @@ onMounted(()=>{
     width: 100%;
     flex-grow: 0;
     margin-left: 0;
+  max-height: 1000px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
   }
 }
 </style>

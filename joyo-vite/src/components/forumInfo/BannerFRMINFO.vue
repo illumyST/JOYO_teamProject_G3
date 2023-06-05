@@ -4,39 +4,54 @@
       <div class="container">
         <img v-bind:src="forumArticle.articleFilter.IMG_URL" alt="" />
       </div>
-      <p>{{forumArticle.articleFilter.MEMBER_NAME}}</p>
-      <p>{{forumArticle.articleFilter.ARTICLE_DATE}}</p>
+      <p>{{ forumArticle.articleFilter.MEMBER_NAME }}</p>
+      <p>{{ forumArticle.articleFilter.ARTICLE_DATE }}</p>
     </div>
 
     <div class="forumInfo_right_main_title">
       <ul class="forumInfo_right_main_title_left">
         <li class="forumInfo_category">
-          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='心得分享'">{{ forumArticle.articleFilter.RATE }}</p>
-          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='揪團區'" class="forum_category_area">{{ forumArticle.articleFilter.LOCATION }}</p>
-          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='發問區'">發問</p>
-          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY=='教學區'">教學</p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '心得分享'">
+            {{ forumArticle.articleFilter.RATE }}
+          </p>
+          <p
+            v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '揪團區'"
+            class="forum_category_area"
+          >
+            {{ forumArticle.articleFilter.LOCATION }}
+          </p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '發問區'">
+            發問
+          </p>
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '教學區'">
+            教學
+          </p>
         </li>
       </ul>
 
       <ul class="forumInfo_right_main_title_right">
         <li>
-          <h1>{{forumArticle.articleFilter.TITLE}}</h1>
+          <h1>{{ forumArticle.articleFilter.TITLE }}</h1>
         </li>
       </ul>
 
       <div class="forumInfo_right_main_title_bottom">
         <ul class="forumInfo_right_main_title_bottom_label">
           <li>
-            <P>{{forumArticle.articleFilter.ARTICLE_CATEGORY}}</P>
+            <P>{{ forumArticle.articleFilter.ARTICLE_CATEGORY }}</P>
           </li>
           <li>
-            <p>{{forumArticle.articleFilter.CATEGORY}}</p>
+            <p>{{ forumArticle.articleFilter.CATEGORY }}</p>
           </li>
-          <li v-if="forumArticle.articleFilter.MIN_PLAYER !=0">
-            <p>{{forumArticle.articleFilter.MIN_PLAYER}}-{{forumArticle.articleFilter.MAX_PLAYER}}人</p>
+          <li v-if="forumArticle.articleFilter.MIN_PLAYER != 0">
+            <p>
+              {{ forumArticle.articleFilter.MIN_PLAYER }}-{{
+                forumArticle.articleFilter.MAX_PLAYER
+              }}人
+            </p>
           </li>
           <li v-if="forumArticle.articleFilter.TAG">
-            <p>{{forumArticle.articleFilter.TAG}}</p>
+            <p>{{ forumArticle.articleFilter.TAG }}</p>
           </li>
         </ul>
       </div>
@@ -44,20 +59,24 @@
 
     <div class="forumInfo_middle">
       <p>
-        {{forumArticle.articleFilter.ARTICLE_CONTENT}}
+        {{ forumArticle.articleFilter.ARTICLE_CONTENT }}
       </p>
     </div>
 
     <div class="forumInfo_comments">
-      <h3>共{{forumArticle.articleFilter.COMMENT_NUM}}則留言</h3>
+      <h3>共{{ forumArticle.articleFilter.COMMENT_NUM }}則留言</h3>
       <span class="forumInfo_comments_line"></span>
 
       <div class="forumInfo_comments_text">
-        <div class="forumInfo_comments_text_title" v-for="(item, index) in ForumInfoMsgs" :key="index">
-          <img :src="item.MsgImg" alt="" />
-          <p>{{ item.MsgName }}</p>
-          <p>{{ item.MsgDate }}</p>
-          <p class="forumInfo_comments_text_msg">{{ item.MsgText }}</p>
+        <div
+          class="forumInfo_comments_text_title"
+          v-for="(item, index) in ForumInfoMsgs"
+          :key="index"
+        >
+          <img :src="item.IMG_URL" alt="" />
+          <p>{{ item.MEMBER_NAME }}</p>
+          <p>{{ item.ARTICLE_COMMENT_DATE }}</p>
+          <p class="forumInfo_comments_text_msg">{{ item.ARTICLE_COMMENT }}</p>
         </div>
       </div>
     </div>
@@ -68,45 +87,45 @@
       class="forumInfo_right_msg_text"
       id="forumInfo_right_msg_text"
       placeholder="留言"
-      v-model="messageText"
+      v-model="postMsg.MsgText"
     ></textarea>
     <div class="forumInfo_right_msg_icon">
-      <botton class="fa-paper-plane_icon" @click="handleSendButtonClick"><i class="fa-solid fa-paper-plane"></i></botton>
-      <botton class="fa-heart_icon"><i class="fa-regular fa-heart"></i></botton>
+      <botton class="fa-paper-plane_icon" @click="handleSendButtonClick"
+        ><i class="fa-solid fa-paper-plane"></i
+      ></botton>
+      <botton class="fa-heart_icon" @click="handleLikeButtonClick"
+        ><i class="fa-regular fa-heart" :class="{ liked: isLiked }"></i
+      ></botton>
     </div>
   </div>
 </template>
 
 <script setup>
-import{ onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
-let CommentsNum = ref(44);
-let memberId = ref("");
-let memberItem = ref({ Img: "", Name: "" });
-// console.log(memberItem);
 const route = useRoute();
-const forumArticle=ref({
-  articleAll:[],
-  articleFilter:[],
+const forumArticle = ref({
+  articleAll: [],
+  articleFilter: [],
 });
 const props = defineProps({
   forumCategory: {
     type: Array,
     required: true,
-  },
+  }
 });
 //取得文章資訊
-const fetchData=()=>{
-    return axios.get('/api/forum/forumGetArticle.php')
-        .then(res => {
-          forumArticle.value.articleAll=res.data;
-            }
-            )
-        .catch(err => {
-            // console.error(err);
-        });
+const fetchData = () => {
+  return axios
+    .get("/api/forum/forumGetArticle.php")
+    .then((res) => {
+      forumArticle.value.articleAll = res.data;
+    })
+    .catch((err) => {
+      // console.error(err);
+    });
 };
 const getGame=()=>{
     let callBackId = route.params.article;
@@ -122,119 +141,158 @@ const getGame=()=>{
    
 };
 
-const ForumInfoMsgs = ref([
-  {
-    MsgImg:"/src/assets/img/cat.png",
-    MsgName:"林文玉",
-    MsgDate:"2023/05/19",
-    MsgText:"哇，謝謝版主分享這款桌遊，感覺這款桌遊，從前從前... Once Upon A Time - 中文版。我對這款遊戲非常感興趣，尤其是它的故事情節和互動性，讓我非常期待能夠一嘗試玩。"
+// const getGame = () => {
+//   let callBackId = route.params.article;
+//   // console.log(callBackId);
+//   if (callBackId != "") {
+//   } else {
+//     callBackId = "article：1";
+//   }
+//   let arr1 = forumArticle.value.articleAll.filter(
+//     (article) => "article:" + article.ARTICLE_ID == callBackId
+//   );
+//   forumArticle.value.articleFilter = arr1[0];
+// };
+
+// 取得會員編號
+const getMemberId = () => {
+  // console.log(123);
+  return axios
+    .get("/api/forumPost/forumCheckLogin.php")
+    .then((res) => {
+      //將資料庫回傳的資料存在變數中
+      postMsg.value.MemberId = res.data;
+      if (postMsg.value.MemberId == "is_not_login") {
+        postMsg.value.MemberId = -1;
+        // console.log(res.data);
+      } else {
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+// 将數據放在一个變數中
+const postMsg = ref({
+  MsgText: "",
+  MemberId: "-1",
+  articleID: "",
+});
+
+// 處理發送按钮點擊事件
+const handleSendButtonClick = () => {
+  let artId = route.params.article.substring(8);
+  postMsg.value.articleID = artId;
+  // console.log(postMsg.value.articleID);
+  if (postMsg.value.MemberId < 0) {
+    // 用户不是會員，给出提示或要求登入/註冊
+    alert("請登入或註冊為會員");
+    // 或執行其他邏輯
+  } else {
+    // console.log("1111111");
+    axios
+      .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
+      .then((res) => {
+        // console.log(res.data);
+        // 清空留言文本框
+        postMsg.value.MsgText = "";
+        // alert(res.data);
+        alert("發文成功");
+
+        // 获取最新的留言数据并更新页面
+        fetchMsg();
+
+        // 更新資料庫喜歡的數量
+        likebtn();
+      })
+      .catch((error) => {
+        console.error("Error submitting post:", error);
+        alert("發文失敗");
+      });
   }
-]);
+};
 
+// 從後端接收留言資料
+const ForumInfoMsgs = ref([]);
 
-const isMember = ref(false); // 假设用户不是会员
-const messageText = ref(""); // 留言文本内容
-
-  // 輔助函数：格式化日期
-  // const formatDate = (date) => {
-  //   return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-  // };
-
-  const formatDate = (date) => {
+const fetchMsg = () => {
+  let artId = route.params.article.substring(8);
+  postMsg.value.articleID = artId;
+  return axios
+    .get("/api/forumInfo/getArticle_Comment.php", {
+      params: {
+        artId: artId,
+      },
+    })
+    .then((res) => {
+      ForumInfoMsgs.value = res.data.map((msg) => {
+        // 變換日期呈現處理
+        msg.ARTICLE_COMMENT_DATE = formatDate(msg.ARTICLE_COMMENT_DATE);
+        return msg;
+      });
+      // console.log(ForumInfoMsgs.value);
+    })
+    .catch((err) => {
+      // console.error(err);
+    });
+};
+// 格式化日期為YYYY/MM/DD
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  
-  // 替換為實際的日期格式化邏輯
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `${year}/${month}/${day}`;
 };
 
-// 會員編號
-const getMemberId=()=>{
-    // console.log(123);
-    return axios.get('/api/forumPost/forumCheckLogin.php')
-        .then(res => {
-            //將資料庫回傳的資料存在變數中
-            memberId.value = res.data;
-            console.log(memberId.value);
+// 存放點擊喜歡的值
+const likeCount = ref("");
+const isLiked = ref(false);
 
-            // 傳送會員編號到後端搜尋會員資料
-            return axios.post('/api/forumInfo/forumInfoSelect.php', {
-              memberId: memberId.value
-            })
-            .then(memberRes => {
-            const memberData = memberRes.data;
-            // console.log(memberRes.data);
-              memberItem.value = {
-                Img: memberData.Img,
-                Name: memberData.Name
-              };
-              // console.log(memberItem.value);
-            })
-            .catch(memberErr => {
-              console.error(memberErr);
-            });
-          })
-        .catch(err => {
-            console.error(err);
-        });
-};
-
-// 处理发送按钮点击事件
-const handleSendButtonClick = () => {
-  if (!isMember.value) {
-    // console.log("1111111");
-    // 用户是會員，執行發送
-    const newMessage = {
-      MsgImg: "/src/assets/img/cat.png",
-      MsgName: memberItem.value.Name, // 替換為實際的用戶名稱
-      MsgDate: formatDate(new Date()), // 替換為實際的日期格式化函数
-      MsgText: messageText.value,
-      MemberId: memberId.value
-    };
-    console.log(newMessage);
-
-    ForumInfoMsgs.value.unshift(newMessage); // 添加新留言到留言列表
-    CommentsNum.value++; // 更新留言數目
-    // console.log(CommentsNum.value);
-    // console.log(ForumInfoMsgs.value);
-
-    // 将数据放在一个变量中
-    const postMsg = {
-      MsgDate: newMessage.MsgDate,
-      MsgText: newMessage.MsgText,
-      MemberId: newMessage.MemberId
-    };
-
-    // 清空留言文本框
-    messageText.value = "";
-
-    axios 
-    .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg)) // PHP 文件路径
-    .then((res) => {
-          console.log(res.data);
-          alert(res.data);
-          // alert("發文成功");
-        })
-        .catch((error) => {
-          console.error("Error submitting post:", error);
-          alert("發文失敗");
-        });
-
+// 點擊喜歡按钮
+const handleLikeButtonClick = () => {
+  // console.log("11111");
+  isLiked.value = !isLiked.value;
+  if (isLiked.value) {
+    likeCount.value++; // 点赞数加一
+    // console.log(likeCount.value);
   } else {
-    // 用户不是会员，给出提示或要求登入/註冊
-    alert("請登入或註冊為會員");
-    // 或執行其他邏輯
-  };
+    likeCount.value--; // 点赞数减一
+  }
 };
 
-onMounted(()=>{
+const likebtn = () => {
+  let artId = route.params.article.substring(8);
+  postMsg.value.articleID = artId;
+
+  const params = new URLSearchParams();
+  params.append("artId", artId);
+  params.append("likeCount", likeCount.value); // 將點讚值添加到参数中
+
+  axios
+    .post("/api/forumInfo/addLikeCount.php", params) // PHP 文件路径
+    .then((res) => {
+      // console.log(res.data);
+      isLiked.value = false;
+      likeCount.value = "";
+    })
+    .catch((error) => {
+      console.error("Error updating like count:", error);
+      // alert("點讚失敗");
+    });
+};
+
+onMounted(() => {
   getMemberId();
   //取得文章資料
-  
+  fetchMsg();
+  likebtn();
+
   fetchData().then(() => {
     getGame();
     });
+  
 })
 </script>
 
@@ -262,7 +320,7 @@ onMounted(()=>{
   height: 70px;
   border-radius: 50%;
   display: inline-block;
-  img{
+  img {
     width: 100%;
     display: block;
     border-radius: 50%;
@@ -309,7 +367,7 @@ onMounted(()=>{
   background-color: white;
   width: 90%;
   margin: 20px auto;
-  .forum_category_area{
+  .forum_category_area {
     font-size: 27px;
     line-height: 3.3;
   }
@@ -411,15 +469,14 @@ onMounted(()=>{
     letter-spacing: 1px;
   }
 
-  .forumInfo_comments_text_msg{
+  .forumInfo_comments_text_msg {
     width: 100%;
     margin: 10px 0 10px 40px;
     line-height: 1.5;
     letter-spacing: 1px;
-    text-align: justify
+    text-align: justify;
   }
 }
-
 
 // .forumInfo_comments_text_line {
 //   border-bottom: 2px solid $brown;
@@ -427,7 +484,6 @@ onMounted(()=>{
 //   width: 100%;
 //   opacity: 0.2;
 // }
-
 
 .forumInfo_right_msg {
   // border: 1px solid blue;
@@ -461,7 +517,7 @@ onMounted(()=>{
   background-color: #f3dad8;
   text-align: center;
 
-  .fa-paper-plane_icon{
+  .fa-paper-plane_icon {
     display: inline-block;
     height: 100%;
   }
@@ -471,7 +527,7 @@ onMounted(()=>{
     font-weight: 100;
     margin: 10px;
   }
-  .fa-heart_icon{
+  .fa-heart_icon {
     display: inline-block;
     height: 100%;
   }
@@ -479,7 +535,12 @@ onMounted(()=>{
     font-size: $h2;
     color: white;
     margin: 10px;
-    font-weight: 100;
+    font-weight: 500;
+  }
+
+  .fa-heart.liked {
+    color: red;
+    font-weight: 900;
   }
 }
 
@@ -567,7 +628,7 @@ onMounted(()=>{
       width: 8.4%;
     }
 
-    .forumInfo_comments_text_msg{
+    .forumInfo_comments_text_msg {
       width: 100%;
     }
   }
@@ -582,8 +643,6 @@ onMounted(()=>{
   //   width: 85%;
   //   margin: 10px 25px 0;
   // }
-
-
 
   .forumInfo_right_msg_text {
     width: 75%;
