@@ -9,12 +9,12 @@
 </template>
 
 <script setup>
-import {inject } from 'vue';
+import { inject } from 'vue';
 import axios from 'axios';
 
 // 抓取 main.js 的 is_login
-const  parentInfo  = inject('is_login');
-
+const parentInfo = inject('front_is_login');
+// console.log(parentInfo)
 
 // 登出按鈕點擊後登出
 const logOut = () => {

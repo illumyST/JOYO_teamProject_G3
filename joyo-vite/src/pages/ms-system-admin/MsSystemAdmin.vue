@@ -9,6 +9,7 @@
         @cladd="cladd" @updat="updae"
         ></MsSystemAdminBtn>
         <msSystemAdminTable></msSystemAdminTable>
+        <msPage @page="chpage"></msPage>
       </div>
     </div>
     <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
@@ -23,11 +24,31 @@ const userSelect = ref(["商品編號","商品名稱","遊戲類型","價格","�
 provide('us', userSelect);
 
 const admins = ref([]) ;
+const adminsA = ref([]) ;
+const opage = ref(1);
 
-provide('admins',admins);
 
+provide('admins',adminsA);
+provide("prodects",admins);
+
+provide("opage",opage);
+
+const chpage=(n)=>{
+  adminsA.value=[];
+  for(var a = n[0] ;a<n[1] ; a++){
+    if(admins.value[a] != undefined){
+      adminsA.value.push(admins.value[a]);
+    }
+    // console.log(n[1]/10);
+    opage.value = n[1]/10 ;
+   
+  }
+}
 const addop = ref(false);
 const updat = ref(false);
+
+
+
 
 const cladd = (e)=>{
   if(addop.value){
@@ -60,6 +81,9 @@ const addAdmins =(e)=>{
   e['fixe']=false;
   console.log(e);
   admins.value.push(e);
+  if(adminsA.value.length < 10){
+  adminsA.value.push(e);
+  }
 }
 
 axios.get("/api/msBack_Account/msBack_Account.php")
@@ -74,6 +98,11 @@ axios.get("/api/msBack_Account/msBack_Account.php")
         update:true,
         fixe:false});
   }
+  for(var a= 0 ;a<10 ; a++){
+   if(admins.value[a] != undefined){
+    adminsA.value.push(admins.value[a])
+   } 
+  } 
 })
 .catch(error =>{ console.log(error)})
 

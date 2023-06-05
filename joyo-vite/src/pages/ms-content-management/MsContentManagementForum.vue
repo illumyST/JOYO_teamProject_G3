@@ -2,7 +2,7 @@
 
     <MsSeachBar @text="getseach" :name="'文章管理查詢'"></MsSeachBar>
     <msContentManagementForumTable></msContentManagementForumTable>
-
+    <msPage @Page="chPage"></msPage>
 </template>
 
 <script setup>
@@ -10,13 +10,77 @@ import axios from "axios";
 import { ref, provide } from "vue";
 
 const arr = ref([]);
-provide("arr", arr);
+const arrs = ref([]);
+provide("arr", arrs);
+provide('prodects',arr);
 
-const userSelect = ref(["會員編號", "用戶", "發文日期", "文章標題", "動作"]);
+const chPage= (n)=>{
+  arrs.value=[];
+  for(var a=n[0] ; a<n[1] ; a++){
+    if(a<arr.value.length){
+      arrs.value.push(arr.value[a]);
+    }}}
+    // thispage.value = n[1]/10 ;
+    // console.log(n)
+  
+
+
+
+const userSelect = ref([{name:"會員編號",value:1}, {name:"用戶",value:2},{name:"發文日期",value:3}, {name:"文章標題",value:4}]);
 provide("us", userSelect);
 // console.log(userSelect);
 const getseach = (n) => {
-  console.log(n);
+  arr.value = [];
+  arrs.value = [];
+  console.log(n)
+  var sr ={
+    text:n.text,
+    value:n.value
+  }
+  if(n.text != ""){
+    axios.post('/api/MsContentManagement/MsContentManagementSE.php',sr)
+    .then(data=>{    
+    var list = data.data ;
+    for(var n of list){
+      // console.log(n);
+      arr.value.push({
+        id: n['ARTICLE_ID'],
+        user: n['MAIL'],
+        day: n['ARTICLE_DATE'],
+        tbname: n['TITLE'],
+      })
+    }
+    for(var n = 0 ; n<10 ; n++){
+  if(arr.value[n] != undefined){
+    arrs.value.push(arr.value[n]);
+  }
+ }
+})
+.catch(error=>{console.log(error)});
+  }
+  else{
+    axios.get('/api/MsContentManagement/MsContentManagement.php')
+    .then(data=>{
+      
+    var list = data.data ;
+
+    for(var n of list){
+      // console.log(n);
+      arr.value.push({
+        id: n['ARTICLE_ID'],
+        user: n['MAIL'],
+        day: n['ARTICLE_DATE'],
+        tbname: n['TITLE'],
+      })
+    }
+    for(var n = 0 ; n<10 ; n++){
+  if(arr.value[n] != undefined){
+    arrs.value.push(arr.value[n]);
+  }
+ }
+})
+.catch(error=>{console.log(error)});
+  }
 };
 
 axios.get('/api/MsContentManagement/MsContentManagement.php')
@@ -29,17 +93,16 @@ axios.get('/api/MsContentManagement/MsContentManagement.php')
   arr.value.push({
     id: n['ARTICLE_ID'],
     user: n['MAIL'],
-    day: n['DATE'],
+    day: n['ARTICLE_DATE'],
     tbname: n['TITLE'],
   })
-
-
-
  }
-
-
-
-
+ for(var n = 0 ; n<10 ; n++){
+  if(arr.value[n] != undefined){
+    arrs.value.push(arr.value[n]);
+  }
+ }
+//  console.log(arrs.value);
 })
 .catch(error=>{console.log(error)});
 </script>

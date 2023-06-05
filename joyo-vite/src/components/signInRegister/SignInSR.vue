@@ -3,7 +3,10 @@
     <!-- <InputWithTitle @value-update="getChild">電子郵件</InputWithTitle> -->
 
     <InputWithTitle ref="mail">電子郵件</InputWithTitle>
-    <InputWithTitle ref="password">密碼</InputWithTitle>
+    <InputWithTitle class="password" ref="password">密碼
+        <RouterLink to="/forgetPassword">忘記密碼？</RouterLink>
+    </InputWithTitle>
+    
     <div class="btn" @click="doLogInCheck()">登入</div>
 </template>
 
@@ -59,6 +62,13 @@ const doLogInCheck = function () {
 </script>
 
 <style lang="scss" scoped>
+
+a{
+    // display: inline-block;
+    align-self: self-end;
+    font-size: 14px;
+    cursor: pointer;
+}
 .btn {
     line-height: 40px;
     width: 100%;

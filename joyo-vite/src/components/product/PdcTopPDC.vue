@@ -62,7 +62,7 @@
                                             src="@/assets/img/vector.png" alt=""></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
-                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >+{{age}}</a>
+                                    <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >{{age}}</a>
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#" v-on:click="product_filter_get_age">+4</a>
                                     </li>
@@ -91,7 +91,7 @@
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
-                                            v-on:click="(e)=>product_filter_get_order(e,index)">{{arrange}}</a>
+                                            v-on:click="(e)=>product_filter_get_order(e,index,arrange)">{{arrange}}</a>
                                     </li>
                                     <!-- <li><a class="dropdown-item" href="#"
                                             v-on:click="product_filter_get_order">上架日期：由低到高</a>
@@ -126,32 +126,23 @@
     const palyerAge=[4,5,6,7,8,9,10,11,12,13];
     const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
     const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
+   
     const product_filter_get_cate=(e,list)=>{
-        e.preventDefault(e);
+        e.preventDefault();
         let buttonText=e.target.closest("ul").previousElementSibling;
-        appear.value=0;
-        buttonText.firstElementChild.innerText=`遊玩人數:${e.target.innerText}`;
+        let img=buttonText.lastElementChild;
+        img.style.display="none";
+        buttonText.firstElementChild.innerHTML=list;
         emits('updateCatergory', list);
     };
     const product_filter_get_order=(e,index,arrange)=>{
         e.preventDefault(e);
-
         let buttonText=e.target.closest("ul").previousElementSibling;
         let img=buttonText.lastElementChild;
         buttonText.style.fontSize="16px";
         img.style.display="none";
         buttonText.firstElementChild.innerHTML=arrange;
-        // if(index==0){
-        //     buttonText.firstElementChild.innerHTML=`上架日期:<br>由高到低`;
-        // }else if(index==1){
-        //     buttonText.firstElementChild.innerHTML=`上架日期:<br>由低到高`;
-        // }else if(index==2){
-        //     buttonText.firstElementChild.innerHTML=`建議售價:<br>由高到低`;
-        // }else if(index==3){
-        //     buttonText.firstElementChild.innerHTML=`建議售價:<br>由低到高`;
-        // }
-        
-        emits('updateArrange', index);
+        emits('updateArrange', index,arrange);
     };
     const product_filter_player=(e,index)=>{
         e.preventDefault(e);
@@ -159,7 +150,7 @@
         if(e.target.innerText==="遊玩人數"){
             buttonText.firstElementChild.innerText=`${e.target.innerText}`;
         }else {
-            buttonText.firstElementChild.innerText=`遊玩人數:${e.target.innerText}`;
+            buttonText.firstElementChild.innerText=`${e.target.innerText}`;
         }
         emits('updatePlayerNum', index);
     };
@@ -169,7 +160,7 @@
         if(e.target.innerText==="試玩年齡"){
             buttonText.firstElementChild.innerText=`${e.target.innerText}`;
         }else {
-            buttonText.firstElementChild.innerText=`試玩年齡:+${e.target.innerText}`;
+            buttonText.firstElementChild.innerText=`+${e.target.innerText}`;
         }
         emits('updatePlayerAge', age);
     };
@@ -213,6 +204,9 @@
                     }
                     if (this.product_filter_order_active) {
                         this.product_filter_order_active = !this.product_filter_order_active;
+                    }
+                    if (this.product_filter_cater_active) {
+                        this.product_filter_cater_active = !this.product_filter_cater_active;
                     }
                 },
     },
@@ -764,7 +758,6 @@
             margin-bottom: 30px;
             align-items: center;
             justify-content: space-between;
-
             img {
                 width: 80%;
             }
