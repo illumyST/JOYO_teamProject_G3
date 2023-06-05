@@ -37,6 +37,9 @@ const prodects = ref([{
     img:"/src/assets/img/product_pathwork.png",
     }
 ]);
+const memberData=ref({
+    memberId:"",
+});
 const calculateTotal=()=>{
       let sum=0;
       for(let i=0;i<products.value.length;i++){
@@ -44,6 +47,38 @@ const calculateTotal=()=>{
       }
       return sum;
 };
+const getMemberId=()=>{
+    // console.log(123);
+    return axios.get('/api/forumPost/forumCheckLogin.php')
+        .then(res => {
+            //將資料庫回傳的資料存在變數中
+            memberData.value.memberId = res.data;
+            // console.log(postData.value.memberId);
+            })
+        .catch(err => {
+            console.error(err);
+        });
+};
+const fetchData=(val)=>{
+    return axios.get('/api/product/test.php',val)
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            pageInfor.value.tg = res.data;
+            // console.log(currentCategory.value[i].cate);  
+            //判斷當前商品種類，並且存在 fliterTg變數中
+            turnGameType();   
+            }
+            )
+        .catch(err => {
+            console.error(err);
+        });
+};
+
+onMounted(() => {
+  fetchData();
+  getMemberId();
+
+});
 </script>
 <script>
    
