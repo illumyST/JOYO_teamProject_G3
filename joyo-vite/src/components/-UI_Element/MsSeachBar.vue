@@ -3,16 +3,17 @@
                 <h2>{{ props.name }}</h2>
                 <div class="ms_sub_sel">
                     <div>
-                        <input class="serchinput" type="text" placeholder="輸入關鍵字..."  v-model="text">
-                        <select name="" id="" >
+                        <input class="serchinput" type="text" placeholder="輸入關鍵字..."  v-model.trim="text">
+                        <select name="" id="" v-model="value">
                             <!-- <optgroup label="文章編號"></optgroup> -->
-                            <option value="" v-for="item in us">{{ item }}</option>
+                            <option :value="item.value" v-for="item in us">{{ item.name }}</option>
                         </select>
-                        <input type="button" id="seach"  value="搜尋" @click="seach">
-                        <select name="" class="vision" >
-                            <!-- <optgroup label="文章編號"></optgroup> -->
-                            <option value="" >每頁顯示</option>
-                        </select>
+                        <input type="button" id="seach" class="btn" value="搜尋" @click="seach">
+                        <input type="button" id="add" class="btn"  value="新增商品" v-if="props.add" @click="open">
+                        <!-- <select name="" class="vision" > -->
+                            
+                            <!-- <option value="" >每頁顯示</option> -->
+                        <!-- </select> -->
                     </div>         
                 </div>
             </div>
@@ -21,10 +22,16 @@
 <script setup>
 import {ref,defineEmits , inject ,defineProps} from 'vue'
 const text = ref("");
-const emits = defineEmits(['text']);
+const value = ref(1);
+const emits = defineEmits(['text','open','rpage']);
 const seach = ()=>{
-  emits('text',text.value)
-  // console.log(text.value);
+  var pr = {
+    text:text.value,
+    value:value.value
+  }
+  emits('text',pr)
+
+  // console.log(value.value);
 }
 const us = inject('us')
 // console.log(us.value);
@@ -34,11 +41,17 @@ const props = defineProps({
     name: {
       type: String,
       required: true
+    },
+    add:{
+      type: Boolean,
+      required: true
     }
   });
 
-console.log(props.name)
-
+// console.log(props.add)
+const open= ()=>{
+  emits('open', true)
+}
 </script>
 
 
@@ -79,13 +92,14 @@ console.log(props.name)
         
       }
       }
-
-      input#seach{
+   
+      input.btn{
+        margin-right: 10px;
       font-size: 16px;
       background: $orange;
       line-height: 17px;
       text-align: center;
-      border-radius: 5px;
+      border-radius: 5px !important;
       transition: .3s;
       cursor: pointer ;
       color: #fff;

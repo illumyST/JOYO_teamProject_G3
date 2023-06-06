@@ -26,7 +26,7 @@ const cartItem = ref ({
 const cartList = ref([]);
 
 const addToCart = (list) => {
-    // console.log(list.PRODUCT_ID);   
+    console.log(list.PRODUCT_ID);   
     props.cartItem.PRODUCT_ID = props.list.PRODUCT_ID;
     if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){
         props.cartItem.member_id ="-1";
@@ -34,7 +34,7 @@ const addToCart = (list) => {
         if(localCart.length === 0 ){
             localCart.unshift(props.cartItem);
             localStorage.setItem("cart",JSON.stringify(localCart));
-            alert("購物車新增成功!")
+            // alert("購物車新增成功!")
         }else {
             let found = false;
             for(let i = 0; i < localCart.length; i++){
@@ -48,8 +48,9 @@ const addToCart = (list) => {
                 localCart.unshift(props.cartItem);
             }
         }
-        console.log(props.cartItem.member_id)
+        // console.log(props.cartItem.member_id)
     localStorage.setItem('cart',JSON.stringify(localCart));
+    alert("購物車新增成功!")
     }else {
         axios.post('/api/product/Insert.php', props.cartItem)
             .then(response => {
@@ -58,6 +59,7 @@ const addToCart = (list) => {
             .catch(error => {
                 console.log(error);
             });
+            alert("購物車新增成功!")
         // alert(cartItem.value.MEMBER_ID);
     } 
     
