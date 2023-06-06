@@ -38,18 +38,21 @@
 
 </template>
 <script setup>
+import axios from 'axios';
 import {onMounted} from "vue"
 const props = defineProps({
     product:{
         type: Object,
         required: true,
-    }
+    },
 });
 //計算商品總金額
 const countPrice=(a,b)=>{
         return  a*b
         
 }
+
+
     // const prodectsValueCopy = computed(() => [...props.prodects]);
 
     // 點擊商品數量+1
@@ -75,24 +78,14 @@ const countPrice=(a,b)=>{
     // 刪除商品
     const remove=(index)=>{
         if (confirm("確定移除此商品")) {
+            // axios.delete('/api/product/Insert.php', props.cartItem)
             let localCart = JSON.parse(localStorage.getItem('cart'));
             localCart.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(localCart));
             props.product.tgFilter.splice(index, 1);
         } else {
             console.log("取消移除");
-        }
-        // if(confirm("確定移除商品")){
-        //     let localCart = JSON.parse(localStorage.getItem('cart'))
-        //     localStorage.removeItem("cart")
-        //     props.product.splice(index,1);
-        // }else{
-        //     console.log("123")
-        // }
-        // let localCart = JSON.parse(localStorage.getItem('cart'))
-        // localStorage.removeItem("cart",JSON.stringify(localCart))
-        // props.prodects.splice(index,1);
-        
+        }        
     }
 
     // watch( prodectsValueCopy, (newValue) => {

@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import axios from 'axios';
 const prodects = ref([{
     id:1,
@@ -64,8 +64,30 @@ const product=ref({
       tgFilter:[],
       productId:[],
       localCart:[],
-      amount:[]
+      amount:[],
+      member_id:"",
+      sqlCart:[],
 });
+
+const getmember_id = () => {
+    return axios.get('/api/forumPost/forumCheckLogin.php')
+    .then(res => {
+        if(res.data){
+            product.value.member_id = res.data;
+            if(product.value.member_id === 'is_not_login' || product.value.member_id === '-1'){
+              product.value.member_id = "-1";
+            }else{
+              
+            }
+            console.log(product.value.member_id);
+        }else{
+            console.log(product.value.member_id);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 const calculateTotal=()=>{
       let sum=0;
@@ -76,6 +98,10 @@ const calculateTotal=()=>{
       }
       return sum;
 };
+
+onBeforeMount(() => {
+    getmember_id();
+}) 
 
 onMounted(()=>{
     fetchData();
