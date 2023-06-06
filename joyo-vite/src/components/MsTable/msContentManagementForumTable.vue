@@ -27,14 +27,16 @@
 
 <script setup>
 import axios from 'axios';
-import {ref ,inject} from 'vue';
+import {ref ,inject ,defineEmits} from 'vue';
 let arr = inject('arr');
 
+const emits = defineEmits(['del'])
 const del = (index,item)=>{
 var YN =  confirm("確定要刪除嗎 ? ") ;
 if(YN){
-  arr.value.splice(index,1);
-  console.log(item);
+//   arr.value.splice(index,1);
+  emits('del',item);
+//   console.log(item);
   axios.post('/api/MsContentManagement/MsContentManagementDL.php',item)
   .then(data=>{console.log(data.data)})
   .catch(error=>{console.log(error)})
