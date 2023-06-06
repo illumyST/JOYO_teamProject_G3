@@ -1,5 +1,5 @@
 <?php
-include '../connest/conn.php';
+include '../connect/conn.php';
 
 $pid = htmlspecialchars($_POST['pid']);
 $ppr = htmlspecialchars($_POST['ppr']);

@@ -10,10 +10,10 @@
                         </select>
                         <input type="button" id="seach" class="btn" value="搜尋" @click="seach">
                         <input type="button" id="add" class="btn"  value="新增商品" v-if="props.add" @click="open">
-                        <select name="" class="vision" >
-                            <!-- <optgroup label="文章編號"></optgroup> -->
-                            <option value="" >每頁顯示</option>
-                        </select>
+                        <!-- <select name="" class="vision" > -->
+                            
+                            <!-- <option value="" >每頁顯示</option> -->
+                        <!-- </select> -->
                     </div>         
                 </div>
             </div>

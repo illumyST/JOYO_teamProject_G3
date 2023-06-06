@@ -8,7 +8,7 @@
         <MsSystemAdminBtn :name="'管理員權限管理'"
         @cladd="cladd" @updat="updae"
         ></MsSystemAdminBtn>
-        <msSystemAdminTable></msSystemAdminTable>
+        <msSystemAdminTable @delete="dlt"></msSystemAdminTable>
         <msPage @page="chpage"></msPage>
       </div>
     </div>
@@ -47,8 +47,28 @@ const chpage=(n)=>{
 const addop = ref(false);
 const updat = ref(false);
 
+const addm = ref([]);
+const dlt = (i)=>{
+  adminsA.value=[];
+  addm.value = [] ;
+// console.log(i['bai']);
+// console.log(admins.value[0]['bai']);
+for(var a = 0 ; a<admins.value.length ; a++){
+  if(admins.value[a]['bai'] != i['bai']){
+    addm.value.push(admins.value[a]);
+  }
+}
+admins.value=[];
+admins.value=addm.value;
 
-
+for(var a= (opage.value-1)*10 ;a<opage.value*10 ; a++){
+   if(admins.value[a] != undefined){
+    console.log(addm.value[a])
+    adminsA.value.push(admins.value[a])
+   } 
+  } 
+// console.log(adminsA.value);
+}
 
 const cladd = (e)=>{
   if(addop.value){
@@ -92,7 +112,9 @@ axios.get("/api/msBack_Account/msBack_Account.php")
 
   for(var n=0 ; n<data.data.length ; n++){
     // console.log(list[n]['USER_NAME']);
-    admins.value.push({name:list[n]['USER_NAME'],
+    admins.value.push(
+      {name:list[n]['USER_NAME'],
+        bai:list[n]['BACK_ACCOUNT_ID'],
         id:list[n]['ACCOUNT'],
         pas:list[n]['PASSWORD'],
         update:true,

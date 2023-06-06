@@ -35,13 +35,14 @@
   <script setup>
 import axios from 'axios';
 import {ref ,inject,defineEmits} from 'vue';
-const emits = defineEmits(['productt']);
+const emits = defineEmits(['productt',"pid"]);
   let prodects = inject('prodectsS');
 
   const del = (index,id)=>{
     var ny = confirm("你確定刪除資料嗎？");
     if(ny){
-        prodects.value.splice(index,1);
+        // prodects.value.splice(index,1);
+        emits("pid",id);
     }
     // console.log(id);
     axios.post('/api/msProduct/msProductDL.php',id)

@@ -1,14 +1,14 @@
 <template>
 
     <MsSeachBar @text="getseach" :name="'文章管理查詢'"></MsSeachBar>
-    <msContentManagementForumTable></msContentManagementForumTable>
+    <msContentManagementForumTable @del="del"></msContentManagementForumTable>
     <msPage @Page="chPage"></msPage>
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref, provide } from "vue";
-
+const onpage = ref(0);
 const arr = ref([]);
 const arrs = ref([]);
 provide("arr", arrs);
@@ -16,14 +16,33 @@ provide('prodects',arr);
 
 const chPage= (n)=>{
   arrs.value=[];
+  onpage.value = n[0]
   for(var a=n[0] ; a<n[1] ; a++){
     if(a<arr.value.length){
       arrs.value.push(arr.value[a]);
     }}}
     // thispage.value = n[1]/10 ;
     // console.log(n)
-  
+const sel = ref([]);
 
+const del = (e)=>{
+  sel.value=[];
+  arrs.value=[];
+  // console.log(e)
+  for(var a = 0 ; a<arr.value.length ; a++){
+    if(arr.value[a]['id'] != e["id"]){
+      sel.value.push(arr.value[a])
+    }
+  }
+  arr.value = sel.value ;
+  console.log(onpage.value);
+  for(var n = onpage.value ; n< onpage.value+10 ; n++){
+  if(arr.value[n] != undefined){
+    arrs.value.push(arr.value[n]);
+  }
+ }
+  // console.log(sel.value) ;
+}
 
 
 const userSelect = ref([{name:"會員編號",value:1}, {name:"用戶",value:2},{name:"發文日期",value:3}, {name:"文章標題",value:4}]);
