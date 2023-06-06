@@ -266,11 +266,11 @@ const routes = [
                 name: 'msAddAdmin',
                 component: () => import('@/pages/ms-system-admin/msAddAdmin.vue'),
             },
-            {
-                path: 'msChangeAdminPassword',
-                name: 'msChangeAdminPassword',
-                component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
-            },
+            // {
+            //     path: 'msChangeAdminPassword',
+            //     name: 'msChangeAdminPassword',
+            //     component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
+            // },
             {
                 path: 'msChangePassword',
                 name: 'msChangePassword',

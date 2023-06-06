@@ -10,7 +10,7 @@
 
         <div class="ms_login_input_field">
           <label class="ms_login_label" for="name">當前密碼</label>
-          <input type="password" id="name" placeholder="請輸入當前密碼" v-model="chpw.pas" />
+          <input type="text" id="name" placeholder="請輸入當前密碼" v-model="chpw.pas" />
         </div>
 
 
