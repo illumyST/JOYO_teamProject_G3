@@ -71,19 +71,19 @@ const doRegister = function () {
             PasCheck.value = false; 
             
         };
-    // axios.post('/api/logIn&Out/frontRegister.php',
-    //     logInData
-    // )
-    //     .then(res => {
-    //         console.log(res.data)
-    //         if (res.data) {
-    //             alert('請至註冊信箱收驗證信，完成會員驗證！');
-    //             router.push('/mailCheck');
+    axios.post('/api/logIn&Out/frontRegister.php',
+        logInData
+    )
+        .then(res => {
+            console.log(res.data)
+            if (res.data) {
+                alert('請至註冊信箱收驗證信，完成會員驗證！');
+                router.push('/mailCheck');
 
-    //         } else {
-    //             alert('註冊失敗！');
-    //         }
-    //     });
+            } else {
+                alert('此信箱已註冊過，請直接登入！');
+            }
+        });
 };
 </script>
 
