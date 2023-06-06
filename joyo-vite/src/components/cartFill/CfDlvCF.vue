@@ -1,18 +1,19 @@
 <template>
-   <div class="col-12 cartFill_deliv"  v-show="susspay">
+   <div class="col-12 cartFill_deliv"  v-show="susspay" v-if="memberData.member[0]">
             <div>
                 <h2>送貨資訊
                     <div>
-                        <input class="col-1" type="checkbox" name="" id="cartFill_autofill">
+                        <input class="col-1" type="checkbox" name="cartFill_autofill" id="cartFill_autofill" v-model="checkSelect" @click="changeAdd">
                         <label for="cartFill_autofill">收件人資料與會員資料相同</label>
                     </div>
                 </h2>
                 <ul>
                     <li>
-                        <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 輸入收件人姓名">
+                        <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 輸入收件人姓名" @input="insertChinese" v-model="toLocal.name">
+                        
                     </li>
                     <li>
-                        <input type="tel" class="col-12 cartFill_deliv_name" placeholder="輸入電話號碼">
+                        <input type="tel" class="col-12 cartFill_deliv_name" placeholder="輸入電話號碼"  v-model="toLocal.phone"  @input="insertPhone">
                     </li>
                     <li>
 
@@ -20,29 +21,30 @@
                 </ul>
                 <!-- 自動帶入台灣縣市區域 -->
                 <div class="col-12 cartFill_deliv_add twzipcode" v-if="address.country.length">
-                    <select class=" form-select twzipcode twzipcode__zipcode" data-role="county" @change="selectCity">
-                        <option value="-1">縣市</option>
+                    <select class=" form-select twzipcode twzipcode__zipcode" @change="selectCity" v-model="cityIndex">
+                        <option value="-1" >縣市</option>
                         <option :value="index" v-for="(country,index) in address.country" >{{ country }} </option>
                     </select>
-                    <select class=" form-select" data-role="district" >
+                    <select class=" form-select" data-role="district" v-model="indexCountry" @change="selectCountry">
                         <option value="-1" >鄉鎮市區</option>
-                        <option value="index" v-for="(city,index) in address.city">{{ city }}</option>
+                        <option :value="index" v-for="(city,index) in address.city">{{ city }}</option>
                     </select>
                     <input type="hidden" data-role="zipcode" />
-                    <input type="text" class="col-12" placeholder="詳細地址">
+                    <input type="text" class="col-12" placeholder="詳細地址" v-model="addrDetail" @input="insertAddr">
 
                 </div>
             </div>
             <div class="cartFill_deliv_credit">
-                <h2>信用卡資訊
-                    <select name="" id="">
-                        <option value="">信用卡1</option>
+                <h2 v-if="delivery.pay=='信用卡/簽帳金融卡'">信用卡資訊
+                    <select name="creditCard" id="creditCard" v-model="creditCard" @change="getNum">
+                        <option value="-1" >{{"請選擇信用卡"}}</option>
+                        <option :value="index" v-for="(list,index) in memberData.creditCard">{{list.NAME}}</option>
                     </select>
                 </h2>
 
                 <ul>
                     <li class="cartFill_deliv_credit_num">
-                        <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 信用卡號">
+                        <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 信用卡號" v-model="toLocal.creditNum" @input="insertDash">
                     </li>
                     
                 </ul>
@@ -53,9 +55,9 @@
 </template>
 
 <script setup>
-    import { ref, defineEmits} from 'vue';
+    import { ref,watch,defineProps} from 'vue';
     import axios from 'axios';
-    const emits = defineEmits("updateSusspay");
+    const emits = defineEmits(["updateSusspay"]);
     const susspay = ref(true);
     const suss = ref(false);
     //自動填入縣市以及對應的區域相關變數
@@ -64,13 +66,111 @@
         country:[],
         city:{},
     });
-
+    const props=defineProps({
+        memberData:{
+            type: Object,
+            required: true,
+        },
+        delivery:{
+            type: Object,
+            required: true, 
+        },
+        cartItem:{
+            type: Array,
+            required: true, 
+        } 
+    });
+    const toLocal=ref({
+        name:"",
+        phone:"",
+        creditNum:"",
+        address:"",
+        orderList:[],
+        total:"",
+    })
+    const checkSelect=ref(false);
+    const cityIndex=ref(-1);
+    const indexCountry=ref(-1);
+    const creditCard=ref(-1);
+    const addrDetail=ref("");
+    const countySelect = ref("");
+    const citySelect = ref("");
+    const getNum=()=>{
+        if(creditCard.value>=0){
+            toLocal.value.creditNum=props.memberData.creditCard[creditCard.value].CARD_NUMBER;
+            
+          function insertDashes(str) {
+            const regex = /(.{4})/g;
+            return str.match(regex).join("-");
+        }
+        toLocal.value.creditNum=insertDashes(toLocal.value.creditNum);
+        }else{
+            toLocal.value.creditNum="請輸入信用卡號";
+        }
+        
+        // console.log(props.memberData.creditCard.index);
+        // creditNum.value=props.memberData.creditCard[index];
+    }
+    const changeAdd=()=>{
+        if(!checkSelect.value){
+            toLocal.value.name=props.memberData.member.MEMBER_NAME;
+            toLocal.value.phone=props.memberData.member.PHONE;
+            addrDetail.value=props.memberData.member.ADDR_DETAIL;
+          return axios.get('/src/assets/json/address.json')
+                .then(
+                    res =>{
+                        
+                        function getKeyIndex(obj, key) {
+                            const keys = Object.keys(obj);
+                            return keys.indexOf(key);
+                        }
+                        let index=getKeyIndex(res.data,props.memberData.member.ADDR_CITY);
+                        countySelect.value=props.memberData.member.ADDR_CITY;
+                        cityIndex.value=index;
+                        if(index==-1){
+                            address.value.city.length=0;
+                        }else if(index>=0){
+                            let city=address.value.country[index];
+                            address.value.city=Object.keys(address.value.twzipcode[city]);
+                            indexCountry.value=2;
+                            for(let i=0;i<address.value.city.length;i++){
+                                if(address.value.city[i]===props.memberData.member.ADDR_DIST){
+                                    indexCountry.value=i;
+                                    city.value=props.memberData.member.ADDR_DIST;
+                                    break;
+                                }
+                            }
+                        }
+                    })
+                .catch(err => {
+                    console.error(err);
+                });  
+        }else if(checkSelect.value){
+            cityIndex.value=-1;
+            indexCountry.value=-1;
+            toLocal.value.name="";
+            toLocal.value.phone="";
+            addrDetail.value="";
+        }
+        
+    };
     //取得地址資料
     function toPay(){
-            suss.value=true;
-            susspay.value=false;
-            console.log(suss.value,susspay.value);
-            emits('updateSusspay', susspay.value);
+        //自動填入訂單資訊:
+        toLocal.value.orderList=props.cartItem;
+        console.log(toLocal.value.orderList);
+        //自動填入地址，並且判斷欄位不為空白
+        if(cityIndex.value>=0 && indexCountry.value>=0 && addrDetail.value.length>0){
+            toLocal.value.address=countySelect.value+citySelect.value+addrDetail.value;
+            console.log(toLocal.value.address);
+        }
+        //確認資料皆有填寫
+        
+        //跳出成功付款視窗
+        // suss.value=true;
+        // susspay.value=false;
+        // emits('updateSusspay', susspay.value);
+
     };
      //取得縣市區域JSON資料並將縣市資料填入address的country
     const fetchData=()=>{
@@ -79,6 +179,7 @@
                     res =>{
                     address.value.twzipcode=res.data;
                     address.value.country=Object.keys(res.data);
+                    
                     })
                 .catch(err => {
                     console.error(err);
@@ -89,20 +190,76 @@
         let index=e.target.value;
         //當使用者沒有選取縣市時，會清空上一個縣市的紀錄
         if(index==-1){
-            address.value.city.length=0;
+            address.value.country.length=0;
+            countySelect.value="";
         }else{
-            let city=address.value.country[index];
-            address.value.city=Object.keys(address.value.twzipcode[city]);  
+            let county=address.value.country[index];
+            address.value.city=Object.keys(address.value.twzipcode[county]);
+            countySelect.value= county;
+        }
+      
+    };
+    const selectCountry=(e)=>{
+        let index=e.target.value;
+        if(index==-1){
+            address.value.city.length=0;
+            citySelect.value="";
+        }else{
+            let city=address.value.city[index];
+            citySelect.value= city;
+        }
+
+    }
+    const insertDash=()=>{
+        const regex = /^[0-9]+$/;
+        let str=toLocal.value.creditNum.replace(/-/g, "");
+        if(str.length>16){
+            alert("信用卡號不得超過16位數字");
+            toLocal.value.creditNum=toLocal.value.creditNum.slice(0, -1);
+        }else{
+           if(regex.test(str)){
+            if(str.length%4 ==0 && str.length<16){
+                toLocal.value.creditNum=toLocal.value.creditNum+"-";
+            }
+            }else{
+                alert("請輸入0-9數字");
+                toLocal.value.creditNum="";
+
+            } 
+            }
+        
+        
+    }
+    const insertChinese=()=>{
+        const regex = /^[0-9A-Za-z\s]+$/;
+        if(regex.test(toLocal.value.name)){
+            alert ("請輸入中文");
+            toLocal.value.name="";
+        }
+    }
+    const insertPhone=()=>{
+        const regex = /^[A-Za-z\s]+$/;
+        if(regex.test(toLocal.value.phone)){
+            alert ("請輸入數字");
+            toLocal.value.phone="";
+        }
+        if(toLocal.value.phone.length>16){
+            alert ("電話長度過長");
+            toLocal.value.phone="";
+        }
+    }
+    const insertAddr=()=>{
+        const regex = /^[0-9A-Za-z\s]+$/;
+        if(regex.test(addrDetail.value)){
+            alert ("請輸入中文");
+            addrDetail.value="";
         }
         
-       
-    };
+    }
     onMounted(()=>{
         fetchData();
     });
     
-</script>
-<script>
 </script>
 
 <style lang="scss" scoped>
