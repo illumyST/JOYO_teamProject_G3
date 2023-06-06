@@ -23,10 +23,10 @@
     const order = inject("prodects");
     const emits = defineEmits(['page']);
  
-    watch(order, () => {
-      Rpage.value = 1 ;
-      // 在数据变化时执行其他操作
-    });
+    // watch(order, () => {
+    //   Rpage.value = 1 ;
+    //   // 在数据变化时执行其他操作
+    // });
     watch(Rpage, () => {
 
       emits('page', [Rpage.value*10-10,Rpage.value*10]);

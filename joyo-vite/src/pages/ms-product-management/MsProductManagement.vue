@@ -6,7 +6,7 @@
           <template #button1>商品頁面管理</template>
         </MsTabs>
         <MsSeachBar @text="getseach" :name="'商品管理查詢'" :add="true" @open="opp"></MsSeachBar>
-        <msProductManagementTable @productt="productt"></msProductManagementTable>
+        <msProductManagementTable @productt="productt" @pid="del"></msProductManagementTable>
         <msAddProductForm v-if="addop" @close="close"></msAddProductForm>
         <msPage @Page="chPage"></msPage>
       </div>
@@ -94,7 +94,27 @@ const close=(e)=>{
   addop.value = e
 }
 
+const onpage = ref(0);
+const reprodect = ref([]);
+const del = (e)=>{
+  
+  prodectsS.value=[];
+  reprodect.value=[];
+  for(var n = 0 ; n<prodects.value.length ; n++){
+    if(prodects.value[n]['pronum'] != e){
+      reprodect.value.push(prodects.value[n])
+    }
+  }
+  prodects.value=[];
+  prodects.value = reprodect.value ;
 
+  console.log(onpage.value)
+  for(var a=onpage.value ; a<onpage.value+10 ; a++){
+      if(prodects.value[a] != undefined){
+        prodectsS.value.push(prodects.value[a]);
+      }
+    }
+}
 
 
 
@@ -123,6 +143,7 @@ axios.get('/api/msProduct/msProduct.php')
 
 const chPage= (n)=>{
   prodectsS.value=[];
+  onpage.value = n[0] ;
   for(var a=n[0] ; a<n[1] ; a++){
     if(a<prodects.value.length){
       prodectsS.value.push(prodects.value[a]);

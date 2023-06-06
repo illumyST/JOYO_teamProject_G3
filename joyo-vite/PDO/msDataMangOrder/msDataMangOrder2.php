@@ -1,5 +1,5 @@
 <?php
-include '../connest/conn.php';
+include '../connect/conn.php';
 $sql = "SELECT bd.BUY_ID , pr.NAME, pr.PRICE , bd.AMOUNT  ,pr.IMG_URL_ONE
         FROM BUY_DETAIL bd
         join PRODUCT pr
