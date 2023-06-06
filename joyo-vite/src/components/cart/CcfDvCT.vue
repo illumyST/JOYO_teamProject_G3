@@ -5,20 +5,20 @@
                 <div class="col-12 cartConfirm_deliv_rwd">
                     <div class="col-12">
                         <h3>送貨方式</h3>
-                        <select name="" id="" class="col-12">
-                            <option value="">新竹物流</option>
-                            <option value="">黑貓宅急便</option>
-                            <option value="">台灣宅急通</option>
+                        <select name="" id="deliv" class="col-12" v-model="deliv">
+                            <option value="新竹物流">新竹物流</option>
+                            <option value="黑貓宅急便">黑貓宅急便</option>
+                            <option value="台灣宅急通">台灣宅急通</option>
                         </select>
                     </div>
                     <div class="col-12">
                         <h3>付款方式</h3>
-                        <select name="" id="" class="col-12">
-                            <option value="">信用卡及銀聯卡</option>
-                            <option value="">網路ATM</option>
-                            <option value="">自動櫃員機</option>
-                            <option value="">超商代碼</option>
-                            <option value="">超商條碼</option>
+                        <select name="" id="pay" class="col-12" v-model="payment">
+                            <option value="信用卡及銀聯卡">信用卡及銀聯卡</option>
+                            <option value="網路ATM">網路ATM</option>
+                            <option value="自動櫃員機">自動櫃員機</option>
+                            <option value="超商代碼">超商代碼</option>
+                            <option value="超商條碼">超商條碼</option>
                         </select>
                     </div>
 
@@ -34,18 +34,49 @@
                     </select>
                 </h3>
                 <router-link :to="'cartFill/'" >
-                    <input type="submit" value="前往結帳">
+                    <input type="submit" @click="pay" value="前往結帳">
                 </router-link>
             </div>
         </div>
 
 </template>
 <script setup>
-    import { defineProps} from 'vue';
+    import { defineProps, ref} from 'vue';
         const props = defineProps({
             calculateTotal: Function,
             
     });
+
+    const deliv = ref();
+    const payment = ref();
+
+    // console.log(deliv.value)
+
+    const saveLocalStorage=(selectpayment,selectdeliv) => {
+            let localDeliv = JSON.parse(localStorage.getItem('delivery')) || [];
+            deliv.value = selectdeliv;
+            payment.value = selectpayment;
+            if(localDeliv.length === 0 ){
+                localDeliv.unshift(deliv.value,payment.value);
+                localStorage.setItem("delivery",JSON.stringify(localDeliv));
+                alert("新增送貨資訊!")
+            }else if(localDeliv.length !== 0){
+                
+            }
+            else{
+                deliv.value = localDeliv[0].deliv;
+                payment.value = localDeliv[0].pay;
+                // console.log( deliv.value);
+            }
+        }
+
+    const pay = () => {
+         saveLocalStorage(payment.value,deliv.value)
+    };
+
+    
+
+    
 
 </script>
 <style lang="scss" scoped>

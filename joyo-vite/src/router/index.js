@@ -177,11 +177,11 @@ const routes = [
             //     name: 'redirect',
             //     component: () => import('@/pages/signIn/redirect.vue'),
             // },
-            // {
-            //     path: 'forgetPassword',
-            //     name: 'forgetPassword',
-            //     component: () => import('@/pages/forgetPassword.vue'),
-            // },
+            {
+                path: 'forgetPassword',
+                name: 'forgetPassword',
+                component: () => import('@/pages/forgetPassword.vue'),
+            },
         ]
     },
 
@@ -266,11 +266,11 @@ const routes = [
                 name: 'msAddAdmin',
                 component: () => import('@/pages/ms-system-admin/msAddAdmin.vue'),
             },
-            {
-                path: 'msChangeAdminPassword',
-                name: 'msChangeAdminPassword',
-                component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
-            },
+            // {
+            //     path: 'msChangeAdminPassword',
+            //     name: 'msChangeAdminPassword',
+            //     component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
+            // },
             {
                 path: 'msChangePassword',
                 name: 'msChangePassword',

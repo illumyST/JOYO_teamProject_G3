@@ -23,8 +23,11 @@
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
+
+const router = useRouter();
 
 const checkNumber = ref('')
 const doMailCheck = () => {
@@ -34,7 +37,12 @@ const doMailCheck = () => {
   axios.post('/api/logIn&Out/frontCheckMail.php',
     verifyData
   ).then(res=>{
-    console.log(verifyData);
+    if(res.data){
+      alert('驗證成功！');
+      router.push('/signIn')
+    }else{
+      alert('驗證失敗！');
+    }
   })
 }
 
@@ -50,8 +58,7 @@ const doMailCheck = () => {
   width: 670px;
   box-shadow: $shadow;
   margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 100px;
+
   background: $bg;
   padding: 80px;
   box-sizing: border-box;
@@ -63,9 +70,7 @@ const doMailCheck = () => {
   .mailCheck_logo_img {
     display: block;
     margin: 0px auto;
-    // border: 3px solid palegreen;
     width: 170px;
-    height: 41px;
     margin-bottom: 40px;
   }
 
@@ -100,13 +105,17 @@ const doMailCheck = () => {
 
   .mailCheck_Check_btn {
     cursor: pointer;
-    background-color: $orange;
+    background-color: $green;
     color: whitesmoke;
     text-align: center;
     line-height: 60px;
     display: block;
+    font-size: 20px;
     border-radius: 5px;
-
+    transition: .2s;
+    &:hover{
+      background-color: $orange;
+    }
   }
 }
 

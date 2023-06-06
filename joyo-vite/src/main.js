@@ -10,7 +10,7 @@ import VueAxios from 'vue-axios'
 let app = createApp(My);
 
 const is_login = ref(false);
-app.provide('is_login', is_login);
+app.provide('front_is_login', is_login);
 
 router.beforeEach((to, from, next) => {
 

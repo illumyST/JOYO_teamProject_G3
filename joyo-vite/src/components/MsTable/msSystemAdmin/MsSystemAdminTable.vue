@@ -1,4 +1,5 @@
 <template>
+    <div id="box">
     <table class="ms_table">
         <thead>
             <td>姓名</td>
@@ -19,20 +20,28 @@
             </tr> 
         </tbody>
     </table>
+    </div>
     </template>
       
       <script setup>
       import axios from 'axios';
-      import {ref ,inject} from 'vue';
+      import {ref ,inject , defineEmits} from 'vue';
       let admins = inject('admins');
-    
+      const opage = inject("opage");
+      // const addall = ref([]);
+
+      const emits = defineEmits(["delete"]);
+
       const del = (item,index)=>{
       var YN =  confirm("確定要刪除嗎 ? ") ;
       if(YN){
-        admins.value.splice(index,1);
+        // admins.value.splice(index,1);
+        // var op =opage.value;
+        // admins.value=[]
         axios.post("/api/msBack_Account/msBack_AccountDL.php",item)
         .then(data=>{console.log(data.data)})
         .catch(error=>{console.log(error)});
+        emits("delete" , item);
       }
       }
     
@@ -61,10 +70,16 @@
         // console.log(admins.value);
         admins.value[i] = t
     }
+
+    console.log(opage.value);
       </script>
       
       
       <style lang="scss" scoped>
+      div#box{
+        // outline: 1px solid red;
+        height: 470px;
+      }
       table{
               width: 100%;
               text-align: center;
