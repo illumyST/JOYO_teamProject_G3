@@ -44,7 +44,7 @@ const doRegister = function () {
                 router.push('/mailCheck');
 
             } else {
-                alert('註冊失敗！');
+                alert('此信箱已註冊過，請直接登入！');
             }
         });
 };

@@ -14,19 +14,23 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const mail = ref('');
-
+const router = useRouter();
 const resetPassword = () => {
 
-  axios.post('api/logIn&Out/resetPassword.php',
-    {mail:mail.value}
+  axios.post('api/logIn&Out/frontResetPassword.php',
+    { mail: mail.value }
   ).then(res => {
     if (res.data) {
       alert('已寄出密碼重置信，請至信箱收信！');
       router.push('/signIn');
     } else {
-      alert('密碼重置信寄出失敗，請再試一次！');
+      alert('此信箱未註冊，請前往註冊');
+
+      // TODO 可以帶參數，讓跳轉後變成註冊區出現
+      router.push('/signIn');
     }
   });
 }
