@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <form action="post" class="forumPost_form" id="forumPost_form">
     <div class="forumPost_form_title">
       <select
@@ -113,6 +113,7 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 // 選擇文章類型
 const SelectCgy = ref("0");
@@ -216,6 +217,8 @@ const chooseSelect = () => {
   }
 };
 
+const router = useRouter();
+
 const submitPost = () => {
 
   //因為選擇分類的value是數字，把他轉成分類字串
@@ -264,16 +267,7 @@ const submitPost = () => {
       // console.log(res.data);
       // alert(res.data);
       alert("發文成功");
-      // router.push('/forum');
-      // 發文成功所有欄位回到最初狀態
-      postData.value.category = "0";
-      postData.value.title = "";
-      postData.value.score = "0";
-      postData.value.postTitle = "";
-      postData.value.postContent = "";
-      postData.value.postTags = "";
-      postData.value.area = "0";
-      ShowScoreSelect.value = true;
+      router.push('/forum');
     })
     .catch((error) => {
       console.error("Error submitting post:", error);
@@ -501,18 +495,8 @@ input[type="button"] {
   }
 }
 
-</style> -->
+</style> 
+<<<<<<< HEAD
 
-<template>
-  <div>
-
-  </div>
-</template>
-
-<script setup>
-
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+=======
+>>>>>>> sin

@@ -335,9 +335,9 @@ onMounted(() => {
     ul {
       // border: 1px solid black;
       width: 16.5%;
-      top: 523px;
-      right: 32px;
-      // border: 1px solid $brown;
+      top: 211%;
+      right: 2.5%;
+      // display: block;
       li {
         // border: 1px solid blue;
         display: block;

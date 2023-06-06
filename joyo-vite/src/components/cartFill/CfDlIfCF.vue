@@ -1,12 +1,20 @@
 <template>
   <div class="cartFill_del_info">
             <ul class="col-7">
-                <li class="col-4">送貨方式：<span>新竹物流</span></li>
-                <li class="col-6">付款方式：<span>信用卡/簽帳金融卡</span></li>
+                <li class="col-4">送貨方式：<span>{{delivery.deliv}}</span></li>
+                <li class="col-6">付款方式：<span>{{delivery.pay}}</span></li>
             </ul>
         </div>
     
 </template>
+<script setup>
+     const props=defineProps({
+        delivery: {
+            type: Object,
+            required: true,
+        },
+    });
+</script>
 <style lang="scss" scoped>
     .cartFill_del_info {
     font-size: 24px;

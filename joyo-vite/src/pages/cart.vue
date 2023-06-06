@@ -69,11 +69,14 @@ const product=ref({
 
 const calculateTotal=()=>{
       let sum=0;
-      for(let i=0;i<prodects.value.length;i++){
-        sum = sum + prodects.value[i].total;
+      for(let i=0;i<product.value.tgFilter.length;i++){
+        // console.log(product.value.tgFilter[i][0].CURRENT_PRICE);
+        sum = sum + product.value.tgFilter[i][0].CURRENT_PRICE * product.value.amount[i];
+  
       }
       return sum;
 };
+
 onMounted(()=>{
     fetchData();
 });

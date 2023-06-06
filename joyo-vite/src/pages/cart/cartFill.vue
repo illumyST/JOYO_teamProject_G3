@@ -1,49 +1,106 @@
 <template>
    <div class="cartFill_wrapper">
         <CfTpCF v-show="susspay"></CfTpCF>
-        <CfCnCF :prodects="prodects" :calculateTotal="calculateTotal" v-show="susspay"></CfCnCF>
-        <CfDlIfCF v-show="susspay"> </CfDlIfCF>
-        <CfDlvCF @update-Susspay="updateSusspay"></CfDlvCF>
+        <CfCnCF :cartItem="cartItem"  v-show="susspay" :memberData="memberData"></CfCnCF>
+        <CfDlIfCF v-show="susspay" :delivery="delivery" > </CfDlIfCF>
+        <CfDlvCF @update-Susspay="updateSusspay" :memberData="memberData" :delivery="delivery" :cartItem="cartItem"></CfDlvCF>
    </div>
     
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 import CfDlvCF from '@/components/cartFill/CfDlvCF.vue';
 const susspay=ref(true);
 const updateSusspay=(val)=>{
     susspay.value=false;
 }
-const prodects = ref([{
-    id:1,
-    name : '花磚物語',
-    sel : 799,
-    amount : 1 ,
-    stock:12,
-    get total() {
-      return (this.sel*this.amount);
-    },
-    img:"/src/assets/img/product_AzUL.png",
-    },{
-    id:2,
-    name : '拼布對決',
-    sel : 699,
-    amount : 1 ,
-    stock:5,
-    get total() {
-      return (this.sel*this.amount);
-    },
-    img:"/src/assets/img/product_pathwork.png",
-    }
-]);
-const calculateTotal=()=>{
-      let sum=0;
-      for(let i=0;i<products.value.length;i++){
-        sum = sum + products.value[i].total;
-      }
-      return sum;
+const cartItem = ref([]);
+const memberData=ref({
+    memberId:"",
+    member:{},
+    creditCard:{}
+
+});
+// const calculateTotal=()=>{
+//       let sum=0;
+//       for(let i=0;i<products.value.length;i++){
+//         sum = sum + products.value[i].total;
+//       }
+//       return sum;
+// };
+const getMemberId=async ()=>{
+    // console.log(123);
+    try{
+        const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+        memberData.value.memberId = res.data;
+        await fetchData();
+        await getMemberData();
+        await getCreditCard();
+    } catch(err)  {
+         console.error(err);
+        };
+}
+const getMemberData=()=>{
+    return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value} })
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            memberData.value.member=res.data;
+            }
+            )
+        .catch(err => {
+            console.error(err);
+        });
 };
+const getCreditCard=()=>{
+    return axios.get('/api/cart/getCreditCard.php',{ params: { memberId: memberData.value} })
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            memberData.value.creditCard=res.data;
+            }
+            )
+        .catch(err => {
+            console.error(err);
+        });
+};
+//取購物車資料
+const fetchData=()=>{
+    return axios.get('/api/cart/getCartItem.php',{ params: { memberId: memberData.value} })
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            cartItem.value=(res.data);   
+            }
+            )
+        .catch(err => {
+            console.error(err);
+        });
+};
+//假資料
+const delivery=ref({
+    pay:"",
+    deliv:""
+});
+
+const saveLocalStorage=(pay,deliv)=>{
+    let localDeliv = JSON.parse(localStorage.getItem('delivery')) || [];
+    delivery.value.pay=pay;
+    delivery.value.deliv=deliv;
+        if(localDeliv.length === 0 ){
+            localDeliv.unshift(delivery.value);
+            localStorage.setItem("delivery",JSON.stringify(localDeliv));
+            alert("新增送貨資訊!")
+        }else{
+            delivery.value.pay=localDeliv[0].pay;
+            delivery.value.deliv=localDeliv[0].deliv;
+        }
+}
+
+onMounted(() => {
+  getMemberId();
+  saveLocalStorage("信用卡/簽帳金融卡","黑貓黑貓");
+
+});
 </script>
 <script>
    

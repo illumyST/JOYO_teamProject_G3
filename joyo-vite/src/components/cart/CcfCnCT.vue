@@ -1,4 +1,4 @@
-<template v-if="product && amount.lenth>0"  >
+<template v-if="product && amount.length > 0"  >
     <div class="cartConfirm_con">
             <h2>確認您的購物車</h2>
             <ul class="col-12 cartConfirm_con_title">
@@ -38,7 +38,7 @@
 
 </template>
 <script setup>
-import {onBeforeMount} from "vue"
+import {onMounted} from "vue"
 const props = defineProps({
     product:{
         type: Object,
@@ -53,39 +53,54 @@ const countPrice=(a,b)=>{
     // const prodectsValueCopy = computed(() => [...props.prodects]);
 
     // 點擊商品數量+1
-    // const numPlus = (index) => {
-    //     if(props.product[index].amount<props.product[index].stock){
-    //         props.product[index].amount++;
-    //     }else{
-    //         alert (`數量不可大於庫存:${props.product[index].stock}`);
-    //     }
-    // };
+    const numPlus = (index) => {
+        // props.product.amount[index]++
+        // console.log(props.product.tgFilter[0][0][6])
+        if(props.product.amount[index] < props.product.tgFilter[0][0][6]){
+            props.product.amount[index]++
+        }else{
+            alert (`數量不可大於庫存:${props.product.tgFilter[0][0][6]}`);
+        }
+    };
 
     // 點擊商品數量-1
-    // const numMinus = (index) => {
-    //     if(props.prodects[index].amount>1){
-    //             props.prodects[index].amount--;
-    //     }else{
-    //         alert (`數量不可小於1`);
-    //     }
-    // };
+    const numMinus = (index) => {
+        if(props.product.amount[index]>1){
+            props.product.amount[index]--;
+        }else{
+            alert (`數量不可小於1`);
+        }
+    };
 
     // 刪除商品
-    // const remove=(index)=>{
-    //     // console.log("123");
-    //     // props.prodects.splice(index,1);
-    //     let localCart = JSON.parse(localStorage.getItem('cart'))
-    //     localStorage.removeItem("cart",JSON.stringify(localCart))
-    //     props.prodects.splice(index,1);
-    //     console.log("移除");
-    // }
+    const remove=(index)=>{
+        if (confirm("確定移除此商品")) {
+            let localCart = JSON.parse(localStorage.getItem('cart'));
+            localCart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(localCart));
+            props.product.tgFilter.splice(index, 1);
+        } else {
+            console.log("取消移除");
+        }
+        // if(confirm("確定移除商品")){
+        //     let localCart = JSON.parse(localStorage.getItem('cart'))
+        //     localStorage.removeItem("cart")
+        //     props.product.splice(index,1);
+        // }else{
+        //     console.log("123")
+        // }
+        // let localCart = JSON.parse(localStorage.getItem('cart'))
+        // localStorage.removeItem("cart",JSON.stringify(localCart))
+        // props.prodects.splice(index,1);
+        
+    }
 
     // watch( prodectsValueCopy, (newValue) => {
     // // 更新 props.inputValue 的值
-    // props.prodects = newValue;
+    // props.product = newValue;
     // });
 
-onBeforeMount(()=>{
+onMounted(()=>{
     for(let i=0;i<props.product.productId.length;i++){
         amount.value.push(1);
     }
@@ -136,8 +151,8 @@ onBeforeMount(()=>{
 .cartConfirm_con_title_item {
     display: flex;
     flex-direction: column;
-    max-height: 445px;
-    overflow-y: auto;
+    // max-height: 445px;
+    // overflow-y: auto;
 
     li {
         margin-top: 34px;
@@ -219,6 +234,11 @@ onBeforeMount(()=>{
 
 .fa-trash-can {
     margin-left: 30px;
+    cursor: pointer;
+    transition: .2s;
+    &:hover{
+        color: $orange;
+    }
 }
 
 .cartConfirm_con_title_item_name {
