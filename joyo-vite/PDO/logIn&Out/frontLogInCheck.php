@@ -7,21 +7,26 @@
     $mail = $data['mail'];
     $pwd = $data['pwd'];
 
-    $sql = "select * from MEMBER where MAIL= :mail and PASSWORD= :pwd ";
+    $sql = "select VERIFY_STATE from MEMBER where MAIL= :mail and PASSWORD= :pwd ";
 
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(":mail",$mail);
     $statement -> bindParam(":pwd",$pwd);
     $statement -> execute();
 
-    $data = $statement->fetchAll();
+    $affectedRow = $statement->fetchAll();
 
-    if(count($data)>0){
+    if(count($affectedRow)>0){
         include './saveMemberIdSession.php';
-        $_SESSION['frontIsLogIn'] = true;
-        
-        echo 'true';
+        if($data[0][0]==1){
+            $_SESSION['frontIsLogIn'] = true;
+            echo 'true';
+        }else{
+            $_SESSION['frontIsLogIn'] = false;
+            echo 'VERIFY_STATE_0';
+        }
     }else{
+        $_SESSION['frontIsLogIn'] = false;
         echo 'false';
     }
 ?>
