@@ -54,20 +54,17 @@
 
     const saveLocalStorage=(selectpayment,selectdeliv) => {
             let localDeliv = JSON.parse(localStorage.getItem('delivery')) || [];
-            deliv.value = selectdeliv;
-            payment.value = selectpayment;
+            // deliv.value = selectdeliv;
+            // payment.value = selectpayment;
             if(localDeliv.length === 0 ){
                 localDeliv.unshift(deliv.value,payment.value);
                 localStorage.setItem("delivery",JSON.stringify(localDeliv));
-                alert("新增送貨資訊!")
             }else if(localDeliv.length !== 0){
-                
+                localDeliv.length=0;
+                localDeliv.unshift(deliv.value,payment.value);
+                localStorage.setItem("delivery",JSON.stringify(localDeliv));  // console.log( deliv.value);
             }
-            else{
-                deliv.value = localDeliv[0].deliv;
-                payment.value = localDeliv[0].pay;
-                // console.log( deliv.value);
-            }
+            
         }
 
     const pay = () => {

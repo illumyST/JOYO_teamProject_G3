@@ -1,4 +1,5 @@
 <template>
+    <div id="orderForm"> </div>
    <div class="col-12 cartFill_deliv"  v-show="susspay" v-if="memberData.member[0]">
             <div>
                 <h2>送貨資訊
@@ -35,16 +36,25 @@
                 </div>
             </div>
             <div class="cartFill_deliv_credit">
-                <h2 v-if="delivery.pay=='信用卡/簽帳金融卡'">信用卡資訊
+                <h2 v-if="delivery.pay==='信用卡及銀聯卡'">信用卡資訊
                     <select name="creditCard" id="creditCard" v-model="creditCard" @change="getNum">
                         <option value="-1" >{{"請選擇信用卡"}}</option>
                         <option :value="index" v-for="(list,index) in memberData.creditCard">{{list.NAME}}</option>
                     </select>
                 </h2>
+                <h2 v-else="delivery.pay==='信用卡及銀聯卡'">前往付款
+                    
+                </h2>
 
-                <ul>
-                    <li class="cartFill_deliv_credit_num">
+                <ul v-if="delivery.pay==='信用卡及銀聯卡'">
+                    <li class="cartFill_deliv_credit_num" >
                         <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 信用卡號" v-model="toLocal.creditNum" @input="insertDash">
+                    </li>
+                    
+                </ul>
+                <ul v-else="delivery.pay==='信用卡及銀聯卡'">
+                    <li class="cartFill_deliv_credit_num" >
+                        <input type="text" class="col-12 cartFill_deliv_name" placeholder=" 備註"  >
                     </li>
                     
                 </ul>
@@ -57,6 +67,7 @@
 <script setup>
     import { ref,watch,defineProps} from 'vue';
     import axios from 'axios';
+    import { useRouter } from 'vue-router';
     const emits = defineEmits(["updateSusspay"]);
     const susspay = ref(true);
     const suss = ref(false);
@@ -80,6 +91,13 @@
             required: true, 
         } 
     });
+    const calculateTotal=()=>{
+        let sum=0;
+        for(let i=0;i<props.cartItem.length;i++){
+            sum=sum+(props.cartItem[i].CURRENT_PRICE*props.cartItem[i].AMOUNT);
+        }
+        toLocal.value.total= sum;
+    }
     const toLocal=ref({
         name:"",
         phone:"",
@@ -87,6 +105,9 @@
         address:"",
         orderList:[],
         total:"",
+        buyId:"12",
+        orderItem:"",
+        memberID:""
     })
     const checkSelect=ref(false);
     const cityIndex=ref(-1);
@@ -136,7 +157,7 @@
                             for(let i=0;i<address.value.city.length;i++){
                                 if(address.value.city[i]===props.memberData.member.ADDR_DIST){
                                     indexCountry.value=i;
-                                    city.value=props.memberData.member.ADDR_DIST;
+                                    citySelect.value=props.memberData.member.ADDR_DIST;
                                     break;
                                 }
                             }
@@ -154,22 +175,104 @@
         }
         
     };
+    const saveToLocal=()=>{
+        localStorage.removeItem('buy');
+        localStorage.setItem("buy",JSON.stringify(toLocal.value));
+        localStorage.removeItem("delivery");
+    };
+    const joinString=()=>{
+        for(let i=0;i<toLocal.value.orderList.length;i++){
+            let str=toLocal.value.orderList[i].NAME+"$"+toLocal.value.orderList[i].CURRENT_PRICE+'*'+toLocal.value.orderList[i].AMOUNT;
+            toLocal.value.orderItem= toLocal.value.orderItem+str+"、";
+        }
+        
+         
+    };
+    const toGreenPay=async ()=>{
+        axios.post('/api/pay_test/paytest.php', toLocal.value)
+            .then((response) => {
+            let ret = response.data.replace('<script type="text/javascript">document.getElementById("ecpay-form").submit();</scr', '')
+            ret = ret.replace('ipt></body></html>', '');
+            ret = ret.replace('<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>', '');
+            const orderForm = document.getElementById('orderForm');
+            orderForm.innerHTML = ret;
+            document.getElementById('ecpay-form').submit();
+            
+            }, (error) => {
+            console.log(error)
+            })
+    }
+    const saveInBuy=async ()=>{
+        let localItem=JSON.parse(localStorage.getItem('buy'));
+        try{
+        const res=await axios.post('/api/cart/saveBuy.php', localItem);
+        // console.log(res.data);
+        await delCart();
+        localStorage.removeItem("buy");
+        suss.value=true;
+        susspay.value=false;
+        emits('updateSusspay', susspay.value);
+
+    } catch(err)  {
+         console.error(err);
+        }; 
+    }
+    const delCart=async ()=>{
+        try{
+        await axios.post('/api/cart/removeCart.php', toLocal.value);
+            
+        
+    } catch(err)  {
+         console.error(err);
+        }; 
+    }
     //取得地址資料
     function toPay(){
         //自動填入訂單資訊:
+        calculateTotal();
+        toLocal.value.memberID=props.memberData.memberId;
         toLocal.value.orderList=props.cartItem;
-        console.log(toLocal.value.orderList);
+        joinString();
+        //訂單資訊轉換成字串
         //自動填入地址，並且判斷欄位不為空白
         if(cityIndex.value>=0 && indexCountry.value>=0 && addrDetail.value.length>0){
             toLocal.value.address=countySelect.value+citySelect.value+addrDetail.value;
-            console.log(toLocal.value.address);
+            if(!toLocal.value.name){
+                // console.log()
+                alert("請輸入收件人")
+            }else if(!toLocal.value.phone){
+                alert("請輸入收件者電話")
+            }else{
+               if(props.delivery.pay=='信用卡/簽帳金融卡'){
+                if(toLocal.value.creditNum.length <16){
+                    alert("請檢查信用卡號碼是否輸入正確");
+                }else{
+                    toLocal.value.creditNum="無";
+                    toLocal.value.creditNum="無";
+                    saveToLocal();
+                    toGreenPay();
+                    saveInBuy();
+                    
+                   
+                }
+               }else{
+                saveToLocal();
+                toGreenPay();
+                saveInBuy();
+                
+                
+               }
+            }
+        }else if(cityIndex.value<0){
+            alert("請輸入收件縣市");
+        }else if(indexCountry.value<0){
+            alert("請輸入收件鄉鎮市區");
+        }else if(addrDetail.value.length<=0){
+            alert("請輸入收件地址");
         }
-        //確認資料皆有填寫
         
         //跳出成功付款視窗
-        // suss.value=true;
-        // susspay.value=false;
-        // emits('updateSusspay', susspay.value);
+        
 
     };
      //取得縣市區域JSON資料並將縣市資料填入address的country
@@ -179,7 +282,7 @@
                     res =>{
                     address.value.twzipcode=res.data;
                     address.value.country=Object.keys(res.data);
-                    
+
                     })
                 .catch(err => {
                     console.error(err);

@@ -82,23 +82,15 @@ const delivery=ref({
     deliv:""
 });
 
-const saveLocalStorage=(pay,deliv)=>{
+const getLocalStorage=()=>{
     let localDeliv = JSON.parse(localStorage.getItem('delivery')) || [];
-    delivery.value.pay=pay;
-    delivery.value.deliv=deliv;
-        if(localDeliv.length === 0 ){
-            localDeliv.unshift(delivery.value);
-            localStorage.setItem("delivery",JSON.stringify(localDeliv));
-            alert("新增送貨資訊!")
-        }else{
-            delivery.value.pay=localDeliv[0].pay;
-            delivery.value.deliv=localDeliv[0].deliv;
-        }
+    delivery.value.pay=localDeliv[1];
+    delivery.value.deliv=localDeliv[0];
 }
 
 onMounted(() => {
   getMemberId();
-  saveLocalStorage("信用卡/簽帳金融卡","黑貓黑貓");
+  getLocalStorage();
 
 });
 </script>
