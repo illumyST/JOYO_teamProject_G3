@@ -1,4 +1,5 @@
 <template>
+    <div id="box">
     <ul class="ms_order">
                <li >
                    <h3>訂單編號</h3>
@@ -17,15 +18,15 @@
                    <span class="ordrta ot"  @click.prevent.stop>
                          <h4 v-if="(item.fron != 1 && item.fron != 2 && item.fron != 3 && item.fron != 4) && !item.upopen">編輯訂單狀態</h4>
                          <h4 v-if="item.fron == 1 && !item.upopen">訂單成立</h4>
-                         <h4 v-if="item.fron == 2 && !item.upopen">已出貨</h4>
+                         <h4 v-if="item.fron == 2 && !item.upopen">出貨中</h4>
                          <h4 v-if="item.fron == 3 && !item.upopen">運送中</h4>
-                         <h4 v-if="item.fron == 4 && !item.upopen">訂單完成</h4>
+                         <h4 v-if="item.fron == 4 && !item.upopen">已完成</h4>
                      
                          <select name="" id="" v-if="item.upopen"  v-model="item.fron" @change="ifron(index,item)" >
                             <option value="1">訂單成立</option>
-                            <option value="2">已出貨</option>
+                            <option value="2">出貨中</option>
                             <option value="3">運送中</option>
-                            <option value="4">訂單完成</option>
+                            <option value="4">已完成</option>
                          </select>
 
                          <i class="bi bi-pencil-square" @click="change(index)"></i>
@@ -91,6 +92,7 @@
                 </li>
 
            </ul>
+        </div>   
    </template>
      
    <script setup>
@@ -123,7 +125,35 @@ const clear=(i,n)=>{
 
 const change = (e)=>{
     if(order.value[e].upopen){
-    order.value[e].upopen = false ;
+        if( confirm("確定更改嗎？")){
+            console.log(time.value);
+            axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderUP.php`,time)
+            .then(data =>{})
+            .catch(error=>{console.log(error)});
+            
+        }else{
+            axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
+            .then(data=>{
+                for(var n of order.value){
+                    console.log(n.tid);
+                    for(var a of data.data){
+                        console.log(n);
+                        if(n.tid == a[0]){
+                            if(a['STATUS'] == "訂單成立"){ n.fron = 1 }
+                            else if(a['STATUS'] == "出貨中"){ n.fron = 2 }
+                            else if(a['STATUS'] == "運送中"){ n.fron = 3 }
+                            else if(a['STATUS'] == "已完成"){ n.fron = 4 }
+                            n.two =a['SHIPPING_TIME'] ;
+                            n.the = a['DELIVERY_TIME']; 
+                            n.four = a['COMPELETE_TIME'];
+                        }
+                        
+                    }
+                }})
+            .catch(error=>{console.log(error)})
+
+        }           
+        order.value[e].upopen = false ;
     }else{
     order.value[e].upopen = true ;
     }
@@ -145,10 +175,22 @@ onMounted(() => {
 // console.log(order.value)
 })
 
-
+const timeor = ref();
 const time = ref();
 const ifron = (e,i)=>{
     // console.log(order.value[e].fron);
+    timeor.value={
+    tid:i.tid,
+    SHIPPING_TIME:i.two,
+    DELIVERY_TIME:i.the,
+    COMPELETE_TIME:i.four,
+    get STATUS(){
+        if(order.value[e].fron == 1){return "訂單成立"}
+        if(order.value[e].fron == 2){return "出貨中"}
+        if(order.value[e].fron == 3){return "運送中"}
+        if(order.value[e].fron == 4){return "已完成"}
+    }
+  };  
     if(order.value[e].fron != 2 && order.value[e].fron != 3 && order.value[e].fron != 4){
         order.value[e].fron = 1;
         order.value[e].two = null ;
@@ -194,10 +236,9 @@ const ifron = (e,i)=>{
         if(order.value[e].fron == 4){return "已完成"}
     }
   };  
-// console.log(time.value);
-axios.post('/api/msDataMangOrder/msDataMangOrderUP.php',time)
-.then(data =>{console.log(data.data)})
-.catch(error=>{console.log(error)});
+
+
+
 
 }
 
@@ -211,10 +252,25 @@ const itupop= (e,i)=>{
                 time:order.value[e].two,
             } 
             // console.log(chTIME.value);
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
+            .then(data=>{})
+            .catch(error=>{console.log(error)})}else{
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
+                .then(data=>{
+                    for(var n of order.value){
+                        for(var a of data.data){
+                            if(n.tid == a[0]){
+                                n.two =a['SHIPPING_TIME'] ;
+                                // n.the = a['DELIVERY_TIME']; 
+                                // n.four = a['COMPELETE_TIME'];
+                            }
+                            
+                        }
+                    }})
+                .catch(error=>{console.log(error)})
+            }
+            
             order.value[e].twoop = false ;
-            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
-            .catch(error=>{console.log(error)})
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].theop = false ;
             order.value[e].twoop = true ;
@@ -228,10 +284,25 @@ const itupop= (e,i)=>{
                 num:3,
                 time:order.value[e].the,
             } 
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
+            .then(data=>{})
+            .catch(error=>{console.log(error)})}else{
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
+                .then(data=>{
+                    for(var n of order.value){
+                        for(var a of data.data){
+                            if(n.tid == a[0]){
+                                // n.two =a['SHIPPING_TIME'] ;
+                                n.the = a['DELIVERY_TIME']; 
+                                // n.four = a['COMPELETE_TIME'];
+                            }
+                            
+                        }
+                    }})
+                .catch(error=>{console.log(error)})
+            }
+            
             order.value[e].theop = false ;
-            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
-            .catch(error=>{console.log(error)})
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].twoop = false ;
             order.value[e].theop = true ;
@@ -245,10 +316,25 @@ const itupop= (e,i)=>{
                 num:4,
                 time:order.value[e].four,
             } 
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
+            .then(data=>{})
+            .catch(error=>{console.log(error)})}else{
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
+                .then(data=>{
+                    for(var n of order.value){
+                        for(var a of data.data){
+                            if(n.tid == a[0]){
+                                // n.two =a['SHIPPING_TIME'] ;
+                                // n.the = a['DELIVERY_TIME']; 
+                                n.four = a['COMPELETE_TIME'];
+                            }
+                            
+                        }
+                    }})
+                .catch(error=>{console.log(error)})
+            }
             order.value[e].fourop = false ;
-            axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
-            .then(data=>{console.log(data.data)})
-            .catch(error=>{console.log(error)})
+
         }else if (order.value[e].twoop == false && order.value[e].theop == false && order.value[e].fourop == false){
             order.value[e].fourop = true ;
         }
@@ -256,7 +342,7 @@ const itupop= (e,i)=>{
 }
 
 
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
     for(var n of order.value){
         console.log(n.tid);
@@ -294,6 +380,10 @@ axios.get('/api/msDataMangOrder/msDataMangOrder.php')
 
      <style lang="scss" scoped>
      @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+     div#box{
+        // outline: 1px solid red;
+        min-height: 500px;
+     }
   .ms_order{
    li{  
        // outline: 1px solid red;

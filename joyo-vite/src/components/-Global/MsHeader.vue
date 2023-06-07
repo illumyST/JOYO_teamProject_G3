@@ -21,7 +21,7 @@ import axios from 'axios';
 const showLogOut = ref(false);
 
 onMounted(() => {
-  axios.get('/api/logIn&Out/sessionCheck.php')
+  axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/sessionCheck.php`)
     .then(res => {
       const data = res.data;
       showLogOut.value = data;
@@ -30,7 +30,7 @@ onMounted(() => {
 
 // 登出按鈕點擊後登出
 const logOut = () => {
-  axios.post('/api/logIn&Out/logOut.php')
+  axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/logOut.php`)
     .then(res => {
       showLogOut.value = false;
       alert('登出成功！');

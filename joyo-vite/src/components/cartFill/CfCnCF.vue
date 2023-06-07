@@ -1,5 +1,5 @@
 <template>
-   <div class="cartConfirm_con">
+   <div class="cartConfirm_con" v-if="cartItem.length>0">
             <h2>本次購買合計NTD ： $<span class="cartConfirm_con_price">{{calculateTotal()}}</span></h2>
             <ul class="col-12 cartConfirm_con_title">
                 <li class="col-4">商品資料</li>
@@ -8,17 +8,17 @@
                 <li class="col-2">金額總計</li>
                 <li class="cartConfirm_con_del"></li>
             </ul>
-            <ul class="col-12 cartConfirm_con_title_item" v-for="(list,index) in prodects" :key="list.id">
+            <ul class="col-12 cartConfirm_con_title_item" v-for="(item,index) in  cartItem" :key="index">
                 <li class="col-12">
                     <ul>
-                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.img" alt=""></li>
+                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="item.IMG_URL_ONE" alt=""></li>
                         <ul class="col-9">
-                            <li class=" cartConfirm_con_title_item_name">{{list.name}}</li>
-                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list.sel}}</span></li>
+                            <li class=" cartConfirm_con_title_item_name">{{item.NAME}}</li>
+                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{item.CURRENT_PRICE}}</span></li>
                             <li class="cartConfirm_con_title_item_num order-2">
-                                2
+                                {{item.AMOUNT}}
                             </li>
-                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> {{list.total}}</span>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span> {{countPrice(item.AMOUNT,item.CURRENT_PRICE)}}</span>
 
                             </li>
                             <li class="col-1"></li>
@@ -33,15 +33,23 @@
         </div>
 </template>
 <script setup>
-    import { defineProps} from 'vue';
-        const props = defineProps({
-            prodects: {
+    const props = defineProps({
+            cartItem: {
             type: Array,
             required: true,
-            },
-            calculateTotal: Function,
-            
+            },            
     });
+    const countPrice=(num,price)=>{
+        let count=num*price;
+        return count;
+    };
+    const calculateTotal=()=>{
+        let sum=0;
+        for(let i=0;i<props.cartItem.length;i++){
+            sum=sum+(props.cartItem[i].CURRENT_PRICE*props.cartItem[i].AMOUNT);
+        }
+        return sum;
+    }
 </script>
 <style lang="scss" scoped>
 .cartConfirm_wrapper {

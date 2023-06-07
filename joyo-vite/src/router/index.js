@@ -161,27 +161,23 @@ const routes = [
                 path: 'signIn',
                 name: 'signIn',
                 component: () => import('@/pages/signInRegister.vue'),
-                meta: {
-                    title: '登入註冊',
-                    requiresAuth: false,
-                },
             },
-            // 前台子頁＿[mailCheck] -------------------
-            // {
-            //     path: 'mailCheck',
-            //     name: 'mailCheck',
-            //     component: () => import('@/pages/mailCheck.vue'),
-            // },
+            //前台子頁＿[mailCheck] -------------------
+            {
+                path: 'mailCheck',
+                name: 'mailCheck',
+                component: () => import('@/pages/mailCheck.vue'),
+            },
             // {
             //     path: 'redirect',
             //     name: 'redirect',
             //     component: () => import('@/pages/signIn/redirect.vue'),
             // },
-            // {
-            //     path: 'forgetPassword',
-            //     name: 'forgetPassword',
-            //     component: () => import('@/pages/forgetPassword.vue'),
-            // },
+            {
+                path: 'forgetPassword',
+                name: 'forgetPassword',
+                component: () => import('@/pages/forgetPassword.vue'),
+            },
         ]
     },
 
@@ -266,11 +262,11 @@ const routes = [
                 name: 'msAddAdmin',
                 component: () => import('@/pages/ms-system-admin/msAddAdmin.vue'),
             },
-            {
-                path: 'msChangeAdminPassword',
-                name: 'msChangeAdminPassword',
-                component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
-            },
+            // {
+            //     path: 'msChangeAdminPassword',
+            //     name: 'msChangeAdminPassword',
+            //     component: () => import('@/pages/ms-system-admin/msChangeAdminPassword.vue'),
+            // },
             {
                 path: 'msChangePassword',
                 name: 'msChangePassword',
@@ -297,14 +293,21 @@ const routes = [
     },
 ];
 
-const scrollBehavior = () => {
-    scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    })
+const scrollBehavior = (to) => {
+    if (to.hash === '#contact_bottom') {
+        scrollTo({
+            top: document.getElementById('contact_bottom').offsetTop,
+            left: 0,
+            behavior: 'smooth'
+        })
+    } else {
+        scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }
 }
-
 
 
 const router = createRouter({

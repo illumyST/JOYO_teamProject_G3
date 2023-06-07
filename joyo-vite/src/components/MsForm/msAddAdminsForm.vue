@@ -44,23 +44,28 @@ const addform = ref({
   pas:""
 })
 
+
+
 const addAdmins = ()=>{
   var a = ref(0);
   for(let n of Object.values(addform.value)){
     if(n != ""){
       a.value++
       if(a.value ===  Object.values(addform.value).length){
-        // console.log("123"); 
-        emits("addAdmins",addform.value);
-        close();
+        // console.log("123");
+        axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_AccountADD.php`,addform.value)
+        .then(data=>{
+          addform.value["bai"] = data.data ;
+          console.log(addform.value);
+          emits("addAdmins",addform.value);
+          close();
+        })
+        .catch(error=>{console.log(error)});
+        
       } 
     }
   }
-  axios.post('/api/msBack_Account/msBack_AccountADD.php',addform.value)
-        .then(data=>{
-          console.log(data.data);
-        })
-        .catch(error=>{console.log(error)});
+
 }
 
 

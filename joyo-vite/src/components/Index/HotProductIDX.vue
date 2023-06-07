@@ -53,7 +53,7 @@
 
 <script setup>
 // import AddCartBtn from '@/components/-UI_Element/AddCartBtn.vue'
-import { ref,onBeforeMount,defineProps } from "vue"
+import { ref,onBeforeMount} from "vue"
 import axios from 'axios';
 const pruduct_imfo = ref({
    product:[
@@ -77,7 +77,7 @@ const productInfor=ref({
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
     console.log(props.cartItem);
-    return axios.get('/api/index/getHotItem.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotItem.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             if(res.data.length===3){
@@ -132,7 +132,10 @@ onBeforeMount(() => {
         font-size: 24px;
         letter-spacing: .1em;
         color: #fff;
-
+        white-space: nowrap; /* 不換行 */
+        overflow: hidden; /* 超出部分隱藏 */
+        text-overflow: ellipsis; /* 使用省略號表示被隱藏的文字 */
+        width: 178px;
         p {
             font-size: 20px;
             margin-top: 15px;

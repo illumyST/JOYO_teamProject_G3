@@ -41,7 +41,6 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const markRaw: typeof import('vue')['markRaw']
-  const msAddProductForm: typeof import('./src/components/MsForm/msAddProductForm.vue')['default']
   const msChangePasswordForm: typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
@@ -132,7 +131,6 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
     readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -217,7 +215,6 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly msAddProductForm: UnwrapRef<typeof import('./src/components/MsForm/msAddProductForm.vue')['default']>
     readonly msChangePasswordForm: UnwrapRef<typeof import('./src/components/MsForm/msChangePasswordForm.vue')['default']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>

@@ -1,14 +1,23 @@
 <template>
     <label>
-        <div>
+        <div class="text_wrapper">
             <slot>測試文字</slot>
         </div>
-        <input type="text" v-model="modelValue">
+        <input type="text" v-model="modelValue" :class="{'on':props.message}">
+        <slot name="check"></slot>
     </label>
 </template>
 
 <script setup>
-import { defineExpose, defineEmits } from 'vue';
+import { defineExpose, defineProps  } from 'vue';
+
+const props = defineProps({
+    message: {
+    type: Boolean,
+    required: true
+  }})
+
+//   console.log(props.message);
 
 // ----- 父元件按按鈕取值 ------
 const modelValue = ref();
@@ -28,7 +37,10 @@ div {
     letter-spacing: .1em;
     margin-bottom: 15px;
 }
-
+div.text_wrapper{
+    display: flex;
+    justify-content: space-between;
+}
 input {
     padding-left: 15px;
     line-height: 45px;
@@ -39,6 +51,9 @@ input {
     box-sizing: border-box;
     outline: none;
     letter-spacing: 1px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+}
+input.on{
+    background-color: rgba(255, 0, 0, 0.125) ;
 }
 </style>

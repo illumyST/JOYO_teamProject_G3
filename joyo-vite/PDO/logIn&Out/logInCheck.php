@@ -1,6 +1,5 @@
 <?php
-
-    include ('../../PDO/connect/conn.php');
+    include('../connect/conn.php');
 
     $request_body = file_get_contents('php://input');
     $data = json_decode($request_body, true);
@@ -9,7 +8,7 @@
     $pwd = $data['pwd'];
 
 
-    $sql = "SELECT * FROM back_account WHERE account= :account and PASSWORD= :pwd ";
+    $sql = "SELECT * FROM back_account WHERE ACCOUNT= :account and PASSWORD= :pwd ";
 
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(":account",$account);
@@ -22,8 +21,8 @@
         session_start();
         $_SESSION['isLogIn'] = true;
         $_SESSION['account'] = $account;
-        echo true;
+        echo 'true';
     }else{
-        echo false;
+        echo 'false';
     }
 ?>

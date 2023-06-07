@@ -2,7 +2,7 @@
   <section class="forumInfo_wrapper">
     <SidemenuFRMINFO :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRMINFO>
     <div class="forumInfo_right">
-        <BannerFRMINFO></BannerFRMINFO>
+        <BannerFRMINFO :forumCategory="forumCategory"></BannerFRMINFO>
     </div>
   </section>
 </template>
@@ -45,8 +45,11 @@ const updateCategory = (val) => {
     flex-direction: column;
   }
 
+  
   .forumInfo_right {
-    width: 100%;
-  }
+  // border: 1px solid blue;
+  width: 100%;
+  
+}
 }
 </style>

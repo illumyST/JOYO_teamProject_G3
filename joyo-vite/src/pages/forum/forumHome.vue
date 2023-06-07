@@ -5,17 +5,17 @@
   </div>
 
   <section class="forum_wrapper">
-    <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory"></SidemenuFRM>
+    <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory" ></SidemenuFRM>
     <div class="forum_right">
       <BannerTopFRM></BannerTopFRM>
-      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange"></BannerListFRM>
+      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange" :pageActive="pageActive"></BannerListFRM>
       <PaginationBarFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @to-Page="toPage"></PaginationBarFRM>
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref ,watch} from "vue";
 import axios from "axios";
 import {useRoute} from 'vue-router';
 const route = useRoute();
@@ -25,6 +25,18 @@ const forumCategory = ref(
   page:1
   }
 );
+watch(route,(newVal)=>{
+    route.value=newVal;
+    changeRoute();
+    turnArticleType(forumCategory.value.cate);
+    filterData();
+    forumArticle.value.articlePage.length=0;
+    getPage();
+
+})
+const changeRoute=()=>{
+  forumCategory.value.cate=route.value.params.categoryId;
+}
 const forumArticle=ref({
   articleAll:[],
   articleFilter:[],
@@ -34,15 +46,11 @@ const forumArticle=ref({
   //頁籤內容
   appearPage:[],
 });
-
-const fetchData=()=>{
-    return axios.get('/api/forum/forumGetArticle.php')
-        .then(res => {
-          //將資料庫回傳的資料存在articleAll變數中
-          forumArticle.value.articleAll = res.data;
-          if(route.params.categoryId>0){
-                let callBackId = route.params.categoryId; 
-                switch (callBackId){
+const turnArticleType=(callBackId)=>{
+  switch (callBackId){
+                    case '0' :
+                    forumCategory.value.cate ="所有文章";
+                    break; 
                     case '1' :
                     forumCategory.value.cate ="心得分享";
                     break; 
@@ -56,17 +64,20 @@ const fetchData=()=>{
                     forumCategory.value.cate ="教學區";
                     break;
                 }
-            }
-            if (forumCategory.value.cate !== "所有文章") {
-              forumArticle.value.articleFilter = forumArticle.value.articleAll.filter(ele => ele.ARTICLE_CATEGORY === forumCategory.value.cate);
-            } else {
-              forumArticle.value.articleFilter = res.data;
-            }  
-            
-            //將articleAll的資料傳給之後會過濾不同類型文章的陣列(第一次載入頁面都是全部文章所以沒有過濾)
-            
-
-               
+  if (forumCategory.value.cate !== "所有文章") {
+    forumArticle.value.articleFilter = forumArticle.value.articleAll.filter(ele => ele.ARTICLE_CATEGORY === forumCategory.value.cate);
+  } else if(forumCategory.value.cate == "所有文章"){
+    forumArticle.value.articleFilter = forumArticle.value.articleAll;
+  } 
+};
+const fetchData=()=>{
+    return axios.get('/api/forum/forumGetArticle.php')
+        .then(res => {
+          //將資料庫回傳的資料存在articleAll變數中
+          forumArticle.value.articleAll = res.data;
+          let callBackId = route.params.categoryId; 
+          turnArticleType(callBackId);
+          
         }
     )
         .catch(err => {
@@ -170,11 +181,37 @@ const updateArrange=(val)=>{
         getPage();
     }
 };
+const countPageActive=ref(1);
+const pageActive=ref([true]);
+const fitDeviceWidth=()=>{
+  console.log(document.querySelectorAll(".forum_right")[0]);
+    let screenWidth = window.innerWidth;
+    let currentScrollY = document.querySelectorAll(".forum_right")[0].scrollTop;
+    console.log(currentScrollY);
+    if(screenWidth<500){
+        if(countPageActive.value==1){
+            if(currentScrollY >  countPageActive.value*10){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }else if(countPageActive.value>=2){
+            if(currentScrollY >  countPageActive.value*400){
+            console.log("appear");
+            countPageActive.value++;
+            pageActive.value.push(true); 
+        }
+        }
+        
+    }
+    
+};
 onMounted(()=>{
   fetchData().then(() => {
     getPage();
     getAppearPage();
      });
+  document.querySelectorAll(".forum_right")[0].addEventListener('scroll', fitDeviceWidth);
 });
 </script>
 
@@ -222,6 +259,12 @@ onMounted(()=>{
     width: 100%;
     flex-grow: 0;
     margin-left: 0;
+  max-height: 1000px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
   }
 }
 </style>

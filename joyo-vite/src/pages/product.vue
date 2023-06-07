@@ -18,16 +18,31 @@
 <script setup>
 
 import {useRoute} from 'vue-router'
-import {onMounted, ref,defineProps,onBeforeMount } from 'vue';
+import {onMounted, ref,watch,onBeforeMount } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
+//監測路徑的值改變
+watch(route,(newVal)=>{
+    route.value=newVal;
+   
+    changeRoute();
+    turnGameType();
+    pageInfor.value.total_page.length=0; 
+    getPage();
+
+})
+const changeRoute=()=>{
+    currentCategory.value.cate=route.value.params.categoryId;
+}
 //定義傳給子頁的變數
 const currentCategory=ref({
     //篩選條件使用的商品種類，初始定義為全部商品
     cate:"全部商品",
     //表示當前頁面
-    page:1
+    page:1,
+    player:2,
+    routeIndex:""
     },
 );
 //定義傳給子頁的變數
@@ -43,18 +58,17 @@ const pageInfor=ref({
     //頁簽要顯示的頁數
     appearPage:[],
     attangeDateH:[],
+    player:2,
+    age:100
 });
-//利用axios取得資料庫桌遊資料
-const fetchData=()=>{
-    return axios.get('/api/product/test.php')
-        .then(res => {
-            //將資料庫回傳的資料存在tg變數中
-            pageInfor.value.tg = res.data;
-            // console.log(currentCategory.value[i].cate);  
-            //判斷當前商品種類，並且存在 fliterTg變數中
-            if(route.params.categoryId>0){
+//判斷當前的router並轉換成桌遊類型
+const turnGameType=()=>{
+    if(route.params.categoryId>=0){
                 let callBackId = route.params.categoryId; 
                 switch (callBackId){
+                    case '0':
+                    currentCategory.value.cate ="全部商品";
+                    break;   
                     case '1' :
                     currentCategory.value.cate ="派對遊戲";
                     break; 
@@ -78,13 +92,23 @@ const fetchData=()=>{
                     break;
                        
                 }
-            }            
-            if (currentCategory.value.cate !== "全部商品") {
+    }  
+    if (currentCategory.value.cate !== "全部商品") {
             pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
-        } else {
-
+        } else if(currentCategory.value.cate == "全部商品"){
             pageInfor.value.fliterTg = pageInfor.value.tg;
-        }        
+        }
+}
+
+//利用axios取得資料庫桌遊資料
+const fetchData=()=>{
+    return axios.get('/api/product/test.php')
+        .then(res => {
+            //將資料庫回傳的資料存在tg變數中
+            pageInfor.value.tg = res.data;
+            // console.log(currentCategory.value[i].cate);  
+            //判斷當前商品種類，並且存在 fliterTg變數中
+            turnGameType();   
             }
             )
         .catch(err => {
@@ -188,7 +212,7 @@ const updatePlayerNum=(val)=>{
         }
         if (currentCategory.value.cate !== "全部商品") {
         pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate);
-        } else {
+        } else if(currentCategory.value.cate == "全部商品"){
         pageInfor.value.fliterTg = pageInfor.value.tg;
         }
         if(val<=7 || val =="遊玩人數"){
@@ -210,12 +234,13 @@ const updatePlayerAge=(val)=>{
     
     if (currentCategory.value.cate !== "全部商品") {
         pageInfor.value.fliterTg = pageInfor.value.tg.filter(ele => ele.CATEGORY === currentCategory.value.cate );
-        } else {
+        } else if(currentCategory.value.cate == "全部商品"){
         pageInfor.value.fliterTg = pageInfor.value.tg;
         }
     if(val =="適玩年齡"){
         pageInfor.value.total_page.length=0;
     }else{
+        console.log(pageInfor.value.player),
         pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= pageInfor.value.player && ele.MAX_PLAYER >= pageInfor.value.player && ele.MIN_AGE <= pageInfor.value.age);
         pageInfor.value.total_page.length=0; 
     }
@@ -260,12 +285,7 @@ const updatePage=(val)=>{
 //跳轉至其他頁面
 const toPage=(val)=>{
     //更新當前頁面
-    currentCategory.value.page=val;
-    // changeHeight(val);
-    scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
+    choosePage(val);
 };
 
 const changeHeight=(val)=>{
@@ -289,7 +309,36 @@ const choosePage=(val)=>{
         behavior: 'smooth'
     });
     //修改頁簽內容
-    if(Math.floor(pageInfor.value.appearPage[0]/10)!=Math.floor(val/10)){
+    console.log(Math.floor(pageInfor.value.appearPage[0]/10),Math.floor(val/10))
+    if(currentCategory.value.page %10 ==0){
+        if(currentCategory.value.page==pageInfor.value.appearPage[9]){
+
+        }else{
+            if(currentCategory.value.page>pageInfor.value.appearPage[9]){
+                let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10)-1;
+                console.log(plusPage);
+                pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
+                if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
+            //移除多餘的頁數
+                    let remove=pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]-pageInfor.value.total_page.length;
+                    for(let i=0;i<remove;i++){
+                        pageInfor.value.appearPage.pop();
+                    }
+                }
+            }else if(currentCategory.value.page<pageInfor.value.appearPage[0]){
+                let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10)+1;
+                console.log(plusPage);
+                pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page-plusPage*10});
+                if(pageInfor.value.appearPage.length<10){
+                    let add=10-pageInfor.value.appearPage.length;
+                    for(let i=0;i<add;i++){
+                        pageInfor.value.appearPage.push(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]+1);
+                    }
+                }
+            }
+        }
+    }
+    else if(Math.floor(pageInfor.value.appearPage[0]/10)!=Math.floor(val/10)){
         let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10);
         pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
         if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
@@ -298,6 +347,13 @@ const choosePage=(val)=>{
             for(let i=0;i<remove;i++){
                 pageInfor.value.appearPage.pop();
             }
+        }else if(pageInfor.value.appearPage.length<10 && val< pageInfor.value.appearPage[0]){
+            //加回不足10頁的部分
+            let add=10-pageInfor.value.appearPage.length;
+            for(let i=0;i<add;i++){
+                pageInfor.value.appearPage.push(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]+1);
+            }
+
         }
 
     }
@@ -918,7 +974,7 @@ onBeforeMount(() => {
     }
 
     .product-main {
-
+        height: 1700px;
         aside {
             display: none;
         }

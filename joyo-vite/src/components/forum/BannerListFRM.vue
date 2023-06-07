@@ -67,7 +67,7 @@
   </div>
 
   <!-- 文章列表 -->
-  <div class="forum_article_item" v-for="(Items,page) in forumArticle.articlePage" :key="page" v-show="page+1 == forumCategory.page">
+  <div class="forum_article_item" v-for="(Items,page) in forumArticle.articlePage" :key="page" v-show="page+1 == forumCategory.page || pageActive[page]">
     <!-- 第一文章列表 -->
     <div
       class="forum_article_item1"
@@ -156,6 +156,10 @@ const props = defineProps({
         },
         forumCategory:{
           type:  Object,
+          required: true,
+        },
+        pageActive:{
+          type: Array,
           required: true,
         }
     });
@@ -331,9 +335,9 @@ onMounted(() => {
     ul {
       // border: 1px solid black;
       width: 16.5%;
-      top: 523px;
-      right: 32px;
-      // border: 1px solid $brown;
+      top: 211%;
+      right: 2.5%;
+      // display: block;
       li {
         // border: 1px solid blue;
         display: block;
