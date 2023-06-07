@@ -9,12 +9,8 @@
 </template>
 
 <script setup>
-<<<<<<< HEAD
-import { ref, defineProps } from 'vue';
-=======
 import { ref } from 'vue';
 import axios from 'axios';
->>>>>>> 079ebc31cc16f9954e423482e79782e30bff3399
 import CfDlvCF from '@/components/cartFill/CfDlvCF.vue';
 const susspay=ref(true);
 const updateSusspay=(val)=>{

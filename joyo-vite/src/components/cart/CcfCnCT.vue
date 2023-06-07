@@ -9,7 +9,7 @@
                 <li class="cartConfirm_con_del"></li>
             </ul>
             <ul class="col-12 cartConfirm_con_title_item">
-                <li class="col-12" v-for="(list,index) in product.tgFilter" :key="index">
+                <li class="col-12" v-for="(list,index) in product.tgFilter" :key="index" v-if="product.member_id < 0">
                     <ul>
                         <li class="cartConfirm_con_title_item_img"><img v-bind:src="list[0].IMG_URL_ONE" alt=""></li>
                         <ul class="col-9">
@@ -29,9 +29,29 @@
                             <li class="col-1" @click="remove(index)"> <i class="fa-solid fa-trash-can "></i></li>
 
                         </ul>
-
                     </ul>
+                </li>
+                <li class="col-12" v-for="(list,index) in product.sqlCart" :key="index" v-if="product.member_id >= 0">
+                    <ul>
+                        <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.IMG_URL_ONE" alt=""></li>
+                        <ul class="col-9">
+                            <li class=" cartConfirm_con_title_item_name">{{list.NAME}}</li>
+                            <li class=" cartConfirm_con_title_item_price">NTD &nbsp $ <span>{{list.CURRENT_PRICE}}</span></li>
+                            <li class="cartConfirm_con_title_item_num order-2">
+                                <div>
+                                    <button class="col-2" @click="numMinus(index)"><i class="fas fa-minus"></i></button>
+                                    <input class="col-8" type="text"   v-model.trim="product.sqlCart[index].AMOUNT">
+                                    <button class="col-2"  @click="numPlus(index)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
 
+                            </li>
+                            <li class="col-3 cartConfirm_con_title_item_sum order-1">NTD $ <span>{{ countPrice(list.CURRENT_PRICE,product.sqlCart[index].AMOUNT) }}</span>
+
+                            </li>
+                            <li class="col-1" @click="remove(index)"> <i class="fa-solid fa-trash-can "></i></li>
+
+                        </ul>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -53,16 +73,25 @@ const countPrice=(a,b)=>{
 }
 
 
+
+
     // const prodectsValueCopy = computed(() => [...props.prodects]);
 
     // 點擊商品數量+1
     const numPlus = (index) => {
-        // props.product.amount[index]++
-        // console.log(props.product.tgFilter[0][0][6])
-        if(props.product.amount[index] < props.product.tgFilter[0][0][6]){
+        // console.log(props.product.amount[index])
+        if(props.product.member_id < 0){
+            if(props.product.amount[index] < props.product.tgFilter[0][0][6]){
             props.product.amount[index]++
+            }else{
+                alert (`數量不可大於庫存:${props.product.tgFilter[0][0][6]}`);
+            }
         }else{
-            alert (`數量不可大於庫存:${props.product.tgFilter[0][0][6]}`);
+            if(props.product.sqlCart[index].AMOUNT < props.product.sqlCart[index].STOCK){
+            props.product.sqlCart[index].AMOUNT++
+            }else{
+                alert (`數量不可大於庫存:${props.product.sqlCart[index].STOCK}`);
+            }
         }
     };
 
@@ -94,9 +123,14 @@ const countPrice=(a,b)=>{
     // });
 
 onMounted(()=>{
-    for(let i=0;i<props.product.productId.length;i++){
+    if(props.product.member_id < 0){
+        for(let i=0;i<props.product.productId.length;i++){
         amount.value.push(1);
+        }
+    }else{
+
     }
+    
 })
 
 

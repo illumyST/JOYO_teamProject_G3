@@ -11,7 +11,8 @@ $sql = "SELECT
                 a.*,
                 b.NAME,
                 b.CURRENT_PRICE,
-                b.IMG_URL_ONE
+                b.IMG_URL_ONE,
+                b.STOCK
          FROM CART as a
          JOIN PRODUCT as b
               ON a.PRODUCT_ID=b.PRODUCT_ID
