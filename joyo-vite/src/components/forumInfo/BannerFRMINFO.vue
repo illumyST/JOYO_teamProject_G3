@@ -14,10 +14,7 @@
           <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '心得分享'">
             {{ forumArticle.articleFilter.RATE }}
           </p>
-          <p
-            v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '揪團區'"
-            class="forum_category_area"
-          >
+          <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '揪團區'" class="forum_category_area">
             {{ forumArticle.articleFilter.LOCATION }}
           </p>
           <p v-show="forumArticle.articleFilter.ARTICLE_CATEGORY == '發問區'">
@@ -68,11 +65,7 @@
       <span class="forumInfo_comments_line"></span>
 
       <div class="forumInfo_comments_text">
-        <div
-          class="forumInfo_comments_text_title"
-          v-for="(item, index) in ForumInfoMsgs"
-          :key="index"
-        >
+        <div class="forumInfo_comments_text_title" v-for="(item, index) in ForumInfoMsgs" :key="index">
           <img :src="item.IMG_URL" alt="" />
           <p>{{ item.MEMBER_NAME }}</p>
           <p>{{ item.ARTICLE_COMMENT_DATE }}</p>
@@ -83,19 +76,12 @@
   </div>
 
   <div class="forumInfo_right_msg">
-    <textarea
-      class="forumInfo_right_msg_text"
-      id="forumInfo_right_msg_text"
-      placeholder="留言"
-      v-model="postMsg.MsgText"
-    ></textarea>
+    <textarea class="forumInfo_right_msg_text" id="forumInfo_right_msg_text" placeholder="留言"
+      v-model="postMsg.MsgText"></textarea>
     <div class="forumInfo_right_msg_icon">
-      <botton class="fa-paper-plane_icon" @click="handleSendButtonClick"
-        ><i class="fa-solid fa-paper-plane"></i
-      ></botton>
-      <botton class="fa-heart_icon" @click="handleLikeButtonClick"
-        ><i class="fa-regular fa-heart" :class="{ liked: isLiked }"></i
-      ></botton>
+      <botton class="fa-paper-plane_icon" @click="handleSendButtonClick"><i class="fa-solid fa-paper-plane"></i></botton>
+      <botton class="fa-heart_icon" @click="handleLikeButtonClick"><i class="fa-regular fa-heart"
+          :class="{ liked: isLiked }"></i></botton>
     </div>
   </div>
 </template>
@@ -103,7 +89,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import { useRoute,useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const forumArticle = ref({
@@ -127,18 +113,18 @@ const fetchData = () => {
       // console.error(err);
     });
 };
-const getGame=()=>{
-    let callBackId = route.params.article;
-      if(callBackId !=""){
+const getGame = () => {
+  let callBackId = route.params.article;
+  if (callBackId != "") {
 
-      }else{
-        callBackId ="article：1";
-      }
-      let arr1=(forumArticle.value.articleAll.filter((article)=>"article:"+article.ARTICLE_ID == callBackId));
-      forumArticle.value.articleFilter=arr1[0];
-      props.forumCategory.cate=forumArticle.value.articleFilter.ARTICLE_CATEGORY;
-      // console.log( props.forumCategory.cate);
-   
+  } else {
+    callBackId = "article：1";
+  }
+  let arr1 = (forumArticle.value.articleAll.filter((article) => "article:" + article.ARTICLE_ID == callBackId));
+  forumArticle.value.articleFilter = arr1[0];
+  props.forumCategory.cate = forumArticle.value.articleFilter.ARTICLE_CATEGORY;
+  // console.log( props.forumCategory.cate);
+
 };
 
 // const getGame = () => {
@@ -187,39 +173,39 @@ const postMsg = ref({
 const router = useRouter();
 // 處理發送按钮點擊事件
 const handleSendButtonClick = () => {
-  let artId = route.params.article.substring(8);
-  postMsg.value.articleID = artId;
-  // console.log(postMsg.value.articleID);
-  if (postMsg.value.MemberId < 0) {
-    // 用户不是會員，给出提示或要求登入/註冊
-    alert("請登入或註冊為會員");
-    router.push('/signIn');
-    // console.log(postMsg.value.MemberId);
-  } else {
-    // console.log(postMsg.value.MemberId);
-    if(postMsg.value.MsgText !== ""){
-      axios
-        .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
-        .then((res) => {
-          // console.log(res.data);
-          // 清空留言文本框
-          postMsg.value.MsgText = "";
-          // alert(res.data);
-          alert("留言成功");
+  axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
+    .then(res => {
+      if (res.data) {
+        // 已登入
+        let artId = route.params.article.substring(8);
+        postMsg.value.articleID = artId;
+        if (postMsg.value.MsgText !== "") {
+          axios
+            .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
+            .then((res) => {
+              // console.log(res.data);
+              // 清空留言文本框
+              postMsg.value.MsgText = "";
+              // alert(res.data);
+              alert("留言成功");
 
-          console.log(postMsg.value);
+              console.log(postMsg.value);
 
-          // 获取最新的留言数据并更新页面
-          fetchMsg();
-        })
-        .catch((error) => {
-          console.error("Error submitting post:", error);
-          alert("留言失敗");
-        });
-    }else{
-      alert("請輸入留言內容");
-    }
-  };
+              // 获取最新的留言数据并更新页面
+              fetchMsg();
+            })
+            .catch((error) => {
+              console.error("Error submitting post:", error);
+              alert("留言失敗");
+            });
+        } else {
+          alert("請輸入留言內容");
+        }
+      }else{
+        // 未登入
+        router.push(`/signIn?redirect=/forumInfo/article:${postMsg.value.articleID}`)
+      }
+    });
 }
 
 // 從後端接收留言資料
@@ -263,10 +249,10 @@ const isLiked = ref(false);
 // 點擊喜歡按钮
 const handleLikeButtonClick = () => {
   // console.log("11111");
-  if(postMsg.value.MemberId < 0){
+  if (postMsg.value.MemberId < 0) {
     // 用户不是會員，给出提示或要求登入/註冊
     alert("請登入或註冊為會員");
-  }else{
+  } else {
     isLiked.value = !isLiked.value;
     if (isLiked.value) {
       likeCount.value += 1; // 点赞数加一
@@ -298,8 +284,8 @@ const likebtn = () => {
       const hasLiked = res.data.liked; // 從後端獲取按讚狀態
       console.log(hasLiked);
       // 更新红心图标样式
-    //  hasLiked.value.liked = isLiked;
-      
+      //  hasLiked.value.liked = isLiked;
+
       // isLiked.value = false;
       // likeCount.value = "";
     })
@@ -320,7 +306,7 @@ onMounted(() => {
 
   fetchData().then(() => {
     getGame();
-    });
+  });
 })
 </script>
 
@@ -331,6 +317,7 @@ onMounted(() => {
   height: 800px;
   overflow-y: scroll;
   overflow-x: hidden;
+
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -343,11 +330,13 @@ onMounted(() => {
     background: #f6b1ca;
   }
 }
+
 .container {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   display: inline-block;
+
   img {
     width: 100%;
     display: block;
@@ -361,20 +350,23 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 遮罩層的背景色，這裡使用半透明黑色 */
-  z-index: 1; /* 設定層級，使遮罩層位於圖片之上 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 遮罩層的背景色，這裡使用半透明黑色 */
+  z-index: 1;
+  /* 設定層級，使遮罩層位於圖片之上 */
 }
+
 .forumInfo_right_main_top {
   // border: 1px solid yellow;
   @include flex-container(row, wrap, start);
   margin-bottom: 40px;
 
-  > p {
+  >p {
     margin-left: 20px;
     color: $brown;
   }
 
-  p + p {
+  p+p {
     margin-left: 40px;
     color: $brown;
   }
@@ -395,16 +387,19 @@ onMounted(() => {
   background-color: white;
   width: 90%;
   margin: 20px auto;
+
   .forum_category_area {
     font-size: 27px;
     line-height: 3.3;
   }
+
   p {
     line-height: 2;
     color: $d-pink;
     font-size: 40px;
   }
 }
+
 .forumInfo_right_main_title_right {
   // border: 1px solid palevioletred;
   width: 80%;
@@ -412,6 +407,7 @@ onMounted(() => {
 
   li {
     width: 100%;
+
     h1 {
       font-size: $h1_sub;
       line-height: 1.5em;
@@ -433,6 +429,7 @@ onMounted(() => {
 .forumInfo_right_main_title_bottom_label {
   @include flex-container(row, wrap, flex-start);
   width: 80%;
+
   li {
     background-color: $b-pink;
     font-size: $p;
@@ -448,6 +445,7 @@ onMounted(() => {
 .forumInfo_middle {
   // border: 1px solid purple;
   margin-top: 40px;
+
   p {
     line-height: 2.5;
     letter-spacing: 1.5px;
@@ -459,6 +457,7 @@ onMounted(() => {
 .forumInfo_comments {
   // border: 1px solid saddlebrown;
   margin-top: 40px;
+
   h3 {
     font-size: $h3;
     letter-spacing: 2px;
@@ -483,14 +482,14 @@ onMounted(() => {
     width: 4%;
   }
 
-  > p {
+  >p {
     font-size: $p;
     margin-left: 10px;
     color: $brown;
     letter-spacing: 1px;
   }
 
-  p + p {
+  p+p {
     margin-left: 20px;
     font-size: $p;
     color: $brown;
@@ -549,16 +548,19 @@ onMounted(() => {
     display: inline-block;
     height: 100%;
   }
+
   .fa-paper-plane {
     font-size: $h2;
     color: white;
     font-weight: 100;
     margin: 10px;
   }
+
   .fa-heart_icon {
     display: inline-block;
     height: 100%;
   }
+
   .fa-heart {
     font-size: $h2;
     color: white;
@@ -597,6 +599,7 @@ onMounted(() => {
   .forumInfo_right_main_title_right {
     width: 100%;
     margin: 25px 25px 0;
+
     li {
       h1 {
         line-height: 1.5;
@@ -678,6 +681,7 @@ onMounted(() => {
 
   .forumInfo_right_msg_icon {
     width: 21.75%;
+
     .fa-paper-plane {
       font-size: 1.2rem;
       margin: 5px;

@@ -16,9 +16,6 @@
       <div class="mailCheck_Check_btn" @click="doMailCheck()">
         進行驗證
       </div>
-
-
-
     </div>
   </div>
 </template>

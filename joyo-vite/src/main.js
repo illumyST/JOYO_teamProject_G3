@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
             console.log('[is_login] from [main.js]', is_login.value);
 
             // 登入後要屏蔽 signIn 頁面
-            if (to.fullPath === '/signIn' || to.fullPath === '/signIn/') {
+            if (to.path === '/signIn' || to.path === '/signIn/') {
                 if (is_login.value) {
                     next(from.fullPath);
                 }
