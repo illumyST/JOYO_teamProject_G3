@@ -7,6 +7,7 @@
       <div class="mailCheck_little_box">
         <p class="mailCheck_p">桌迷藏註冊驗證碼</p>
         <p class="mailCheck_p">請輸入您電子信箱中的6位數驗證碼。</p>
+        <p class="mailCheck_p sendCheckMail" @click="sendCheckMail()">找不到驗證碼？重新發送驗證信</p>
       </div>
       <div class="mailCheck_text">
         <input type="text" class="checkInput" maxlength="6" v-model="checkNumber">
@@ -44,11 +45,26 @@ const doMailCheck = () => {
       alert('驗證失敗！');
     }
   })
-}
+};
 
+const sendCheckMail = () => {
+  axios.get('/api/logIn&Out/frontSendCheckMail.php')
+  .then(res => {
+    if(res.data){
+      alert('請至註冊信箱收驗證信，完成會員驗證！');
+    }else{
+      alert('驗證信寄送失敗！');
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
+
+.sendCheckMail{
+  cursor: pointer;
+  text-decoration: underline;
+}
 .mailCheck_wrapper {
   width: 1200px;
   margin: 0 auto;

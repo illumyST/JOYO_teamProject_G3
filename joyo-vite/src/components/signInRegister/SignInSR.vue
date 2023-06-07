@@ -76,12 +76,14 @@ const doLogInCheck = function () {
                     } else {
                         router.push('/');
                     }
-                } else {
-                    alert('登入失敗！');
-                }
-            });
-    }
-
+            } else if (res.data==='VERIFY_STATE_0') {
+                alert('登入失敗！此信箱尚未驗證，前往驗證');
+                router.push('/mailCheck');
+            }else{
+                alert('登入失敗！帳號或密碼錯誤或未註冊！');
+            }
+        });
+    };
 };
 
 

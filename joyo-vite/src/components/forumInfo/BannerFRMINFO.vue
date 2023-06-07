@@ -103,7 +103,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 
 const route = useRoute();
 const forumArticle = ref({
@@ -137,7 +137,7 @@ const getGame=()=>{
       let arr1=(forumArticle.value.articleAll.filter((article)=>"article:"+article.ARTICLE_ID == callBackId));
       forumArticle.value.articleFilter=arr1[0];
       props.forumCategory.cate=forumArticle.value.articleFilter.ARTICLE_CATEGORY;
-      console.log( props.forumCategory.cate);
+      // console.log( props.forumCategory.cate);
    
 };
 
@@ -166,6 +166,7 @@ const getMemberId = () => {
         postMsg.value.MemberId = -1;
         // console.log(res.data);
       } else {
+        // console.log(postMsg.value.MemberId);
       }
     })
     .catch((err) => {
@@ -180,6 +181,10 @@ const postMsg = ref({
   articleID: "",
 });
 
+// postMsg.value.MemberId < 0
+
+
+const router = useRouter();
 // 處理發送按钮點擊事件
 const handleSendButtonClick = () => {
   let artId = route.params.article.substring(8);
@@ -188,30 +193,34 @@ const handleSendButtonClick = () => {
   if (postMsg.value.MemberId < 0) {
     // 用户不是會員，给出提示或要求登入/註冊
     alert("請登入或註冊為會員");
-    // 或執行其他邏輯
+    router.push('/signIn');
+    // console.log(postMsg.value.MemberId);
   } else {
-    // console.log("1111111");
-    axios
-      .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
-      .then((res) => {
-        // console.log(res.data);
-        // 清空留言文本框
-        postMsg.value.MsgText = "";
-        // alert(res.data);
-        alert("發文成功");
+    // console.log(postMsg.value.MemberId);
+    if(postMsg.value.MsgText !== ""){
+      axios
+        .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
+        .then((res) => {
+          // console.log(res.data);
+          // 清空留言文本框
+          postMsg.value.MsgText = "";
+          // alert(res.data);
+          alert("留言成功");
 
-        // 获取最新的留言数据并更新页面
-        fetchMsg();
+          console.log(postMsg.value);
 
-        // 更新資料庫喜歡的數量
-        likebtn();
-      })
-      .catch((error) => {
-        console.error("Error submitting post:", error);
-        alert("發文失敗");
-      });
-  }
-};
+          // 获取最新的留言数据并更新页面
+          fetchMsg();
+        })
+        .catch((error) => {
+          console.error("Error submitting post:", error);
+          alert("留言失敗");
+        });
+    }else{
+      alert("請輸入留言內容");
+    }
+  };
+}
 
 // 從後端接收留言資料
 const ForumInfoMsgs = ref([]);
@@ -248,40 +257,60 @@ const formatDate = (dateString) => {
 
 // 存放點擊喜歡的值
 const likeCount = ref("");
+// console.log(likeCount.value);
 const isLiked = ref(false);
 
 // 點擊喜歡按钮
 const handleLikeButtonClick = () => {
   // console.log("11111");
-  isLiked.value = !isLiked.value;
-  if (isLiked.value) {
-    likeCount.value++; // 点赞数加一
-    // console.log(likeCount.value);
-  } else {
-    likeCount.value--; // 点赞数减一
+  if(postMsg.value.MemberId < 0){
+    // 用户不是會員，给出提示或要求登入/註冊
+    alert("請登入或註冊為會員");
+  }else{
+    isLiked.value = !isLiked.value;
+    if (isLiked.value) {
+      likeCount.value += 1; // 点赞数加一
+    } else {
+      likeCount.value -= 1; // 点赞数减一
+    }
   }
+
+  // 更新資料庫喜歡的數量
+  likebtn();
 };
 
 const likebtn = () => {
   let artId = route.params.article.substring(8);
   postMsg.value.articleID = artId;
+  let memberId = postMsg.value.MemberId;
+
 
   const params = new URLSearchParams();
   params.append("artId", artId);
-  params.append("likeCount", likeCount.value); // 將點讚值添加到参数中
+  params.append("likeCount", likeCount.value); // 根据实际的 isLiked 值来确定增减数量
+  params.append("memberId", memberId);
+
 
   axios
     .post("/api/forumInfo/addLikeCount.php", params) // PHP 文件路径
     .then((res) => {
       // console.log(res.data);
-      isLiked.value = false;
-      likeCount.value = "";
+      const hasLiked = res.data.liked; // 從後端獲取按讚狀態
+      console.log(hasLiked);
+      // 更新红心图标样式
+    //  hasLiked.value.liked = isLiked;
+      
+      // isLiked.value = false;
+      // likeCount.value = "";
     })
     .catch((error) => {
       console.error("Error updating like count:", error);
       // alert("點讚失敗");
     });
 };
+
+
+
 
 onMounted(() => {
   getMemberId();
@@ -292,7 +321,6 @@ onMounted(() => {
   fetchData().then(() => {
     getGame();
     });
-  
 })
 </script>
 

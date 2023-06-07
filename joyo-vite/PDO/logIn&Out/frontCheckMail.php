@@ -1,8 +1,6 @@
 <?php
 session_start();
-
-// test data
-// include('../connect/conn.php');
+include('../connect/conn.php');
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);
@@ -22,9 +20,19 @@ $statement -> bindValue(1,$member_id);
 $statement -> bindValue(2,$verify_code);
 $statement -> execute();
 
-$data = $statement->fetchAll();
+$affectedRow = $statement->fetchAll();
 
-if(count($data)>0){
+if(count($affectedRow)>0){
+
+    // 驗證碼輸入正確 VERIFY_STATE = 1;
+    //              VERIFY_CODE = null
+    $sql = "update MEMBER
+	        set VERIFY_STATE = 1,
+                VERRIFY_CODE = null
+            where member_id = $member_id;";
+    $statement = $pdo -> prepare($sql);
+    $statement -> execute();
+
     echo 'true';
 }else{
     echo 'false';
