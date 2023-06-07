@@ -102,9 +102,9 @@ export default {
         this.pageCount = Math.ceil(
           this.orderDetails.length / this.itemsPerPage1
         );
-        console.log("有多少分頁", this.pageCount);
+        // console.log("有多少分頁", this.pageCount);
         this.totalItems = this.orderDetails.length;
-        console.log("總資料筆數", this.totalItems);
+        // console.log("總資料筆數", this.totalItems);
       }, 400);
     },
     getDefaultOrderTable() {

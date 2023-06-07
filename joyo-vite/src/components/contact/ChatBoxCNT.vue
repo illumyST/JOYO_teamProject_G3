@@ -2,7 +2,7 @@
   <div class="ms_chat_box">
     <section class="ms_user_details">
       <img src="../../assets/img/cat.png" alt="" />
-      <span>王小明</span>
+      <span>桌遊客服中心</span>
     </section>
 
     <div class="ms_chat_room">
@@ -37,7 +37,9 @@
     </form>
   </div>
 </template>
-<script></script>
+<script>
+
+</script>
 <style lang="scss" scoped>
 .ms_chat_box {
   display: flex;
@@ -117,7 +119,7 @@
   .ms_sending_text {
     margin-left: auto;
     background-color: $green;
-    border-radius: 0 10px 10px 10px;
+    border-radius: 10px 0px 10px 10px;
     padding: 15px;
     box-sizing: border-box;
     color: white;
