@@ -77,7 +77,7 @@ const productInfor=ref({
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
     console.log(props.cartItem);
-    return axios.get('/api/index/getHotItem.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotItem.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             if(res.data.length===3){

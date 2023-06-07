@@ -10,16 +10,6 @@
 </template>
 
 <script setup>
-
-// 測試打包後能否使用php
-import { onMounted } from 'vue';
-
-onMounted(() => {
-    axios.post('/api/test/test.php')
-        .then(res => {
-                console.log(res.data);
-        });
-})
 </script>
 
 <style lang="scss" scoped>

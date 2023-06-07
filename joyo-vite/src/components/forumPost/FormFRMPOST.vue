@@ -158,7 +158,7 @@ const postData = ref({
 // 會員編號
 const getMemberId=()=>{
     // console.log(123);
-    return axios.get('/api/forumPost/forumCheckLogin.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
         .then(res => {
             //將資料庫回傳的資料存在變數中
             postData.value.memberId = res.data;
@@ -496,7 +496,3 @@ input[type="button"] {
 }
 
 </style> 
-<<<<<<< HEAD
-
-=======
->>>>>>> sin

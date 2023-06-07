@@ -20,7 +20,7 @@ const mail = ref('');
 const router = useRouter();
 const resetPassword = () => {
 
-  axios.post('api/logIn&Out/frontResetPassword.php',
+  axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontResetPassword.php`,
     { mail: mail.value }
   ).then(res => {
     if (res.data) {

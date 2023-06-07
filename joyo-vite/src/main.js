@@ -14,7 +14,7 @@ app.provide('front_is_login', is_login);
 
 router.beforeEach((to, from, next) => {
 
-    axios.get('/api/logIn&Out/frontSessionCheck.php')
+    axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
         .then(res => {
 
             is_login.value = res.data;

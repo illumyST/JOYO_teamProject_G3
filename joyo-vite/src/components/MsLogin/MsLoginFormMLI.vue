@@ -59,7 +59,7 @@ const passwordToggle = () => {
 
 const doLogInCheck = function () {
 
-  axios.post('/api/logIn&Out/logInCheck.php',
+  axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/logInCheck.php`,
     logInData.value
   )
     .then(res => {

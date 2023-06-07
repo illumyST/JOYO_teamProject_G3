@@ -64,7 +64,7 @@ const doLogInCheck = function () {
 
 
     if(!MailCheck.value && !PasCheck.value){
-         axios.post('/api/logIn&Out/frontLogInCheck.php',
+         axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontLogInCheck.php`,
             logInData
         )
             .then(res => {

@@ -19,11 +19,10 @@ const cartItem = ref ({
     member_id: "-1", 
 });
 const getmember_id = () => {
-    return axios.get('/api/forumPost/forumCheckLogin.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
     .then(res => {
         if(res.data){
             cartItem.value.member_id = res.data;
-            // console.log(cartItem.value.MEMBER_ID);
         }else{
             // console.log(cartItem.value.MEMBER_ID);
         }

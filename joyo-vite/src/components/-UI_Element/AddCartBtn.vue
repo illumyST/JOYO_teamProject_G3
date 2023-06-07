@@ -52,7 +52,7 @@ const addToCart = (list) => {
     localStorage.setItem('cart',JSON.stringify(localCart));
     alert("購物車新增成功!")
     }else {
-        axios.post('/api/product/Insert.php', props.cartItem)
+        axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
             .then(response => {
                 console.log(response.data);
             })

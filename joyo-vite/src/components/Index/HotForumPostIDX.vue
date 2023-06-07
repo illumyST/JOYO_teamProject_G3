@@ -49,7 +49,7 @@ const forumInfor=ref({
     hotForum:[],
 });
 const fetchData=()=>{
-    return axios.get('/api/index/getHotForm.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotForm.php`)
         .then(res => {
             forumInfor.value.hotForum = res.data;
             console.log(forumInfor.value.hotForum);

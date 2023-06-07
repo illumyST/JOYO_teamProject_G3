@@ -166,7 +166,7 @@ const formData = new FormData(form);
 
 formData.append('opid',props['message'].pronum);
 // console.log(form.elements.ptype.value)
-axios.post('/api/msProductManagement/msProductManagementUP.php', formData, {
+axios.post(`${import.meta.env.VITE_API_URL}/msProductManagement/msProductManagementUP.php`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

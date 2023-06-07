@@ -184,7 +184,7 @@ const selectModel = ref([]);
 
 const searchBoxOpen = ref(false);
 const searchItem = () => {
-    axios.post('/api/select/select.php', data)
+    axios.post(`${import.meta.env.VITE_API_URL}/select/select.php`, data)
         .then(response => {
             //     // 處理回應資料
 

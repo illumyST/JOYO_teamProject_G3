@@ -35,7 +35,7 @@ const doMailCheck = () => {
   const verifyData = {
     verifyCode: checkNumber.value
   };
-  axios.post('/api/logIn&Out/frontCheckMail.php',
+  axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontCheckMail.php`,
     verifyData
   ).then(res=>{
     if(res.data){
@@ -48,7 +48,7 @@ const doMailCheck = () => {
 };
 
 const sendCheckMail = () => {
-  axios.get('/api/logIn&Out/frontSendCheckMail.php')
+  axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSendCheckMail.php`)
   .then(res => {
     if(res.data){
       alert('請至註冊信箱收驗證信，完成會員驗證！');

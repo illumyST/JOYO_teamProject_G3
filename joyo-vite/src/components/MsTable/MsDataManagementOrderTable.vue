@@ -127,12 +127,12 @@ const change = (e)=>{
     if(order.value[e].upopen){
         if( confirm("確定更改嗎？")){
             console.log(time.value);
-            axios.post('/api/msDataMangOrder/msDataMangOrderUP.php',time)
+            axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderUP.php`,time)
             .then(data =>{})
             .catch(error=>{console.log(error)});
             
         }else{
-            axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+            axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
             .then(data=>{
                 for(var n of order.value){
                     console.log(n.tid);
@@ -252,10 +252,10 @@ const itupop= (e,i)=>{
                 time:order.value[e].two,
             } 
             // console.log(chTIME.value);
-            if(confirm("確定更改嗎？")){axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
             .then(data=>{})
             .catch(error=>{console.log(error)})}else{
-                axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
                 .then(data=>{
                     for(var n of order.value){
                         for(var a of data.data){
@@ -284,10 +284,10 @@ const itupop= (e,i)=>{
                 num:3,
                 time:order.value[e].the,
             } 
-            if(confirm("確定更改嗎？")){axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
             .then(data=>{})
             .catch(error=>{console.log(error)})}else{
-                axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
                 .then(data=>{
                     for(var n of order.value){
                         for(var a of data.data){
@@ -316,10 +316,10 @@ const itupop= (e,i)=>{
                 num:4,
                 time:order.value[e].four,
             } 
-            if(confirm("確定更改嗎？")){axios.post('/api/msDataMangOrder/msDataMangOrderCH.php',chTIME)
+            if(confirm("確定更改嗎？")){axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderCH.php`,chTIME)
             .then(data=>{})
             .catch(error=>{console.log(error)})}else{
-                axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+                axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
                 .then(data=>{
                     for(var n of order.value){
                         for(var a of data.data){
@@ -342,7 +342,7 @@ const itupop= (e,i)=>{
 }
 
 
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
     for(var n of order.value){
         console.log(n.tid);

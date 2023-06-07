@@ -53,7 +53,7 @@ const addAdmins = ()=>{
       a.value++
       if(a.value ===  Object.values(addform.value).length){
         // console.log("123");
-        axios.post('/api/msBack_Account/msBack_AccountADD.php',addform.value)
+        axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_AccountADD.php`,addform.value)
         .then(data=>{
           addform.value["bai"] = data.data ;
           console.log(addform.value);

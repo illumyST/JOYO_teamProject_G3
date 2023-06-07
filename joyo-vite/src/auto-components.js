@@ -66,8 +66,6 @@ declare module '@vue/runtime-core' {
     MsAddProduct: typeof import('./pages/ms-product-management/MsAddProduct.vue')['default']
     MsAddProductForm: typeof import('./components/MsForm/msAddProductForm.vue')['default']
     MsBannerManagement: typeof import('./components/MsContentManagement/MsBannerManagement.vue')['default']
-    MsChangeAdminPassword: typeof import('./pages/ms-system-admin/MsChangeAdminPassword.vue')['default']
-    MsChangeAdminPasswordForm: typeof import('./components/MsForm/MsChangeAdminPasswordForm.vue')['default']
     MsChangePassword: typeof import('./pages/ms-system-admin/MsChangePassword.vue')['default']
     MsChangePasswordForm: typeof import('./components/MsForm/msChangePasswordForm.vue')['default']
     MsChat: typeof import('./components/MsLiveChat/MsChat.vue')['default']

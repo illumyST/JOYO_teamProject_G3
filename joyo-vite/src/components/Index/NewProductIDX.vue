@@ -26,7 +26,7 @@ const props = defineProps({
     },
     });
 const fetchData=()=>{
-    return axios.get('/api/index/getNewItem.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/index/getNewItem.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             productInfor.value.newItem = res.data;

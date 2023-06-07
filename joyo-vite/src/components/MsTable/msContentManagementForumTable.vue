@@ -37,7 +37,7 @@ if(YN){
 //   arr.value.splice(index,1);
   emits('del',item);
 //   console.log(item);
-  axios.post('/api/MsContentManagement/MsContentManagementDL.php',item)
+  axios.post(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagementDL.php`,item)
   .then(data=>{console.log(data.data)})
   .catch(error=>{console.log(error)})
 }

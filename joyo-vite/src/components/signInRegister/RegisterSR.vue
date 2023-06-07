@@ -71,7 +71,7 @@ const doRegister = function () {
             PasCheck.value = false; 
             
         };
-    axios.post('/api/logIn&Out/frontRegister.php',
+    axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontRegister.php`,
         logInData
     )
         .then(res => {

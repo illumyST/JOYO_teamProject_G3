@@ -18,7 +18,7 @@ const parentInfo = inject('front_is_login');
 
 // 登出按鈕點擊後登出
 const logOut = () => {
-        axios.post('/api/logIn&Out/logOut.php')
+        axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/logOut.php`)
                 .then(res => {
                         alert('登出成功！');
                         location.href = '/';
