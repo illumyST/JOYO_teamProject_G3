@@ -161,10 +161,6 @@ const routes = [
                 path: 'signIn',
                 name: 'signIn',
                 component: () => import('@/pages/signInRegister.vue'),
-                meta: {
-                    title: '登入註冊',
-                    requiresAuth: false,
-                },
             },
             //前台子頁＿[mailCheck] -------------------
             {

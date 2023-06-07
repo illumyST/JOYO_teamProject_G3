@@ -11,17 +11,21 @@
 <script setup>
 import { inject } from 'vue';
 import axios from 'axios';
+import { useRoute,useRouter } from 'vue-router';
+const currentPage = useRoute().path;
 
+const router = useRouter();
 // 抓取 main.js 的 is_login
 const parentInfo = inject('front_is_login');
 // console.log(parentInfo)
 
 // 登出按鈕點擊後登出
 const logOut = () => {
+        console.log(currentPage);
         axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/logOut.php`)
                 .then(res => {
                         alert('登出成功！');
-                        location.href = '/';
+                        location.href = `/#${currentPage}`;
                 });
 }
 

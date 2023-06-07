@@ -27,6 +27,16 @@ router.beforeEach((to, from, next) => {
                 }
             };
 
+            // 驗證信頁面、忘記密碼頁，只能從 signIn 頁進入
+            if (to.path === '/mailCheck' || to.path === '/mailCheck/' || to.path === '/forgetPassword' || to.path === '/forgetPassword/') {
+                if (from.path === '/signIn' || from.path === '/signIn/') {
+                    next();
+                } else {
+                    next(from.fullPath);
+                }
+            };
+
+            // 導航守衛
             if (to.meta.requiresAuth) {
                 if (is_login.value) {
                     next();
@@ -40,6 +50,29 @@ router.beforeEach((to, from, next) => {
             } else {
                 next();
             }
+
+
+            // if (to.meta.requiresAuth) {
+            //     if(to.path === '/mailCheck' || to.path === '/mailCheck/'|| to.path === '/forgetPassword' || to.path === '/forgetPassword/'){
+            //         if(from.path === '/signIn' || from.path === '/signIn/'){
+            //             next();
+            //         }else{
+            //             next(from.fullPath);
+            //         }
+            //     }else{
+            //         if (is_login.value) {
+            //             next();
+            //         } else {
+            //             alert('請先登入');
+            //             next({
+            //                 name: 'signIn',
+            //                 query: { redirect: to.fullPath },
+            //             })
+            //         };
+            //     }; 
+            // } else {
+            //     next();
+            // }
         });
 });
 
