@@ -5,8 +5,8 @@
                 <h2>{{currentCategory.cate}}</h2>
                 <nav class="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
-                        <li class="breadcrumb-item active"><a href="#">{{currentCategory.cate}}</a></li>
+                        <li class="breadcrumb-item"><RouterLink :to="'/product' +'/'+0">桌遊商城</RouterLink></li>
+                        <li class="breadcrumb-item active"><a href="#" @click.prevent>{{currentCategory.cate}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -17,7 +17,7 @@
                             <button class="product-filter-btn" type="button" id=""
                                 v-on:click="product_filter_cater_show">
                                 <span>全部商品</span>
-                                <span><img src="@/assets/img/vector.png" alt=""></span>
+                                <span><i class="fa-solid fa-angle-down"></i></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
                                 <li v-for="(list,index) in category" :key="index">
@@ -35,7 +35,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_player_show">
-                                    <span>遊玩人數</span><span><img src="@/assets/img/vector.png" alt=""></span>
+                                    <span>遊玩人數</span><span><i class="fa-solid fa-angle-down"></i></span>
                                 </button>
                                 <ul class="product-filter-player" :class="{active:product_filter_player_active}">
                                     <li v-for="(num,index) in palyerNum" :key="index" v-on:click="(e)=>product_filter_player(e,index)"><a class="dropdown-item" href="#"
@@ -58,8 +58,7 @@
                             </div>
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
-                                    v-on:click="product_filter_age_show"><span>適玩年齡</span><span><img
-                                            src="@/assets/img/vector.png" alt=""></span>
+                                    v-on:click="product_filter_age_show"><span>適玩年齡</span><span><i class="fa-solid fa-angle-down"></i></span>
                                 </button>
                                 <ul class="product-filter-age" :class="{active:product_filter_age_active}">
                                     <li v-for="(age,index) in palyerAge" :key="index" v-on:click="(e)=>product_filter_get_age(e,age)"><a class="dropdown-item" href="#" >{{age}}</a>
@@ -87,7 +86,7 @@
                             <div>
                                 <button class="product-filter-btn" type="button" id="product_filter_btn"
                                     v-on:click="product_filter_order_show">
-                                    <span>排序方式</span><span><img src="@/assets/img/vector.png" alt=""></span>
+                                    <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
                                 </button>
                                 <ul class="product-filter-order" :class="{active:product_filter_order_active}">
                                     <li v-for="(arrange,index) in filterOrder" :key="index"><a class="dropdown-item" href="#"
@@ -122,8 +121,8 @@
     const category=[
     '全部商品','派對遊戲','輕度策略','戰爭遊戲','棋奕遊戲','主題遊戲','家庭遊戲','團隊合作'
     ];
-    const palyerNum=["1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
-    const palyerAge=[4,5,6,7,8,9,10,11,12,13];
+    const palyerNum=["遊玩人數","1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
+    const palyerAge=["適玩年齡",4,5,6,7,8,9,10,11,12,13];
     const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
     const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
    
@@ -157,10 +156,11 @@
     const product_filter_get_age=(e,age)=>{
         e.preventDefault(e);
         let buttonText=e.target.closest("ul").previousElementSibling;
-        if(e.target.innerText==="試玩年齡"){
-            buttonText.firstElementChild.innerText=`${e.target.innerText}`;
-        }else {
-            buttonText.firstElementChild.innerText=`+${e.target.innerText}`;
+        if(e.target.innerText=="適玩年齡"){
+            console.log(age)
+            buttonText.firstElementChild.innerText=`適玩年齡`;
+        }else if(age>3){
+            buttonText.firstElementChild.innerText=`適玩年齡:+${e.target.innerText}`;
         }
         emits('updatePlayerAge', age);
     };
@@ -398,12 +398,11 @@
 .product-filter-btn {
     width: 100%;
     height: 53px;
-    background-color: $orange ;
+    background-color: #dedddd ;
     margin-right: 10px;
     border-radius: 5px;
     border: 0;
     font-size: 20px;
-    color: #fff;
     position: relative;
     cursor: pointer;
 
@@ -411,8 +410,8 @@
         margin-left: 8px;
     }
 
-    img {
-        width: 8%;
+    i {
+        color: $brown;
     }
 }
 

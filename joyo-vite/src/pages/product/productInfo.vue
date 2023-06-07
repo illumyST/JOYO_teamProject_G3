@@ -38,9 +38,8 @@ const fetchComment=()=>{
     return axios.get('/api/product/getProductComment.php')
         .then(res => {
             pageInfor.value.productAllComment=res.data;
-            console.log(pageInfor.value.productAllComment);
             }
-            )
+        )
         .catch(err => {
             // console.error(err);
         });
@@ -65,7 +64,6 @@ const guessLike=()=>{
 };
 //點擊猜你喜歡的商品卡後更換商品
 const changeInfoItem=(val)=>{
-    console.log(val);
     let arr1=(pageInfor.value.tg.filter((game)=>game.PRODUCT_ID == val));
     pageInfor.value.fliterTg=arr1[0];
 

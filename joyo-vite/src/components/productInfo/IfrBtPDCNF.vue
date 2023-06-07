@@ -45,9 +45,8 @@ const props = defineProps({
         required: true 
     },
     });
-const emits = defineEmits("changeInfoItem");
+const emits = defineEmits(["changeInfoItem"]);
 const changeItem=(list)=>{
-    console.log(list.PRODUCT_ID);
     emits('changeInfoItem', list.PRODUCT_ID);
 };
 </script>

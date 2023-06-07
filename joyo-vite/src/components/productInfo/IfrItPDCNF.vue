@@ -19,7 +19,7 @@
                     <p>遊戲分類： <span class="catergory">{{filetData.CATEGORY}}</span></p>
                     <p>遊玩人數： <span class="player-min">{{filetData.MIN_PLAYER}}</span><span>-</span><span class="player-max">{{filetData.MAX_PLAYER
                         }}</span>人</p>
-                    <p>試玩年齡： <span class="age">{{filetData.MIN_AGE}}+</span></p>
+                    <p>適玩年齡： <span class="age">{{filetData.MIN_AGE}}+</span></p>
                 </div>
                 <h2 class="intro-price">NTD： {{filetData.PRICE}}<span class="price"></span></h2>
                 <label for="car-amount">數量</label>

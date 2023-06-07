@@ -1,27 +1,32 @@
-<template v-if="filetData">
+<template v-if="filetData && index>0">
 <div class="infor-top">
             <div class="col-3 breadcrumb">
                 <nav class="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" >
                         <li class="breadcrumb-item"><a href="#">桌遊商城</a></li>
-                        <li class="breadcrumb-item "><a href="#">{{filetData.CATEGORY}}</a></li>
-                        <li class="breadcrumb-item active">{{filetData.NAME}}<a href="#"></a></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='派對遊戲'"><RouterLink :to="'/product/' +1">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='輕度策略'"><RouterLink :to="'/product/' +2">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='戰爭遊戲'"><RouterLink :to="'/product/' +3">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='棋奕遊戲'"><RouterLink :to="'/product/' +4">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='主題遊戲'"><RouterLink :to="'/product/' +5">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='家庭遊戲'"><RouterLink :to="'/product/' +6">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item " v-if="filetData.CATEGORY=='團隊合作'"><RouterLink :to="'/product/' +7">{{filetData.CATEGORY}}</RouterLink></li>
+                        <li class="breadcrumb-item active"><a href="#" @click.prevent>{{filetData.NAME}}</a></li>
                     </ol>
                 </nav>
             </div>
         </div>
 </template>
-<script setup></script>
-<script >
-    export default {
-    props: {
-        filetData: {
-        type: Object,
-        required: true
-    }
+<script setup>
+const props = defineProps({
+    filetData: {
+    type: Object,
+    required: true
   }
-}
+});
+
 </script>
+
 <style lang="scss" scoped>
 .product-wrapper {
     color: $brown;
@@ -636,6 +641,7 @@ button {
     a {
         margin-left: 3px;
         color:$brown;
+        white-space: nowrap;
     }
 }
 

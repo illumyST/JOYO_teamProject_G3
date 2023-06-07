@@ -26,6 +26,8 @@
 
     li {
         display: flex;
+        span{
+            margin-right: 30px;}
 
     }
 
