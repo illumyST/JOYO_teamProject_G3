@@ -52,7 +52,7 @@ const fetchData=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotForm.php`)
         .then(res => {
             forumInfor.value.hotForum = res.data;
-            console.log(forumInfor.value.hotForum);
+            // console.log(forumInfor.value.hotForum);
             if(res.data.length>0 &&res.data.length<5){
                 let ln=3-res.data.length;
                 for(let i=0;i<ln;i++){

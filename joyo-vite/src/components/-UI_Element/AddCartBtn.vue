@@ -6,7 +6,7 @@
 
 <script setup>
 import axios from 'axios';
-import { defineProps,  onMounted,  ref, watch} from 'vue';
+import { defineProps,  ref, watch} from 'vue';
 const props = defineProps({
     list: {
         type:  Object,
@@ -26,11 +26,12 @@ const cartItem = ref ({
 const cartList = ref([]);
 
 const addToCart = (list) => {
-    console.log(list.PRODUCT_ID);   
+    // console.log(list.PRODUCT_ID);   
     props.cartItem.PRODUCT_ID = props.list.PRODUCT_ID;
-    if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){
+    let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){   //沒登入的時候
         props.cartItem.member_id ="-1";
-        let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+        // let localCart = JSON.parse(localStorage.getItem('cart')) || [];
         if(localCart.length === 0 ){
             localCart.unshift(props.cartItem);
             localStorage.setItem("cart",JSON.stringify(localCart));
@@ -48,11 +49,16 @@ const addToCart = (list) => {
                 localCart.unshift(props.cartItem);
             }
         }
-        // console.log(props.cartItem.member_id)
+        console.log(props.cartItem.member_id)
     localStorage.setItem('cart',JSON.stringify(localCart));
     alert("購物車新增成功!")
+<<<<<<< HEAD
     }else {
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
+=======
+    }else {     //登入的時候
+        axios.post('/api/product/Insert.php', props.cartItem)
+>>>>>>> f78c402a141618030006ed35d410cb27743c778e
             .then(response => {
                 console.log(response.data);
             })
@@ -65,10 +71,7 @@ const addToCart = (list) => {
     
 };
 
-onMounted(() => {
-    // sessionStorage.removeItem('login')
-    // setLogin("2")
-});
+
 
 
 </script>
