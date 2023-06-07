@@ -18,7 +18,7 @@
 
     if(count($affectedRow)>0){
         include './saveMemberIdSession.php';
-        if($data[0][0]==1){
+        if($affectedRow[0][0]===1){
             $_SESSION['frontIsLogIn'] = true;
             echo 'true';
         }else{

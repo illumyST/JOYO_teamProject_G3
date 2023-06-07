@@ -17,7 +17,8 @@ const props = defineProps({
     required: true
   }})
 
-  console.log(props.message);
+//   console.log(props.message);
+
 // ----- 父元件按按鈕取值 ------
 const modelValue = ref();
 defineExpose({ modelValue });

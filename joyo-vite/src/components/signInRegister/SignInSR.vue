@@ -2,21 +2,19 @@
     <!-- -------- 同步取值 -------- -->
     <!-- <InputWithTitle @value-update="getChild">電子郵件</InputWithTitle> -->
 
-    <InputWithTitle ref="mail" :message="MailCheck">電子郵件
+    <InputWithTitle ref="mail" :message="!MailCheck">電子郵件
         <template #check>
-            <p v-if="MailCheck">電子信箱格式錯誤</p>
-            <p v-if="!MailCheck" style="color: rgba(240, 248, 255, 0);">test</p>
+            <p v-if="!MailCheck">電子信箱格式錯誤</p>
         </template>
-        
+
     </InputWithTitle>
-    <InputWithTitle class="password" ref="password" :message="PasCheck">密碼
+    <InputWithTitle class="password" ref="password" :message="!PasCheck">密碼
         <RouterLink to="/forgetPassword">忘記密碼？</RouterLink>
         <template #check>
-            <p v-if="PasCheck">密碼格式錯誤</p>
-            <p v-if="!PasCheck" style="color: rgba(240, 248, 255, 0);">test</p>
+            <p v-if="!PasCheck">密碼格式錯誤</p>
         </template>
     </InputWithTitle>
-    
+
     <div class="btn" @click="doLogInCheck()">登入</div>
 </template>
 
@@ -30,8 +28,8 @@ const password = ref();
 const route = useRoute();
 const router = useRouter();
 
-const MailCheck= ref(false);
-const PasCheck= ref(false);
+const MailCheck = ref(true);
+const PasCheck = ref(true);
 // ?. 如果屬性不存在也不會發生錯誤 
 const redirectUrl = route?.query?.redirect;
 const redirectUrlStr = ref('');
@@ -41,48 +39,55 @@ if (redirectUrl) {
 };
 
 const doLogInCheck = function () {
-    
+
     const logInData = {
-        mail:mail.value.modelValue,
-        pwd:password.value.modelValue,
+        mail: mail.value.modelValue,
+        pwd: password.value.modelValue,
     }
-    var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(re.test(logInData['mail'])){
-        MailCheck.value = false ; 
-    }else{
-        MailCheck.value = true ; 
-        
+
+    var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+    if (re.test(logInData['mail'])) {
+        MailCheck.value = true;
+    } else {
+        MailCheck.value = false;
+
     };
 
-    //密碼驗證不知道需不需要
-    // var pa = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
-    if(logInData.pwd != undefined && logInData.pwd.trim() != ""){
-        PasCheck.value = false ; 
-    }else{
-        PasCheck.value = true ;
-    }
+    var re_pas = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/;
+    if ((logInData.pwd != undefined) && (logInData.pwd.trim() != "")) {
+        if (re_pas.test(logInData['pwd'])) {
+            PasCheck.value = true;
+        } else {
+            PasCheck.value = false;
+        };
+    } else {
+        PasCheck.value = false;
+
+    };
 
 
-    if(!MailCheck.value && !PasCheck.value){
-         axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontLogInCheck.php`,
+    if (MailCheck.value && PasCheck.value) {
+        axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontLogInCheck.php`,
             logInData
         )
             .then(res => {
-                if (res.data) {
-                    console.log(res.data);
+                console.log('res', res.data)
+                if (res.data === true) {
                     alert('登入成功！');
                     if (redirectUrl) {
                         router.push({ path: redirectUrlStr.value });
                     } else {
                         router.push('/');
                     }
-            } else if (res.data==='VERIFY_STATE_0') {
-                alert('登入失敗！此信箱尚未驗證，前往驗證');
-                router.push('/mailCheck');
-            }else{
-                alert('登入失敗！帳號或密碼錯誤或未註冊！');
-            }
-        });
+                } else if (res.data === 'VERIFY_STATE_0') {
+                    alert('登入失敗！此信箱尚未驗證，前往驗證');
+                    router.push('/mailCheck');
+                } else if (res.data === false) {
+                    alert('登入失敗！帳號或密碼錯誤或未註冊！');
+                } else {
+                    console.log('error：出現其他情況，回 SignInSR 和 frontLogINCheck.php 檢查')
+                }
+            });
     };
 };
 
@@ -95,20 +100,21 @@ const doLogInCheck = function () {
 </script>
 
 <style lang="scss" scoped>
-
-a{
+a {
     // display: inline-block;
     align-self: self-end;
     font-size: 14px;
     cursor: pointer;
 }
+
 .btn {
     line-height: 40px;
     width: 100%;
     margin-top: 20px;
     max-width: initial;
 }
-p{
+
+p {
     color: red;
     margin-bottom: 30px;
     user-select: none;

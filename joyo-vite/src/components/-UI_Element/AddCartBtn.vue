@@ -52,13 +52,8 @@ const addToCart = (list) => {
         console.log(props.cartItem.member_id)
     localStorage.setItem('cart',JSON.stringify(localCart));
     alert("購物車新增成功!")
-<<<<<<< HEAD
     }else {
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
-=======
-    }else {     //登入的時候
-        axios.post('/api/product/Insert.php', props.cartItem)
->>>>>>> f78c402a141618030006ed35d410cb27743c778e
             .then(response => {
                 console.log(response.data);
             })
