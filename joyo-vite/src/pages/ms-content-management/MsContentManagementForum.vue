@@ -45,7 +45,7 @@ const del = (e)=>{
 }
 
 
-const userSelect = ref([{name:"會員編號",value:1}, {name:"用戶",value:2},{name:"發文日期",value:3}, {name:"文章標題",value:4}]);
+const userSelect = ref([{name:"文章編號",value:1}, {name:"用戶",value:2},{name:"發文日期",value:3}, {name:"文章標題",value:4}]);
 provide("us", userSelect);
 // console.log(userSelect);
 const getseach = (n) => {
