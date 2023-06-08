@@ -31,7 +31,7 @@
                         </ul>
                     </ul>
                 </li>
-                <li class="col-12" v-for="(list,index) in product.sqlCart" :key="index" v-if="product.member_id >= 0">
+                <li class="col-12" v-for="(list,index) in product.sqlCart" :key="list.PRODUCT_ID" v-if="product.member_id >= 0">
                     <ul>
                         <li class="cartConfirm_con_title_item_img"><img v-bind:src="list.IMG_URL_ONE" alt=""></li>
                         <ul class="col-9">
@@ -59,20 +59,27 @@
 </template>
 <script setup>
 import axios from 'axios';
-import {onMounted} from "vue"
+import {onMounted, watch,defineEmits} from "vue"
 const props = defineProps({
     product:{
         type: Object,
         required: true,
     },
+   
 });
+
+const sendValue = ref({
+    PRODUCT_ID : "",
+    member_id : "",
+})
+
 //計算商品總金額
 const countPrice=(a,b)=>{
         return  a*b
         
 }
 
-
+const emits=defineEmits(['renewsqlCart'])
 
 
     // const prodectsValueCopy = computed(() => [...props.prodects]);
@@ -104,23 +111,41 @@ const countPrice=(a,b)=>{
         }
     };
 
-    // 刪除商品
-    const remove=(index)=>{
-        if (confirm("確定移除此商品")) {
-            // axios.delete('/api/product/Insert.php', props.cartItem)
-            let localCart = JSON.parse(localStorage.getItem('cart'));
-            localCart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(localCart));
-            props.product.tgFilter.splice(index, 1);
-        } else {
-            console.log("取消移除");
-        }        
+    const getproductData = () => {
+        return axios.get('/api/cart/getCartItem.php',{ params: { memberId: props.product.member_id} })
+        .then(res => {
+                        //將資料庫回傳的資料存在tg變數中
+                    // console.log( res.data);
+                    props.product.sqlCart = res.data;                    
+        })
     }
 
-    // watch( prodectsValueCopy, (newValue) => {
-    // // 更新 props.inputValue 的值
-    // props.product = newValue;
-    // });
+    // 刪除商品
+    const remove= async (index)=>{
+        // 沒登入的時候
+        if(props.product.member_id === 'is_not_login' || props.product.member_id === '-1'){
+            if (confirm("確定移除此商品")) {
+                let localCart = JSON.parse(localStorage.getItem('cart'));
+                localCart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(localCart));
+                props.product.tgFilter.splice(index, 1);
+            }
+        }else{    // 登入的時候
+            // console.log(props.product.sqlCart[index].PRODUCT_ID)
+            sendValue.value.PRODUCT_ID = props.product.sqlCart[index].PRODUCT_ID;
+            sendValue.value.member_id = props.product.member_id;
+            try{
+                if(confirm("確定移除此商品")){
+                    await axios.post('/api/product/deleteCartItem.php', sendValue.value);
+                    getproductData()         
+                }
+            }catch(err){
+                console.error(err);
+            };
+        }       
+    }
+
+    
 
 onMounted(()=>{
     if(props.product.member_id < 0){
