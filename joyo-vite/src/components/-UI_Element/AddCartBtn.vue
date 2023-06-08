@@ -84,6 +84,11 @@ button {
     font-size: 22px;
     color: $green;
     cursor: pointer;
+    transition: .2s;
+    &:hover  {
+        color: $orange;
+    }
+    
 }
 
 @include m() {
