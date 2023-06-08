@@ -18,6 +18,8 @@
         </option>
       </select>
 
+      <div class="searchModel">
+
       <input
         type="text"
         class="forumPost_form_title_text"
@@ -26,7 +28,13 @@
         placeholder="請輸入桌遊名稱"
         v-show="ShowTitleText"
         v-model.trim="postData.title"
+        @keyup="search"
       />
+      <ul class="searchBox" v-if="selectOpen">
+        <li v-for="item in selectModel" @click="postData.title = item.name; selectOpen = false;">{{ item.name }}</li>
+      </ul>
+
+      </div>
 
       <select
         class="forumPost_form_score"
@@ -114,6 +122,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+
 
 // 選擇文章類型
 const SelectCgy = ref("0");
@@ -281,6 +290,38 @@ onMounted(() => {
 
 });
 
+
+//搜尋商品
+const data =ref({
+  select:""
+})
+const selectModel = ref([]);
+const selectOpen =ref(false)
+const search = ()=>{
+  data.value.select = postData.value.title
+  axios.post("/api/select/select.php",data)
+  .then(response=>{
+    const responseData = response.data;
+    selectModel.value = [] ;
+    // console.log(responseData);
+//     // if(selectModel.value != []){
+        for(let n =0 ; n<responseData.length ; n++){
+        // console.log(responseData[n]);
+        if(responseData[n][1] != undefined){
+            // searchBoxOpen.value = true;
+            selectOpen.value = true;
+            let a =responseData[n][1]
+            selectModel.value.push({name:a,href:`productInfo/ID:${responseData[n][0]}`});
+            
+        }else{
+            selectOpen.value = false;
+        }
+    // }
+    }
+  })
+  .catch(error=>{console.log(error)})
+}
+
 </script>
   
 
@@ -336,7 +377,7 @@ onMounted(() => {
   box-sizing: border-box;
   outline: none;
   letter-spacing: 1px;
-  margin: 0 20px;
+  margin: 0  20px;
   border: 1px solid $orange;
   &::placeholder {
     color: $orange;
@@ -495,4 +536,28 @@ input[type="button"] {
   }
 }
 
+div.searchModel{
+  // outline: 1px solid red;
+  // width: 300px;
+}
+ul.searchBox{
+  background-color: $bg;
+  margin: 0 20px;
+  width: 300px;
+  position: absolute;
+  height: 200px;
+  // max-height: 200px;
+  outline: 1px solid red;
+  display: block;
+  overflow: auto;
+li{
+  padding: 10px;
+  background-color: $green;
+  // text-align: center;
+  color: white;
+  margin-bottom: 5px;
+  font-size: $p;
+  cursor: pointer;
+}
+}
 </style> 
