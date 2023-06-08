@@ -1,7 +1,7 @@
 <template>
 <div class="cartConfirm_wrapper">
     <CcfTpCT></CcfTpCT>
-    <CcfCnCT :product="product"></CcfCnCT>
+    <CcfCnCT :product="product"  @renewsqlCart="renewsqlCart"></CcfCnCT>
     <CcfDvCT :calculateTotal="calculateTotal"></CcfDvCT>
 </div>
 
@@ -57,7 +57,7 @@ const product=ref({
       returnToSql:[],
 });
 
-
+// console.log(product)
 
 const getproductId = () => {
   for(let i = 0; i < product.value.localCart.length; i++){
@@ -198,15 +198,19 @@ const getmember_id = async() => {
 //         console.log(err)
 //     })
 // }
+const renewsqlCart = (val) => {
+  product.value.sqlCart = val;
+} 
 const calculateTotal=()=>{
       let sum=0;
+      // 沒登入的時候
       if(product.value.member_id === 'is_not_login' || product.value.member_id === '-1'){
         for(let i = 0; i < product.value.tgFilter.length; i++ ){
           // console.log(product.value.tgFilter[i][0].CURRENT_PRICE);
           sum = sum + product.value.tgFilter[i][0].CURRENT_PRICE * product.value.amount[i];  
         }
         return sum;
-      }else{
+      }else{      // 登入的時候
         for(let i = 0; i < product.value.sqlCart.length; i++ ){
           // console.log(product.value.sqlCart[i].CURRENT_PRICE);
           sum = sum + product.value.sqlCart[i].CURRENT_PRICE * product.value.sqlCart[i].AMOUNT;
@@ -215,7 +219,7 @@ const calculateTotal=()=>{
       }   
 };
 
-console.log(product.value.tgFilter)
+// console.log(product.value.tgFilter)
 
 onMounted(()=>{
   getmember_id();

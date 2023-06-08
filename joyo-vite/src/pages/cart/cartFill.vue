@@ -23,6 +23,8 @@ const memberData=ref({
     creditCard:{}
 
 });
+
+console.log(memberData.value)
 // const calculateTotal=()=>{
 //       let sum=0;
 //       for(let i=0;i<products.value.length;i++){

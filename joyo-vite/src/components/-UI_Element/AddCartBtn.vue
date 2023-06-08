@@ -49,7 +49,7 @@ const addToCart = (list) => {
                 localCart.unshift(props.cartItem);
             }
         }
-        console.log(props.cartItem.member_id)
+        // console.log(props.cartItem.member_id)
     localStorage.setItem('cart',JSON.stringify(localCart));
     alert("購物車新增成功!")
     }else {     //登入的時候

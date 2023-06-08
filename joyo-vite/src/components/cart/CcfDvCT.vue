@@ -59,7 +59,7 @@
             if(localDeliv.length === 0 ){
                 localDeliv.unshift(deliv.value,payment.value);
                 localStorage.setItem("delivery",JSON.stringify(localDeliv));
-                alert("新增送貨資訊!")
+                alert("送貨資訊新增成功!")
             }else if(localDeliv.length !== 0){
                 
             }
