@@ -9,8 +9,6 @@ declare global {
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
-  const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
-  const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
   const MsBannerManagement: typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']
   const MsContentManagementBanner: typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']
   const MsDataManagementOrderMDS: typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']
@@ -96,8 +94,6 @@ declare module 'vue' {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
-    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
-    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
     readonly MsContentManagementBanner: UnwrapRef<typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']>
     readonly MsDataManagementOrderMDS: UnwrapRef<typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']>
@@ -177,8 +173,6 @@ declare module '@vue/runtime-core' {
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
-    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
-    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
     readonly MsContentManagementBanner: UnwrapRef<typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']>
     readonly MsDataManagementOrderMDS: UnwrapRef<typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']>
