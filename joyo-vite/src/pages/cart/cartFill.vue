@@ -47,7 +47,7 @@ const getMemberData=()=>{
     return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            // memberData.value.member=res.data;
+            memberData.value.member=res.data;
             console.log(res.data);
             // console.log(memberData.value.member);
             }

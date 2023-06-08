@@ -207,6 +207,7 @@
         let localItem=JSON.parse(localStorage.getItem('buy'));
         try{
         const res=await axios.post('/api/cart/saveBuy.php', localItem);
+      
         // console.log(res.data);
         await delCart();
         // finishBuy();
@@ -256,15 +257,17 @@
                     toLocal.value.creditNum="無";
                     toLocal.value.creditNum="無";
                     saveToLocal();
-                    toGreenPay();
                     saveInBuy();
+                    toGreenPay();
+                    
                     
                    
                 }
                }else{
                 saveToLocal();
-                toGreenPay(); 
                 saveInBuy(); 
+                toGreenPay(); 
+                
                 
                 
                }
