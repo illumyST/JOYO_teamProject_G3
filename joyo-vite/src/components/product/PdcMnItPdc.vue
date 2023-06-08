@@ -168,6 +168,7 @@ onMounted(() => {
 
 
 
+
 .product-top {
     width: 80%;
     display: flex;

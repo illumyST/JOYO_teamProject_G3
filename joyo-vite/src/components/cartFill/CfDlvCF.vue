@@ -286,7 +286,7 @@
     };
      //取得縣市區域JSON資料並將縣市資料填入address的country
     const fetchData=()=>{
-        return axios.get('/src/assets/json/address.json')
+        return axios.get(`${import.meta.env.VITE_API_URL}/src/assets/json/address.json`)
                 .then(
                     res =>{
                     address.value.twzipcode=res.data;
