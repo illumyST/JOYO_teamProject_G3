@@ -6,7 +6,18 @@
     </section>
 
     <div class="ms_chat_room">
-      <div class="ms_chat ms_receiving_text">
+      <div
+        v-for="(chat, index) in chatBoxContent"
+        :class="{
+          ms_chat: true,
+          // ms_receiving_text: chatBoxContent1[],
+          ms_receiving_text: chat.INCOMING_MSG_ID !== 'b_1',
+          ms_sending_text: chat.INCOMING_MSG_ID == 'b_1',
+        }"
+      >
+        <p>{{ chat.MSG_CONTENT }}</p>
+      </div>
+      <!-- <div class="ms_chat ms_receiving_text">
         <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
       </div>
 
@@ -16,29 +27,88 @@
       <div class="ms_chat ms_receiving_text">
         <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
       </div>
-
-      <div class="ms_chat ms_sending_text">
-        <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div>
       <div class="ms_chat ms_receiving_text">
         <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
       </div>
-
-      <div class="ms_chat ms_sending_text">
-        <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div>
+      <div class="ms_chat ms_receiving_text">
+        <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
+      </div> -->
     </div>
 
     <form action="#" class="ms_typing_area">
-      <input type="text" placeholder="輸入訊息" />
-      <button type="submit">
+      <input type="text" placeholder="輸入訊息" ref="userMessage" />
+      <button type="submit" @click.prevent="sendMessage">
         <i class="fa-regular fa-paper-plane"></i>
       </button>
     </form>
   </div>
 </template>
 <script>
+import axios from "axios";
 
+export default {
+  data() {
+    return {
+      currentUserId: null,
+      chatBoxContent: [],
+    };
+  },
+  mounted() {
+    this.getCurrentChatUserId();
+    this.keepGettingChatBoxContent();
+  },
+  methods: {
+    // 取得當前用戶ID
+    getCurrentChatUserId() {
+      axios
+        .get("/api/frontChat/getUserId.php")
+        .then((res) => {
+          console.log(res.data);
+          this.currentUserId = res.data;
+        })
+        .catch((err) => {
+          console.log("error", err);
+          alert("請先登入");
+        });
+    },
+    sendMessage() {
+      if (this.$refs.userMessage.value != "") {
+        const userMessage = this.$refs.userMessage.value;
+        console.log(userMessage);
+        const formData = new FormData();
+        formData.append("adminId", "b_1");
+        formData.append("msg_content", userMessage);
+        formData.append("senderId", this.currentUserId);
+        axios
+          .post("/api/frontChat/userSendMessage.php", formData)
+          .then((res) => {
+            console.log(res);
+            this.$refs.userMessage.value = "";
+          })
+          .catch((err) => {
+            console.log("error", err);
+          });
+      }
+    },
+    keepGettingChatBoxContent() {
+      setInterval(() => {
+        axios
+          .get("/api/msLiveChat/getChatBoxContent.php", {
+            params: {
+              userId: this.currentUserId,
+            },
+          })
+          .then((res) => {
+            this.chatBoxContent = res.data;
+            console.log("123", res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, 500);
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .ms_chat_box {
@@ -63,7 +133,6 @@
     }
     span {
       font-size: 20px;
-      font-family: "Noto Sans TC", sans-serif;
       color: $brown;
     }
   }
@@ -125,6 +194,4 @@
     color: white;
   }
 }
-
-
 </style>

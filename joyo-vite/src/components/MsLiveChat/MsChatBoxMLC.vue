@@ -32,11 +32,11 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: ["chatBoxContent", "chatList", "currentChatUserId", "currentChatUser"],
-  emits: ["getCurrentChatUserId"], 
+  emits: ["getCurrentChatUserId"],
   data() {
     return {
       chatBoxContent1: [],
@@ -63,41 +63,47 @@ export default {
       this.currentChatUserId1 = this.currentChatUserId;
       // console.log(this.currentChatUserId1);
       this.$emit("getCurrentChatUserId", this.currentChatUserId1);
-    }
+    },
   },
   mounted() {
-    this.keepGettingChatBoxContent(); 
+    this.keepGettingChatBoxContent();
   },
   methods: {
     //
     sendMessage() {
-      const formData = new FormData();
-      formData.append("adminId", 'b_1');
-      formData.append("receiverId", this.currentChatUserId1);
-      formData.append("msgContent", this.$refs.adminMessage.value);
-      this.$refs.adminMessage.value = '';
-      axios.post('/api/msLiveChat/adminSendMessage.php', formData)
-      .then(res =>{
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      if (this.$refs.adminMessage.value !== "") {
+        const formData = new FormData();
+        formData.append("adminId", "b_1");
+        formData.append("receiverId", this.currentChatUserId1);
+        formData.append("msgContent", this.$refs.adminMessage.value);
+        this.$refs.adminMessage.value = "";
+        axios
+          .post("/api/msLiveChat/adminSendMessage.php", formData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
     keepGettingChatBoxContent() {
-      setInterval(()=> {
-        axios.get('/api/msLiveChat/getChatBoxContent.php', {
-          params: {
-            userId: this.currentChatUserId1, 
-          }
-        }).then(res => {
-          this.chatBoxContent1 = res.data; 
-        }).catch(err => {
-          console.log(err);
-        })
-      }, 500)
-    }
-  }
+      setInterval(() => {
+        axios
+          .get("/api/msLiveChat/getChatBoxContent.php", {
+            params: {
+              userId: this.currentChatUserId1,
+            },
+          })
+          .then((res) => {
+            this.chatBoxContent1 = res.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, 500);
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

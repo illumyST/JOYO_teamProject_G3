@@ -245,7 +245,7 @@ onUnmounted(() => {
   position: absolute;
   right: 0px;
   bottom: 140px;
-  max-height: 400px;
+  height: 500px;
 }
 .contact_bottom_chat.show {
   display: block;
