@@ -19,22 +19,22 @@
                     <p>遊戲分類： <span class="catergory">{{filetData.CATEGORY}}</span></p>
                     <p>遊玩人數： <span class="player-min">{{filetData.MIN_PLAYER}}</span><span>-</span><span class="player-max">{{filetData.MAX_PLAYER
                         }}</span>人</p>
-                    <p>試玩年齡： <span class="age">{{filetData.MIN_AGE}}+</span></p>
+                    <p>適玩年齡： <span class="age">{{filetData.MIN_AGE}}+</span></p>
                 </div>
                 <h2 class="intro-price">NTD： {{filetData.PRICE}}<span class="price"></span></h2>
                 <label for="car-amount">數量</label>
                 <div class="col-12 sel-amount">
 
-                    <button><i class="fas fa-minus"></i></button>
-                    <input class="col-10" type="text" name="car-amount" id="car-amount" placeholder="1">
-                    <button><i class="fa-solid fa-plus"></i></button>
+                    <button v-on:click="numMinus"><i class="fas fa-minus"></i></button>
+                    <input class="col-10" type="text" name="car-amount" id="car-amount" placeholder="1" v-model="cartItem.amount">
+                    <button v-on:click="numPlus"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="col-12 infor-item-buy">
                     <router-link to="/cart" class=" infor-item-buy-a">
-                        <button class=" btn buy">立即購買</button>
+                        <button class=" btn buy" v-on:click="addToCart">立即購買</button>
                     </router-link>
                     
-                    <button class=" btn car">加入購物車</button>
+                    <button class=" btn car" v-on:click="addToCart">加入購物車</button>
                 </div>
                 
             </div>
@@ -42,25 +42,93 @@
         </div>
 </template>
 <script setup>
-    import { ref } from 'vue';
-
+    import { ref,onBeforeMount } from 'vue';
+    import axios from 'axios';
+    const props=defineProps({
+        filetData: {
+        type: Object,
+        required: true
+        },
+    });
+    const cartItem = ref ({
+        PRODUCT_ID: "",
+        amount: 1,
+        member_id: "-1", 
+    });
     const changeImg = (e) => {
         let imgSrc = e.currentTarget.querySelector('img').getAttribute('src');
         let aim =document.querySelector(".infor-item-img-bg img");
         aim.setAttribute('src', imgSrc);
         
     };
-</script>
-<script>
-    export default {
-    props: {
-        filetData: {
-        type: Object,
-        required: true
-    },
-  }
+    const numPlus = () => {
+        if(cartItem.value.amount < props.filetData.STOCK){
+            cartItem.value.amount++
+        }else{
+           alert (`數量不可大於庫存:${props.filetData.STOCK}`);
+        }
+    };
+    const numMinus = () => {
+        if(cartItem.value.amount>1){
+            cartItem.value.amount--;
+        }else{
+            alert (`數量不可少於1`);
+        }
+    };
+    const addToCart = () => { 
+        cartItem.value.PRODUCT_ID = props.filetData.PRODUCT_ID;
+        let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+        if(cartItem.value.member_id === 'is_not_login' || cartItem.value.member_id === '-1'){   //沒登入的時候
+            cartItem.value.member_id ="-1";
+            if(localCart.length === 0 ){
+                localCart.unshift(cartItem.value);
+                localStorage.setItem("cart",JSON.stringify(localCart));
+                // alert("購物車新增成功!")
+            }else {
+                let found = false;
+                for(let i = 0; i < localCart.length; i++){
+                    if( localCart[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
+                        localCart[i].amount = cartItem.value.amount;
+                        found = !found;
+                        break;
+                    }
+                }
+                if(!found){
+                    localCart.unshift(cartItem.value);
+                }
+            }
+            localStorage.setItem('cart',JSON.stringify(localCart));
+            alert("購物車新增成功!")
+        }else {
+        axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, cartItem.value)
+            .then(response => {
+                // console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            alert("購物車新增成功!")
+    } 
+    
+    };
+    const getmember_id = () => {
+    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
+    .then(res => {
+        if(res.data){
+            cartItem.value.member_id = res.data;
+        }else{
+            // console.log(cartItem.value.MEMBER_ID);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
+onBeforeMount(() => {
+    getmember_id();
+})
 </script>
+
 <style lang="scss" scoped>
 .product-wrapper {
     color: $brown;
