@@ -1,7 +1,7 @@
 <template>
    <div class="cartConfirm_top">
             <ul class="col-6 cartConfirm_prog">
-                <li class="carFill_prog_f active"><span>1</span></li>
+                <li class="carFill_prog_f active"><RouterLink :to="'/cart'"><span>1</span></RouterLink></li>
                 <li class="cartConfirm_prog_s active"><span>2</span></li>
                 <li class="cartConfirm_prog_t"><span>3</span></li>
             </ul>
@@ -30,9 +30,7 @@
 
 }
 
-.cartFill_wrapper .cartConfirm_top li {
-    line-height: 2;
-}
+
 
 .cartFill_wrapper .cartConfirm_con_title {
     box-sizing: border-box;
@@ -90,6 +88,7 @@
         line-height: 2.2;
         font-size: 30px;
         position: relative;
+       
     }
 
     .active {
@@ -97,6 +96,9 @@
         color: #fff;
         font-weight: 600;
         border: 2px solid $green;
+        span{
+            color: #fff;
+        }
     }
 
 }

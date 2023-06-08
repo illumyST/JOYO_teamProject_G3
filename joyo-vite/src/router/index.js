@@ -107,6 +107,15 @@ const routes = [
                     requiresAuth: true,
                 },
             },
+            {
+                path: 'cartFinish',
+                name: 'cartFinish',
+                component: () => import('@/pages/cart/cartFinish.vue'),
+                meta: {
+                    title: '完成結賬',
+                    requiresAuth: true,
+                },
+            },
 
             // 前台子頁＿[forum] -------------------
             {

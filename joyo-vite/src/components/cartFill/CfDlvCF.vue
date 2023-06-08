@@ -1,6 +1,6 @@
 <template>
     <div id="orderForm"> </div>
-   <div class="col-12 cartFill_deliv"  v-show="susspay" v-if="memberData.member[0]">
+   <div class="col-12 cartFill_deliv" v-if="memberData.member">
             <div>
                 <h2>送貨資訊
                     <div>
@@ -61,16 +61,12 @@
                 <input type="submit" value="確認付款" class="cartFill_deliv_submit" @click="toPay">
             </div>
     </div>
-    <CrdCT v-show="suss"></CrdCT>
 </template>
 
 <script setup>
     import { ref,watch,defineProps} from 'vue';
     import axios from 'axios';
     import { useRouter } from 'vue-router';
-    const emits = defineEmits(["updateSusspay"]);
-    const susspay = ref(true);
-    const suss = ref(false);
     //自動填入縣市以及對應的區域相關變數
     const address =ref({
         twzipcode:{},
@@ -189,7 +185,9 @@
          
     };
     const toGreenPay=async ()=>{
-        axios.post('/api/pay_test/paytest.php', toLocal.value)
+        try{
+            await axios
+            .post('/api/pay_test/paytest.php', toLocal.value)
             .then((response) => {
             let ret = response.data.replace('<script type="text/javascript">document.getElementById("ecpay-form").submit();</scr', '')
             ret = ret.replace('ipt></body></html>', '');
@@ -198,9 +196,12 @@
             orderForm.innerHTML = ret;
             document.getElementById('ecpay-form').submit();
             
-            }, (error) => {
+            });
+            
+        } catch (error){
             console.log(error)
-            })
+            }
+       
     }
     const saveInBuy=async ()=>{
         let localItem=JSON.parse(localStorage.getItem('buy'));
@@ -208,10 +209,9 @@
         const res=await axios.post('/api/cart/saveBuy.php', localItem);
         // console.log(res.data);
         await delCart();
+        // finishBuy();
         localStorage.removeItem("buy");
-        suss.value=true;
-        susspay.value=false;
-        emits('updateSusspay', susspay.value);
+        
 
     } catch(err)  {
          console.error(err);
@@ -219,13 +219,19 @@
     }
     const delCart=async ()=>{
         try{
-        await axios.post('/api/cart/removeCart.php', toLocal.value);
-            
+        await axios.post('/api/cart/removeCart.php', toLocal.value);        
+        } catch(err)  {
+            console.error(err);
+            }; 
+        }
+    // const finishBuy=()=>{
+    //     setTimeout(()=>{
+    //        suss.value=true;
+    //        susspay.value=false;
+    //        emits('updateSusspay', susspay.value); 
+    //     },10000);
         
-    } catch(err)  {
-         console.error(err);
-        }; 
-    }
+    // };
     //取得地址資料
     function toPay(){
         //自動填入訂單資訊:
@@ -257,8 +263,8 @@
                 }
                }else{
                 saveToLocal();
-                toGreenPay();
-                saveInBuy();
+                toGreenPay(); 
+                saveInBuy(); 
                 
                 
                }

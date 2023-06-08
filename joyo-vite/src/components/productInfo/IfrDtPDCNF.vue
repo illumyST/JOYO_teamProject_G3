@@ -157,7 +157,7 @@ export default {
             this.show=e.target.innerHTML;
             let displacement=(evenX-decorateX);
             if(screenWidth>=1200){
-                let initX=(1400-1200)/2;
+                let initX=(screenWidth-1200)/2;
                 decorate.style.left = `${decorateX + displacement -initX}px`;
             }else if(screenWidth<420){
                 let initX=(414-370)/2;

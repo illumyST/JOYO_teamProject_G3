@@ -26,7 +26,7 @@
                             <h2 class="prouct-item-card-infor-name">{{list.NAME}}</h2>
                             <h3><span>$</span><span class="prouct-item-card-infor-price">{{list.PRICE}}</span></h3>
                         </div>
-                        <button class="btn prouct-item-card-icon">
+                        <button class="btn prouct-item-card-icon" v-on:click="(e)=>addToCart(e,list)" >
                             <i class="fa-solid fa-cart-shopping custom-icon"></i>
                         </button>
 
@@ -38,17 +38,79 @@
         </div>
 </template>
 <script setup>
-import { defineProps,  onMounted,  ref, watch,defineEmits} from 'vue';
+import {onBeforeMount,ref,defineEmits} from 'vue';
+import axios from 'axios';
 const props = defineProps({
     guess:{
         type: Array,
         required: true 
     },
     });
+const cartItem = ref ({
+    PRODUCT_ID: "",
+    amount: 1,
+    member_id: "-1", 
+});
 const emits = defineEmits(["changeInfoItem"]);
 const changeItem=(list)=>{
     emits('changeInfoItem', list.PRODUCT_ID);
 };
+const getmember_id = () => {
+    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
+    .then(res => {
+        if(res.data){
+            cartItem.value.member_id = res.data;
+        }else{
+            // console.log(cartItem.value.MEMBER_ID);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+const addToCart = (e,list) => {
+    e.preventDefault();
+    // console.log(list.PRODUCT_ID);   
+    cartItem.value.PRODUCT_ID = list.PRODUCT_ID;
+    let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(cartItem.value.member_id === 'is_not_login' || cartItem.value.member_id === '-1'){   //沒登入的時候
+        cartItem.value.member_id ="-1";
+        // let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+        if(localCart.length === 0 ){
+            localCart.unshift(cartItem.value);
+            localStorage.setItem("cart",JSON.stringify(localCart));
+            // alert("購物車新增成功!")
+        }else {
+            let found = false;
+            for(let i = 0; i < localCart.length; i++){
+                if( localCart[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
+                    localCart[i].amount = localCart[i].amount+1;
+                    found = !found;
+                    break;
+                }
+            }
+            if(!found){
+                localCart.unshift(cartItem.value);
+            }
+        }
+    localStorage.setItem('cart',JSON.stringify(localCart));
+    alert("購物車新增成功!")
+    }else {
+        axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            alert("購物車新增成功!")
+        // alert(cartItem.value.MEMBER_ID);
+    } 
+    
+};
+onBeforeMount(() => {
+    getmember_id();
+})
 </script>
 
 <style lang="scss" scoped>

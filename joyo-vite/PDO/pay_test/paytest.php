@@ -29,9 +29,9 @@ $input = [
     'ReturnURL' => 'http://localhost:80/G3/joyo-vite/PDO/pay_test/checkoutresponse.php',
     //打包用
     // 'ReturnURL' => 'https://tibamef2e.com/thd101/g3/joyo-vite/PDO/checkoutresponse.php',
-    'ClientBackURL' =>'http://localhost:5173/#/cart/',
+    'ClientBackURL' =>'http://localhost:5173/#/cartFinish/',
     //打包適用
-    // 'ClientBackURL' =>'http://localhost:80/#/forum/',
+    // 'ClientBackURL' =>'http://localhost:80/#/cartFinish/',
     
 ];
 $action = 'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5';
