@@ -207,6 +207,7 @@ const updateArrange=(val)=>{
 //篩選玩家人數
 const updatePlayerNum=(val)=>{
     pageInfor.value.player=val;
+    console.log(pageInfor.value.player);
         if(val ==0){
             pageInfor.value.player=2;
         }
@@ -226,7 +227,7 @@ const updatePlayerNum=(val)=>{
         getAppearPage();
 };
 const updatePlayerAge=(val)=>{
-    if( val =="試玩年齡"){
+    if( val =="適玩年齡"){
         pageInfor.value.age=100;
     }else{
         pageInfor.value.age=val;
@@ -299,7 +300,6 @@ const changeHeight=(val)=>{
     //修改高度屬性
     let productMain=document.querySelector(".product-main");
     productMain.style.height=`${h+240}px`;
-    console.log(productMain.style.height);
 };
 const choosePage=(val)=>{
     currentCategory.value.page=val;
@@ -309,7 +309,6 @@ const choosePage=(val)=>{
         behavior: 'smooth'
     });
     //修改頁簽內容
-    console.log(Math.floor(pageInfor.value.appearPage[0]/10),Math.floor(val/10))
     if(currentCategory.value.page %10 ==0){
         if(currentCategory.value.page==pageInfor.value.appearPage[9]){
 
@@ -339,15 +338,17 @@ const choosePage=(val)=>{
         }
     }
     else if(Math.floor(pageInfor.value.appearPage[0]/10)!=Math.floor(val/10)){
+        let currentFirst=pageInfor.value.appearPage[0];
         let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10);
         pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
         if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
             //移除多餘的頁數
+            console.log(2);
             let remove=pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]-pageInfor.value.total_page.length;
             for(let i=0;i<remove;i++){
                 pageInfor.value.appearPage.pop();
             }
-        }else if(pageInfor.value.appearPage.length<10 && val< pageInfor.value.appearPage[0]){
+        }else if(pageInfor.value.appearPage.length<10 && val< currentFirst){
             //加回不足10頁的部分
             let add=10-pageInfor.value.appearPage.length;
             for(let i=0;i<add;i++){

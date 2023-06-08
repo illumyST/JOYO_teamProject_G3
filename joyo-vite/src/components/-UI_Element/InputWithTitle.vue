@@ -1,7 +1,7 @@
 <template>
     <label>
         <div class="text_wrapper">
-            <slot>測試文字</slot>
+            <slot></slot>
         </div>
         <input type="text" v-model="modelValue" :class="{'on':props.message}">
         <slot name="check"></slot>

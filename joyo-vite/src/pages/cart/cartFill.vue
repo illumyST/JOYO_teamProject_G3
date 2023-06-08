@@ -1,9 +1,9 @@
 <template>
    <div class="cartFill_wrapper">
-        <CfTpCF v-show="susspay"></CfTpCF>
-        <CfCnCF :cartItem="cartItem"  v-show="susspay" :memberData="memberData"></CfCnCF>
-        <CfDlIfCF v-show="susspay" :delivery="delivery" > </CfDlIfCF>
-        <CfDlvCF @update-Susspay="updateSusspay" :memberData="memberData" :delivery="delivery" :cartItem="cartItem"></CfDlvCF>
+        <CfTpCF ></CfTpCF>
+        <CfCnCF :cartItem="cartItem" :memberData="memberData"></CfCnCF>
+        <CfDlIfCF :delivery="delivery" > </CfDlIfCF>
+        <CfDlvCF :memberData="memberData" :delivery="delivery" :cartItem="cartItem"></CfDlvCF>
    </div>
     
 </template>
@@ -12,10 +12,8 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import CfDlvCF from '@/components/cartFill/CfDlvCF.vue';
-const susspay=ref(true);
-const updateSusspay=(val)=>{
-    susspay.value=false;
-}
+
+
 const cartItem = ref([]);
 const memberData=ref({
     memberId:"",
@@ -34,19 +32,22 @@ const getMemberId=async ()=>{
     // console.log(123);
     try{
         const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+        console.log(res.data);
         memberData.value.memberId = res.data;
-        await fetchData();
         await getMemberData();
+        await fetchData();        
         await getCreditCard();
     } catch(err)  {
          console.error(err);
         };
 }
 const getMemberData=()=>{
-    return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value} })
+    return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            memberData.value.member=res.data;
+            // memberData.value.member=res.data;
+            console.log(res.data);
+            // console.log(memberData.value.member);
             }
             )
         .catch(err => {
@@ -54,7 +55,7 @@ const getMemberData=()=>{
         });
 };
 const getCreditCard=()=>{
-    return axios.get('/api/cart/getCreditCard.php',{ params: { memberId: memberData.value} })
+    return axios.get('/api/cart/getCreditCard.php',{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             memberData.value.creditCard=res.data;
@@ -66,10 +67,13 @@ const getCreditCard=()=>{
 };
 //取購物車資料
 const fetchData=()=>{
-    return axios.get('/api/cart/getCartItem.php',{ params: { memberId: memberData.value} })
+    
+    return axios.get('/api/cart/getCartItem.php',{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            cartItem.value=(res.data);   
+            
+            cartItem.value=(res.data);  
+            console.log(cartItem.value); 
             }
             )
         .catch(err => {
@@ -82,23 +86,15 @@ const delivery=ref({
     deliv:""
 });
 
-const saveLocalStorage=(pay,deliv)=>{
+const getLocalStorage=()=>{
     let localDeliv = JSON.parse(localStorage.getItem('delivery')) || [];
-    delivery.value.pay=pay;
-    delivery.value.deliv=deliv;
-        if(localDeliv.length === 0 ){
-            localDeliv.unshift(delivery.value);
-            localStorage.setItem("delivery",JSON.stringify(localDeliv));
-            alert("新增送貨資訊!")
-        }else{
-            delivery.value.pay=localDeliv[0].pay;
-            delivery.value.deliv=localDeliv[0].deliv;
-        }
+    delivery.value.pay=localDeliv[1];
+    delivery.value.deliv=localDeliv[0];
 }
 
 onMounted(() => {
   getMemberId();
-  saveLocalStorage("信用卡/簽帳金融卡","黑貓黑貓");
+  getLocalStorage();
 
 });
 </script>

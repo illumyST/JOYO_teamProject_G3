@@ -22,4 +22,5 @@ $statement->execute();
 $data = $statement->fetch();
 $json_data = json_encode($data);
 echo $json_data;
+
 ?>

@@ -10,8 +10,6 @@ declare global {
   const ChatBoxCNT: typeof import('./src/components/contact/ChatBoxCNT.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
-  const IfrItPDCNF: typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']
-  const IfrTopPDCNF: typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']
   const MsBannerManagement: typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']
   const MsChat: typeof import('./src/components/MsLiveChat/MsChat.vue')['default']
   const MsChatBoxMLC: typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']
@@ -101,8 +99,6 @@ declare module 'vue' {
     readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
-    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
-    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
     readonly MsChat: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChat.vue')['default']>
     readonly MsChatBoxMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']>
@@ -186,8 +182,6 @@ declare module '@vue/runtime-core' {
     readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
-    readonly IfrItPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrItPDCNF.vue')['default']>
-    readonly IfrTopPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrTopPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
     readonly MsChat: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChat.vue')['default']>
     readonly MsChatBoxMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']>

@@ -131,6 +131,7 @@ const choosePage=(e)=>{
     ul{
        display: flex; 
        justify-content: center;
+       align-items: center;
        li{
         margin-right: 2px;
         display: flex;
@@ -140,9 +141,11 @@ const choosePage=(e)=>{
         }
        }
        select{
-        width: 24px;
+        width: 36px;
         font-size: 12px;
         text-align: center;
+        background-color: #f3ecec;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
