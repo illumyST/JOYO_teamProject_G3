@@ -10,10 +10,10 @@ $startDate = $_GET['startDate'];
 $endDate = $_GET['endDate'];
 
 
-$sql = 'SELECT BUY_ID, TOTAL_PRICE,DATE, MAIL FROM BUY
+$sql = 'SELECT BUY_ID, TOTAL_PRICE, BUY_DATE, MAIL FROM BUY
 LEFT JOIN MEMBER ON BUY.MEMBER_ID = MEMBER.MEMBER_ID
-WHERE DATE BETWEEN "' . $startDate . '" AND "' . $endDate . '"
-ORDER BY DATE DESC';
+WHERE BUY_DATE BETWEEN "' . $startDate . '" AND "' . $endDate . '"
+ORDER BY BUY_DATE DESC';
 
 $statement = $pdo->prepare($sql);
 $statement->execute();

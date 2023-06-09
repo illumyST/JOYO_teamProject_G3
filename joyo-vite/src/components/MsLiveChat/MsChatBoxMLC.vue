@@ -2,42 +2,110 @@
   <div class="ms_chat_box">
     <section class="ms_user_details">
       <img src="../../assets/img/cat.png" alt="" />
-      <span>王小明</span>
+      <span v-if="chatList1 && chatList1.length > 0">{{ currentUser }}</span>
     </section>
 
     <div class="ms_chat_room">
-      <div class="ms_chat ms_receiving_text">
-        <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
+      <div
+        v-for="(chat, index) in chatBoxContent1"
+        :class="{
+          ms_chat: true,
+          // ms_receiving_text: chatBoxContent1[],
+          ms_receiving_text: chat.INCOMING_MSG_ID == 'b_1',
+          ms_sending_text: chat.INCOMING_MSG_ID !== 'b_1',
+        }"
+      >
+        <p>{{ chat.MSG_CONTENT }}</p>
       </div>
 
-      <div class="ms_chat ms_sending_text">
+      <!-- <div class="ms_chat ms_sending_text">
         <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div>
-      <div class="ms_chat ms_receiving_text">
-        <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
-      </div>
-
-      <div class="ms_chat ms_sending_text">
-        <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div>
-      <div class="ms_chat ms_receiving_text">
-        <p>我的訂單編號是14432423432，幫我看一下何時回送達感恩。</p>
-      </div>
-
-      <div class="ms_chat ms_sending_text">
-        <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div>
+      </div> -->
     </div>
 
     <form action="#" class="ms_typing_area">
-      <input type="text" placeholder="輸入訊息" />
-      <button type="submit">
+      <input type="text" placeholder="輸入訊息" ref="adminMessage" />
+      <button type="submit" @click.prevent="sendMessage">
         <i class="fa-regular fa-paper-plane"></i>
       </button>
     </form>
   </div>
 </template>
-<script></script>
+<script>
+import axios from "axios";
+
+export default {
+  props: ["chatBoxContent", "chatList", "currentChatUserId", "currentChatUser"],
+  emits: ["getCurrentChatUserId"],
+  data() {
+    return {
+      chatBoxContent1: [],
+      chatData: null,
+      chatList1: [],
+      currentUser: null,
+      currentChatUserId1: null,
+    };
+  },
+  watch: {
+    chatBoxContent() {
+      this.chatData = this.chatList;
+      this.chatBoxContent1 = this.chatBoxContent;
+      // console.log("this is boxMLC", this.chatBoxContent1);
+    },
+    chatList() {
+      this.chatList1 = this.chatList;
+      // console.log("box", this.chatList1);
+    },
+    currentChatUser() {
+      this.currentUser = this.currentChatUser;
+    },
+    currentChatUserId() {
+      this.currentChatUserId1 = this.currentChatUserId;
+      // console.log(this.currentChatUserId1);
+      this.$emit("getCurrentChatUserId", this.currentChatUserId1);
+    },
+  },
+  mounted() {
+    this.keepGettingChatBoxContent();
+  },
+  methods: {
+    //
+    sendMessage() {
+      if (this.$refs.adminMessage.value !== "") {
+        const formData = new FormData();
+        formData.append("adminId", "b_1");
+        formData.append("receiverId", this.currentChatUserId1);
+        formData.append("msgContent", this.$refs.adminMessage.value);
+        this.$refs.adminMessage.value = "";
+        axios
+          .post("/api/msLiveChat/adminSendMessage.php", formData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    keepGettingChatBoxContent() {
+      setInterval(() => {
+        axios
+          .get("/api/msLiveChat/getChatBoxContent.php", {
+            params: {
+              userId: this.currentChatUserId1,
+            },
+          })
+          .then((res) => {
+            this.chatBoxContent1 = res.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, 500);
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .ms_chat_box {
   display: flex;
@@ -61,7 +129,6 @@
     }
     span {
       font-size: 20px;
-      font-family: "Noto Sans TC", sans-serif;
       color: $brown;
     }
   }
@@ -81,7 +148,6 @@
     padding-left: 15px;
     outline: none;
     letter-spacing: 0.1em;
-    font-family: "Noto Sans TC", sans-serif;
   }
   button {
     width: 50px;
@@ -96,10 +162,10 @@
   padding: 10px 30px 20px 30px;
   overflow-y: auto;
   display: flex;
+  // justify-content: flex-end;
   flex-direction: column;
   height: 100%;
   .ms_chat {
-    font-family: "Noto Sans TC", sans-serif;
     letter-spacing: 0.1em;
     line-height: 1.4;
     margin: 15px 0;
@@ -112,17 +178,17 @@
     padding: 15px;
     box-sizing: border-box;
     color: white;
+    word-wrap: break-word;
   }
 
   .ms_sending_text {
     margin-left: auto;
     background-color: $green;
-    border-radius: 0 10px 10px 10px;
+    border-radius: 10px 0 10px 10px;
     padding: 15px;
     box-sizing: border-box;
     color: white;
+    word-wrap: break-word;
   }
 }
-
-
 </style>

@@ -7,15 +7,19 @@ declare global {
   const BannerIDX: typeof import('./src/components/Index/BannerIDX.vue')['default']
   const BarChart: typeof import('./src/components/MsContentManagement/BarChart.vue')['default']
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
+  const ChatBoxCNT: typeof import('./src/components/contact/ChatBoxCNT.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const IfrDtPDCNF: typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']
   const MsBannerManagement: typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']
+  const MsChat: typeof import('./src/components/MsLiveChat/MsChat.vue')['default']
+  const MsChatBoxMLC: typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']
   const MsContentManagementBanner: typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']
   const MsDataManagementOrderMDS: typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']
   const MsDataManagementReportSending: typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']
   const MsDataManagementSendReport: typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']
   const MsLiveChat: typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']
   const MsLoginFormMLI: typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']
+  const MsMsgListMLC: typeof import('./src/components/MsLiveChat/MsMsgListMLC.vue')['default']
   const MsOrderListTable: typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']
   const MsPagination: typeof import('./src/components/-UI_Element/MsPagination.vue')['default']
   const MsTabs: typeof import('./src/components/-UI_Element/MsTabs.vue')['default']
@@ -92,15 +96,19 @@ declare module 'vue' {
     readonly BannerIDX: UnwrapRef<typeof import('./src/components/Index/BannerIDX.vue')['default']>
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
+    readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
+    readonly MsChat: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChat.vue')['default']>
+    readonly MsChatBoxMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']>
     readonly MsContentManagementBanner: UnwrapRef<typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']>
     readonly MsDataManagementOrderMDS: UnwrapRef<typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']>
     readonly MsDataManagementReportSending: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']>
     readonly MsDataManagementSendReport: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']>
     readonly MsLiveChat: UnwrapRef<typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']>
     readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
+    readonly MsMsgListMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsMsgListMLC.vue')['default']>
     readonly MsOrderListTable: UnwrapRef<typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']>
     readonly MsPagination: UnwrapRef<typeof import('./src/components/-UI_Element/MsPagination.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>
@@ -171,15 +179,19 @@ declare module '@vue/runtime-core' {
     readonly BannerIDX: UnwrapRef<typeof import('./src/components/Index/BannerIDX.vue')['default']>
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
+    readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IfrDtPDCNF: UnwrapRef<typeof import('./src/components/productInfo/IfrDtPDCNF.vue')['default']>
     readonly MsBannerManagement: UnwrapRef<typeof import('./src/components/MsContentManagement/MsBannerManagement.vue')['default']>
+    readonly MsChat: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChat.vue')['default']>
+    readonly MsChatBoxMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsChatBoxMLC.vue')['default']>
     readonly MsContentManagementBanner: UnwrapRef<typeof import('./src/pages/ms-content-management/MsContentManagementBanner.vue')['default']>
     readonly MsDataManagementOrderMDS: UnwrapRef<typeof import('./src/components/MsDataManagement/MsDataManagementOrderMDS.vue')['default']>
     readonly MsDataManagementReportSending: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementReportSending.vue')['default']>
     readonly MsDataManagementSendReport: UnwrapRef<typeof import('./src/pages/ms-data-management/MsDataManagementSendReport.vue')['default']>
     readonly MsLiveChat: UnwrapRef<typeof import('./src/pages/ms-customer-service/MsLiveChat.vue')['default']>
     readonly MsLoginFormMLI: UnwrapRef<typeof import('./src/components/MsLogin/MsLoginFormMLI.vue')['default']>
+    readonly MsMsgListMLC: UnwrapRef<typeof import('./src/components/MsLiveChat/MsMsgListMLC.vue')['default']>
     readonly MsOrderListTable: UnwrapRef<typeof import('./src/components/MsDataManagement/MsOrderListTable.vue')['default']>
     readonly MsPagination: UnwrapRef<typeof import('./src/components/-UI_Element/MsPagination.vue')['default']>
     readonly MsTabs: UnwrapRef<typeof import('./src/components/-UI_Element/MsTabs.vue')['default']>

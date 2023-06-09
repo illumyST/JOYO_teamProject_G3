@@ -14,10 +14,11 @@ $pdo = new PDO($dsn, $user, $pas);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 
-// 预设显示30笔资料
-$sql = 'SELECT BUY_ID, TOTAL_PRICE,DATE, MAIL FROM BUY
+// 抓出所有資料
+$sql = 'SELECT BUY_ID, TOTAL_PRICE, BUY_DATE, MAIL FROM BUY
 LEFT JOIN MEMBER ON BUY.MEMBER_ID = MEMBER.MEMBER_ID
-ORDER BY DATE DESC';
+WHERE STATUS = "完成"
+ORDER BY BUY_DATE DESC';
 
 $statement = $pdo->prepare($sql);
 $statement->execute();

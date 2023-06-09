@@ -21,6 +21,8 @@ const memberData=ref({
     creditCard:{}
 
 });
+
+console.log(memberData.value)
 // const calculateTotal=()=>{
 //       let sum=0;
 //       for(let i=0;i<products.value.length;i++){
@@ -45,7 +47,7 @@ const getMemberData=()=>{
     return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            // memberData.value.member=res.data;
+            memberData.value.member=res.data;
             console.log(res.data);
             // console.log(memberData.value.member);
             }

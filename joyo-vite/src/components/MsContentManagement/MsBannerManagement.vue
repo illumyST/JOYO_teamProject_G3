@@ -1,18 +1,29 @@
 <template>
   <div class="ms_content_management_dashboard">
     <!-- Selection -->
-    <form action="#" class="ms_cms_form">
+    <form action="#" class="ms_cms_form" @submit.prevent="updateBanner">
       <div class="ms_selection_div">
-        <select name="" id="">
-          <option value="">首頁</option>
-          <option value="">交流專區</option>
-          <option value="">商品頁</option>
+        <select
+          name=""
+          id="position"
+          v-model="selectedOptionA"
+          @change="updateOptionsB"
+        >
+          <option value="default" selected disabled>請選擇頁面</option>
+          <option value="index">首頁</option>
+          <option value="forum">交流專區</option>
+          <option value="product">商品頁</option>
         </select>
 
-        <select name="" id="">
-          <option value="">版位Ａ</option>
-          <option value="">版位B</option>
-          <option value="">版位C</option>
+        <select name="" id="" v-model="selectedOptionB">
+          <option value="default" selected disabled>選擇版位</option>
+          <option
+            :value="option.value"
+            v-for="option in optionsB"
+            :key="option.value"
+          >
+            {{ option.label }}
+          </option>
         </select>
       </div>
       <!-- Img upload -->
@@ -20,6 +31,7 @@
         <div class="flex-col">
           <label for="">上傳圖片</label>
           <input
+            ref="fileUpload"
             type="file"
             id="imageUpload"
             @change="previewImage"
@@ -29,17 +41,11 @@
 
         <div class="flex-col">
           <label for="">圖片網址</label>
-          <input type="text" />
+          <input type="text" v-model="imageUrl" />
         </div>
       </div>
 
       <!-- Img alt -->
-      <div class="ms_img_alt">
-        <div class="flex-col">
-          <label for="">選擇日期</label>
-          <input type="date" class="ms_date" />
-        </div>
-      </div>
 
       <div>
         <input type="submit" value="送出" />
@@ -52,14 +58,54 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       preview: null,
       image: null,
+      selectedOptionA: "default",
+      selectedOptionB: "default",
+      optionsB: [],
+      imageUrl: "",
     };
   },
   methods: {
+    updateBanner() {
+      // console.log(this.$refs.fileUpload.files.length);
+      console.log("submitted");
+      if (this.selectedOptionA === "default") {
+        alert("請選擇頁面");
+      } else if (this.selectedOptionB === "default") {
+        alert("請選擇版位");
+      } else if (this.$refs.fileUpload.files.length < 1) {
+        alert("請上傳圖片");
+      } else if (this.imageUrl == "") {
+        alert("請輸入超連結");
+      } else {
+        const formData = new FormData();
+        formData.append("selectedOptionA", this.selectedOptionA);
+        formData.append("selectedOptionB", this.selectedOptionB);
+        formData.append("imageUrl", this.imageUrl);
+        formData.append("fileUpload", this.$refs.fileUpload.files[0]);
+        axios
+          .post("/api/msUploadBanner/msBannerUpload.php", formData)
+          .then((res) => {
+            console.log(res.data);
+            this.selectedOptionA = "default";
+            this.selectedOptionB = "default";
+            this.imageUrl = "";
+            this.preview = null;
+            this.$refs.fileUpload.value = null; // Reset file input
+            alert("成功上傳");  
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
+    // 圖片預覽
     previewImage(event) {
       const input = event.target;
       if (input.files && input.files[0]) {
@@ -72,6 +118,21 @@ export default {
       } else {
         this.preview = null;
         this.image = null;
+      }
+    },
+    updateOptionsB() {
+      if (this.selectedOptionA === "index") {
+        this.optionsB = [
+          { value: "A", label: "A" },
+          { value: "B", label: "B" },
+          { value: "C", label: "C" },
+        ];
+      } else if (this.selectedOptionA === "forum") {
+        this.optionsB = [{ value: "A", label: "A" }];
+      } else if (this.selectedOptionA === "product") {
+        this.optionsB = [{ value: "A", label: "A" }];
+      } else {
+        this.optionsB = [];
       }
     },
   },
@@ -135,7 +196,7 @@ export default {
       @include btn($orange, 1.8, 120px, $green);
       outline: none;
       border: none;
-      margin-top: 50px;
+      margin-top: 20px;
       font-size: $p;
     }
     input[type="text"] {
