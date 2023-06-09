@@ -8,7 +8,8 @@
                 <!-- <input type="button" value="增加卡片" class="btn"> -->
             </div>
             <MemberCreditCardMbc 
-                @ismember-Card-Editshow="ismemberCardEditshow" 
+                @ismember-Card-Editshow="ismemberCardEditshow"
+                @removCard="removCard" 
                 :ismemberCardEditvisible="ismemberCardEditvisible"
                 :memberCardInfo="memberCardInfo"
                 ></MemberCreditCardMbc>
@@ -19,9 +20,11 @@
                 :memberCardInfo="memberCardInfo"
                 ></MemberCardAddMbc>
             <MemberCardEditMbc v-show="ismemberCardEditvisible" 
-                @ismember-Card-Editshow="ismemberCardEditshow" 
+                @ismember-Card-Editshow="ismemberCardEditshow"
+                @editNewCard="editNewCard" 
                 :ismemberCardEditvisible="ismemberCardEditvisible"
-                
+                :chooseCard="chooseCard"
+                :memberCardInfo="memberCardInfo"
                 ></MemberCardEditMbc>
         </div>
     </div>
@@ -39,6 +42,12 @@ import axios from 'axios';
     memberCardShow:[],
 
     });
+    const chooseCard=ref({
+        memberId:"",
+        cardId:"",
+        currentNum:"",
+        currentName:"",   
+    })
     const isMemberCardAddVisible = ref(false);
     // 點擊增加卡片後會讓Add變成True
     const showMemberCardAdd = (event) => {
@@ -52,57 +61,96 @@ import axios from 'axios';
     let ismemberCardEditvisible = ref(false)
     const ismemberCardEditshow = (val) => {
         // console.log(val);
-        ismemberCardEditvisible.value = val;
+        ismemberCardEditvisible.value = !ismemberCardEditvisible.value;
+        if(val){
+        chooseCard.value.cardId=val.MEMBER_CARD_ID;
+        chooseCard.value.currentNum=val[2]; 
+        chooseCard.value.currentName=val.NAME; 
+        }
+
     };
     const addNewCard=(val)=>{
-        let repeat=false;
             addMemberCard(memberCardInfo.value.memberId,val);
             alert("信用卡新增成功")
             isMemberCardAddVisible.value =  !isMemberCardAddVisible.value;
-        }
-    
-const getMemberData=async ()=>{
-    // console.log(123);
-    try{
-        //取得會員ID
-        const res=await axios.get('/api/forumPost/forumCheckLogin.php');
-        console.log(res.data);
-        memberCardInfo.value.memberId = res.data;
-        getMemberCard();
-    } catch(err)  {
-         console.error(err);
-        };
-}
-const getMemberCard=()=>{
-        return axios.get('/api/memberCard/getCard.php',{params:{memberId:memberCardInfo.value.memberId}})
-        .then((res)=>{
-            console.log(res.data);
-            memberCardInfo.value.memberCard = res.data;
-            memberCardInfo.value.memberCardShow=memberCardInfo.value.memberCard;
-            let replace="－********－"
-            for(let i=0;i<memberCardInfo.value.memberCardShow.length;i++){
-                memberCardInfo.value.memberCardShow[i].CARD_NUMBER=
-                memberCardInfo.value.memberCardShow[i].CARD_NUMBER.substring(0, 4)+replace+
-                memberCardInfo.value.memberCardShow[i].CARD_NUMBER.substring(11, 15)
-            }
-            console.log(memberCardInfo.value.memberCardShow);
-
-        })
-};
-const addMemberCard=async (memberid,cardinfor)=>{
-    let updateDate={
-        memberId:memberid,
-        cardInfor:cardinfor
     };
-    try{
-        const res=await axios.post('/api/memberCard/addCard.php',updateDate);
-        getMemberCard();
-
-    } catch(err)  {
-         console.error(err);
+    const editNewCard=(val)=>{
+          editNewMemberCard(chooseCard.value.cardId,val);
+            alert("信用卡修改成功")
+            ismemberCardEditvisible.value =  ! ismemberCardEditvisible.value;
+    };
+    const removCard=(val)=>{
+       let con=confirm("確定移除本張卡片?");
+       if(con){
+        removMemberCard(val);
+       }
+    };
+    const removMemberCard=async(cardid)=>{
+        let updateData={
+            cardId:cardid
         };
+        try{
+            const res=await axios.post('/api/memberCard/removeCard.php',updateData);
+            getMemberCard();
 
-};
+        } catch(err)  {
+            console.error(err);
+            };
+    };
+    const editNewMemberCard=async(cardid,val)=>{
+        let updateData={
+            cardId:cardid,
+            newData:val
+        };
+        try{
+            const res=await axios.post('/api/memberCard/editCard.php',updateData);
+            // console.log(res.data);
+            getMemberCard();
+
+        } catch(err)  {
+            console.error(err);
+            };
+
+    };
+    const getMemberData=async ()=>{
+        // console.log(123);
+        try{
+            //取得會員ID
+            const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+            memberCardInfo.value.memberId = res.data;
+        } catch(err)  {
+            console.error(err);
+            };
+    }
+    const getMemberCard=()=>{
+            return axios.get('/api/memberCard/getCard.php',{params:{memberId:memberCardInfo.value.memberId}})
+            .then((res)=>{
+                memberCardInfo.value.memberCard = res.data;
+                memberCardInfo.value.memberCardShow=memberCardInfo.value.memberCard;
+                let replace="－********－"
+                for(let i=0;i<memberCardInfo.value.memberCardShow.length;i++){
+                    memberCardInfo.value.memberCardShow[i].CARD_NUMBER=
+                    memberCardInfo.value.memberCardShow[i].CARD_NUMBER.substring(0, 4)+replace+
+                    memberCardInfo.value.memberCardShow[i].CARD_NUMBER.substring(11, 15)
+                }
+
+            })
+    };
+    const addMemberCard=async (memberid,cardinfor)=>{
+        let updateDate={
+            memberId:memberid,
+            cardInfor:cardinfor
+        };
+        try{
+            const res=await axios.post('/api/memberCard/addCard.php',updateDate);
+            console.log(res.data);
+            getMemberCard();
+
+        } catch(err)  {
+            console.error(err);
+            };
+
+    };
 onMounted(() => {
     getMemberData();
 

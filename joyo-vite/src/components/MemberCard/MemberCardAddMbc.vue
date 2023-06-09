@@ -42,19 +42,22 @@ import {defineEmits} from 'vue';
             };
         }
         if(repeat){
-            alert("信用卡卡號重覆登入")
+            alert("信用卡卡號重覆登記")
             addInfor.value.number = "";
             addInfor.value.cardName = "";
         }else{
-            let allFill=true;
-            for(let i=0;i<3;i++){
-
-            }
-            if(allFill){
+            if(addInfor.value.number!="" && addInfor.value.cardName!=""){
+                addInfor.value.number=addInfor.value.number.replace(/-/g,"");
                 emits('addNewCard', addInfor.value);
+            }else if(addInfor.value.number==""){
+                alert("請輸入信用卡卡號")
+            }else if(addInfor.value.cardName==""){
+                alert("請輸入信用卡暱稱")
             }
+                
             
         }
+            
         
     }
     const insertDash=()=>{

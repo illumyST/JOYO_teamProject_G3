@@ -6,8 +6,8 @@
                 <h3>{{ item.NAME }}</h3>
                 <h3 class="cardnum">{{ item.CARD_NUMBER }}</h3>
                 <div class="delete">
-                    <a href="#" @click="showMemberCardEdit"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a href="#"><i class="fa-solid fa-trash-can"></i></a> 
+                    <a href="#" @click="(e)=>showMemberCardEdit(e,item)"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="#" @click="(e)=>remove(e,item.MEMBER_CARD_ID)"><i class="fa-solid fa-trash-can"></i></a> 
                 </div>
             </li>
         </ul>
@@ -16,7 +16,7 @@
 
 <script setup>
     import { defineEmits,defineProps} from 'vue';
-    const emits = defineEmits(['ismemberCardvisible']);
+    const emits = defineEmits(['ismemberCardvisible','ismemberCardEditshow','removCard']);
     const props = defineProps ({
         ismemberCardEditvisible: {
             type: Boolean,
@@ -27,12 +27,15 @@
             required: true,
         }
     });
-    const showMemberCardEdit = (event) => {
+    const showMemberCardEdit = (event,item) => {
          event.preventDefault();
          console.log("編輯按鈕點擊成功");
-         emits('ismemberCardEditshow', true)
+         emits('ismemberCardEditshow',item)
     };
-
+    const remove=(e,cardid)=>{
+        e.preventDefault();
+        emits('removCard',cardid)
+    };
     
 
 </script>
