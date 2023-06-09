@@ -7,9 +7,10 @@
                 <ul>
                     <li>訂單編號</li>
                     <li>訂單金額</li>
-                    <li>完成日期</li>
+                    <li>狀態日期</li>
                     <li>付款方式</li>
                     <li>處理狀態</li>
+                    <li>取消</li>
                 </ul>
             </div>
             <MemberOrderTableMbc></MemberOrderTableMbc>
