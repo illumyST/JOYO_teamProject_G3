@@ -345,14 +345,15 @@ const itupop= (e,i)=>{
 axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
     for(var n of order.value){
-        console.log(n.tid);
+        // console.log(n.tid);
         for(var a of data.data){
-            // console.log(a['STATUS']);
+            // console.log( n.fron);
             if(n.tid == a[0]){
                 if(a['STATUS'] == "訂單成立"){ n.fron = 1 }
                 else if(a['STATUS'] == "出貨中"){ n.fron = 2 }
                 else if(a['STATUS'] == "運送中"){ n.fron = 3 }
                 else if(a['STATUS'] == "已完成"){ n.fron = 4 }
+                // console.log(a['STATUS']);
             }
         }
     }})

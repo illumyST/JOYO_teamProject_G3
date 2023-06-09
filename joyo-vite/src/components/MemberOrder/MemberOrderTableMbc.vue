@@ -8,7 +8,9 @@
                             <h3>{{ item.nowdate }}</h3>
                             <h3>{{ item.type }}</h3>
                             <h3>{{ item.now }}</h3>
+                            <input type="button" @click.stop="del(item.num)" value="刪除訂單">
                         </a>
+                        
                         <ul class="Order" v-if="item.open">
                             <li v-for="ltim of item.detal">
                                 <img :src="ltim.pimg" alt="">
@@ -18,19 +20,19 @@
                             </li>
                             
                             <li class="Orderbottom">
-                                <div>
+                                <div :class="{'on':item.now2 == 1}">
                                     <h4>訂單成立</h4>
                                     <p>{{ item.fday }}</p>
                                 </div>
-                                <div>
+                                <div :class="{'not':item.now2 < 2 , 'on':item.now2 == 2}">
                                     <h4>已出貨</h4>
                                     <p>{{ item.sday }}</p>
                                 </div>
-                                <div>
+                                <div :class="{'not':item.now2 < 3 , 'on':item.now2 == 3}">
                                     <h4>運送中</h4>
                                     <p>{{ item.tday }}</p>
                                 </div>
-                                <div>
+                                <div :class="{'not':item.now2 < 4 , 'on':item.now2 == 4}">
                                     <h4>訂單完成</h4>
                                     <p>{{ item.finday }}</p>
                                 </div>
@@ -44,8 +46,28 @@
 </template>
 
 <script setup>
+import {ref} from 'vue' ;
 import axios from 'axios';
 
+
+// axios 刪除
+const del =(e)=>{
+    if(confirm("確定取消此訂單嗎")){
+        for(let n of order.value){
+            if(n.num === e){
+                console.log(order.value);
+                let newArr = order.value.filter(item => item !== n);
+                order.value = newArr ;
+                console.log(order.value);
+                // order.value
+            }
+        }
+        axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbcDL.php",e)
+        .then(res=>{})
+        .catch(ERROR=>{console.log(error)});
+    }
+   
+}
 
 const order = ref([]);
 axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbc.php","0")
@@ -57,6 +79,9 @@ order.value.push({
     num:n[0],
     price:n[3],
     get nowdate(){
+        if(this.now == "訂單成立"){
+            return n[1]
+        }
         if(this.now == "出貨中"){
             return n[5]
         }
@@ -69,6 +94,20 @@ order.value.push({
     },
     type:"信用卡",
     now:n[2],
+    get now2(){
+        if(this.now == "訂單成立"){
+            return 1
+        }
+        if(this.now == "出貨中"){
+            return 2
+        }
+        if(this.now == "運送中"){
+            return 3
+        }
+        if(this.now == "已完成"){
+            return 4
+        }
+    },
     fday:n[1],
     sday:n[5]||null,
     tday:n[6]||null,
@@ -95,6 +134,23 @@ axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
 </script>
 
 <style lang="scss" scoped>
+
+@mixin btn($bg , $lh, $w, $hover){
+    background: $bg;
+    line-height: $lh;
+    width: $w;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    transition: .3s;
+    cursor: pointer ;
+    color: #fff;
+    &:hover{
+        background: $hover;
+    }
+};
     .memberOrder_list{
         line-height: 69px;
         letter-spacing: 1px;
@@ -105,8 +161,14 @@ axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
             border-radius: 5px;
             box-shadow: $shadow;
             transition: .3s;
+            input{
+                border: none;
+                font-size: $p;
+                @include btn($orange , 10px, 110px, $green);
+            }
             a{
                 display: flex;
+                justify-content: space-between;
                 font-size: 20px;
                 color: $brown;
                 transition: .3s;
@@ -199,6 +261,15 @@ axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
     img{
         width: 100px;
     }
+    .not{
+        // outline: 1px solid red;
+        opacity: .5;
+    }
+    .on{
+        color: rgb(255, 0, 0);
+        font-weight: 600;
+    }
+
     @media screen and (max-width: 414px) {
     .memberOrder-left h2{
         display: none;
