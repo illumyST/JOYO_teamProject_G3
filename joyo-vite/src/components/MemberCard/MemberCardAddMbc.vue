@@ -1,17 +1,17 @@
 <template>
     <!-- <div class="member_wrapper"> -->
-    <div class="memberCardAdd_overlay" v-if="isMemberCardAddhide">
+    <div class="memberCardAdd_overlay">
         <div class="memberCardAdd">
             <h1>新增信用卡/金融卡</h1>
             <a href="#" class="close" @click.stop="close"><i class="fa-solid fa-xmark"></i></a>
             <div class="cardimfo">
                 <form action="" method="POST">
                     <label for="">卡片資訊</label>
-                    <input type="text" class="card" placeholder="信用卡卡號">
-                    <input type="text" class="cardName" placeholder="持卡人姓名">
+                    <input type="text" class="card" placeholder="信用卡卡號" v-model="addInfor.number"  @input="insertDash">
+                    <input type="text" class="cardName" placeholder="持卡人姓名" v-model="addInfor.cardOwner">
                     <label for="">自訂卡片名稱</label>
-                    <input type="text" class="card" placeholder="請輸入信用卡暱稱">
-                    <input type="submit" class="addcard" value="新增卡片">
+                    <input type="text" class="card" placeholder="請輸入信用卡暱稱" v-model="addInfor.cardName">
+                    <input type="botton" class="addcard" value="新增卡片" @click="addNewCard">
                 </form>
             </div>
         </div>
@@ -19,17 +19,70 @@
     <!-- </div> -->
 </template>
     
-<script setup>    
+<script setup>  
+import {defineEmits} from 'vue';
+    const props = defineProps ({
+        memberCardInfo:{
+            type: Object,
+            required: true,
+        }
+    });
+    const addInfor=ref({
+        number:"",
+        cardOwner:"",
+        cardName:""
+    });
+    const emits = defineEmits(["addNewCard","closeAddForm"]);
+    const addNewCard=()=>{
+        let repeat=false;
+        for(let i=0;i<props.memberCardInfo.memberCard.length;i++){
+            if(props.memberCardInfo.memberCard[i][2] ===addInfor.value.number){
+                repeat=true;
+                break;
+            };
+        }
+        if(repeat){
+            alert("信用卡卡號重覆登入")
+            addInfor.value.number = "";
+            addInfor.value.cardName = "";
+        }else{
+            let allFill=true;
+            for(let i=0;i<3;i++){
 
-    const isMemberCardAddhide = ref(true);
-    console.log("Add頁面成功出現")
+            }
+            if(allFill){
+                emits('addNewCard', addInfor.value);
+            }
+            
+        }
+        
+    }
+    const insertDash=()=>{
+        const regex = /^[0-9]+$/;
+        let str=addInfor.value.number.replace(/-/g, "");
+        if(str.length>16){
+            alert("信用卡號不得超過16位數字");
+            addInfor.value.number=addInfor.value.number.slice(0, -1);
+        }else{
+           if(regex.test(str)){
+            if(str.length%4 ==0 && str.length<16){
+                addInfor.value.number=addInfor.value.number+"-";
+            }
+            }else{
+                alert("請輸入0-9數字");
+                addInfor.value.number="";
+
+            } 
+            }
+        
+        
+    }
 
     // 關閉的按鈕在這
-    const close = (event) => {
-        event.preventDefault();
-        isMemberCardAddhide.value = !isMemberCardAddhide.value;
-
-        console.log("Add關閉")
+    const close = (e) => {
+        e.preventDefault();
+        emits('closeAddForm',"Add關閉");
+        
         
     };
 
