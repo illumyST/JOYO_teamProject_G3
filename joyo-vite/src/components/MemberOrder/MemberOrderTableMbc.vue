@@ -3,7 +3,7 @@
                 <ul>
                     <li v-for="item in order" >
                         <a style="background: #f29441; color: #fff; cursor: pointer;" @click="item.open = !item.open">
-                            <h3>{{ item.num }}</h3>
+                            <h3 style="width: 100px">{{ item.num }}</h3>
                             <h3>{{ item.price }}</h3>
                             <h3>{{ item.nowdate }}</h3>
                             <h3>{{ item.type }}</h3>
