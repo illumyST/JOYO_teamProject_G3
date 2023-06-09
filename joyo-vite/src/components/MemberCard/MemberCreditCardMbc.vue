@@ -1,13 +1,13 @@
 <template>
     <main>
-        <ul>
-            <li v-for="(item,index) in member_data" :key="index">
+        <ul v-if="memberCardInfo.memberCard">
+            <li v-for="(item,index) in memberCardInfo.memberCardShow" :key="item.MEMBER_CARD_ID">
                 <i class="fa-regular fa-credit-card"></i>
-                <h3>{{ item.creaditcard_nickname }}</h3>
-                <h3 class="cardnum">{{ item.creaditcard_num }}</h3>
+                <h3>{{ item.NAME }}</h3>
+                <h3 class="cardnum">{{ item.CARD_NUMBER }}</h3>
                 <div class="delete">
-                    <a href="#" @click="showMemberCardEdit"><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a href="#"><i class="fa-solid fa-trash-can"></i></a> 
+                    <a href="#" @click="(e)=>showMemberCardEdit(e,item)"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="#" @click="(e)=>remove(e,item.MEMBER_CARD_ID)"><i class="fa-solid fa-trash-can"></i></a> 
                 </div>
             </li>
         </ul>
@@ -16,38 +16,27 @@
 
 <script setup>
     import { defineEmits,defineProps} from 'vue';
-
-    const emits = defineEmits(['ismemberCardvisible']);
+    const emits = defineEmits(['ismemberCardvisible','ismemberCardEditshow','removCard']);
     const props = defineProps ({
         ismemberCardEditvisible: {
             type: Boolean,
             required: true,
+        },
+        memberCardInfo:{
+            type: Object,
+            required: true,
         }
     });
-    const showMemberCardEdit = (event) => {
+    const showMemberCardEdit = (event,item) => {
          event.preventDefault();
          console.log("編輯按鈕點擊成功");
-         emits('ismemberCardEditshow', true)
+         emits('ismemberCardEditshow',item)
     };
-
-    const member_data = ref([
-        {
-            creaditcard_nickname: '中國信託',
-            creaditcard_num: '**** **** **** 4668',
-        },
-        {
-            creaditcard_nickname: '國泰cube卡',
-            creaditcard_num: '**** **** **** 1324',
-        },
-        {
-            creaditcard_nickname: '富邦J卡',
-            creaditcard_num: '**** **** **** 0863',
-        },
-        {
-            creaditcard_nickname: '渣打銀行',
-            creaditcard_num: '**** **** **** 9846',
-        },
-    ])
+    const remove=(e,cardid)=>{
+        e.preventDefault();
+        emits('removCard',cardid)
+    };
+    
 
 </script>
 

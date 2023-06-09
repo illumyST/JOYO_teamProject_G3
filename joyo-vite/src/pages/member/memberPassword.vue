@@ -5,13 +5,25 @@
             <h2>更改密碼</h2>
             <div class="memberPassword-right-card">
                 <form action="" method="POST">
-                    <label for="">輸入當前密碼</label>
-                    <input type="text">
-                    <label for="">輸入新密碼</label>
-                    <input type="text">
-                    <label for="">確認新密碼</label>
-                    <input type="text">
-                    <input type="submit" class="changepass" value="修改密碼">                      
+                    
+                    <div>
+                        <label for="">輸入當前密碼</label>
+                        <input type="password" v-model="updatePwd.current">
+                        <p v-if="!currentPswCheck">密碼有誤!</p> 
+                    </div>
+                    <div>
+                       <label for="">輸入新密碼</label>
+                        <input type="password" v-model="updatePwd.newpwd">
+                        <p v-if="!newPswCheck">密碼應包含數字和英文大寫小寫!</p>
+                        <p v-if="!newPswNotRepeatCheck">新密碼與舊密碼不可相同!</p>  
+                    </div>
+                    <div>
+                        <label for="">確認新密碼</label>
+                        <input type="password" v-model="updatePwd.repeatpsd">
+                        <p v-if="!newPswRepCheck">密碼不一致!</p>
+                    </div>
+                    
+                    <input type="botton" class="changepass" value="修改密碼" @click="renewpsw">                      
                 </form>
             </div>
         </div>
@@ -19,7 +31,96 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+const updatePwd=ref({
+    current:"",
+    newpwd:"",
+    repeatpsd:"",
+    memberId:"",
+    
+});
+const memberData=ref({
+    memberId:"",
+    memberPsw:""
+});
+const currentPswCheck=ref(true);
+const newPswCheck=ref(true);
+const newPswRepCheck=ref(true);
+const newPswNotRepeatCheck=ref(true);
+const getMemberData=async ()=>{
+        try{
+            //取得會員ID
+            const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+            updatePwd.value.memberId = res.data;
+            getmemberpsw();
+        } catch(err)  {
+            console.error(err);
+            };
+}
+const getmemberpsw=()=>{
+    return axios.get('/api/memberCard/getMemberPsw.php',{ params: { memberId: updatePwd.value.memberId} })
+        .then(resdata => {
+            memberData.value.memberPsw=resdata.data.PASSWORD;
+            }
+            )
+        .catch(err => {
+            console.error(err);
+        });
+};
+const renewpsw=()=>{
+    if(updatePwd.value.current !="" && updatePwd.value.newpwd !="" & updatePwd.value.repeatpsd !=""){
+        if(updatePwd.value.current==memberData.value.memberPsw){
+            currentPswCheck.value=true;
+            let re_pas = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$/;
+            if ((updatePwd.value.newpwd != undefined) && (updatePwd.value.newpwd.trim() != "")) {
+                newPswCheck.value = true;
+                if (re_pas.test(updatePwd.value.newpwd)) {
+                    newPswRepCheck.value = true;
+                    if(updatePwd.value.newpwd ==updatePwd.value.current){
+                        newPswNotRepeatCheck.value= false;
+                    }else{
+                        newPswNotRepeatCheck.value=true;
+                        //更新密碼
+                        updateToSql();
+                    }
+                    if (updatePwd.value.newpwd !== updatePwd.value.repeatpsd) {
+                        newPswRepCheck.value = false;
+                    }else if(updatePwd.value.newpwd !== updatePwd.value.repeatpsd){
+                        newPswRepCheck.value = true;
+                    }
+                } else {
+                    newPswCheck.value = false;
+                };
+            }
 
+        }else if(updatePwd.value.current!=memberData.value.memberPsw){
+            currentPswCheck.value=false;
+        }
+    }else {
+        if(updatePwd.value.current ==""){
+            alert("請輸入密碼");
+        }else if(updatePwd.value.repeatpsd ==""){
+            alert("請輸入重複輸入新密碼");
+        }else if(updatePwd.value.newpwd ==""){
+                 alert("請輸入新密碼");
+            
+        }
+    }
+}
+const updateToSql=async()=>{
+    try{
+            const res=await axios.post('/api/memberCard/editMemberPsw.php',updatePwd.value);
+            console.log(res.data);
+            alert("密碼已更新，請重新登入");
+            location.reload();
+
+        } catch(err)  {
+            console.error(err);
+            };
+};
+onMounted(() => {
+    getMemberData();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -68,6 +169,14 @@
         box-shadow: $shadow;
         padding: 76px 82px;
         box-sizing: border-box;
+        div{
+           margin-bottom: 30px;
+           p{
+            color: red;
+            font-size: 16px;
+            margin-top: 5px;
+        } 
+        }
         label{
             font-size: $h2;
             letter-spacing: 1px;
@@ -76,9 +185,9 @@
         input{
             @include input-text(46px, 793px);
             margin-top: 8px;
-            margin-bottom: 30px;
             font-size: 22px;
             color: $brown;
+            
         }
         .changepass{
             @include btn($orange, 57px, 793px, $green);
@@ -90,6 +199,7 @@
             padding-left: 0;
             padding-right: 0;
         }
+        
     }
 }
 

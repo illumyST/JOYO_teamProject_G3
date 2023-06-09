@@ -6,9 +6,13 @@
 
 <script setup>
 import axios from 'axios';
-axios.get(`${import.meta.env.VITE_API_URL}/test/test.php`)
+axios.get(`${import.meta.env.VITE_API_URL}/test/testMail.php`)
   .then(res => {
-    console.log(res.data)
+    alert(res.data);
+  });
+  axios.get(`${import.meta.env.VITE_API_URL}/test/test.php`)
+  .then(res => {
+    console.log(res.data);
   });
 </script>
 
