@@ -102,15 +102,15 @@
         }else {
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, cartItem.value)
             .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
             alert("購物車新增成功!")
     } 
-    
     };
+    
     const getmember_id = () => {
     return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
     .then(res => {

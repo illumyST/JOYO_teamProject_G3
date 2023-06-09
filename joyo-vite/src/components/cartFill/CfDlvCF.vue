@@ -286,7 +286,7 @@
     };
      //取得縣市區域JSON資料並將縣市資料填入address的country
     const fetchData=()=>{
-        return axios.get(`${import.meta.env.VITE_API_URL}/src/assets/json/address.json`)
+        return axios.get('/src/assets/json/address.json')
                 .then(
                     res =>{
                     address.value.twzipcode=res.data;
@@ -464,7 +464,7 @@
 
         h2 {
             border-bottom: 1px solid $brown ;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
 
             div {
                 display: inline;
@@ -493,7 +493,9 @@
         input {
             height: 50px;
             font-size: 20px;
-            width: 275px;
+            width: 278px;
+            padding-left: 15px; 
+            box-sizing: border-box;
         }
 
         li {
@@ -508,7 +510,6 @@
                 width: 275px;
                 font-size: 20px;
                 margin-bottom: 8px;
-
             }
         }
 
@@ -549,6 +550,8 @@
         margin-bottom: 20px;
         height: 50px;
         font-size: 20px;
+        padding-left: 15px;
+        box-sizing: border-box;
     }
 
     select {
@@ -558,7 +561,8 @@
         margin-top: 19px;
         height: 50px;
         width: 278px;
-
+        padding-left: 15px;
+        box-sizing: border-box;
     }
 }
 

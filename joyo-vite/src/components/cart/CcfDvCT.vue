@@ -107,6 +107,8 @@
         select {
             height: 50px;
             font-size: 20px;
+            padding-left: 15px;
+            box-sizing: border-box;
         }
 
         p,
