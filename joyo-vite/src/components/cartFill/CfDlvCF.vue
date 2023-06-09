@@ -260,15 +260,11 @@
                     saveInBuy();
                     toGreenPay();
                     
-                    
-                   
                 }
                }else{
                 saveToLocal();
                 saveInBuy(); 
                 toGreenPay(); 
-                
-                
                 
                }
             }
@@ -339,7 +335,6 @@
 
             } 
             }
-        
         
     }
     const insertChinese=()=>{
