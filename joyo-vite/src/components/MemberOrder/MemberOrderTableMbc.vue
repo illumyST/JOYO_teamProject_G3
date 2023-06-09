@@ -1,175 +1,97 @@
 <template>
     <div class="memberOrder_list">
                 <ul>
-                    <li>
-                        <a href="#" style="background: #f29441; color: #fff;">
-                            <h3>213213123</h3>
-                            <h3>$2,829</h3>
-                            <h3>2023/3/23</h3>
-                            <h3>貨到付款</h3>
-                            <h3>訂單成立</h3>
+                    <li v-for="item in order" >
+                        <a style="background: #f29441; color: #fff; cursor: pointer;" @click="item.open = !item.open">
+                            <h3>{{ item.num }}</h3>
+                            <h3>{{ item.price }}</h3>
+                            <h3>{{ item.nowdate }}</h3>
+                            <h3>{{ item.type }}</h3>
+                            <h3>{{ item.now }}</h3>
                         </a>
-                        <ul class="Order">
-                            <li>
-                                <img src="../../assets/img/board1.png" alt="">
-                                <h5>領土爭奪-標準版</h5>
-                                <h5>1,200元</h5>
-                                <h5>1 個</h5>
+                        <ul class="Order" v-if="item.open">
+                            <li v-for="ltim of item.detal">
+                                <img :src="ltim.pimg" alt="">
+                                <h5>{{ ltim.pname }}</h5>
+                                <h5>{{ ltim.pprice }}元</h5>
+                                <h5>{{ ltim.pamount }} 個</h5>
                             </li>
-                            <li>
-                                <img src="../../assets/img/board2.png" alt="">
-                                <h5>阿瓦隆：蘭斯洛特 擴充</h5>
-                                <h5>680元</h5>
-                                <h5>2 個</h5>
-                            </li>
+                            
                             <li class="Orderbottom">
                                 <div>
                                     <h4>訂單成立</h4>
-                                    <p>4/24</p>
+                                    <p>{{ item.fday }}</p>
                                 </div>
                                 <div>
                                     <h4>已出貨</h4>
-                                    <p>4/24</p>
+                                    <p>{{ item.sday }}</p>
                                 </div>
                                 <div>
                                     <h4>運送中</h4>
-                                    <p>4/25</p>
+                                    <p>{{ item.tday }}</p>
                                 </div>
                                 <div>
                                     <h4>訂單完成</h4>
-                                    <p>4/26</p>
+                                    <p>{{ item.finday }}</p>
                                 </div>
+                                <span :class="{'one':item.now == '出貨中','two':item.now == '運送中','the':item.now == '已完成'}"></span>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">
-                            <h3>204819952</h3>
-                            <h3>$560</h3>
-                            <h3>2023/4/11</h3>
-                            <h3>貨到付款</h3>
-                            <h3>訂單完成</h3>
-                        </a>
-                        <ul class="Order" style="display: none;">
-                            <li>
-                                <img src="../../assets/img/board1.png" alt="">
-                                <h5>領土爭奪-標準版</h5>
-                                <h5>1,200元</h5>
-                                <h5>1</h5>
-                            </li>
-                            <li>
-                                <img src="../../assets/img/board2.png" alt="">
-                                <h5>阿瓦隆：蘭斯洛特 擴充</h5>
-                                <h5>680元</h5>
-                                <h5>2</h5>
-                            </li>
-                            <li class="Orderbottom">
-                                <div>
-                                    <h4>訂單成立</h4>
-                                    <p>2023/4/24 14:20:13</p>
-                                </div>
-                                <div>
-                                    <h4>已出貨</h4>
-                                    <p>2023/4/24 20:42:20</p>
-                                </div>
-                                <div>
-                                    <h4>運送中</h4>
-                                    <p>2023/4/25 09:50:29</p>
-                                </div>
-                                <div>
-                                    <h4>訂單完成</h4>
-                                    <p>2023/4/26 11:39:40</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <h3>244017783</h3>
-                            <h3>$3,600</h3>
-                            <h3>2023/4/19</h3>
-                            <h3>貨到付款</h3>
-                            <h3>訂單完成</h3>
-                        </a>
-                        <ul class="Order" style="display: none;">
-                            <li>
-                                <img src="../../assets/img/board1.png" alt="">
-                                <h5>領土爭奪-標準版</h5>
-                                <h5>1,200元</h5>
-                                <h5>1</h5>
-                            </li>
-                            <li>
-                                <img src="../../assets/img/board2.png" alt="">
-                                <h5>阿瓦隆：蘭斯洛特 擴充</h5>
-                                <h5>680元</h5>
-                                <h5>2</h5>
-                            </li>
-                            <li class="Orderbottom">
-                                <div>
-                                    <h4>訂單成立</h4>
-                                    <p>2023/4/24 14:20:13</p>
-                                </div>
-                                <div>
-                                    <h4>已出貨</h4>
-                                    <p>2023/4/24 20:42:20</p>
-                                </div>
-                                <div>
-                                    <h4>運送中</h4>
-                                    <p>2023/4/25 09:50:29</p>
-                                </div>
-                                <div>
-                                    <h4>訂單完成</h4>
-                                    <p>2023/4/26 11:39:40</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <h3>260123874</h3>
-                            <h3>$990</h3>
-                            <h3>2023/5/05</h3>
-                            <h3>貨到付款</h3>
-                            <h3>訂單完成</h3>
-                        </a>
-                        <ul class="Order" style="display: none;">
-                            <li>
-                                <img src="../../assets/img/board1.png" alt="">
-                                <h5>領土爭奪-標準版</h5>
-                                <h5>1,200元</h5>
-                                <h5>1</h5>
-                            </li>
-                            <li>
-                                <img src="../../assets/img/board2.png" alt="">
-                                <h5>阿瓦隆：蘭斯洛特 擴充</h5>
-                                <h5>680元</h5>
-                                <h5>2</h5>
-                            </li>
-                            <li class="Orderbottom">
-                                <div>
-                                    <h4>訂單成立</h4>
-                                    <p>2023/4/24 14:20:13</p>
-                                </div>
-                                <div>
-                                    <h4>已出貨</h4>
-                                    <p>2023/4/24 20:42:20</p>
-                                </div>
-                                <div>
-                                    <h4>運送中</h4>
-                                    <p>2023/4/25 09:50:29</p>
-                                </div>
-                                <div>
-                                    <h4>訂單完成</h4>
-                                    <p>2023/4/26 11:39:40</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </div>
 </template>
 
 <script setup>
+import axios from 'axios';
+
+
+const order = ref([]);
+axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbc.php","0")
+.then(res=>{
+const ord = res.data ;
+for(let n of ord){
+order.value.push({
+    open:false,
+    num:n[0],
+    price:n[3],
+    get nowdate(){
+        if(this.now == "出貨中"){
+            return n[5]
+        }
+        if(this.now == "運送中"){
+            return n[6]
+        }
+        if(this.now == "已完成"){
+            return n[7]
+        }
+    },
+    type:"信用卡",
+    now:n[2],
+    fday:n[1],
+    sday:n[5]||null,
+    tday:n[6]||null,
+    finday:n[7]||null,
+    detal:[]
+})}
+axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
+.then(res=>{
+    for(let n of res.data){
+        order.value[0]["detal"].push({
+            pname:n[0],
+            pimg:n[2],
+            pprice:n[1],
+            pamount:n[3],   
+        })  
+    }
+    console.log(order.value);
+})
+.catch(error=>{console.log(error)});
+// console.log(ord)
+})
+.catch(error=>{console.log(error)})
+
 </script>
 
 <style lang="scss" scoped>
@@ -216,6 +138,26 @@
                         }
                     }
                 }
+                li.Orderbottom{
+                    position: relative;
+                    span{
+                    position: absolute;
+                    // background-color: $brown;
+                    width: 0%; // 1 25% 2 50% 3 75%
+                    border: 5px solid $brown;
+                    left: 12%;
+                    bottom: 75%;
+                    }
+                    span.one{
+                        width: 25% !important;  
+                    }
+                    span.two{
+                        width: 50% !important;  
+                    }
+                    span.the{
+                        width: 75% !important;  
+                    }
+                }
             }
             
         }
@@ -224,8 +166,12 @@
     .Orderbottom{
         text-align: center;
         div{
-            padding-top: 50px;
-            width: 68px;
+            padding:40px 50px 0;
+            width: 100px;
+            height: 100px;
+            // outline: 1px solid red;
+            display: flex;
+            flex-direction: column;
             &::before{
                 content: "";
                 display: block;
@@ -234,19 +180,25 @@
                 width: 20px;
                 height: 20px;
                 position: relative;
-                left: 24px;
+                left: 40px;
                 bottom: 30px;
             }
             h4{
-                line-height: 30px;
+                line-height: 10px;
                 text-align: center;
+                margin-bottom: 10px;
+                
             }
             p{
                 line-height: 30px;
+                width: 100px;   
+                // margin: auto;
             }
         }
     }
-
+    img{
+        width: 100px;
+    }
     @media screen and (max-width: 414px) {
     .memberOrder-left h2{
         display: none;
@@ -313,4 +265,5 @@
     .Orderbottom div::before{
         left: 24px;   
     }
+   
 }</style>
