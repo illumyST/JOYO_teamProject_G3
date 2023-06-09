@@ -100,7 +100,7 @@ const handleScroll = () => {
   // 检查元素是否在视口内
   if (rect.top <= window.innerHeight && rect.bottom >= 0) {
     contactBottomElement.classList.add('animate_dash');
-    console.log('开始动画');
+    // console.log('开始动画');
   }else{
     contactBottomElement.classList.remove('animate_dash');
   }
@@ -380,6 +380,11 @@ onUnmounted(() => {
   .contact_bottom_customer_service {
     bottom: 210px;
     right: 0;
+  }
+
+  .contact_bottom_chat{
+    width: 100%;
+    z-index: 200;
   }
 }
 </style>
