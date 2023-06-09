@@ -123,7 +123,7 @@ const getGame = () => {
   let arr1 = (forumArticle.value.articleAll.filter((article) => "article:" + article.ARTICLE_ID == callBackId));
   forumArticle.value.articleFilter = arr1[0];
   props.forumCategory.cate = forumArticle.value.articleFilter.ARTICLE_CATEGORY;
-  // console.log( props.forumCategory.cate);
+  console.log( forumArticle.value.articleFilter.COMMENT_NUM);
 
 };
 
@@ -172,7 +172,7 @@ const postMsg = ref({
 
 const router = useRouter();
 // 處理發送按钮點擊事件
-const handleSendButtonClick = () => {
+const handleSendButtonClick = async() => {
   axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
     .then(res => {
       if (res.data) {
@@ -180,7 +180,7 @@ const handleSendButtonClick = () => {
         let artId = route.params.article.substring(8);
         postMsg.value.articleID = artId;
         if (postMsg.value.MsgText !== "") {
-          axios
+           axios
             .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
             .then((res) => {
               // console.log(res.data);
@@ -188,11 +188,12 @@ const handleSendButtonClick = () => {
               postMsg.value.MsgText = "";
               // alert(res.data);
               alert("留言成功");
-
+              
               console.log(postMsg.value);
 
               // 获取最新的留言数据并更新页面
               fetchMsg();
+              forumArticle.value.articleFilter.COMMENT_NUM++;
             })
             .catch((error) => {
               console.error("Error submitting post:", error);
@@ -480,6 +481,7 @@ onMounted(() => {
 
   img {
     width: 4%;
+    border-radius: 50%;
   }
 
   >p {

@@ -182,13 +182,14 @@ const updateArrange=(val)=>{
     }
 };
 const countPageActive=ref(1);
-const pageActive=ref([true]);
+const pageActive=ref([]);
 const fitDeviceWidth=()=>{
   console.log(document.querySelectorAll(".forum_right")[0]);
     let screenWidth = window.innerWidth;
     let currentScrollY = document.querySelectorAll(".forum_right")[0].scrollTop;
     console.log(currentScrollY);
     if(screenWidth<500){
+      pageActive.value.push(true);
         if(countPageActive.value==1){
             if(currentScrollY >  countPageActive.value*10){
             console.log("appear");

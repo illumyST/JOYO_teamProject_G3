@@ -25,9 +25,6 @@ import { ref } from 'vue';
         event.preventDefault();
         isMemberCardAddVisible.value =  !isMemberCardAddVisible.value;
     };
-
-
-
     // 修改編輯信用卡
     let ismemberCardEditvisible = ref(false)
     const ismemberCardEditshow = (val) => {

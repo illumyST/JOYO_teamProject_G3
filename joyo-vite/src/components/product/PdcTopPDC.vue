@@ -160,7 +160,7 @@
             console.log(age)
             buttonText.firstElementChild.innerText=`適玩年齡`;
         }else if(age>3){
-            buttonText.firstElementChild.innerText=`適玩年齡:+${e.target.innerText}`;
+            buttonText.firstElementChild.innerText=`適玩年齡：+${e.target.innerText}`;
         }
         emits('updatePlayerAge', age);
     };
