@@ -152,6 +152,7 @@ const getMemberId = () => {
         postMsg.value.MemberId = -1;
         // console.log(res.data);
       } else {
+        checkLikedStatus();
         // console.log(postMsg.value.MemberId);
       }
     })
@@ -243,56 +244,84 @@ const formatDate = (dateString) => {
 };
 
 // 存放點擊喜歡的值
-const likeCount = ref("");
-// console.log(likeCount.value);
-const isLiked = ref(false);
+let isLiked = ref(0);
 
-// 點擊喜歡按钮
+// 點擊愛心按鈕的事件處理函式
 const handleLikeButtonClick = () => {
-  // console.log("11111");
   if (postMsg.value.MemberId < 0) {
-    // 用户不是會員，给出提示或要求登入/註冊
-    alert("請登入或註冊為會員");
+    // 使用者未登入，提示登入
+    alert("請先登入會員");
+    router.push('/signIn');
   } else {
-    isLiked.value = !isLiked.value;
-    if (isLiked.value) {
-      likeCount.value += 1; // 点赞数加一
+    // 使用者已登入
+    if (!isLiked.value) {
+      // 如果尚未點擊愛心，執行點擊事件
+      postLike();
     } else {
-      likeCount.value -= 1; // 点赞数减一
+      // 如果已經點擊愛心，執行取消點擊事件
+      unlikeLike();
     }
   }
-
-  // 更新資料庫喜歡的數量
-  likebtn();
 };
 
-const likebtn = () => {
+// 將愛心按鈕點擊事件傳送到後端
+const postLike = () => {
+  const artId = route.params.article.substring(8);
+  postMsg.value.articleID = artId;
+  const memberId = postMsg.value.MemberId;
+  // console.log(artId,memberId);
+
+  axios
+    .post("/api/forumInfo/addLikeCount.php", { artId, memberId })
+    .then((res) => {
+      // console.log(res.data);
+      // 執行成功，更新愛心狀態和重新加載文章資訊
+      isLiked.value = true;
+    })
+    .catch((error) => {
+      console.error("Error submitting like:", error);
+    });
+};
+
+// 將取消愛心按鈕點擊事件傳送到後端
+const unlikeLike = () => {
+  const artId = route.params.article.substring(8);
+  postMsg.value.articleID = artId;
+  const memberId = postMsg.value.MemberId;
+
+  axios
+    .post("/api/forumInfo/UnlikeArticle.php", { artId, memberId })
+    .then((res) => {
+      // console.log(res.data);
+      // 執行成功，更新愛心狀態和重新加載文章資訊
+      isLiked.value = false;
+    })
+    .catch((error) => {
+      console.error("Error submitting unlike:", error);
+    });
+};
+
+
+// 取得ARTICLE_LIKE的表格裡確認會員有沒有在這篇文章點過喜歡
+const checkLikedStatus = () => {
   let artId = route.params.article.substring(8);
   postMsg.value.articleID = artId;
   let memberId = postMsg.value.MemberId;
 
-
-  const params = new URLSearchParams();
-  params.append("artId", artId);
-  params.append("likeCount", likeCount.value); // 根据实际的 isLiked 值来确定增减数量
-  params.append("memberId", memberId);
-
-
   axios
-    .post("/api/forumInfo/addLikeCount.php", params) // PHP 文件路径
+    .get("/api/forumInfo/checkLiked.php", {
+      params: {
+        artId: artId,
+        memberId: memberId
+      }
+    })
     .then((res) => {
-      // console.log(res.data);
-      const hasLiked = res.data.liked; // 從後端獲取按讚狀態
-      console.log(hasLiked);
-      // 更新红心图标样式
-      //  hasLiked.value.liked = isLiked;
-
-      // isLiked.value = false;
-      // likeCount.value = "";
+      let isLikedByMember = res.data;
+      isLiked.value = isLikedByMember;
+      // console.log(isLikedByMember);
     })
     .catch((error) => {
-      console.error("Error updating like count:", error);
-      // alert("點讚失敗");
+      console.error("Error checking liked status:", error);
     });
 };
 
@@ -303,7 +332,7 @@ onMounted(() => {
   getMemberId();
   //取得文章資料
   fetchMsg();
-  likebtn();
+  checkLikedStatus();
 
   fetchData().then(() => {
     getGame();

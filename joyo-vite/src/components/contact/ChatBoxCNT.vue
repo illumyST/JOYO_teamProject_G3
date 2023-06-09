@@ -63,7 +63,7 @@ export default {
       axios
         .get("/api/frontChat/getUserId.php")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.currentUserId = res.data;
         })
         .catch((err) => {
@@ -74,7 +74,7 @@ export default {
     sendMessage() {
       if (this.$refs.userMessage.value != "") {
         const userMessage = this.$refs.userMessage.value;
-        console.log(userMessage);
+        // console.log(userMessage);
         const formData = new FormData();
         formData.append("adminId", "b_1");
         formData.append("msg_content", userMessage);
@@ -82,7 +82,7 @@ export default {
         axios
           .post("/api/frontChat/userSendMessage.php", formData)
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             this.$refs.userMessage.value = "";
           })
           .catch((err) => {
