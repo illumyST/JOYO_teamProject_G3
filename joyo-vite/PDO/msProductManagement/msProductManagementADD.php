@@ -62,13 +62,13 @@ $imgurl[$a] = $ll ;
 // print_r($imgurl);
 // -------------------------------------------------------------------------------------------
 
-$ins = "INSERT INTO PRODUCT(NAME,CATEGORY,PRICE,PRODUCT_DATE,IMG_URL_ONE,IMG_URL_TWO,IMG_URL_THREE,IMG_URL_FOUR,DESCRIPTION,MIN_TIME,MAX_TIME,MIN_PLAYER,MAX_PLAYER,MIN_AGE,STOCK
-) value ('$pid','$ptype','$ppr',NOW(),'$imgurl[0]','$imgurl[1]','$imgurl[2]','$imgurl[3]','$ptarea','$ptimeMIN','$ptimeMAX','$pplayersMIN','$pplayersMAX','$page','$pstock')";
+$ins = "INSERT INTO PRODUCT(NAME,CATEGORY,PRICE,CURRENT_PRICE, PRODUCT_DATE,IMG_URL_ONE,IMG_URL_TWO,IMG_URL_THREE,IMG_URL_FOUR,DESCRIPTION,MIN_TIME,MAX_TIME,MIN_PLAYER,MAX_PLAYER,MIN_AGE,STOCK
+) value ('$pid','$ptype','$ppr','$ppr',NOW(),'$imgurl[0]','$imgurl[1]','$imgurl[2]','$imgurl[3]','$ptarea','$ptimeMIN','$ptimeMAX','$pplayersMIN','$pplayersMAX','$page','$pstock')";
 
 $stm = $pdo -> exec($ins);
 
 if(isset($stm)){
-header("location:http://localhost:5174/#/ms/msProductManagement");
+header("location:http://localhost:5173/#/ms/msProductManagement");
 }else{
     echo "新增失敗" ;
 }
