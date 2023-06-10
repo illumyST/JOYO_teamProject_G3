@@ -72,7 +72,7 @@ export default {
       this.getPageCount();
     },
     currentPage() {
-      console.log("clicked!", this.currentPage);
+      // console.log("clicked!", this.currentPage);
     },
   },
   mounted() {
@@ -93,7 +93,7 @@ export default {
         .get("/api/msLiveChat/getChat.php")
         .then((res) => {
           // this.currentChatUserId = res.data[0].MEMBER_ID;
-          console.log(res.data);
+          // console.log(res.data);
           this.currentChatUser = res.data[0].MEMBER_NAME;
         })
         .catch((err) => {

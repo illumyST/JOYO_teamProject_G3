@@ -46,6 +46,10 @@
       </div>
 
       <!-- Img alt -->
+      <div class="flex-col">
+        <label for="">圖片說明</label>
+        <input type="text" v-model="imageAlt" />
+      </div>
 
       <div>
         <input type="submit" value="送出" />
@@ -69,6 +73,7 @@ export default {
       selectedOptionB: "default",
       optionsB: [],
       imageUrl: "",
+      imageAlt: "",
     };
   },
   methods: {
@@ -83,11 +88,14 @@ export default {
         alert("請上傳圖片");
       } else if (this.imageUrl == "") {
         alert("請輸入超連結");
+      } else if (this.imageAlt == "") {
+        alert("請輸入圖片說明");
       } else {
         const formData = new FormData();
         formData.append("selectedOptionA", this.selectedOptionA);
         formData.append("selectedOptionB", this.selectedOptionB);
         formData.append("imageUrl", this.imageUrl);
+        formData.append("imgAlt", this.imageAlt); 
         formData.append("fileUpload", this.$refs.fileUpload.files[0]);
         axios
           .post("/api/msUploadBanner/msBannerUpload.php", formData)
@@ -96,9 +104,10 @@ export default {
             this.selectedOptionA = "default";
             this.selectedOptionB = "default";
             this.imageUrl = "";
+            this.imageAlt = ""; 
             this.preview = null;
             this.$refs.fileUpload.value = null; // Reset file input
-            alert("成功上傳");  
+            alert("成功上傳");
           })
           .catch((error) => {
             console.log(error);
@@ -126,6 +135,8 @@ export default {
           { value: "A", label: "A" },
           { value: "B", label: "B" },
           { value: "C", label: "C" },
+          { value: "D", label: "D" },
+          { value: "E", label: "E" },
         ];
       } else if (this.selectedOptionA === "forum") {
         this.optionsB = [{ value: "A", label: "A" }];

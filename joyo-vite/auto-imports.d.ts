@@ -5,6 +5,7 @@
 export {}
 declare global {
   const BannerIDX: typeof import('./src/components/Index/BannerIDX.vue')['default']
+  const BannerTopFRM: typeof import('./src/components/forum/BannerTopFRM.vue')['default']
   const BarChart: typeof import('./src/components/MsContentManagement/BarChart.vue')['default']
   const BtnTesttttt: typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']
   const ChatBoxCNT: typeof import('./src/components/contact/ChatBoxCNT.vue')['default']
@@ -94,6 +95,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BannerIDX: UnwrapRef<typeof import('./src/components/Index/BannerIDX.vue')['default']>
+    readonly BannerTopFRM: UnwrapRef<typeof import('./src/components/forum/BannerTopFRM.vue')['default']>
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
@@ -177,6 +179,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly BannerIDX: UnwrapRef<typeof import('./src/components/Index/BannerIDX.vue')['default']>
+    readonly BannerTopFRM: UnwrapRef<typeof import('./src/components/forum/BannerTopFRM.vue')['default']>
     readonly BarChart: UnwrapRef<typeof import('./src/components/MsContentManagement/BarChart.vue')['default']>
     readonly BtnTesttttt: UnwrapRef<typeof import('./src/components/-UI_Element/BtnTesttttt.vue')['default']>
     readonly ChatBoxCNT: UnwrapRef<typeof import('./src/components/contact/ChatBoxCNT.vue')['default']>
