@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem">
                 <ul id="selectbox" v-if="searchBoxOpen">
-                    <li v-for="(item,index) in selectModel"><a @click="reload(item.href)">{{ item.name }}</a></li>
+                    <li v-for="(item,index) in selectModel"  @click="reload(item.href)">{{ item.name }}</li>
                 </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
@@ -598,11 +598,10 @@ header {
         border-bottom: 1px solid white;
         background-color: $green;
         margin-bottom: 5px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
 
-        a {
-            color: white;
-            text-decoration: none;
-        }
     }
 }
 </style>
