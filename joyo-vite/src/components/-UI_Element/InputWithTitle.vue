@@ -3,19 +3,30 @@
         <div class="text_wrapper">
             <slot></slot>
         </div>
-        <input type="text" v-model="modelValue" :class="{'on':props.message}">
+        <input :type="props.type ? props.type : 'text'"
+        v-model="modelValue"
+        :class="{ 'on': props.message }"
+        :placeholder="props.placeholder"
+        >
         <slot name="check"></slot>
     </label>
 </template>
 
 <script setup>
-import { defineExpose, defineProps  } from 'vue';
+import { defineExpose, defineProps } from 'vue';
 
 const props = defineProps({
     message: {
-    type: Boolean,
-    required: true
-  }})
+        type: Boolean,
+    },
+    type: {
+        type: String,
+    },
+    placeholder:{
+        type: String,
+    }
+
+})
 
 //   console.log(props.message);
 
@@ -37,10 +48,12 @@ div {
     letter-spacing: .1em;
     margin-bottom: 15px;
 }
-div.text_wrapper{
+
+div.text_wrapper {
     display: flex;
     justify-content: space-between;
 }
+
 input {
     padding-left: 15px;
     line-height: 45px;
@@ -52,8 +65,12 @@ input {
     outline: none;
     letter-spacing: 1px;
     margin-bottom: 10px;
+    &::placeholder{
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.2);
+    }
 }
-input.on{
-    background-color: rgba(255, 0, 0, 0.125) ;
-}
-</style>
+
+input.on {
+    background-color: rgba(255, 0, 0, 0.125);
+}</style>

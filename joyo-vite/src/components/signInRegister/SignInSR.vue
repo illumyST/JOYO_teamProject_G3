@@ -8,7 +8,10 @@
         </template>
 
     </InputWithTitle>
-    <InputWithTitle class="password" ref="password" :message="!PasCheck">密碼
+    <InputWithTitle ref="password2" :message="!PasCheck"
+    :type="'password'"
+    :placeholder="'英數字混合，至少一大寫'"
+    >密碼
         <RouterLink to="/forgetPassword">忘記密碼？</RouterLink>
         <template #check>
             <p v-if="!PasCheck">密碼格式錯誤</p>

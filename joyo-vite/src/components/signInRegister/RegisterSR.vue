@@ -6,9 +6,15 @@
             <p v-if="!MailCheck">電子信箱格式錯誤</p>
         </template>
     </InputWithTitle>
-    <InputWithTitle ref="password2" :message="!PasCheck">密碼
+    <InputWithTitle ref="password2" :message="!PasCheck"
+    :type="'password'"
+    :placeholder="'英數字混合，至少一大寫'"
+    >密碼
     </InputWithTitle>
-    <InputWithTitle ref="password" :message="!PasCheck">確認密碼
+    <InputWithTitle ref="password" :message="!PasCheck"
+    :type="'password'"
+    :placeholder="'英數字混合，至少一大寫'"
+    >確認密碼
         <template #check>
             <p v-if="!PasCheck">確認密碼不相同或填寫不完全</p>
         </template>
