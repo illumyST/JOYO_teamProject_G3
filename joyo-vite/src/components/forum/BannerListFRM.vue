@@ -39,9 +39,9 @@
         <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
       <ul class="forum_media_select_order" v-show="forum_media_menu_btn_active">
-        <li v-for="item in MediaSeclet" :key="item">
-          <RouterLink class="forum_media_select_dropdown_item" to="#">{{
-            item
+        <li v-for="(artiCate,index) in artiCategory " :key="index">
+          <RouterLink class="forum_media_select_dropdown_item" to="#" @click="(e)=>forumInfo_sidemenu_Category(e,artiCate)">{{
+            artiCate
           }}</RouterLink>
         </li>
       </ul>
@@ -139,7 +139,10 @@
 
 <script setup>
 import { reactive, ref, onMounted,defineProps,defineEmits } from "vue";
-const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
+const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge","updateCategory"]);
+const artiCategory=[
+    '所有文章','心得分享','揪團區','發問區','教學區'
+  ];
 const article_filter_get_order=(e,index,arrange)=>{
         e.preventDefault(e);
         let buttonText=e.target.closest("ul").previousElementSibling;
@@ -150,6 +153,14 @@ const article_filter_get_order=(e,index,arrange)=>{
         console.log(index);
         emits('updateArrange', index);
     };
+    const forumInfo_sidemenu_Category = (e,artiCate) => {
+      let buttonText=e.target.closest("ul").previousElementSibling;
+        let img=buttonText.lastElementChild;
+        
+        img.style.display="none";
+        buttonText.firstElementChild.innerHTML=artiCate;
+    emits("updateCategory", artiCate);
+  };
 //父層傳參數
 const props = defineProps({
         forumArticle: {

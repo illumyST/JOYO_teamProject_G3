@@ -126,7 +126,7 @@ const getmember_id = async() => {
             console.log(res.data);
             axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: product.value.member_id} })
             .then(res => {
-            localStorage.clear()
+              localStorage.removeItem('cart');
             //將資料庫回傳的資料存在tg變數中
             product.value.sqlCart = res.data;
           })
@@ -222,6 +222,7 @@ const calculateTotal=()=>{
 // console.log(product.value.tgFilter)
 
 onMounted(()=>{
+  console.log(1111);
   getmember_id();
   fetchData();
 });

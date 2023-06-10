@@ -48,7 +48,6 @@ const getMemberData=()=>{
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             memberData.value.member=res.data;
-            console.log(res.data);
             // console.log(memberData.value.member);
             }
             )
@@ -73,9 +72,7 @@ const fetchData=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            
             cartItem.value=(res.data);  
-            console.log(cartItem.value); 
             }
             )
         .catch(err => {

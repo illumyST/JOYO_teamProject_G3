@@ -78,15 +78,16 @@ const renewpsw=()=>{
                     newPswRepCheck.value = true;
                     if(updatePwd.value.newpwd ==updatePwd.value.current){
                         newPswNotRepeatCheck.value= false;
+                        
                     }else{
                         newPswNotRepeatCheck.value=true;
-                        //更新密碼
-                        updateToSql();
-                    }
-                    if (updatePwd.value.newpwd !== updatePwd.value.repeatpsd) {
-                        newPswRepCheck.value = false;
-                    }else if(updatePwd.value.newpwd !== updatePwd.value.repeatpsd){
-                        newPswRepCheck.value = true;
+                        if (updatePwd.value.newpwd !== updatePwd.value.repeatpsd) {
+                            newPswRepCheck.value = false;
+                        }else if(updatePwd.value.newpwd == updatePwd.value.repeatpsd){
+                            newPswRepCheck.value = true;
+                            console.log(124);
+                            updateToSql();
+                        }
                     }
                 } else {
                     newPswCheck.value = false;

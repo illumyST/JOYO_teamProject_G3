@@ -67,8 +67,15 @@
             
         }
 
-    const pay = () => {
-         saveLocalStorage(payment.value,deliv.value)
+    const pay = (e) => {
+        if(!deliv.value || !payment.value){
+            alert("請輸入送貨方式或付款方式");
+            e.preventDefault();
+        }
+        else{
+            saveLocalStorage(payment.value,deliv.value);
+        }
+         
     };
 
     

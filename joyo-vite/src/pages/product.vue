@@ -18,20 +18,20 @@
 <script setup>
 
 import {useRoute} from 'vue-router'
-import {onMounted, ref,watch,onBeforeMount } from 'vue';
+import {onMounted, ref,watch,onBeforeMount,defineEmits } from 'vue';
 import axios from 'axios';
 // 在组件中使用 useRoute 函数获取当前路由信息
 const route = useRoute();
 //監測路徑的值改變
 watch(route,(newVal)=>{
     route.value=newVal;
-   
     changeRoute();
     turnGameType();
     pageInfor.value.total_page.length=0; 
     getPage();
 
 })
+const emits=defineEmits(['resetButton']);
 const changeRoute=()=>{
     currentCategory.value.cate=route.value.params.categoryId;
 }
@@ -242,7 +242,6 @@ const updatePlayerAge=(val)=>{
     if(val =="適玩年齡"){
         pageInfor.value.total_page.length=0;
     }else{
-        console.log(pageInfor.value.player),
         pageInfor.value.fliterTg= pageInfor.value.fliterTg.filter(ele => ele.MIN_PLAYER <= pageInfor.value.player && ele.MAX_PLAYER >= pageInfor.value.player && ele.MIN_AGE <= pageInfor.value.age);
         pageInfor.value.total_page.length=0; 
     }
@@ -293,11 +292,8 @@ const toPage=(val)=>{
 const changeHeight=(val)=>{
     //計算頁面整體高度
     let aimPage=document.querySelectorAll(".prouct-item")[val-1];
-    console.log(aimPage.children);
-    console.log(aimPage.children.length);
     let layer=Math.ceil(aimPage.children.length/3);
     let h=405*layer;
-    console.log(layer,h);
     //修改高度屬性
     let productMain=document.querySelector(".product-main");
     productMain.style.height=`${h+240}px`;
@@ -316,7 +312,6 @@ const choosePage=(val)=>{
         }else{
             if(currentCategory.value.page>pageInfor.value.appearPage[9]){
                 let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10)-1;
-                console.log(plusPage);
                 pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
                 if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
             //移除多餘的頁數
@@ -327,7 +322,6 @@ const choosePage=(val)=>{
                 }
             }else if(currentCategory.value.page<pageInfor.value.appearPage[0]){
                 let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10)+1;
-                console.log(plusPage);
                 pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page-plusPage*10});
                 if(pageInfor.value.appearPage.length<10){
                     let add=10-pageInfor.value.appearPage.length;
@@ -343,8 +337,7 @@ const choosePage=(val)=>{
         let plusPage=Math.floor(val/10)-Math.floor(pageInfor.value.appearPage[0]/10);
         pageInfor.value.appearPage =pageInfor.value.appearPage.map((page)=>{return page+plusPage*10});
         if(pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]>pageInfor.value.total_page.length){
-            //移除多餘的頁數
-            console.log(2);
+            
             let remove=pageInfor.value.appearPage[pageInfor.value.appearPage.length-1]-pageInfor.value.total_page.length;
             for(let i=0;i<remove;i++){
                 pageInfor.value.appearPage.pop();
@@ -446,7 +439,6 @@ onBeforeMount(() => {
 .product-top {
     width: 80%;
     display: flex;
-    margin-top: 90px;
     justify-content: space-between;
     align-self: self-end;
 }
