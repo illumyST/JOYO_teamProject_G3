@@ -7,10 +7,10 @@
 
 include '../connect/conn.php';
 
-$dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
+// $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
-$pdo = new PDO($dsn, $user, $pas);
-$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+// $pdo = new PDO($dsn, $user, $pas);
+// $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 // 預設顯示30筆資料
 $sql = 'SELECT DATE(BUY_DATE) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
