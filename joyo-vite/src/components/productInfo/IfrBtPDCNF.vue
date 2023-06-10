@@ -45,16 +45,20 @@ const props = defineProps({
         type: Array,
         required: true 
     },
-    });
+});
+
 const cartItem = ref ({
     PRODUCT_ID: "",
     amount: 1,
     member_id: "-1", 
 });
+
 const emits = defineEmits(["changeInfoItem"]);
+
 const changeItem=(list)=>{
     emits('changeInfoItem', list.PRODUCT_ID);
 };
+
 const getmember_id = () => {
     return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
     .then(res => {
@@ -68,14 +72,14 @@ const getmember_id = () => {
         console.log(err)
     })
 }
+
 const addToCart = (e,list) => {
     e.preventDefault();
-    // console.log(list.PRODUCT_ID);   
+    console.log(list.PRODUCT_ID);   
     cartItem.value.PRODUCT_ID = list.PRODUCT_ID;
     let localCart = JSON.parse(localStorage.getItem('cart')) || [];
     if(cartItem.value.member_id === 'is_not_login' || cartItem.value.member_id === '-1'){   //沒登入的時候
         cartItem.value.member_id ="-1";
-        // let localCart = JSON.parse(localStorage.getItem('cart')) || [];
         if(localCart.length === 0 ){
             localCart.unshift(cartItem.value);
             localStorage.setItem("cart",JSON.stringify(localCart));
@@ -104,7 +108,6 @@ const addToCart = (e,list) => {
                 console.log(error);
             });
             alert("購物車新增成功!")
-        // alert(cartItem.value.MEMBER_ID);
     } 
     
 };

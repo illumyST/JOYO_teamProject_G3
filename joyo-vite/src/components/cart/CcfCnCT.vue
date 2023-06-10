@@ -268,16 +268,20 @@ onMounted(()=>{
         height: 32px;
         display: flex;
         background-color: #fff;
+        
 
         input {
-            border: .1px solid rgba(128, 128, 128, 0.399);
+            border: .5px solid rgba(186, 186, 186);
+            border-top: none;
+            border-bottom: none;
             text-align: center;
         }
 
         button {
-
+            cursor: pointer;
             font-size: 13px;
-
+            color: $brown;
+            // border-radius: 5px 10px; 
         }
     }
 

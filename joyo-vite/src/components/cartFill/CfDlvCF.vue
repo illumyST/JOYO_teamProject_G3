@@ -260,15 +260,11 @@
                     saveInBuy();
                     toGreenPay();
                     
-                    
-                   
                 }
                }else{
                 saveToLocal();
                 saveInBuy(); 
                 toGreenPay(); 
-                
-                
                 
                }
             }
@@ -339,7 +335,6 @@
 
             } 
             }
-        
         
     }
     const insertChinese=()=>{
@@ -464,7 +459,7 @@
 
         h2 {
             border-bottom: 1px solid $brown ;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
 
             div {
                 display: inline;
@@ -493,7 +488,9 @@
         input {
             height: 50px;
             font-size: 20px;
-            width: 275px;
+            width: 278px;
+            padding-left: 15px; 
+            box-sizing: border-box;
         }
 
         li {
@@ -508,7 +505,6 @@
                 width: 275px;
                 font-size: 20px;
                 margin-bottom: 8px;
-
             }
         }
 
@@ -549,6 +545,8 @@
         margin-bottom: 20px;
         height: 50px;
         font-size: 20px;
+        padding-left: 15px;
+        box-sizing: border-box;
     }
 
     select {
@@ -558,7 +556,8 @@
         margin-top: 19px;
         height: 50px;
         width: 278px;
-
+        padding-left: 15px;
+        box-sizing: border-box;
     }
 }
 

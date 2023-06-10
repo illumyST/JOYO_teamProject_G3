@@ -1,6 +1,6 @@
 <template v-if="pageInforTotalPage" >
 <div class="product-main-prouct">
-  <ul   class="prouct-item"  v-for="(list,index) in pageInforTotalPage" :key="index" v-show="index+1 == currentCategory.page || pageActive[index]">
+  <ul   class="prouct-item"  v-for="(list,index) in pageInforTotalPage" :key="list.PRODUCT_ID" v-show="index+1 == currentCategory.page || pageActive[index]">
     <li v-for="(card, sub_index) in list" :key="sub_index" class="prouct-item-card" >
     <router-link :to="'/productInfo' +'/ID:'+card.PRODUCT_ID" >
         <div class="prouct-item-card-tag">
@@ -22,7 +22,7 @@
                 <h3><span>$</span><span class="prouct-item-card-infor-price">{{card.PRICE}}</span></h3>
             </div>
        
-            <button class="btn prouct-item-card-icon" v-on:click="(e)=>addCart(e,card)" >
+            <button class="btn prouct-item-card-icon" v-on:click.prevent="addCart(card)" >
             <i class="fa-solid fa-cart-shopping custom-icon"></i>
         </button>
         </div>
@@ -36,74 +36,87 @@
 
 <script setup>
 
-import { defineProps,  onMounted,  ref, watch} from 'vue';
+import { defineProps,  onMounted,  ref, onBeforeMount} from 'vue';
 import axios from 'axios';
-const cartItem=ref({
-    PRODUCT_ID:"",
-    AMOUNT:1,
-    member_id:"-1",
-});
+
+
+
 const pageActive=ref([true]);
-const cartList=ref([]);
+
 const props = defineProps({
         currentCategory: {
-        type:  Object,
-        required: true,
+            type:  Object,
+            required: true,
         },
         pageInforTotalPage:{
-        type: Array,
-        required: true,    
-        }
-    });
-const loginState=()=>{
-    let state=sessionStorage.getItem('login');
-    //如果為登入情況下，取回會員編號並設定變數MEMBER_ID
-    cartItem.value.MEMBER_ID=state;
+            type: Array,
+            required: true,    
+        },
+});
 
-};
-const setLogin=(MEMBER_ID)=>{
-    sessionStorage.setItem('login', MEMBER_ID);
-    cartItem.value.MEMBER_ID=MEMBER_ID;
-   
-};
-const addCart=(e,card)=>{
-       e.preventDefault();
-        cartItem.value.PRODUCT_ID=card.PRODUCT_ID;
-        //如果不是會員登入的情況下，取得購物車的暫存紀錄
-        //沒有登入會員的話MEMBER_ID預設為-1
-        if(cartItem.value.MEMBER_ID ==="-1"){
-            cartList.value=JSON.parse(localStorage.getItem("cart")) || [];
-            if(cartList.value.length===0){
-                cartList.value.unshift(cartItem.value);
-                localStorage.setItem("cart",JSON.stringify(cartList.value));
-            }else {
-                let found=false;
-                for(let i=0;i<cartList.value.length;i++){
-                    if( cartList.value[i].PRODUCT_ID === cartItem.value.PRODUCT_ID){
-                        cartList.value[i].AMOUNT=cartList.value[i].AMOUNT+1;
-                        found =!found;
-                        break;
-                    } 
-                };
-                if(!found){
-                    cartList.value.unshift(cartItem.value);
+// console.log(pageActive)
+
+const getmember_id = () => {
+    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
+    .then(res => {
+        if(res.data){
+            cartItem.value.member_id = res.data;
+        }else{
+            // console.log(cartItem.value.MEMBER_ID);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+const cartItem = ref({
+    PRODUCT_ID:"",
+    amount:1,
+    member_id:"-1",
+});
+
+// const cartList=ref([]);
+
+const addCart=(card)=>{
+    // console.log(cartItem.value)
+    cartItem.value.PRODUCT_ID = card.PRODUCT_ID
+    let localCart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(cartItem.value.member_id === 'is_not_login' || cartItem.value.member_id === '-1'){
+        cartItem.value.member_id ="-1";
+        if( localCart.length === 0 ){
+            localCart.unshift(cartItem.value);
+            localStorage.setItem("cart",JSON.stringify(localCart));
+        }else{
+            let found = false;
+            for( let i = 0; i < localCart.length; i++ ){
+                if( localCart[i].PRODUCT_ID === cartItem.value.PRODUCT_ID ){
+                    localCart[i].amount = localCart[i].amount+1;
+                    found = !found;
+                    break;
                 }
             }
-        localStorage.setItem("cart",JSON.stringify(cartList.value));
-        }else {
-            axios.post('/api/product/Insert.php', cartItem.value)
-                .then(response => {
-            // 處理成功
-                // console.log(response.data);
-            })
-            .catch(error => {
-            // 處理失敗
-            console.error(error);
-        });
+            if(!found){
+                localCart.unshift(cartItem.value);
+            }
         }
-        
-      
-    };
+        localStorage.setItem('cart',JSON.stringify(localCart));
+        alert("購物車新增成功!")
+    }else{
+        // 登入的時候沒抓到 會員編號  所以還是顯示-1
+        axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, cartItem.value)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        alert("購物車新增成功!")
+    }
+};
+
+
+
 const countPageActive=ref(1);
 const fitDeviceWidth=()=>{
     
@@ -132,10 +145,12 @@ onMounted(() => {
     //裝置切換大小
     //偵測高度變化事件
     document.querySelectorAll(".product-main-prouct")[0].addEventListener('scroll', fitDeviceWidth);
-    sessionStorage.removeItem('login');
-    //輸入假資料可以切換會員編號(編號要是資料庫裡有的)
-    setLogin("2");
 });
+
+onBeforeMount(() => {
+    getmember_id();
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -165,6 +180,7 @@ onMounted(() => {
 .btn.active {
     background-color: $orange;
 }
+
 
 
 

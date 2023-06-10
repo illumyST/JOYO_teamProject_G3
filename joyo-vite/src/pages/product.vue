@@ -61,6 +61,7 @@ const pageInfor=ref({
     player:2,
     age:100
 });
+
 //判斷當前的router並轉換成桌遊類型
 const turnGameType=()=>{
     if(route.params.categoryId>=0){

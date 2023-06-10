@@ -7,11 +7,11 @@
                 <div class="cardimfo">
                     <form action="" method="POST">
                         <label for="">卡片資訊</label>
-                        <input type="text" class="card" placeholder="信用卡卡號">
-                        <input type="text" class="cardName" placeholder="持卡人姓名">
+                        <input type="text" class="card" :placeholder="chooseCard.currentNum" v-model="edit.number" @input="insertDash">
+                        <input type="text" class="cardName" placeholder="持卡人姓名" v-model="edit.cardOwner">
                         <label for="">自訂卡片名稱</label>
-                        <input type="text" class="card" placeholder="請輸入信用卡暱稱">
-                        <input type="submit" class="replacecard" value="更新卡片資訊">
+                        <input type="text" class="card" :placeholder="chooseCard.currentName" v-model="edit.cardName">
+                        <input type="botton" class="replacecard" value="更新卡片資訊" @click="editNewCard(e)">
                     </form>
                 </div>
             </div>
@@ -31,16 +31,72 @@
         ismemberCardEditvisible: {
             type: Boolean,
             required: true,
+        }, chooseCard:{
+            type: Object,
+            required: true,
+        },memberCardInfo:{
+            type: Object,
+            required: true,
         }
     });
+    const edit=ref({
+        number:"",
+        cardOwner:"",
+        cardName:""
+    });
 
-    const emits = defineEmits(['ismemberCardvisible']);
+    const emits = defineEmits(['ismemberCardvisible','editNewCard','ismemberCardEditshow']);
     const close = (event) => {
         event.preventDefault();
         // ismemberCardEditvisible.value = !ismemberCardEditvisible.value;
         emits('ismemberCardEditshow', false)
         console.log("Edit關閉")
     };
+    const editNewCard=(e)=>{
+        let repeat=false;
+        console.log(edit.value.number);
+        for(let i=0;i<props.memberCardInfo.memberCard.length;i++){
+            if(props.memberCardInfo.memberCard[i][2] ===edit.value.number){
+                repeat=true;
+                break;
+            };
+        }
+        if(repeat){
+            alert("信用卡卡號重覆登記")
+            edit.value.number = "";
+            edit.value.cardName = "";
+        }else{
+            if(edit.value.number!="" && edit.value.cardName!=""){
+                edit.value.number=edit.value.number.replace(/-/g,"");
+                emits('editNewCard', edit.value);
+            }else if(edit.value.number==""){
+                alert("請輸入信用卡卡號")
+            }else if(edit.value.cardName==""){
+                alert("請輸入信用卡暱稱")
+            }
+            
+        }
+    };
+    const insertDash=()=>{
+        const regex = /^[0-9]+$/;
+        let str=edit.value.number.replace(/-/g, "");
+        if(str.length>16){
+            alert("信用卡號不得超過16位數字");
+            edit.value.number=edit.value.number.slice(0, -1);
+        }else{
+           if(regex.test(str)){
+            if(str.length%4 ==0 && str.length<16){
+                edit.value.number=edit.value.number+"-";
+            }
+            }else{
+                alert("請輸入0-9數字");
+                edit.value.number="";
+
+            } 
+            }
+        
+        
+    }
 </script>
 
 <style lang="scss" scoped>

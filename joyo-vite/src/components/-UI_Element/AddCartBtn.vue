@@ -18,15 +18,15 @@ const props = defineProps({
     },
     });
 
-const cartItem = ref ({
-    PRODUCT_ID: "",
-    amount: 1,
-    MEMBER_ID: "-1", 
-});
-const cartList = ref([]);
+// const cartItem = ref ({
+//     PRODUCT_ID: "",
+//     amount: 1,
+//     MEMBER_ID: "-1", 
+// });
+// const cartList = ref([]);
 
 const addToCart = (list) => {
-    // console.log(list.PRODUCT_ID);   
+    console.log(props.cartItem);   
     props.cartItem.PRODUCT_ID = props.list.PRODUCT_ID;
     let localCart = JSON.parse(localStorage.getItem('cart')) || [];
     if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){   //沒登入的時候
@@ -49,9 +49,8 @@ const addToCart = (list) => {
                 localCart.unshift(props.cartItem);
             }
         }
-        // console.log(props.cartItem.member_id)
-    localStorage.setItem('cart',JSON.stringify(localCart));
-    alert("購物車新增成功!")
+        localStorage.setItem('cart',JSON.stringify(localCart));
+        alert("購物車新增成功!")
     }else {
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
             .then(response => {
@@ -84,6 +83,11 @@ button {
     font-size: 22px;
     color: $green;
     cursor: pointer;
+    transition: .2s;
+    &:hover  {
+        color: $orange;
+    }
+    
 }
 
 @include m() {
