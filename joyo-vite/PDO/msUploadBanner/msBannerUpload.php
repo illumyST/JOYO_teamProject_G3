@@ -32,8 +32,13 @@ if ($selectedOptionA == "index" && $selectedOptionB == "A") {
     $fileName = "product.banner_a"; 
 };
 $fileName .= "." . $fileExtension;
-// $fileName = date("YmdHis") . "_" . uniqid() . "." . $fileExtension;
 $fileUploadPath = "../../src/assets/img/" . $fileName;
+
+// Check if the file already exists, delete it if it does
+if (file_exists($fileUploadPath)) {
+    unlink($fileUploadPath);
+}
+
 move_uploaded_file($fileTempPath, $fileUploadPath);
 
 $sql = "UPDATE BANNER
@@ -52,3 +57,4 @@ if ($affectedRows !== false && $affectedRows > 0) {
 } else {
     echo "fail";
 }
+?>
