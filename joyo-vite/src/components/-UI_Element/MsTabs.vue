@@ -26,10 +26,10 @@ export default {
   methods: {
     activeBtn(btn) {
       if (btn === 1 && !this.isOpen) {
-        console.log(btn); 
+        // console.log(btn); 
         this.$emit('tabSwitch');
       } else if (btn === 2 && this.isOpen) {
-        console.log(btn); 
+        // console.log(btn); 
         this.$emit('tabSwitch');
       }
     },
