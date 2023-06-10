@@ -7,7 +7,7 @@
 
     <div class="ms_chat_room">
       <div
-        v-for="(chat, index) in chatBoxContent"
+        v-for="(chat, index) in chatBoxContent" :key="index"
         :class="{
           ms_chat: true,
           // ms_receiving_text: chatBoxContent1[],

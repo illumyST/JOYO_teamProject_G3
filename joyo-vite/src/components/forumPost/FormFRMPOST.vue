@@ -135,11 +135,6 @@ const ShowScoreSelect = ref(true);
 const SelectedArea = ref("0");
 const ShowAreaSelect = ref(false);
 
-// 標題、內文和客製標籤
-// const postTitle = ref("");
-// const postContent = ref("");
-// const postTags = ref("");
-
 
 // 文章類別選單
 const FormCgy = ref(["心得分享", "教學區", "發問區", "揪團區"]);
@@ -159,7 +154,7 @@ const postData = ref({
       postTitle: "",
       postContent: "",
       postTags: "",
-      memberId: "1",
+      memberId: "-1",
       area:"0",
 });
 
@@ -271,7 +266,7 @@ const submitPost = () => {
   }
 
   axios
-    .post("/api/forumPost/forumPost_ADD.php", JSON.stringify(postData.value)) // PHP 文件路径
+    .post(`${import.meta.env.VITE_API_URL}/forumPost/forumPost_ADD.php`, JSON.stringify(postData.value)) // PHP 文件路径
     .then((res) => {
       // console.log(res.data);
       // alert(res.data);
@@ -299,7 +294,7 @@ const selectModel = ref([]);
 const selectOpen =ref(false)
 const search = ()=>{
   data.value.select = postData.value.title
-  axios.post("/api/select/select.php",data)
+  axios.post(`${import.meta.env.VITE_API_URL}/select/select.php`,data)
   .then(response=>{
     const responseData = response.data;
     selectModel.value = [] ;
