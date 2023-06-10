@@ -70,7 +70,7 @@ const getproductId = () => {
 }
 
 const fetchData = () => {
-        return axios.get('/api/product/test.php')
+        return axios.get(`${import.meta.env.VITE_API_URL}/product/test.php`)
         .then(res => {
             product.value.tg = res.data;
             product.value.localCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -85,7 +85,7 @@ const fetchData = () => {
 };
 
 const getCartItem = () => {
-  return axios.get('/api/cart/getCartItem.php',{ params: { memberId: product.value.member_id} })
+  return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: product.value.member_id} })
           .then(res => {
             //將資料庫回傳的資料存在tg變數中
           product.value.sqlCart = res.data;
@@ -97,7 +97,7 @@ const getCartItem = () => {
 const getmember_id = async() => {
     try{
       //抓memberID
-      const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+      const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
       product.value.member_id = res.data;
       if(product.value.member_id === 'is_not_login' || product.value.member_id === '-1'){
                 product.value.member_id = "-1";
@@ -119,12 +119,12 @@ const getmember_id = async() => {
               }
         }
         if(product.value.returnToSql.length > 0 ){
-          axios.post('/api/cart/insertlocal.php', product.value).then(res => {
+          axios.post(`${import.meta.env.VITE_API_URL}/cart/insertlocal.php`, product.value).then(res => {
             // localStorage.clear()
             //將資料庫回傳的資料存在tg變數中
             product.value.sqlCart = res.data;
             console.log(res.data);
-            axios.get('/api/cart/getCartItem.php',{ params: { memberId: product.value.member_id} })
+            axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: product.value.member_id} })
             .then(res => {
             localStorage.clear()
             //將資料庫回傳的資料存在tg變數中
