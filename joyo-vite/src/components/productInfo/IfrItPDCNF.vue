@@ -53,8 +53,10 @@
     const cartItem = ref ({
         PRODUCT_ID: "",
         amount: 1,
-        member_id: "-1", 
+        member_id: "-1",
+        toSql:[]
     });
+
     const changeImg = (e) => {
         let imgSrc = e.currentTarget.querySelector('img').getAttribute('src');
         let aim =document.querySelector(".infor-item-img-bg img");
@@ -111,19 +113,30 @@
     } 
     };
     
-    const getmember_id = () => {
-    return axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
-    .then(res => {
-        if(res.data){
-            cartItem.value.member_id = res.data;
+    const localTosql = async() => {
+        try{
+            const res=await axios.post(`${import.meta.env.VITE_API_URL}/productInfo/localToSql.php`,cartItem.value);
+            // console.log(res.data);
+            localStorage.removeItem('cart');
+        }catch(err){
+        console.error(err);
+        };
+    }
+    
+    const getmember_id = async() => {
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
+        cartItem.value.member_id = res.data;
+        if(cartItem.value.member_id  === 'is_not_login' || cartItem.value.member_id  === '-1'){
+            cartItem.value.member_id  = "-1";
         }else{
-            // console.log(cartItem.value.MEMBER_ID);
-        }
-    })
-    .catch(err => {
-        console.log(err)
-    })
-}
+            let localCart = JSON.parse(localStorage.getItem('cart')) || []; 
+            if(localCart.length>0){
+                cartItem.value.toSql=localCart;
+                // console.log(cartItem.value);
+                localTosql();
+           }
+        } 
+    }
 onBeforeMount(() => {
     getmember_id();
 })

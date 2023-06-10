@@ -16,7 +16,7 @@
                         <div class="product-filter-cater">
                             <button class="product-filter-btn" type="button" id=""
                                 v-on:click="product_filter_cater_show">
-                                <span>全部商品</span>
+                                <span>{{currentCategory.cate}}</span>
                                 <span><i class="fa-solid fa-angle-down"></i></span>
                             </button>
                             <ul class="product-filter-cater-ul" :class="{active:product_filter_cater_active}">
@@ -123,14 +123,15 @@
     ];
     const palyerNum=["遊玩人數","1人遊戲","2人遊戲","3人遊戲","4人遊戲","5人遊戲","6人遊戲","7人遊戲","多人遊戲"];
     const palyerAge=["適玩年齡",4,5,6,7,8,9,10,11,12,13];
-    const filterOrder=["上架日期：由高到低","上架日期：由低到高","建議售價：由高到低","建議售價：由低到高"];
+    const filterOrder=["上架日期：由新到舊","上架日期：由舊到新","建議售價：由高到低","建議售價：由低到高"];
     const emits = defineEmits(["updateCatergory","updateArrange","updatePlayerNum","updatePlayerAge"]);
-   
+   const resetButton=()=>{
+        console.log(123);
+   };
     const product_filter_get_cate=(e,list)=>{
         e.preventDefault();
         let buttonText=e.target.closest("ul").previousElementSibling;
         let img=buttonText.lastElementChild;
-        
         img.style.display="none";
         buttonText.firstElementChild.innerHTML=list;
         emits('updateCatergory', list);
@@ -167,6 +168,7 @@
         }
         emits('updatePlayerAge', age);
     };
+   
 </script>
 <script>
     export default {
@@ -304,7 +306,6 @@
 .product-top {
     width: 80%;
     display: flex;
-    margin-top: 90px;
     justify-content: space-between;
     align-self: self-end;
 }

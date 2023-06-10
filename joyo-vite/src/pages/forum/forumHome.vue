@@ -8,7 +8,7 @@
     <SidemenuFRM :forumCategory="forumCategory" @update-Category="updateCategory" ></SidemenuFRM>
     <div class="forum_right">
       <BannerTopFRM></BannerTopFRM>
-      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange" :pageActive="pageActive"></BannerListFRM>
+      <BannerListFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @update-Arrange="updateArrange" :pageActive="pageActive" @update-Category="updateCategory"></BannerListFRM>
       <PaginationBarFRM :forumArticle="forumArticle" :forumCategory="forumCategory" @to-Page="toPage"></PaginationBarFRM>
     </div>
   </section>

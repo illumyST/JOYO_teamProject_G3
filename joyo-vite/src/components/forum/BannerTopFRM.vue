@@ -24,7 +24,7 @@ export default {
   methods: {
     getImageData() {
       axios
-        .get("/api/getBanner/getBanners.php")
+        .get(`${import.meta.env.VITE_API_URL}/getBanner/getBanners.php`)
         .then((res) => {
           this.bannerData = res.data;
         })

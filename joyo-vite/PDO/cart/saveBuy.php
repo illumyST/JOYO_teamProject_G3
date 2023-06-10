@@ -21,7 +21,9 @@
         $amount=$orderList[$i]['AMOUNT'];
         $productId=$orderList[$i]['PRODUCT_ID'];
         $insertBuyList="INSERT INTO `BUY_DETAIL` ( `AMOUNT`, `BUY_ID`, `PRODUCT_ID`) VALUES ( '2', '$buyId', '$productId');";
+        $minusStock="UPDATE `PRODUCT` SET `STOCK` = STOCK-$amount WHERE (`PRODUCT_ID` = '$productId')";
         $BuyListPost = $pdo->exec($insertBuyList);
+        $minus== $pdo->exec($minusStock);
         $json_data_buylist = json_encode($BuyListPost);
         echo $json_data_buylist;
     }

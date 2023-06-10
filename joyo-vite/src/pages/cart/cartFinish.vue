@@ -56,6 +56,9 @@
         text-align: center;
         margin-bottom: 33px;
         letter-spacing: 1px;
+          a{
+            text-decoration: underline;
+          }
         }
         .cartRedirect_p_text:last-child{
           font-size: 24px;

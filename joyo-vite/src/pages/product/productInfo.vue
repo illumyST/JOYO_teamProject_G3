@@ -11,7 +11,7 @@
 </template>
   
 <script setup>
-import { onMounted, ref ,onBeforeMount} from 'vue';
+import { onMounted, ref ,onBeforeMount,watch} from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 const route = useRoute();
@@ -38,6 +38,7 @@ const fetchComment=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/product/getProductComment.php`)
         .then(res => {
             pageInfor.value.productAllComment=res.data;
+            console.log(pageInfor.value.productAllComment);
             }
         )
         .catch(err => {
@@ -64,10 +65,21 @@ const guessLike=()=>{
 };
 //點擊猜你喜歡的商品卡後更換商品
 const changeInfoItem=(val)=>{
+    fetchComment();
     let arr1=(pageInfor.value.tg.filter((game)=>game.PRODUCT_ID == val));
+    let arr2=(pageInfor.value.productAllComment.filter((comment)=>comment.PRODUCT_ID == val));
     pageInfor.value.fliterTg=arr1[0];
+    pageInfor.value.productComment=arr2;
+    
 
 }
+// watch(route,(newVal)=>{
+//     route.value=newVal;
+//     getGame();
+//     guessLike();
+
+// })
+
 onBeforeMount(()=>{
     fetchData().then(() => {
     getGame();
