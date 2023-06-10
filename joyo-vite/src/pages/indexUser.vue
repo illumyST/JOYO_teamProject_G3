@@ -1,7 +1,7 @@
 <template>
-    <Default>
-        <RouterView />
-    </Default>
+        <Default>
+            <RouterView />
+        </Default>
 </template>
 
 <script setup>

@@ -376,6 +376,7 @@ export default {
 .dp__input_wrap {
   width: 270px !important;
   height: 34px;
+  
 }
 
 .ms_send_report_form {

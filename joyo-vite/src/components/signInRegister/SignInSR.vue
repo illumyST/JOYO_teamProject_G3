@@ -8,7 +8,7 @@
         </template>
 
     </InputWithTitle>
-    <InputWithTitle ref="password2" :message="!PasCheck"
+    <InputWithTitle ref="password" :message="!PasCheck"
     :type="'password'"
     :placeholder="'英數字混合，至少一大寫'"
     >密碼
@@ -42,12 +42,10 @@ if (redirectUrl) {
 };
 
 const doLogInCheck = function () {
-
     const logInData = {
         mail: mail.value.modelValue,
         pwd: password.value.modelValue,
     }
-
     var re = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
     if (re.test(logInData['mail'])) {
         MailCheck.value = true;

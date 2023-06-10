@@ -310,8 +310,13 @@ const saveMemberInfo = () => {
 }
 
 @media screen and (max-width: 414px) {
+    .member-right-card .member-right-name .img_box{
+        width: 80px;
+        height: 80px;
+    }
     .member-right-card {
         width: 370px;
+        padding-top:30px;
     }
 
     .member-right h2 {

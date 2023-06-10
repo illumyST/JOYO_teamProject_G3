@@ -67,4 +67,11 @@ const switchBox = (a) => {
     }
 }
 
+@include m(){
+    .box {
+    width: 370px;
+    padding:30px;
+    padding-top: 0;
+    }
+}
 </style>

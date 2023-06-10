@@ -1,11 +1,13 @@
 <template>
-        <Header>
-                <div v-if="parentInfo" class="logOut" @click="logOut()">登出</div>
-        </Header>
-        <!-- <RouterView /> -->
-        <slot></slot>
-        <TopBtn></TopBtn>
-        <Footer></Footer>
+        <div class="default_out">
+                <Header>
+                        <div v-if="parentInfo" class="logOut" @click="logOut()">登出</div>
+                </Header>
+                <!-- <RouterView /> -->
+                <slot></slot>
+                <TopBtn></TopBtn>
+                <Footer></Footer>
+        </div>
 </template>
 
 <script setup>
@@ -30,6 +32,13 @@ const logOut = () => {
 
 
 <style lang="scss" scoped>
+.default_out {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+}
+
 .memberLi:hover .logOut {
         display: block;
 }
