@@ -27,7 +27,7 @@ const pageInfor=ref({
 let guess=ref([]);
 const fetchData=async () =>{
     try{
-        const res=await axios.get('/api/product/test.php');
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/product/test.php`);
         pageInfor.value.tg=res.data;
         await fetchComment();
     } catch(err)  {
@@ -35,7 +35,7 @@ const fetchData=async () =>{
         };
 };
 const fetchComment=()=>{
-    return axios.get('/api/product/getProductComment.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/product/getProductComment.php`)
         .then(res => {
             pageInfor.value.productAllComment=res.data;
             }

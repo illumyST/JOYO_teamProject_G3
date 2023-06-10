@@ -33,7 +33,7 @@ console.log(memberData.value)
 const getMemberId=async ()=>{
     // console.log(123);
     try{
-        const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+        const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
         console.log(res.data);
         memberData.value.memberId = res.data;
         await getMemberData();
@@ -44,7 +44,7 @@ const getMemberId=async ()=>{
         };
 }
 const getMemberData=()=>{
-    return axios.get('/api/cart/getMember.php',{ params: { memberId: memberData.value.memberId} })
+    return axios.get(`${import.meta.env.VITE_API_URL}/cart/getMember.php`,{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             memberData.value.member=res.data;
@@ -57,7 +57,7 @@ const getMemberData=()=>{
         });
 };
 const getCreditCard=()=>{
-    return axios.get('/api/cart/getCreditCard.php',{ params: { memberId: memberData.value.memberId} })
+    return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCreditCard.php`,{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             memberData.value.creditCard=res.data;
@@ -70,7 +70,7 @@ const getCreditCard=()=>{
 //取購物車資料
 const fetchData=()=>{
     
-    return axios.get('/api/cart/getCartItem.php',{ params: { memberId: memberData.value.memberId} })
+    return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: memberData.value.memberId} })
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             

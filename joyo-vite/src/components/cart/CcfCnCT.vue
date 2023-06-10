@@ -86,33 +86,40 @@ const emits=defineEmits(['renewsqlCart'])
 
     // 點擊商品數量+1
     const numPlus = (index) => {
-        // console.log(props.product.amount[index])
         if(props.product.member_id < 0){
-            if(props.product.amount[index] < props.product.tgFilter[0][0][6]){
-            props.product.amount[index]++
+            if(props.product.amount[index] < props.product.tgFilter[index][0][6]){
+                props.product.amount[index]++
             }else{
-                alert (`數量不可大於庫存:${props.product.tgFilter[0][0][6]}`);
+                alert(`數量不可大於庫存:${props.product.tgFilter[index][0][6]}`);
             }
         }else{
             if(props.product.sqlCart[index].AMOUNT < props.product.sqlCart[index].STOCK){
-            props.product.sqlCart[index].AMOUNT++
+                props.product.sqlCart[index].AMOUNT++
             }else{
-                alert (`數量不可大於庫存:${props.product.sqlCart[index].STOCK}`);
+                alert(`數量不可大於庫存:${props.product.sqlCart[index].STOCK}`);
             }
         }
     };
 
     // 點擊商品數量-1
     const numMinus = (index) => {
-        if(props.product.amount[index]>1){
-            props.product.amount[index]--;
+        if(props.product.member_id < 0){
+            if(props.product.amount[index]>1){
+                props.product.amount[index]--;
+            }else{
+                alert(`數量不可小於1`);
+            }
         }else{
-            alert (`數量不可小於1`);
+            if(props.product.sqlCart[index].AMOUNT > 1){
+                props.product.sqlCart[index].AMOUNT--
+            }else{
+                alert(`數量不可小於1`);
+            }
         }
     };
 
     const getproductData = () => {
-        return axios.get('/api/cart/getCartItem.php',{ params: { memberId: props.product.member_id} })
+        return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: props.product.member_id} })
         .then(res => {
                         //將資料庫回傳的資料存在tg變數中
                     // console.log( res.data);
@@ -136,7 +143,7 @@ const emits=defineEmits(['renewsqlCart'])
             sendValue.value.member_id = props.product.member_id;
             try{
                 if(confirm("確定移除此商品")){
-                    await axios.post('/api/product/deleteCartItem.php', sendValue.value);
+                    await axios.post(`${import.meta.env.VITE_API_URL}/product/deleteCartItem.php`, sendValue.value);
                     getproductData()         
                 }
             }catch(err){

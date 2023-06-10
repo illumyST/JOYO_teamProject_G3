@@ -1,11 +1,39 @@
 <template>
   <!-- 廣告區域 -->
   <div class="forum_advertise">
-    <img src="../../assets/img/forum_advertise.jpg" alt="" />
+    <a v-if="bannerData[5]" :href="bannerData[5].PIC_URL" target="_blank"
+      ><img
+        src="../../assets/img/forum_banner_a.jpg"
+        :alt="bannerData[5].DESCRIPTION"
+    /></a>
   </div>
 </template>
 
-<script setup>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      bannerData: [],
+    };
+  },
+  mounted() {
+    this.getImageData(); 
+  }, 
+  methods: {
+    getImageData() {
+      axios
+        .get("/api/getBanner/getBanners.php")
+        .then((res) => {
+          this.bannerData = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -103,7 +103,7 @@ const turnGameType=()=>{
 
 //利用axios取得資料庫桌遊資料
 const fetchData=()=>{
-    return axios.get('/api/product/test.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/product/test.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
             pageInfor.value.tg = res.data;

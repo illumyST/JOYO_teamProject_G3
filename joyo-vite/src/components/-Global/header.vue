@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem">
                 <ul id="selectbox" v-if="searchBoxOpen">
-                    <li v-for="(item,index) in selectModel"><a :href="item.href" @click="searchBoxOpen = false;">{{ item.name }}</a></li>
+                    <li v-for="(item,index) in selectModel"  @click="reload(item.href)">{{ item.name }}</li>
                 </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
@@ -138,6 +138,11 @@ const sub_nav_open = {
 
 const isPhone = ref(false);
 
+const reload =(e)=>{
+    console.log(e)
+    location.href=e;
+    location.reload();
+}
 // 確認.value是否為手機版，以切換標籤
 const checkIsPhone = () => {
     if (window.innerWidth <= 976) {
@@ -593,11 +598,10 @@ header {
         border-bottom: 1px solid white;
         background-color: $green;
         margin-bottom: 5px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
 
-        a {
-            color: white;
-            text-decoration: none;
-        }
     }
 }
 </style>
