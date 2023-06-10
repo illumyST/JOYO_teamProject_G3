@@ -223,7 +223,7 @@ onBeforeMount(() => {
             font-size: 16px;
             letter-spacing: .1em;
             color: #fff;
-
+            width: 93px;
             p {
                 font-size: 16px;
                 margin-top: 10px;
@@ -243,8 +243,10 @@ onBeforeMount(() => {
             margin: 0;
 
             img {
+                box-sizing: border-box;
+                max-width: 106px;
                 height: 120px;
-                margin:0;
+                margin:5px 6px;
             }
             .product_list_pInfo {
                 padding: 6px 8px;

@@ -366,6 +366,9 @@ button {
         h2,
         h3 {
             font-size: 24px;
+            white-space: nowrap; /* 不換行 */
+            overflow: hidden; /* 超出部分隱藏 */
+            text-overflow: ellipsis; /* 使用省略號表示被隱藏的文字 */
         }
 
         button {
