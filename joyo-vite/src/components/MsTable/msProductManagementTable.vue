@@ -45,7 +45,7 @@ const emits = defineEmits(['productt',"pid"]);
         emits("pid",id);
     }
     // console.log(id);
-    axios.post('/api/msProduct/msProductDL.php',id)
+    axios.post(`${import.meta.env.VITE_API_URL}/msProduct/msProductDL.php`,id)
     .then(data=>{console.log(data.data)})
     .catch(error=>{console.log(error)})
   }

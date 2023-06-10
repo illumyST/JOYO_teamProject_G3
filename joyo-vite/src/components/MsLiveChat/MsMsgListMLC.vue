@@ -80,7 +80,7 @@ export default {
     },
     getUserChatBox(MEMBER_ID) {
       axios
-        .get("/api/msLiveChat/getChatBoxContent.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
           params: {
             userId: MEMBER_ID,
           },

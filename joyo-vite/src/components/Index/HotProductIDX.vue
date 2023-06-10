@@ -80,6 +80,7 @@ const fetchData=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotItem.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
+            console.log(res.data)
             if(res.data.length===3){
                 productInfor.value.hotItem = res.data;
             }//如果熱門資料不足3筆重複放置第一筆資料
@@ -283,7 +284,7 @@ onBeforeMount(() => {
             font-size: 16px;
             letter-spacing: .1em;
             color: #fff;
-
+            width: 93px;
             p {
                 font-size: 16px;
                 margin-top: 6px;
@@ -297,17 +298,23 @@ onBeforeMount(() => {
         }
 
         // ------------- card li ------------- //
+        .index_hotProduct_list_topPInfo{
+            display: flex;
+            justify-content: center;
+        }
         .index_hotProduct_list li {
             width: 110px;
             border: 2px solid $green;
             margin: 0;
-
             .product_list_pInfo {
                 padding: 6px 12px;
                 flex-direction: column;
             }
 
             img {
+                display: inline-block;
+                text-align: center;
+                max-width: 106px;
                 height: 120px;
                 margin:0;
             }

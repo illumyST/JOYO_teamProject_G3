@@ -38,7 +38,7 @@
         // admins.value.splice(index,1);
         // var op =opage.value;
         // admins.value=[]
-        axios.post("/api/msBack_Account/msBack_AccountDL.php",item)
+        axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_AccountDL.php`,item)
         .then(data=>{console.log(data.data)})
         .catch(error=>{console.log(error)});
         emits("delete" , item);
@@ -64,7 +64,7 @@
         t['fixe']=false;
         ort.push(t);
         // console.log(i,t);
-        axios.post('/api/msBack_Account/msBack_AccountUP.php',ort)
+        axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_AccountUP.php`,ort)
         .then(data=>{console.log(data.data)})
         .catch(error=>{console.log(error)});
         // console.log(admins.value);

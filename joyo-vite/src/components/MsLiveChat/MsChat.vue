@@ -90,7 +90,7 @@ export default {
     getDefaultChatBox() {
       // 畫面載入時，抓出預設右邊對話框
       axios
-        .get("/api/msLiveChat/getChat.php")
+        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChat.php`)
         .then((res) => {
           // this.currentChatUserId = res.data[0].MEMBER_ID;
           // console.log(res.data);
@@ -103,7 +103,7 @@ export default {
     // 抓取完整聊天室資料
     getChatBoxContent() {
       axios
-        .get("/api/msLiveChat/getChatBoxContent.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
           params: {
             userId : this.currentChatUserId, 
           }
@@ -130,7 +130,7 @@ export default {
     },
     getChatList() {
       axios
-        .get("/api/msLiveChat/getChat.php")
+        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChat.php`)
         .then((res) => {
           this.chatList = res.data;
           // this.currentChatUserId = this.chatList[0].MEMBER_ID;
@@ -141,7 +141,7 @@ export default {
     },
     getDefaultChatUserId() {
       axios
-        .get("/api/msLiveChat/getChat.php")
+        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChat.php`)
         .then((res) => {
           this.chatList = res.data;
           this.currentChatUserId = this.chatList[0].MEMBER_ID;

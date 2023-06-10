@@ -57,7 +57,9 @@
         <span>排序方式</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
       <ul class="forum_media_sort_order" v-show="forum_media_sort_btn_active">
-        <li v-for="item in SortLi" :key="item">
+        <li v-for="(item,index) in SortLi" :key="item"
+        
+        v-on:click="(e)=>article_filter_get_order(e,index,item)">
           <RouterLink class="forum_media_sort_dropdown_item" to="#">{{
             item
           }}</RouterLink>
@@ -104,7 +106,7 @@
               <p>{{ item.MIN_PLAYER }}-{{ item.MAX_PLAYER }}人</p>
             </li>
             <li v-if="item.TAG">
-              <p >{{ item.TAG}}</p>
+              <p>{{ item.TAG}}</p>
             </li>
           </ul>
 
@@ -145,7 +147,7 @@ const article_filter_get_order=(e,index,arrange)=>{
         buttonText.style.fontSize="16px";
         img.style.display="none";
         buttonText.firstElementChild.innerHTML=arrange;
-        console.log(index);
+        // console.log(index);
         emits('updateArrange', index);
     };
 //父層傳參數
@@ -213,8 +215,8 @@ const props = defineProps({
 const SortLi = reactive([
   "文章日期：由最新到最舊",
   "文章日期：由最舊到最新",
-  "案讚次數：由最多到最少",
-  "案讚次數：由最少到最多",
+  "按讚次數：由最多到最少",
+  "按讚次數：由最少到最多",
 ]);
 
 const MediaSeclet = reactive({
@@ -321,7 +323,9 @@ onMounted(() => {
 
 .forum_article_title {
   .forum_sort {
+
     @include drowDown(210px, 50px, 100%, 50%);
+    position: relative;
     button {
       span {
         letter-spacing: 0.1em;
@@ -334,9 +338,9 @@ onMounted(() => {
     }
     ul {
       // border: 1px solid black;
-      width: 16.5%;
-      top: 211%;
-      right: 2.5%;
+      width: 100%;
+      top: 100%;
+      right: 0%;
       // display: block;
       li {
         // border: 1px solid blue;
@@ -392,7 +396,7 @@ onMounted(() => {
 
 .forum_article_item1_left .forum_category {
   // border: 1px solid black;
-  background-color: white;
+  background-color:white;
   text-align: center;
   .forum_category_area{
     font-size: 35px;
@@ -526,7 +530,7 @@ onMounted(() => {
 
       ul {
         width: 89.3%;
-        top: 352px;
+        top: 39%;
         li {
           width: 100%;
           display: block;
@@ -568,7 +572,7 @@ onMounted(() => {
 
       ul {
         width: 89.3%;
-        top: 402px;
+        top: 45%;
         li {
           display: block;
           width: 100%;

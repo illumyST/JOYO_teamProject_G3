@@ -130,6 +130,7 @@
         e.preventDefault();
         let buttonText=e.target.closest("ul").previousElementSibling;
         let img=buttonText.lastElementChild;
+        
         img.style.display="none";
         buttonText.firstElementChild.innerHTML=list;
         emits('updateCatergory', list);
@@ -146,6 +147,7 @@
     const product_filter_player=(e,index)=>{
         e.preventDefault(e);
         let buttonText=e.target.closest("ul").previousElementSibling;
+        buttonText.style.fontSize="16px";
         if(e.target.innerText==="遊玩人數"){
             buttonText.firstElementChild.innerText=`${e.target.innerText}`;
         }else {
@@ -156,6 +158,7 @@
     const product_filter_get_age=(e,age)=>{
         e.preventDefault(e);
         let buttonText=e.target.closest("ul").previousElementSibling;
+        buttonText.style.fontSize="16px";
         if(e.target.innerText=="適玩年齡"){
             console.log(age)
             buttonText.firstElementChild.innerText=`適玩年齡`;
@@ -380,12 +383,10 @@
         width: 100%;
         height: 40px;
         text-align: center;
-        background-color: $orange ;
-        color: #fff;
+        background-color: #dedddd ;
 
         a {
             height: 40px;
-            color: #fff;
             line-height: 2.5;
         }
     }
