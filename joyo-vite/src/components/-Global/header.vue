@@ -19,37 +19,44 @@
                     </div>
                     <ol>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }"
+                            @click="toggleNav()">
                                 派對遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 2 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 2 } }"
+                            @click="toggleNav()">
                                 輕度策略
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 3 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 3 } }"
+                            @click="toggleNav()">
                                 戰爭遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 4 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 4 } }"
+                            @click="toggleNav()">
                                 棋奕遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 5 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 5 } }"
+                            @click="toggleNav()">
                                 主題遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 6 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 6 } }"
+                            @click="toggleNav()">
                                 家庭遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 7 } }">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 7 } }"
+                            @click="toggleNav()">
                                 團隊合作
                             </RouterLink>
                         </li>
@@ -62,22 +69,26 @@
                     </div>
                     <ol>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }"
+                            @click="toggleNav()">
                                 心得分享
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 2 } }">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 2 } }"
+                            @click="toggleNav()">
                                 揪團區
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 3 } }">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 3 } }"
+                            @click="toggleNav()">
                                 發問區
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 4 } }">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 4 } }"
+                            @click="toggleNav()">
                                 教學區
                             </RouterLink>
                         </li>
@@ -87,27 +98,27 @@
                     <RouterLink to="/contact" class="link" v-if="!isPhone">
                         聯絡我們
                     </RouterLink>
-                    <div v-else class="link -mobile" @click="toggleSub(e)">
+                    <RouterLink to="/contact" v-else class="link -mobile" @click="toggleNav()">
                         聯絡我們
-                    </div>
+                    </RouterLink>
                 </li>
                 <li>
                     <RouterLink to="/cart" class="link" v-if="!isPhone">
                         <i class="fa-regular fa-cart-shopping"></i>
                     </RouterLink>
-                    <div v-else class="link -mobile" @click="toggleSub(e)">
+                    <RouterLink to="/cart" v-else class="link -mobile" @click="toggleNav()">
                         <i class="fa-regular fa-cart-shopping"></i>
                         <span>購物車</span>
-                    </div>
+                    </RouterLink>
                 </li>
                 <li class="memberLi">
                     <RouterLink to="/member" class="link" v-if="!isPhone">
                         <i class="fa-regular fa-user"></i>
                     </RouterLink>
-                    <div v-else class="link -mobile" @click="toggleSub(e)">
+                    <RouterLink to="/member" v-else class="link -mobile" @click="toggleNav()">
                         <i class="fa-regular fa-user"></i>
                         <span>會員中心</span>
-                    </div>
+                    </RouterLink>
                     <slot></slot>
                 </li>
             </ul>
@@ -518,7 +529,7 @@ header {
 
     .header_nav_right>li>a {
         color: #fff;
-        font-size: 16px;
+        // font-size: 16px;
         line-height: 60px;
     }
 
