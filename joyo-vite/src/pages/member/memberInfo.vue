@@ -5,56 +5,60 @@
             <h2>個人檔案</h2>
             <div class="member-right-card">
                 <!-- 右邊最上面 頭貼+名字 -->
-                <form action="">
-                    <div class="member-right-name">
-                        <img :src="memberInfo.IMG_URL" alt="">
-                        <div class="name">
-                            <label for="">用戶名稱</label>
-                            <input type="text" class="member-name-text" v-model="memberInfo.MEMBER_NAME">
+                <div class="member-right-name">
+                    <div class="img_box" @click="showMemberPhotoUpload = !showMemberPhotoUpload">
+                        <img :src="memberInfo.IMG_URL" alt="" :class="{ '-on': showMemberPhotoUpload }">
+                        <div v-if="showMemberPhotoUpload" class="memberPhotoUpload">
+                            <label for="file"></label>
+                            <input type="file" id="file" name="file" @change="uploadPhoto" ref="file">
                         </div>
                     </div>
-                    <!-- email -->
-                    <div class="email">
-                        <label for="">電子郵件</label>
-                        <input type="text" class="member-text" v-model="memberInfo.MAIL" disabled>
+                    <div class="name">
+                        <label for="">用戶名稱</label>
+                        <input type="text" class="member-name-text" v-model="memberInfo.MEMBER_NAME">
                     </div>
-                    <!-- 生日 -->
-                    <div class="birth">
-                        <label for="">生日</label>
-                        <!-- <input type="text" class="member-text" :value="memberInfo.BIRTHDAY"> -->
-                        <div class="member_date_picker_box">
-                            <VueDatePicker class="date_picker" input-class="my-date-picker" v-model="memberInfo.BIRTHDAY"
-                            :max-date="new Date().toISOString().substr(0, 10)"
-                            min-date="1980-01-01" format="yyyy-MM-dd" :enable-time-picker="false"></VueDatePicker>
-                        </div>
+                </div>
+                <!-- email -->
+                <div class="email">
+                    <label for="">電子郵件</label>
+                    <input type="text" class="member-text" v-model="memberInfo.MAIL" disabled>
+                </div>
+                <!-- 生日 -->
+                <div class="birth">
+                    <label for="">生日</label>
+                    <!-- <input type="text" class="member-text" :value="memberInfo.BIRTHDAY"> -->
+                    <div class="member_date_picker_box">
+                        <VueDatePicker class="date_picker" input-class="my-date-picker" v-model="memberInfo.BIRTHDAY"
+                            :max-date="new Date().toISOString().substr(0, 10)" min-date="1980-01-01" format="yyyy-MM-dd"
+                            :enable-time-picker="false"></VueDatePicker>
                     </div>
-                    <!-- 電話號碼 -->
-                    <div class="phone">
-                        <label for="">手機號碼</label>
-                        <input type="text" class="member-text" v-model="memberInfo.PHONE">
-                    </div>
+                </div>
+                <!-- 電話號碼 -->
+                <div class="phone">
+                    <label for="">手機號碼</label>
+                    <input type="text" class="member-text" v-model="memberInfo.PHONE">
+                </div>
 
-                    <!-- 地址 -->
-                    <div class="address">
-                        <label for="">地址</label>
-                        <div class="address-top">
-                            <select class="city" v-model="memberInfo.ADDR_CITY">
-                                <option value="" selected hidden disabled>縣市</option>
-                                <option v-for="(cityName, index) in addr.city" :value="cityName">{{ cityName }}</option>
-                            </select>
-                            <select class="district" v-model="memberInfo.ADDR_DIST">
-                                <option value="" selected hidden disabled>區域</option>
-                                <option v-for="(key, index) in 
+                <!-- 地址 -->
+                <div class="address">
+                    <label for="">地址</label>
+                    <div class="address-top">
+                        <select class="city" v-model="memberInfo.ADDR_CITY">
+                            <option value="" selected hidden disabled>縣市</option>
+                            <option v-for="(cityName, index) in addr.city" :value="cityName">{{ cityName }}</option>
+                        </select>
+                        <select class="district" v-model="memberInfo.ADDR_DIST">
+                            <option value="" selected hidden disabled>區域</option>
+                            <option v-for="(key, index) in 
                                 (addr.district[addr.city.indexOf(memberInfo.ADDR_CITY)])" :value="index">{{ index }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="address-bottom">
-                            <input type="text" class="member-text" v-model="memberInfo.ADDR_DETAIL">
-                        </div>
+                            </option>
+                        </select>
                     </div>
-                    <div class="submit" @click="saveMemberInfo()">儲存</div>
-                </form>
+                    <div class="address-bottom">
+                        <input type="text" class="member-text" v-model="memberInfo.ADDR_DETAIL">
+                    </div>
+                </div>
+                <div class="submit" @click="saveMemberInfo()">儲存</div>
             </div>
         </div>
     </div>
@@ -65,6 +69,7 @@ import axios from 'axios';
 import { onMounted } from 'vue';
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+const showMemberPhotoUpload = ref(false);
 
 const memberInfo = ref({
     IMG_URL: '', //10
@@ -76,11 +81,6 @@ const memberInfo = ref({
     ADDR_DIST: '',
     ADDR_DETAIL: '',
 })
-
-const changeDateFormat = () => {
-    console.log(1)
-    // memberInfo.value.BIRTHDAY
-}
 
 // 自動填入縣市以及對應的區域相關變數
 const addr = ref({
@@ -94,12 +94,24 @@ const getAddressData = () => {
             res => {
                 addr.value.city = Object.keys(res.data);
                 addr.value.district = Object.values(res.data);
-                console.log(addr.value.city);
-                console.log(addr.value.district);
             })
         .catch(err => {
             console.error(err);
         });
+};
+
+
+const uploadPhoto = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    axios.post(`${import.meta.env.VITE_API_URL}/member/uploadPhoto.php`, formData
+    )
+        .then(res => {
+            console.log(res.data);
+            memberInfo.value.IMG_URL = res.data;
+            window.location.reload();
+        })
 };
 
 onMounted(() => {
@@ -110,15 +122,12 @@ onMounted(() => {
             if (res.data) {
 
                 const data = res.data[0];
-                // data[0]
-                console.log(data);
                 memberInfo.value.MEMBER_NAME = data[1];
                 memberInfo.value.MAIL = data[2];
                 memberInfo.value.BIRTHDAY = data[5];
                 memberInfo.value.PHONE = data[4];
                 memberInfo.value.IMG_URL = data[10];
                 if (data[7] !== null) {
-                    console.log(data[7])
                     memberInfo.value.ADDR_CITY = data[7];
                 };
                 if (data[8] !== null) {
@@ -136,7 +145,11 @@ const saveMemberInfo = () => {
     axios.post(`${import.meta.env.VITE_API_URL}/member/saveMemberInfo.php`,
         memberInfo.value)
         .then(res => {
-            console.log(res.data);
+            if (res.data == true) {
+                alert('修改完成！');
+            } else {
+                alert('修改失敗！請再試一次');
+            }
         })
 }
 </script>
@@ -189,6 +202,19 @@ const saveMemberInfo = () => {
     }
 }
 
+.birth {
+    width: 691px;
+}
+
+.memberPhotoUpload {
+    position: absolute;
+    left: -5px;
+    top: -30px;
+    // border: 1px solid red;
+    z-index: 10;
+    display: block;
+}
+
 .member-right-card {
     width: 960px;
     background: $bg;
@@ -211,14 +237,27 @@ const saveMemberInfo = () => {
         justify-content: space-between;
         width: 691px;
         margin-bottom: 28px;
+        position: relative;
 
-        img {
-            cursor: pointer;
-            transition: .2s;
+        .img_box {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
 
-            &:hover {
-                opacity: 0.65;
+
+            img {
+                height: 100%;
+                min-width: 100%;
+                min-height: 100%;
+                cursor: pointer;
+                transition: .2s;
+
+                &.-on {
+                    opacity: 0.65;
+                }
             }
+
         }
 
         .member-name-text {

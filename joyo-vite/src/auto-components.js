@@ -61,6 +61,7 @@ declare module '@vue/runtime-core' {
     MemberOrder: typeof import('./pages/member/memberOrder.vue')['default']
     MemberOrderTableMbc: typeof import('./components/MemberOrder/MemberOrderTableMbc.vue')['default']
     MemberPassword: typeof import('./pages/member/memberPassword.vue')['default']
+    MemberPhotoUpload: typeof import('./pages/member/memberPhotoUpload.vue')['default']
     MemberSideMenu: typeof import('./components/-UI_Element/MemberSideMenu.vue')['default']
     MsAddAdmin: typeof import('./pages/ms-system-admin/MsAddAdmin.vue')['default']
     MsAddAdminsForm: typeof import('./components/MsForm/msAddAdminsForm.vue')['default']
