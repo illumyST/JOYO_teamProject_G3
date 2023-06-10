@@ -27,19 +27,10 @@
 
     <!-- 彈窗的虛線 -->
     <div class="contact_bottom_line">
-      <svg
-        ref="svgRef"
-        width="390"
-        height="366"
-        viewBox="0 0 390 366"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg ref="svgRef" width="390" height="366" viewBox="0 0 390 366" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M2 48.2421C87 -19.7578 209.001 -10.0949 275 59.7438C335 123.234 275 236.244 245.5 204.58C218.144 175.218 323.643 143.423 367.5 204.58C408.018 261.08 377.746 328.86 363.127 364.58"
-          stroke="#F29441"
-          stroke-width="4"
-        />
+          stroke="#F29441" stroke-width="4" />
       </svg>
     </div>
 
@@ -83,12 +74,23 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import axios from "axios";
 
 const ChatBox = ref(false);
 
 const ChatBoxShow = () => {
-  ChatBox.value = !ChatBox.value;
-  // console.log("111");
+  axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
+    .then(res => {
+      if (res.data) {
+        // 已登入
+        ChatBox.value = !ChatBox.value;
+        // console.log("111");
+      } else {
+        // 未登入
+        alert('請先登入！');
+        router.push('/signIn?redirect=/contact#contact_bottom')
+      }
+    });
 };
 
 const svgRef = ref(null); // 创建一个 ref
@@ -101,7 +103,7 @@ const handleScroll = () => {
   if (rect.top <= window.innerHeight && rect.bottom >= 0) {
     contactBottomElement.classList.add('animate_dash');
     // console.log('开始动画');
-  }else{
+  } else {
     contactBottomElement.classList.remove('animate_dash');
   }
 };
@@ -116,10 +118,10 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
 });
 
-  // 清除 Intersection Observer 实例
-  onUnmounted(() => {
-    observer.disconnect();
-  });
+// 清除 Intersection Observer 实例
+onUnmounted(() => {
+  observer.disconnect();
+});
 
 </script>
 
@@ -200,6 +202,7 @@ onUnmounted(() => {
   svg {
     width: 100%;
   }
+
   .animate_dash {
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
@@ -246,7 +249,9 @@ onUnmounted(() => {
   right: 0px;
   bottom: 140px;
   height: 500px;
+  cursor: pointer;
 }
+
 .contact_bottom_chat.show {
   display: block;
 }
@@ -382,7 +387,7 @@ onUnmounted(() => {
     right: 0;
   }
 
-  .contact_bottom_chat{
+  .contact_bottom_chat {
     width: 100%;
     z-index: 200;
   }

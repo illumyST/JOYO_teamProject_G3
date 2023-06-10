@@ -3,10 +3,10 @@
 
 include '../connect/conn.php';
 
-$dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
+// $dsn = 'mysql:host=' . $host . ';dbname=' . $select . ";charset=utf8";
 
-$pdo = new PDO($dsn, $user, $pas);
-$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+// $pdo = new PDO($dsn, $user, $pas);
+// $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 $startDate = $_GET['startDate'];
 $endDate = $_GET['endDate'];

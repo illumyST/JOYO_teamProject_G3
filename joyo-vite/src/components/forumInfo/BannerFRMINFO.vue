@@ -123,7 +123,7 @@ const getGame = () => {
   let arr1 = (forumArticle.value.articleAll.filter((article) => "article:" + article.ARTICLE_ID == callBackId));
   forumArticle.value.articleFilter = arr1[0];
   props.forumCategory.cate = forumArticle.value.articleFilter.ARTICLE_CATEGORY;
-  console.log( forumArticle.value.articleFilter.COMMENT_NUM);
+  console.log(forumArticle.value.articleFilter.COMMENT_NUM);
 
 };
 
@@ -173,7 +173,7 @@ const postMsg = ref({
 
 const router = useRouter();
 // 處理發送按钮點擊事件
-const handleSendButtonClick = async() => {
+const handleSendButtonClick = async () => {
   axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
     .then(res => {
       if (res.data) {
@@ -181,7 +181,7 @@ const handleSendButtonClick = async() => {
         let artId = route.params.article.substring(8);
         postMsg.value.articleID = artId;
         if (postMsg.value.MsgText !== "") {
-           axios
+          axios
             .post(`${import.meta.env.VITE_API_URL}/forumInfo/forumInfoMSG.php`, JSON.stringify(postMsg.value)) // PHP 文件路径
             .then((res) => {
               // console.log(res.data);
@@ -189,7 +189,7 @@ const handleSendButtonClick = async() => {
               postMsg.value.MsgText = "";
               // alert(res.data);
               alert("留言成功");
-              
+
               // console.log(postMsg.value);
 
               // 获取最新的留言数据并更新页面
@@ -203,8 +203,9 @@ const handleSendButtonClick = async() => {
         } else {
           alert("請輸入留言內容");
         }
-      }else{
+      } else {
         // 未登入
+        alert('請先登入！');
         router.push(`/signIn?redirect=/forumInfo/article:${postMsg.value.articleID}`)
       }
     });
@@ -248,20 +249,22 @@ let isLiked = ref(0);
 
 // 點擊愛心按鈕的事件處理函式
 const handleLikeButtonClick = () => {
-  if (postMsg.value.MemberId < 0) {
-    // 使用者未登入，提示登入
-    alert("請先登入會員");
-    router.push('/signIn');
-  } else {
-    // 使用者已登入
-    if (!isLiked.value) {
-      // 如果尚未點擊愛心，執行點擊事件
-      postLike();
-    } else {
-      // 如果已經點擊愛心，執行取消點擊事件
-      unlikeLike();
-    }
-  }
+  axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSessionCheck.php`)
+    .then(res => {
+      if (res.data) {
+        if (!isLiked.value) {
+          // 如果尚未點擊愛心，執行點擊事件
+          postLike();
+        } else {
+          // 如果已經點擊愛心，執行取消點擊事件
+          unlikeLike();
+        }
+      } else {
+        alert('請先登入！');
+        router.push(`/signIn?redirect=/forumInfo/article:${postMsg.value.articleID}`)
+      }
+    })
+
 };
 
 // 將愛心按鈕點擊事件傳送到後端

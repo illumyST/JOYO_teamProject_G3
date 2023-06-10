@@ -29,7 +29,7 @@
                     <!-- <input type="text" class="member-text" :value="memberInfo.BIRTHDAY"> -->
                     <div class="member_date_picker_box">
                         <VueDatePicker class="date_picker" input-class="my-date-picker" v-model="memberInfo.BIRTHDAY"
-                            :max-date="new Date().toISOString().substr(0, 10)" min-date="1980-01-01" format="yyyy-MM-dd"
+                            :max-date="new Date().toISOString().substr(0, 10)" min-date="1900-01-01" format="yyyy-MM-dd"
                             :enable-time-picker="false"></VueDatePicker>
                     </div>
                 </div>

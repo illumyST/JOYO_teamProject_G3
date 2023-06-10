@@ -29,8 +29,8 @@
         
         // 沒註冊過
         $random = rand(100000, 999999);
-        $sql = "insert into MEMBER(MEMBER_NAME,MAIL,PASSWORD,VERIFY_STATE,VERRIFY_CODE)
-                values( ?, ?, ?,0,$random)" ;
+        $sql = "insert into MEMBER(MEMBER_NAME,MAIL,PASSWORD,VERIFY_STATE,IMG_URL,VERRIFY_CODE)
+                values( ?, ?, ?,0,'../../src/assets/img/member_photo/cat.png',$random)" ;
         
         $statement2 = $pdo->prepare($sql);
         $statement2 -> bindParam(1,$member_name);

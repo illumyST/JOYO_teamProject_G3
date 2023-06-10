@@ -303,7 +303,7 @@ const routes = [
 ];
 
 const scrollBehavior = (to) => {
-    if (to.hash === '#contact_bottom') {
+    if (to.hash === '#contact_bottom' && (router.path==='/contact'|| router.path==='/contact/')) {
         scrollTo({
             top: document.getElementById('contact_bottom').offsetTop,
             left: 0,

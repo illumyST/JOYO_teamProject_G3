@@ -8,7 +8,7 @@
 include '../connect/conn.php'; 
 
 
-$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+// $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 $startDate = $_GET['startDate'];
 $endDate = $_GET['endDate'];
