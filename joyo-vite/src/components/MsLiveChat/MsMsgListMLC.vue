@@ -46,7 +46,7 @@ export default {
   watch: {
     currentChatUserId() {
       this.currentChatUserId1 = this.currentChatUserId;
-      console.log("123",this.currentChatUserId1); 
+      // console.log("123",this.currentChatUserId1); 
     },
     chatList() {
       this.chatListData = this.chatList;

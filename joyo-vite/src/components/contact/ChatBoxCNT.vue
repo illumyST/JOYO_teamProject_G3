@@ -5,8 +5,9 @@
       <span>桌遊客服中心</span>
     </section>
 
-    <div class="ms_chat_room">
+    <div class="ms_chat_room" ref="chatRoom">
       <div
+        v-if="chatBoxContent !== 'no content'"
         v-for="(chat, index) in chatBoxContent"
         :class="{
           ms_chat: true,
@@ -84,6 +85,9 @@ export default {
           .then((res) => {
             console.log(res);
             this.$refs.userMessage.value = "";
+            setTimeout(() => {
+              this.scrollToBottom(); 
+            }, 100);
           })
           .catch((err) => {
             console.log("error", err);
@@ -105,7 +109,11 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-      }, 500);
+      }, 50);
+    },
+    scrollToBottom() {
+      const chatRoom = this.$refs.chatRoom;
+      chatRoom.scrollTop = chatRoom.scrollHeight;
     },
   },
 };

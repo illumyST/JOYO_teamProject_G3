@@ -145,7 +145,7 @@ export default {
             },
           })
           .then((res) => {
-            console.log("報表已產出至指定路徑");
+            // console.log("報表已產出至指定路徑");
           })
           .catch((error) => {
             console.log("error" + error);
@@ -168,10 +168,10 @@ export default {
             .post("/api/msSendReport/sendReportEmail.php", formData)
             .then((res) => {
               console.log(res, "success");
-              this.$refs.emailList.value = "";
               alert("報表已送出"); 
+              this.$refs.emailList.value = "";
             });
-        }, 100);
+        }, 50);
       }
     },
   },

@@ -5,7 +5,7 @@
       <span v-if="chatList1 && chatList1.length > 0">{{ currentUser }}</span>
     </section>
 
-    <div class="ms_chat_room">
+    <div class="ms_chat_room" ref="chatRoom">
       <div
         v-for="(chat, index) in chatBoxContent1"
         :class="{
@@ -17,10 +17,6 @@
       >
         <p>{{ chat.MSG_CONTENT }}</p>
       </div>
-
-      <!-- <div class="ms_chat ms_sending_text">
-        <p>我是測試文字我是測試文字我是測試文字我是測試文字我是測試文字</p>
-      </div> -->
     </div>
 
     <form action="#" class="ms_typing_area">
@@ -60,9 +56,13 @@ export default {
       this.currentUser = this.currentChatUser;
     },
     currentChatUserId() {
+      // this.scrollToBottom();
       this.currentChatUserId1 = this.currentChatUserId;
       // console.log(this.currentChatUserId1);
       this.$emit("getCurrentChatUserId", this.currentChatUserId1);
+      this.$nextTick(()=>{
+         this.scrollToBottom();
+      })
     },
   },
   mounted() {
@@ -80,7 +80,10 @@ export default {
         axios
           .post("/api/msLiveChat/adminSendMessage.php", formData)
           .then((res) => {
-            console.log(res);
+            // console.log(res);
+            setTimeout(()=> {
+              this.scrollToBottom();
+            },100); 
           })
           .catch((err) => {
             console.log(err);
@@ -97,11 +100,17 @@ export default {
           })
           .then((res) => {
             this.chatBoxContent1 = res.data;
+            // if (res.data.length !== this.chatBoxContent1.length) {
+            // }
           })
           .catch((err) => {
             console.log(err);
           });
-      }, 500);
+      }, 50);
+    },
+    scrollToBottom() {
+      const chatRoom = this.$refs.chatRoom;
+      chatRoom.scrollTop = chatRoom.scrollHeight;
     },
   },
 };

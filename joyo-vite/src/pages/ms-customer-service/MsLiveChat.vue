@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     tabSwitch() {
-      console.log("hihi");
+      // console.log("hihi");
       this.isOpen = !this.isOpen;
     },
   },
