@@ -44,7 +44,8 @@
     </div>
 
     <!-- 聊天室視窗 -->
-    <ChatBoxCNT class="contact_bottom_chat" v-show="ChatBox"></ChatBoxCNT>
+      <ChatBoxCNT class="contact_bottom_chat" v-show="ChatBox"></ChatBoxCNT>
+
     <!-- <div class="contact_bottom_chat">
       <div class="contact_bottom_chat_title">
         <img src="./assets/img/cat.png" alt="" />
@@ -75,7 +76,7 @@
     </div>  -->
     <!-- 聊天室視窗 end -->
 
-    <div class="contact_bottom_customer_service" @click="ChatBoxShow">
+    <div class="contact_bottom_customer_service" @click.stop="ChatBoxShow">
       <i class="fa-solid fa-headphones"></i>
     </div>
   </div>
@@ -90,6 +91,18 @@ const ChatBoxShow = () => {
   ChatBox.value = !ChatBox.value;
   // console.log("111");
 };
+
+const handleOutsideClick = (event) => {
+  if (!event.target.closest('.contact_bottom_chat')) {
+    ChatBox.value = false;
+    // console.log("2222");
+  }else{
+    // console.log("333");
+  }
+};
+
+    // 监听点击事件，当点击空白处时隐藏聊天室
+    window.addEventListener('click', handleOutsideClick);
 
 const svgRef = ref(null); // 创建一个 ref
 
@@ -106,13 +119,15 @@ const handleScroll = () => {
   }
 };
 
-// 监听滚动事件
 onMounted(() => {
+  // 监听滚动事件
   window.addEventListener('scroll', handleScroll);
+
 });
 
-// 清除滚动事件监听器
+
 onUnmounted(() => {
+  // 清除滚动事件监听器
   window.removeEventListener('scroll', handleScroll);
 });
 
@@ -229,6 +244,7 @@ onUnmounted(() => {
   border-radius: 50%;
   background-color: $orange;
   text-align: center;
+  cursor: pointer;
 
   i {
     font-size: $h1_pri;
