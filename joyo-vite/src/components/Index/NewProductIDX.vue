@@ -142,12 +142,12 @@ onBeforeMount(() => {
         }
 
         .index_newProduct_right {
-            width: 90%;
+            width: 89%;
             height: 300px; //暫時加著
             margin-right: 20px;
 
             img {
-                width: 100%
+                width: 65%
             }
         }
     }

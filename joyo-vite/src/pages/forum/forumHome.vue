@@ -22,7 +22,7 @@ const route = useRoute();
 const forumCategory = ref(
   {
   cate:"所有文章",
-  page:1
+  page:"1"
   }
 );
 watch(route,(newVal)=>{
@@ -42,7 +42,7 @@ const forumArticle=ref({
   articleFilter:[],
   articlePage:[],
   //表示一頁呈現幾筆資料
-  page:4,
+  page:"4",
   //頁籤內容
   appearPage:[],
 });
@@ -85,12 +85,10 @@ const fetchData=()=>{
         });
 };
 const getPage=()=>{
-  console.log(forumArticle.value.articleFilter.length);
     for(let j=0;j<forumArticle.value.articleFilter.length;){
       forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+forumArticle.value.page));
          j=j+ forumArticle.value.page; 
        }
-       console.log(forumArticle.value.articlePage);
 };
 
 const getAppearPage=()=>{
@@ -184,21 +182,17 @@ const updateArrange=(val)=>{
 const countPageActive=ref(1);
 const pageActive=ref([]);
 const fitDeviceWidth=()=>{
-  console.log(document.querySelectorAll(".forum_right")[0]);
     let screenWidth = window.innerWidth;
     let currentScrollY = document.querySelectorAll(".forum_right")[0].scrollTop;
-    console.log(currentScrollY);
     if(screenWidth<500){
       pageActive.value.push(true);
         if(countPageActive.value==1){
             if(currentScrollY >  countPageActive.value*10){
-            console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }
         }else if(countPageActive.value>=2){
             if(currentScrollY >  countPageActive.value*400){
-            console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }
