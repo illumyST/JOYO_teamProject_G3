@@ -187,7 +187,7 @@
     const toGreenPay=async ()=>{
         try{
             await axios
-            .post('/api/pay_test/paytest.php', toLocal.value)
+            .post(`${import.meta.env.VITE_API_URL}/pay_test/paytest.php`, toLocal.value)
             .then((response) => {
             let ret = response.data.replace('<script type="text/javascript">document.getElementById("ecpay-form").submit();</scr', '')
             ret = ret.replace('ipt></body></html>', '');

@@ -71,7 +71,7 @@ const turnArticleType=(callBackId)=>{
   } 
 };
 const fetchData=()=>{
-    return axios.get('/api/forum/forumGetArticle.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/forum/forumGetArticle.php`)
         .then(res => {
           //將資料庫回傳的資料存在articleAll變數中
           forumArticle.value.articleAll = res.data;

@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     getImageData() {
-      axios.get("/api/getBanner/getBanners.php").then((res) => {
+      axios.get(`${import.meta.env.VITE_API_URL}/getBanner/getBanners.php`).then((res) => {
         console.log(res.data);
         this.bannerData = res.data;
         console.log(this.bannerData);
