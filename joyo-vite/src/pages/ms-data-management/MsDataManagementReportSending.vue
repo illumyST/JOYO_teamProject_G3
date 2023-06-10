@@ -60,7 +60,7 @@ export default {
   methods: {
     getDefaultChartData() {
       axios
-        .get("/api/msGetOrderData/getDefaultChartData.php")
+        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getDefaultChartData.php`)
         .then((res) => {
           const jsonData = res.data;
           this.date = [
@@ -74,7 +74,7 @@ export default {
     },
     downloadCSV() {
       axios
-        .get("/api/msGetCSVFile/GetCSVFile.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msGetCSVFile/GetCSVFile.php`, {
           responseType: 'blob',
           params: {
             startDate: this.filteredDate[0],

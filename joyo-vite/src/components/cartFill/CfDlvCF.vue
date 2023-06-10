@@ -187,7 +187,7 @@
     const toGreenPay=async ()=>{
         try{
             await axios
-            .post('/api/pay_test/paytest.php', toLocal.value)
+            .post(`${import.meta.env.VITE_API_URL}/pay_test/paytest.php`, toLocal.value)
             .then((response) => {
             let ret = response.data.replace('<script type="text/javascript">document.getElementById("ecpay-form").submit();</scr', '')
             ret = ret.replace('ipt></body></html>', '');
@@ -206,7 +206,7 @@
     const saveInBuy=async ()=>{
         let localItem=JSON.parse(localStorage.getItem('buy'));
         try{
-        const res=await axios.post('/api/cart/saveBuy.php', localItem);
+        const res=await axios.post(`${import.meta.env.VITE_API_URL}/cart/saveBuy.php`, localItem);
       
         // console.log(res.data);
         await delCart();
@@ -220,7 +220,7 @@
     }
     const delCart=async ()=>{
         try{
-        await axios.post('/api/cart/removeCart.php', toLocal.value);        
+        await axios.post(`${import.meta.env.VITE_API_URL}/cart/removeCart.php`, toLocal.value);        
         } catch(err)  {
             console.error(err);
             }; 

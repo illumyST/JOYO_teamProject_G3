@@ -57,7 +57,7 @@ const getseach = (n) => {
     value:n.value
   }
   if(n.text != ""){
-    axios.post('/api/MsContentManagement/MsContentManagementSE.php',sr)
+    axios.post(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagementSE.php`,sr)
     .then(data=>{    
     var list = data.data ;
     for(var n of list){
@@ -78,7 +78,7 @@ const getseach = (n) => {
 .catch(error=>{console.log(error)});
   }
   else{
-    axios.get('/api/MsContentManagement/MsContentManagement.php')
+    axios.get(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagement.php`)
     .then(data=>{
       
     var list = data.data ;
@@ -102,7 +102,7 @@ const getseach = (n) => {
   }
 };
 
-axios.get('/api/MsContentManagement/MsContentManagement.php')
+axios.get(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagement.php`)
 .then(data=>{
   
  var list = data.data ;

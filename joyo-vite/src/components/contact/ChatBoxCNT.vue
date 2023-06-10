@@ -61,13 +61,13 @@ export default {
     // 取得當前用戶ID
     getCurrentChatUserId() {
       axios
-        .get("/api/frontChat/getUserId.php")
+        .get(`${import.meta.env.VITE_API_URL}/frontChat/getUserId.php`)
         .then((res) => {
           // console.log(res.data);
           this.currentUserId = res.data;
         })
         .catch((err) => {
-          console.log("error", err);
+          // console.log("error", err);
           alert("請先登入");
         });
     },
@@ -80,7 +80,7 @@ export default {
         formData.append("msg_content", userMessage);
         formData.append("senderId", this.currentUserId);
         axios
-          .post("/api/frontChat/userSendMessage.php", formData)
+          .post(`${import.meta.env.VITE_API_URL}/frontChat/userSendMessage.php`, formData)
           .then((res) => {
             // console.log(res);
             this.$refs.userMessage.value = "";
@@ -93,14 +93,14 @@ export default {
     keepGettingChatBoxContent() {
       setInterval(() => {
         axios
-          .get("/api/msLiveChat/getChatBoxContent.php", {
+          .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
             params: {
               userId: this.currentUserId,
             },
           })
           .then((res) => {
             this.chatBoxContent = res.data;
-            console.log("123", res.data);
+            // console.log("123", res.data);
           })
           .catch((err) => {
             console.log(err);

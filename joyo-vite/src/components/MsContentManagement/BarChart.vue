@@ -52,7 +52,7 @@ export default {
     },
     getDefaultChartData() {
       axios
-        .get("/api/msGetOrderData/getDefaultChartData.php")
+        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getDefaultChartData.php`)
         .then((res) => {
           const jsonData = res.data;
           for (let i = 0; i < jsonData.length; i++) {
@@ -97,7 +97,7 @@ export default {
   watch: {
     filteredDate() {
       axios
-        .get("/api/msGetOrderData/getRangedData.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getRangedData.php`, {
           params: {
             startDate: this.filteredDate[0],
             endDate: this.filteredDate[1],

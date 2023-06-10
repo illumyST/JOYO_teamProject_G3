@@ -93,7 +93,7 @@ export default {
     },
     getDefaultChartData() {
       axios
-        .get("/api/msGetOrderData/getDefaultChartData.php")
+        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getDefaultChartData.php`)
         .then((res) => {
           const jsonData = res.data;
           this.date = [
@@ -107,7 +107,7 @@ export default {
     },
     downloadCSV() {
       axios
-        .get("/api/msGetCSVFile/GetCSVFile.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msGetCSVFile/GetCSVFile.php`, {
           responseType: "blob",
           params: {
             startDate: this.filteredDate[0],
@@ -138,7 +138,7 @@ export default {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       if (enteredEmail.match(emailValidation) && enteredEmail !== '') {
         axios
-          .get("/api/msGetCSVFile/createCSVFile.php", {
+          .get(`${import.meta.env.VITE_API_URL}/msGetCSVFile/createCSVFile.php`, {
             params: {
               startDate: this.date[0],
               endDate: this.date[1],
@@ -165,7 +165,7 @@ export default {
           formData.append("startDate", formattedStartDate);
           formData.append("endDate", formattedEndDate);
           axios
-            .post("/api/msSendReport/sendReportEmail.php", formData)
+            .post(`${import.meta.env.VITE_API_URL}/msSendReport/sendReportEmail.php`, formData)
             .then((res) => {
               console.log(res, "success");
               this.$refs.emailList.value = "";

@@ -112,7 +112,7 @@ const emits=defineEmits(['renewsqlCart'])
     };
 
     const getproductData = () => {
-        return axios.get('/api/cart/getCartItem.php',{ params: { memberId: props.product.member_id} })
+        return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: props.product.member_id} })
         .then(res => {
                         //將資料庫回傳的資料存在tg變數中
                     // console.log( res.data);
