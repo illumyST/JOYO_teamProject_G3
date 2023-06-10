@@ -206,7 +206,7 @@
     const saveInBuy=async ()=>{
         let localItem=JSON.parse(localStorage.getItem('buy'));
         try{
-        const res=await axios.post('/api/cart/saveBuy.php', localItem);
+        const res=await axios.post(`${import.meta.env.VITE_API_URL}/cart/saveBuy.php`, localItem);
       
         // console.log(res.data);
         await delCart();
@@ -220,7 +220,7 @@
     }
     const delCart=async ()=>{
         try{
-        await axios.post('/api/cart/removeCart.php', toLocal.value);        
+        await axios.post(`${import.meta.env.VITE_API_URL}/cart/removeCart.php`, toLocal.value);        
         } catch(err)  {
             console.error(err);
             }; 
