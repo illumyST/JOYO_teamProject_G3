@@ -106,7 +106,7 @@ const addAdmins =(e)=>{
   }
 }
 
-axios.get("/api/msBack_Account/msBack_Account.php")
+axios.get(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_Account.php`)
 .then(data=>{
   var list = data.data;
 

@@ -98,7 +98,7 @@ export default {
         formData.append("imgAlt", this.imageAlt); 
         formData.append("fileUpload", this.$refs.fileUpload.files[0]);
         axios
-          .post("/api/msUploadBanner/msBannerUpload.php", formData)
+          .post(`${import.meta.env.VITE_API_URL}/msUploadBanner/msBannerUpload.php`, formData)
           .then((res) => {
             console.log(res.data);
             this.selectedOptionA = "default";

@@ -78,7 +78,7 @@ export default {
         formData.append("msgContent", this.$refs.adminMessage.value);
         this.$refs.adminMessage.value = "";
         axios
-          .post("/api/msLiveChat/adminSendMessage.php", formData)
+          .post(`${import.meta.env.VITE_API_URL}/msLiveChat/adminSendMessage.php`, formData)
           .then((res) => {
             // console.log(res);
             setTimeout(()=> {
@@ -93,7 +93,7 @@ export default {
     keepGettingChatBoxContent() {
       setInterval(() => {
         axios
-          .get("/api/msLiveChat/getChatBoxContent.php", {
+          .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
             params: {
               userId: this.currentChatUserId1,
             },

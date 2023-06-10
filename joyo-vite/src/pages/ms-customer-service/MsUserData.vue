@@ -33,7 +33,7 @@ const getseach = (n) => {
     value:n.value
   }
   if(n.text != ""){
-    axios.post('/api/msUserData/msUserDataSL.php',ser)
+    axios.post(`${import.meta.env.VITE_API_URL}/msUserData/msUserDataSL.php`,ser)
     .then(data=>{
       for(var n of data.data){
         // console.log(n.MEMBER_NAME);
@@ -56,7 +56,7 @@ const getseach = (n) => {
 
   }
   else{
-    axios.get('/api/msUserData/msUserData.php')
+    axios.get(`${import.meta.env.VITE_API_URL}/msUserData/msUserData.php`)
     .then(data=>{
     var member = data.data;
 
@@ -79,7 +79,7 @@ const getseach = (n) => {
 }};
 
 
-axios.get('/api/msUserData/msUserData.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msUserData/msUserData.php`)
 .then(data=>{
  var member = data.data;
 

@@ -62,7 +62,7 @@ const del =(e)=>{
                 // order.value
             }
         }
-        axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbcDL.php",e)
+        axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbcDL.php`,e)
         .then(res=>{})
         .catch(ERROR=>{console.log(error)});
     }
@@ -70,7 +70,7 @@ const del =(e)=>{
 }
 
 const order = ref([]);
-axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbc.php","0")
+axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbc.php`,"0")
 .then(res=>{
 const ord = res.data ;
 for(let n of ord){
@@ -114,7 +114,7 @@ order.value.push({
     finday:n[7]||null,
     detal:[]
 })}
-axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
+axios.get(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbc.php`)
 .then(res=>{
     for(let n of res.data){
         order.value[0]["detal"].push({

@@ -54,7 +54,7 @@ import { ref } from "vue";
       }
     }
     if(chpw.value['check']){
-      axios.post("/api/msBack_Account/MsChangePassword.php",chpw.value)
+      axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/MsChangePassword.php`,chpw.value)
       .then(res=>{console.log(res.data)})
       .catch(error=>{console.log(error)});
     }

@@ -42,7 +42,7 @@ if(n.text != ""){
     text:n.text,
     value:n.value
   }
-  axios.post('/api/msDataMangOrder/msDataMangOrderSEL.php',sel)
+  axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderSEL.php`,sel)
   .then(data=>{
     for(var n of data.data){
   // console.log(n);
@@ -66,7 +66,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -82,7 +82,7 @@ order.value.push(
   upopen: false,
   order:[]})}
 
- axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+ axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 
 .then(data=>{
   console.log(data.data);
@@ -110,7 +110,7 @@ if(order.value[n] != undefined){
 })
 .catch(error=>{console.log(error)})
 }else{
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
   // console.log(data.data);
 for(var n of data.data){
@@ -134,7 +134,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -151,7 +151,7 @@ order.value.push(
   order:[]})
 }
 
-axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 .then(data=>{
 for(var n = 0 ; n< order.value.length ; n++){
   for(var a of data.data){
@@ -182,7 +182,7 @@ if(order.value[n] != undefined){
 }
 // --------------------------------------------------------------------------------
 
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
   // console.log(data.data);
 for(var n of data.data){
@@ -206,7 +206,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -223,7 +223,7 @@ order.value.push(
   order:[]})
 }
 
-axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 .then(data=>{
 for(var n = 0 ; n< order.value.length ; n++){
   for(var a of data.data){

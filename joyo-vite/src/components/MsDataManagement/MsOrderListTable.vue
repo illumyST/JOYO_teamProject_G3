@@ -110,7 +110,7 @@ export default {
     getDefaultOrderTable() {
       setTimeout(() => {
         axios
-          .get("/api/msGetOrderData/getDefaultOrderTable.php")
+          .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getDefaultOrderTable.php`)
           .then((res) => {
             const jsonData = res.data;
             this.orderDetails = jsonData;
@@ -122,7 +122,7 @@ export default {
     },
     getRangedData() {
       axios
-        .get("/api/msGetOrderData/getRangedOrderTable.php", {
+        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getRangedOrderTable.php`, {
           params: {
             startDate: this.filteredDate[0],
             endDate: this.filteredDate[1],

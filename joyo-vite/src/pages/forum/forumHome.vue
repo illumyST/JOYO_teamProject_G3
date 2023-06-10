@@ -71,7 +71,7 @@ const turnArticleType=(callBackId)=>{
   } 
 };
 const fetchData=()=>{
-    return axios.get('/api/forum/forumGetArticle.php')
+    return axios.get(`${import.meta.env.VITE_API_URL}/forum/forumGetArticle.php`)
         .then(res => {
           //將資料庫回傳的資料存在articleAll變數中
           forumArticle.value.articleAll = res.data;
@@ -85,10 +85,12 @@ const fetchData=()=>{
         });
 };
 const getPage=()=>{
+  // console.log(forumArticle.value.articleFilter.length);
     for(let j=0;j<forumArticle.value.articleFilter.length;){
       forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+forumArticle.value.page));
          j=j+ forumArticle.value.page; 
        }
+      //  console.log(forumArticle.value.articlePage);
 };
 
 const getAppearPage=()=>{
@@ -108,7 +110,7 @@ const getAppearPage=()=>{
 const toPage=(val)=>{
     //更新當前頁面
     forumCategory.value.page=val;
-    console.log(forumCategory.value.page);
+    // console.log(forumCategory.value.page);
     // changeHeight(val);
     scrollTo({
         top: 0,
@@ -182,17 +184,21 @@ const updateArrange=(val)=>{
 const countPageActive=ref(1);
 const pageActive=ref([]);
 const fitDeviceWidth=()=>{
+  // console.log(document.querySelectorAll(".forum_right")[0]);
     let screenWidth = window.innerWidth;
     let currentScrollY = document.querySelectorAll(".forum_right")[0].scrollTop;
+    // console.log(currentScrollY);
     if(screenWidth<500){
       pageActive.value.push(true);
         if(countPageActive.value==1){
             if(currentScrollY >  countPageActive.value*10){
+            // console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }
         }else if(countPageActive.value>=2){
             if(currentScrollY >  countPageActive.value*400){
+            // console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }
@@ -254,11 +260,11 @@ onMounted(()=>{
     width: 100%;
     flex-grow: 0;
     margin-left: 0;
-  max-height: 1000px;
-  overflow: hidden;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+    max-height: 1000px;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 
   }
 }
