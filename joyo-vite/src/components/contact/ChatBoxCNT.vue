@@ -100,7 +100,7 @@ export default {
           })
           .then((res) => {
             this.chatBoxContent = res.data;
-            console.log("123", res.data);
+            // console.log("123", res.data);
           })
           .catch((err) => {
             console.log(err);

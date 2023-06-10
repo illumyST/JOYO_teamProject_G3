@@ -112,7 +112,7 @@ const emits=defineEmits(['renewsqlCart'])
     };
 
     const getproductData = () => {
-        return axios.get('/api/cart/getCartItem.php',{ params: { memberId: props.product.member_id} })
+        return axios.get(`${import.meta.env.VITE_API_URL}/cart/getCartItem.php`,{ params: { memberId: props.product.member_id} })
         .then(res => {
                         //將資料庫回傳的資料存在tg變數中
                     // console.log( res.data);
@@ -136,7 +136,7 @@ const emits=defineEmits(['renewsqlCart'])
             sendValue.value.member_id = props.product.member_id;
             try{
                 if(confirm("確定移除此商品")){
-                    await axios.post('/api/product/deleteCartItem.php', sendValue.value);
+                    await axios.post(`${import.meta.env.VITE_API_URL}/product/deleteCartItem.php`, sendValue.value);
                     getproductData()         
                 }
             }catch(err){

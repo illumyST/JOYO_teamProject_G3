@@ -90,7 +90,7 @@ import axios from 'axios';
             cardId:cardid
         };
         try{
-            const res=await axios.post('/api/memberCard/removeCard.php',updateData);
+            const res=await axios.post(`${import.meta.env.VITE_API_URL}/memberCard/removeCard.php`,updateData);
             getMemberCard();
 
         } catch(err)  {
@@ -103,7 +103,7 @@ import axios from 'axios';
             newData:val
         };
         try{
-            const res=await axios.post('/api/memberCard/editCard.php',updateData);
+            const res=await axios.post(`${import.meta.env.VITE_API_URL}/memberCard/editCard.php`,updateData);
             // console.log(res.data);
             getMemberCard();
 
@@ -116,14 +116,14 @@ import axios from 'axios';
         // console.log(123);
         try{
             //取得會員ID
-            const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
             memberCardInfo.value.memberId = res.data;
         } catch(err)  {
             console.error(err);
             };
     }
     const getMemberCard=()=>{
-            return axios.get('/api/memberCard/getCard.php',{params:{memberId:memberCardInfo.value.memberId}})
+            return axios.get(`${import.meta.env.VITE_API_URL}/memberCard/getCard.php`,{params:{memberId:memberCardInfo.value.memberId}})
             .then((res)=>{
                 memberCardInfo.value.memberCard = res.data;
                 memberCardInfo.value.memberCardShow=memberCardInfo.value.memberCard;
@@ -142,7 +142,7 @@ import axios from 'axios';
             cardInfor:cardinfor
         };
         try{
-            const res=await axios.post('/api/memberCard/addCard.php',updateDate);
+            const res=await axios.post(`${import.meta.env.VITE_API_URL}/memberCard/addCard.php`,updateDate);
             console.log(res.data);
             getMemberCard();
 

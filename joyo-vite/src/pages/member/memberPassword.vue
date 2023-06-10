@@ -50,7 +50,7 @@ const newPswNotRepeatCheck=ref(true);
 const getMemberData=async ()=>{
         try{
             //取得會員ID
-            const res=await axios.get('/api/forumPost/forumCheckLogin.php');
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
             updatePwd.value.memberId = res.data;
             getmemberpsw();
         } catch(err)  {
@@ -58,7 +58,7 @@ const getMemberData=async ()=>{
             };
 }
 const getmemberpsw=()=>{
-    return axios.get('/api/memberCard/getMemberPsw.php',{ params: { memberId: updatePwd.value.memberId} })
+    return axios.get(`${import.meta.env.VITE_API_URL}/memberCard/getMemberPsw.php`,{ params: { memberId: updatePwd.value.memberId} })
         .then(resdata => {
             memberData.value.memberPsw=resdata.data.PASSWORD;
             }
@@ -109,7 +109,7 @@ const renewpsw=()=>{
 }
 const updateToSql=async()=>{
     try{
-            const res=await axios.post('/api/memberCard/editMemberPsw.php',updatePwd.value);
+            const res=await axios.post(`${import.meta.env.VITE_API_URL}/memberCard/editMemberPsw.php`,updatePwd.value);
             console.log(res.data);
             alert("密碼已更新，請重新登入");
             location.reload();
