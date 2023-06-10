@@ -105,7 +105,7 @@ const props = defineProps({
 //取得文章資訊
 const fetchData = () => {
   return axios
-    .get("/api/forum/forumGetArticle.php")
+    .get(`${import.meta.env.VITE_API_URL}/forum/forumGetArticle.php`)
     .then((res) => {
       forumArticle.value.articleAll = res.data;
     })
@@ -144,7 +144,7 @@ const getGame = () => {
 const getMemberId = () => {
   // console.log(123);
   return axios
-    .get("/api/forumPost/forumCheckLogin.php")
+    .get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`)
     .then((res) => {
       //將資料庫回傳的資料存在變數中
       postMsg.value.MemberId = res.data;
@@ -182,7 +182,7 @@ const handleSendButtonClick = async() => {
         postMsg.value.articleID = artId;
         if (postMsg.value.MsgText !== "") {
            axios
-            .post("/api/forumInfo/forumInfoMSG.php", JSON.stringify(postMsg.value)) // PHP 文件路径
+            .post(`${import.meta.env.VITE_API_URL}/forumInfo/forumInfoMSG.php`, JSON.stringify(postMsg.value)) // PHP 文件路径
             .then((res) => {
               // console.log(res.data);
               // 清空留言文本框
@@ -190,7 +190,7 @@ const handleSendButtonClick = async() => {
               // alert(res.data);
               alert("留言成功");
               
-              console.log(postMsg.value);
+              // console.log(postMsg.value);
 
               // 获取最新的留言数据并更新页面
               fetchMsg();
@@ -217,7 +217,7 @@ const fetchMsg = () => {
   let artId = route.params.article.substring(8);
   postMsg.value.articleID = artId;
   return axios
-    .get("/api/forumInfo/getArticle_Comment.php", {
+    .get(`${import.meta.env.VITE_API_URL}/forumInfo/getArticle_Comment.php`, {
       params: {
         artId: artId,
       },
@@ -272,7 +272,7 @@ const postLike = () => {
   // console.log(artId,memberId);
 
   axios
-    .post("/api/forumInfo/addLikeCount.php", { artId, memberId })
+    .post(`${import.meta.env.VITE_API_URL}/forumInfo/addLikeCount.php`, { artId, memberId })
     .then((res) => {
       // console.log(res.data);
       // 執行成功，更新愛心狀態和重新加載文章資訊
@@ -290,7 +290,7 @@ const unlikeLike = () => {
   const memberId = postMsg.value.MemberId;
 
   axios
-    .post("/api/forumInfo/UnlikeArticle.php", { artId, memberId })
+    .post(`${import.meta.env.VITE_API_URL}/forumInfo/UnlikeArticle.php`, { artId, memberId })
     .then((res) => {
       // console.log(res.data);
       // 執行成功，更新愛心狀態和重新加載文章資訊
@@ -309,7 +309,7 @@ const checkLikedStatus = () => {
   let memberId = postMsg.value.MemberId;
 
   axios
-    .get("/api/forumInfo/checkLiked.php", {
+    .get(`${import.meta.env.VITE_API_URL}/forumInfo/checkLiked.php`, {
       params: {
         artId: artId,
         memberId: memberId
