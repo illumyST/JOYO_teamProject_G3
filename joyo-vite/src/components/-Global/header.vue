@@ -203,7 +203,7 @@ const searchItem = () => {
             searchBoxOpen.value = true;
             let a =responseData[n][1]
             selectModel.value.push({name:a,href:`http://localhost:5173/#/productInfo/ID:${responseData[n][0]}`});
-            console.log(selectModel.value);
+            // console.log(selectModel.value);
         }else{
             searchBoxOpen.value = false;
         }

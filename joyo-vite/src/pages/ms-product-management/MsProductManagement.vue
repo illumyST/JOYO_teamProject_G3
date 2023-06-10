@@ -30,7 +30,7 @@ const getseach=(n)=>{
     sear:n.text,
     type:n.value
    }
-   axios.post('/api/msProduct/msProductSR.php',text)
+   axios.post(`${import.meta.env.VITE_API_URL}/msProduct/msProductSR.php`,text)
     .then(data=>{
     let arr =data.data ;
     console.log(arr);
@@ -56,7 +56,7 @@ const getseach=(n)=>{
 
    
 }else{
-  axios.get('/api/msProduct/msProduct.php')
+  axios.get(`${import.meta.env.VITE_API_URL}/msProduct/msProduct.php`)
     .then(data=>{
     let arr =data.data ;
     for(var n of arr){
@@ -118,7 +118,7 @@ const del = (e)=>{
 
 
 
-axios.get('/api/msProduct/msProduct.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msProduct/msProduct.php`)
     .then(data=>{
     let arr =data.data ;
     for(var n of arr){

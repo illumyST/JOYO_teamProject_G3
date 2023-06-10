@@ -17,10 +17,12 @@
 
     $data = $statement->fetchAll();
 
+
     if(count($data)>0){
         session_start();
         $_SESSION['isLogIn'] = true;
         $_SESSION['account'] = $account;
+        $_SESSION['mgr'] = $data[0]["MGR"];
         echo 'true';
     }else{
         echo 'false';

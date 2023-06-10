@@ -59,10 +59,10 @@ $imgurl[$a] = $ll ;
 // print_r($imgurl);
 // -------------------------------------------------------------------------------------------
 
-$sql = "UPDATE PRODUCT SET NAME = ?,CATEGORY= ?,PRICE= ?,IMG_URL_ONE= ?,IMG_URL_TWO= ?,IMG_URL_THREE= ?,IMG_URL_FOUR= ?
+$sql = "UPDATE PRODUCT SET NAME = ?,CATEGORY= ?,PRICE= ?,CURRENT_PRICE = ?,IMG_URL_ONE= ?,IMG_URL_TWO= ?,IMG_URL_THREE= ?,IMG_URL_FOUR= ?
 ,DESCRIPTION= ?,MIN_TIME= ?,MAX_TIME= ?,MIN_PLAYER= ?,MAX_PLAYER= ?,MIN_AGE= ?,STOCK= ? WHERE PRODUCT_ID = ? " ;
 $stm = $pdo -> prepare($sql);
-$data =$stm -> execute(array($pid,$ptype,$ppr,$imgurl[0],$imgurl[1],$imgurl[2],$imgurl[3],$ptarea,$ptimeMIN,$ptimeMAX,$pplayersMIN,$pplayersMAX,$page,$pstock,$opid));
+$data =$stm -> execute(array($pid,$ptype,$ppr,$ppr,$imgurl[0],$imgurl[1],$imgurl[2],$imgurl[3],$ptarea,$ptimeMIN,$ptimeMAX,$pplayersMIN,$pplayersMAX,$page,$pstock,$opid));
 
 if(isset($stm)){
 // header("location:http://localhost:5174/#/ms/msProductManagement");

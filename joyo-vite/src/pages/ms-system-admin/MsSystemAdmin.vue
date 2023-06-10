@@ -1,15 +1,17 @@
 <template>
-    <div class="ms_wrapper">
+    <div class="ms_wrapper" >
       <MsLeftSideMenu></MsLeftSideMenu>
       <div class="ms_right_side_content">
         <MsTabs :showBtn2="false">
           <template #button1>權限管理</template>
         </MsTabs>
+        <template v-if="MGR">
         <MsSystemAdminBtn :name="'管理員權限管理'"
         @cladd="cladd" @updat="updae"
         ></MsSystemAdminBtn>
         <msSystemAdminTable @delete="dlt"></msSystemAdminTable>
         <msPage @page="chpage"></msPage>
+      </template>
       </div>
     </div>
     <msAddAdminsForm v-if="addop" @close="close" @addAdmins="addAdmins"></msAddAdminsForm>
@@ -26,6 +28,22 @@ provide('us', userSelect);
 const admins = ref([]) ;
 const adminsA = ref([]) ;
 const opage = ref(1);
+const MGR = ref(false);
+
+axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/sessionCheckValue.php`)
+.then(res=>{
+  let a = res.data;
+  if(a == 1){
+    MGR.value = true ;
+  }else{
+    MGR.value = false;
+    router.push('/ms/MsChangePassword')
+  }
+  
+
+
+})
+.catch(error=>{console.log(error)});
 
 
 provide('admins',adminsA);
@@ -106,10 +124,10 @@ const addAdmins =(e)=>{
   }
 }
 
-axios.get("/api/msBack_Account/msBack_Account.php")
+axios.get(`${import.meta.env.VITE_API_URL}/msBack_Account/msBack_Account.php`)
 .then(data=>{
   var list = data.data;
-
+// console.log(list)
   for(var n=0 ; n<data.data.length ; n++){
     // console.log(list[n]['USER_NAME']);
     admins.value.push(

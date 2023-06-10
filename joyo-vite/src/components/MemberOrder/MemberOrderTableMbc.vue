@@ -8,7 +8,8 @@
                             <h3>{{ item.nowdate }}</h3>
                             <h3>{{ item.type }}</h3>
                             <h3>{{ item.now }}</h3>
-                            <input type="button" @click.stop="del(item.num)" value="刪除訂單">
+                            <input type="button" @click.stop="del(item.num)" value="取消訂單" v-if="item.now2 <= 3 ">
+                            <input type="button" @click.stop="tel" value="前往評論"  v-if="item.now2  > 3 ">
                         </a>
                         
                         <ul class="Order" v-if="item.open">
@@ -62,18 +63,22 @@ const del =(e)=>{
                 // order.value
             }
         }
-        axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbcDL.php",e)
+        axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbcDL.php`,e)
         .then(res=>{})
         .catch(ERROR=>{console.log(error)});
     }
    
 }
-
+const tel =()=>{
+router.push("/forum/forumPost");
+};
 const order = ref([]);
-axios.post("/api/MemberOrderTableMbc/MemberOrderTableMbc.php","0")
+axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbc.php`,"0")
 .then(res=>{
 const ord = res.data ;
+// console.log(ord)
 for(let n of ord){
+    // console.log(n)
 order.value.push({
     open:false,
     num:n[0],
@@ -113,19 +118,27 @@ order.value.push({
     tday:n[6]||null,
     finday:n[7]||null,
     detal:[]
-})}
-axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
+})
+}
+
+axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTableMbc.php`,"1")
 .then(res=>{
+    
     for(let n of res.data){
-        order.value[0]["detal"].push({
+        console.log(n);
+        for(let a = 0 ; a < order.value.length  ; a++){
+            console.log(n['buy_id']);
+        if(n['buy_id'] == order.value[a].num){
+            order.value[a]["detal"].push({
             pname:n[0],
             pimg:n[2],
             pprice:n[1],
             pamount:n[3],   
-        })  
-    }
-    console.log(order.value);
-})
+          })}
+        }}
+    //     
+    })
+    // 
 .catch(error=>{console.log(error)});
 // console.log(ord)
 })
@@ -259,7 +272,7 @@ axios.get("/api/MemberOrderTableMbc/MemberOrderTableMbc.php")
         }
     }
     img{
-        width: 100px;
+        height: 100px;
     }
     .not{
         // outline: 1px solid red;

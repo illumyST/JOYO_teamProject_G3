@@ -15,7 +15,7 @@
             <td>{{item.id}}</td>
             <td class="tb2">{{item.user}}</td>
             <td>{{item.day}}</td>
-            <td class="tb">{{item.tbname}}</td>
+            <td class="tb"><p>{{item.tbname}}</p></td>
             <td class="msn_icon">
             <i class="bi bi-trash3-fill" @click="del(index,item)"></i>
             </td>
@@ -62,9 +62,18 @@ table{
             padding-bottom:30px;
         }
         tr.ms_table_body{
+            width: 100%;
             .tb{
-                // outline: 1px solid red;
+                p{
+                    // outline: 1px solid red;
                 width: 400px;
+                height: 40px;
+                white-space: nowrap;
+                padding:  0 10px ;
+                overflow: hidden; /* 隐藏溢出的部分 */
+                text-overflow: ellipsis;
+                }
+                
             }
             background-color: $orange;
             font-size: 16px;

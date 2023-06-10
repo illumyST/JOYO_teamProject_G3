@@ -20,7 +20,7 @@ import axios from 'axios';
 import {compile, provide, ref} from 'vue'
 const us = ref([{name:'訂單編號',value:1},{name:'用戶帳號',value:2},{name:'訂單金額',value:3},{name:'付款方式',value:4},{name:'訂單狀態',value:5},{name:'物流',value:6}]);
 provide('us',us);
-provide("prodects",us);
+// provide("prodects",us);
 // --------------------------------------------------------------------------------
 const order = ref([]);
 const order2 = ref([]);
@@ -42,7 +42,7 @@ if(n.text != ""){
     text:n.text,
     value:n.value
   }
-  axios.post('/api/msDataMangOrder/msDataMangOrderSEL.php',sel)
+  axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderSEL.php`,sel)
   .then(data=>{
     for(var n of data.data){
   // console.log(n);
@@ -66,7 +66,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -82,7 +82,7 @@ order.value.push(
   upopen: false,
   order:[]})}
 
- axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+ axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 
 .then(data=>{
   console.log(data.data);
@@ -110,7 +110,7 @@ if(order.value[n] != undefined){
 })
 .catch(error=>{console.log(error)})
 }else{
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
   // console.log(data.data);
 for(var n of data.data){
@@ -134,7 +134,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -151,7 +151,7 @@ order.value.push(
   order:[]})
 }
 
-axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 .then(data=>{
 for(var n = 0 ; n< order.value.length ; n++){
   for(var a of data.data){
@@ -182,7 +182,7 @@ if(order.value[n] != undefined){
 }
 // --------------------------------------------------------------------------------
 
-axios.get('/api/msDataMangOrder/msDataMangOrder.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)
 .then(data=>{
   // console.log(data.data);
 for(var n of data.data){
@@ -206,7 +206,7 @@ order.value.push(
         ott:ott
       }
       // console.log(TATL);
-      axios.post('/api/msDataMangOrder/msDataMangOrderTAL.php',TATL)
+      axios.post(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrderTAL.php`,TATL)
       .then(data=>{})
       .catch(error=>{console.log(error)})
       return ott;
@@ -215,15 +215,15 @@ order.value.push(
   got:'新竹物流',
   fron: status,
   open:false,
-  one:n["BUY_DATE"],oneop:false,
-  two:n["SHIPPING_TIME"],twoop:false,
-  the:n["DELIVERY_TIME"],theop:false,
-  four:n["COMPELETE_TIME"],fourop:false,
+  one:n["DATE(buy.BUY_DATE)"],oneop:false,
+  two:n["DATE(buy.SHIPPING_TIME)"],twoop:false,
+  the:n["DATE(buy.DELIVERY_TIME)"],theop:false,
+  four:n["DATE(buy.COMPELETE_TIME)"],fourop:false,
   upopen: false,
   order:[]})
 }
 
-axios.get('/api/msDataMangOrder/msDataMangOrder2.php')
+axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 .then(data=>{
 for(var n = 0 ; n< order.value.length ; n++){
   for(var a of data.data){
@@ -239,6 +239,7 @@ for(var n = 0 ; n< order.value.length ; n++){
         }
       );
     }
+    // console.log(order.value)
   }
 }
 for(var n = 0 ; n<10 ; n++){
@@ -255,7 +256,7 @@ if(order.value[n] != undefined){
 
 
 provide('order',order2);
-
+provide("prodects",order);
 
 </script>
   

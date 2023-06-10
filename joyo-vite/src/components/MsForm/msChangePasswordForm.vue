@@ -54,12 +54,21 @@ import { ref } from "vue";
       }
     }
     if(chpw.value['check']){
-      axios.post("/api/msBack_Account/MsChangePassword.php",chpw.value)
-      .then(res=>{console.log(res.data)})
+      axios.post(`${import.meta.env.VITE_API_URL}/msBack_Account/MsChangePassword.php`,chpw.value)
+      .then(res=>{
+        if(confirm("確認修改")){
+          if(res.data == "更新成功" ){
+          alert(res.data);
+          chpw.value.pas="";
+          chpw.value.npas="";
+          chpw.value.chnpas="";
+          }else{
+          alert("更新失敗");
+        }} 
+      })
       .catch(error=>{console.log(error)});
     }
-
-    // isPasswordVisible.value = !isPasswordVisible.value;
+     // isPasswordVisible.value = !isPasswordVisible.value;
   };
 
   // export default {
