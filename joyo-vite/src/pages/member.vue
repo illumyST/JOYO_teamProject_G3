@@ -8,7 +8,13 @@
 </script>
   
 
-<style lang="scss" scoped>
+<style lang="scss">
+.member_date_picker_box .dp__input{
+    height: 54px;
+    font-size: 20px;
+    color: $brown;
+    margin-top: 6px;
+}
 .member_wrapper{
     display: flex;
     justify-content: space-between;  

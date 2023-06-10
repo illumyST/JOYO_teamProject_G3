@@ -7,47 +7,53 @@
                 <!-- 右邊最上面 頭貼+名字 -->
                 <form action="">
                     <div class="member-right-name">
-                        <img src="../../assets/img/cat.png" alt="">
+                        <img :src="memberInfo.IMG_URL" alt="">
                         <div class="name">
                             <label for="">用戶名稱</label>
-                            <input type="text" class="member-name-text" placeholder="註冊時輸入的資料自動帶入">
+                            <input type="text" class="member-name-text" v-model="memberInfo.MEMBER_NAME">
                         </div>
                     </div>
                     <!-- email -->
                     <div class="email">
                         <label for="">電子郵件</label>
-                        <input type="text" class="member-text" placeholder="註冊時輸入的資料自動帶入">
+                        <input type="text" class="member-text" v-model="memberInfo.MAIL" disabled>
                     </div>
                     <!-- 生日 -->
                     <div class="birth">
                         <label for="">生日</label>
-                        <input type="text" class="member-text" placeholder="輸入您的生日">
+                        <!-- <input type="text" class="member-text" :value="memberInfo.BIRTHDAY"> -->
+                        <div class="member_date_picker_box">
+                            <VueDatePicker class="date_picker" input-class="my-date-picker" v-model="memberInfo.BIRTHDAY"
+                            :max-date="new Date().toISOString().substr(0, 10)"
+                            min-date="1980-01-01" format="yyyy-MM-dd" :enable-time-picker="false"></VueDatePicker>
+                        </div>
                     </div>
                     <!-- 電話號碼 -->
                     <div class="phone">
-                        <label for="">機號碼</label>
-                        <input type="text" class="member-text" placeholder="輸入您的手機號碼">
+                        <label for="">手機號碼</label>
+                        <input type="text" class="member-text" v-model="memberInfo.PHONE">
                     </div>
+
                     <!-- 地址 -->
                     <div class="address">
                         <label for="">地址</label>
                         <div class="address-top">
-                            <select name="" id="">
-                                <option value="">城市/縣</option>
-                                <option value="">台北市</option>
-                                <option value="">新北市</option>
-                                <option value="">桃園市</option>
-                                <option value="">台中市</option>
+                            <select class="city" v-model="memberInfo.ADDR_CITY">
+                                <option value="" selected hidden disabled>縣市</option>
+                                <option v-for="(cityName, index) in addr.city" :value="cityName">{{ cityName }}</option>
                             </select>
-                            <select name="" id="">
-                                <option value="">區域</option>
+                            <select class="district" v-model="memberInfo.ADDR_DIST">
+                                <option value="" selected hidden disabled>區域</option>
+                                <option v-for="(key, index) in 
+                                (addr.district[addr.city.indexOf(memberInfo.ADDR_CITY)])" :value="index">{{ index }}
+                                </option>
                             </select>
                         </div>
                         <div class="address-bottom">
-                            <input type="text" class="member-text" placeholder="輸入您的詳細地址">
+                            <input type="text" class="member-text" v-model="memberInfo.ADDR_DETAIL">
                         </div>
                     </div>
-                    <input type="submit" class="submit" value="儲存">
+                    <div class="submit" @click="saveMemberInfo()">儲存</div>
                 </form>
             </div>
         </div>
@@ -55,10 +61,95 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+import { onMounted } from 'vue';
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 
+const memberInfo = ref({
+    IMG_URL: '', //10
+    MEMBER_NAME: '', //1
+    MAIL: '', //2
+    BIRTHDAY: '', //5
+    PHONE: '', //4
+    ADDR_CITY: '',
+    ADDR_DIST: '',
+    ADDR_DETAIL: '',
+})
+
+const changeDateFormat = () => {
+    console.log(1)
+    // memberInfo.value.BIRTHDAY
+}
+
+// 自動填入縣市以及對應的區域相關變數
+const addr = ref({
+    city: [],
+    district: [],
+});
+
+const getAddressData = () => {
+    axios.get('/src/assets/json/address.json')
+        .then(
+            res => {
+                addr.value.city = Object.keys(res.data);
+                addr.value.district = Object.values(res.data);
+                console.log(addr.value.city);
+                console.log(addr.value.district);
+            })
+        .catch(err => {
+            console.error(err);
+        });
+};
+
+onMounted(() => {
+    getAddressData();
+
+    axios.get(`${import.meta.env.VITE_API_URL}/member/getMemberInfo.php`)
+        .then(res => {
+            if (res.data) {
+
+                const data = res.data[0];
+                // data[0]
+                console.log(data);
+                memberInfo.value.MEMBER_NAME = data[1];
+                memberInfo.value.MAIL = data[2];
+                memberInfo.value.BIRTHDAY = data[5];
+                memberInfo.value.PHONE = data[4];
+                memberInfo.value.IMG_URL = data[10];
+                if (data[7] !== null) {
+                    console.log(data[7])
+                    memberInfo.value.ADDR_CITY = data[7];
+                };
+                if (data[8] !== null) {
+                    memberInfo.value.ADDR_DIST = data[8];
+                };
+                if (data[9] !== null) {
+                    memberInfo.value.ADDR_DETAIL = data[9];
+                };
+            }
+        })
+});
+
+const saveMemberInfo = () => {
+    memberInfo.value.BIRTHDAY = new Date(memberInfo.value.BIRTHDAY).toISOString().split('T')[0];
+    axios.post(`${import.meta.env.VITE_API_URL}/member/saveMemberInfo.php`,
+        memberInfo.value)
+        .then(res => {
+            console.log(res.data);
+        })
+}
 </script>
 
+
 <style lang="scss" scoped>
+* {
+    color: $brown;
+}
+
+.date_picker {
+    margin-bottom: 34px;
+}
 
 @mixin btn($bg , $lh, $w, $hover) {
     background: $bg;
@@ -89,15 +180,16 @@
     outline: none;
     letter-spacing: 1px;
 }
-    .member-right{
-    h2{
+
+.member-right {
+    h2 {
         font-size: 32px;
         margin-bottom: 31px;
         color: $brown;
     }
 }
 
-.member-right-card{
+.member-right-card {
     width: 960px;
     background: $bg;
     display: flex;
@@ -106,54 +198,70 @@
     border-radius: 5px;
     box-shadow: $shadow;
     padding-top: 59px;
-    label{
+
+    label {
         display: block;
         font-size: $h2;
         margin-bottom: 8px;
     }
-    .member-right-name{
+
+    .member-right-name {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 691px;
         margin-bottom: 28px;
-        img{
+
+        img {
             cursor: pointer;
             transition: .2s;
-            &:hover{
+
+            &:hover {
                 opacity: 0.65;
             }
         }
-        .member-name-text{
+
+        .member-name-text {
             @include input-text(50px, 500px);
+            margin-top: 6px;
             font-size: 22px;
-            &::placeholder{
+
+            &::placeholder {
                 font-size: 16px;
             }
         }
     }
-    .member-text{
+
+    .member-text {
         @include input-text(50px, 691px);
+        margin-top: 6px;
         font-size: 22px;
-        &::placeholder{
+
+        &::placeholder {
             font-size: 16px;
         }
+
         margin-bottom: 34px;
     }
-    .address{
+
+    .address {
         margin-bottom: 80px;
-        .address-top{
+
+        .address-top {
             width: 691px;
             display: flex;
             justify-content: space-between;
             margin-bottom: 30px;
-            select{
+
+            select {
                 @include input-text(50px, 330px);
+                margin-top: 6px;
                 height: 50px;
             }
         }
     }
-    .submit{
+
+    .submit {
         @include btn($orange, 59px, 691px, $green);
         font-size: $h2;
         letter-spacing: 1px;
@@ -162,50 +270,60 @@
     }
 }
 
-@media screen  and (max-width: 414px){
-    .member-right-card{
+@media screen and (max-width: 414px) {
+    .member-right-card {
         width: 370px;
     }
-    .member-right h2{
+
+    .member-right h2 {
         font-size: 20px;
         font-weight: bold;
         border-bottom: 1px solid black;
         padding-bottom: 10px;
     }
-    .member-right-card .member-right-name{
+
+    .member-right-card .member-right-name {
         width: 335px;
     }
-    .member-right-name>img{
+
+    .member-right-name>img {
         width: 80px;
     }
-    .member-right-card label{
+
+    .member-right-card label {
         font-size: 16px;
     }
-    .member-right-card .member-right-name .member-name-text{
+
+    .member-right-card .member-right-name .member-name-text {
         width: 234px;
         line-height: 35px;
         font-size: 16px;
         padding-left: 15px;
     }
-    .member-right-card .member-text{
+
+    .member-right-card .member-text {
         width: 335px;
         line-height: 35px;
         font-size: 16px;
         padding-left: 15px;
     }
-    .member-right-card .address{
+
+    .member-right-card .address {
         width: 335px;
         margin-bottom: 40px;
     }
-    .member-right-card .address .address-top{
+
+    .member-right-card .address .address-top {
         width: 335px;
     }
-    .member-right-card .address .address-top select{
+
+    .member-right-card .address .address-top select {
         width: 160px;
         height: 35px;
         padding-left: 10px;
     }
-    .member-right-card .submit{
+
+    .member-right-card .submit {
         width: 335px;
         line-height: 40px;
         font-size: 18px;
@@ -213,4 +331,7 @@
     }
 }
 
+* {
+    font-size: 20px !important;
+}
 </style>    
