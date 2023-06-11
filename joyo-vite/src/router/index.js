@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory, useRoute, useRouter } from "vue-router";
 
 // 不要用 createWebHistory ，用 createWebHashHistory
 
@@ -303,7 +303,7 @@ const routes = [
 ];
 
 const scrollBehavior = (to) => {
-    if (to.hash === '#contact_bottom' && (router.path==='/contact'|| router.path==='/contact/')) {
+    if (to.hash === '#contact_bottom' && (to.path==='/contact'|| to.path==='/contact/')) {
         scrollTo({
             top: document.getElementById('contact_bottom').offsetTop,
             left: 0,
