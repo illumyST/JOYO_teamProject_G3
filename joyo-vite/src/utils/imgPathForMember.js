@@ -1,5 +1,5 @@
-export default function getImageUrl(name) {
-    const path = new URL(`../assets/img/${name}`, import.meta.url).href;
+export default function getMemberImageUrl(name) {
+    const path = new URL(`../assets/img/member_photo/${name}`, import.meta.url).href;
     //   console.log(new URL(`../assets/img/${name}`, import.meta.url));
     //   console.log(import.meta);
     return path;

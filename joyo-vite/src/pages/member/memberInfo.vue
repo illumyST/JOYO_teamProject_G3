@@ -89,7 +89,8 @@ const addr = ref({
 });
 
 const getAddressData = () => {
-    axios.get('/src/assets/json/address.json')
+    // axios.get('/src/assets/json/address.json')
+    axios.get('https://tibamef2e.com/thd101/g3/API/address.json') //把包用
         .then(
             res => {
                 addr.value.city = Object.keys(res.data);
@@ -100,6 +101,22 @@ const getAddressData = () => {
         });
 };
 
+const getImageUrl = (userId) => {
+    return new URL(
+        `../../assets/img/member_photo/${userId}_photo.png`,
+        import.meta.url
+    ).toString();
+};
+
+const extractNumberFromPath = (path) => {
+    const regex =  /\/(\d+)_photo/;
+    const match = path.match(regex);
+    if (match) {
+       return match[1];
+    } else {
+        return null
+    };
+};
 
 const uploadPhoto = (e) => {
     const file = e.target.files[0];
@@ -126,7 +143,11 @@ onMounted(() => {
                 memberInfo.value.MAIL = data[2];
                 memberInfo.value.BIRTHDAY = data[5];
                 memberInfo.value.PHONE = data[4];
-                memberInfo.value.IMG_URL = data[10];
+                // memberInfo.value.IMG_URL = data[10];
+               
+                memberInfo.value.IMG_URL = getImageUrl(extractNumberFromPath(data[10]));
+                // 打包用
+                
                 if (data[7] !== null) {
                     memberInfo.value.ADDR_CITY = data[7];
                 };
@@ -310,13 +331,14 @@ const saveMemberInfo = () => {
 }
 
 @media screen and (max-width: 414px) {
-    .member-right-card .member-right-name .img_box{
+    .member-right-card .member-right-name .img_box {
         width: 80px;
         height: 80px;
     }
+
     .member-right-card {
         width: 370px;
-        padding-top:30px;
+        padding-top: 30px;
     }
 
     .member-right h2 {

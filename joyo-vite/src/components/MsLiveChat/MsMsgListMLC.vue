@@ -8,9 +8,6 @@
       @click="getUserChatBox(chat.MEMBER_ID)"
       :class="{ '-active': chat.MEMBER_ID === currentChatUserId1 }"
     >
-<<<<<<< HEAD
-      <!-- <img src="../../assets/img/member_photo/1_photo.jpg" alt="" /> -->
-=======
       <img
         :src="
           chat.IMG_URL == '../../src/assets/img/member_photo/default.png'
@@ -19,7 +16,6 @@
         "
         alt=""
       />
->>>>>>> e70ba75ce37e3f207e3d7fc46919d504291eaaa0
       <div class="ms_msg_preview_text">
         <span>{{ chat.MEMBER_NAME }}</span>
         <p>
