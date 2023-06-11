@@ -434,6 +434,7 @@ onMounted(() => {
   color: $brown;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 // ===== 文章標籤 ===== //
@@ -473,6 +474,9 @@ onMounted(() => {
   letter-spacing: 3px;
   line-height: 1.5;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .forum_article_item1_right_middle p {
