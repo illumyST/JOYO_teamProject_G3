@@ -129,7 +129,7 @@ export default {
   }
 
   .left_box {
-    border: 1px solid yellow;
+    // border: 1px solid yellow;
     width: 57%;
     height: 380px;
     margin-right: 50px;

@@ -36,7 +36,7 @@
         id="forum_media_menu_btn"
         @click.stop="forum_media_select_order_show"
       >
-        <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
+        <span>{{forumCategory.cate}}</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
       <ul class="forum_media_select_order" v-show="forum_media_menu_btn_active">
         <li v-for="(artiCate,index) in artiCategory " :key="index">
@@ -434,6 +434,7 @@ onMounted(() => {
   color: $brown;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 // ===== 文章標籤 ===== //
@@ -473,6 +474,9 @@ onMounted(() => {
   letter-spacing: 3px;
   line-height: 1.5;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .forum_article_item1_right_middle p {

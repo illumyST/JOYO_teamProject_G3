@@ -34,12 +34,13 @@ include("../connect/conn.php");
               //資料庫有相同商品，變更商品數量+1
               if(count($cartListProductdata)>0){
                      //取得該筆購物車的ID
-                     echo(123);
+                     // echo(123);
                      print_r($cartListProductdata[0]);
                      $cartId=$cartListProductdata[0]['CART_ID'];
                      //取得該筆購物車現行數量
                      $amount=$cartListProductdata[0]['AMOUNT'];
-                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+$localamount WHERE (`CART_ID` = $cartId); ";
+                     $newAmount=$amount+$localamount;
+                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` =  $newAmount WHERE (`CART_ID` = $cartId); ";
                      $updateRow = $pdo->exec($sqlupdate);
                      if($updateRow > 0){
                         echo "新增成功!";

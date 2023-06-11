@@ -118,6 +118,7 @@ import axios from 'axios';
             //取得會員ID
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
             memberCardInfo.value.memberId = res.data;
+            getMemberCard();
         } catch(err)  {
             console.error(err);
             };

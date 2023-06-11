@@ -22,7 +22,7 @@ const memberData=ref({
 
 });
 
-console.log(memberData.value)
+// console.log(memberData.value)
 // const calculateTotal=()=>{
 //       let sum=0;
 //       for(let i=0;i<products.value.length;i++){
@@ -34,7 +34,7 @@ const getMemberId=async ()=>{
     // console.log(123);
     try{
         const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
-        console.log(res.data);
+        // console.log(res.data);
         memberData.value.memberId = res.data;
         await getMemberData();
         await fetchData();        
@@ -127,7 +127,7 @@ onMounted(() => {
 
         .cartConfirm_con {
             width: 100%;
-            max-height: 400px;
+            // max-height: 400px;
         }
 
         .cartConfirm_prog_tag {

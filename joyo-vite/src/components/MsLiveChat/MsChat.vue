@@ -97,7 +97,7 @@ export default {
           this.currentChatUser = res.data[0].MEMBER_NAME;
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     },
     // 抓取完整聊天室資料
@@ -109,7 +109,7 @@ export default {
           }
         })
         .then((res) => {
-          console.log("response", res);
+          // console.log("response", res);
         })
         .catch((err) => {
           console.log("error", err);
@@ -133,6 +133,7 @@ export default {
         .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChat.php`)
         .then((res) => {
           this.chatList = res.data;
+          // console.log(res.data); 
           // this.currentChatUserId = this.chatList[0].MEMBER_ID;
         })
         .catch((err) => {
@@ -143,6 +144,7 @@ export default {
       axios
         .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChat.php`)
         .then((res) => {
+          // console.log(res.data); 
           this.chatList = res.data;
           this.currentChatUserId = this.chatList[0].MEMBER_ID;
         })

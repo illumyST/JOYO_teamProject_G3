@@ -208,7 +208,6 @@ const updateArrange=(val)=>{
 //篩選玩家人數
 const updatePlayerNum=(val)=>{
     pageInfor.value.player=val;
-    console.log(pageInfor.value.player);
         if(val ==0){
             pageInfor.value.player=2;
         }

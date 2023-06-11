@@ -1,7 +1,17 @@
 <template>
   <div class="ms_chat_box">
     <section class="ms_user_details">
-      <img src="../../assets/img/cat.png" alt="" />
+      <!-- this does not work -->
+      <img
+        :src="
+          this.userImage == '../../src/assets/img/member_photo/default.png'
+            ? getDefaultUrl()
+            : getImageUrl(currentChatUserId1)
+        "
+        alt=""
+      />
+      <!-- <img :src="getImageUrl(currentChatUserId1)" alt="" /> -->
+      <!-- this works -->
       <span v-if="chatList1 && chatList1.length > 0">{{ currentUser }}</span>
     </section>
 
@@ -29,6 +39,8 @@
 </template>
 <script>
 import axios from "axios";
+import { VueElement } from "vue";
+import { ref, watchEffect } from "vue";
 
 export default {
   props: ["chatBoxContent", "chatList", "currentChatUserId", "currentChatUser"],
@@ -40,6 +52,7 @@ export default {
       chatList1: [],
       currentUser: null,
       currentChatUserId1: null,
+      userImage: "",
     };
   },
   watch: {
@@ -60,16 +73,45 @@ export default {
       this.currentChatUserId1 = this.currentChatUserId;
       // console.log(this.currentChatUserId1);
       this.$emit("getCurrentChatUserId", this.currentChatUserId1);
-      this.$nextTick(()=>{
-         this.scrollToBottom();
-      })
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/checkUserImage/checkCurUserImage.php`,
+          {
+            params: {
+              userId: this.currentChatUserId1,
+            },
+          }
+        )
+        .then((res) => {
+          // console.log(res.data[0].IMG_URL);
+          this.userImage = res.data[0].IMG_URL;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   mounted() {
     this.keepGettingChatBoxContent();
   },
   methods: {
-    //
+    getImageUrl(userId) {
+      return new URL(
+        `../../assets/img/member_photo/${userId}_photo.png`,
+        import.meta.url
+      ).toString();
+    },
+    getDefaultUrl() {
+      return new URL(
+        `../../assets/img/member_photo/default.png`,
+        import.meta.url
+      ).toString(); 
+    },
     sendMessage() {
       if (this.$refs.adminMessage.value !== "") {
         const formData = new FormData();
@@ -78,12 +120,15 @@ export default {
         formData.append("msgContent", this.$refs.adminMessage.value);
         this.$refs.adminMessage.value = "";
         axios
-          .post(`${import.meta.env.VITE_API_URL}/msLiveChat/adminSendMessage.php`, formData)
+          .post(
+            `${import.meta.env.VITE_API_URL}/msLiveChat/adminSendMessage.php`,
+            formData
+          )
           .then((res) => {
             // console.log(res);
-            setTimeout(()=> {
+            setTimeout(() => {
               this.scrollToBottom();
-            },100); 
+            }, 100);
           })
           .catch((err) => {
             console.log(err);
@@ -93,11 +138,14 @@ export default {
     keepGettingChatBoxContent() {
       setInterval(() => {
         axios
-          .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
-            params: {
-              userId: this.currentChatUserId1,
-            },
-          })
+          .get(
+            `${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`,
+            {
+              params: {
+                userId: this.currentChatUserId1,
+              },
+            }
+          )
           .then((res) => {
             this.chatBoxContent1 = res.data;
             // if (res.data.length !== this.chatBoxContent1.length) {
@@ -111,6 +159,10 @@ export default {
     scrollToBottom() {
       const chatRoom = this.$refs.chatRoom;
       chatRoom.scrollTop = chatRoom.scrollHeight;
+    },
+    getImagePath() {
+      const imgPath = `../../assets/img/member_photo/${this.currentChatUserId1}_photo.png`;
+      return imgPath;
     },
   },
 };
@@ -133,7 +185,9 @@ export default {
     border-radius: 5px 5px 0 0;
     box-sizing: border-box;
     img {
+      border-radius: 50%;
       width: 45px;
+      height: 45px;
       margin-right: 20px;
     }
     span {
