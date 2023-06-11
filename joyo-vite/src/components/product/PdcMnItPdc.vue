@@ -106,7 +106,8 @@ const addCart=(card)=>{
         // 登入的時候沒抓到 會員編號  所以還是顯示-1
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, cartItem.value)
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
+
         })
         .catch(error => {
             console.log(error);
@@ -122,17 +123,17 @@ const fitDeviceWidth=()=>{
     
     let screenWidth = window.innerWidth;
     let currentScrollY = document.querySelectorAll(".product-main-prouct")[0].scrollTop;
-    console.log(currentScrollY);
+    // console.log(currentScrollY);
     if(screenWidth<500){
         if(countPageActive.value==1){
             if(currentScrollY >  countPageActive.value*100){
-            console.log("appear");
+            // console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }
         }else if(countPageActive.value>=2){
             if(currentScrollY >  countPageActive.value*800){
-            console.log("appear");
+            // console.log("appear");
             countPageActive.value++;
             pageActive.value.push(true); 
         }

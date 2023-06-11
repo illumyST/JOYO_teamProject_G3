@@ -385,9 +385,9 @@ onMounted(()=>{
     .cartConfirm_con {
         width: 90%;
         margin: 0 auto;
-        height: 500px;
-        max-height: 600px;
-        margin-bottom: 5px;
+        // height: 500px;
+        // max-height: 600px;
+        margin-bottom: 30px;
 
         h2 {
 
