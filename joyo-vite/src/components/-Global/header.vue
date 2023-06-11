@@ -213,7 +213,8 @@ const searchItem = () => {
         if(responseData[n][1] != undefined){
             searchBoxOpen.value = true;
             let a =responseData[n][1]
-            selectModel.value.push({name:a,href:`http://localhost:5173/#/productInfo/ID:${responseData[n][0]}`});
+            selectModel.value.push({name:a,href:`http://localhost:5173/#/productInfo/ID:${responseData[n][0]}`}); //要注意
+            // selectModel.value.push({name:a,href:`https://tibamef2e.com/thd101/g3/#/productInfo/ID:${responseData[n][0]}`}); // 要打包用
             // console.log(selectModel.value);
         }else{
             searchBoxOpen.value = false;
