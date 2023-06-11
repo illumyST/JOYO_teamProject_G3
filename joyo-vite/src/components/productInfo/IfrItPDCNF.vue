@@ -102,6 +102,7 @@
             localStorage.setItem('cart',JSON.stringify(localCart));
             alert("購物車新增成功!")
         }else {
+            console.log(cartItem.value);
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, cartItem.value)
             .then(response => {
                 console.log(response.data);

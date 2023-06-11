@@ -22,7 +22,7 @@ const memberData=ref({
 
 });
 
-console.log(memberData.value)
+// console.log(memberData.value)
 // const calculateTotal=()=>{
 //       let sum=0;
 //       for(let i=0;i<products.value.length;i++){

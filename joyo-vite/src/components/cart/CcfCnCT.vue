@@ -71,6 +71,7 @@ const props = defineProps({
 const sendValue = ref({
     PRODUCT_ID : "",
     member_id : "",
+    amount:"",
 })
 
 //計算商品總金額
@@ -88,13 +89,16 @@ const emits=defineEmits(['renewsqlCart'])
     const numPlus = (index) => {
         if(props.product.member_id < 0){
             if(props.product.amount[index] < props.product.tgFilter[index][0][6]){
-                props.product.amount[index]++
+                props.product.amount[index]++;
+                
+
             }else{
                 alert(`數量不可大於庫存:${props.product.tgFilter[index][0][6]}`);
             }
         }else{
             if(props.product.sqlCart[index].AMOUNT < props.product.sqlCart[index].STOCK){
-                props.product.sqlCart[index].AMOUNT++
+                props.product.sqlCart[index].AMOUNT++;
+                updateSqlamount(props.product.sqlCart[index].PRODUCT_ID,props.product.sqlCart[index].AMOUNT);
             }else{
                 alert(`數量不可大於庫存:${props.product.sqlCart[index].STOCK}`);
             }
@@ -111,7 +115,8 @@ const emits=defineEmits(['renewsqlCart'])
             }
         }else{
             if(props.product.sqlCart[index].AMOUNT > 1){
-                props.product.sqlCart[index].AMOUNT--
+                props.product.sqlCart[index].AMOUNT--;
+                updateSqlamount(props.product.sqlCart[index].PRODUCT_ID,props.product.sqlCart[index].AMOUNT);
             }else{
                 alert(`數量不可小於1`);
             }
@@ -150,6 +155,19 @@ const emits=defineEmits(['renewsqlCart'])
                 console.error(err);
             };
         }       
+    }
+    const updateSqlamount=async (productId,num)=>{
+        sendValue.value.PRODUCT_ID = productId;
+        sendValue.value.member_id = props.product.member_id;
+        sendValue.value.num=num;
+        try{
+            const res= await axios.post(`${import.meta.env.VITE_API_URL}/cart/updateCartnum.php`, sendValue.value);
+            // console.log(res.data);
+        }
+        catch(err){
+            console.error(err);
+        };
+
     }
 
     

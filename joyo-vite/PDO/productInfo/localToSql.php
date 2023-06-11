@@ -39,7 +39,8 @@ include("../connect/conn.php");
                      $cartId=$cartListProductdata[0]['CART_ID'];
                      //取得該筆購物車現行數量
                      $amount=$cartListProductdata[0]['AMOUNT'];
-                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+$localamount WHERE (`CART_ID` = $cartId); ";
+                     $newAmount=$amount+$localamount;
+                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $newAmount WHERE (`CART_ID` = $cartId); ";
                      $updateRow = $pdo->exec($sqlupdate);
                      if($updateRow > 0){
                         echo "新增成功!";
@@ -48,7 +49,6 @@ include("../connect/conn.php");
                      }
               //該會員購物車資料庫沒有有相同商品，新增一筆購物車商品         
               }else{
-                echo(456);
                      $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$localproductId', '$localamount', '$MEMBER_ID');";
                      $insertrow = $pdo->exec($sqlinsert);
                      if($insertrow > 0){
