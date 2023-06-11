@@ -10,10 +10,11 @@ $selectedOptionB = $_POST["selectedOptionB"];
 $imageUrl = $_POST["imageUrl"];
 $imgAlt = $_POST["imgAlt"];
 
-// 接收圖片上傳
+// 接收圖片上傳並把副檔名改成png
 $fileUpload = $_FILES["fileUpload"];
 $fileTempPath = $fileUpload["tmp_name"];
-$fileExtension = pathinfo($fileUpload["name"], PATHINFO_EXTENSION);
+// $fileExtension = pathinfo($fileUpload["name"], PATHINFO_EXTENSION);
+$fileExtension = "png"; 
 
 // 判斷版位，給對應版位檔名
 if ($selectedOptionA == "index" && $selectedOptionB == "A") {
