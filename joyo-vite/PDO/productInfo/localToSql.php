@@ -39,7 +39,8 @@ include("../connect/conn.php");
                      $cartId=$cartListProductdata[0]['CART_ID'];
                      //取得該筆購物車現行數量
                      $amount=$cartListProductdata[0]['AMOUNT'];
-                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+$localamount WHERE (`CART_ID` = $cartId); ";
+                     $newAmount=$amount+$localamount;
+                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` =  $newAmount WHERE (`CART_ID` = $cartId); ";
                      $updateRow = $pdo->exec($sqlupdate);
                      if($updateRow > 0){
                         echo "新增成功!";

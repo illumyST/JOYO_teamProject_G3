@@ -11,6 +11,11 @@ include("../connect/conn.php");
        $PRODUCT_ID = $cartItemData['PRODUCT_ID'];
        //取得會員ID 
        $MEMBER_ID = $cartItemData['member_id'];
+       if(isset($cartItemData['amount'])){
+         $AMOUNT=$cartItemData['amount'];
+       }else{
+         $AMOUNT=1;
+       };
        //測試資料有成功取得
        echo $PRODUCT_ID ;
        echo $MEMBER_ID ;
@@ -36,7 +41,7 @@ include("../connect/conn.php");
                      $cartId=$cartListProductdata[0][0];
                      //取得該筆購物車現行數量
                      $amount=$cartListProductdata[0][2];
-                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+1 WHERE (`CART_ID` = $cartId); ";
+                     $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+$AMOUNT WHERE (`CART_ID` = $cartId); ";
                      $updateRow = $pdo->exec($sqlupdate);
                      if($updateRow > 0){
                         echo "新增成功!";
@@ -45,7 +50,7 @@ include("../connect/conn.php");
                      }
               //該會員購物車資料庫沒有有相同商品，新增一筆購物車商品         
               }else{
-                     $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$PRODUCT_ID', '1', '$MEMBER_ID');";
+                     $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$PRODUCT_ID', '$AMOUNT', '$MEMBER_ID');";
                      $insertrow = $pdo->exec($sqlinsert);
                      if($insertrow > 0){
                         echo "新增成功!";
@@ -55,7 +60,7 @@ include("../connect/conn.php");
               }
        //該名會員購物車沒有東西，直接加入       
        }else{
-              $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$PRODUCT_ID', '1', '$MEMBER_ID');";
+              $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$PRODUCT_ID', '$AMOUNT', '$MEMBER_ID');";
                      $insertrow = $pdo->exec($sqlinsert);
                      if($insertrow > 0){
                         echo "新增成功!";
