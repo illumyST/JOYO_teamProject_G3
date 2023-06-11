@@ -15,7 +15,7 @@ include '../connect/conn.php';
 // 預設顯示30筆資料
 $sql = 'SELECT DATE(BUY_DATE) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
 FROM BUY 
-WHERE STATUS = "完成"
+WHERE STATUS = "已完成"
 GROUP BY DATE(BUY_DATE)
 ORDER BY DATE(BUY_DATE) DESC
 LIMIT 30';
