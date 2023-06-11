@@ -11,7 +11,6 @@
         <!-- //:autoplay="2000" :wrap-around="true"> 自動運行參數 -->
 
         <Slide :key="Slide">
-          <div class="carousel__item">{{ slide }}</div>
           <a v-if="bannerData[0]" :href="bannerData[0].PIC_URL" target="_blank"
             ><img
               v-if="bannerData[0]"
@@ -106,9 +105,7 @@ export default {
   methods: {
     getImageData() {
       axios.get(`${import.meta.env.VITE_API_URL}/getBanner/getBanners.php`).then((res) => {
-        console.log(res.data);
         this.bannerData = res.data;
-        console.log(this.bannerData);
       });
     },
   },

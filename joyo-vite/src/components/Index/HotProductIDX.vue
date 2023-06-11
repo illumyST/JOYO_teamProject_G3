@@ -80,7 +80,6 @@ const fetchData=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/index/getHotItem.php`)
         .then(res => {
             //將資料庫回傳的資料存在tg變數中
-            console.log(res.data)
             if(res.data.length===3){
                 productInfor.value.hotItem = res.data;
             }//如果熱門資料不足3筆重複放置第一筆資料
