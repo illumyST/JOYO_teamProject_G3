@@ -34,7 +34,7 @@ const getMemberId=async ()=>{
     // console.log(123);
     try{
         const res=await axios.get(`${import.meta.env.VITE_API_URL}/forumPost/forumCheckLogin.php`);
-        console.log(res.data);
+        // console.log(res.data);
         memberData.value.memberId = res.data;
         await getMemberData();
         await fetchData();        

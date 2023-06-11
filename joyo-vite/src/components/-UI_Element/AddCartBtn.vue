@@ -26,7 +26,7 @@ const props = defineProps({
 // const cartList = ref([]);
 
 const addToCart = (list) => {
-    console.log(props.cartItem);   
+    // console.log(props.cartItem);   
     props.cartItem.PRODUCT_ID = props.list.PRODUCT_ID;
     let localCart = JSON.parse(localStorage.getItem('cart')) || [];
     if(props.cartItem.member_id === 'is_not_login' || props.cartItem.member_id === '-1'){   //沒登入的時候
@@ -54,7 +54,7 @@ const addToCart = (list) => {
     }else {
         axios.post(`${import.meta.env.VITE_API_URL}/product/Insert.php`, props.cartItem)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
