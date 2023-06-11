@@ -3,7 +3,7 @@
   <div class="forum_advertise">
     <a v-if="bannerData[5]" :href="bannerData[5].PIC_URL" target="_blank"
       ><img
-        src="../../assets/img/forum_banner_a.jpg"
+        src="../../assets/img/forum_banner_a.png"
         :alt="bannerData[5].DESCRIPTION"
     /></a>
   </div>
