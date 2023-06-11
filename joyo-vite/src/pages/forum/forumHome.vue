@@ -75,6 +75,7 @@ const fetchData=()=>{
         .then(res => {
           //將資料庫回傳的資料存在articleAll變數中
           forumArticle.value.articleAll = res.data;
+          console.log(res.data);
           let callBackId = route.params.categoryId; 
           turnArticleType(callBackId);
           
@@ -87,10 +88,10 @@ const fetchData=()=>{
 const getPage=()=>{
   // console.log(forumArticle.value.articleFilter.length);
     for(let j=0;j<forumArticle.value.articleFilter.length;){
-      forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+forumArticle.value.page));
-         j=j+ forumArticle.value.page; 
+      forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+4));
+         j=j+ 4; 
        }
-      //  console.log(forumArticle.value.articlePage);
+    // console.log(forumArticle.value.articlePage);
 };
 
 const getAppearPage=()=>{
