@@ -3,7 +3,7 @@
                 <ul>
                     <li v-for="item in order" >
                         <a style="background: #f29441; color: #fff; cursor: pointer;" @click="item.open = !item.open">
-                            <h3 style="width: 100px">{{ item.num }}</h3>
+                            <h3>{{ item.num }}</h3>
                             <h3>{{ item.price }}</h3>
                             <h3>{{ item.nowdate }}</h3>
                             <h3>{{ item.type }}</h3>
@@ -125,9 +125,9 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
 .then(res=>{
     
     for(let n of res.data){
-        console.log(n);
+        // console.log(n);
         for(let a = 0 ; a < order.value.length  ; a++){
-            console.log(n['buy_id']);
+            // console.log(n['buy_id']);
         if(n['buy_id'] == order.value[a].num){
             order.value[a]["detal"].push({
             pname:n[0],
@@ -177,7 +177,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
             input{
                 border: none;
                 font-size: $p;
-                @include btn($orange , 10px, 110px, $green);
+                @include btn($orange , 10px, 120px, $green);
             }
             a{
                 display: flex;
@@ -191,7 +191,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
                     color: #fff;
                 }
                 h3{
-                    width: 192px;
+                    width: 168px;
                     text-align: center;
                     letter-spacing: 1px;
                 }
@@ -219,9 +219,9 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
                     position: absolute;
                     // background-color: $brown;
                     width: 0%; // 1 25% 2 50% 3 75%
-                    border: 5px solid $brown;
+                    border: 4px solid $brown;
                     left: 12%;
-                    bottom: 75%;
+                    bottom: 76%;
                     }
                     span.one{
                         width: 25% !important;  
@@ -283,7 +283,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
         font-weight: 600;
     }
 
-    @media screen and (max-width: 414px) {
+@media screen and (max-width: 414px) {
     .memberOrder-left h2{
         display: none;
     }
@@ -318,16 +318,19 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
     .memberOrder-right .memberOrder_state{
         display: none;
     }
+    .memberOrder_list{
+        line-height: 50px;
+    }
     .memberOrder-right .memberOrder_list a{
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: flex-start;
         font-size: 16px;
     }
     .memberOrder-right .memberOrder_list a h3:nth-child(4){
         display: none;
     }
     .memberOrder-right .memberOrder_list a h3{
-        width: 92px;
+        width: 92.5px;
     }
     .memberOrder_list li .Order li{
         padding-top: 10px;
@@ -341,7 +344,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
         width: auto;
     }
     .memberOrder_list li .Order li h5:nth-last-child(3) {
-        width: 170px;
+        width: 120px;
     }
     .memberOrder_list li .Order li h5:nth-last-child(1) {
         width: 50px;
@@ -349,5 +352,28 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
     .Orderbottom div::before{
         left: 24px;   
     }
+    .memberOrder-right .memberOrder_list a h3:nth-child(3){
+        display: none;
+    }
+    .memberOrder_list li input{
+        width: 92.5px;
+        padding: 0;
+    }
+    .Orderbottom div{
+        padding: 70px 0 0 0;
+        width: 92.5px;
+    }
+    .memberOrder_list li .Order li.Orderbottom span{
+        border: 3px solid $brown;
+        bottom: 67%;
+    }
+    .Orderbottom div::before{
+        left: 36px;
+    }
+    .Orderbottom div p{
+        width: 92.5px;
+        font-size: 13px;
+    }
+    
    
 }</style>

@@ -32,10 +32,10 @@
             color: $brown;
         }
         .memberOrder_state{
-        line-height: 69px;
-        box-shadow: $shadow;
-        border-radius: 5px;
-        margin-bottom: 32px;
+            line-height: 69px;
+            box-shadow: $shadow;
+            border-radius: 5px;
+            margin-bottom: 32px;
         ul{
             display: flex;
             background: $green;
@@ -88,8 +88,12 @@
     }
     .memberOrder-right .memberOrder_state ul li{
         font-size: 17px;
+        width: 92.5px;
     }
-    .memberOrder-right .memberOrder_state ul li:nth-last-child(2){
+    // .memberOrder-right .memberOrder_state ul li:nth-last-child(2){
+    //     display: none;
+    // }
+    .memberOrder-right .memberOrder_state ul li:nth-child(4){
         display: none;
     }
     .memberOrder-right .memberOrder_list a{
@@ -97,11 +101,14 @@
         justify-content: space-around;
         font-size: 16px;
     }
-    .memberOrder-right .memberOrder_list a h3:nth-child(4){
+    // .memberOrder-right .memberOrder_list a h3:nth-child(4){
+    //     display: none;
+    // }
+    // .memberOrder-right .memberOrder_list a h3{
+    //     width: 92px;
+    // }
+    .memberOrder-right .memberOrder_state ul li:nth-child(3){
         display: none;
-    }
-    .memberOrder-right .memberOrder_list a h3{
-        width: 92px;
     }
 }
 </style>
