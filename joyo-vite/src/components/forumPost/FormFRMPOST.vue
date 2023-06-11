@@ -481,11 +481,16 @@ input[type="button"] {
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .forumPost_form_title_text {
+
+  .searchModel{
     width: 100%;
-    margin: 20px 0 0;
-    &::placeholder {
-      color: #999;
+    
+    .forumPost_form_title_text {
+      width: 100%;
+      margin: 20px 0 0;
+      &::placeholder {
+        color: #999;
+      }
     }
   }
 
