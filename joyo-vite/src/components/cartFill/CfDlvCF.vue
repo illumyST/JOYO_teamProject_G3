@@ -586,7 +586,8 @@
 
         .cartConfirm_con {
             width: 100%;
-            max-height: 400px;
+            // max-height: 400px;
+            
         }
 
         .cartConfirm_prog_tag {
@@ -648,10 +649,11 @@
         flex-direction: column;
         margin: 0 auto;
         width: 100%;
-        height: 840px;
+        // height: 840px;
         justify-content: center;
         margin-bottom: 50px;
-
+        padding: 0 5px;
+        box-sizing: border-box;
         .cartFill_deliv_credit {
             ul {
 
@@ -675,10 +677,11 @@
             height: 35px;
             font-size: 16px;
             margin-bottom: 30px;
+            padding-left: 15px;
         }
 
         .cartFill_deliv_credit ul li:nth-child(1) input {
-            width: 99%;
+            width: 100%;
             height: 35px;
             font-size: 16px;
             margin-bottom: 30px;

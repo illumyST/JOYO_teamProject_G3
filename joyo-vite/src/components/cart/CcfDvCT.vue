@@ -231,6 +231,7 @@
 
     .cartConfirm_deliv {
         flex-direction: column;
+        align-items: center;
         width: 90%;
         margin: 0 auto;
         height: 623px;
@@ -289,5 +290,8 @@
         }
     }
 
+    .cartConfirm_deliv div .cartConfirm_deliv-h3-discount{
+        padding-right: 5px;
+    }
     }
 </style>
