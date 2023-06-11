@@ -5,90 +5,82 @@
                 <img class="header_nav_logo" src="@/assets/img/logo.svg" alt="">
             </RouterLink>
             <div class="header_nav_right_inputBox">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem">
+                <i class="fa-solid fa-magnifying-glass" @click="openSearchBox()"></i>
+                <input class="header_nav_right_inputBox-input" type="text" v-model.trim="data.select" @keyup="searchItem"
+                    :class="{ '-on': searchBox_open }">
                 <ul id="selectbox" v-if="searchBoxOpen">
-                    <li v-for="(item,index) in selectModel"  @click="reload(item.href)">{{ item.name }}</li>
+                    <li v-for="(item, index) in selectModel" @click="reload(item.href)">{{ item.name }}</li>
                 </ul>
             </div>
             <ul class="header_nav_right" :class="{ '-on': nav_open === true }">
                 <li :class="{ '-on': sub_nav_open['product'].value === true }">
-                    <RouterLink v-if="!isPhone" :to="{ name: 'productCategory', params: { categoryId: 0 } }" class="link">桌遊商城</RouterLink>
+                    <RouterLink v-if="!isPhone" :to="{ name: 'productCategory', params: { categoryId: 0 } }" class="link">
+                        桌遊商城</RouterLink>
                     <div v-else class="link -mobile" @click="toggleSub('product')">
                         桌遊商城
                     </div>
                     <ol>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 1 } }" @click="toggleNav()">
                                 派對遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 2 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 2 } }" @click="toggleNav()">
                                 輕度策略
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 3 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 3 } }" @click="toggleNav()">
                                 戰爭遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 4 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 4 } }" @click="toggleNav()">
                                 棋奕遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 5 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 5 } }" @click="toggleNav()">
                                 主題遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 6 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 6 } }" @click="toggleNav()">
                                 家庭遊戲
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 7 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'productCategory', params: { categoryId: 7 } }" @click="toggleNav()">
                                 團隊合作
                             </RouterLink>
                         </li>
                     </ol>
                 </li>
                 <li :class="{ '-on': sub_nav_open['forum'].value === true }">
-                    <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 0 } }" class="link" v-if="!isPhone">討論區</RouterLink>
+                    <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 0 } }" class="link" v-if="!isPhone">討論區
+                    </RouterLink>
                     <div v-else class="link -mobile" @click="toggleSub('forum')">
                         討論區
                     </div>
                     <ol>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 1 } }" @click="toggleNav()">
                                 心得分享
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 2 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 2 } }" @click="toggleNav()">
                                 揪團區
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 3 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 3 } }" @click="toggleNav()">
                                 發問區
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 4 } }"
-                            @click="toggleNav()">
+                            <RouterLink :to="{ name: 'forumCategory', params: { categoryId: 4 } }" @click="toggleNav()">
                                 教學區
                             </RouterLink>
                         </li>
@@ -132,7 +124,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated, ref,defineEmits } from 'vue';
+import { onMounted, onUpdated, ref, defineEmits } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { inject } from 'vue';
@@ -149,9 +141,9 @@ const sub_nav_open = {
 
 const isPhone = ref(false);
 
-const reload =(e)=>{
+const reload = (e) => {
     console.log(e)
-    location.href=e;
+    location.href = e;
     location.reload();
 }
 // 確認.value是否為手機版，以切換標籤
@@ -163,6 +155,12 @@ const checkIsPhone = () => {
     };
 };
 
+const searchBox_open = ref(false);
+const openSearchBox = () => {
+    if (window.innerWidth <= 976) {
+        searchBox_open.value = !searchBox_open.value
+    }
+}
 
 onMounted(() => {
     checkIsPhone();
@@ -204,27 +202,27 @@ const searchItem = () => {
         .then(response => {
             //     // 處理回應資料
 
-    const responseData = response.data;
-    selectModel.value = [] ;
-    // console.log(responseData);
-//     // if(selectModel.value != []){
-        for(let n =0 ; n<responseData.length ; n++){
-        // console.log(responseData[n]);
-        if(responseData[n][1] != undefined){
-            searchBoxOpen.value = true;
-            let a =responseData[n][1]
-            selectModel.value.push({name:a,href:`http://localhost:5173/#/productInfo/ID:${responseData[n][0]}`});
-            // console.log(selectModel.value);
-        }else{
-            searchBoxOpen.value = false;
-        }
-    // }
-    }
-  })
-  .catch(error => {
-    // 處理錯誤
-    console.error(error);
-  });
+            const responseData = response.data;
+            selectModel.value = [];
+            // console.log(responseData);
+            //     // if(selectModel.value != []){
+            for (let n = 0; n < responseData.length; n++) {
+                // console.log(responseData[n]);
+                if (responseData[n][1] != undefined) {
+                    searchBoxOpen.value = true;
+                    let a = responseData[n][1]
+                    selectModel.value.push({ name: a, href: `http://localhost:5173/#/productInfo/ID:${responseData[n][0]}` });
+                    // console.log(selectModel.value);
+                } else {
+                    searchBoxOpen.value = false;
+                }
+                // }
+            }
+        })
+        .catch(error => {
+            // 處理錯誤
+            console.error(error);
+        });
 }
 
 // ------------------------------- pei ------------------------------- //
@@ -439,7 +437,19 @@ header {
     }
 
     .header_nav_right_inputBox input {
-        display: none;
+        opacity: 0;
+        width: 0px;
+        position: absolute;
+        right: 35px;
+        top: -10px;
+        transition: .2s;
+
+        &.-on {
+            opacity: 1;
+            display: block;
+
+            width: 290px;
+        }
     }
 
     .header_nav_right_inputBox i {
