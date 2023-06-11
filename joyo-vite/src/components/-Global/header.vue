@@ -197,27 +197,28 @@ const searchItem = () => {
         .then(response => {
             //     // 處理回應資料
 
-            const responseData = response.data;
-            selectModel.value = [];
-            // console.log(responseData);
-            //     // if(selectModel.value != []){
-            for (let n = 0; n < responseData.length; n++) {
-                // console.log(responseData[n]);
-                if (responseData[n][1] != undefined) {
-                    searchBoxOpen.value = true;
-                    let a = responseData[n][1]
-                    selectModel.value.push({ name: a, href: `http://localhost:5173/#/productInfo/ID:${responseData[n][0]}` });
-                    // console.log(selectModel.value);
-                } else {
-                    searchBoxOpen.value = false;
-                }
-                // }
-            }
-        })
-        .catch(error => {
-            // 處理錯誤
-            console.error(error);
-        });
+    const responseData = response.data;
+    selectModel.value = [] ;
+    // console.log(responseData);
+//     // if(selectModel.value != []){
+        for(let n =0 ; n<responseData.length ; n++){
+        // console.log(responseData[n]);
+        if(responseData[n][1] != undefined){
+            searchBoxOpen.value = true;
+            let a =responseData[n][1]
+            selectModel.value.push({name:a,href:`http://localhost:5173/#/productInfo/ID:${responseData[n][0]}`}); //要注意
+            // selectModel.value.push({name:a,href:`https://tibamef2e.com/thd101/g3/#/productInfo/ID:${responseData[n][0]}`}); // 要打包用
+            // console.log(selectModel.value);
+        }else{
+            searchBoxOpen.value = false;
+        }
+    // }
+    }
+  })
+  .catch(error => {
+    // 處理錯誤
+    console.error(error);
+  });
 }
 
 

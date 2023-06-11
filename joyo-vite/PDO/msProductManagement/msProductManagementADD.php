@@ -69,6 +69,7 @@ $stm = $pdo -> exec($ins);
 
 if(isset($stm)){
 header("location:http://localhost:5173/#/ms/msProductManagement");
+// header("location:https://tibamef2e.com/thd101/g3/#/ms/msProductManagement"); //打包用
 }else{
     echo "新增失敗" ;
 }
