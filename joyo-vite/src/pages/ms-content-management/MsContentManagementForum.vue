@@ -35,7 +35,7 @@ const del = (e)=>{
     }
   }
   arr.value = sel.value ;
-  console.log(onpage.value);
+  // console.log(onpage.value);
   for(var n = onpage.value ; n< onpage.value+10 ; n++){
   if(arr.value[n] != undefined){
     arrs.value.push(arr.value[n]);
