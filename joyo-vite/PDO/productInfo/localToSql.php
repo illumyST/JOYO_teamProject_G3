@@ -15,11 +15,11 @@ include("../connect/conn.php");
        print_r($PRODUCT_ID) ;
        echo $MEMBER_ID ;
        //建立一個新的變數存放資料庫數據
-       $tg = new PDO($dsn, $user, $pas);
+      //  $tg = new PDO($dsn, $user, $pas);
        //查看會員購物車資料庫是否已存在相同商品
        //SQL指令，搜尋會員編號=$MEMBER_ID的購物車資料
        $sqlSelecMember = "SELECT * FROM CART where MEMBER_ID=$MEMBER_ID";
-       $cartList=$tg->query($sqlSelecMember);
+       $cartList=$pdo->query($sqlSelecMember);
        $cartListdata = $cartList->fetchAll();
        //測試用，看是否成功取得陣列資料
        //echo print_r($cartListdata, true);
@@ -29,7 +29,7 @@ include("../connect/conn.php");
           $localamount=$PRODUCT_ID[$i]['amount'];
             if(count($cartListdata)>0){
               $sqlSelecMemberProduct = "SELECT * FROM CART where MEMBER_ID=$MEMBER_ID and PRODUCT_ID=$localproductId" ;
-              $cartListProduct=$tg->query($sqlSelecMemberProduct);
+              $cartListProduct=$pdo->query($sqlSelecMemberProduct);
               $cartListProductdata = $cartListProduct->fetchAll();
               //資料庫有相同商品，變更商品數量+1
               if(count($cartListProductdata)>0){
@@ -40,7 +40,7 @@ include("../connect/conn.php");
                      //取得該筆購物車現行數量
                      $amount=$cartListProductdata[0]['AMOUNT'];
                      $sqlupdate=" UPDATE `CART` SET `AMOUNT` = $amount+$localamount WHERE (`CART_ID` = $cartId); ";
-                     $updateRow = $tg->exec($sqlupdate);
+                     $updateRow = $pdo->exec($sqlupdate);
                      if($updateRow > 0){
                         echo "新增成功!";
                      }else{
@@ -50,7 +50,7 @@ include("../connect/conn.php");
               }else{
                 echo(456);
                      $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$localproductId', '$localamount', '$MEMBER_ID');";
-                     $insertrow = $tg->exec($sqlinsert);
+                     $insertrow = $pdo->exec($sqlinsert);
                      if($insertrow > 0){
                         echo "新增成功!";
                      }else{
@@ -61,7 +61,7 @@ include("../connect/conn.php");
        //該名會員購物車沒有東西，直接加入       
             }else{
               $sqlinsert="INSERT INTO `CART` (`PRODUCT_ID`, `AMOUNT`, `MEMBER_ID`) VALUES ('$localproductId', '$localamount', '$MEMBER_ID');";
-                     $insertrow = $tg->exec($sqlinsert);
+                     $insertrow = $pdo->exec($sqlinsert);
                      if($insertrow > 0){
                         echo "新增成功!";
                      }else{
