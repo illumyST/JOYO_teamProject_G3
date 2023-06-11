@@ -38,7 +38,7 @@ const fetchComment=()=>{
     return axios.get(`${import.meta.env.VITE_API_URL}/product/getProductComment.php`)
         .then(res => {
             pageInfor.value.productAllComment=res.data;
-            console.log(pageInfor.value.productAllComment);
+            // console.log(pageInfor.value.productAllComment);
             }
         )
         .catch(err => {
