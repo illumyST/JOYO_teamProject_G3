@@ -6,9 +6,16 @@
       v-for="(chat, index) in chatListData"
       v-show="setPagination(index)"
       @click="getUserChatBox(chat.MEMBER_ID)"
-      :class="{'-active': chat.MEMBER_ID === currentChatUserId1}"
+      :class="{ '-active': chat.MEMBER_ID === currentChatUserId1 }"
     >
-      <img src="../../assets/img/member_photo/1_photo.jpg" alt="" />
+      <img
+        :src="
+          chat.IMG_URL == '../../src/assets/img/member_photo/default.png'
+            ? getDefaultUrl()
+            : getImageUrl(chat.MEMBER_ID)
+        "
+        alt=""
+      />
       <div class="ms_msg_preview_text">
         <span>{{ chat.MEMBER_NAME }}</span>
         <p>
@@ -46,7 +53,7 @@ export default {
   watch: {
     currentChatUserId() {
       this.currentChatUserId1 = this.currentChatUserId;
-      // console.log("123",this.currentChatUserId1); 
+      // console.log("123",this.currentChatUserId1);
     },
     chatList() {
       this.chatListData = this.chatList;
@@ -60,6 +67,18 @@ export default {
     this.currentPage = this.currentPage1;
   },
   methods: {
+    getImageUrl(userId) {
+      return new URL(
+        `../../assets/img/member_photo/${userId}_photo.png`,
+        import.meta.url
+      ).toString();
+    },
+    getDefaultUrl() {
+      return new URL(
+        `../../assets/img/member_photo/default.png`,
+        import.meta.url
+      ).toString(); 
+    },
     truncateText(text, maxLength) {
       const ellipsis = "...";
       if (text.length > maxLength) {
@@ -80,11 +99,14 @@ export default {
     },
     getUserChatBox(MEMBER_ID) {
       axios
-        .get(`${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`, {
-          params: {
-            userId: MEMBER_ID,
-          },
-        })
+        .get(
+          `${import.meta.env.VITE_API_URL}/msLiveChat/getChatBoxContent.php`,
+          {
+            params: {
+              userId: MEMBER_ID,
+            },
+          }
+        )
         .then((res) => {
           // console.log("123", res.data);
           this.currentUserChatContent = res.data;
