@@ -17,7 +17,7 @@ $endDate = $_GET['endDate'];
 $sql = 'SELECT DATE(BUY_DATE) AS `GroupedDate`, SUM(TOTAL_PRICE) AS `TotalPrice`
 FROM BUY 
 WHERE DATE(BUY_DATE) >= DATE("' . $startDate . '") AND DATE(BUY_DATE) <= DATE_ADD(DATE("' . $endDate . '"), INTERVAL 1 DAY)
-AND STATUS = "完成"
+AND STATUS = "已完成"
 GROUP BY `GroupedDate`
 ORDER BY `GroupedDate` DESC
 LIMIT 30';
