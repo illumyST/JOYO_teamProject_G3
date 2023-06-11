@@ -292,7 +292,7 @@
 
         .cartConfirm_con {
             width: 100%;
-            max-height: 400px;
+            margin-bottom: 30px;
             h2{
                 font-size:18px;
             }

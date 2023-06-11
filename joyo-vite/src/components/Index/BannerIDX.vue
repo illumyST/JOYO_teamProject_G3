@@ -11,10 +11,6 @@
         <!-- //:autoplay="2000" :wrap-around="true"> 自動運行參數 -->
 
         <Slide :key="Slide">
-<<<<<<< HEAD
-=======
-          <div class="carousel__item">{{ Slide }}</div>
->>>>>>> jackyeh
           <a v-if="bannerData[0]" :href="bannerData[0].PIC_URL" target="_blank"
             ><img
               v-if="bannerData[0]"
