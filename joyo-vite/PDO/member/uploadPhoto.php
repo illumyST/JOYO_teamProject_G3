@@ -10,7 +10,8 @@
         //取得上傳的檔案資訊=======================================
         $fileUpload = $_FILES["file"];
         $fileTempPath = $fileUpload["tmp_name"];
-        $fileExtension = pathinfo($fileUpload["name"], PATHINFO_EXTENSION);
+        // $fileExtension = pathinfo($fileUpload["name"], PATHINFO_EXTENSION);
+        $fileExtension = 'png';
         $fileName = $member_id."_photo.".$fileExtension;
         $fileUploadPath = "../../src/assets/img/member_photo/".$fileName;
         move_uploaded_file($fileTempPath, $fileUploadPath );
