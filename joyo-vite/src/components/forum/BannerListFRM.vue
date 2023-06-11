@@ -36,7 +36,7 @@
         id="forum_media_menu_btn"
         @click.stop="forum_media_select_order_show"
       >
-        <span>所有文章</span><span><i class="fa-solid fa-angle-down"></i></span>
+        <span>{{forumCategory.cate}}</span><span><i class="fa-solid fa-angle-down"></i></span>
       </button>
       <ul class="forum_media_select_order" v-show="forum_media_menu_btn_active">
         <li v-for="(artiCate,index) in artiCategory " :key="index">

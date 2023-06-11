@@ -660,7 +660,7 @@ button {
                 width: 110px;
 
                 img {
-                    width: auto;
+                    max-width: 106px;
                 }
             }
 
