@@ -155,12 +155,7 @@ const checkIsPhone = () => {
     };
 };
 
-const searchBox_open = ref(false);
-const openSearchBox = () => {
-    if (window.innerWidth <= 976) {
-        searchBox_open.value = !searchBox_open.value
-    }
-}
+
 
 onMounted(() => {
     checkIsPhone();
@@ -225,7 +220,20 @@ const searchItem = () => {
         });
 }
 
+
 // ------------------------------- pei ------------------------------- //
+
+// ------------------------- for RWD -------------------------
+const searchBox_open = ref(false);
+const openSearchBox = () => {
+    if (window.innerWidth <= 976) {
+        searchBox_open.value = !searchBox_open.value;
+        if(searchBox_open.value===false){
+            data.value.select = '';
+            searchItem();
+        };
+    }
+}
 
 </script>
 
@@ -384,45 +392,29 @@ header {
     opacity: 0;
 }
 
-// 改寫在 default 中
+#selectbox {
 
-// .memberLi:hover .logOut {
-//     display: block;
-// }
+    width: 45%;
+    max-height: 300px;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    background-color: $bg;
 
-// .logOut {
-//     opacity: .7;
-//     display: none;
-//     border: 1px solid $orange;
-//     position: absolute;
-//     color: $brown;
-//     width: 50px;
-//     height: 30px;
-//     line-height: 30px;
-//     text-align: center;
-//     @include center();
-//     top: 110%;
-//     background-color: #fff;
-//     border-radius: 5px;
-//     cursor: pointer;
-//     font-size: 14px;
+    li {
+        // outline: 1px solid red;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid white;
+        background-color: $green;
+        margin-bottom: 5px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
 
-//     &::before {
-//         content: '';
-//         position: absolute;
-//         top: -15px;
-//         left: 50%;
-//         transform: translate(-50%);
-//         width: 0;
-//         height: 0;
-//         border: 8px solid;
-//         border-color: transparent transparent #fff transparent;
-//     }
+    }
+}
 
-//     &:hover {
-//         color: $orange;
-//     }
-// }
 
 // ---------------------- RWD ---------------------- //
 
@@ -443,6 +435,7 @@ header {
         right: 35px;
         top: -10px;
         transition: .2s;
+        padding-left: 10px;
 
         &.-on {
             opacity: 1;
@@ -601,28 +594,11 @@ header {
             border: none;
         }
     }
-}
 
-#selectbox {
-
-    width: 45%;
-    max-height: 300px;
-    overflow: auto;
-    position: absolute;
-    right: 0;
-    background-color: $bg;
-
-    li {
-        // outline: 1px solid red;
-        padding: 10px;
-        text-align: center;
-        border-bottom: 1px solid white;
-        background-color: $green;
-        margin-bottom: 5px;
-        cursor: pointer;
-        color: white;
-        text-decoration: none;
-
+    #selectbox {
+        width: 165%;
+        right: 35px;
+        top: 40px;
     }
 }
 </style>
