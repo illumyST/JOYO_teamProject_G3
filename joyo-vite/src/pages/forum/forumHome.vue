@@ -86,12 +86,12 @@ const fetchData=()=>{
         });
 };
 const getPage=()=>{
-  console.log(forumArticle.value.articleFilter.length);
+  // console.log(forumArticle.value.articleFilter.length);
     for(let j=0;j<forumArticle.value.articleFilter.length;){
       forumArticle.value.articlePage.push( forumArticle.value.articleFilter.slice(j,j+4));
          j=j+ 4; 
        }
-    console.log(forumArticle.value.articlePage);
+    // console.log(forumArticle.value.articlePage);
 };
 
 const getAppearPage=()=>{
