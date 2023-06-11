@@ -34,11 +34,11 @@ const doMailCheck = () => {
   };
   axios.post(`${import.meta.env.VITE_API_URL}/logIn&Out/frontCheckMail.php`,
     verifyData
-  ).then(res=>{
-    if(res.data){
+  ).then(res => {
+    if (res.data) {
       alert('驗證成功！');
       router.push('/signIn')
-    }else{
+    } else {
       alert('驗證失敗！');
     }
   })
@@ -46,22 +46,22 @@ const doMailCheck = () => {
 
 const sendCheckMail = () => {
   axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/frontSendCheckMail.php`)
-  .then(res => {
-    if(res.data){
-      alert('請至註冊信箱收驗證信，完成會員驗證！');
-    }else{
-      alert('驗證信寄送失敗！');
-    }
-  })
+    .then(res => {
+      if (res.data) {
+        alert('請至註冊信箱收驗證信，完成會員驗證！');
+      } else {
+        alert('驗證信寄送失敗！');
+      }
+    })
 }
 </script>
 
 <style lang="scss" scoped>
-
-.sendCheckMail{
+.sendCheckMail {
   cursor: pointer;
   text-decoration: underline;
 }
+
 .mailCheck_wrapper {
   width: 1200px;
   margin: 0 auto;
@@ -126,7 +126,8 @@ const sendCheckMail = () => {
     font-size: 20px;
     border-radius: 5px;
     transition: .2s;
-    &:hover{
+
+    &:hover {
       background-color: $orange;
     }
   }
@@ -149,9 +150,12 @@ const sendCheckMail = () => {
     width: 350px;
     height: 392px;
     margin: 0 auto;
-    margin-bottom: 70px;
-    padding-top: 33px;
-    padding-bottom: 15px;
+    margin-bottom: 30px;
+    padding: 30px;
+  }
+
+  .mailCheck_box .mailCheck_text {
+    margin-bottom: 30px;
   }
 
   .mailCheck_box .mailCheck_logo {
@@ -166,7 +170,7 @@ const sendCheckMail = () => {
   .mailCheck_box .mailCheck_little_box {
     margin: 0 auto;
     margin-top: 75px;
-    width: 350px;
+    margin-bottom: 40px;
   }
 
   .mailCheck_box .mailCheck_p {
@@ -177,26 +181,12 @@ const sendCheckMail = () => {
   .mailCheck_box .mailCheck_text input {
     margin-right: 3px;
     margin-left: 3px;
-    width: 35px;
     height: 35px;
 
   }
 
-  .mailCheck_box .mailCheck_text {
-    display: flex;
-    justify-content: space-around;
-    // outline: 10px solid yellow;
-    width: 330px;
-    margin-bottom: 65px;
-  }
-
   .mailCheck_box .mailCheck_Check_btn {
-    width: 156px;
+    height: 40px;
+    line-height: 40px;
   }
-
-  .mailCheck_box .mailCheck_Check_btn a {
-    width: 156px;
-    // background-color: aqua;
-  }
-}
-</style>
+}</style>

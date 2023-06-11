@@ -124,9 +124,8 @@ const resetPassword = () => {
   }
 
   .forgetPassword_box {
-    margin-top: 50px;
-    width: 90%;
-    height: 600px;
+    width: 370px;
+    padding: 30px;
   }
 
   .forgetPassword_box .forgetPassword_text {
@@ -140,10 +139,10 @@ const resetPassword = () => {
   }
 
   .forgetPassword_box .forgetPassword_btn {
-    width: 70%;
-    margin-top: 50px;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
     transition: 0.3s;
+    line-height: 40px;
+    height: 40px;
   }
 
   .forgetPassword .cartRedirect_p_text {
