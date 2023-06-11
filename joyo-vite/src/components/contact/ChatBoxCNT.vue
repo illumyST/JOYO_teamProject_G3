@@ -62,7 +62,7 @@ export default {
     // 取得當前用戶ID
     getCurrentChatUserId() {
       axios
-        .get("/api/frontChat/getUserId.php")
+        .get(`${import.meta.env.VITE_API_URL}/frontChat/getUserId.php`)
         .then((res) => {
           // console.log(res.data);
           this.currentUserId = res.data;
