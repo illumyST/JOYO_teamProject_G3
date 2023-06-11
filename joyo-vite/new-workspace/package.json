@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "vmail dev",
+    "send": "vmail"
+  },
+  "dependencies": {
+    "github-markdown-css": "^5.1.0",
+    "vite-email": "^0.8.3"
+  }
+}

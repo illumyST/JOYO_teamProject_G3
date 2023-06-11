@@ -26,12 +26,12 @@ $input = [
     'ChoosePayment' => 'ALL',
     'EncryptType' => 1,
     // 請參考 example/Payment/GetCheckoutResponse.php 範例開發
-    'ReturnURL' => 'http://localhost:80/G3/joyo-vite/PDO/pay_test/checkoutresponse.php',
+    // 'ReturnURL' => 'http://localhost:80/G3/joyo-vite/PDO/pay_test/checkoutresponse.php',
     //打包用
-    // 'ReturnURL' => 'https://tibamef2e.com/thd101/g3/PDO/checkoutresponse.php',
-    'ClientBackURL' =>'http://localhost:5173/#/cartFinish/',
+    'ReturnURL' => 'https://tibamef2e.com/thd101/g3/PDO/checkoutresponse.php',
+    // 'ClientBackURL' =>'http://localhost:5173/#/cartFinish/',
     //打包適用
-    // 'ClientBackURL' =>'https://tibamef2e.com/thd101/g3/#/cartFinish/',
+    'ClientBackURL' =>'https://tibamef2e.com/thd101/g3/#/cartFinish/',
     
 ];
 $action = 'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5';
