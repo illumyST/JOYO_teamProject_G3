@@ -93,8 +93,8 @@
 .cartConfirm_con_title_item {
     display: flex;
     flex-direction: column;
-    max-height: 445px;
-    overflow-y: auto;
+    // max-height: 445px;
+    // overflow-y: auto;
 
     li {
         margin-top: 34px;
