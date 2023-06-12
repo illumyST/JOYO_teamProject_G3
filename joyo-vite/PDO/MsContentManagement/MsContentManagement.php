@@ -1,7 +1,7 @@
 <?php
 include '../connect/conn.php';
 // echo "test" ;
-$sql = "select ar.ARTICLE_ID , ar.TITLE  , ar.ARTICLE_DATE , mb.MAIL
+$sql = "SELECT ar.ARTICLE_ID , ar.TITLE  , ar.ARTICLE_DATE , mb.MAIL
 from  ARTICLE ar
 join MEMBER mb
 on ar.MEMBER_ID = mb.MEMBER_ID";
