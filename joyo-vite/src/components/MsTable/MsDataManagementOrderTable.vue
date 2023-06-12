@@ -143,9 +143,9 @@ const change = (e)=>{
                             else if(a['STATUS'] == "出貨中"){ n.fron = 2 }
                             else if(a['STATUS'] == "運送中"){ n.fron = 3 }
                             else if(a['STATUS'] == "已完成"){ n.fron = 4 }
-                            n.two =a['SHIPPING_TIME'] ;
-                            n.the = a['DELIVERY_TIME']; 
-                            n.four = a['COMPELETE_TIME'];
+                            n.two =a['DATE(BUY.SHIPPING_TIME)'] ;
+                            n.the = a['DATE(BUY.DELIVERY_TIME)']; 
+                            n.four = a['DATE(BUY.COMPELETE_TIME)'];
                         }
                         
                     }
@@ -260,9 +260,7 @@ const itupop= (e,i)=>{
                     for(var n of order.value){
                         for(var a of data.data){
                             if(n.tid == a[0]){
-                                n.two =a['SHIPPING_TIME'] ;
-                                // n.the = a['DELIVERY_TIME']; 
-                                // n.four = a['COMPELETE_TIME'];
+                                n.two =a['DATE(BUY.SHIPPING_TIME)'] ;
                             }
                             
                         }
@@ -292,9 +290,7 @@ const itupop= (e,i)=>{
                     for(var n of order.value){
                         for(var a of data.data){
                             if(n.tid == a[0]){
-                                // n.two =a['SHIPPING_TIME'] ;
-                                n.the = a['DELIVERY_TIME']; 
-                                // n.four = a['COMPELETE_TIME'];
+                                n.the = a['DATE(BUY.DELIVERY_TIME)']; 
                             }
                             
                         }
@@ -324,9 +320,7 @@ const itupop= (e,i)=>{
                     for(var n of order.value){
                         for(var a of data.data){
                             if(n.tid == a[0]){
-                                // n.two =a['SHIPPING_TIME'] ;
-                                // n.the = a['DELIVERY_TIME']; 
-                                n.four = a['COMPELETE_TIME'];
+                                n.four = a['DATE(BUY.COMPELETE_TIME)'];
                             }
                             
                         }

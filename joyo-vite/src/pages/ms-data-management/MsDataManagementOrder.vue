@@ -143,10 +143,10 @@ order.value.push(
   got:'新竹物流',
   fron: status,
   open:false,
-  one:n["BUY_DATE"],oneop:false,
-  two:n["SHIPPING_TIME"],twoop:false,
-  the:n["DELIVERY_TIME"],theop:false,
-  four:n["COMPELETE_TIME"],fourop:false,
+  one:n["DATE(BUY.BUY_DATE)"],oneop:false,
+  two:n["DATE(BUY.SHIPPING_TIME)"],twoop:false,
+  the:n["DATE(BUY.DELIVERY_TIME)"],theop:false,
+  four:n["DATE(BUY.COMPELETE_TIME)"],fourop:false,
   upopen: false,
   order:[]})
 }
