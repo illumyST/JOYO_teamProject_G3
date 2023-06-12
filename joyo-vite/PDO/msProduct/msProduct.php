@@ -1,6 +1,6 @@
 <?php
 include '../connect/conn.php';
-    $sql = " SELECT * from PRODUCT" ;
+    $sql = "SELECT * FROM PRODUCT WHERE NAME <> 'value' AND NOT NAME = '請輸入桌遊名稱';" ;
     $stm = $pdo -> query($sql);
     $data = $stm -> fetchAll() ;
     // print_r($data);

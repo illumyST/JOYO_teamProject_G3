@@ -62,6 +62,8 @@ import { ref } from "vue";
           chpw.value.pas="";
           chpw.value.npas="";
           chpw.value.chnpas="";
+          // location.href=`http://localhost:5173/#/ms/msSystemAdmin`; // 打包注意
+          location.href=`https://tibamef2e.com/thd101/g3/#/ms/msSystemAdmin`;
           }else{
           alert("更新失敗");
         }} 
