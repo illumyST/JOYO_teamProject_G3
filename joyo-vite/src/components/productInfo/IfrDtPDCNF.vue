@@ -53,7 +53,7 @@
                     <div class="col-12 infor-detail-star-comment" >
                         <article v-for="(comment,index) in productComment" :key="index">
                             <div class="col-2 infor-detail-star-comment-top">
-                                <img v-bind:src="comment.IMG_URL" alt="">
+                                <img v-bind:src="getImageUrl(comment.MEMBER_ID)" alt="">
                                 <p class="infor-detail-star-comment-top-name">{{comment.MEMBER_NAME}}</p>
                                 <div class="infor-detail-star-comment-top-start">
                                     <ul>
@@ -126,6 +126,12 @@ const props = defineProps({
     });
 const commentNum=ref();
 const score=ref();
+const getImageUrl = (userId) => {
+    return new URL(
+        `../../assets/img/member_photo/${userId}_photo.png`,
+        import.meta.url
+    ).toString();
+};
 watch(() => props.productComment, (newVal) => {
   commentNum.value = newVal.length;
   let sum=0;

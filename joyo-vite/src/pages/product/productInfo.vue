@@ -72,7 +72,6 @@ const getGame=()=>{
       let arr2=(pageInfor.value.productAllComment.filter((comment)=>"ID:"+comment.PRODUCT_ID == callBackId));
       pageInfor.value.fliterTg=arr1[0];
       pageInfor.value.productComment=arr2;
-      pageInfor.value.productComment.IMG_URL = getImageUrl(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
       console.log(pageInfor.value.productComment);
    
 };
