@@ -7,45 +7,45 @@ $seer = "%$ser%" ;
 // echo $value ;
 
 if($value == 1){
-    $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    from buy 
+    $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    from BUY 
     join MEMBER
-    on buy.MEMBER_ID = member.MEMBER_ID 
+    on BUY.MEMBER_ID = member.MEMBER_ID 
     where BUY_ID like :ids " ;
 }
 else if($value == 2){
-    $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    from buy 
+    $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    from BUY 
     join MEMBER
-    on buy.MEMBER_ID = member.MEMBER_ID 
+    on BUY.MEMBER_ID = member.MEMBER_ID 
     where MAIL like :ids " ;
 }
 else if($value == 3){
-    $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    from buy 
+    $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    from BUY 
     join MEMBER
-    on buy.MEMBER_ID = member.MEMBER_ID 
+    on BUY.MEMBER_ID = member.MEMBER_ID 
     where TOTAL_PRICE like :ids  " ;   
 }
 else if($value == 4){
-    // $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    // from buy 
+    // $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    // from BUY 
     // join MEMBER
-    // on buy.MEMBER_ID = member.MEMBER_ID 
+    // on BUY.MEMBER_ID = member.MEMBER_ID 
     // where TOTAL_PRICE like :ids " ;  
 }
 else if($value == 5){
-    $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    from buy 
+    $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    from BUY 
     join MEMBER
-    on buy.MEMBER_ID = member.MEMBER_ID 
+    on BUY.MEMBER_ID = member.MEMBER_ID 
     where STATUS like :ids " ;  
 }
 else if($value == 6){
-    // $sql = "SELECT buy.BUY_ID , buy.BUY_DATE , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,buy.SHIPPING_TIME , buy.DELIVERY_TIME, buy.COMPELETE_TIME
-    // from buy 
+    // $sql = "SELECT BUY.BUY_ID , BUY.BUY_DATE , BUY.STATUS , BUY.TOTAL_PRICE ,member.MAIL ,BUY.SHIPPING_TIME , BUY.DELIVERY_TIME, BUY.COMPELETE_TIME
+    // from BUY 
     // join MEMBER
-    // on buy.MEMBER_ID = member.MEMBER_ID 
+    // on BUY.MEMBER_ID = member.MEMBER_ID 
     // where TOTAL_PRICE like :ids " ;  
 }
 

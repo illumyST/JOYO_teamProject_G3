@@ -1,9 +1,9 @@
 <?php
 include '../connect/conn.php';
-$sql = 'select buy.BUY_ID , DATE(buy.BUY_DATE) , buy.STATUS , buy.TOTAL_PRICE ,member.MAIL ,DATE(buy.SHIPPING_TIME) , DATE(buy.DELIVERY_TIME), DATE(buy.COMPELETE_TIME)
-from buy 
+$sql = 'select BUY.BUY_ID , DATE(BUY.BUY_DATE) , BUY.STATUS , BUY.TOTAL_PRICE ,MEMBER.MAIL ,DATE(BUY.SHIPPING_TIME) , DATE(BUY.DELIVERY_TIME), DATE(BUY.COMPELETE_TIME)
+from BUY 
 join MEMBER
-on buy.MEMBER_ID = member.MEMBER_ID ;' ;
+on BUY.MEMBER_ID = MEMBER.MEMBER_ID ;' ;
 $stm = $pdo -> query($sql);
 $data = $stm -> fetchALL();
 $jsondata = json_encode($data);
