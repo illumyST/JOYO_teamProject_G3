@@ -29,7 +29,7 @@ if(count($affectedRow)>0){
     $sql = "update MEMBER
 	        set VERIFY_STATE = 1,
                 VERRIFY_CODE = null
-            where member_id = $member_id;";
+            where MEMBER_ID = $member_id;";
     $statement = $pdo -> prepare($sql);
     $statement -> execute();
 

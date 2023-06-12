@@ -6,9 +6,9 @@ session_start();
 $member_ID = $_SESSION["member_id"];
 
 if($data1 == "0"){
-    $sql = "SELECT o.buy_id , DATE(o.buy_date) , o.status , o.TOTAL_PRICE, o.MEMBER_ID ,DATE(o.SHIPPING_TIME), DATE(o.DELIVERY_TIME), DATE(o.COMPELETE_TIME)
-            from buy o
-            join member m
+    $sql = "SELECT o.BUY_ID , DATE(o.BUY_DATE) , o.STATUS , o.TOTAL_PRICE, o.MEMBER_ID ,DATE(o.SHIPPING_TIME), DATE(o.DELIVERY_TIME), DATE(o.COMPELETE_TIME)
+            from BUY o
+            join MEMBER m
             on o.MEMBER_ID = m.MEMBER_ID 
             where o.MEMBER_ID = ? ";
 
@@ -21,10 +21,10 @@ if($data1 == "0"){
 }
 else{
 
-    $sql = "SELECT  p.name , p.price ,p.IMG_URL_ONE , b.* from product p join
-    (select bd.AMOUNT , bd.PRODUCT_ID , b.MEMBER_ID , b.buy_id from BUY_DETAIL bd join buy b on b.buy_id = bd.buy_id) b
+    $sql = "SELECT  p.NAME , p.PRICE ,p.IMG_URL_ONE , b.* from PRODUCT p join
+    (select bd.AMOUNT , bd.PRODUCT_ID , b.MEMBER_ID , b.BUY_ID from BUY_DETAIL bd join BUY b on b.BUY_ID = bd.BUY_ID) b
     on p.PRODUCT_ID = b.PRODUCT_ID
-    where b.member_id = ?";
+    where b.MEMBER_ID = ?";
        $stm = $pdo -> prepare($sql);
        $stm -> execute(array($member_ID));
        $data = $stm->fetchAll();

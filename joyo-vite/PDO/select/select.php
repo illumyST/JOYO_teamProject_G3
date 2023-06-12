@@ -10,7 +10,7 @@ if($sear != ""){
   $see = htmlspecialchars($sear);
   $saa = "%$see%";
   
-    $sql = "SELECT * FROM product WHERE NAME like :ids " ;
+    $sql = "SELECT * FROM PRODUCT WHERE NAME like :ids " ;
     $stm = $pdo -> prepare($sql);
     $stm -> bindvalue(":ids",$saa);
     $stm -> execute();
