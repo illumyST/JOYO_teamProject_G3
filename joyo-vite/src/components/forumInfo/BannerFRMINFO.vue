@@ -2,7 +2,7 @@
   <div class="forumInfo_right_main">
     <div class="forumInfo_right_main_top">
       <div class="container">
-        <img v-bind:src="forumArticle.articleFilter.IMG_URL" alt="" />
+        <img v-bind:src="getImageUrl(forumArticle.articleFilter.MEMBER_ID)" alt="" />
       </div>
       <p>{{ forumArticle.articleFilter.MEMBER_NAME }}</p>
       <p>{{ forumArticle.articleFilter.ARTICLE_DATE }}</p>
@@ -66,7 +66,7 @@
 
       <div class="forumInfo_comments_text">
         <div class="forumInfo_comments_text_title" v-for="(item, index) in ForumInfoMsgs" :key="index">
-          <img :src="item.IMG_URL" alt="" />
+          <img :src="getImageUrl(item.MEMBER_ID)" alt="" />
           <p>{{ item.MEMBER_NAME }}</p>
           <p>{{ item.ARTICLE_COMMENT_DATE }}</p>
           <p class="forumInfo_comments_text_msg">{{ item.ARTICLE_COMMENT }}</p>
@@ -108,7 +108,6 @@ const fetchData = () => {
     .get(`${import.meta.env.VITE_API_URL}/forum/forumGetArticle.php`)
     .then((res) => {
       forumArticle.value.articleAll = res.data;
-      forumArticle.value.IMG_URL = getImageUrl(extractNumberFromPath(forumArticle.value.IMG_URL));
     })
     .catch((err) => {
       // console.error(err);
@@ -245,7 +244,7 @@ const fetchMsg = () => {
       ForumInfoMsgs.value = res.data.map((msg) => {
         // 變換日期呈現處理
         msg.ARTICLE_COMMENT_DATE = formatDate(msg.ARTICLE_COMMENT_DATE);
-        ForumInfoMsgs.value.IMG_URL = getImageUrl(extractNumberFromPath(ForumInfoMsgs.value.IMG_URL));
+        ForumInfoMsgs.value.IMG_URL = getImageUrl(res);
         return msg;
         
       }
