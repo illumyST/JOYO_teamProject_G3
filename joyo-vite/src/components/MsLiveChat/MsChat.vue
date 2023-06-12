@@ -155,7 +155,7 @@ export default {
     keepGettingChatList() {
       setInterval(() => {
         this.getChatList()
-      }, 500);
+      }, 1000);
     },
     getPageCount() {
       this.pageCount = Math.ceil(this.chatList.length / this.itemsPerPage);
