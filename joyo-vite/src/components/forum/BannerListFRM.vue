@@ -525,6 +525,7 @@ onMounted(() => {
     .forum_media_select {
       @include drowDown(100%, 40px, 100%, 50%);
       margin-bottom: 10px;
+      position: relative;
 
       button {
         display: flex;
@@ -544,8 +545,8 @@ onMounted(() => {
       }
 
       ul {
-        width: 89.3%;
-        top: 39%;
+        width: 100%;
+        top: 100%;
         li {
           width: 100%;
           display: block;
@@ -568,6 +569,7 @@ onMounted(() => {
     .forum_media_sort {
       margin-bottom: 40px;
       @include drowDown(100%, 40px, 100%, 50%);
+      position: relative;
 
       button {
         display: flex;
@@ -586,8 +588,8 @@ onMounted(() => {
       }
 
       ul {
-        width: 89.3%;
-        top: 45%;
+        width: 100%;
+        top: 100%;
         li {
           display: block;
           width: 100%;
