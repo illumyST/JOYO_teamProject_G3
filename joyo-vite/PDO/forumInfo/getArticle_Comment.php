@@ -15,7 +15,7 @@ $sql = "SELECT
          FROM ARTICLE_COMMENT as a
          JOIN MEMBER as b
               ON a.MEMBER_ID=b.MEMBER_ID
-               having a.ARTICLE_ID = :artId
+               HAVING a.ARTICLE_ID = :artId
                ORDER BY a.ARTICLE_COMMENT_DATE DESC
          ";
 
