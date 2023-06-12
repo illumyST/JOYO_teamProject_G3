@@ -1,45 +1,44 @@
 <template v-if="pageInfor.fliterTg">
- <div>
-    <div class="product-wrapper">
-      <IfrTopPDCNF :filetData="pageInfor.fliterTg"></IfrTopPDCNF>
-      <IfrItPDCNF :filetData="pageInfor.fliterTg"></IfrItPDCNF>
-      <IfrDtPDCNF :filetData="pageInfor.fliterTg" :productComment="pageInfor.productComment"></IfrDtPDCNF>
-      <IfrBtPDCNF :guess="guess" @change-Info-Item="changeInfoItem"></IfrBtPDCNF>
+    <div>
+        <div class="product-wrapper">
+            <IfrTopPDCNF :filetData="pageInfor.fliterTg"></IfrTopPDCNF>
+            <IfrItPDCNF :filetData="pageInfor.fliterTg"></IfrItPDCNF>
+            <IfrDtPDCNF :filetData="pageInfor.fliterTg" :productComment="pageInfor.productComment"></IfrDtPDCNF>
+            <IfrBtPDCNF :guess="guess" @change-Info-Item="changeInfoItem"></IfrBtPDCNF>
+        </div>
     </div>
-  </div>
-  
 </template>
   
 <script setup>
-import { onMounted, ref ,onBeforeMount,watch} from 'vue';
+import { onMounted, ref, onBeforeMount, watch } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 const route = useRoute();
-const pageInfor=ref({
-    tg:[],
-    page:12,
-    total_page:[],
-    fliterTg:[],
-    productAllComment:[],
-    productComment:[],
+const pageInfor = ref({
+    tg: [],
+    page: 12,
+    total_page: [],
+    fliterTg: [],
+    productAllComment: [],
+    productComment: [],
 });
 
-let guess=ref([]);
-const fetchData=async () =>{
-    try{
-        const res=await axios.get(`${import.meta.env.VITE_API_URL}/product/test.php`);
-        pageInfor.value.tg=res.data;
+let guess = ref([]);
+const fetchData = async () => {
+    try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/product/test.php`);
+        pageInfor.value.tg = res.data;
         await fetchComment();
-    } catch(err)  {
-         console.error(err);
-        };
+    } catch (err) {
+        console.error(err);
+    };
 };
-const fetchComment=()=>{
+const fetchComment = () => {
     return axios.get(`${import.meta.env.VITE_API_URL}/product/getProductComment.php`)
         .then(res => {
-            pageInfor.value.productAllComment=res.data;
+            pageInfor.value.productAllComment = res.data;
             // console.log(pageInfor.value.productAllComment);
-            }
+        }
         )
         .catch(err => {
             // console.error(err);
@@ -53,42 +52,44 @@ const getImageUrl = (userId) => {
 };
 
 const extractNumberFromPath = (path) => {
-    const regex =  /\/(\d+)_photo/;
+    const regex = /\/(\d+)_photo/;
     const match = path.match(regex);
     if (match) {
-       return match[1];
+        return match[1];
     } else {
         return null
     };
 };
-const getGame=()=>{
-    let callBackId = route.params.id; 
-      if(callBackId !=""){
+const getGame = () => {
+    let callBackId = route.params.id;
+    if (callBackId != "") {
 
-      }else{
-        callBackId ="ID：1";
-      }
-      let arr1=(pageInfor.value.tg.filter((game)=>"ID:"+game.PRODUCT_ID == callBackId));
-      let arr2=(pageInfor.value.productAllComment.filter((comment)=>"ID:"+comment.PRODUCT_ID == callBackId));
-      pageInfor.value.fliterTg=arr1[0];
-      pageInfor.value.productComment=arr2;
-      pageInfor.value.productComment.IMG_URL = getImageUrl(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
-      console.log(pageInfor.value.productComment);
-   
+    } else {
+        callBackId = "ID：1";
+    }
+    let arr1 = (pageInfor.value.tg.filter((game) => "ID:" + game.PRODUCT_ID == callBackId));
+    let arr2 = (pageInfor.value.productAllComment.filter((comment) => "ID:" + comment.PRODUCT_ID == callBackId));
+    pageInfor.value.fliterTg = arr1[0];
+    pageInfor.value.productComment = arr2;
+    console.log(pageInfor.value.productComment);
+    pageInfor.value.productComment.IMG_URL = getImageUrl(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
+    console.log(pageInfor.value.productComment);
+    console.log(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
+
 };
-const guessLike=()=>{
-    let category=pageInfor.value.fliterTg.CATEGORY;
-        let arr2=(pageInfor.value.tg.filter((game)=>game.CATEGORY == category));
-        guess.value=arr2.slice(0,4);
+const guessLike = () => {
+    let category = pageInfor.value.fliterTg.CATEGORY;
+    let arr2 = (pageInfor.value.tg.filter((game) => game.CATEGORY == category));
+    guess.value = arr2.slice(0, 4);
 };
 //點擊猜你喜歡的商品卡後更換商品
-const changeInfoItem=(val)=>{
+const changeInfoItem = (val) => {
     fetchComment();
-    let arr1=(pageInfor.value.tg.filter((game)=>game.PRODUCT_ID == val));
-    let arr2=(pageInfor.value.productAllComment.filter((comment)=>comment.PRODUCT_ID == val));
-    pageInfor.value.fliterTg=arr1[0];
-    pageInfor.value.productComment=arr2;
-    
+    let arr1 = (pageInfor.value.tg.filter((game) => game.PRODUCT_ID == val));
+    let arr2 = (pageInfor.value.productAllComment.filter((comment) => comment.PRODUCT_ID == val));
+    pageInfor.value.fliterTg = arr1[0];
+    pageInfor.value.productComment = arr2;
+
 
 }
 // watch(route,(newVal)=>{
@@ -98,10 +99,10 @@ const changeInfoItem=(val)=>{
 
 // })
 
-onBeforeMount(()=>{
+onBeforeMount(() => {
     fetchData().then(() => {
-    getGame();
-    guessLike();
+        getGame();
+        guessLike();
     });
 })
 </script>
@@ -128,6 +129,7 @@ onBeforeMount(()=>{
         font-size: 20px;
     }
 }
+
 .product-top {
     width: 80%;
     display: flex;
@@ -144,6 +146,7 @@ onBeforeMount(()=>{
         width: 200px;
     }
 }
+
 .breadcrumb ol {
     display: flex;
     font-size: 16px;
