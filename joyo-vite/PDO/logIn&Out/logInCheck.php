@@ -8,7 +8,7 @@
     $pwd = $data['pwd'];
 
 
-    $sql = "SELECT * FROM back_account WHERE ACCOUNT= :account and PASSWORD= :pwd ";
+    $sql = "SELECT * FROM BACK_ACCOUNT WHERE ACCOUNT= :account and PASSWORD= :pwd ";
 
     $statement = $pdo->prepare($sql);
     $statement -> bindParam(":account",$account);
