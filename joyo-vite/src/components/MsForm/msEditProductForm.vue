@@ -2,8 +2,7 @@
   <div class="member_overlay" @click="close">
     <section class="ms_form_long" @click.stop>
             <i class="bi bi-x-lg" @click="close"></i>
-            <form action="/api/msProductManagement/msProductManagementUP.php" @submit="sub" name="form1" id="form1"
-             method="POST" enctype="multipart/form-data">
+            <form @submit="sub" name="form1" id="form1">
                 <h1>編輯商品</h1>
                 <div class="one">
                 <label for="">商品名稱 : </label>
@@ -154,10 +153,9 @@ const emits = defineEmits(['close','new']);
 const props = defineProps({
   message: {
     type: String,
-    required: true,
-    default: 'Hello from parent component!'
+    required: true
   }});
-console.log(props['message'])
+// console.log(props['message'])
  
 const sub=()=>{
 event.preventDefault();
@@ -167,16 +165,11 @@ const formData = new FormData(form);
 formData.append('opid',props['message'].pronum);
 // console.log(form.elements.ptype.value)
 axios.post(`${import.meta.env.VITE_API_URL}/msProductManagement/msProductManagementUP.php`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  })
-    .then(response => {
-      if(response.data){
-        // window.location.reload();
-      };
-    })
+    headers: {'Content-Type': 'multipart/form-data'}})
+    .then(response => {})
     .catch(error => {console.error(error);});
+
+
     var newa = {
       pronum:props['message'].pronum,
       proname:form.elements.pid.value,

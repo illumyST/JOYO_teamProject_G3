@@ -8,7 +8,7 @@
         <MsSeachBar @text="getseach" :name="'商品管理查詢'" :add="true" @open="opp"></MsSeachBar>
         <msProductManagementTable @productt="productt" @pid="del"></msProductManagementTable>
         <msAddProductForm v-if="addop" @close="close"></msAddProductForm>
-        <msPage @Page="chPage"></msPage>
+        <msPage @Page="chPage" :onpage="onpp"></msPage>
       </div>
     </div>
     
@@ -16,14 +16,17 @@
 
 <script setup>
 import axios from 'axios';
-import {ref , provide} from 'vue';
+import {ref , provide, watch} from 'vue';
 
 const userSelect = ref([{name:"商品編號",value:1},{name:"商品名稱",value:2},{name:"遊戲類型",value:3},{name:"價格",value:4}])
 provide('us', userSelect);
 
+const onpp=ref(0);
+
+
 const getseach=(n)=>{
-    console.log(n);
-    prodectsS.value=[];
+   
+  prodectsS.value=[];
     if(n != ""){
    prodects.value=[];
    var text ={
@@ -33,9 +36,9 @@ const getseach=(n)=>{
    axios.post(`${import.meta.env.VITE_API_URL}/msProduct/msProductSR.php`,text)
     .then(data=>{
     let arr =data.data ;
-    console.log(arr);
+    
     for(var n of arr){
-      // console.log(n);
+      // 
       prodects.value.push({
         pronum:n["PRODUCT_ID"],
         proname:n['NAME'],
@@ -44,13 +47,12 @@ const getseach=(n)=>{
         prstock: n['STOCK'] ,
         update: true 
     })}
-   
     for(var a=0 ; a<10 ; a++){
       if(prodects.value[a] != undefined){
         prodectsS.value.push(prodects.value[a]);
       }
     }
-    
+    console.log(prodectsS.value);
     })
     .catch(error=>{console.log(error)})
 
@@ -108,7 +110,6 @@ const del = (e)=>{
   prodects.value=[];
   prodects.value = reprodect.value ;
 
-  console.log(onpage.value)
   for(var a=onpage.value ; a<onpage.value+10 ; a++){
       if(prodects.value[a] != undefined){
         prodectsS.value.push(prodects.value[a]);

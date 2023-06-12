@@ -32,7 +32,7 @@ $imgurl=[];
 $IMGUR_CLIENT_ID  = "1d5b8193eea838b" ;
 
 for($a = 0 ; $a<COUNT($imgArr) ; $a++){
-    if($imgArr[$a]['name'] != ""){
+    if($imgArr[$a]['name'] != "" || $imgArr[$a]['name'] != null){
         // echo $imgArr[$a]['name'] ;
     $UID = $imgArr[$a]['name'];
     $image_tmp  =  file_get_contents($imgArr[$a]['tmpname']); 

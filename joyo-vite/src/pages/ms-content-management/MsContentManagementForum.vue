@@ -13,7 +13,6 @@ const arr = ref([]);
 const arrs = ref([]);
 provide("arr", arrs);
 provide('prodects',arr);
-
 const chPage= (n)=>{
   arrs.value=[];
   onpage.value = n[0]
