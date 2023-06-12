@@ -53,9 +53,10 @@
         name="forumPost_form_area"
         v-show="ShowAreaSelect"
         data-role="Area"
-        v-model="postData.area"
+        v-model="SelectedArea"
+        @change="changeArea"
       >
-        <option :value="SelectedArea">揪團地點</option>
+        <option value=0>揪團地點</option>
         <option
           :value="index+1"
           v-for="(item, index) in Add_Area.Area"
@@ -132,14 +133,17 @@ const ShowTitleText = ref(true);
 const ShowScoreSelect = ref(true);
 
 // 選擇揪團地點
-const SelectedArea = ref("0");
+const SelectedArea = ref(0);
 const ShowAreaSelect = ref(false);
 
 
 // 文章類別選單
 const FormCgy = ref(["心得分享", "教學區", "發問區", "揪團區"]);
 
-
+const changeArea=()=>{
+  postData.value.area=Add_Area.value.Area[SelectedArea.value-1];
+  
+};
 // 桌遊評分選單
 const FormScore = ref({
   Name: "桌遊評分",
@@ -157,8 +161,6 @@ const postData = ref({
       memberId: "-1",
       area:"0",
 });
-
-
 // 會員編號
 const getMemberId=()=>{
     // console.log(123);
@@ -227,7 +229,7 @@ const chooseSelect = () => {
 const router = useRouter();
 
 const submitPost = () => {
-
+  
   //因為選擇分類的value是數字，把他轉成分類字串
   postData.value.category = FormCgy.value[postData.value.category - 1];
   // console.log(postData.value.title, postData.value.category);
@@ -271,8 +273,8 @@ const submitPost = () => {
   axios
     .post(`${import.meta.env.VITE_API_URL}/forumPost/forumPost_ADD.php`, JSON.stringify(postData.value)) // PHP 文件路径
     .then((res) => {
-      // console.log(res.data);
-      // alert(res.data);
+      console.log(res.data);
+      alert(res.data);
       alert("發文成功");
       router.push('/forum');
     })
