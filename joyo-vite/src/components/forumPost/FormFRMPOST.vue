@@ -256,7 +256,7 @@ const submitPost = () => {
       return;
     }
   } else if (postData.value.category == "揪團區") {
-    postData.value.title="請輸入桌遊名稱";
+    // postData.value.title="請輸入桌遊名稱";
     if (postData.value.area == 0) {
       alert("請選擇揪團地點");
       postData.value.category = 0;

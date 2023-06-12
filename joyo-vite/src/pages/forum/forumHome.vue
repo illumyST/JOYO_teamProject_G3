@@ -75,7 +75,7 @@ const fetchData=()=>{
         .then(res => {
           //將資料庫回傳的資料存在articleAll變數中
           forumArticle.value.articleAll = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           let callBackId = route.params.categoryId; 
           turnArticleType(callBackId);
           
