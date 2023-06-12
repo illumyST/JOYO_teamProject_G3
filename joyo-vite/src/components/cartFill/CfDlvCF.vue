@@ -134,9 +134,9 @@
             toLocal.value.phone=props.memberData.member.PHONE;
             addrDetail.value=props.memberData.member.ADDR_DETAIL;
             //開發用
-            // return axios.get('/src/assets/json/address.json') 
+            return axios.get('/src/assets/json/address.json') 
             //打包用
-          return axios.get('https://tibamef2e.com/thd101/g3/API/address.json')
+        //   return axios.get('https://tibamef2e.com/thd101/g3/API/address.json')
                 .then(
                     res =>{
                         
@@ -286,9 +286,9 @@
      //取得縣市區域JSON資料並將縣市資料填入address的country
     const fetchData=()=>{
         //開發用
-        // return axios.get('/src/assets/json/address.json')
+        return axios.get('/src/assets/json/address.json')
         //打包用
-        return axios.get(`https://tibamef2e.com/thd101/g3/API/address.json`)
+        // return axios.get(`https://tibamef2e.com/thd101/g3/API/address.json`)
                 .then(
                     res =>{
                     address.value.twzipcode=res.data;
