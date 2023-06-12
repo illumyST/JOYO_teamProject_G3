@@ -181,7 +181,10 @@ const Add_Area = ref({
 const fetchData = () => {
   // 揪團地點串JSON檔
   return axios
+  //開發用
     .get("/src/assets/json/address.json")
+    //打包用
+  // .get('https://tibamef2e.com/thd101/g3/API/address.json')
     .then((res) => {
       Add_Area.value.Area = Object.keys(res.data);
     })
