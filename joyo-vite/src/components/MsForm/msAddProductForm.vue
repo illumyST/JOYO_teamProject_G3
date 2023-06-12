@@ -2,7 +2,7 @@
     <div class="member_overlay" @click="close">
       <section class="ms_form_long" @click.stop>
               <i class="bi bi-x-lg" @click="close"></i>
-              <form action="/api/msProductManagement/msProductManagementADD.php" method="POST" enctype="multipart/form-data">
+              <form @submit="sub" id="formadd" name="formadd">
                   <h1>新增商品</h1>
                   <div class="one">
                   <label for="">商品名稱 : </label>
@@ -116,7 +116,8 @@
     </template>
   
     <script setup>
-    import { ref ,} from "vue";
+    import axios from "axios";
+import { ref ,} from "vue";
     
     
 const MINpeo = ref(0);
@@ -142,19 +143,31 @@ const fileup =(n,t)=>{
   if(t == "img4"){
     form.value.img4name = img[0].name ;
   }
-  
-console.log(img[0])
+// console.log(img[0])
 }
 
+const emits = defineEmits(['close']);
+    const close = ()=>{
+      emits("close",false)
+    }
 
+
+const sub=()=>{
+  event.preventDefault();
+  const form = document.getElementById("formadd");
+  const formdata = new FormData(form);
+  axios.post(`${import.meta.env.VITE_API_URL}/msProductManagement/msProductManagementADD.php`, formdata, {
+    headers: {'Content-Type': 'multipart/form-data'}
+  })
+  .then(res=>{console.log(res.data)})
+  .catch(error=>console.log(error));
+  emits("close",false)
+}
   //   const passwordToggle = () => {
   //     isPasswordVisible.value = !isPasswordVisible.value;
   //   };
     
-  const emits = defineEmits(['close']);
-    const close = ()=>{
-      emits("close",false)
-    }
+
     </script>
   
   

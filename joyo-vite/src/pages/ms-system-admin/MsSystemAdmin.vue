@@ -48,7 +48,7 @@ axios.get(`${import.meta.env.VITE_API_URL}/logIn&Out/sessionCheckValue.php`)
 
 provide('admins',adminsA);
 provide("prodects",admins);
-
+provide("check",adminsA)
 provide("opage",opage);
 
 const chpage=(n)=>{

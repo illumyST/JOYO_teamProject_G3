@@ -16,26 +16,25 @@
     </div>
   </template>
   <script setup>
-    import {ref, inject,computed,defineEmits,defineProps} from 'vue';
+    import {ref, inject,computed,defineEmits,defineProps, watch} from 'vue';
     const pages = computed(()=>{
     return Math.ceil(order.value.length/10)});
     const Rpage = ref(1);
     const order = inject("prodects");
     const emits = defineEmits(['page']);
- 
-    // watch(order, () => {
-    //   Rpage.value = 1 ;
-    //   // 在数据变化时执行其他操作
-    // });
-    watch(Rpage, () => {
 
+    
+
+
+    watch(Rpage, () => {
+      
       emits('page', [Rpage.value*10-10,Rpage.value*10]);
       // 在数据变化时执行其他操作
     });
 
     const onPage=(n)=>{
         Rpage.value = n ;
-        console.log(n)
+        // console.log(n)
     }
 
 
@@ -52,6 +51,15 @@
             Rpage.value++
         }
     }
+
+  // const props = defineProps({
+  // page: {
+  //   type: Number,
+  //   required: true
+  // }});
+ 
+
+
   </script>
   <style lang="scss" scoped>
   
