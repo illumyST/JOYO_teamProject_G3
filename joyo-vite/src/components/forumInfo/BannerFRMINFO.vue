@@ -108,7 +108,7 @@ const fetchData = () => {
     .get(`${import.meta.env.VITE_API_URL}/forum/forumGetArticle.php`)
     .then((res) => {
       forumArticle.value.articleAll = res.data;
-      forumArticle.value.IMG_URL = getImageUrl(forumArticle.value.IMG_URL);
+      forumArticle.value.IMG_URL = getImageUrl(extractNumberFromPath(forumArticle.value.IMG_URL));
     })
     .catch((err) => {
       // console.error(err);
@@ -245,7 +245,7 @@ const fetchMsg = () => {
       ForumInfoMsgs.value = res.data.map((msg) => {
         // 變換日期呈現處理
         msg.ARTICLE_COMMENT_DATE = formatDate(msg.ARTICLE_COMMENT_DATE);
-        ForumInfoMsgs.value.IMG_URL = getImageUrl(ForumInfoMsgs.value.IMG_URL);
+        ForumInfoMsgs.value.IMG_URL = getImageUrl(extractNumberFromPath(ForumInfoMsgs.value.IMG_URL));
         return msg;
         
       }
