@@ -9,7 +9,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $memberId = $data['memberId'];
 
 // 執行資料庫查詢
-$stmt = $pdo->prepare("SELECT * FROM member WHERE MEMBER_ID = ?");
+$stmt = $pdo->prepare("SELECT * FROM MEMBER WHERE MEMBER_ID = ?");
 $stmt->execute([$memberId]);
 
 // 取得查詢結果

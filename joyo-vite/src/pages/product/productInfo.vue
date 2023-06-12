@@ -64,21 +64,7 @@ const getGame = () => {
     let callBackId = route.params.id;
     if (callBackId != "") {
 
-    } else {
-        callBackId = "ID：1";
-    }
-    let arr1 = (pageInfor.value.tg.filter((game) => "ID:" + game.PRODUCT_ID == callBackId));
-    let arr2 = (pageInfor.value.productAllComment.filter((comment) => "ID:" + comment.PRODUCT_ID == callBackId));
-    pageInfor.value.fliterTg = arr1[0];
-    pageInfor.value.productComment = arr2;
-    console.log(pageInfor.value.productComment);
-    pageInfor.value.productComment.IMG_URL = getImageUrl(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
-    console.log(pageInfor.value.productComment);
-    console.log(extractNumberFromPath(pageInfor.value.productComment.IMG_URL));
-
-<<<<<<< HEAD
-=======
-      }else{
+    } else{
         callBackId ="ID：1";
       }
       let arr1=(pageInfor.value.tg.filter((game)=>"ID:"+game.PRODUCT_ID == callBackId));
@@ -87,7 +73,6 @@ const getGame = () => {
       pageInfor.value.productComment=arr2;
       console.log(pageInfor.value.productComment);
    
->>>>>>> dd6406be19224cadf06c80af81b274962e688235
 };
 const guessLike = () => {
     let category = pageInfor.value.fliterTg.CATEGORY;
