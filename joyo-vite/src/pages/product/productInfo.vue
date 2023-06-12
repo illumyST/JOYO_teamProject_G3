@@ -45,6 +45,22 @@ const fetchComment=()=>{
             // console.error(err);
         });
 };
+const getImageUrl = (userId) => {
+    return new URL(
+        `../../assets/img/member_photo/${userId}_photo.png`,
+        import.meta.url
+    ).toString();
+};
+
+const extractNumberFromPath = (path) => {
+    const regex =  /\/(\d+)_photo/;
+    const match = path.match(regex);
+    if (match) {
+       return match[1];
+    } else {
+        return null
+    };
+};
 const getGame=()=>{
     let callBackId = route.params.id; 
       if(callBackId !=""){
@@ -56,6 +72,7 @@ const getGame=()=>{
       let arr2=(pageInfor.value.productAllComment.filter((comment)=>"ID:"+comment.PRODUCT_ID == callBackId));
       pageInfor.value.fliterTg=arr1[0];
       pageInfor.value.productComment=arr2;
+      pageInfor.value.productComment.IMG_URL = getImageUrl(pageInfor.value.productComment.IMG_URL);
    
 };
 const guessLike=()=>{
