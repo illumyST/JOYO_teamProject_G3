@@ -13,7 +13,7 @@ WHERE ARTICLE_ID in (SELECT ARTICLE_ID FROM ARTICLE WHERE GAME_NAME ='$name')";
 
 $sq2 = "DELETE FROM ARTICLE WHERE GAME_NAME = '$name'" ;
 
-$sq3 = "DELETE from cart where product_id = '$id'";
+$sq3 = "DELETE from CART where PRODUCT_ID = '$id'";
 
 $sq4 = "DELETE FROM  PRODUCT_COMMENT WHERE PRODUCT_ID = '$id'" ;
 
