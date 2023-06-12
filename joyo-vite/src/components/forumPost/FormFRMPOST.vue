@@ -8,7 +8,7 @@
         v-model="postData.category"
         @click="chooseSelect"
       >
-        <option :value="SelectCgy">文章類型</option>
+        <option value=0>文章類型</option>
         <option
           v-for="(item, index) in FormCgy"
           :key="index"
@@ -43,7 +43,7 @@
         v-model="postData.score"
         v-show="ShowScoreSelect"
       >
-        <option :value="0">{{ FormScore.Name }}</option>
+        <option :value="FormScore.Value">{{ FormScore.Name }}</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
 
@@ -232,49 +232,55 @@ const submitPost = () => {
   
   //因為選擇分類的value是數字，把他轉成分類字串
   postData.value.category = FormCgy.value[postData.value.category - 1];
-  // console.log(postData.value.title, postData.value.category);
+  // console.log(postData.value.title, postData.value.category, postData.value.score);
   if (postData.value.category == "文章類別") {
     alert("請選擇文章類別");
     return;
   } else if (
-    postData.value.category == "心得分享" ||
     postData.value.category == "教學區" ||
     postData.value.category == "發問區"
   ) {
     if (!postData.value.title.trim()) {
-      postData.value.category = "0";
-      // console.log(postData.value.category);
       alert("請輸入桌遊名稱");
+      postData.value.category = 0;
       return;
     }
-  } else if (postData.value.category == "心得分享") {
-    if (postData.value.score.value == "文章類別") {
+  } else if(postData.value.category == "心得分享") {
+    if (!postData.value.title.trim()) {
+      alert("請輸入桌遊名稱");
+      postData.value.category = 0;
+      return;
+    }else if(postData.value.score == 0){
       alert("請選擇評分");
+      postData.value.category = 0;
       return;
     }
   } else if (postData.value.category == "揪團區") {
     postData.value.title="請輸入桌遊名稱";
-    if (postData.value.area == "文章類別") {
+    if (postData.value.area == 0) {
       alert("請選擇揪團地點");
+      postData.value.category = 0;
       return;
     }
   }
   
   if (!postData.value.postTitle.trim()) {
     alert("請輸入文章標題");
+    postData.value.category = 0;
     return;
   }
 
   if (!postData.value.postContent.trim()) {
     alert("請輸入文章内容");
+    postData.value.category = 0;
     return;
   }
 
   axios
     .post(`${import.meta.env.VITE_API_URL}/forumPost/forumPost_ADD.php`, JSON.stringify(postData.value)) // PHP 文件路径
     .then((res) => {
-      console.log(res.data);
-      alert(res.data);
+      // console.log(res.data);
+      // alert(res.data);
       alert("發文成功");
       router.push('/forum');
     })
