@@ -21,21 +21,9 @@ if($sear != ""){
     header('Content-Type: application/json');
     echo $jsonData;
         
-    // foreach($data as $index => $item){
-    //   echo $item['NAME']."<br>";
-    // print_r( $jsonData);
     
     }
 
-
-
-// echo "123";
-
-// $email = $data['_rawValue'] ['pass'];
-
-
-// print_r($data);
-// echo $see ."<br>";
 
 
 ?>

@@ -33,7 +33,9 @@ for(var a = n[0] ; a<n[1] ; a++){
 }
 }
 
+const turn = ref(false);
 const getseach = (n)=>{
+  turn.value = !turn.value;
   order.value = []; 
   order2.value = [];
 if(n.text != ""){
@@ -150,7 +152,6 @@ order.value.push(
   upopen: false,
   order:[]})
 }
-
 axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder2.php`)
 .then(data=>{
 for(var n = 0 ; n< order.value.length ; n++){
@@ -180,6 +181,7 @@ if(order.value[n] != undefined){
 .catch(error=>{console.log(error)});
 }
 }
+provide("turn",turn);
 // --------------------------------------------------------------------------------
 
 axios.get(`${import.meta.env.VITE_API_URL}/msDataMangOrder/msDataMangOrder.php`)

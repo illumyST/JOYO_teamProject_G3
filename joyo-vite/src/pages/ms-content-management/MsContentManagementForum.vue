@@ -2,13 +2,14 @@
 
     <MsSeachBar @text="getseach" :name="'文章管理查詢'"></MsSeachBar>
     <msContentManagementForumTable @del="del"></msContentManagementForumTable>
-    <msPage @Page="chPage"></msPage>
+    <msPage @Page="chPage" :onpag="onpage"></msPage>
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref, provide } from "vue";
 const onpage = ref(0);
+
 const arr = ref([]);
 const arrs = ref([]);
 provide("arr", arrs);
@@ -24,6 +25,8 @@ const chPage= (n)=>{
     // console.log(n)
 const sel = ref([]);
 
+
+const nwpage = ref(0);
 const del = (e)=>{
   sel.value=[];
   arrs.value=[];
@@ -40,17 +43,31 @@ const del = (e)=>{
     arrs.value.push(arr.value[n]);
   }
  }
-  // console.log(sel.value) ;
+
+  // console.log(onpage.value) ;
+  if(arrs.value.length<1){
+    for(let a = onpage.value-10 ; a<onpage.value ;a++){
+      // console.log(a);
+      if(arr.value[a] != undefined){
+        arrs.value.push(arr.value[a]);
+        
+      }
+    }
+    nwpage.value= onpage.value/10;
+  }
 }
 
 
 const userSelect = ref([{name:"文章編號",value:1}, {name:"用戶",value:2},{name:"發文日期",value:3}, {name:"文章標題",value:4}]);
 provide("us", userSelect);
+const turn = ref(false);
 // console.log(userSelect);
 const getseach = (n) => {
   arr.value = [];
   arrs.value = [];
-  console.log(n)
+  turn.value = !turn.value ;
+  
+  // console.log(n)
   var sr ={
     text:n.text,
     value:n.value
@@ -60,7 +77,6 @@ const getseach = (n) => {
     .then(data=>{    
     var list = data.data ;
     for(var n of list){
-      // console.log(n);
       arr.value.push({
         id: n['ARTICLE_ID'],
         user: n['MAIL'],
@@ -73,6 +89,7 @@ const getseach = (n) => {
     arrs.value.push(arr.value[n]);
   }
  }
+ 
 })
 .catch(error=>{console.log(error)});
   }
@@ -101,6 +118,10 @@ const getseach = (n) => {
   }
 };
 
+provide("turn",turn);
+
+
+
 axios.get(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagement.php`)
 .then(data=>{
   
@@ -123,6 +144,7 @@ axios.get(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManageme
 //  console.log(arrs.value);
 })
 .catch(error=>{console.log(error)});
+provide("nwpage",nwpage);
 </script>
 
 <style lang="scss" scoped>

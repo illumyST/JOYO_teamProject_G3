@@ -24,8 +24,9 @@ const chPage=(n)=>{
     }
   }
 }
-
+const turn = ref(false);
 const getseach = (n) => {
+  turn.value = !turn.value;
   user.value=[];
   users.value=[];
   var ser = {
@@ -77,7 +78,7 @@ const getseach = (n) => {
 }
     })
 }};
-
+provide("turn",turn);
 
 axios.get(`${import.meta.env.VITE_API_URL}/msUserData/msUserData.php`)
 .then(data=>{

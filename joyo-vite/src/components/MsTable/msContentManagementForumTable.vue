@@ -38,7 +38,7 @@ if(YN){
   emits('del',item);
 //   console.log(item);
   axios.post(`${import.meta.env.VITE_API_URL}/MsContentManagement/MsContentManagementDL.php`,item)
-  .then(data=>{console.log(data.data)})
+  .then(data=>{})
   .catch(error=>{console.log(error)})
 }
 }

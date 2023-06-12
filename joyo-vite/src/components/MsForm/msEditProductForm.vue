@@ -3,9 +3,6 @@
     <section class="ms_form_long" @click.stop>
       <i class="bi bi-x-lg" @click="close"></i>
       <form
-        :action="`${
-          import.meta.env.VITE_API_URL
-        }/msProductManagement/msProductManagementUP.php`"
         @submit="sub"
         name="form1"
         id="form1"
@@ -190,7 +187,6 @@ const props = defineProps({
   message: {
     type: String,
     required: true,
-    default: "Hello from parent component!",
   },
 });
 console.log(props["message"]);

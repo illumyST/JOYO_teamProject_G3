@@ -22,8 +22,17 @@
     const Rpage = ref(1);
     const order = inject("prodects");
     const emits = defineEmits(['page']);
-
+    const nwpage = inject("nwpage");
+    const turn = inject("turn");
+    watch(nwpage,()=>{
+      Rpage.value = nwpage.value ;
+      // watch()
+    })
     
+    watch(turn,()=>{
+    // console.log("123");
+    Rpage.value = 1 ;
+    })
 
 
     watch(Rpage, () => {
