@@ -23,9 +23,9 @@ provide('us', userSelect);
 
 const onpp=ref(0);
 
-
+const turn = ref(false);
 const getseach=(n)=>{
-   
+   turn.value = !turn.value;
   prodectsS.value=[];
     if(n != ""){
    prodects.value=[];
@@ -79,7 +79,8 @@ const getseach=(n)=>{
   })
     .catch(error=>{console.log(error)})
 
-}}
+}};
+provide("turn",turn);
 
 const addop = ref(false);
 const prodects = ref([]); 
@@ -96,6 +97,7 @@ const close=(e)=>{
   addop.value = e
 }
 
+const nwpage = ref(0);
 const onpage = ref(0);
 const reprodect = ref([]);
 const del = (e)=>{
@@ -115,9 +117,14 @@ const del = (e)=>{
         prodectsS.value.push(prodects.value[a]);
       }
     }
+  if(prodectsS.value.length < 1){
+    // console.log(onpage.value);
+    nwpage.value = onpage.value/10;
+  }
+
 }
 
-
+provide("nwpage",nwpage);
 
 axios.get(`${import.meta.env.VITE_API_URL}/msProduct/msProduct.php`)
     .then(data=>{
@@ -164,6 +171,7 @@ const productt =(n)=>{
   }
   // console.log();
 }
+
 </script>
 
 <style lang="scss" scoped>

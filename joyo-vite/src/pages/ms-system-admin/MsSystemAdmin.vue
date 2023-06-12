@@ -66,6 +66,7 @@ const addop = ref(false);
 const updat = ref(false);
 
 const addm = ref([]);
+const nwpage = ref(0);
 const dlt = (i)=>{
   adminsA.value=[];
   addm.value = [] ;
@@ -85,8 +86,13 @@ for(var a= (opage.value-1)*10 ;a<opage.value*10 ; a++){
     adminsA.value.push(admins.value[a])
    } 
   } 
+  if(adminsA.value.length < 1){
+   nwpage.value=opage.value-1;
+  }
 // console.log(adminsA.value);
-}
+};
+provide("nwpage",nwpage);
+
 
 const cladd = (e)=>{
   if(addop.value){
