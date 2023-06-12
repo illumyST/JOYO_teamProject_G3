@@ -125,22 +125,23 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
 .then(res=>{
     
     for(let n of res.data){
-        // console.log(n);
+        // console.log(order.value.length);
         for(let a = 0 ; a < order.value.length  ; a++){
-            // console.log(n['buy_id']);
-        if(n['buy_id'] == order.value[a].num){
+            // console.log(a);
+        if(n['BUY_ID'] == order.value[a].num){
             order.value[a]["detal"].push({
             pname:n[0],
             pimg:n[2],
             pprice:n[1],
             pamount:n[3],   
           })}
+          console.log(n["BUY_ID"])
         }}
     //     
     })
     // 
 .catch(error=>{console.log(error)});
-// console.log(ord)
+
 })
 .catch(error=>{console.log(error)})
 
