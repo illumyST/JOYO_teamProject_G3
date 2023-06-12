@@ -1,7 +1,7 @@
 <template>
   <!-- 手機版廣告區域 -->
   <div class="forum_media_advertise">
-    <!-- <img src="/src/assets/img/forum_advertise.jpg" alt="" /> -->
+    <img src="../../assets/img/forum_banner_a.png" alt="" />
   </div>
 
   <section class="forum_wrapper">
