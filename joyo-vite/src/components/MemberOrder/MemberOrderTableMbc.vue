@@ -127,7 +127,7 @@ axios.post(`${import.meta.env.VITE_API_URL}/MemberOrderTableMbc/MemberOrderTable
     for(let n of res.data){
         // console.log(order.value.length);
         for(let a = 0 ; a < order.value.length  ; a++){
-            // console.log(a);
+            // console.log(n['buy_id']);
         if(n['BUY_ID'] == order.value[a].num){
             order.value[a]["detal"].push({
             pname:n[0],
