@@ -6,18 +6,18 @@ $ser = "%$srr%";
 $value = $data["value"];
 
 if($value == 1){
-    $sql = "SELECT * FROM member WHERE MEMBER_ID LIKE :ids ";
+    $sql = "SELECT * FROM  MEMBER WHERE  MEMBER_ID LIKE :ids ";
 }
 else if($value == 2){
-    $sql = "SELECT * FROM member WHERE MEMBER_NAME LIKE :ids ";
+    $sql = "SELECT * FROM  MEMBER WHERE  MEMBER_NAME LIKE :ids ";
 }
 else if($value == 3){
-    $sql = "SELECT * FROM member WHERE MAIL LIKE :ids ";
+    $sql = "SELECT * FROM  MEMBER WHERE MAIL LIKE :ids ";
 }
 else if($value == 4){
     if($srr == "已驗證"){ $ser = 1;}
     else if($srr == "未驗證"){ $ser = 0;}
-    $sql = "SELECT * FROM member WHERE VERIFY_STATE LIKE :ids ";
+    $sql = "SELECT * FROM  MEMBER WHERE VERIFY_STATE LIKE :ids ";
 }
 
 
