@@ -7,21 +7,21 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  email: {
-    host: 'smtp.gmail.com',
-    secure: true,
-    auth: {
-      user: 'joyogamethd101@gmail.com',
-      pass: 'catobidshquojtxy',  // vmail will prompt if pass is empty
-    },
-    frontmatter: {
-      // receiver({ name }) {
-      //   return `${name} hihihi`
-      // },
-      today: new Date().toLocaleDateString(),
-      author: 'XLor'
-    }
-  },
+  // email: {
+  //   host: 'smtp.gmail.com',
+  //   secure: true,
+  //   auth: {
+  //     user: 'joyogamethd101@gmail.com',
+  //     pass: 'catobidshquojtxy',  // vmail will prompt if pass is empty
+  //   },
+  //   frontmatter: {
+  //     // receiver({ name }) {
+  //     //   return `${name} hihihi`
+  //     // },
+  //     today: new Date().toLocaleDateString(),
+  //     author: 'XLor'
+  //   }
+  // },
   
   base: './',
 
@@ -58,7 +58,7 @@ export default defineConfig({
     },
   },
 
-  // publicPath: '/api',
+
 
   server: {
     port: '5173',
