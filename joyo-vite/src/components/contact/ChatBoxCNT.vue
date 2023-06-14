@@ -109,7 +109,7 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-      }, 50);
+      }, 1000);
     },
     scrollToBottom() {
       const chatRoom = this.$refs.chatRoom;

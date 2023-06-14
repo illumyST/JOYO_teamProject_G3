@@ -3,6 +3,7 @@
     <section class="ms_form_long" @click.stop>
       <i class="bi bi-x-lg" @click="close"></i>
       <form
+        action="/api/msProductManagement/msProductManagementUP.php"
         @submit="sub"
         name="form1"
         id="form1"
