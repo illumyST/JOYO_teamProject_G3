@@ -305,7 +305,7 @@ export default {
 
 .ms_data_management_fiter {
   select {
-    font-size: $p;
+    font-size: 14px; 
     font-family: "Noto Sans TC", sans-serif;
     width: 160px;
     height: 30px;
