@@ -38,9 +38,9 @@
     </div>
 
     <BarChart :filteredDate="filteredDate"></BarChart>
-    <div class="ms_csv_button">
+    <!-- <div class="ms_csv_button">
       <i class="fa-solid fa-file-csv" id="ms_csv" @click="downloadCSV"></i>
-    </div>
+    </div> -->
     <!-- table 不用寫組件 -->
     <MsOrderListTable
       :filteredDate="filteredDate"
