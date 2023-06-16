@@ -41,7 +41,6 @@
     <!-- <div class="ms_csv_button">
       <i class="fa-solid fa-file-csv" id="ms_csv" @click="downloadCSV"></i>
     </div> -->
-    <!-- table 不用寫組件 -->
     <MsOrderListTable
       :filteredDate="filteredDate"
       :itemsPerPage="itemsPerPage"
@@ -93,7 +92,11 @@ export default {
     },
     getDefaultChartData() {
       axios
-        .get(`${import.meta.env.VITE_API_URL}/msGetOrderData/getDefaultChartData.php`)
+        .get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/msGetOrderData/getDefaultChartData.php`
+        )
         .then((res) => {
           const jsonData = res.data;
           this.date = [
@@ -129,54 +132,101 @@ export default {
           console.error(error);
         });
     },
+    // SmtpJS
     sendReport() {
       const enteredEmail = this.$refs.emailList.value;
       const startDate = new Date(this.filteredDate[0]);
       const endDate = new Date(this.filteredDate[1]);
-      console.log(enteredEmail);
       const emailValidation =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      if (enteredEmail.match(emailValidation) && enteredEmail !== '') {
+      if (enteredEmail.match(emailValidation) && enteredEmail !== "") {
         axios
-          .get(`${import.meta.env.VITE_API_URL}/msGetCSVFile/createCSVFile.php`, {
-            params: {
-              startDate: this.date[0],
-              endDate: this.date[1],
-            },
-          })
+          .get(
+            `${import.meta.env.VITE_API_URL}/msGetCSVFile/createCSVFile.php`,
+            {
+              params: {
+                startDate: this.date[0],
+                endDate: this.date[1],
+              },
+            }
+          )
           .then((res) => {
-            // console.log("報表已產出至指定路徑");
+            console.log(res, "報表已產出至指定路徑");
           })
           .catch((error) => {
             console.log("error" + error);
           });
-
-        // 從PHPMailer 發送email
+        // 從smtp js 發送信件
         setTimeout(() => {
           const formattedStartDate = startDate.toISOString().slice(0, 10);
           const formattedEndDate = endDate.toISOString().slice(0, 10);
-          const formData = new FormData();
-          formData.append("email", enteredEmail);
-          formData.append(
-            "subject",
-            `${formattedStartDate} 至 ${formattedEndDate} 業績報表`
-          );
-          formData.append("message", "報表如附件，請知悉");
-          formData.append("startDate", formattedStartDate);
-          formData.append("endDate", formattedEndDate);
-          axios
-            .post(`${import.meta.env.VITE_API_URL}/msSendReport/sendReportEmail.php`, formData)
-            .then((res) => {
-              console.log(res, "success");
-              alert("報表已送出"); 
-              this.$refs.emailList.value = "";
-            });
-        }, 50);
+          Email.send({
+            SecureToken: "70ee9b87-1025-48e9-a8df-ef86566af02b",
+            To: enteredEmail,
+            From: "joyogamethd101@gmail.com",
+            Subject: `${formattedStartDate} 至 ${formattedEndDate} 業績報表`,
+            Body: `${formattedStartDate} 至 ${formattedEndDate} 的業績報表如附件。`,
+            // Attachments: [
+            //   {
+            //     name: `${startDate}-${endDate}.csv`,
+            //     path: '../../../../../public/csvs/',
+            //   },
+            // ],
+          }).then((message) => alert(message));
+        }, 300);
       }
     },
+
+    // sendReport() {
+    //   const enteredEmail = this.$refs.emailList.value;
+    //   const startDate = new Date(this.filteredDate[0]);
+    //   const endDate = new Date(this.filteredDate[1]);
+    //   console.log(enteredEmail);
+    //   const emailValidation =
+    //     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    //   if (enteredEmail.match(emailValidation) && enteredEmail !== '') {
+    //     axios
+    //       .get(`${import.meta.env.VITE_API_URL}/msGetCSVFile/createCSVFile.php`, {
+    //         params: {
+    //           startDate: this.date[0],
+    //           endDate: this.date[1],
+    //         },
+    //       })
+    //       .then((res) => {
+    //         // console.log("報表已產出至指定路徑");
+    //       })
+    //       .catch((error) => {
+    //         console.log("error" + error);
+    //       });
+
+    //     // 從PHPMailer 發送email
+    //     setTimeout(() => {
+    //       const formattedStartDate = startDate.toISOString().slice(0, 10);
+    //       const formattedEndDate = endDate.toISOString().slice(0, 10);
+    //       const formData = new FormData();
+    //       formData.append("email", enteredEmail);
+    //       formData.append(
+    //         "subject",
+    //         `${formattedStartDate} 至 ${formattedEndDate} 業績報表`
+    //       );
+    //       formData.append("message", "報表如附件，請知悉");
+    //       formData.append("startDate", formattedStartDate);
+    //       formData.append("endDate", formattedEndDate);
+    //       axios
+    //         .post(`${import.meta.env.VITE_API_URL}/msSendReport/sendReportEmail.php`, formData)
+    //         .then((res) => {
+    //           console.log(res, "success");
+    //           alert("報表已送出");
+    //           this.$refs.emailList.value = "";
+    //         });
+    //     }, 50);
+    //   }
+    // },
   },
 };
 </script>
+
+
 <style lang="scss">
 // 有用到的 mixins 再丟進來，不要全丟！
 // 只有自己用到的話就不要丟進來，寫在自己的 <style lang="scss" scoped> 裡面
@@ -305,7 +355,7 @@ export default {
 
 .ms_data_management_fiter {
   select {
-    font-size: 14px; 
+    font-size: 14px;
     font-family: "Noto Sans TC", sans-serif;
     width: 160px;
     height: 30px;
@@ -376,7 +426,6 @@ export default {
 .dp__input_wrap {
   width: 270px !important;
   height: 34px;
-  
 }
 
 .ms_send_report_form {
