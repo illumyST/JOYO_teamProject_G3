@@ -219,7 +219,7 @@ const doLogInCheck = function () {
   .ms_test_acct {
     position: absolute;
     right: 70px;
-    bottom: 23px;
+    bottom: 30px;
     font-size: 14px;
     letter-spacing: 0.1em;
     color: gray;
