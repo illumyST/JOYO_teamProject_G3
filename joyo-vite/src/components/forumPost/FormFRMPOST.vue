@@ -547,10 +547,6 @@ input[type="button"] {
   }
 }
 
-div.searchModel{
-  // outline: 1px solid red;
-  // width: 300px;
-}
 ul.searchBox{
   background-color: $bg;
   margin: 0 20px;
