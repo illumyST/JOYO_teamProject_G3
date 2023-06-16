@@ -160,19 +160,34 @@ export default {
         setTimeout(() => {
           const formattedStartDate = startDate.toISOString().slice(0, 10);
           const formattedEndDate = endDate.toISOString().slice(0, 10);
-          Email.send({
-            SecureToken: "70ee9b87-1025-48e9-a8df-ef86566af02b",
-            To: enteredEmail,
-            From: "joyogamethd101@gmail.com",
-            Subject: `${formattedStartDate} 至 ${formattedEndDate} 業績報表`,
-            Body: `${formattedStartDate} 至 ${formattedEndDate} 的業績報表如附件。`,
-            // Attachments: [
-            //   {
-            //     name: `${startDate}-${endDate}.csv`,
-            //     path: '../../../../../public/csvs/',
-            //   },
-            // ],
-          }).then((message) => alert(message));
+
+          // Fetch the CSV file from the server
+          fetch(
+            `../../../../../public/csvs/${formattedStartDate}_${formattedEndDate}.csv`
+          )
+            .then((response) => response.blob())
+            .then((file) => {
+              const reader = new FileReader();
+              reader.onload = function (event) {
+                const dataUri = event.target.result;
+
+                Email.send({
+                  SecureToken: "70ee9b87-1025-48e9-a8df-ef86566af02b",
+                  To: enteredEmail,
+                  From: "joyogamethd101@gmail.com",
+                  Subject: `${formattedStartDate} 至 ${formattedEndDate} 業績報表`,
+                  Body: `${formattedStartDate} 至 ${formattedEndDate} 的業績報表如附件。`,
+                  Attachments: [
+                    {
+                      name: `${formattedStartDate}_${formattedEndDate}.csv`,
+                      data: dataUri,
+                    },
+                  ],
+                }).then((message) => alert(message));
+              };
+
+              reader.readAsDataURL(file);
+            });
         }, 300);
       }
     },
@@ -225,7 +240,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss">
 // 有用到的 mixins 再丟進來，不要全丟！

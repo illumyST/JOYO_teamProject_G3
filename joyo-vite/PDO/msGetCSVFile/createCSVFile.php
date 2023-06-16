@@ -19,7 +19,7 @@ $statement = $pdo->prepare($sql);
 $statement->execute();
 $data = $statement->fetchAll();
 if (count($data) > 0) {
-    $outputFilePath = '../../public/csvs/'.$startDate.'_'.$endDate.'.csv';
+    $outputFilePath = '../../public/csvs/' . $startDate . '_' . $endDate . '.csv';
 
 
     $output = fopen($outputFilePath, 'w');
